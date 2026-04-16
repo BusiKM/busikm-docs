@@ -1,0 +1,129 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Subskrypcje">
+  <div class="prose">
+    <h1>Zarządzanie subskrypcjami i okresami próbnymi</h1>
+
+    <h2>1. Model subskrypcji</h2>
+    <pre><code>class Subscription(models.Model):
+    company = models.OneToOneField(Company)
+    plan = models.CharField(choices=[
+        ('free', 'Free'),
+        ('starter', 'Starter'),
+        ('professional', 'Professional'),
+        ('enterprise', 'Enterprise'),
+    ])
+    status = models.CharField(choices=[
+        ('trial', 'Okres próbny'),
+        ('pilot', 'Pilot'),
+        ('af_trial', 'Trial biura rachunkowego'),
+        ('af_client_trial', 'Trial klienta BR'),
+        ('active', 'Aktywna'),
+        ('expired', 'Wygasła'),
+        ('cancelled', 'Anulowana'),
+    ])
+    trial_type = models.CharField(null=True, choices=[
+        ('reverse_trial', 'Reverse trial'),
+        ('pilot', 'Pilot'),
+        ('af_trial', 'Trial BR'),
+        ('af_client', 'Trial klienta BR'),
+    ])
+    valid_until = models.DateTimeField()
+    features = models.JSONField(default=dict)</code></pre>
+
+    <h2>2. Typy okresów próbnych</h2>
+    <table>
+      <thead><tr><th>Typ</th><th>Czas trwania</th><th>Plan</th><th>Cel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reverse trial</strong></td><td>14 dni</td><td>Professional</td><td>Nowa firma — pełny dostęp, potem downgrade do Free</td></tr>
+        <tr><td><strong>Pilot</strong></td><td>6 miesięcy</td><td>Professional</td><td>Pierwsi klienci — bezpłatnie w zamian za feedback</td></tr>
+        <tr><td><strong>AF trial</strong></td><td>3 miesiące</td><td>Enterprise</td><td>Biuro rachunkowe — wymagane min. 3 klientów</td></tr>
+        <tr><td><strong>AF client trial</strong></td><td>3 miesiące</td><td>Professional</td><td>Klient zaproszony przez biuro rachunkowe</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Cykl życia triala</h2>
+    <pre><code>Rejestracja firmy
+     │
+     ▼
+Trial aktywny (Professional / Enterprise)
+     │  ← Banner: "Pozostało X dni trialu"
+     │  ← Email: 7, 3, 1 dzień przed końcem
+     │
+     ▼
+Trial wygasa
+     │
+     ├─→ Użytkownik wykupił plan → status: 'active'
+     │
+     └─→ Nie wykupił → downgrade do Free
+          ├── Dane zachowane (nie usuwane)
+          ├── Funkcje premium zablokowane
+          └── Banner: "Uaktualnij plan"</code></pre>
+
+    <h2>4. Zachowanie przy downgrade</h2>
+    <table>
+      <thead><tr><th>Zasób</th><th>Zachowanie</th></tr></thead>
+      <tbody>
+        <tr><td>Pojazdy ponad limit</td><td>Zachowane, ale oznaczone jako nieaktywne. Brak nowych tras.</td></tr>
+        <tr><td>Kierowcy ponad limit</td><td>Zachowani, ale brak możliwości logowania (oprócz 1).</td></tr>
+        <tr><td>Raporty</td><td>Istniejące PDF zachowane. Generowanie nowych zablokowane.</td></tr>
+        <tr><td>Eksporty FK</td><td>Zablokowane. Istniejące pliki dostępne 30 dni.</td></tr>
+        <tr><td>Mapa real-time</td><td>Zablokowana.</td></tr>
+        <tr><td>Dane GPS</td><td>Zachowane. Śledzenie GPS nadal aktywne (1 pojazd).</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Feature gating</h2>
+    <pre><code>{`class FeatureGatingMiddleware:
+    """Sprawdza plan subskrypcji przed dostępem do chronionych endpointów."""
+
+    PLAN_REQUIREMENTS = {
+        '/api/v1/reports/': 'starter',
+        '/api/v1/exports/': 'professional',
+        '/api/v1/accounting-firms/': 'enterprise',
+        '/api/v1/map/live/': 'professional',
+    }
+
+    def __call__(self, request):
+        required_plan = self._get_required_plan(request.path)
+        if required_plan and not self._has_plan(request.user, required_plan):
+            return JsonResponse({
+                'error': 'plan_required',
+                'required_plan': required_plan,
+                'message': f'Ta funkcja wymaga planu {required_plan}'
+            }, status=403)`}</code></pre>
+
+    <h2>6. Powiadomienia email</h2>
+    <table>
+      <thead><tr><th>Kiedy</th><th>Treść</th></tr></thead>
+      <tbody>
+        <tr><td>Rejestracja</td><td>Witaj! Twój 14-dniowy trial Professional się rozpoczął.</td></tr>
+        <tr><td>7 dni przed końcem</td><td>Zostało 7 dni trialu. Poznaj plany.</td></tr>
+        <tr><td>3 dni przed końcem</td><td>Zostały 3 dni. Wybierz plan, aby nie stracić funkcji.</td></tr>
+        <tr><td>1 dzień przed końcem</td><td>Ostatni dzień trialu! Uaktualnij teraz.</td></tr>
+        <tr><td>Trial wygasł</td><td>Trial wygasł. Twoje dane są bezpieczne. Uaktualnij plan.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>7. Zadania Celery</h2>
+    <table>
+      <thead><tr><th>Task</th><th>Harmonogram</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><code>check_expiring_trials</code></td><td>Codziennie 8:00</td><td>Wysyłka emaili o wygasających trialach</td></tr>
+        <tr><td><code>downgrade_expired_trials</code></td><td>Codziennie 0:05</td><td>Downgrade wygasłych triali do Free</td></tr>
+        <tr><td><code>track_usage_snapshots</code></td><td>Codziennie 2:00</td><td>Zapis snapshotów użycia per firma</td></tr>
+        <tr><td><code>cleanup_expired_exports</code></td><td>Co tydzień</td><td>Usunięcie plików eksportów starszych niż 30 dni</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. Architektura billing-ready</h2>
+    <p>System jest przygotowany na integrację ze <strong>Stripe Billing</strong> (planowane Post-Sprint 7):</p>
+    <ul>
+      <li>Model Subscription ma pola na <code>stripe_customer_id</code> i <code>stripe_subscription_id</code></li>
+      <li>Webhook endpoint dla zdarzeń Stripe (payment_succeeded, subscription_cancelled)</li>
+      <li>Przejście z manual billing na automatyczny bez zmiany modelu danych</li>
+    </ul>
+  </div>
+</DocsLayout>

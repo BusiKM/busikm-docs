@@ -1,0 +1,136 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Aplikacja mobilna">
+  <div class="prose">
+    <h1>Specyfikacja techniczna — aplikacja mobilna</h1>
+
+    <h2>1. Stos technologiczny</h2>
+    <table>
+      <thead><tr><th>Warstwa</th><th>Technologia</th></tr></thead>
+      <tbody>
+        <tr><td>Framework</td><td>React Native + Expo SDK 52+</td></tr>
+        <tr><td>Język</td><td>TypeScript (strict mode)</td></tr>
+        <tr><td>Routing</td><td>Expo Router v4 (file-based routing)</td></tr>
+        <tr><td>Stan globalny</td><td>Zustand</td></tr>
+        <tr><td>Klient HTTP</td><td>Axios</td></tr>
+        <tr><td>Bezpieczne tokeny</td><td>expo-secure-store</td></tr>
+        <tr><td>Lokalizacja GPS</td><td>expo-location</td></tr>
+        <tr><td>Aparat</td><td>expo-camera</td></tr>
+        <tr><td>Powiadomienia push</td><td>expo-notifications</td></tr>
+        <tr><td>Build</td><td>EAS Build + EAS Update</td></tr>
+      </tbody>
+    </table>
+    <p>Minimalne wersje: <strong>iOS 15+</strong>, <strong>Android 10+</strong> (API 29).</p>
+
+    <h2>2. Struktura projektu</h2>
+    <pre><code>busikm-mobile/
+  app/                    # Expo Router — strony (file-based routing)
+    (auth)/               # Grupa tras autoryzacji
+    (driver)/             # Grupa tras kierowcy (tabs)
+    (owner)/              # Grupa tras właściciela (tabs)
+    _layout.tsx           # Root layout
+  src/
+    api/                  # Klient Axios, interceptory, endpointy
+    stores/               # Zustand stores (auth, trip, gps, alerts)
+    hooks/                # Hooki (useProtectedRoute, useGPS, useNetworkStatus)
+    components/           # Komponenty współdzielone
+    services/             # GPS tracking, upload queue, sync
+    constants/            # Kolory, endpointy, konfiguracja
+    types/                # Typy TypeScript</code></pre>
+
+    <h2>3. Nawigacja i routing</h2>
+    <h3>(auth) — autoryzacja</h3>
+    <table>
+      <thead><tr><th>Ekran</th><th>Ścieżka</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>Logowanie</td><td><code>/login</code></td><td>Formularz email + hasło</td></tr>
+        <tr><td>Rejestracja</td><td><code>/register</code></td><td>Kreator 3-krokowy</td></tr>
+        <tr><td>Reset hasła</td><td><code>/forgot-password</code></td><td>Link resetujący</td></tr>
+        <tr><td>Zaproszenie</td><td><code>/invite/[token]</code></td><td>Dołączenie do firmy</td></tr>
+      </tbody>
+    </table>
+
+    <h3>(driver) — kierowca (4 taby)</h3>
+    <table>
+      <thead><tr><th>Tab</th><th>Ścieżka</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>Trasa</td><td><code>/trip</code></td><td>Start/stop trasy, mapa GPS</td></tr>
+        <tr><td>Historia</td><td><code>/history</code></td><td>Lista przejazdów z filtrami</td></tr>
+        <tr><td>Pojazd</td><td><code>/vehicle</code></td><td>Dane pojazdu, dokumenty</td></tr>
+        <tr><td>Profil</td><td><code>/profile</code></td><td>Ustawienia, powiadomienia</td></tr>
+      </tbody>
+    </table>
+
+    <h3>(owner) — właściciel (5 tabów)</h3>
+    <table>
+      <thead><tr><th>Tab</th><th>Ścieżka</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>Dashboard</td><td><code>/dashboard</code></td><td>Statystyki, aktywne trasy</td></tr>
+        <tr><td>Flota</td><td><code>/fleet</code></td><td>Lista pojazdów</td></tr>
+        <tr><td>Kierowcy</td><td><code>/drivers</code></td><td>Lista kierowców</td></tr>
+        <tr><td>Trasy</td><td><code>/trips</code></td><td>Wszystkie przejazdy</td></tr>
+        <tr><td>Więcej</td><td><code>/more</code></td><td>Raporty, ustawienia, alerty</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. GPS Tracking</h2>
+    <h3>Mechanizm śledzenia</h3>
+    <ul>
+      <li><strong>expo-location</strong> — śledzenie pozycji w tle (background location)</li>
+      <li><strong>expo-task-manager</strong> — zadania w tle dla rejestracji punktów GPS</li>
+      <li>Punkty GPS zapisywane lokalnie (AsyncStorage) i wysyłane batchowo co 30 sekund</li>
+      <li>Przy braku sieci — kolejkowanie lokalne, synchronizacja po odzyskaniu połączenia</li>
+    </ul>
+
+    <h3>Profil baterii (adaptacyjny)</h3>
+    <table>
+      <thead><tr><th>Poziom baterii</th><th>Dokładność GPS</th><th>Interwał</th></tr></thead>
+      <tbody>
+        <tr><td>&gt;50%</td><td>High accuracy</td><td>5s</td></tr>
+        <tr><td>20–50%</td><td>Balanced</td><td>10s</td></tr>
+        <tr><td>10–20%</td><td>Low power</td><td>30s</td></tr>
+        <tr><td>&lt;10%</td><td>Passive (network-only)</td><td>60s</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Zustand Stores</h2>
+    <table>
+      <thead><tr><th>Store</th><th>Stan</th></tr></thead>
+      <tbody>
+        <tr><td><code>useAuthStore</code></td><td>user, tokens, isAuthenticated, login(), logout(), refreshToken()</td></tr>
+        <tr><td><code>useTripStore</code></td><td>activeTrip, tripStatus, gpsPoints[], startTrip(), stopTrip(), addGPSPoint()</td></tr>
+        <tr><td><code>useGPSStore</code></td><td>currentPosition, isTracking, accuracy, uploadQueue[]</td></tr>
+        <tr><td><code>useAlertStore</code></td><td>alerts[], unreadCount, markAsRead(), fetchAlerts()</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. Axios Interceptory</h2>
+    <ul>
+      <li><strong>Request interceptor</strong> — automatyczne dodanie <code>Authorization: Bearer</code></li>
+      <li><strong>Response interceptor</strong> — przy 401 automatyczny refresh token, retry oryginalnego zapytania</li>
+      <li><strong>Token rotation</strong> — stary refresh blacklistowany, nowy zapisywany w SecureStore</li>
+    </ul>
+
+    <h2>7. Tryb offline</h2>
+    <table>
+      <thead><tr><th>Faza</th><th>Technologia</th><th>Zakres</th></tr></thead>
+      <tbody>
+        <tr><td>MVP</td><td>AsyncStorage</td><td>Kolejka GPS, ostatnie trasy, cache pojazdów</td></tr>
+        <tr><td>Post-MVP</td><td>WatermelonDB</td><td>Pełna baza lokalna z synchronizacją (pull/push)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. Build i dystrybucja</h2>
+    <table>
+      <thead><tr><th>Aspekt</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>EAS Build</td><td>Natywne buildy iOS/Android w chmurze Expo</td></tr>
+        <tr><td>EAS Update (OTA)</td><td>Aktualizacje JS bez recenzji App Store</td></tr>
+        <tr><td>Internal Distribution</td><td>Dystrybucja testowa (staging)</td></tr>
+        <tr><td>App Store + Google Play</td><td>Dystrybucja produkcyjna</td></tr>
+      </tbody>
+    </table>
+  </div>
+</DocsLayout>

@@ -1,0 +1,70 @@
+---
+interface Props {
+  variant?: 'full' | 'mark';
+  color?: 'dark' | 'white' | 'brand';
+  size?: 'sm' | 'md' | 'lg';
+}
+const { variant = 'full', color = 'dark', size = 'md' } = Astro.props;
+
+const markColor = color === 'white' ? '#FFFFFF' : color === 'brand' ? '#005CE8' : '#1D1D1F';
+const textColor = color === 'white' ? '#FFFFFF' : '#1D1D1F';
+const kmColor = color === 'white' ? '#FFFFFF' : '#005CE8';
+
+const heights = { sm: 28, md: 34, lg: 42 };
+const h = heights[size];
+---
+
+<a href="/" class="inline-flex items-center gap-3 shrink-0 group" aria-label="BusiKM — strona główna">
+  <!-- Logo Mark: route from ○ center → curved realistic path → ● destination -->
+  <svg
+    width={h * 0.9}
+    height={h}
+    viewBox="0 0 36 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <!-- Origin: open circle (start of route) -->
+    <circle
+      cx="6"
+      cy="32"
+      r="4"
+      fill="none"
+      stroke={markColor}
+      stroke-width="2.8"
+    />
+    <!-- Route path: starts from center of origin circle, curves up-right like a real road -->
+    <path
+      d="M 6 28 C 6 22 10 16 18 12 C 24 9 28 8 30 8"
+      stroke={markColor}
+      stroke-width="2.8"
+      stroke-linecap="round"
+      fill="none"
+    />
+    <!-- Destination: filled dot (report generated) -->
+    <circle
+      cx="30"
+      cy="8"
+      r="6"
+      fill={markColor}
+    />
+    <!-- Small highlight on destination dot -->
+    <circle
+      cx="28"
+      cy="6"
+      r="1.8"
+      fill="white"
+      opacity="0.35"
+    />
+  </svg>
+
+  {variant === 'full' && (
+    <span class="font-display select-none leading-none" style={`color: ${textColor}; font-size: ${h * 0.56}px; letter-spacing: -0.025em;`}>
+      <span style="font-weight: 500;">Busi</span><span style={`font-weight: 800; color: ${kmColor};`}>KM</span>
+    </span>
+  )}
+</a>
+
+<style>
+  a { text-decoration: none; }
+</style>

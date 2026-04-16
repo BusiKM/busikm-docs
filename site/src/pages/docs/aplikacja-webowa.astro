@@ -1,0 +1,118 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Aplikacja webowa">
+  <div class="prose">
+    <h1>Specyfikacja techniczna — panel webowy</h1>
+
+    <h2>1. Stos technologiczny</h2>
+    <table>
+      <thead><tr><th>Warstwa</th><th>Technologia</th></tr></thead>
+      <tbody>
+        <tr><td>Framework</td><td>Next.js 14 (App Router)</td></tr>
+        <tr><td>Język</td><td>TypeScript (strict mode)</td></tr>
+        <tr><td>Stylowanie</td><td>Tailwind CSS</td></tr>
+        <tr><td>Pobieranie danych</td><td>SWR</td></tr>
+        <tr><td>Stan klienta</td><td>Zustand</td></tr>
+        <tr><td>Wykresy</td><td>Recharts</td></tr>
+        <tr><td>Mapy</td><td>Mapbox GL + react-map-gl</td></tr>
+        <tr><td>Komponenty UI</td><td>Radix UI (primitives)</td></tr>
+        <tr><td>Formularze</td><td>react-hook-form + zod</td></tr>
+        <tr><td>Powiadomienia</td><td>Sonner (toasty)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Struktura projektu</h2>
+    <pre><code>busikm-web/
+  src/
+    app/
+      (auth)/             # Logowanie, rejestracja, reset hasła
+      (dashboard)/        # Panel chroniony middleware
+      (marketing)/        # Landing, cennik, kontakt
+      api/proxy/[...path]/ # BFF proxy do backendu
+      layout.tsx          # Root layout
+    components/
+      ui/                 # Button, Input, Dialog, Sheet, Badge
+      layout/             # Sidebar, Topbar, Breadcrumb, MobileNav
+    lib/                  # Konfiguracja (axios, swr, mapbox, utils)
+    hooks/                # useAuth, useClient, useMediaQuery
+    stores/               # Zustand (auth, ui, notifications)
+    types/                # Typy TS (generowane z OpenAPI + manualne)
+  middleware.ts           # Edge middleware (auth guard)</code></pre>
+
+    <h2>3. Autoryzacja — strategia ciasteczek</h2>
+    <table>
+      <thead><tr><th>Ciasteczko</th><th>Typ</th><th>Cel</th></tr></thead>
+      <tbody>
+        <tr><td><code>access_token</code></td><td>httpOnly</td><td>Token dostępu — niedostępny z JS</td></tr>
+        <tr><td><code>refresh_token</code></td><td>httpOnly</td><td>Token odświeżania — niedostępny z JS</td></tr>
+        <tr><td><code>user_data</code></td><td>non-httpOnly</td><td>Dane użytkownika (rola, email) — dostępny z JS</td></tr>
+      </tbody>
+    </table>
+    <p>Edge middleware (<code>middleware.ts</code>) sprawdza tokeny na każdym żądaniu i przekierowuje niezalogowanych na <code>/login</code>. Różne role trafiają do różnych dashboardów.</p>
+
+    <h2>4. BFF Proxy</h2>
+    <pre><code>{`// app/api/proxy/[...path]/route.ts
+// Każde żądanie do /api/proxy/* jest forwardowane do backendu
+// z dodaniem access_token z httpOnly cookie
+export async function GET(req, { params }) {
+  const token = req.cookies.get('access_token');
+  const res = await fetch(\`\${BACKEND_URL}/api/v1/\${params.path}\`, {
+    headers: { Authorization: \`Bearer \${token}\` }
+  });
+  return Response.json(await res.json());
+}`}</code></pre>
+
+    <h2>5. Dashboard per rola</h2>
+    <h3>Owner Dashboard</h3>
+    <ul>
+      <li><strong>Statystyki</strong> — aktywne trasy, łączny przebieg, pojazdy, kierowcy</li>
+      <li><strong>Mapa</strong> — pozycje kierowców w czasie rzeczywistym (Mapbox + WebSocket)</li>
+      <li><strong>Wykresy</strong> — przebieg miesięczny, koszty (Recharts)</li>
+      <li><strong>Alerty</strong> — OC, przegląd techniczny, tachograf, prawo jazdy</li>
+      <li><strong>Ostatnie trasy</strong> — tabela z sortowaniem i filtrami</li>
+    </ul>
+
+    <h3>Accountant Dashboard</h3>
+    <ul>
+      <li>Raporty do pobrania (PDF, CSV)</li>
+      <li>Status eksportów FK</li>
+      <li>Dane tylko do odczytu</li>
+    </ul>
+
+    <h3>Accounting Firm Dashboard</h3>
+    <ul>
+      <li><strong>Client Switcher</strong> — przełączanie między firmami (nagłówek <code>X-Company-Context</code>)</li>
+      <li>Zagregowane statystyki dla wszystkich klientów</li>
+      <li>Zbiorczy eksport FK</li>
+    </ul>
+
+    <h2>6. Tabele danych</h2>
+    <p>Wszystkie tabele (pojazdy, trasy, kierowcy, raporty) mają:</p>
+    <ul>
+      <li>Sortowanie po kolumnach (kliknięcie nagłówka)</li>
+      <li>Filtrowanie (data, status, pojazd, kierowca)</li>
+      <li>Paginacja (cursor-based z API)</li>
+      <li>Bulk actions (zaznacz wiele → eksport, usunięcie)</li>
+      <li>Responsywność — na mobile karty zamiast tabeli</li>
+    </ul>
+
+    <h2>7. Mapa w czasie rzeczywistym (Post-MVP)</h2>
+    <ul>
+      <li><strong>Mapbox GL</strong> — wizualizacja tras GPS, pozycje kierowców</li>
+      <li><strong>WebSocket</strong> — aktualizacja pozycji co 5 sekund</li>
+      <li><strong>Klastry</strong> — grupowanie pojazdów na dużych zoomach</li>
+      <li><strong>Heatmapy</strong> — intensywność tras na mapie</li>
+    </ul>
+
+    <h2>8. Generowanie klienta API (orval)</h2>
+    <pre><code># Pipeline:
+drf-spectacular → /api/schema/ (OpenAPI 3.0)
+                → orval (code generation)
+                → typowany klient TS z hookami SWR
+
+# CI sprawdza aktualność:
+orval --check</code></pre>
+  </div>
+</DocsLayout>

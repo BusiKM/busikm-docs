@@ -1,0 +1,317 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+
+const iconDashboard = `<path d="M3 5h8v8H3zM13 5h8v4h-8zM13 13h8v6h-8zM3 17h8v2H3z" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+const iconMap = `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="12" cy="9" r="2.5" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconVehicle = `<rect x="2" y="8" width="20" height="10" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M6 8V6a2 2 0 012-2h8a2 2 0 012 2v2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="7" cy="18" r="2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="17" cy="18" r="2" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconDrivers = `<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="9" cy="7" r="4" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconReport = `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" fill="none"/>`;
+const iconAlert = `<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconCompliance = `<path d="M9 11l3 3L22 4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconRBAC = `<path d="M12 2a5 5 0 015 5v3H7V7a5 5 0 015-5z" stroke="#34C759" stroke-width="1.8" fill="none"/><rect x="3" y="10" width="18" height="12" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="12" cy="16" r="1.5" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
+const iconExport = `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M7 10l5 5 5-5M12 15V3" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+const iconWebApp = `<rect x="2" y="3" width="20" height="14" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M8 21h8M12 17v4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" fill="none"/>`;
+
+const features = [
+  {
+    icon: iconDashboard,
+    title: 'Dashboard floty',
+    desc: 'Podsumowanie floty w czasie rzeczywistym: łączna liczba pojazdów, aktywni kierowcy, trasy w bieżącym miesiącu i szacunkowe koszty przebiegu.',
+    color: '#34C759',
+  },
+  {
+    icon: iconMap,
+    title: 'Mapa pojazdów na żywo',
+    desc: 'Pozycje kierowców na mapie Mapbox GL z WebSocket. Markery z kierunkiem jazdy, statusy (w ruchu / zatrzymany) i klasteryzacja.',
+    color: '#0A84FF',
+  },
+  {
+    icon: iconVehicle,
+    title: 'Zarządzanie pojazdami',
+    desc: 'Dodawaj i edytuj pojazdy, przypisuj dokumenty: OC, przegląd techniczny, legalizacja tachografu. Wszystko w jednym miejscu.',
+    color: '#FF9F0A',
+  },
+  {
+    icon: iconDrivers,
+    title: 'Zarządzanie kierowcami',
+    desc: 'Zaproszenia e-mail, przypisywanie pojazdów, ewidencja prawa jazdy i kwalifikacji zawodowych. Automatyczne alerty o statusie dokumentów.',
+    color: '#BF5AF2',
+  },
+  {
+    icon: iconReport,
+    title: 'Raporty zgodne z MF',
+    desc: 'Kilometrówka PDF zgodna ze wzorem Ministerstwa Finansów. Raporty kosztów floty i raporty delegacji w formatach PDF i CSV.',
+    color: '#FF375F',
+  },
+  {
+    icon: iconAlert,
+    title: 'Alerty dokumentów',
+    desc: 'Automatyczne powiadomienia 30, 14 i 7 dni przed wygaśnięciem OC, przeglądu, tachografu i prawa jazdy. Nigdy nie przegapisz terminu.',
+    color: '#FF9F0A',
+  },
+];
+
+const moreFeatures = [
+  {
+    icon: iconCompliance,
+    title: 'Compliance dashboard',
+    desc: 'Wskaźniki kompletności tras, brakujące klasyfikacje, kolorowe statusy dokumentów (zielony / żółty / czerwony).',
+    color: '#34C759',
+  },
+  {
+    icon: iconRBAC,
+    title: 'RBAC — 4 role w systemie',
+    desc: 'Kierowca, właściciel, księgowy, biuro rachunkowe. Każda rola widzi dokładnie to, czego potrzebuje — nic więcej.',
+    color: '#0A84FF',
+  },
+  {
+    icon: iconExport,
+    title: 'Eksport Insert GT EDI++',
+    desc: 'Eksport kilometrówek do systemu FK Insert GT w formacie EDI++. Jeden klik — dane gotowe dla księgowego.',
+    color: '#FF375F',
+  },
+  {
+    icon: iconWebApp,
+    title: 'Panel webowy Next.js',
+    desc: 'Nowoczesny dashboard zbudowany na Next.js 14 + Tailwind + SWR + Recharts + Mapbox. Szybki, responsywny i bezpieczny.',
+    color: '#BF5AF2',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Ile pojazdów mogę dodać w ramach jednego konta?',
+    a: 'To zależy od planu subskrypcyjnego. Plan Starter obsługuje do 5 pojazdów, Professional do 50, a Enterprise — bez limitu.',
+  },
+  {
+    q: 'Czy mogę śledzić pojazdy na mapie w czasie rzeczywistym?',
+    a: 'Tak. Dashboard zawiera mapę Mapbox GL z pozycjami kierowców aktualizowanymi przez WebSocket. Widzisz kierunek jazdy, status (w ruchu / zatrzymany) oraz klasteryzację przy wielu pojazdach.',
+  },
+  {
+    q: 'Jakie dokumenty monitoruje system alertów?',
+    a: 'System monitoruje: polisę OC pojazdu, przegląd techniczny, legalizację tachografu oraz prawo jazdy kierowcy. Alerty wysyłane są 30, 14 i 7 dni przed wygaśnięciem oraz po terminie.',
+  },
+  {
+    q: 'Czy kilometrówka PDF jest zgodna z wymogami Ministerstwa Finansów?',
+    a: 'Tak. Generowany raport PDF jest w pełni zgodny ze wzorem MF i zawiera wszystkie wymagane pola: data, trasa, cel, przebieg, stawka i kwota.',
+  },
+  {
+    q: 'Jak działa eksport do systemu FK?',
+    a: 'BusiKM generuje pliki w formacie EDI++ kompatybilnym z Insert GT. Wystarczy pobrać plik i zaimportować go do systemu FK — zero ręcznego przepisywania.',
+  },
+  {
+    q: 'Czy mogę zaprosić księgowego do mojego konta?',
+    a: 'Tak. System obsługuje 4 role: kierowca, właściciel, księgowy i biuro rachunkowe. Każda rola ma własny zestaw uprawnień i widoków.',
+  },
+];
+---
+
+<MarketingLayout title="Dla właścicieli firm — BusiKM" description="Pełna kontrola nad flotą pojazdów 2,5–3,5 t. Dashboard, mapa na żywo, alerty dokumentów, zarządzanie kierowcami i raporty zgodne z MF.">
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden bg-white">
+    <!-- subtle blue glow -->
+    <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#34C759]/[0.04] blur-[120px] pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 sm:pt-32 sm:pb-28 text-center">
+      <div class="reveal">
+        <!-- pill badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#34C759]/15 bg-[#34C759]/[0.04] mb-6">
+          <svg class="w-4 h-4 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
+          <span class="text-[13px] font-semibold text-[#1D1D1F]/70">Panel webowy + aplikacja mobilna</span>
+        </div>
+
+        <!-- headline -->
+        <h1 class="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] max-w-3xl mx-auto mb-5">
+          Pełna kontrola <br class="hidden sm:block"/>nad Twoją flotą
+        </h1>
+
+        <!-- subtitle -->
+        <p class="text-[15px] sm:text-[17px] leading-relaxed text-[#6E6E73] max-w-2xl mx-auto mb-10">
+          Dashboard z mapą pojazdów na żywo, automatyczne alerty o wygasających dokumentach, kilometrówki zgodne z MF i eksport do systemów FK&nbsp;&mdash;&nbsp;wszystko z jednego panelu.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-wrap justify-center gap-3.5 mb-16">
+          <a href="/cennik" class="px-7 py-3.5 rounded-full bg-[#34C759] text-white text-[15px] font-semibold hover:bg-[#2DA44E] transition-colors duration-200">
+            Wypróbuj za darmo
+          </a>
+          <a href="/funkcje" class="px-7 py-3.5 rounded-full bg-[#F5F5F7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#E8E8ED] transition-colors duration-200">
+            Poznaj funkcje
+          </a>
+        </div>
+
+        <!-- stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl mx-auto">
+          <div>
+            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">100%</div>
+            <div class="text-[13px] text-[#6E6E73] mt-1">kontroli floty</div>
+          </div>
+          <div>
+            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">4 poziomy</div>
+            <div class="text-[13px] text-[#6E6E73] mt-1">alertów dokumentów</div>
+          </div>
+          <div>
+            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">1 klik</div>
+            <div class="text-[13px] text-[#6E6E73] mt-1">generowanie raportów</div>
+          </div>
+          <div>
+            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">100%</div>
+            <div class="text-[13px] text-[#6E6E73] mt-1">compliance MF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE CARDS ============ -->
+  <section class="bg-[#F5F5F7] py-20 sm:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Funkcje dla właścicieli</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Wszystko w jednym panelu</h2>
+        <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4 max-w-xl mx-auto">Zarządzaj flotą, kierowcami i dokumentami bez wychodzenia z biura.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
+        {features.map((f) => (
+          <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center mb-5" style={`background: ${f.color}12`}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={f.icon} />
+            </div>
+            <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-2">{f.title}</h3>
+            <p class="text-[14px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MORE FEATURES ============ -->
+  <section class="bg-white py-20 sm:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Jeszcze więcej możliwości</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Zaawansowane narzędzia</h2>
+        <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4 max-w-xl mx-auto">Compliance, eksport FK, role dostępu i nowoczesny panel webowy.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-stagger">
+        {moreFeatures.map((f) => (
+          <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+            <div class="flex items-start gap-5">
+              <div class="w-11 h-11 rounded-[14px] flex items-center justify-center shrink-0" style={`background: ${f.color}12`}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={f.icon} />
+              </div>
+              <div>
+                <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-2">{f.title}</h3>
+                <p class="text-[14px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- checklist -->
+      <div class="mt-14 max-w-xl mx-auto reveal">
+        <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-5 text-center">Co monitoruje system alertów?</h3>
+        <ul class="space-y-3">
+          {[
+            'Polisa OC pojazdu',
+            'Przegląd techniczny',
+            'Legalizacja tachografu',
+            'Prawo jazdy kierowcy',
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-[14.5px] text-[#1D1D1F]">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                <path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {item} &mdash; <span class="text-[#6E6E73]">alerty na 30, 14, 7 dni i po terminie</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="bg-[#F5F5F7] py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">FAQ</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Najczęściej zadawane pytania</h2>
+      </div>
+
+      <div class="space-y-3 reveal-stagger">
+        {faqs.map((faq) => (
+          <details class="group bg-white rounded-2xl transition-all duration-300">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none text-[15px] font-semibold text-[#1D1D1F] select-none">
+              <span>{faq.q}</span>
+              <svg class="w-5 h-5 text-[#6E6E73] shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DARK CTA ============ -->
+  <section class="relative overflow-hidden bg-[#0A0A0B] py-20 sm:py-28">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#34C759]/[0.06] blur-[140px] pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center reveal">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">Zacznij kontrolować flotę już dziś</h2>
+      <p class="text-[15px] leading-relaxed text-[#9E9EA6] mb-10 max-w-xl mx-auto">
+        14 dni darmowego trialu&nbsp;&mdash;&nbsp;pełny dostęp do wszystkich funkcji planu Professional. Bez karty kredytowej.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3.5">
+        <a href="/cennik" class="px-7 py-3.5 rounded-full bg-[#34C759] text-white text-[15px] font-semibold hover:bg-[#2DA44E] transition-colors duration-200">
+          Wypróbuj za darmo
+        </a>
+        <a href="/funkcje" class="px-7 py-3.5 rounded-full bg-white/10 text-white text-[15px] font-semibold hover:bg-white/[0.15] border border-white/[0.12] transition-colors duration-200">
+          Poznaj funkcje
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCROLL REVEAL SCRIPT ============ -->
+  <script>
+    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => observer.observe(el));
+  </script>
+
+  <style>
+    .reveal,
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.is-visible,
+    .reveal-stagger.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+    .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+    .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+    .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+    .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+    details summary::-webkit-details-marker { display: none; }
+  </style>
+
+</MarketingLayout>

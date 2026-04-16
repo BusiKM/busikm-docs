@@ -1,0 +1,133 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Deployment">
+  <div class="prose">
+    <h1>Wdrażanie i środowiska</h1>
+
+    <h2>1. Przegląd środowisk</h2>
+    <p>BusiKM działa w trzech środowiskach:</p>
+    <table>
+      <thead><tr><th>Środowisko</th><th>Cel</th><th>Domena</th><th>Deploy</th></tr></thead>
+      <tbody>
+        <tr><td>Local</td><td>Rozwój i debugowanie</td><td>localhost:8000 / :3000</td><td>Docker Compose</td></tr>
+        <tr><td>Staging</td><td>Testy integracyjne i QA</td><td>api-staging.busikm.pl</td><td>Auto-deploy (staging branch)</td></tr>
+        <tr><td>Production</td><td>Użytkownicy końcowi</td><td>api.busikm.pl</td><td>Manual approval (main branch)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Zasada:</strong> kod nigdy nie trafia na produkcję bez przejścia przez staging.</p>
+
+    <h2>2. Środowisko lokalne (Docker Compose)</h2>
+    <h3>Architektura usług (12+ kontenerów)</h3>
+    <table>
+      <thead><tr><th>Usługa</th><th>Obraz</th><th>Port</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>web</td><td>build: .</td><td>8000</td><td>Django/Daphne (HTTP + WebSocket)</td></tr>
+        <tr><td>celery</td><td>build: .</td><td>-</td><td>Worker Celery (kolejki default, gps)</td></tr>
+        <tr><td>celery-beat</td><td>build: .</td><td>-</td><td>Scheduler Celery Beat</td></tr>
+        <tr><td>celery-reports</td><td>build: .</td><td>-</td><td>Worker Celery (kolejka reports)</td></tr>
+        <tr><td>postgres</td><td>postgres:16</td><td>5432</td><td>PostgreSQL + PostGIS</td></tr>
+        <tr><td>redis</td><td>redis:7-alpine</td><td>6379</td><td>Cache, broker Celery, Channel Layer</td></tr>
+        <tr><td>mongo</td><td>mongo:7</td><td>27017</td><td>Przechowywanie punktów GPS</td></tr>
+        <tr><td>minio</td><td>minio/minio</td><td>9000</td><td>S3-kompatybilny storage</td></tr>
+        <tr><td>prometheus</td><td>prom/prometheus</td><td>9090</td><td>Zbieranie metryk</td></tr>
+        <tr><td>grafana</td><td>grafana/grafana</td><td>3001</td><td>Wizualizacja metryk</td></tr>
+        <tr><td>uptime-kuma</td><td>louislam/uptime-kuma</td><td>3002</td><td>Monitoring dostępności</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Komendy Makefile</h3>
+    <pre><code># Uruchamianie i zatrzymywanie
+make up              # docker compose up -d
+make down            # docker compose down
+make restart         # docker compose restart
+
+# Baza danych
+make migrate         # python manage.py migrate
+make makemigrations  # python manage.py makemigrations
+make seed            # Załadowanie danych testowych
+
+# Rozwój
+make shell           # python manage.py shell_plus
+make bash            # bash w kontenerze web
+make logs            # docker compose logs -f
+
+# Testy i jakość
+make test            # pytest --cov
+make lint            # ruff check + ruff format --check
+make format          # ruff format
+
+# OpenAPI
+make schema          # generuj schemat OpenAPI
+make client          # generuj klienta TypeScript (orval)</code></pre>
+
+    <h2>3. CI/CD — GitHub Actions</h2>
+    <h3>Pipeline</h3>
+    <pre><code>git push (feature branch)
+     │
+     ▼
+GitHub Actions
+     ├── Lint (ruff, eslint, prettier)
+     ├── Testy (pytest, jest, detox)
+     ├── Build schema OpenAPI
+     └── Sprawdź wygenerowanego klienta
+     │
+     ▼
+Merge do develop/staging
+     ├── Docker build + push (GHCR)
+     └── Deploy na środowisko (auto)
+     │
+     ▼
+Merge do main (manual approval)
+     ├── Deploy produkcyjny
+     ├── EAS Build (mobile)
+     └── Vercel deploy (web)</code></pre>
+
+    <h3>Środowiska deploymentu</h3>
+    <table>
+      <thead><tr><th>Komponent</th><th>Staging</th><th>Production</th></tr></thead>
+      <tbody>
+        <tr><td>Backend</td><td>DigitalOcean Droplet</td><td>DigitalOcean Droplet (HA)</td></tr>
+        <tr><td>Web (Next.js)</td><td>Vercel Preview</td><td>Vercel Production</td></tr>
+        <tr><td>Mobile</td><td>EAS Internal Distribution</td><td>App Store + Google Play</td></tr>
+        <tr><td>Bazy danych</td><td>Docker na droplet</td><td>Managed DB (DigitalOcean)</td></tr>
+        <tr><td>Storage</td><td>DigitalOcean Spaces</td><td>DigitalOcean Spaces</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Procedura rollback</h2>
+    <ol>
+      <li>Identyfikacja problemu (monitoring, alerty, feedback użytkowników)</li>
+      <li>Decyzja o rollback (team lead / CTO)</li>
+      <li>Rollback Docker: <code>docker compose up -d --no-deps web</code> z poprzednim tagiem</li>
+      <li>Rollback migracji: <code>python manage.py migrate app_name previous_migration</code></li>
+      <li>Weryfikacja po rollback</li>
+      <li>Analiza przyczyny i fix</li>
+    </ol>
+
+    <h2>5. Procedura hotfix</h2>
+    <pre><code>main (produkcja)
+  │
+  ├── hotfix/fix-description
+  │     │
+  │     └── PR → main (2 approvals + CI green)
+  │
+  └── cherry-pick do develop</code></pre>
+    <p>Hotfix omija staging tylko w sytuacjach krytycznych (SEV-1). W pozostałych przypadkach przechodzi pełny pipeline.</p>
+
+    <h2>6. Zmienne środowiskowe</h2>
+    <table>
+      <thead><tr><th>Zmienna</th><th>Opis</th><th>Przykład</th></tr></thead>
+      <tbody>
+        <tr><td>DATABASE_URL</td><td>Connection string PostgreSQL</td><td>postgres://user:pass@host:5432/db</td></tr>
+        <tr><td>MONGO_URL</td><td>Connection string MongoDB</td><td>mongodb://host:27017/busikm</td></tr>
+        <tr><td>REDIS_URL</td><td>Connection string Redis</td><td>redis://host:6379/0</td></tr>
+        <tr><td>SECRET_KEY</td><td>Django secret key</td><td>(losowy 50+ znaków)</td></tr>
+        <tr><td>SENTRY_DSN</td><td>Sentry DSN endpoint</td><td>https://xxx@sentry.io/yyy</td></tr>
+        <tr><td>AWS_ACCESS_KEY_ID</td><td>S3/Spaces klucz</td><td>(klucz dostępu)</td></tr>
+        <tr><td>MAPBOX_TOKEN</td><td>Mapbox API token</td><td>pk.xxx</td></tr>
+      </tbody>
+    </table>
+  </div>
+</DocsLayout>

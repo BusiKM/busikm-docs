@@ -1,0 +1,46 @@
+# BusiKM — Elektroniczna kilometrówka
+
+## O produkcie
+BusiKM to platforma SaaS do automatycznej ewidencji przebiegu pojazdów 2,5–3,5 t DMC.
+Łączy GPS tracking, klasyfikację tras AI i eksport do polskich systemów FK (Insert GT, Comarch, Symfonia, KSeF).
+Zgodna z przepisami Ministerstwa Finansów 2026.
+
+## Kluczowe funkcje
+- Automatyczne śledzenie GPS w tle (iOS/Android)
+- Klasyfikacja celu trasy przez AI
+- Raport ewidencji przebiegu wg wzoru MF (PDF/XLSX)
+- Eksport do Insert GT (format EDI++)
+- Tryb offline z automatyczną synchronizacją
+- Dashboard zarządzania flotą (mapa real-time)
+- Panel multi-klient dla biur rachunkowych
+- Alerty dokumentów (OC, przegląd, tachograf, prawo jazdy)
+
+## Cennik (PLN/pojazd/miesiąc)
+- Free: 0 PLN (1 pojazd)
+- Starter: 59 PLN (do 10 pojazdów)
+- Professional: 89 PLN (do 50 pojazdów, eksport FK)
+- Enterprise: 149 PLN (bez limitu, multi-tenant, API)
+
+## Grupy docelowe
+1. Kierowcy pojazdów dostawczych 2,5–3,5 t
+2. Właściciele flot transportowych (5–50 pojazdów)
+3. Księgowi (eksport do systemów FK)
+4. Biura rachunkowe (panel multi-klient)
+
+## Rynek
+- 300 000 pojazdów 2,5–3,5 t w Polsce
+- 80 000 firm transportowych
+- Od lipca 2026: obowiązek ewidencji (kara do 30 000 PLN)
+- TAM: ~90 mln PLN/rok
+
+## Stack technologiczny
+- Backend: Django 5.x + DRF + Celery + PostgreSQL + MongoDB + Redis
+- Mobile: React Native + Expo SDK 52+ (iOS 15+, Android 10+)
+- Web: Next.js 14 + Tailwind + SWR + Recharts + Mapbox
+- API: OpenAPI 3.0 (drf-spectacular) → orval (klient TypeScript)
+
+## Strona
+- URL: https://busikm.pl
+- Dokumentacja: https://busikm.pl/docs
+- Cennik: https://busikm.pl/cennik
+- Funkcje: https://busikm.pl/funkcje

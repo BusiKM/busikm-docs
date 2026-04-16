@@ -1,0 +1,71 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+const technicalDocs = [
+  { href: '/docs/architektura', title: 'Architektura', description: 'Diagram systemu, stack technologiczny, wzorce architektoniczne, Git flow i CI/CD.', icon: `<circle cx="12" cy="12" r="10" stroke-width="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke-width="1.5"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-width="1.5"/>`, color: '#005CE8' },
+  { href: '/docs/baza-danych', title: 'Baza danych', description: '22 modele PostgreSQL, kolekcje MongoDB, Redis — pełny schemat bazy danych.', icon: `<ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="1.5"/><path d="M21 12c0 1.66-4.03 3-9 3s-9-1.34-9-3" stroke-width="1.5"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke-width="1.5"/>`, color: '#34C759' },
+  { href: '/docs/api', title: 'API', description: '50+ endpointów w 14 grupach, rate limiting, autoryzacja, paginacja, WebSocket.', icon: `<path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-width="1.5"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-width="1.5"/>`, color: '#FF9500' },
+  { href: '/docs/bezpieczenstwo', title: 'Bezpieczeństwo', description: 'JWT, RBAC, izolacja danych, rate limiting, OWASP Top 10, upload security.', icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke-width="1.5"/>`, color: '#FF3B30' },
+  { href: '/docs/deployment', title: 'Deployment', description: '3 środowiska, Docker Compose, CI/CD, Makefile, rollback, hotfix.', icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="1.5"/>`, color: '#005CE8' },
+  { href: '/docs/monitoring', title: 'Monitoring', description: 'Sentry, Prometheus, Grafana, Uptime Kuma, reguły alertów, reagowanie na incydenty.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.5"/>`, color: '#34C759' },
+  { href: '/docs/aplikacja-mobilna', title: 'Aplikacja mobilna', description: 'React Native + Expo, śledzenie GPS, routing, stan, tryb offline, EAS Build.', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-width="1.5"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="1.5"/>`, color: '#FF9500' },
+  { href: '/docs/aplikacja-webowa', title: 'Aplikacja webowa', description: 'Next.js 14, BFF proxy, dashboardy, tabele, raporty, mapa real-time.', icon: `<rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="1.5"/><line x1="8" y1="21" x2="16" y2="21" stroke-width="1.5"/><line x1="12" y1="17" x2="12" y2="21" stroke-width="1.5"/>`, color: '#8B5CF6' },
+];
+
+const businessDocs = [
+  { href: '/docs/integracje-fk', title: 'Integracje FK', description: 'Format EDI++, Insert GT, kodowanie znaków, mapowanie danych, planowane integracje.', icon: `<polyline points="16 18 22 12 16 6" stroke-width="1.5"/><polyline points="8 6 2 12 8 18" stroke-width="1.5"/>`, color: '#FF9500' },
+  { href: '/docs/subskrypcje', title: 'Subskrypcje', description: 'Modele trialowe, feature gating, logika downgrade, Stripe billing-ready.', icon: `<rect x="1" y="4" width="22" height="16" rx="2" ry="2" stroke-width="1.5"/><line x1="1" y1="10" x2="23" y2="10" stroke-width="1.5"/>`, color: '#005CE8' },
+  { href: '/docs/funkcje-szczegolowo', title: 'Funkcje szczegółowo', description: 'Pełna matryca funkcji per rola i per plan, MVP vs Post-MVP.', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.5"/><polyline points="14 2 14 8 20 8" stroke-width="1.5"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.5"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.5"/>`, color: '#34C759' },
+  { href: '/docs/slownik', title: 'Słownik', description: 'Ponad 60 terminów transportowych, technicznych, biznesowych i wewnętrznych.', icon: `<path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke-width="1.5"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke-width="1.5"/>`, color: '#8B5CF6' },
+];
+---
+
+<DocsLayout title="Dokumentacja" description="Pełna dokumentacja techniczna i biznesowa systemu BusiKM.">
+  <div class="prose">
+    <h1>Dokumentacja BusiKM</h1>
+    <p>
+      Pełna dokumentacja techniczna i biznesowa systemu BusiKM — platformy do zarządzania
+      ewidencją przebiegu pojazdów dla firm transportowych i biur rachunkowych.
+    </p>
+
+    <h2>Dokumentacja techniczna</h2>
+    <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+      {technicalDocs.map((doc) => (
+        <a
+          href={doc.href}
+          class="group block p-5 rounded-[16px] border border-[#E8E8ED] bg-white hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
+        >
+          <div class="w-10 h-10 rounded-[12px] mb-3 flex items-center justify-center" style={`background: ${doc.color}12;`}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={doc.color} stroke-linecap="round" stroke-linejoin="round" set:html={doc.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[#1D1D1F] group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
+            {doc.title}
+          </h3>
+          <p class="text-[13px] text-[#6E6E73] leading-relaxed">
+            {doc.description}
+          </p>
+        </a>
+      ))}
+    </div>
+
+    <h2>Dokumentacja biznesowa</h2>
+    <div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+      {businessDocs.map((doc) => (
+        <a
+          href={doc.href}
+          class="group block p-5 rounded-[16px] border border-[#E8E8ED] bg-white hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
+        >
+          <div class="w-10 h-10 rounded-[12px] mb-3 flex items-center justify-center" style={`background: ${doc.color}12;`}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={doc.color} stroke-linecap="round" stroke-linejoin="round" set:html={doc.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[#1D1D1F] group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
+            {doc.title}
+          </h3>
+          <p class="text-[13px] text-[#6E6E73] leading-relaxed">
+            {doc.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</DocsLayout>

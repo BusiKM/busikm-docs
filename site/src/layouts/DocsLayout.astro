@@ -1,0 +1,167 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const sidebarSections = [
+  {
+    category: 'Techniczne',
+    links: [
+      { href: '/docs/architektura', label: 'Architektura' },
+      { href: '/docs/baza-danych', label: 'Baza danych' },
+      { href: '/docs/api', label: 'API' },
+      { href: '/docs/bezpieczenstwo', label: 'Bezpieczeństwo' },
+      { href: '/docs/deployment', label: 'Deployment' },
+      { href: '/docs/monitoring', label: 'Monitoring' },
+      { href: '/docs/aplikacja-mobilna', label: 'Aplikacja mobilna' },
+      { href: '/docs/aplikacja-webowa', label: 'Aplikacja webowa' },
+    ],
+  },
+  {
+    category: 'Biznesowe',
+    links: [
+      { href: '/docs/integracje-fk', label: 'Integracje FK' },
+      { href: '/docs/subskrypcje', label: 'Subskrypcje' },
+      { href: '/docs/funkcje-szczegolowo', label: 'Funkcje szczegółowo' },
+      { href: '/docs/slownik', label: 'Slownik' },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- Mobile sidebar toggle -->
+    <button
+      id="docs-sidebar-toggle"
+      class="lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-navy text-white rounded-full shadow-lg flex items-center justify-center hover:bg-navy-light transition-colors"
+      aria-label="Toggle sidebar"
+    >
+      <svg class="w-6 h-6" id="docs-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg class="w-6 h-6 hidden" id="docs-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Sidebar overlay (mobile) -->
+    <div id="docs-sidebar-overlay" class="hidden lg:hidden fixed inset-0 z-40 bg-black/50"></div>
+
+    <!-- Sidebar -->
+    <aside
+      id="docs-sidebar"
+      class="hidden lg:block fixed lg:sticky top-16 z-40 w-[260px] h-[calc(100vh-4rem)] bg-sidebar text-sidebar-text overflow-y-auto shrink-0"
+    >
+      <nav class="p-5">
+        <a
+          href="/docs"
+          class:list={[
+            'block px-3 py-2 mb-4 rounded-lg text-sm font-semibold transition-colors',
+            currentPath === '/docs' || currentPath === '/docs/'
+              ? 'text-[#3380FF] border-l-2 border-[#3380FF] bg-white/5'
+              : 'text-white hover:text-[#3380FF]',
+          ]}
+        >
+          Przegląd dokumentacji
+        </a>
+
+        {sidebarSections.map((section) => (
+          <div class="mb-6">
+            <h3 class="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              {section.category}
+            </h3>
+            <ul class="space-y-0.5">
+              {section.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class:list={[
+                      'block px-3 py-1.5 rounded-lg text-sm transition-colors',
+                      currentPath === link.href || currentPath === link.href + '/'
+                        ? 'text-[#3380FF] border-l-2 border-[#3380FF] bg-white/5 font-medium'
+                        : 'text-sidebar-text hover:text-[#3380FF] hover:bg-white/5',
+                    ]}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <slot />
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const toggle = document.getElementById('docs-sidebar-toggle');
+  const sidebar = document.getElementById('docs-sidebar');
+  const overlay = document.getElementById('docs-sidebar-overlay');
+  const menuIcon = document.getElementById('docs-menu-icon');
+  const closeIcon = document.getElementById('docs-close-icon');
+
+  function openSidebar() {
+    sidebar?.classList.remove('hidden');
+    overlay?.classList.remove('hidden');
+    menuIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+  }
+
+  function closeSidebar() {
+    sidebar?.classList.add('hidden');
+    overlay?.classList.add('hidden');
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isHidden = sidebar?.classList.contains('hidden');
+    if (isHidden) {
+      openSidebar();
+    } else {
+      closeSidebar();
+    }
+  });
+
+  overlay?.addEventListener('click', closeSidebar);
+
+  // On large screens, always show sidebar
+  const mediaQuery = window.matchMedia('(min-width: 1024px)');
+  function handleResize(e: MediaQueryListEvent | MediaQueryList) {
+    if (e.matches) {
+      sidebar?.classList.remove('hidden');
+      overlay?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    } else {
+      sidebar?.classList.add('hidden');
+      overlay?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  }
+  mediaQuery.addEventListener('change', handleResize);
+  handleResize(mediaQuery);
+</script>

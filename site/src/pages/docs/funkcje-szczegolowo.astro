@@ -1,0 +1,121 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Funkcje szczegółowo">
+  <div class="prose">
+    <h1>Kompletna dokumentacja funkcjonalności</h1>
+
+    <h2>1. Role użytkowników</h2>
+    <table>
+      <thead><tr><th>Rola</th><th>Kod</th><th>Interfejs</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>Kierowca</td><td>DRIVER</td><td>Mobile</td><td>Rejestracja tras, GPS, zdjęcia licznika</td></tr>
+        <tr><td>Właściciel</td><td>OWNER</td><td>Web + Mobile</td><td>Zarządzanie flotą, raporty, alerty</td></tr>
+        <tr><td>Księgowy</td><td>ACCOUNTANT</td><td>Web</td><td>Raporty, eksport FK, tylko odczyt</td></tr>
+        <tr><td>Biuro rachunkowe</td><td>ACCOUNTING_FIRM</td><td>Web</td><td>Multi-klient, dashboard zagregowany</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Plany subskrypcyjne</h2>
+    <table>
+      <thead><tr><th>Cecha</th><th>Free</th><th>Starter (59 PLN)</th><th>Professional (89 PLN)</th><th>Enterprise (149 PLN)</th></tr></thead>
+      <tbody>
+        <tr><td>Pojazdy</td><td>1</td><td>do 10</td><td>do 50</td><td>bez limitu</td></tr>
+        <tr><td>Kierowcy</td><td>1</td><td>do 10</td><td>do 50</td><td>bez limitu</td></tr>
+        <tr><td>GPS tracking</td><td>Tak</td><td>Tak</td><td>Tak</td><td>Tak</td></tr>
+        <tr><td>Raporty</td><td>Nie</td><td>PDF</td><td>PDF + CSV</td><td>PDF + CSV + custom</td></tr>
+        <tr><td>Eksport FK</td><td>Nie</td><td>Nie</td><td>Tak (EDI++)</td><td>Tak (wszystkie)</td></tr>
+        <tr><td>Mapa real-time</td><td>Nie</td><td>Nie</td><td>Tak</td><td>Tak</td></tr>
+        <tr><td>Multi-tenant (AF)</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
+        <tr><td>API</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
+        <tr><td>Wsparcie</td><td>Brak</td><td>Email</td><td>Email + czat</td><td>Dedykowane</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Matryca funkcji per rola</h2>
+
+    <h3>Trasy (Trips)</h3>
+    <table>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
+      <tbody>
+        <tr><td>Rozpoczęcie trasy</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Śledzenie GPS</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Obliczanie dystansu</td><td>Auto</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
+        <tr><td>Klasyfikacja trasy</td><td>Tak</td><td>Tak (edycja)</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
+        <tr><td>Zdjęcia licznika</td><td>Tak</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
+        <tr><td>Lista tras</td><td>Tylko własne</td><td>Wszystkie</td><td>Wszystkie (RO)</td><td>Per klient</td></tr>
+        <tr><td>Edycja trasy</td><td>Tylko własne</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Usuwanie trasy</td><td>Nie</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Dokumenty i raporty</h3>
+    <table>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
+      <tbody>
+        <tr><td>Ewidencja przebiegu PDF (MF)</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Raporty kosztów floty</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Raporty delegacji</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Dashboard zgodności</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (zagregowany)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Eksport FK</h3>
+    <table>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
+      <tbody>
+        <tr><td>Insert GT EDI++</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>EDI++ delegacje</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Comarch ERP Optima</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Symfonia</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>KSeF</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Funkcje MVP vs Post-MVP</h2>
+    <h3>MVP (Sprint 0–5)</h3>
+    <table>
+      <thead><tr><th>Grupa</th><th>Funkcje</th></tr></thead>
+      <tbody>
+        <tr><td>Auth</td><td>Rejestracja, logowanie, JWT, refresh rotation, weryfikacja email</td></tr>
+        <tr><td>Firma</td><td>CRUD, model subskrypcji, trial 14 dni, pilot 6 miesięcy</td></tr>
+        <tr><td>Flota</td><td>CRUD pojazdów, dokumenty, alerty (OC, przegląd, tachograf)</td></tr>
+        <tr><td>Kierowcy</td><td>CRUD, zaproszenia, alerty PJ</td></tr>
+        <tr><td>Trasy</td><td>Start/stop, GPS background, batch upload, dystans, klasyfikacja, zdjęcia</td></tr>
+        <tr><td>Dokumenty</td><td>Ewidencja przebiegu PDF (szablon MF)</td></tr>
+        <tr><td>Eksport FK</td><td>Insert GT EDI++ (ewidencja)</td></tr>
+        <tr><td>Mobile</td><td>Logowanie, trasa, GPS, aparat, lista tras, push</td></tr>
+        <tr><td>Web</td><td>Auth, dashboard, flota, trasy, raporty, użytkownicy, eksport, RWD</td></tr>
+        <tr><td>Monitoring</td><td>Sentry, Grafana, Uptime Kuma</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Post-MVP (Sprint 6–7)</h3>
+    <table>
+      <thead><tr><th>Grupa</th><th>Funkcje</th></tr></thead>
+      <tbody>
+        <tr><td>AF Multi-tenant</td><td>Rejestracja AF, zarządzanie klientami, przełączanie kontekstu</td></tr>
+        <tr><td>Mapa</td><td>WebSocket + Mapbox, pozycje kierowców w czasie rzeczywistym</td></tr>
+        <tr><td>Raporty</td><td>Dashboard zgodności, koszty floty, delegacje</td></tr>
+        <tr><td>Eksport FK</td><td>EDI++ delegacje</td></tr>
+        <tr><td>Mobile</td><td>WatermelonDB (tryb offline)</td></tr>
+        <tr><td>Testy</td><td>E2E (Playwright, Detox), wydajnościowe (k6)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Feature gating per plan</h2>
+    <h3>Ograniczenia planu Free</h3>
+    <table>
+      <thead><tr><th>Obszar</th><th>Ograniczenie</th><th>Komunikat</th></tr></thead>
+      <tbody>
+        <tr><td>Pojazdy</td><td>Maks. 1</td><td>"Uaktualnij plan, aby dodać więcej pojazdów"</td></tr>
+        <tr><td>Kierowcy</td><td>Maks. 1</td><td>"Uaktualnij plan, aby zaprosić więcej kierowców"</td></tr>
+        <tr><td>Raporty</td><td>Brak</td><td>"Raporty dostępne od planu Starter"</td></tr>
+        <tr><td>Eksport FK</td><td>Zablokowany</td><td>"Eksport FK dostępny od planu Professional"</td></tr>
+        <tr><td>Mapa real-time</td><td>Zablokowana</td><td>"Mapa dostępna od planu Professional"</td></tr>
+        <tr><td>Zaproszenia</td><td>Wyłączone</td><td>"Zaproszenia dostępne od planu Starter"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</DocsLayout>

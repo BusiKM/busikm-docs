@@ -1,0 +1,531 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Architektura techniczna" description="Pełna dokumentacja architektury systemu BusiKM — stack, backend, mobile, web, bazy danych, wzorce, CI/CD.">
+  <div class="prose">
+    <h1>BusiKM — Architektura techniczna</h1>
+
+    <p>Dokument opisuje architekturę systemu BusiKM — platformy do zarządzania ewidencją przebiegu pojazdów dla firm transportowych i biur rachunkowych.</p>
+
+    <hr />
+
+    <h2>1. Diagram architektury systemu</h2>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`+---------------------+     +---------------------+
+|   Aplikacja Mobile  |     |    Panel Webowy      |
+|  (React Native /    |     |  (Next.js 14 /       |
+|   Expo SDK 52+)     |     |   Vercel)            |
++----------+----------+     +----------+----------+
+           |                           |
+           |        HTTPS/WSS          |
+           +----------+   +------------+
+                      |   |
+                      v   v
+              +-------+---+--------+
+              |   API Gateway /    |
+              |   Daphne (ASGI)    |
+              |   port 8000        |
+              +--------+-----------+
+                       |
+          +------------+-------------+
+          |                          |
+          v                          v
++---------+----------+   +-----------+---------+
+|  Django 5.x + DRF  |   |  Celery Workers     |
+|  drf-spectacular    |   |  - default          |
+|  RBAC / Middleware  |   |  - reports           |
++----+-----+----+----+   |  Celery Beat (cron) |
+     |     |    |         +--+-------+----------+
+     |     |    |            |       |
+     v     v    v            v       v
++----+-+ +-+----+-+  +------+--+ +--+-------+
+| PG16 | | Mongo7 |  | Redis 7 | | S3/MinIO |
+| rel. | | GPS /  |  | cache   | | pliki    |
+| data | | logi   |  | broker  | | PDF/img  |
++------+ +--------+  | blackl. | +----------+
+                      +---------+`}</code></pre>
+
+    <hr />
+
+    <h2>2. Stack technologiczny</h2>
+
+    <table>
+      <thead>
+        <tr><th>Warstwa</th><th>Technologia</th><th>Uzasadnienie</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Backend</td><td>Django 5.x + DRF</td><td>Dojrzały ekosystem, ORM, migracje, wbudowany admin</td></tr>
+        <tr><td>API Docs</td><td>drf-spectacular (OpenAPI 3.0)</td><td>Automatyczna dokumentacja, generowanie klienta TS</td></tr>
+        <tr><td>Async/WS</td><td>Daphne (ASGI)</td><td>WebSocket dla powiadomień w czasie rzeczywistym</td></tr>
+        <tr><td>Task Queue</td><td>Celery + Celery Beat</td><td>Raporty PDF, obliczenia dystansu, zadania cykliczne</td></tr>
+        <tr><td>Mobile</td><td>React Native + Expo SDK 52+</td><td>Jeden codebase iOS/Android, OTA updates, EAS Build</td></tr>
+        <tr><td>Routing (mob)</td><td>Expo Router v4</td><td>File-based routing, deep linking, typowane ścieżki</td></tr>
+        <tr><td>State (mob)</td><td>Zustand</td><td>Lekki, minimalny boilerplate, kompatybilny z React Native</td></tr>
+        <tr><td>HTTP (mob)</td><td>Axios</td><td>Interceptory, automatyczny refresh tokenów</td></tr>
+        <tr><td>Web</td><td>Next.js 14 App Router</td><td>SSR/SSG, React Server Components, optymalizacja SEO</td></tr>
+        <tr><td>CSS</td><td>Tailwind CSS</td><td>Utility-first, szybki prototyping, brak CSS-in-JS runtime</td></tr>
+        <tr><td>Data (web)</td><td>SWR</td><td>Cache-first fetching, rewalidacja, mutacje optymistyczne</td></tr>
+        <tr><td>Wykresy</td><td>Recharts</td><td>Deklaratywne wykresy React, responsywność</td></tr>
+        <tr><td>Mapy</td><td>Mapbox GL</td><td>Wizualizacja tras GPS, klastry, heatmapy</td></tr>
+        <tr><td>DB relacyjna</td><td>PostgreSQL 16</td><td>ACID, partycjonowanie, full-text search, JSON support</td></tr>
+        <tr><td>DB dokumentowa</td><td>MongoDB 7</td><td>Dane GPS/logi — elastyczny schemat, geo-indeksy, time-series</td></tr>
+        <tr><td>Cache/Broker</td><td>Redis 7</td><td>Cache sesji, broker Celery, blacklist JWT, kontekst AF</td></tr>
+        <tr><td>Storage</td><td>S3 (DigitalOcean Spaces) / MinIO</td><td>Kompatybilność S3 API, MinIO lokalnie, Spaces na produkcji</td></tr>
+        <tr><td>Monitoring</td><td>Sentry + Prometheus + Grafana</td><td>Błędy (Sentry), metryki (Prometheus), dashboardy (Grafana)</td></tr>
+        <tr><td>Uptime</td><td>Uptime Kuma</td><td>Monitoring dostępności endpointów, alerty</td></tr>
+        <tr><td>CI/CD</td><td>GitHub Actions + EAS Build + Vercel</td><td>Automatyzacja buildów, deploymentów, testów</td></tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <h2>3. Backend (Django + DRF + Celery + Daphne)</h2>
+
+    <h3>3.1 Struktura projektu</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`backend/
+  config/           # settings, urls, asgi/wsgi, celery
+  apps/
+    accounts/       # User, Company, Role, auth JWT
+    vehicles/       # Vehicle, VehicleDocument
+    trips/          # Trip, GPSPoint, DistanceCalculation
+    reports/        # Report, PDFExport, ReportSchedule
+    integrations/   # AbstractFKIntegration, providers
+    notifications/  # WebSocket consumers, push
+  core/             # mixins, permissions, generators, middleware`}</code></pre>
+
+    <h3>3.2 Django + DRF</h3>
+
+    <ul>
+      <li><strong>Django 5.x</strong> — framework backendowy z ORM, migracjami i panelem admin.</li>
+      <li><strong>DRF</strong> — serializatory, viewsety, paginacja (CursorPagination dla list GPS).</li>
+      <li><strong>drf-spectacular</strong> — generowanie schematu OpenAPI 3.0, UI Swagger/Redoc.</li>
+      <li>Każdy viewset dziedziczy po <code>CompanyScopedMixin</code> (filtrowanie po firmie).</li>
+      <li>Uprawnienia oparte na <code>RBAC</code> z czterema rolami systemowymi.</li>
+    </ul>
+
+    <h3>3.3 Celery + Celery Beat</h3>
+
+    <p>Trzy kolejki workerów:</p>
+
+    <table>
+      <thead>
+        <tr><th>Worker</th><th>Kolejka</th><th>Zadania</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>celery-default</td><td><code>default</code></td><td>Powiadomienia, e-maile, integracje FK</td></tr>
+        <tr><td>celery-reports</td><td><code>reports</code></td><td>Generowanie PDF (WeasyPrint), eksporty CSV/XLSX</td></tr>
+        <tr><td>celery-beat</td><td>(scheduler)</td><td>Raporty cykliczne, czyszczenie tokenów, backupy</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.4 Daphne (ASGI/WebSocket)</h3>
+
+    <ul>
+      <li>Daphne obsługuje połączenia WebSocket dla powiadomień real-time.</li>
+      <li>Django Channels z warstwami Redis jako channel layer.</li>
+      <li>Consumers: <code>NotificationConsumer</code>, <code>TripTrackingConsumer</code>.</li>
+      <li>Autentykacja WS przez token JWT w query string.</li>
+    </ul>
+
+    <hr />
+
+    <h2>4. Mobile (React Native + Expo)</h2>
+
+    <h3>4.1 Architektura</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`mobile/
+  app/                  # Expo Router v4 (file-based routing)
+    (auth)/             # ekrany logowania/rejestracji
+    (tabs)/             # główna nawigacja tabowa
+      trips/            # lista/szczegóły przejazdów
+      vehicles/         # zarządzanie pojazdami
+      reports/          # raporty i eksporty
+      settings/         # ustawienia profilu
+  components/           # komponenty współdzielone
+  stores/               # Zustand stores
+  services/             # API client (Axios), GPS service
+  hooks/                # custom hooks`}</code></pre>
+
+    <h3>4.2 Kluczowe mechanizmy</h3>
+
+    <ul>
+      <li><strong>Expo SDK 52+</strong> z prebuildowanymi modułami natywnymi.</li>
+      <li><strong>Expo Router v4</strong> — nawigacja oparta na plikach, typowane parametry tras.</li>
+      <li><strong>Zustand</strong> — stan globalny: <code>useAuthStore</code>, <code>useTripStore</code>, <code>useSettingsStore</code>.</li>
+      <li><strong>Axios</strong> z interceptorami — automatyczny refresh JWT, retry na 401.</li>
+      <li><strong>expo-location</strong> — śledzenie GPS w tle (background location tracking).</li>
+      <li><strong>expo-task-manager</strong> — zadania w tle dla rejestracji punktów GPS.</li>
+      <li><strong>EAS Build</strong> — natywne buildy iOS/Android w chmurze.</li>
+      <li><strong>OTA Updates</strong> — aktualizacje JS bez przechodzenia przez App Store.</li>
+    </ul>
+
+    <hr />
+
+    <h2>5. Web (Next.js 14)</h2>
+
+    <h3>5.1 Architektura</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`web/
+  app/
+    (auth)/             # logowanie, rejestracja
+    (dashboard)/        # panel główny
+      trips/            # przejazdy — tabela, filtry, mapa
+      vehicles/         # flota pojazdów
+      reports/          # raporty z wykresami (Recharts)
+      company/          # ustawienia firmy, użytkownicy
+      integrations/     # konfiguracja FK
+    api/                # route handlers (proxy/BFF)
+  components/           # shadcn/ui + komponenty własne
+  lib/                  # API client, utilities, hooks`}</code></pre>
+
+    <h3>5.2 Kluczowe mechanizmy</h3>
+
+    <ul>
+      <li><strong>App Router</strong> — React Server Components, streaming, Suspense.</li>
+      <li><strong>SWR</strong> — fetching danych z automatyczną rewalidacją i cache.</li>
+      <li><strong>Tailwind CSS</strong> — utility-first styling, ciemny motyw, responsywność.</li>
+      <li><strong>Recharts</strong> — wykresy: przebieg miesięczny, koszty, porównania pojazdów.</li>
+      <li><strong>Mapbox GL</strong> — wizualizacja tras na mapie, heatmapy intensywności.</li>
+      <li><strong>Generowany klient API</strong> (orval) — typowany, zsynchronizowany ze schematem OpenAPI.</li>
+    </ul>
+
+    <hr />
+
+    <h2>6. Strategia bazodanowa</h2>
+
+    <h3>6.1 Rozdzielenie odpowiedzialności</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`+------------------+    +------------------+    +------------------+
+|  PostgreSQL 16   |    |   MongoDB 7      |    |    Redis 7       |
++------------------+    +------------------+    +------------------+
+| - Użytkownicy    |    | - Punkty GPS     |    | - Cache sesji    |
+| - Firmy          |    | - Logi aktywności|    | - Broker Celery  |
+| - Pojazdy        |    | - Surowe dane    |    | - JWT blacklist  |
+| - Przejazdy      |    |   telemetryczne  |    | - Kontekst AF    |
+| - Raporty        |    | - Audyt zmian    |    | - Rate limiting  |
+| - Integracje FK  |    |                  |    | - Channel layer  |
+| - Uprawnienia    |    |                  |    |   (WebSocket)    |
++------------------+    +------------------+    +------------------+
+    ACID / ORM             Geo-indeksy            TTL / Pub-Sub
+    Migracje               Time-series            In-memory`}</code></pre>
+
+    <h3>6.2 Przepływ danych GPS</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`Telefon (GPS)
+     |
+     v
+POST /api/trips/{id}/gps-points/
+     |
+     v
+Django (walidacja, serializacja)
+     |
+     +---> MongoDB (zapis surowych punktów GPS)
+     |
+     v
+Celery task: calculate_distance
+     |
+     +---> Odczyt punktów z MongoDB
+     |     Algorytm: Haversine + filtr Kalmana
+     |
+     +---> PostgreSQL (update Trip.distance_km)
+     |
+     +---> WebSocket: powiadomienie o aktualizacji`}</code></pre>
+
+    <hr />
+
+    <h2>7. Storage (S3 / MinIO)</h2>
+
+    <ul>
+      <li><strong>Produkcja</strong>: DigitalOcean Spaces (kompatybilne z S3 API).</li>
+      <li><strong>Lokal/dev</strong>: MinIO w kontenerze Docker.</li>
+      <li><strong>django-storages</strong> — jednolity interfejs <code>default_file_storage</code>.</li>
+    </ul>
+
+    <p>Przechowywane obiekty:</p>
+
+    <table>
+      <thead>
+        <tr><th>Bucket / prefix</th><th>Zawartość</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>media/avatars/</code></td><td>Zdjęcia profilowe użytkowników</td></tr>
+        <tr><td><code>media/documents/</code></td><td>Skany dokumentów pojazdów</td></tr>
+        <tr><td><code>reports/pdf/</code></td><td>Wygenerowane raporty PDF</td></tr>
+        <tr><td><code>reports/csv/</code></td><td>Eksporty CSV/XLSX</td></tr>
+        <tr><td><code>backups/</code></td><td>Kopie zapasowe baz danych</td></tr>
+      </tbody>
+    </table>
+
+    <p>Pliki są podpisywane (presigned URLs) z TTL 15 minut.</p>
+
+    <hr />
+
+    <h2>8. Wzorce architektoniczne</h2>
+
+    <h3>8.1 RBAC — Role-Based Access Control</h3>
+
+    <p>Cztery role systemowe:</p>
+
+    <table>
+      <thead>
+        <tr><th>Rola</th><th>Opis</th><th>Uprawnienia</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>driver</code></td><td>Kierowca</td><td>CRUD własnych przejazdów, odczyt auta</td></tr>
+        <tr><td><code>owner</code></td><td>Właściciel firmy</td><td>Pełny dostęp do zasobów firmy</td></tr>
+        <tr><td><code>accountant</code></td><td>Księgowy wewnętrzny</td><td>Raporty, przejazdy, pojazdy (RO)</td></tr>
+        <tr><td><code>accounting_firm</code></td><td>Biuro rachunkowe</td><td>Dostęp do wielu firm klientów</td></tr>
+      </tbody>
+    </table>
+
+    <p>Implementacja: custom permission classes DRF (<code>IsDriver</code>, <code>IsOwner</code>, <code>IsAccountant</code>, <code>IsAccountingFirm</code>) + dekoratory na viewsetach.</p>
+
+    <h3>8.2 CompanyScopedMixin</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`class CompanyScopedMixin:
+    """Automatyczne filtrowanie querysetu po firmie użytkownika."""
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(company=self.request.user.active_company)`}</code></pre>
+
+    <p>Każdy viewset operujący na danych firmowych dziedziczy po tym mixinie. Eliminuje ryzyko wycieku danych między firmami (tenant isolation).</p>
+
+    <h3>8.3 TenantContextMiddleware</h3>
+
+    <p>Middleware dla roli <code>accounting_firm</code> — biuro rachunkowe obsługujące wielu klientów.</p>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`class TenantContextMiddleware:
+    """Przełączanie kontekstu firmy dla biur rachunkowych."""
+
+    def __call__(self, request):
+        if request.user.role == 'accounting_firm':
+            company_id = request.headers.get('X-Company-Context')
+            # Walidacja: czy AF ma dostęp do tej firmy
+            request.user.active_company = self._resolve(company_id)
+        # Kontekst przechowywany w Redis (TTL 8h)`}</code></pre>
+
+    <h3>8.4 AbstractFKIntegration</h3>
+
+    <p>Wzorzec Strategy dla integracji z systemami FK (finansowo-księgowymi).</p>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`class AbstractFKIntegration(ABC):
+    """Bazowa klasa dla integracji z systemami FK."""
+
+    @abstractmethod
+    def export_trips(self, trips, format): ...
+
+    @abstractmethod
+    def sync_vehicles(self, company): ...
+
+    @abstractmethod
+    def generate_ewidencja(self, month, year): ...
+
+# Konkretne implementacje:
+class OptimaPKIntegration(AbstractFKIntegration): ...
+class SymfoniaIntegration(AbstractFKIntegration): ...
+class WFirmaIntegration(AbstractFKIntegration): ...`}</code></pre>
+
+    <h3>8.5 BasePDFGenerator</h3>
+
+    <p>Generowanie dokumentów PDF z polskimi fontami.</p>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`class BasePDFGenerator:
+    """WeasyPrint HTML -> PDF z fontami Noto Sans."""
+
+    template_name: str
+    font_family = 'Noto Sans'  # pełne wsparcie polskich znaków
+
+    def generate(self, context) -> bytes:
+        html = render_to_string(self.template_name, context)
+        return weasyprint.HTML(string=html).write_pdf()
+
+# Użycie:
+class TripReportPDF(BasePDFGenerator):
+    template_name = 'reports/trip_report.html'`}</code></pre>
+
+    <hr />
+
+    <h2>9. API-first (OpenAPI &rarr; generowany klient)</h2>
+
+    <h3>9.1 Pipeline</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`Django ViewSet + Serializer
+         |
+         v
+drf-spectacular (schema generation)
+         |
+         v
+/api/schema/ (OpenAPI 3.0 JSON/YAML)
+         |
+         v
+orval (code generation)
+         |
+    +----+----+
+    |         |
+    v         v
+ Mobile    Web
+ (Axios)   (SWR/fetch)
+ typed     typed
+ client    client`}</code></pre>
+
+    <h3>9.2 Zasady</h3>
+
+    <ul>
+      <li>Schema generowana automatycznie z serializatorów i viewsetów DRF.</li>
+      <li><code>orval</code> generuje typowanego klienta TypeScript z hookami SWR (web) i funkcjami Axios (mobile).</li>
+      <li>Każda zmiana API wymaga aktualizacji schematu i regeneracji klienta.</li>
+      <li>CI sprawdza, czy wygenerowany klient jest aktualny (<code>orval --check</code>).</li>
+    </ul>
+
+    <hr />
+
+    <h2>10. Git flow i branching strategy</h2>
+
+    <h3>10.1 Diagram przepływu</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`feature/*  ----+
+bugfix/*   ----|---> develop ---> staging ---> main
+hotfix/*   ----+         |           |           |
+                         |           |           |
+                    auto-deploy  auto-deploy  manual
+                    (dev env)    (QA env)     (prod)`}</code></pre>
+
+    <h3>10.2 Branche i ochrona</h3>
+
+    <table>
+      <thead>
+        <tr><th>Branch</th><th>Deploy</th><th>Ochrona</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>feature/*</code></td><td>—</td><td>PR do develop</td></tr>
+        <tr><td><code>develop</code></td><td>dev (auto)</td><td>1 approve</td></tr>
+        <tr><td><code>staging</code></td><td>staging (auto)</td><td>1 approve + CI green</td></tr>
+        <tr><td><code>main</code></td><td>prod (manual)</td><td>2 approves + CI green</td></tr>
+      </tbody>
+    </table>
+
+    <h3>10.3 Konwencja commitów</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`feat(trips): dodaj filtrowanie przejazdów po dacie
+fix(auth): napraw refresh token rotation
+docs(api): zaktualizuj schemę OpenAPI
+chore(ci): dodaj krok lintowania w pipeline`}</code></pre>
+
+    <p>Format: <code>&lt;type&gt;(&lt;scope&gt;): &lt;opis&gt;</code> (Conventional Commits).</p>
+
+    <hr />
+
+    <h2>11. Infrastruktura</h2>
+
+    <h3>11.1 Docker Compose (lokalne środowisko)</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`services:                   # 10+ kontenerów
+  web:                      # Django + Daphne (ASGI)
+  celery:                   # Worker - default queue
+  celery-beat:              # Scheduler periodycznych tasków
+  celery-reports:           # Worker - reports queue (WeasyPrint)
+  postgres:                 # PostgreSQL 16
+  redis:                    # Redis 7
+  mongo:                    # MongoDB 7
+  minio:                    # S3-compatible storage (lokal)
+  prometheus:               # Zbieranie metryk
+  grafana:                  # Dashboardy monitoringu`}</code></pre>
+
+    <h3>11.2 CI/CD Pipeline</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`git push (feature branch)
+     |
+     v
+GitHub Actions
+     |
+     +---> Lint (ruff, eslint, prettier)
+     |---> Testy (pytest, jest, detox)
+     |---> Build schema OpenAPI
+     |---> Sprawdź wygenerowanego klienta
+     |
+     v
+Merge do develop/staging
+     |
+     +---> Docker build + push (GHCR)
+     |---> Deploy na środowisko (auto)
+     |
+     v
+Merge do main (manual approval)
+     |
+     +---> Deploy produkcyjny
+     |---> EAS Build (mobile — App Store / Google Play)
+     |---> Vercel deploy (web)`}</code></pre>
+
+    <h3>11.3 Diagram autentykacji JWT</h3>
+
+    <pre class="bg-navy/5 rounded-xl p-4 overflow-x-auto"><code class="text-sm">{`Klient                    API                    Redis
+  |                        |                       |
+  |-- POST /auth/login --> |                       |
+  |                        |-- weryfikacja ------> |
+  |<-- access + refresh -- |                       |
+  |                        |                       |
+  |-- GET /api/trips ----> |                       |
+  |   (Authorization:      |                       |
+  |    Bearer <access>)    |-- sprawdź blacklist ->|
+  |                        |<- OK ----------------|
+  |<-- 200 dane ---------- |                       |
+  |                        |                       |
+  |-- POST /auth/refresh ->|                       |
+  |   (refresh token)      |-- blacklist stary --->|
+  |                        |<- zapisano -----------|
+  |<-- nowy access --------| (rotation)            |
+  |    + nowy refresh      |                       |`}</code></pre>
+
+    <hr />
+
+    <h2>12. Konwencje kodu</h2>
+
+    <h3>12.1 Backend (Python)</h3>
+
+    <ul>
+      <li><strong>Formatter</strong>: <code>ruff format</code> (kompatybilny z Black).</li>
+      <li><strong>Linter</strong>: <code>ruff check</code> z zestawem reguł (pyflakes, isort, pep8-naming).</li>
+      <li><strong>Testy</strong>: <code>pytest</code> + <code>factory_boy</code> + <code>faker</code>. Pokrycie minimum 80%.</li>
+      <li><strong>Nazewnictwo</strong>: snake_case dla modułów/funkcji, PascalCase dla klas.</li>
+      <li><strong>Docstringi</strong>: Google style na publicznych metodach.</li>
+      <li><strong>Type hints</strong>: wymagane w sygnaturach funkcji.</li>
+    </ul>
+
+    <h3>12.2 Mobile (TypeScript / React Native)</h3>
+
+    <ul>
+      <li><strong>Formatter/Linter</strong>: ESLint + Prettier.</li>
+      <li><strong>Testy</strong>: Jest (unit) + Detox (E2E).</li>
+      <li><strong>Nazewnictwo</strong>: camelCase dla zmiennych/funkcji, PascalCase dla komponentów.</li>
+      <li><strong>Komponenty</strong>: funkcyjne z hookami, brak klas.</li>
+      <li><strong>Stan</strong>: Zustand stores w dedykowanych plikach (<code>stores/</code>).</li>
+    </ul>
+
+    <h3>12.3 Web (TypeScript / Next.js)</h3>
+
+    <ul>
+      <li><strong>Formatter/Linter</strong>: ESLint + Prettier + eslint-plugin-tailwindcss.</li>
+      <li><strong>Testy</strong>: Jest/Vitest (unit), Playwright (E2E).</li>
+      <li><strong>Komponenty</strong>: React Server Components domyślnie, <code>'use client'</code> tylko gdy potrzebne.</li>
+      <li><strong>Styling</strong>: Tailwind utility classes, brak inline styles.</li>
+      <li><strong>Importy</strong>: aliasy ścieżkowe (<code>@/components</code>, <code>@/lib</code>).</li>
+    </ul>
+
+    <h3>12.4 Wspólne zasady</h3>
+
+    <ul>
+      <li>Każdy PR musi przejść review i CI przed merge.</li>
+      <li>Brak commitów bezpośrednio na <code>develop</code>, <code>staging</code>, <code>main</code>.</li>
+      <li>Zmienne środowiskowe w <code>.env</code> (nigdy w kodzie).</li>
+      <li>Sekrety w GitHub Secrets / Doppler.</li>
+      <li>Logowanie strukturalne (JSON) na produkcji.</li>
+    </ul>
+
+    <hr />
+
+    <p><em>Ostatnia aktualizacja: 15 kwietnia 2026</em></p>
+  </div>
+</DocsLayout>

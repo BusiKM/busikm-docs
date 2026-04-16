@@ -1,0 +1,677 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Schemat bazy danych" description="22 modele PostgreSQL, kolekcje MongoDB, Redis — pełny schemat bazy danych BusiKM.">
+  <div class="prose">
+    <h1>BusiKM — Schemat bazy danych</h1>
+
+    <h2>1. Przegląd strategii bazodanowej</h2>
+
+    <p>BusiKM korzysta z trzech silników przechowywania danych, dobranych pod kątem specyfiki obciążeń:</p>
+
+    <table>
+      <thead>
+        <tr><th>Silnik</th><th>Zastosowanie</th><th>Uzasadnienie</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PostgreSQL</td><td>Dane transakcyjne, modele domenowe</td><td>ACID, relacje, constrainty, migracje Django ORM</td></tr>
+        <tr><td>MongoDB</td><td>Punkty GPS (dane szeregowe, duże wolumeny)</td><td>Elastyczny schemat, indeks 2dsphere, TTL, sharding</td></tr>
+        <tr><td>Redis</td><td>Cache, kolejka zadań, blacklist tokenów JWT</td><td>Operacje in-memory, TTL, atomowe liczniki</td></tr>
+      </tbody>
+    </table>
+
+    <p>Wszystkie modele PostgreSQL posiadają pola <code>created_at</code> i <code>updated_at</code> (auto_now_add / auto_now).</p>
+
+    <hr />
+
+    <h2>2. Diagram ERD (uproszczony)</h2>
+
+    <pre><code>Company ──1──1── Subscription
+   │          └──1──1── AccountingFirm ──1──*── AccountingFirmClient
+   │                                                  └── FK → Company (client)
+   │
+   ├──1──*── User (role: driver/owner/accountant/accounting_firm)
+   │            └──1──1── Driver
+   │                        ├──1──*── DriverDocument
+   │                        └──FK── default_vehicle → Vehicle
+   │
+   ├──1──*── Vehicle
+   │            └──1──*── VehicleDocument
+   │
+   ├──1──*── Trip
+   │            ├──FK── driver, vehicle
+   │            ├──1──*── TripClassificationLog
+   │            └──1──*── OdometerPhoto
+   │
+   ├──1──*── Alert ──FK→ Vehicle?, Driver?, VehicleDocument?
+   │
+   ├──1──*── MileageReport, FleetCostReport, DelegationReport
+   │
+   ├──1──*── ExportRecord ──1──*── ExportStatusLog
+   │
+   ├──1──*── Invitation
+   │
+   └──1──*── UsageSnapshot
+
+User ──1──*── DevicePushToken
+Subscription ──1──*── TrialEmailLog</code></pre>
+
+    <hr />
+
+    <h2>3. PostgreSQL — modele szczegółowo</h2>
+
+    <h3>3.1 User (app: accounts)</h3>
+
+    <p>Dziedziczy po <code>AbstractUser</code>. Logowanie przez email (<code>USERNAME_FIELD = 'email'</code>).</p>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>email</td><td>EmailField</td><td>unique, indeks, pole loginu</td></tr>
+        <tr><td>first_name</td><td>CharField(150)</td><td></td></tr>
+        <tr><td>last_name</td><td>CharField(150)</td><td></td></tr>
+        <tr><td>role</td><td>CharField — choices</td><td>driver / owner / accountant / accounting_firm</td></tr>
+        <tr><td>phone</td><td>CharField(20)</td><td>opcjonalne</td></tr>
+        <tr><td>company</td><td>FK -&gt; Company</td><td>nullable (accounting_firm bez company)</td></tr>
+        <tr><td>is_active</td><td>BooleanField</td><td>default True</td></tr>
+        <tr><td>is_email_verified</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>token_version</td><td>IntegerField</td><td>default 0, inkrementacja = unieważnij tokeny</td></tr>
+        <tr><td>date_joined</td><td>DateTimeField</td><td>auto_now_add</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Company (app: companies)</h3>
+
+    <p>Soft delete — manager <code>objects</code> zwraca tylko nieusunięte, <code>all_with_deleted</code> zwraca wszystkie.</p>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>name</td><td>CharField(255)</td><td>wymagane</td></tr>
+        <tr><td>nip</td><td>CharField(13)</td><td>unique (warunkowo, gdzie != '')</td></tr>
+        <tr><td>regon</td><td>CharField(14)</td><td>opcjonalne</td></tr>
+        <tr><td>krs</td><td>CharField(14)</td><td>opcjonalne</td></tr>
+        <tr><td>street</td><td>CharField(255)</td><td>opcjonalne</td></tr>
+        <tr><td>city</td><td>CharField(100)</td><td>opcjonalne</td></tr>
+        <tr><td>postal_code</td><td>CharField(10)</td><td>opcjonalne</td></tr>
+        <tr><td>country</td><td>CharField(100)</td><td>default 'PL'</td></tr>
+        <tr><td>phone</td><td>CharField(20)</td><td>opcjonalne</td></tr>
+        <tr><td>email</td><td>EmailField</td><td>opcjonalne</td></tr>
+        <tr><td>website</td><td>URLField</td><td>opcjonalne</td></tr>
+        <tr><td>license_number</td><td>CharField(50)</td><td>numer licencji transportowej</td></tr>
+        <tr><td>fleet_size</td><td>IntegerField</td><td>zdenormalizowane, default 0</td></tr>
+        <tr><td>is_active</td><td>BooleanField</td><td>default True</td></tr>
+        <tr><td>is_deleted</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>deleted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.3 Subscription (app: companies)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>OneToOneField</td><td>FK -&gt; Company, on_delete CASCADE</td></tr>
+        <tr><td>plan</td><td>CharField</td><td>free / starter / professional / enterprise</td></tr>
+        <tr><td>status</td><td>CharField</td><td>trial / pilot / af_trial / af_client_trial / active / expired / cancelled</td></tr>
+        <tr><td>valid_until</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>trial_type</td><td>CharField</td><td>nullable</td></tr>
+        <tr><td>trial_started_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>downgraded_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>previous_plan</td><td>CharField</td><td>nullable</td></tr>
+        <tr><td>max_vehicles</td><td>IntegerField</td><td></td></tr>
+        <tr><td>max_drivers</td><td>IntegerField</td><td></td></tr>
+        <tr><td>features</td><td>JSONField</td><td>default dict, elastyczny zbiór funkcji planu</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.4 AccountingFirm (app: companies)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>OneToOneField</td><td>FK -&gt; Company</td></tr>
+        <tr><td>max_clients</td><td>IntegerField</td><td></td></tr>
+        <tr><td>tax_office</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>accountant_license</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>specializations</td><td>JSONField</td><td>lista specjalizacji</td></tr>
+        <tr><td>onboarding_completed</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>trial_min_clients</td><td>IntegerField</td><td>minimum klientów w trialu</td></tr>
+        <tr><td>trial_condition_met</td><td>BooleanField</td><td>default False</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.5 AccountingFirmClient (app: companies)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>accounting_firm</td><td>FK</td><td>-&gt; AccountingFirm</td></tr>
+        <tr><td>client_company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>is_active</td><td>BooleanField</td><td>default True</td></tr>
+        <tr><td>access_level</td><td>CharField</td><td>full / read_only / reports_only</td></tr>
+        <tr><td>contract_start</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>contract_end</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>added_by</td><td>FK</td><td>-&gt; User</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(accounting_firm, client_company)</code></p>
+
+    <h3>3.6 Vehicle (app: fleet)</h3>
+
+    <p>Soft delete. Unique constraint na <code>(company, plate_number)</code> gdzie <code>is_deleted = False</code>.</p>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>plate_number</td><td>CharField(20)</td><td></td></tr>
+        <tr><td>brand</td><td>CharField(50)</td><td></td></tr>
+        <tr><td>model</td><td>CharField(50)</td><td></td></tr>
+        <tr><td>year</td><td>IntegerField</td><td>rok produkcji</td></tr>
+        <tr><td>vin</td><td>CharField(17)</td><td>opcjonalne</td></tr>
+        <tr><td>vehicle_type</td><td>CharField</td><td>truck / van / car / bus / semi_trailer / trailer</td></tr>
+        <tr><td>fuel_type</td><td>CharField</td><td>diesel / petrol / lpg / cng / electric / hybrid</td></tr>
+        <tr><td>mileage_km</td><td>IntegerField</td><td>aktualny przebieg</td></tr>
+        <tr><td>engine_capacity</td><td>IntegerField</td><td>cm3, opcjonalne</td></tr>
+        <tr><td>engine_power_kw</td><td>IntegerField</td><td>opcjonalne</td></tr>
+        <tr><td>max_weight_kg</td><td>IntegerField</td><td>DMC, opcjonalne</td></tr>
+        <tr><td>euro_class</td><td>CharField</td><td>norma emisji spalin</td></tr>
+        <tr><td>status</td><td>CharField</td><td>active / in_service / decommissioned</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>is_deleted</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>deleted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.7 VehicleDocument (app: fleet)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>vehicle</td><td>FK</td><td>-&gt; Vehicle</td></tr>
+        <tr><td>document_type</td><td>CharField</td><td>oc_insurance / ac_insurance / registration / technical_inspection / tachograph_certificate / transport_license / lease_agreement / other</td></tr>
+        <tr><td>title</td><td>CharField</td><td></td></tr>
+        <tr><td>file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>file_name</td><td>CharField</td><td></td></tr>
+        <tr><td>file_size</td><td>IntegerField</td><td>w bajtach</td></tr>
+        <tr><td>content_type</td><td>CharField</td><td>MIME type</td></tr>
+        <tr><td>issue_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>insurer</td><td>CharField</td><td>opcjonalne, dotyczy polis</td></tr>
+        <tr><td>policy_number</td><td>CharField</td><td>opcjonalne, dotyczy polis</td></tr>
+        <tr><td>cost</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>uploaded_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>is_deleted</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>deleted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.8 Driver (app: drivers)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>user</td><td>OneToOneField</td><td>-&gt; User</td></tr>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>employee_number</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>license_number</td><td>CharField</td><td>unique (warunkowo, != '')</td></tr>
+        <tr><td>license_categories</td><td>JSONField</td><td>lista, np. ["C", "CE", "D"]</td></tr>
+        <tr><td>license_expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>license_issued_by</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>qualification_certificate</td><td>CharField</td><td>numer świadectwa kwalifikacji</td></tr>
+        <tr><td>qualification_expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>medical_exam_expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>psychological_exam_expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>tachograph_card_number</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>tachograph_card_expiry</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>default_vehicle</td><td>FK</td><td>-&gt; Vehicle, nullable</td></tr>
+        <tr><td>status</td><td>CharField</td><td>active / on_leave / suspended / inactive</td></tr>
+        <tr><td>hire_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>is_deleted</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>deleted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.9 DriverDocument (app: drivers)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>driver</td><td>FK</td><td>-&gt; Driver</td></tr>
+        <tr><td>document_type</td><td>CharField</td><td>driving_license / qualification_certificate / medical_exam / psychological_exam / tachograph_card / id_card / employment_contract / training_certificate / other</td></tr>
+        <tr><td>title</td><td>CharField</td><td></td></tr>
+        <tr><td>file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>file_name</td><td>CharField</td><td></td></tr>
+        <tr><td>file_size</td><td>IntegerField</td><td></td></tr>
+        <tr><td>content_type</td><td>CharField</td><td></td></tr>
+        <tr><td>document_number</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>issued_by</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>issue_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>uploaded_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>is_deleted</td><td>BooleanField</td><td>default False</td></tr>
+        <tr><td>deleted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.10 Invitation (app: drivers)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>email</td><td>EmailField</td><td></td></tr>
+        <tr><td>role</td><td>CharField</td><td>rola przypisywana po akceptacji</td></tr>
+        <tr><td>invited_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>token</td><td>CharField</td><td>unique, UUID</td></tr>
+        <tr><td>status</td><td>CharField</td><td>pending / accepted / expired / cancelled / declined</td></tr>
+        <tr><td>message</td><td>TextField</td><td>opcjonalne, wiadomość od zapraszającego</td></tr>
+        <tr><td>accepted_by</td><td>FK</td><td>-&gt; User, nullable</td></tr>
+        <tr><td>accepted_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>expires_at</td><td>DateTimeField</td><td></td></tr>
+        <tr><td>resent_count</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>last_sent_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.11 Trip (app: trips)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>driver</td><td>FK</td><td>-&gt; Driver</td></tr>
+        <tr><td>vehicle</td><td>FK</td><td>-&gt; Vehicle</td></tr>
+        <tr><td>trip_type</td><td>CharField</td><td>business / private</td></tr>
+        <tr><td>status</td><td>CharField</td><td>in_progress / completed / cancelled</td></tr>
+        <tr><td>start_time</td><td>DateTimeField</td><td></td></tr>
+        <tr><td>end_time</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>start_location_name</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>end_location_name</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>start_latitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>start_longitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>end_latitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>end_longitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>start_odometer_km</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>end_odometer_km</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>distance_km</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>distance_source</td><td>CharField</td><td>gps / odometer / manual</td></tr>
+        <tr><td>duration_minutes</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>purpose</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>route_description</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>gps_points_count</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>notes</td><td>TextField</td><td>opcjonalne</td></tr>
+        <tr><td>original_trip_type</td><td>CharField</td><td>nullable, przed reklasyfikacją</td></tr>
+        <tr><td>reclassified_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>reclassified_by</td><td>FK</td><td>-&gt; User, nullable</td></tr>
+        <tr><td>reclassification_reason</td><td>TextField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.12 TripClassificationLog (app: trips)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>trip</td><td>FK</td><td>-&gt; Trip</td></tr>
+        <tr><td>from_type</td><td>CharField</td><td>business / private</td></tr>
+        <tr><td>to_type</td><td>CharField</td><td>business / private</td></tr>
+        <tr><td>changed_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>reason</td><td>TextField</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.13 OdometerPhoto (app: trips)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>trip</td><td>FK</td><td>-&gt; Trip</td></tr>
+        <tr><td>photo_type</td><td>CharField</td><td>start / end</td></tr>
+        <tr><td>file</td><td>ImageField</td><td>storage: S3</td></tr>
+        <tr><td>file_name</td><td>CharField</td><td></td></tr>
+        <tr><td>file_size</td><td>IntegerField</td><td></td></tr>
+        <tr><td>content_type</td><td>CharField</td><td></td></tr>
+        <tr><td>odometer_value_km</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>latitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>longitude</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>taken_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>uploaded_by</td><td>FK</td><td>-&gt; User</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(trip, photo_type)</code></p>
+
+    <h3>3.14 Alert (app: fleet)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>alert_type</td><td>CharField</td><td>oc_expiring / ac_expiring / inspection_expiring / tachograph_expiring / license_expiring / driver_license_expiring / qualification_expiring / medical_exam_expiring / psychological_exam_expiring / tachograph_card_expiring / custom</td></tr>
+        <tr><td>severity</td><td>CharField</td><td>info / warning / critical / expired</td></tr>
+        <tr><td>status</td><td>CharField</td><td>active / acknowledged / resolved / dismissed</td></tr>
+        <tr><td>title</td><td>CharField</td><td></td></tr>
+        <tr><td>message</td><td>TextField</td><td></td></tr>
+        <tr><td>vehicle</td><td>FK</td><td>-&gt; Vehicle, nullable</td></tr>
+        <tr><td>driver</td><td>FK</td><td>-&gt; Driver, nullable</td></tr>
+        <tr><td>document</td><td>FK</td><td>-&gt; VehicleDocument, nullable</td></tr>
+        <tr><td>expiry_date</td><td>DateField</td><td>nullable</td></tr>
+        <tr><td>days_remaining</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>acknowledged_at</td><td>DateTimeField</td><td>nullable</td></tr>
+        <tr><td>acknowledged_by</td><td>FK</td><td>-&gt; User, nullable</td></tr>
+        <tr><td>resolved_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(document, alert_type)</code> WHERE <code>status IN ('active', 'acknowledged')</code></p>
+
+    <h3>3.15 MileageReport (app: documents)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>vehicle</td><td>FK</td><td>-&gt; Vehicle</td></tr>
+        <tr><td>period_start</td><td>DateField</td><td></td></tr>
+        <tr><td>period_end</td><td>DateField</td><td></td></tr>
+        <tr><td>generated_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>status</td><td>CharField</td><td>generating / completed / failed</td></tr>
+        <tr><td>file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>file_name</td><td>CharField</td><td></td></tr>
+        <tr><td>file_size</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>trips_count</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>total_distance_km</td><td>DecimalField</td><td></td></tr>
+        <tr><td>total_amount</td><td>DecimalField</td><td>kwota za przebieg</td></tr>
+        <tr><td>rate_per_km</td><td>DecimalField</td><td>stawka za km</td></tr>
+        <tr><td>start_odometer_km</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>end_odometer_km</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>metadata</td><td>JSONField</td><td>default dict</td></tr>
+        <tr><td>error_message</td><td>TextField</td><td>nullable</td></tr>
+        <tr><td>generated_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.16 FleetCostReport (app: documents)</h3>
+
+    <p>Struktura analogiczna do MileageReport, z dodatkowymi polami:</p>
+
+    <table>
+      <thead><tr><th>Pole dodatkowe</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>pdf_file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>csv_file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>vehicles_count</td><td>IntegerField</td><td></td></tr>
+        <tr><td>total_cost</td><td>DecimalField</td><td></td></tr>
+        <tr><td>cost_per_km</td><td>DecimalField</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.17 DelegationReport (app: documents)</h3>
+
+    <p>Struktura analogiczna, z polami specyficznymi dla delegacji:</p>
+
+    <table>
+      <thead><tr><th>Pole dodatkowe</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>driver</td><td>FK</td><td>-&gt; Driver</td></tr>
+        <tr><td>report_type</td><td>CharField</td><td>individual / summary</td></tr>
+        <tr><td>total_trips</td><td>IntegerField</td><td></td></tr>
+        <tr><td>total_work_hours</td><td>DecimalField</td><td></td></tr>
+        <tr><td>total_allowance</td><td>DecimalField</td><td>dieta</td></tr>
+        <tr><td>total_accommodation</td><td>DecimalField</td><td>koszty noclegu</td></tr>
+        <tr><td>total_cost</td><td>DecimalField</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.18 ExportRecord (app: integrations)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>integration_name</td><td>CharField</td><td>np. optima, symfonia</td></tr>
+        <tr><td>export_type</td><td>CharField</td><td></td></tr>
+        <tr><td>period_start</td><td>DateField</td><td></td></tr>
+        <tr><td>period_end</td><td>DateField</td><td></td></tr>
+        <tr><td>vehicle</td><td>FK</td><td>-&gt; Vehicle, nullable</td></tr>
+        <tr><td>driver</td><td>FK</td><td>-&gt; Driver, nullable</td></tr>
+        <tr><td>status</td><td>CharField</td><td></td></tr>
+        <tr><td>file</td><td>FileField</td><td>storage: S3</td></tr>
+        <tr><td>file_name</td><td>CharField</td><td></td></tr>
+        <tr><td>file_size</td><td>IntegerField</td><td>nullable</td></tr>
+        <tr><td>records_count</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>total_amount</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>total_distance_km</td><td>DecimalField</td><td>nullable</td></tr>
+        <tr><td>warnings</td><td>JSONField</td><td>default list</td></tr>
+        <tr><td>error_message</td><td>TextField</td><td>nullable</td></tr>
+        <tr><td>metadata</td><td>JSONField</td><td>default dict</td></tr>
+        <tr><td>generated_by</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>generated_at</td><td>DateTimeField</td><td>nullable</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.19 ExportStatusLog (app: integrations)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>export_record</td><td>FK</td><td>-&gt; ExportRecord</td></tr>
+        <tr><td>from_status</td><td>CharField</td><td></td></tr>
+        <tr><td>to_status</td><td>CharField</td><td></td></tr>
+        <tr><td>message</td><td>TextField</td><td>opcjonalne</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.20 DevicePushToken (app: notifications)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>user</td><td>FK</td><td>-&gt; User</td></tr>
+        <tr><td>push_token</td><td>CharField</td><td></td></tr>
+        <tr><td>platform</td><td>CharField</td><td>ios / android</td></tr>
+        <tr><td>device_name</td><td>CharField</td><td>opcjonalne</td></tr>
+        <tr><td>is_active</td><td>BooleanField</td><td>default True</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(user, push_token)</code></p>
+
+    <h3>3.21 UsageSnapshot (app: common)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>company</td><td>FK</td><td>-&gt; Company</td></tr>
+        <tr><td>month</td><td>CharField(7)</td><td>format YYYY-MM</td></tr>
+        <tr><td>vehicles_active</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>drivers_active</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>trips_completed</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>trips_business</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>distance_total_km</td><td>DecimalField</td><td>default 0</td></tr>
+        <tr><td>gps_points_ingested</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>reports_generated</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>exports_generated</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>logins_count</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>active_days</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>mobile_sessions</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>web_sessions</td><td>IntegerField</td><td>default 0</td></tr>
+        <tr><td>snapshotted_at</td><td>DateTimeField</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(company, month)</code></p>
+
+    <h3>3.22 TrialEmailLog (app: billing)</h3>
+
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Ograniczenia</th></tr></thead>
+      <tbody>
+        <tr><td>subscription</td><td>FK</td><td>-&gt; Subscription</td></tr>
+        <tr><td>email_type</td><td>CharField</td><td>np. trial_ending_7d</td></tr>
+        <tr><td>sent_at</td><td>DateTimeField</td><td>auto_now_add</td></tr>
+        <tr><td>recipient_email</td><td>EmailField</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Unique constraint:</strong> <code>(subscription, email_type)</code></p>
+
+    <hr />
+
+    <h2>4. MongoDB — kolekcje i indeksy</h2>
+
+    <h3>Kolekcja gps_points</h3>
+
+    <p>Przechowuje surowe punkty GPS rejestrowane przez aplikację mobilną podczas trasy.</p>
+
+    <pre><code>&#123;
+  "trip_id":          "ObjectId / UUID",
+  "company_id":       "int",
+  "driver_id":        "int",
+  "vehicle_id":       "int",
+  "location":         &#123; "type": "Point", "coordinates": [lng, lat] &#125;,
+  "latitude":         20.123456,
+  "longitude":        50.654321,
+  "altitude":         230.5,
+  "speed":            65.2,
+  "bearing":          180.0,
+  "accuracy":         4.5,
+  "timestamp":        "ISODate",
+  "server_timestamp": "ISODate",
+  "battery_level":    82,
+  "is_moving":        true,
+  "source":           "gps / network / fused",
+  "batch_id":         "UUID"
+&#125;</code></pre>
+
+    <p><strong>Indeksy:</strong></p>
+
+    <table>
+      <thead><tr><th>Indeks</th><th>Typ</th><th>Cel</th></tr></thead>
+      <tbody>
+        <tr><td><code>location</code></td><td>2dsphere</td><td>Zapytania geospatial (np. trasa na mapie)</td></tr>
+        <tr><td><code>(trip_id, timestamp)</code></td><td>compound</td><td>Pobranie punktów trasy w kolejności</td></tr>
+        <tr><td><code>timestamp</code></td><td>TTL (90 dni)</td><td>Automatyczne usuwanie starych danych</td></tr>
+        <tr><td><code>batch_id</code></td><td>single</td><td>Idempotentność przy ponownym wysyłaniu</td></tr>
+        <tr><td><code>(company_id, vehicle_id, timestamp)</code></td><td>compound</td><td>Zapytania raportowe po firmie/pojeździe</td></tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <h2>5. Redis — logiczne bazy danych</h2>
+
+    <table>
+      <thead><tr><th>DB</th><th>Przeznaczenie</th><th>Przykładowe klucze</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Cache API, liczniki użycia</td><td><code>cache:company:&#123;id&#125;:vehicles</code>, <code>usage:&#123;company&#125;:&#123;month&#125;:trips</code></td></tr>
+        <tr><td>1</td><td>Celery broker</td><td>Kolejki zadań: generowanie raportów, alerty, eksporty</td></tr>
+        <tr><td>2</td><td>Blacklist tokenów JWT, token families</td><td><code>token_blacklist:&#123;jti&#125;</code>, <code>token_family:&#123;family_id&#125;</code></td></tr>
+      </tbody>
+    </table>
+
+    <p>Klucze w DB 0 korzystają z TTL dostosowanego do typu danych (np. 5 min dla list pojazdów, 1h dla raportów). DB 2 używa TTL równego czasowi wygaśnięcia tokena refresh.</p>
+
+    <hr />
+
+    <h2>6. Relacje i klucze obce</h2>
+
+    <p>Kluczowe relacje w systemie:</p>
+
+    <ul>
+      <li><strong>Company</strong> jest centralnym węzłem — większość modeli posiada FK do Company (izolacja danych tenant).</li>
+      <li><strong>User -&gt; Company</strong>: FK, nullable (konta biur rachunkowych mogą nie mieć przypisanej firmy transportowej).</li>
+      <li><strong>Driver -&gt; User</strong>: OneToOne — każdy kierowca jest powiązany z kontem użytkownika.</li>
+      <li><strong>Subscription -&gt; Company</strong>: OneToOne — każda firma ma dokładnie jedną subskrypcję.</li>
+      <li><strong>AccountingFirm -&gt; Company</strong>: OneToOne — firma księgowa to rozszerzenie encji Company.</li>
+      <li><strong>AccountingFirmClient</strong>: tabela pośrednia łącząca biuro rachunkowe z firmami-klientami.</li>
+      <li><strong>Trip -&gt; Driver, Vehicle</strong>: FK — każda trasa przypisana do kierowcy i pojazdu.</li>
+      <li><strong>Alert -&gt; Vehicle, Driver, VehicleDocument</strong>: nullable FK — alert może dotyczyć pojazdu, kierowcy lub dokumentu.</li>
+    </ul>
+
+    <p>Wszystkie klucze obce używają <code>on_delete=CASCADE</code> lub <code>on_delete=SET_NULL</code> (dla pól nullable), zgodnie z logiką biznesową.</p>
+
+    <hr />
+
+    <h2>7. Indeksy i constrainty</h2>
+
+    <h3>Unique constraints warunkowe (partial unique index)</h3>
+
+    <pre><code>-- NIP firmy unikalny tylko gdy niepusty
+CREATE UNIQUE INDEX uq_company_nip ON companies_company (nip) WHERE nip != '';
+
+-- Numer rejestracyjny unikalny w ramach firmy (aktywne pojazdy)
+CREATE UNIQUE INDEX uq_vehicle_plate ON fleet_vehicle (company_id, plate_number)
+    WHERE is_deleted = FALSE;
+
+-- Numer prawa jazdy kierowcy unikalny gdy niepusty
+CREATE UNIQUE INDEX uq_driver_license ON drivers_driver (license_number)
+    WHERE license_number != '';
+
+-- Jeden aktywny alert na dokument danego typu
+CREATE UNIQUE INDEX uq_alert_doc_type ON fleet_alert (document_id, alert_type)
+    WHERE status IN ('active', 'acknowledged');</code></pre>
+
+    <h3>Indeksy wydajnościowe</h3>
+
+    <ul>
+      <li><code>Trip</code>: indeks na <code>(company_id, start_time)</code> — filtrowanie tras po dacie.</li>
+      <li><code>Trip</code>: indeks na <code>(driver_id, status)</code> — aktywne trasy kierowcy.</li>
+      <li><code>Alert</code>: indeks na <code>(company_id, status, severity)</code> — dashboard alertów.</li>
+      <li><code>UsageSnapshot</code>: indeks na <code>(company_id, month)</code> — unique + szybkie odczyty.</li>
+    </ul>
+
+    <hr />
+
+    <h2>8. Wzorzec soft delete</h2>
+
+    <p>Modele z soft delete: <strong>Company</strong>, <strong>Vehicle</strong>, <strong>VehicleDocument</strong>, <strong>Driver</strong>, <strong>DriverDocument</strong>.</p>
+
+    <pre><code>class SoftDeleteManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+class SoftDeleteModel(models.Model):
+    is_deleted = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(null=True, blank=True)
+
+    objects = SoftDeleteManager()          # domyślny -- bez usuniętych
+    all_with_deleted = models.Manager()    # wszystkie rekordy
+
+    def soft_delete(self):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save(update_fields=['is_deleted', 'deleted_at'])
+
+    class Meta:
+        abstract = True</code></pre>
+
+    <p>Rekord oznaczony jako usunięty:</p>
+    <ul>
+      <li>Nie pojawia się w domyślnych querysetach (<code>objects</code>).</li>
+      <li>Zachowuje integralność referencyjną (FK nie są kasowane).</li>
+      <li>Może zostać przywrócony przez admina.</li>
+      <li>Unique constraints uwzględniają flagę <code>is_deleted</code> (partial index).</li>
+    </ul>
+
+    <hr />
+
+    <h2>9. Migracje — konwencje</h2>
+
+    <ul>
+      <li>Każda aplikacja Django (<code>accounts</code>, <code>companies</code>, <code>fleet</code>, <code>drivers</code>, <code>trips</code>, <code>documents</code>, <code>integrations</code>, <code>notifications</code>, <code>common</code>, <code>billing</code>) zarządza własnymi migracjami.</li>
+      <li>Migracje generowane przez <code>python manage.py makemigrations</code> — nie edytowane ręcznie, chyba że wymagana jest migracja danych (<code>RunPython</code>).</li>
+      <li>Migracje danych (data migrations) stosowane do: seedowania planów subskrypcji, migracji istniejących rekordów po zmianie schematu, wypełniania pól zdenormalizowanych.</li>
+      <li>Środowisko CI uruchamia <code>python manage.py migrate --check</code> aby wykryć brakujące migracje.</li>
+      <li>Nazewnictwo: automatyczne (np. <code>0001_initial</code>, <code>0002_add_fleet_size</code>). Migracje danych nazywane opisowo: <code>0003_populate_fleet_size</code>.</li>
+    </ul>
+  </div>
+</DocsLayout>

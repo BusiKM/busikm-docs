@@ -1,0 +1,74 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Słownik pojęć">
+  <div class="prose">
+    <h1>Słownik pojęć BusiKM</h1>
+
+    <h2>1. Pojęcia transportowe</h2>
+    <table>
+      <thead><tr><th>Skrót / Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>DMC</strong></td><td>Dopuszczalna Masa Całkowita</td><td>Maksymalna dopuszczalna waga pojazdu. Wpływ na kategorie opłat.</td></tr>
+        <tr><td><strong>OC</strong></td><td>Ubezpieczenie OC</td><td>Obowiązkowe ubezpieczenie od szkód wyrządzonych osobom trzecim.</td></tr>
+        <tr><td><strong>AC</strong></td><td>Autocasco</td><td>Dobrowolne ubezpieczenie pojazdu od uszkodzeń i kradzieży.</td></tr>
+        <tr><td><strong>PJ</strong></td><td>Prawo Jazdy</td><td>BusiKM śledzi daty ważności i kategorie.</td></tr>
+        <tr><td><strong>Tachograf G2V2</strong></td><td>Tachograf cyfrowy II generacji</td><td>Obowiązkowe urządzenie rejestrujące czas jazdy. Wymóg UE.</td></tr>
+        <tr><td><strong>ADR</strong></td><td>Certyfikat przewozu towarów niebezpiecznych</td><td>BusiKM śledzi daty ważności certyfikatów ADR.</td></tr>
+        <tr><td><strong>CMR</strong></td><td>Konwencja o umowie przewozu drogowego</td><td>Międzynarodowa konwencja regulująca odpowiedzialność przewoźnika.</td></tr>
+        <tr><td><strong>e-TOLL</strong></td><td>Elektroniczny system poboru opłat</td><td>Polski system opłat za drogi krajowe. Dotyczy DMC &gt; 3.5t.</td></tr>
+        <tr><td><strong>SENT</strong></td><td>System Elektronicznego Nadzoru Transportu</td><td>Monitoring przewozu towarów wrażliwych.</td></tr>
+        <tr><td><strong>KSeF</strong></td><td>Krajowy System e-Faktur</td><td>Polski system e-faktur. Obowiązkowy od 2026 roku.</td></tr>
+        <tr><td><strong>Kilometrówka</strong></td><td>Ewidencja przebiegu pojazdu</td><td>Dokument rejestrujący trasy służbowe. Wymagany przez MF.</td></tr>
+        <tr><td><strong>Wzór MF</strong></td><td>Wzór Ministerstwa Finansów</td><td>Urzędowy szablon ewidencji przebiegu pojazdu.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Pojęcia techniczne</h2>
+    <table>
+      <thead><tr><th>Skrót</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>JWT</strong></td><td>JSON Web Token</td><td>Access token (15 min) + refresh token (7 dni).</td></tr>
+        <tr><td><strong>RBAC</strong></td><td>Role-Based Access Control</td><td>4 role: Driver, Owner, Accountant, AccountingFirm.</td></tr>
+        <tr><td><strong>ASGI</strong></td><td>Asynchronous Server Gateway Interface</td><td>Interfejs dla WebSocket. Używany przez Django Channels.</td></tr>
+        <tr><td><strong>EDI++</strong></td><td>Electronic Data Interchange (InsERT)</td><td>Format eksportu danych do Subiekta/Rewizora GT.</td></tr>
+        <tr><td><strong>BFF</strong></td><td>Backend For Frontend</td><td>Wzorzec proxy w Next.js między frontendem a API.</td></tr>
+        <tr><td><strong>OTA</strong></td><td>Over The Air</td><td>Aktualizacja mobilna bez recenzji App Store.</td></tr>
+        <tr><td><strong>WebSocket</strong></td><td>WebSocket</td><td>Dwukierunkowa komunikacja real-time. Live GPS tracking.</td></tr>
+        <tr><td><strong>Presigned URL</strong></td><td>Podpisany URL</td><td>Tymczasowy URL do S3/MinIO z ograniczonym TTL.</td></tr>
+        <tr><td><strong>SSG/ISR</strong></td><td>Static Site Generation / Incremental Static Regeneration</td><td>Strategie renderowania w Next.js.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Pojęcia biznesowe</h2>
+    <table>
+      <thead><tr><th>Skrót</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MRR</strong></td><td>Monthly Recurring Revenue</td><td>Miesięczny przychód cykliczny z subskrypcji.</td></tr>
+        <tr><td><strong>ARR</strong></td><td>Annual Recurring Revenue</td><td>Roczny przychód cykliczny. MRR &times; 12.</td></tr>
+        <tr><td><strong>ARPU</strong></td><td>Average Revenue Per User</td><td>Średni przychód na firmę. MRR / płatne firmy.</td></tr>
+        <tr><td><strong>CAC</strong></td><td>Customer Acquisition Cost</td><td>Koszt pozyskania klienta (marketing + sprzedaż).</td></tr>
+        <tr><td><strong>LTV</strong></td><td>Lifetime Value</td><td>Całkowity przychód od klienta. ARPU / churn rate.</td></tr>
+        <tr><td><strong>Churn</strong></td><td>Wskaźnik rezygnacji</td><td>% klientów rezygnujących z subskrypcji/miesiąc.</td></tr>
+        <tr><td><strong>NPS</strong></td><td>Net Promoter Score</td><td>Wskaźnik satysfakcji (-100 do 100).</td></tr>
+        <tr><td><strong>Reverse trial</strong></td><td>Odwrócony trial</td><td>14 dni Professional, potem degradacja do Free.</td></tr>
+        <tr><td><strong>Feature gating</strong></td><td>Bramkowanie funkcji</td><td>Ograniczanie dostępu na podstawie planu.</td></tr>
+        <tr><td><strong>AF</strong></td><td>Accounting Firm</td><td>Biuro rachunkowe — kluczowy kanał dystrybucji.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Pojęcia wewnętrzne BusiKM</h2>
+    <table>
+      <thead><tr><th>Termin</th><th>Typ</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CompanyScopedMixin</strong></td><td>Django mixin</td><td>Automatyczne filtrowanie querysetów po firmie. Zapobiega wyciekowi danych.</td></tr>
+        <tr><td><strong>TenantContextMiddleware</strong></td><td>Django middleware</td><td>Zarządzanie kontekstem klienta biura rachunkowego. Cache w Redis.</td></tr>
+        <tr><td><strong>AbstractFKIntegration</strong></td><td>Klasa bazowa</td><td>Abstrakcyjna klasa dla integracji FK. Wzorzec Strategy.</td></tr>
+        <tr><td><strong>BasePDFGenerator</strong></td><td>Klasa bazowa</td><td>Generowanie raportów PDF z WeasyPrint.</td></tr>
+        <tr><td><strong>UsageTracker</strong></td><td>Serwis (Redis)</td><td>Kolektor metryk użycia per firma. Podstawa feature gating.</td></tr>
+        <tr><td><strong>ExportRecord</strong></td><td>Model Django</td><td>Historia eksportów FK: status, timestamp, format, błędy.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</DocsLayout>

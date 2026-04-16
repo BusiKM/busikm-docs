@@ -1,0 +1,525 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Specyfikacja API" description="50+ endpointów w 14 grupach, rate limiting, autoryzacja, paginacja, WebSocket.">
+  <div class="prose">
+    <h1>BusiKM — Specyfikacja API</h1>
+
+    <h2>1. Przegląd API</h2>
+
+    <table>
+      <thead><tr><th>Parametr</th><th>Wartość</th></tr></thead>
+      <tbody>
+        <tr><td>Base URL</td><td><code>/api/v1/</code></td></tr>
+        <tr><td>Autoryzacja</td><td>JWT Bearer token w nagłówku <code>Authorization: Bearer &lt;token&gt;</code></td></tr>
+        <tr><td>Wersjonowanie</td><td>Ścieżka URL (<code>/api/v1/</code>)</td></tr>
+        <tr><td>Format danych</td><td>JSON (<code>application/json</code>); <code>multipart/form-data</code> dla uploadu plików</td></tr>
+        <tr><td>Paginacja</td><td><code>PageNumberPagination</code> — <code>page_size=20</code>, max <code>100</code>, parametry <code>?page=N&amp;page_size=M</code></td></tr>
+        <tr><td>Sortowanie</td><td><code>?ordering=field_name</code> (prefix <code>-</code> dla DESC)</td></tr>
+        <tr><td>Filtrowanie</td><td><code>?field=value</code> — per endpoint</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Rate limiting</h3>
+
+    <table>
+      <thead><tr><th>Grupa</th><th>Limit</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><code>anon</code></td><td>30/min</td><td>Niezalogowani użytkownicy</td></tr>
+        <tr><td><code>user</code></td><td>120/min</td><td>Zalogowani użytkownicy</td></tr>
+        <tr><td><code>login</code></td><td>5/min per email</td><td>Próby logowania</td></tr>
+        <tr><td><code>gps</code></td><td>10/min</td><td>Upload punktów GPS</td></tr>
+        <tr><td><code>export</code></td><td>5/min</td><td>Generowanie eksportów</td></tr>
+      </tbody>
+    </table>
+
+    <p>Odpowiedź przy przekroczeniu limitu: <code>429 Too Many Requests</code> z nagłówkiem <code>Retry-After</code>.</p>
+
+    <hr />
+
+    <h2>2. Endpointy</h2>
+
+    <h3>2.1 Autoryzacja (auth)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/auth/register/</code></td><td>Rejestracja nowego użytkownika</td><td>AllowAny</td></tr>
+        <tr><td>GET</td><td><code>/auth/verify-email/</code></td><td>Weryfikacja tokena e-mail (<code>?token=...</code>)</td><td>AllowAny</td></tr>
+        <tr><td>POST</td><td><code>/auth/login/</code></td><td>Logowanie — zwraca parę JWT (access + refresh)</td><td>AllowAny</td></tr>
+        <tr><td>POST</td><td><code>/auth/refresh/</code></td><td>Odświeżenie tokenów JWT</td><td>AllowAny</td></tr>
+        <tr><td>GET</td><td><code>/auth/me/</code></td><td>Pobranie profilu zalogowanego użytkownika</td><td>IsAuthenticated</td></tr>
+        <tr><td>PATCH</td><td><code>/auth/me/</code></td><td>Aktualizacja profilu (imię, nazwisko, język)</td><td>IsAuthenticated</td></tr>
+        <tr><td>POST</td><td><code>/auth/logout/</code></td><td>Wylogowanie bieżącego urządzenia (blacklist refresh token)</td><td>IsAuthenticated</td></tr>
+        <tr><td>POST</td><td><code>/auth/logout-all/</code></td><td>Wylogowanie ze wszystkich urządzeń</td><td>IsAuthenticated</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Firmy (companies)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/companies/</code></td><td>Lista firm użytkownika</td><td>IsAuthenticated</td></tr>
+        <tr><td>POST</td><td><code>/companies/</code></td><td>Utworzenie nowej firmy</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/companies/&#123;id&#125;/</code></td><td>Szczegóły firmy</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>PATCH</td><td><code>/companies/&#123;id&#125;/</code></td><td>Aktualizacja danych firmy</td><td>IsOwner, IsOwnCompany</td></tr>
+        <tr><td>DELETE</td><td><code>/companies/&#123;id&#125;/</code></td><td>Soft delete firmy</td><td>IsOwner, IsOwnCompany</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.3 Pojazdy (fleet)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/vehicles/</code></td><td>Lista pojazdów (filtry: status, typ)</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/vehicles/</code></td><td>Dodanie pojazdu do floty</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/vehicles/&#123;id&#125;/</code></td><td>Szczegóły pojazdu</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>PATCH</td><td><code>/vehicles/&#123;id&#125;/</code></td><td>Aktualizacja danych pojazdu</td><td>IsOwner</td></tr>
+        <tr><td>DELETE</td><td><code>/vehicles/&#123;id&#125;/</code></td><td>Soft delete pojazdu</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/vehicles/&#123;id&#125;/restore/</code></td><td>Przywrócenie usuniętego pojazdu</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/vehicles/stats/</code></td><td>Statystyki floty (liczba pojazdów, przebieg)</td><td>IsOwnerOrAccountantOrAF</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Dokumenty pojazdu:</strong></p>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/vehicles/&#123;id&#125;/documents/</code></td><td>Lista dokumentów pojazdu</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/vehicles/&#123;id&#125;/documents/</code></td><td>Upload dokumentu (multipart)</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/vehicles/&#123;id&#125;/documents/&#123;doc_id&#125;/</code></td><td>Szczegóły dokumentu</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>PATCH</td><td><code>/vehicles/&#123;id&#125;/documents/&#123;doc_id&#125;/</code></td><td>Aktualizacja metadanych dokumentu</td><td>IsOwner</td></tr>
+        <tr><td>DELETE</td><td><code>/vehicles/&#123;id&#125;/documents/&#123;doc_id&#125;/</code></td><td>Soft delete dokumentu</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/vehicles/&#123;id&#125;/documents/&#123;doc_id&#125;/download/</code></td><td>Pobranie pliku dokumentu</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/documents/expiring/</code></td><td>Wygasające dokumenty w całej flocie</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/vehicles/&#123;id&#125;/alerts/</code></td><td>Alerty powiązane z pojazdem</td><td>IsOwnerOrAccountantOrAF</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.4 Kierowcy (drivers)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/drivers/</code></td><td>Lista kierowców</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/drivers/</code></td><td>Dodanie kierowcy (istniejący user lub nowy)</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/drivers/&#123;id&#125;/</code></td><td>Szczegóły kierowcy</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>PATCH</td><td><code>/drivers/&#123;id&#125;/</code></td><td>Aktualizacja danych kierowcy</td><td>IsOwner</td></tr>
+        <tr><td>DELETE</td><td><code>/drivers/&#123;id&#125;/</code></td><td>Soft delete kierowcy</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/drivers/&#123;id&#125;/restore/</code></td><td>Przywrócenie kierowcy</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/drivers/&#123;id&#125;/documents/</code></td><td>Podsumowanie dokumentów kierowcy</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/drivers/&#123;id&#125;/documents/</code></td><td>Upload dokumentu kierowcy</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/drivers/compliance/</code></td><td>Przegląd zgodności (ważność badań, uprawnień)</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/drivers/stats/</code></td><td>Statystyki kierowców</td><td>IsOwnerOrAccountantOrAF</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.5 Zaproszenia (drivers)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/invitations/</code></td><td>Lista zaproszeń</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/invitations/</code></td><td>Utworzenie zaproszenia dla kierowcy</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/invitations/&#123;id&#125;/resend/</code></td><td>Ponowne wysłanie zaproszenia</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/invitations/&#123;id&#125;/cancel/</code></td><td>Anulowanie zaproszenia</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/invitations/verify/&#123;token&#125;/</code></td><td>Weryfikacja tokena zaproszenia</td><td>AllowAny</td></tr>
+        <tr><td>POST</td><td><code>/invitations/accept/&#123;token&#125;/</code></td><td>Przyjęcie zaproszenia</td><td>AllowAny</td></tr>
+        <tr><td>POST</td><td><code>/invitations/decline/&#123;token&#125;/</code></td><td>Odrzucenie zaproszenia</td><td>AllowAny</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.6 Przejazdy (trips)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/trips/</code></td><td>Rozpoczęcie przejazdu</td><td>IsDriverOrOwner</td></tr>
+        <tr><td>GET</td><td><code>/trips/</code></td><td>Lista przejazdów (filtry: data, kierowca, pojazd, klasyfikacja)</td><td>role-scoped</td></tr>
+        <tr><td>GET</td><td><code>/trips/&#123;id&#125;/</code></td><td>Szczegóły przejazdu</td><td>role-scoped</td></tr>
+        <tr><td>POST</td><td><code>/trips/&#123;id&#125;/stop/</code></td><td>Zakończenie przejazdu</td><td>IsDriverOrOwner, IsOwnTrip</td></tr>
+        <tr><td>POST</td><td><code>/trips/&#123;id&#125;/cancel/</code></td><td>Anulowanie przejazdu</td><td>IsDriverOrOwner, IsOwnTrip</td></tr>
+        <tr><td>POST</td><td><code>/trips/&#123;id&#125;/reclassify/</code></td><td>Zmiana klasyfikacji (prywatny/służbowy)</td><td>IsDriverOrOwner</td></tr>
+        <tr><td>GET</td><td><code>/trips/&#123;id&#125;/classification-history/</code></td><td>Historia zmian klasyfikacji</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>GET</td><td><code>/trips/active/</code></td><td>Aktywne przejazdy w czasie rzeczywistym</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/trips/summary/</code></td><td>Podsumowanie okresu z agregacjami</td><td>IsOwnerOrAccountantOrAF</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>GPS i odometr:</strong></p>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/trips/&#123;id&#125;/gps-points/</code></td><td>Bulk upload punktów GPS (batch)</td><td>IsDriverOrOwner, GPSUploadThrottle</td></tr>
+        <tr><td>GET</td><td><code>/trips/&#123;id&#125;/gps-points/</code></td><td>Pobranie trasy GPS</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/trips/&#123;id&#125;/odometer/</code></td><td>Upload zdjęcia odometru (multipart)</td><td>IsDriverOrOwner</td></tr>
+        <tr><td>GET</td><td><code>/trips/&#123;id&#125;/odometer/</code></td><td>Lista zdjęć odometru</td><td>role-scoped</td></tr>
+        <tr><td>DELETE</td><td><code>/trips/&#123;id&#125;/odometer/&#123;photo_id&#125;/</code></td><td>Usunięcie zdjęcia odometru</td><td>IsDriverOrOwner</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.7 Raporty (documents)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/reports/mileage/</code></td><td>Generowanie raportu ewidencji przebiegu</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>GET</td><td><code>/reports/mileage/</code></td><td>Lista wygenerowanych raportów</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>GET</td><td><code>/reports/mileage/&#123;id&#125;/</code></td><td>Szczegóły raportu</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>GET</td><td><code>/reports/mileage/&#123;id&#125;/download/</code></td><td>Pobranie raportu PDF</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>POST</td><td><code>/reports/mileage/preview/</code></td><td>Podgląd danych bez generowania pliku</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>POST</td><td><code>/reports/fleet-costs/</code></td><td>Raport kosztów floty (post-MVP)</td><td>IsOwnerOrAccountant</td></tr>
+        <tr><td>POST</td><td><code>/reports/delegations/</code></td><td>Raport delegacji (post-MVP)</td><td>IsOwnerOrAccountant</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.8 Eksport FK (integrations)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/export/insert-gt/</code></td><td>Generowanie eksportu EDI++ (.epp)</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/export/history/</code></td><td>Lista historii eksportów</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/export/history/&#123;id&#125;/</code></td><td>Szczegóły eksportu</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/export/history/&#123;id&#125;/download/</code></td><td>Pobranie pliku .epp</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/export/history/&#123;id&#125;/retry/</code></td><td>Ponowienie nieudanego eksportu</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/export/history/&#123;id&#125;/regenerate/</code></td><td>Regeneracja zarchiwizowanego eksportu</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/export/stats/</code></td><td>Statystyki eksportów</td><td>IsAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/export/integrations/</code></td><td>Lista dostępnych integracji</td><td>IsAuthenticated</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.9 Alerty (fleet)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/alerts/</code></td><td>Lista alertów</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>GET</td><td><code>/alerts/&#123;id&#125;/</code></td><td>Szczegóły alertu</td><td>IsOwnerOrAccountantOrAF</td></tr>
+        <tr><td>POST</td><td><code>/alerts/&#123;id&#125;/acknowledge/</code></td><td>Potwierdzenie alertu</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/alerts/&#123;id&#125;/dismiss/</code></td><td>Odrzucenie alertu</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/alerts/bulk-acknowledge/</code></td><td>Potwierdzenie wielu alertów jednocześnie</td><td>IsOwner</td></tr>
+        <tr><td>POST</td><td><code>/alerts/</code></td><td>Utworzenie niestandardowego alertu</td><td>IsOwner</td></tr>
+        <tr><td>GET</td><td><code>/alerts/summary/</code></td><td>Podsumowanie (liczba per typ i priorytet)</td><td>IsOwnerOrAccountantOrAF</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.10 Biuro rachunkowe (accounting-firms)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/af/profile/</code></td><td>Profil biura rachunkowego</td><td>IsAccountingFirm</td></tr>
+        <tr><td>PATCH</td><td><code>/af/profile/</code></td><td>Aktualizacja profilu biura</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/clients/</code></td><td>Lista klientów biura</td><td>IsAccountingFirm</td></tr>
+        <tr><td>POST</td><td><code>/af/clients/</code></td><td>Dodanie klienta</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/clients/&#123;id&#125;/</code></td><td>Szczegóły klienta</td><td>IsAccountingFirm</td></tr>
+        <tr><td>PATCH</td><td><code>/af/clients/&#123;id&#125;/</code></td><td>Aktualizacja poziomu dostępu</td><td>IsAccountingFirm</td></tr>
+        <tr><td>DELETE</td><td><code>/af/clients/&#123;id&#125;/</code></td><td>Zakończenie współpracy</td><td>IsAccountingFirm</td></tr>
+        <tr><td>POST</td><td><code>/af/clients/&#123;id&#125;/switch/</code></td><td>Przełączenie kontekstu na klienta</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/context/</code></td><td>Aktualny kontekst klienta</td><td>IsAccountingFirm</td></tr>
+        <tr><td>DELETE</td><td><code>/af/context/</code></td><td>Wyczyszczenie kontekstu</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/dashboard/</code></td><td>Zagregowany dashboard wszystkich klientów</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/search-companies/</code></td><td>Wyszukiwanie firm po NIP/nazwie</td><td>IsAccountingFirm</td></tr>
+        <tr><td>POST</td><td><code>/af/clients/create-with-company/</code></td><td>Utworzenie klienta wraz z firmą</td><td>IsAccountingFirm</td></tr>
+        <tr><td>GET</td><td><code>/af/trial-status/</code></td><td>Status okresu próbnego biura</td><td>IsAccountingFirm</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.11 Billing (billing)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/billing/trial-status/</code></td><td>Status trialu z informacją o bannerze</td><td>IsAuthenticated</td></tr>
+        <tr><td>GET</td><td><code>/billing/plans/</code></td><td>Dostępne plany subskrypcji</td><td>AllowAny</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.12 Monitoring (monitoring)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/health/</code></td><td>Podstawowy health check</td><td>AllowAny</td></tr>
+        <tr><td>GET</td><td><code>/health/detailed/</code></td><td>Szczegółowy status (DB, Redis, MongoDB)</td><td>IsAuthenticated</td></tr>
+        <tr><td>GET</td><td><code>/metrics/</code></td><td>Metryki Prometheus</td><td>AllowAny</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.13 Admin (wewnętrzne)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>GET</td><td><code>/admin/usage/</code></td><td>Metryki użycia per firma</td><td>IsAdminUser</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.14 Powiadomienia (notifications)</h3>
+
+    <table>
+      <thead><tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th><th>Uprawnienia</th></tr></thead>
+      <tbody>
+        <tr><td>POST</td><td><code>/notifications/register-device/</code></td><td>Rejestracja tokena push (FCM)</td><td>IsAuthenticated</td></tr>
+        <tr><td>POST</td><td><code>/notifications/unregister-device/</code></td><td>Wyrejestrowanie urządzenia</td><td>IsAuthenticated</td></tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <h2>3. Przykłady request/response</h2>
+
+    <h3>3.1 Logowanie</h3>
+
+    <p><strong>Request:</strong></p>
+    <pre><code>POST /api/v1/auth/login/
+Content-Type: application/json
+
+&#123;
+  "email": "jan@firma.pl",
+  "password": "SecurePass123!"
+&#125;</code></pre>
+
+    <p><strong>Response <code>200 OK</code>:</strong></p>
+    <pre><code>&#123;
+  "access": "eyJhbGciOiJIUzI1NiIs...",
+  "refresh": "eyJhbGciOiJIUzI1NiIs...",
+  "user": &#123;
+    "id": 1,
+    "email": "jan@firma.pl",
+    "first_name": "Jan",
+    "last_name": "Kowalski",
+    "role": "owner"
+  &#125;
+&#125;</code></pre>
+
+    <h3>3.2 Rozpoczęcie przejazdu</h3>
+
+    <p><strong>Request:</strong></p>
+    <pre><code>POST /api/v1/trips/
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+
+&#123;
+  "vehicle_id": 42,
+  "classification": "business",
+  "purpose": "Spotkanie z klientem w Krakowie",
+  "start_odometer": 125430
+&#125;</code></pre>
+
+    <p><strong>Response <code>201 Created</code>:</strong></p>
+    <pre><code>&#123;
+  "id": 1001,
+  "vehicle": 42,
+  "driver": 5,
+  "status": "in_progress",
+  "classification": "business",
+  "purpose": "Spotkanie z klientem w Krakowie",
+  "start_odometer": 125430,
+  "started_at": "2026-04-15T08:30:00Z"
+&#125;</code></pre>
+
+    <h3>3.3 Bulk upload punktów GPS</h3>
+
+    <p><strong>Request:</strong></p>
+    <pre><code>POST /api/v1/trips/1001/gps-points/
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+
+&#123;
+  "points": [
+    &#123;"lat": 50.0647, "lng": 19.9450, "timestamp": "2026-04-15T08:30:05Z", "speed": 45.2, "accuracy": 5.0&#125;,
+    &#123;"lat": 50.0650, "lng": 19.9455, "timestamp": "2026-04-15T08:30:10Z", "speed": 52.1, "accuracy": 4.5&#125;,
+    &#123;"lat": 50.0658, "lng": 19.9462, "timestamp": "2026-04-15T08:30:15Z", "speed": 60.0, "accuracy": 3.8&#125;
+  ]
+&#125;</code></pre>
+
+    <p><strong>Response <code>201 Created</code>:</strong></p>
+    <pre><code>&#123;
+  "accepted": 3,
+  "rejected": 0,
+  "trip_id": 1001
+&#125;</code></pre>
+
+    <h3>3.4 Generowanie raportu ewidencji przebiegu</h3>
+
+    <p><strong>Request:</strong></p>
+    <pre><code>POST /api/v1/reports/mileage/
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+
+&#123;
+  "company_id": 10,
+  "vehicle_id": 42,
+  "date_from": "2026-03-01",
+  "date_to": "2026-03-31",
+  "format": "pdf"
+&#125;</code></pre>
+
+    <p><strong>Response <code>202 Accepted</code>:</strong></p>
+    <pre><code>&#123;
+  "id": 55,
+  "status": "generating",
+  "company": 10,
+  "vehicle": 42,
+  "period": &#123;"from": "2026-03-01", "to": "2026-03-31"&#125;,
+  "created_at": "2026-04-15T10:00:00Z"
+&#125;</code></pre>
+
+    <h3>3.5 Eksport EDI++ (Insert GT)</h3>
+
+    <p><strong>Request:</strong></p>
+    <pre><code>POST /api/v1/export/insert-gt/
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+
+&#123;
+  "company_id": 10,
+  "date_from": "2026-03-01",
+  "date_to": "2026-03-31",
+  "include_private": false
+&#125;</code></pre>
+
+    <p><strong>Response <code>202 Accepted</code>:</strong></p>
+    <pre><code>&#123;
+  "id": 88,
+  "status": "processing",
+  "format": "edi_plus_plus",
+  "file_name": "export_firma_2026-03.epp",
+  "created_at": "2026-04-15T10:05:00Z"
+&#125;</code></pre>
+
+    <hr />
+
+    <h2>4. Kody błędów</h2>
+
+    <table>
+      <thead><tr><th>Kod</th><th>Znaczenie</th><th>Przykładowy komunikat</th></tr></thead>
+      <tbody>
+        <tr><td><code>400</code></td><td>Błąd walidacji</td><td><code>&#123;"field_name": ["To pole jest wymagane."]&#125;</code></td></tr>
+        <tr><td><code>401</code></td><td>Brak lub nieważny token JWT</td><td><code>&#123;"detail": "Token wygasł."&#125;</code></td></tr>
+        <tr><td><code>403</code></td><td>Brak uprawnień do zasobu</td><td><code>&#123;"detail": "Nie masz uprawnień do tej operacji."&#125;</code></td></tr>
+        <tr><td><code>404</code></td><td>Zasób nie znaleziony</td><td><code>&#123;"detail": "Nie znaleziono."&#125;</code></td></tr>
+        <tr><td><code>409</code></td><td>Konflikt stanu (np. przejazd już zakończony)</td><td><code>&#123;"detail": "Przejazd jest już zakończony."&#125;</code></td></tr>
+        <tr><td><code>429</code></td><td>Przekroczony limit zapytań</td><td><code>&#123;"detail": "Zbyt wiele zapytań. Spróbuj ponownie za 30s."&#125;</code></td></tr>
+        <tr><td><code>500</code></td><td>Błąd serwera</td><td><code>&#123;"detail": "Wystąpił błąd serwera."&#125;</code></td></tr>
+      </tbody>
+    </table>
+
+    <p>Standardowa struktura błędu walidacji:</p>
+    <pre><code>&#123;
+  "field_name": ["Komunikat błędu 1.", "Komunikat błędu 2."],
+  "non_field_errors": ["Błąd ogólny."]
+&#125;</code></pre>
+
+    <hr />
+
+    <h2>5. Rate limiting — szczegóły per endpoint</h2>
+
+    <table>
+      <thead><tr><th>Endpoint / grupa</th><th>Throttle class</th><th>Limit</th></tr></thead>
+      <tbody>
+        <tr><td><code>/auth/login/</code></td><td><code>LoginRateThrottle</code></td><td>5/min per email</td></tr>
+        <tr><td><code>/trips/&#123;id&#125;/gps-points/</code> (POST)</td><td><code>GPSUploadThrottle</code></td><td>10/min</td></tr>
+        <tr><td><code>/export/insert-gt/</code> (POST)</td><td><code>ExportThrottle</code></td><td>5/min</td></tr>
+        <tr><td><code>/reports/mileage/</code> (POST)</td><td><code>ExportThrottle</code></td><td>5/min</td></tr>
+        <tr><td>Pozostałe (niezalogowani)</td><td><code>AnonRateThrottle</code></td><td>30/min</td></tr>
+        <tr><td>Pozostałe (zalogowani)</td><td><code>UserRateThrottle</code></td><td>120/min</td></tr>
+      </tbody>
+    </table>
+
+    <p>Nagłówki odpowiedzi przy rate limiting:</p>
+    <ul>
+      <li><code>X-RateLimit-Limit</code> — maksymalna liczba zapytań</li>
+      <li><code>X-RateLimit-Remaining</code> — pozostałe zapytania</li>
+      <li><code>Retry-After</code> — sekundy do resetu (przy 429)</li>
+    </ul>
+
+    <hr />
+
+    <h2>6. Protokół WebSocket</h2>
+
+    <h3>Połączenie</h3>
+    <pre><code>wss://api.busikm.pl/ws/trips/live/?token=&lt;jwt_access_token&gt;</code></pre>
+    <p>Token JWT przekazywany jako parametr query (WebSocket nie obsługuje nagłówków Authorization).</p>
+
+    <h3>Wiadomości serwera (downstream)</h3>
+
+    <p><strong>Aktualizacja pozycji:</strong></p>
+    <pre><code>&#123;
+  "type": "position_update",
+  "trip_id": 1001,
+  "driver_id": 5,
+  "vehicle_id": 42,
+  "lat": 50.0647,
+  "lng": 19.9450,
+  "speed": 45.2,
+  "timestamp": "2026-04-15T08:30:05Z"
+&#125;</code></pre>
+
+    <p><strong>Zmiana statusu przejazdu:</strong></p>
+    <pre><code>&#123;
+  "type": "trip_status",
+  "trip_id": 1001,
+  "status": "completed",
+  "timestamp": "2026-04-15T09:15:00Z"
+&#125;</code></pre>
+
+    <h3>Wiadomości klienta (upstream)</h3>
+
+    <p><strong>Subskrypcja firmy:</strong></p>
+    <pre><code>&#123;
+  "type": "subscribe",
+  "company_id": 10
+&#125;</code></pre>
+
+    <p><strong>Anulowanie subskrypcji:</strong></p>
+    <pre><code>&#123;
+  "type": "unsubscribe",
+  "company_id": 10
+&#125;</code></pre>
+
+    <p>Serwer wysyła <code>ping</code> co 30s. Klient powinien odpowiedzieć <code>pong</code> w ciągu 10s, inaczej połączenie zostanie zamknięte.</p>
+
+    <hr />
+
+    <h2>7. Generacja klienta TypeScript (Orval)</h2>
+
+    <p>Schemat OpenAPI generowany automatycznie przez <code>drf-spectacular</code> pod adresem:</p>
+
+    <pre><code>GET /api/v1/schema/ — format YAML (domyślnie)
+GET /api/v1/schema/?format=json — format JSON</code></pre>
+
+    <h3>Konfiguracja Orval (orval.config.ts)</h3>
+
+    <pre><code>export default &#123;
+  busikm: &#123;
+    input: &#123;
+      target: "http://localhost:8000/api/v1/schema/?format=json",
+    &#125;,
+    output: &#123;
+      target: "./src/api/generated.ts",
+      client: "react-query",
+      mode: "tags-split",
+      override: &#123;
+        mutator: &#123;
+          path: "./src/api/axios-instance.ts",
+          name: "customInstance",
+        &#125;,
+      &#125;,
+    &#125;,
+  &#125;,
+&#125;;</code></pre>
+
+    <p>Generowanie klienta:</p>
+    <pre><code>npx orval --config orval.config.ts</code></pre>
+
+    <p>Wynik: osobny plik per tag (<code>auth.ts</code>, <code>fleet.ts</code>, <code>trips.ts</code>, itd.) z hookami React Query i typami TypeScript.</p>
+  </div>
+</DocsLayout>

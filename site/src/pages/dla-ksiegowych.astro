@@ -1,0 +1,274 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+---
+
+<MarketingLayout title="Dla księgowych — BusiKM" description="Gotowe raporty MF, eksport do FK — zero ręcznej pracy. Kilometrówka PDF, koszty floty, delegacje, integracja z Insert GT.">
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#FF9500]/[0.04] blur-[120px]"></div>
+  </div>
+  <div class="relative max-w-[1120px] mx-auto">
+    <div class="max-w-[680px]">
+      <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#FF9500]/15 bg-[#FF9500]/[0.04] mb-6">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span class="text-[12.5px] font-medium text-[#FF9500]">Panel webowy dla księgowych</span>
+      </div>
+
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] mb-5">
+        Gotowe raporty MF, eksport do FK —<br/><span class="text-[#FF9500]">zero ręcznej pracy.</span>
+      </h1>
+
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[520px] mb-8">
+        Kilometrówka zgodna ze wzorem Ministerstwa Finansów, koszty floty, delegacje — wszystko generowane automatycznie. Eksport EDI++ do Insert GT jednym kliknięciem.
+      </p>
+
+      <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FF9500] text-white text-[15px] font-semibold hover:bg-[#E08600] transition-colors shadow-[0_1px_3px_rgba(255,149,0,0.4)]">
+          Poznaj wszystkie funkcje
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+          Zobacz cennik
+        </a>
+      </div>
+
+      <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
+        {[
+          { num: '1-click', label: 'PDF gotowy' },
+          { num: '< 5s', label: 'eksport FK' },
+          { num: '100%', label: 'zgodność MF' },
+          { num: '0', label: 'ręcznego wpisu' },
+        ].map(s => (
+          <div>
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-0.5">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNKCJE DLA KSIĘGOWEGO -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Funkcje</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Wszystko czego potrzebujesz do rozliczeń floty.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-5">
+      {[
+        {
+          title: 'Ewidencja przebiegu (PDF)',
+          desc: 'Kilometrówka zgodna ze wzorem Ministerstwa Finansów — generowana jednym kliknięciem. Gotowa do wydruku i wysyłki do urzędu skarbowego.',
+          icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.6"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.6"/>`,
+          color: '#FF9500',
+          bullets: ['Wzór MF — pełna zgodność z rozporządzeniem', 'Stan drogomierza: początkowy i końcowy', 'Stawka za km konfigurowalna (domyślnie ustawowa)', 'Gotowy do wydruku lub przesłania do US'],
+        },
+        {
+          title: 'Dostęp read-only do floty',
+          desc: 'Podgląd pojazdów, kierowców i tras bez możliwości edycji. Gwarancja integralności danych — księgowy nie zmieni danych operacyjnych.',
+          icon: `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/>`,
+          color: '#34C759',
+          bullets: ['Podgląd floty, kierowców i tras', 'Brak uprawnień do edycji danych operacyjnych', 'Gwarancja integralności danych', 'Pełna historia zmian (audit trail)'],
+        },
+        {
+          title: 'Raporty kosztów i delegacji',
+          desc: 'Zestawienia kosztów per pojazd i per kategoria. Delegacje z dietami krajowymi i zagranicznymi — eksport do CSV i PDF.',
+          icon: `<line x1="12" y1="1" x2="12" y2="23" stroke-width="1.6"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-width="1.6"/>`,
+          color: '#8B5CF6',
+          bullets: ['Koszty floty: paliwo, serwis, ubezpieczenie, opłaty', 'Delegacje: diety krajowe i zagraniczne', 'Eksport CSV do dalszej obróbki w Excelu', 'Eksport PDF do wydruku i archiwizacji'],
+        },
+        {
+          title: 'Raporty VAT 50%',
+          desc: 'Automatyczne wyliczenie odliczenia VAT 50% na podstawie ewidencji przebiegu. Gotowe zestawienia do rozliczeń podatkowych.',
+          icon: `<path d="M12 20V10" stroke-width="1.6"/><path d="M18 20V4" stroke-width="1.6"/><path d="M6 20v-4" stroke-width="1.6"/>`,
+          color: '#FF3B30',
+          bullets: ['Kalkulacja VAT 50% na podstawie przebiegu', 'Zestawienie per pojazd i per okres', 'Zgodność z przepisami ustawy o VAT', 'Gotowe dane do deklaracji podatkowej'],
+        },
+      ].map(f => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">{f.desc}</p>
+          <ul class="flex flex-col gap-2">
+            {f.bullets.map(b => (
+              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRACJE FK -->
+<section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[620px] mx-auto text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Integracje FK</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Eksportuj dane bezpośrednio do systemu księgowego.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <!-- Insert GT -->
+      <div class="bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-11 h-11 rounded-[14px] flex items-center justify-center" style="background: #34C75912;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke-width="1.6"/><polyline points="22 4 12 14.01 9 11.01" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] tracking-[-0.01em]">Insert GT / Rewizor GT</h3>
+            <span class="text-[12px] font-semibold text-[#34C759]">Dostępne w MVP</span>
+          </div>
+        </div>
+        <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">Eksport w formacie EDI++ — pliki <code class="bg-black/[0.04] px-1.5 py-0.5 rounded text-[#1D1D1F] text-[13px]">.epp</code> gotowe do importu w Insert GT, Rewizor GT i InsERT nexo.</p>
+        <div class="bg-white rounded-2xl p-5 mb-4">
+          <h4 class="text-[13px] font-semibold text-[#1D1D1F] mb-3">Wymagania formatu EDI++</h4>
+          <ul class="flex flex-col gap-2">
+            {[
+              'Kodowanie: Windows-1250 (automatyczna konwersja z UTF-8)',
+              'Końce linii: CRLF',
+              'Separator dziesiętny: przecinek (np. 0,8358)',
+              'Sekcje: [NAGLOWEK], [FIRMA], [POJAZD], [POZYCJA], [PODSUMOWANIE]',
+            ].map(b => (
+              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
+                <span class="w-1.5 h-1.5 bg-[#FF9500] rounded-full shrink-0 mt-1.5"></span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p class="text-[13px] text-[#6E6E73]">Obsługuje kilometrówki i delegacje. Sumy kontrolne weryfikowane automatycznie.</p>
+      </div>
+
+      <!-- Planowane -->
+      <div class="bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-11 h-11 rounded-[14px] flex items-center justify-center" style="background: #FF950012;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-width="1.6"/><polyline points="12 6 12 12 16 14" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] tracking-[-0.01em]">Planowane integracje</h3>
+            <span class="text-[12px] font-semibold text-[#FF9500]">Post-MVP</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5">
+          {[
+            { letter: 'C', name: 'Comarch ERP Optima', desc: 'Synchronizacja przez REST API — eksport tras i kosztów do modułu księgowego, bez plików.' },
+            { letter: 'S', name: 'Symfonia', desc: 'Eksport XML/CSV zgodny ze schematem Symfonia Finanse i Księgowość.' },
+            { letter: 'K', name: 'KSeF', desc: 'Integracja z Krajowym Systemem e-Faktur — wystawianie i pobieranie e-faktur bezpośrednio z BusiKM.' },
+          ].map(item => (
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 bg-white rounded-xl flex items-center justify-center text-[13px] font-bold text-[#FF9500] shrink-0 mt-0.5">{item.letter}</span>
+              <div>
+                <h4 class="font-semibold text-[14px] text-[#1D1D1F]">{item.name}</h4>
+                <p class="text-[13px] text-[#6E6E73] leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Stawki za km -->
+    <div class="reveal mt-12 bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-5 tracking-[-0.01em]">Stawki za kilometr (Rozporządzenie Ministra Infrastruktury)</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-[14px]">
+          <thead>
+            <tr class="border-b border-black/[0.08]">
+              <th class="text-left py-3 pr-4 font-semibold text-[#1D1D1F]">Kategoria pojazdu</th>
+              <th class="text-right py-3 pl-4 font-semibold text-[#1D1D1F]">Stawka za km (PLN)</th>
+            </tr>
+          </thead>
+          <tbody class="text-[#6E6E73]">
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &le; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,5214</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &gt; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,8358</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód ciężarowy</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,8358</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Motocykl</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,2302</td></tr>
+            <tr><td class="py-2.5 pr-4">Motorower</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,1382</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-[12px] text-[#86868B] mt-3">Stawki konfigurowalne w panelu firmy. System przechowuje historię stawek z datami obowiązywania.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[720px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">FAQ</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęściej zadawane pytania.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger flex flex-col gap-3">
+      {[
+        { q: 'Czy jako księgowy mogę edytować dane tras?', a: 'Nie. Rola księgowego ma wyłącznie dostęp read-only do floty, kierowców i tras. Gwarantuje to pełną integralność danych — nikt nie zmieni danych operacyjnych poza osobami odpowiedzialnymi.' },
+        { q: 'W jakim formacie generowana jest kilometrówka?', a: 'Kilometrówka generowana jest jako PDF zgodny ze wzorem Ministerstwa Finansów. Zawiera stan drogomierza (początkowy i końcowy), stawkę za km, listę tras i podsumowanie. Gotowa do wydruku lub przesłania do US.' },
+        { q: 'Jak działa eksport do Insert GT?', a: 'BusiKM generuje plik .epp w formacie EDI++ — kodowanie Windows-1250, separator przecinkowy, sekcje NAGLOWEK, FIRMA, POJAZD, POZYCJA, PODSUMOWANIE. Plik importujesz w Insert GT: Narzędzia → Import EDI++.' },
+        { q: 'Jakie stawki za km obsługuje system?', a: 'Domyślnie ustawowe: samochód ≤900 cm³ = 0,5214 PLN/km, samochód >900 cm³ = 0,8358 PLN/km. Stawki są konfigurowalne w panelu firmy, a system przechowuje historię zmian z datami obowiązywania.' },
+        { q: 'Czy mogę wygenerować raport VAT 50%?', a: 'Tak. System automatycznie wylicza odliczenie VAT 50% na podstawie ewidencji przebiegu pojazdu. Zestawienie dostępne per pojazd i per okres — gotowe dane do deklaracji podatkowej.' },
+        { q: 'Czy jest ślad audytowy zmian?', a: 'Tak. System rejestruje pełną historię zmian (audit trail) — kto, kiedy i co zmienił. Jako księgowy masz wgląd w tę historię, co jest niezbędne przy kontrolach skarbowych.' },
+      ].map(faq => (
+        <details class="group bg-white rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[15px] text-[#1D1D1F] hover:text-[#FF9500] transition-colors">
+            {faq.q}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#FF9500]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,3rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Gotowe raporty czekają na Ciebie.
+    </h2>
+    <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
+      Zapomnij o ręcznym przepisywaniu danych. BusiKM generuje kilometrówki, koszty floty i delegacje — a eksport do Insert GT to jedno kliknięcie.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        Poznaj wszystkie funkcje
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+        Zobacz cennik
+      </a>
+    </div>
+  </div>
+</section>
+
+</MarketingLayout>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }); },
+    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+  );
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>

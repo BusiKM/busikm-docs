@@ -1,0 +1,238 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+---
+
+<MarketingLayout title="Dla kierowców — BusiKM" description="Prosta aplikacja mobilna do automatycznej rejestracji kilometrówki. GPS tracking w tle, zdjęcia licznika, tryb offline. iOS i Android.">
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.04] blur-[120px]"></div>
+  </div>
+  <div class="relative max-w-[1120px] mx-auto">
+    <div class="max-w-[680px]">
+      <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span class="text-[12.5px] font-medium text-[#005CE8]">Aplikacja mobilna · iOS 15+ · Android 10+</span>
+      </div>
+
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] mb-5">
+        Kliknij raz —<br/>reszta jest automatyczna.
+      </h1>
+
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[520px] mb-8">
+        Włącz trasę, jedź, wyłącz. GPS rejestruje wszystko w tle — bez papieru, bez przepisywania, bez stresu. Zdjęcie licznika? Opcjonalne, ale polecamy.
+      </p>
+
+      <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
+          Poznaj wszystkie funkcje
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+          Zobacz cennik
+        </a>
+      </div>
+
+      <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
+        {[
+          { num: '3 min', label: 'onboarding' },
+          { num: '0', label: 'papieru' },
+          { num: '24/7', label: 'GPS tracking' },
+          { num: '100%', label: 'offline ready' },
+        ].map(s => (
+          <div>
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-0.5">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAK TO DZIAŁA -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jak to działa</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Cztery proste kroki — reszta jest automatyczna.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {[
+        { step: '01', title: 'Zaloguj się', desc: 'Akceptuj zaproszenie od pracodawcy, pobierz aplikację i zaloguj się e-mailem i hasłem.', icon: `<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-width="1.6"/><circle cx="12" cy="7" r="4" stroke-width="1.6"/>` },
+        { step: '02', title: 'Wybierz pojazd', desc: 'Wybierz przypisany pojazd, typ trasy (służbowa/prywatna) i wpisz cel podróży.', icon: `<rect x="1" y="3" width="15" height="13" rx="2" stroke-width="1.6"/><path d="M16 8h2a2 2 0 012 2v1.5" stroke-width="1.6"/><circle cx="5.5" cy="18" r="2.5" stroke-width="1.6"/><circle cx="18.5" cy="18" r="2.5" stroke-width="1.6"/><path d="M8 16h8" stroke-width="1.6"/>` },
+        { step: '03', title: 'Rozpocznij trasę', desc: 'Kliknij duży przycisk "Rozpocznij trasę". Opcjonalnie zrób zdjęcie drogomierza na start.', icon: `<polygon points="5 3 19 12 5 21 5 3" stroke-width="1.6"/>` },
+        { step: '04', title: 'GPS robi resztę', desc: 'Zamknij aplikację, zablokuj telefon — GPS śledzi trasę w tle. Statystyki na żywo po otwarciu.', icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke-width="1.6"/>` },
+      ].map(item => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 relative">
+          <span class="absolute top-4 right-5 font-display text-[2.5rem] font-bold tracking-tight text-[#1D1D1F]/[0.04] leading-none select-none">{item.step}</span>
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center" style="background: #005CE812;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
+          <p class="text-[13.5px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FUNKCJE DLA KIEROWCY -->
+<section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[620px] mb-16">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Funkcje</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Wszystko czego potrzebujesz w jednej aplikacji.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-5">
+      {[
+        {
+          title: 'GPS tracking w tle',
+          desc: 'Nie musisz trzymać aplikacji otwartej. GPS rejestruje trasę w tle — możesz zablokować telefon lub korzystać z innych aplikacji.',
+          icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke-width="1.6"/>`,
+          color: '#005CE8',
+          bullets: ['Adaptacyjny GPS — częstotliwość dopasowana do prędkości', 'Statystyki na żywo: prędkość, dystans, czas, mapa', 'Ikonka BusiKM na pasku powiadomień potwierdza śledzenie', 'Automatyczne wyłączenie poniżej 10% baterii'],
+        },
+        {
+          title: 'Zdjęcia drogomierza',
+          desc: 'Na starcie i końcu trasy możesz zrobić zdjęcie licznika kilometrów — opcjonalne, ale stanowi dodatkowy dowód stanu drogomierza.',
+          icon: `<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke-width="1.6"/><circle cx="12" cy="13" r="4" stroke-width="1.6"/>`,
+          color: '#34C759',
+          bullets: ['Dedykowany ekran aparatu z nakładką ramki', 'Automatyczny upload z paskiem postępu', 'Metadane EXIF: data, GPS, urządzenie', 'Zdjęcia przechowywane w szyfrowanym S3'],
+        },
+        {
+          title: 'Tryb offline',
+          desc: 'BusiKM działa bez połączenia z internetem. Dane GPS zbierane są lokalnie i synchronizują się automatycznie po odzyskaniu sieci.',
+          icon: `<line x1="1" y1="1" x2="23" y2="23" stroke-width="1.6"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55" stroke-width="1.6"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39" stroke-width="1.6"/><path d="M10.71 5.05A16 16 0 0122.56 9" stroke-width="1.6"/><path d="M1.42 9a15.91 15.91 0 014.7-2.88" stroke-width="1.6"/><path d="M8.53 16.11a6 6 0 016.95 0" stroke-width="1.6"/><line x1="12" y1="20" x2="12.01" y2="20" stroke-width="1.6"/>`,
+          color: '#FF9500',
+          bullets: ['Rozpoczynanie i kończenie trasy bez internetu', 'Automatyczna synchronizacja po reconnect', 'Trasa rejestrowana kompletnie, bez przerw', 'WatermelonDB — zaawansowana baza offline (post-MVP)'],
+        },
+        {
+          title: 'Powiadomienia push',
+          desc: 'Aplikacja informuje o ważnych sprawach — wygasającym prawie jazdy, kwalifikacji zawodowej czy dokumentach przypisanego pojazdu.',
+          icon: `<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="1.6"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke-width="1.6"/>`,
+          color: '#8B5CF6',
+          bullets: ['Alerty 30, 14 i 7 dni przed wygaśnięciem dokumentów', 'Prawo jazdy, kwalifikacja zawodowa, OC, przegląd', 'Deep link — kliknięcie przenosi do szczegółów', 'Konfigurowanie przez właściciela floty'],
+        },
+      ].map(f => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">{f.desc}</p>
+          <ul class="flex flex-col gap-2">
+            {f.bullets.map(b => (
+              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- DODATKOWE MOŻLIWOŚCI -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Więcej możliwości</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Zaprojektowane z myślą o kierowcy.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
+      {[
+        { title: 'Klasyfikacja tras', desc: 'Oznacz trasę jako służbową lub prywatną. AI uczy się Twoich wzorców i proponuje cel automatycznie.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.6"/>`, color: '#005CE8' },
+        { title: 'Historia przejazdów', desc: 'Przegląd wszystkich tras z filtrami: po dacie, pojeździe, typie. Mapa z przebiegiem każdej trasy.', icon: `<path d="M12 20h9" stroke-width="1.6"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-width="1.6"/>`, color: '#34C759' },
+        { title: 'Profil i dokumenty', desc: 'Twoje dane, prawo jazdy, kwalifikacja zawodowa — z automatycznymi alertami o zbliżającym się wygaśnięciu.', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.6"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.6"/>`, color: '#FF9500' },
+        { title: 'Batch upload GPS', desc: 'Dane GPS zebrane offline synchronizują się wsadowo po powrocie online — bez utraty ani jednego punktu.', icon: `<polyline points="16 16 12 12 8 16" stroke-width="1.6"/><line x1="12" y1="12" x2="12" y2="21" stroke-width="1.6"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" stroke-width="1.6"/>`, color: '#8B5CF6' },
+        { title: 'Expo + React Native', desc: 'Natywna wydajność na iOS i Android. Aktualizacje OTA przez EAS Update — bez czekania na App Store.', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-width="1.6"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="1.6"/>`, color: '#FF3B30' },
+        { title: 'Bezpieczeństwo', desc: 'Token JWT w expo-secure-store. Dane szyfrowane AES-256 w tranzycie i w spoczynku. Zgodność z RODO.', icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="1.6"/><path d="M7 11V7a5 5 0 0110 0v4" stroke-width="1.6"/>`, color: '#005CE8' },
+      ].map(f => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[13.5px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[720px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">FAQ</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęściej zadawane pytania.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger flex flex-col gap-3">
+      {[
+        { q: 'Czy aplikacja zużywa dużo baterii?', a: 'Nie. BusiKM korzysta z adaptacyjnego GPS — częstotliwość odczytu lokalizacji dostosowuje się do prędkości. Gdy jedziesz szybko, odczyty co 5s. Gdy stoisz, co 30s. Poniżej 10% baterii śledzenie jest wstrzymywane.' },
+        { q: 'Czy pracodawca widzi moją lokalizację po pracy?', a: 'Nie. Pracodawca widzi Twoją lokalizację wyłącznie podczas aktywnej trasy — od kliknięcia "Rozpocznij" do "Zakończ". Poza tym czasem lokalizacja nie jest śledzona ani udostępniana.' },
+        { q: 'Co jeśli stracę zasięg w trasie?', a: 'Dane GPS zapisywane są lokalnie. Po odzyskaniu internetu automatycznie synchronizują się z serwerem. Trasa zostanie zarejestrowana kompletnie, bez przerw.' },
+        { q: 'Co jeśli zapomnę zakończyć trasę?', a: 'Właściciel firmy może zakończyć trasę za Ciebie z poziomu panelu webowego. Ale warto pamiętać o kończeniu tras samodzielnie dla dokładności danych.' },
+        { q: 'Na jakich telefonach działa aplikacja?', a: 'BusiKM działa na iOS 15+ i Android 10+ (API 29). Aplikacja jest zbudowana na React Native + Expo SDK 52+, co gwarantuje natywną wydajność.' },
+      ].map(faq => (
+        <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[15px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
+            {faq.q}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,3rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Gotowy na automatyczną kilometrówkę?
+    </h2>
+    <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
+      Pobierz aplikację, zaloguj się i zacznij rejestrować trasy automatycznie. Zero papieru, zero stresu.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        Poznaj wszystkie funkcje
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+        Zobacz cennik
+      </a>
+    </div>
+  </div>
+</section>
+
+</MarketingLayout>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }); },
+    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+  );
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>

@@ -1,0 +1,291 @@
+---
+import Logo from './Logo.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/funkcje', label: 'Funkcje' },
+  { href: '/cennik', label: 'Cennik' },
+  { href: '/docs', label: 'Docs' },
+];
+
+const dlaKogo = [
+  { href: '/dla-kierowcow', label: 'Dla Kierowców', desc: 'Automatyczne śledzenie tras' },
+  { href: '/dla-wlascicieli', label: 'Dla Właścicieli', desc: 'Zarządzanie flotą pojazdów' },
+  { href: '/dla-ksiegowych', label: 'Dla Księgowych', desc: 'Eksport danych do systemów FK' },
+  { href: '/dla-biur-rachunkowych', label: 'Dla Biur Rachunkowych', desc: 'Panel multi-klient' },
+];
+
+const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.startsWith(l.href));
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  style="transform: translateZ(0); backface-visibility: hidden;"
+>
+  <!-- Frosted glass backdrop — revealed on scroll -->
+  <div
+    id="header-backdrop"
+    class="absolute inset-0 bg-white/80 backdrop-blur-xl border-b border-black/[0.06] opacity-0 transition-opacity duration-300"
+  ></div>
+
+  <div class="relative max-w-[1120px] mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-[60px]">
+
+      <!-- Logo -->
+      <Logo size="md" color="dark" />
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Główna nawigacja">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class:list={[
+                'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+                isActive
+                  ? 'text-[#005CE8] bg-[#005CE8]/8'
+                  : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
+              ]}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+
+        <!-- Dla kogo dropdown -->
+        <div class="relative" id="dropdown-wrapper">
+          <button
+            id="dropdown-toggle"
+            class:list={[
+              'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200 flex items-center gap-1.5 cursor-pointer',
+              isDlaKogoActive
+                ? 'text-[#005CE8] bg-[#005CE8]/8'
+                : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
+            ]}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Dla kogo
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="transition-transform duration-200" id="dropdown-chevron">
+              <path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div
+            id="dropdown-menu"
+            class="absolute top-full left-1/2 -translate-x-1/2 w-[280px] opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top"
+          >
+            <div class="bg-white/95 backdrop-blur-xl rounded-2xl border border-black/[0.08] shadow-[0_12px_48px_rgba(0,0,0,0.12)] p-2">
+              {dlaKogo.map(item => {
+                const active = currentPath === item.href || currentPath.startsWith(item.href);
+                return (
+                  <a
+                    href={item.href}
+                    class:list={[
+                      'flex flex-col px-4 py-3 rounded-xl transition-colors duration-150',
+                      active
+                        ? 'bg-[#005CE8]/8'
+                        : 'hover:bg-black/[0.04]',
+                    ]}
+                  >
+                    <span class:list={[
+                      'text-[13.5px] font-semibold tracking-[-0.01em]',
+                      active ? 'text-[#005CE8]' : 'text-[#1D1D1F]',
+                    ]}>{item.label}</span>
+                    <span class="text-[11.5px] text-[#86868B] mt-0.5">{item.desc}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="/roadmapa"
+          class:list={[
+            'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+            currentPath.startsWith('/roadmapa')
+              ? 'text-[#005CE8] bg-[#005CE8]/8'
+              : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
+          ]}
+        >
+          Roadmapa
+        </a>
+      </nav>
+
+      <!-- CTA + hamburger -->
+      <div class="flex items-center gap-3">
+        <a
+          href="/cennik"
+          class="hidden sm:inline-flex items-center px-5 py-2 rounded-full bg-[#005CE8] text-white text-[13px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]"
+        >
+          Zacznij bezpłatnie
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="mobile-menu-toggle"
+          class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-full hover:bg-black/5 transition-colors"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-in-out"
+  >
+    <div class="relative bg-white/95 backdrop-blur-xl border-t border-black/[0.06] px-5 pb-6 pt-4">
+      <nav class="flex flex-col gap-0.5 mb-4">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class:list={[
+                'px-4 py-3 rounded-xl text-[15px] font-medium transition-colors',
+                isActive
+                  ? 'text-[#005CE8] bg-[#005CE8]/8'
+                  : 'text-[#1D1D1F] hover:bg-black/5',
+              ]}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Dla kogo — expanded in mobile -->
+      <p class="px-4 mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#86868B]">Dla kogo</p>
+      <nav class="flex flex-col gap-0.5 mb-4">
+        {dlaKogo.map(item => {
+          const active = currentPath === item.href || currentPath.startsWith(item.href);
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-4 py-3 rounded-xl transition-colors',
+                active ? 'text-[#005CE8] bg-[#005CE8]/8' : 'text-[#1D1D1F] hover:bg-black/5',
+              ]}
+            >
+              <span class="text-[15px] font-medium">{item.label}</span>
+              <span class="block text-[12px] text-[#86868B] mt-0.5">{item.desc}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      <a
+        href="/roadmapa"
+        class:list={[
+          'block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-4',
+          currentPath.startsWith('/roadmapa')
+            ? 'text-[#005CE8] bg-[#005CE8]/8'
+            : 'text-[#1D1D1F] hover:bg-black/5',
+        ]}
+      >
+        Roadmapa
+      </a>
+
+      <a
+        href="/cennik"
+        class="block text-center w-full py-3 rounded-2xl bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors"
+      >
+        Zacznij bezpłatnie
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer to push content below fixed header -->
+<div class="h-[60px]"></div>
+
+<script>
+  // Frosted glass on scroll — RAF-throttled for smooth performance
+  const backdrop = document.getElementById('header-backdrop');
+  let lastScrolled = false;
+  let ticking = false;
+
+  const updateHeader = () => {
+    const scrolled = window.scrollY > 12;
+    if (scrolled !== lastScrolled) {
+      backdrop?.style.setProperty('opacity', scrolled ? '1' : '0');
+      lastScrolled = scrolled;
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateHeader();
+
+  // Dropdown
+  const dropdownToggle = document.getElementById('dropdown-toggle');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  const dropdownWrapper = document.getElementById('dropdown-wrapper');
+  const chevron = document.getElementById('dropdown-chevron');
+
+  function openDropdown() {
+    dropdownMenu?.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+    dropdownMenu?.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+    chevron?.style.setProperty('transform', 'rotate(180deg)');
+    dropdownToggle?.setAttribute('aria-expanded', 'true');
+  }
+  function closeDropdown() {
+    dropdownMenu?.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+    dropdownMenu?.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+    chevron?.style.setProperty('transform', '');
+    dropdownToggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  dropdownToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdownToggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeDropdown() : openDropdown();
+  });
+
+  // Hover open/close for desktop
+  dropdownWrapper?.addEventListener('mouseenter', openDropdown);
+  dropdownWrapper?.addEventListener('mouseleave', closeDropdown);
+
+  // Click outside
+  document.addEventListener('click', (e) => {
+    if (!dropdownWrapper?.contains(e.target as Node)) closeDropdown();
+  });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const lines = document.querySelectorAll('.hamburger-line') as NodeListOf<HTMLElement>;
+  let open = false;
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      menu!.style.maxHeight = menu!.scrollHeight + 'px';
+      lines[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      lines[1].style.opacity = '0';
+      lines[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      menu!.style.maxHeight = '0';
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '';
+      lines[2].style.transform = '';
+    }
+  });
+</script>

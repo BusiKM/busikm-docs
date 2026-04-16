@@ -1,0 +1,142 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Integracje FK">
+  <div class="prose">
+    <h1>Integracja z systemami FK</h1>
+
+    <h2>1. Przegląd</h2>
+    <p>BusiKM eksportuje dane kilometrówek i delegacji do polskich systemów FK. Eliminacja ręcznego przepisywania.</p>
+    <table>
+      <thead><tr><th>System</th><th>Format</th><th>Faza</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Insert GT / Rewizor GT / nexo</strong></td><td>EDI++ (.epp)</td><td>MVP (Sprint 5–6)</td></tr>
+        <tr><td>Comarch ERP Optima</td><td>REST API</td><td>Post-Sprint 7</td></tr>
+        <tr><td>Symfonia</td><td>XML/CSV</td><td>Post-Sprint 7</td></tr>
+        <tr><td>KSeF</td><td>API e-faktur</td><td>Post-Sprint 7</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Architektura — wzorzec Strategy</h2>
+    <pre><code>class AbstractFKIntegration(ABC):
+    """Bazowa klasa dla integracji FK."""
+
+    @abstractmethod
+    def export_mileage_log(self, mileage_log) -> bytes: ...
+
+    @abstractmethod
+    def export_delegation(self, delegation) -> bytes: ...
+
+    @abstractmethod
+    def validate_data(self, data: dict) -> list[str]: ...
+
+    @abstractmethod
+    def get_file_extension(self) -> str: ...
+
+# Implementacje:
+class InsertGTIntegration(AbstractFKIntegration): ...
+class OptimaPKIntegration(AbstractFKIntegration): ...
+class SymfoniaIntegration(AbstractFKIntegration): ...
+class WFirmaIntegration(AbstractFKIntegration): ...</code></pre>
+
+    <h2>3. Insert GT — format EDI++</h2>
+    <h3>Wymagania techniczne</h3>
+    <table>
+      <thead><tr><th>Parametr</th><th>Wartość</th></tr></thead>
+      <tbody>
+        <tr><td>Kodowanie</td><td>Windows-1250</td></tr>
+        <tr><td>Końce linii</td><td>CRLF (\r\n)</td></tr>
+        <tr><td>Separator pól</td><td>| (pipe)</td></tr>
+        <tr><td>Separator dziesiętny</td><td>, (przecinek)</td></tr>
+        <tr><td>Format daty</td><td>RRRR-MM-DD</td></tr>
+        <tr><td>Rozszerzenie pliku</td><td>.epp</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Struktura pliku kilometrówki</h3>
+    <pre><code>[NAGLOWEK]
+TYP=EWIDENCJA_PRZEBIEGU
+WERSJA=1.0
+DATA_EXPORTU=2026-07-15
+FIRMA_NIP=1234567890
+FIRMA_NAZWA=Transport ABC Sp. z o.o.
+
+[POJAZD]
+REJESTRACJA=WA 12345
+MARKA=Mercedes-Benz
+MODEL=Sprinter 316 CDI
+POJEMNOSC=2143
+NUMER_VIN=WDB9066351S123456
+DMC=3500
+
+[EWIDENCJA]
+DATA|CEL|TRASA_SKAD|TRASA_DOKAD|KM|STAWKA|KWOTA|KIEROWCA|UWAGI
+2026-07-01|Dostawa towaru|Warszawa|Kraków|295,5|0,8358|247,0|Jan Kowalski|
+2026-07-02|Odbiór paczek|Kraków|Łódź|260,0|0,8358|217,3|Jan Kowalski|
+2026-07-03|Serwis|Łódź|Warszawa|135,8|0,8358|113,5|Jan Kowalski|pilne
+
+[PODSUMOWANIE]
+RAZEM_KM=691,3
+RAZEM_KWOTA=577,8</code></pre>
+
+    <h2>4. Mapowanie BusiKM → EDI++</h2>
+    <table>
+      <thead><tr><th>Pole EDI++</th><th>Źródło BusiKM</th><th>Transformacja</th></tr></thead>
+      <tbody>
+        <tr><td>DATA</td><td>Trip.start_time</td><td>Format RRRR-MM-DD</td></tr>
+        <tr><td>CEL</td><td>Trip.purpose</td><td>Mapowanie enum → tekst</td></tr>
+        <tr><td>TRASA_SKAD</td><td>Trip.start_address</td><td>Reverse geocoding</td></tr>
+        <tr><td>TRASA_DOKAD</td><td>Trip.end_address</td><td>Reverse geocoding</td></tr>
+        <tr><td>KM</td><td>Trip.distance_km</td><td>Zaokrąglenie do 1 miejsca, przecinek</td></tr>
+        <tr><td>STAWKA</td><td>MileageRate.rate_per_km</td><td>Aktualna stawka MF</td></tr>
+        <tr><td>KWOTA</td><td>KM × STAWKA</td><td>Obliczenie, zaokrąglenie do 1 miejsca</td></tr>
+        <tr><td>KIEROWCA</td><td>User.full_name</td><td>Imię + Nazwisko</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Kodowanie znaków polskich</h2>
+    <p>Insert GT wymaga <strong>Windows-1250</strong>. Python konwersja:</p>
+    <pre><code>content = edi_content.encode('windows-1250', errors='replace')
+# Znaki niedostępne w Win-1250 zastępowane '?'</code></pre>
+    <p>Mapowanie znaków: ą→ą, ć→ć, ę→ę, ł→ł, ń→ń, ó→ó, ś→ś, ź→ź, ż→ż (poprawne w Windows-1250).</p>
+
+    <h2>6. Endpoint eksportu</h2>
+    <pre><code>{`POST /api/v1/exports/mileage-log/
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "vehicle_id": "uuid",
+  "month": 7,
+  "year": 2026,
+  "provider": "insert_gt",
+  "format": "edi_plus_plus"
+}
+
+→ 200 OK (application/octet-stream, Content-Disposition: attachment)`}</code></pre>
+
+    <h2>7. Historia eksportów</h2>
+    <table>
+      <thead><tr><th>Pole</th><th>Typ</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td>provider</td><td>CharField</td><td>insert_gt / optima / symfonia / ksef</td></tr>
+        <tr><td>export_type</td><td>CharField</td><td>mileage_log / delegation</td></tr>
+        <tr><td>status</td><td>CharField</td><td>pending / success / failed</td></tr>
+        <tr><td>file_url</td><td>URLField</td><td>Presigned URL do pobrania (TTL 15 min)</td></tr>
+        <tr><td>error_message</td><td>TextField</td><td>Opis błędu (jeśli failed)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. Planowane integracje (Post-MVP)</h2>
+    <table>
+      <thead><tr><th>System</th><th>Metoda</th><th>Planowany sprint</th></tr></thead>
+      <tbody>
+        <tr><td>Comarch ERP Optima</td><td>REST API (XL API)</td><td>Post-Sprint 7</td></tr>
+        <tr><td>Symfonia</td><td>Import XML/CSV</td><td>Post-Sprint 7</td></tr>
+        <tr><td>KSeF</td><td>API e-faktur MF</td><td>Post-Sprint 7</td></tr>
+        <tr><td>wFirma</td><td>REST API</td><td>Rok 2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</DocsLayout>

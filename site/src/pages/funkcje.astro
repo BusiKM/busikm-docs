@@ -1,0 +1,246 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+
+const featureGroups = [
+  {
+    title: 'Autoryzacja',
+    color: '#005CE8',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>',
+    features: [
+      { name: 'JWT auth z bezpiecznym przechowywaniem', tag: 'MVP' },
+      { name: 'Refresh token rotation', tag: 'MVP' },
+      { name: 'Weryfikacja adresu e-mail', tag: 'MVP' },
+      { name: 'Self-serve rejestracja', tag: 'POST-MVP' },
+      { name: 'Rejestracja AF z 3-miesięcznym trial', tag: 'POST-MVP' },
+    ],
+  },
+  {
+    title: 'Flota (pojazdy)',
+    color: '#34C759',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>',
+    features: [
+      { name: 'CRUD pojazdów', tag: 'MVP' },
+      { name: 'Dokumenty (OC, ubezpieczenie, przegląd, tachograf)', tag: 'MVP' },
+      { name: 'Alerty dokumentów (30/14/7 dni)', tag: 'MVP' },
+      { name: 'Przypisanie pojazdów do kierowców', tag: 'MVP' },
+    ],
+  },
+  {
+    title: 'Kierowcy',
+    color: '#FF9500',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+    features: [
+      { name: 'CRUD kierowców', tag: 'MVP' },
+      { name: 'Zaproszenia do zespołu', tag: 'MVP' },
+      { name: 'Zarządzanie prawem jazdy', tag: 'MVP' },
+      { name: 'Alerty kwalifikacji zawodowej', tag: 'MVP' },
+      { name: 'Przypisanie kierowca-pojazd', tag: 'MVP' },
+    ],
+  },
+  {
+    title: 'Trasy i GPS',
+    color: '#005CE8',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+    features: [
+      { name: 'Start/stop trasy', tag: 'MVP' },
+      { name: 'GPS background tracking', tag: 'MVP' },
+      { name: 'Batch upload punktów GPS', tag: 'MVP' },
+      { name: 'Automatyczne obliczanie dystansu', tag: 'MVP' },
+      { name: 'Zdjęcia licznika (start/stop)', tag: 'MVP' },
+      { name: 'Klasyfikacja trasy (służbowa/prywatna)', tag: 'MVP' },
+      { name: 'Tryb offline (WatermelonDB)', tag: 'POST-MVP' },
+    ],
+  },
+  {
+    title: 'Raporty',
+    color: '#34C759',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
+    features: [
+      { name: 'Ewidencja przebiegu PDF wg wzoru MF', tag: 'MVP' },
+      { name: 'Eksport CSV', tag: 'MVP' },
+      { name: 'Obliczenia VAT 50%', tag: 'MVP' },
+      { name: 'Raporty kosztów i delegacji', tag: 'POST-MVP' },
+    ],
+  },
+  {
+    title: 'Eksport FK',
+    color: '#FF9500',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>',
+    features: [
+      { name: 'Insert GT EDI++', tag: 'MVP' },
+      { name: 'Comarch ERP Optima', tag: 'POST-MVP' },
+      { name: 'Symfonia', tag: 'POST-MVP' },
+      { name: 'KSeF', tag: 'POST-MVP' },
+    ],
+  },
+  {
+    title: 'Panel zarządzania',
+    color: '#8B5CF6',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>',
+    features: [
+      { name: 'Web dashboard (Next.js 14)', tag: 'MVP' },
+      { name: 'Mapa floty w czasie rzeczywistym (Mapbox)', tag: 'POST-MVP' },
+      { name: 'Dashboard zgodności', tag: 'POST-MVP' },
+      { name: 'Zarządzanie zespołem z RBAC', tag: 'MVP' },
+    ],
+  },
+  {
+    title: 'Aplikacja mobilna',
+    color: '#FF3B30',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>',
+    features: [
+      { name: 'React Native + Expo', tag: 'MVP' },
+      { name: 'iOS 15+ / Android 10+', tag: 'MVP' },
+      { name: 'Push notifications', tag: 'MVP' },
+      { name: 'Secure storage', tag: 'MVP' },
+      { name: 'OTA updates', tag: 'MVP' },
+    ],
+  },
+  {
+    title: 'Biura rachunkowe',
+    color: '#8B5CF6',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>',
+    features: [
+      { name: 'Zarządzanie wieloma firmami (multi-tenant)', tag: 'MVP' },
+      { name: 'Przełączanie kontekstu klienta', tag: 'MVP' },
+      { name: 'Poziomy dostępu per klient', tag: 'MVP' },
+      { name: 'Zbiorczy dashboard', tag: 'POST-MVP' },
+    ],
+  },
+  {
+    title: 'Bezpieczeństwo',
+    color: '#005CE8',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
+    features: [
+      { name: 'Szyfrowanie AES-256', tag: 'MVP' },
+      { name: 'Zgodność z RODO', tag: 'MVP' },
+      { name: 'JWT w secure store', tag: 'MVP' },
+      { name: 'Role-based access control', tag: 'MVP' },
+    ],
+  },
+];
+---
+
+<MarketingLayout title="Funkcje" description="Kompletny przegląd funkcji BusiKM — GPS tracking, raporty MF, eksport FK, panel flotowy, tryb offline.">
+
+  <!-- HERO -->
+  <section class="bg-white">
+    <div class="max-w-[980px] mx-auto px-6 pt-24 pb-20 text-center">
+      <h1 class="text-[48px] sm:text-[56px] font-semibold tracking-tight leading-[1.07] text-[#1d1d1f]">
+        Wszystko czego potrzebujesz.<br/>
+        <span class="text-[#6e6e73]">W jednym miejscu.</span>
+      </h1>
+      <p class="mt-6 text-[19px] sm:text-[21px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">
+        10 grup funkcjonalności, ponad 50 funkcji, 4 role użytkowników.
+        Od GPS trackingu po eksport do systemów FK — BusiKM obsługuje
+        cały proces ewidencji przebiegu.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#005CE8]/10 text-[#005CE8]">MVP</span>
+          <span class="text-[13px] text-[#6e6e73]">Sprint 0-5 (kwiecień-lipiec 2026)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#FF9500]/10 text-[#FF9500]">POST-MVP</span>
+          <span class="text-[13px] text-[#6e6e73]">Sprint 6-7+ (sierpień-wrzesień 2026)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE GROUPS -->
+  {featureGroups.map((group, groupIndex) => (
+    <section class={groupIndex % 2 === 0 ? 'bg-[#F5F5F7]' : 'bg-white'}>
+      <div class="max-w-[980px] mx-auto px-6 py-20">
+        <div class="reveal-on-scroll bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-300">
+          <div class="flex items-center gap-3.5 mb-6">
+            <div
+              class="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
+              style={`background-color: ${group.color};`}
+              set:html={group.icon}
+            />
+            <h2 class="text-[22px] font-semibold tracking-tight text-[#1d1d1f]">
+              {group.title}
+            </h2>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+            {group.features.map((feature) => (
+              <div class="flex items-center gap-2.5 py-1">
+                <span
+                  class={`px-2 py-0.5 rounded-full text-[11px] font-semibold whitespace-nowrap flex-shrink-0 ${
+                    feature.tag === 'MVP'
+                      ? 'bg-[#005CE8]/10 text-[#005CE8]'
+                      : 'bg-[#FF9500]/10 text-[#FF9500]'
+                  }`}
+                >
+                  {feature.tag}
+                </span>
+                <span class="text-[15px] text-[#1d1d1f] leading-snug">
+                  {feature.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="bg-[#1d1d1f]">
+    <div class="max-w-[980px] mx-auto px-6 py-24 text-center">
+      <h2 class="text-[40px] sm:text-[48px] font-semibold tracking-tight leading-tight text-white">
+        Gotowy na porządek<br/>w ewidencji przebiegu?
+      </h2>
+      <p class="mt-5 text-[19px] text-[#a1a1a6] max-w-xl mx-auto leading-relaxed">
+        Wybierz plan dopasowany do Twojej firmy i zacznij automatyzować
+        ewidencję od pierwszego dnia.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a
+          href="/cennik"
+          class="inline-flex items-center gap-2 bg-[#005CE8] hover:bg-[#0040B0] text-white font-semibold px-7 py-3.5 rounded-full text-[17px] transition-all duration-200"
+        >
+          Zobacz cennik
+        </a>
+        <a
+          href="/kontakt"
+          class="inline-flex items-center gap-2 bg-transparent border border-[#424245] hover:border-[#6e6e73] text-[#a1a1a6] hover:text-white font-semibold px-7 py-3.5 rounded-full text-[17px] transition-all duration-200"
+        >
+          Skontaktuj się z nami
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reveal animation script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('.reveal-on-scroll');
+
+      elements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        htmlEl.style.opacity = '0';
+        htmlEl.style.transform = 'translateY(30px)';
+        htmlEl.style.transition = 'opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const htmlEl = entry.target as HTMLElement;
+              htmlEl.style.opacity = '1';
+              htmlEl.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</MarketingLayout>

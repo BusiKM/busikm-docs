@@ -1,0 +1,524 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+---
+
+<MarketingLayout title="Dla biur rachunkowych — BusiKM" description="Jedno konto — wszyscy Twoi klienci transportowi. Multi-tenant, zbiorczy dashboard, eksport FK per klient, 3-miesięczny trial Enterprise.">
+
+<!-- ======================== HERO ======================== -->
+<section class="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden bg-white px-5">
+
+  <!-- Radial ambient glow -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-[#8B5CF6]/[0.04] blur-[140px]"></div>
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[#8B5CF6]/[0.02] blur-[100px]"></div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative z-10 text-center max-w-[820px] mx-auto pt-16 pb-10">
+    <!-- Pill badge -->
+    <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#8B5CF6]/15 bg-[#8B5CF6]/[0.04] mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] animate-pulse"></span>
+      <span class="text-[12.5px] font-medium text-[#8B5CF6] tracking-[0.01em]">Panel multi-tenant · Enterprise · Biura rachunkowe</span>
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="hero-seq-2 font-display text-[clamp(2.4rem,6vw,4.2rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+      Jedno konto &mdash;<br/>wszyscy Twoi&nbsp;klienci.
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="hero-seq-3 text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[560px] mx-auto mb-10">
+      Przełączaj się między firmami jednym kliknięciem. Zbiorczy dashboard, raporty i eksporty FK per klient &mdash; z&nbsp;jednego&nbsp;panelu.
+    </p>
+
+    <!-- CTA row -->
+    <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
+      <a href="/cennik" class="btn-primary-purple">
+        Wypróbuj 3 miesiące za darmo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/funkcje" class="btn-secondary-purple">
+        Zobacz funkcje
+      </a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="hero-seq-5 flex flex-wrap justify-center gap-8 sm:gap-14 text-center">
+      {[
+        { num: '\u221E', label: 'klientów na Enterprise' },
+        { num: '1 panel', label: 'dla wszystkich firm' },
+        { num: '3 mies.', label: 'darmowy trial' },
+        { num: '5\u201320', label: 'firm per biuro' },
+      ].map(s => (
+        <div>
+          <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
+          <div class="text-[12.5px] text-[#86868B] mt-0.5">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Hero dashboard visual -->
+  <div class="hero-seq-5 relative w-full max-w-[860px] mx-auto">
+    <div class="relative rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <!-- Mock browser chrome -->
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+        <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
+        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">
+          app.busikm.pl/accounting/dashboard
+        </div>
+      </div>
+
+      <!-- Dashboard content -->
+      <div class="p-6 sm:p-8">
+        <!-- Client switcher bar -->
+        <div class="bg-white rounded-2xl p-4 shadow-[0_1px_4px_rgba(0,0,0,0.06)] mb-4 flex items-center gap-3 flex-wrap">
+          <span class="text-[11.5px] text-[#86868B] shrink-0">Aktywny klient:</span>
+          <div class="flex gap-2 flex-wrap">
+            {['TransKowalski Sp. z o.o.', 'FlotaNowak', 'LogiPol S.A.'].map((name, i) => (
+              <span class:list={[
+                'px-3 py-1.5 rounded-xl text-[11.5px] font-semibold cursor-pointer transition-colors',
+                i === 0 ? 'bg-[#8B5CF6] text-white' : 'bg-[#F5F5F7] text-[#6E6E73] hover:bg-[#8B5CF6]/10 hover:text-[#8B5CF6]'
+              ]}>{name}</span>
+            ))}
+            <span class="px-3 py-1.5 rounded-xl text-[11.5px] font-semibold bg-[#F5F5F7] text-[#86868B] cursor-pointer hover:bg-[#8B5CF6]/10">+ 12 więcej</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { label: 'Łącznie klientów', value: '15', change: '+3 w tym mies.', color: '#8B5CF6' },
+            { label: 'Pojazdów w obsłudze', value: '87', change: 'we wszystkich firmach', color: '#34C759' },
+            { label: 'Raporty do pobrania', value: '12', change: 'gotowe PDF/EDI++', color: '#FF9500' },
+          ].map(card => (
+            <div class="bg-white rounded-2xl p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+              <p class="text-[11.5px] text-[#86868B] mb-2">{card.label}</p>
+              <p class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{card.value}</p>
+              <p class="text-[11.5px] mt-1" style={`color: ${card.color};`}>{card.change}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating badge -->
+    <div class="absolute -top-4 -right-2 sm:right-4 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-black/[0.05] px-4 py-3 flex items-center gap-3 animate-float">
+      <div class="w-8 h-8 rounded-full bg-[#8B5CF6]/12 flex items-center justify-center shrink-0">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <p class="text-[11px] font-semibold text-[#1D1D1F]">Kontekst przełączony</p>
+        <p class="text-[10.5px] text-[#86868B]">TransKowalski Sp. z o.o.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 animate-bounce-slow">
+    <svg width="20" height="28" viewBox="0 0 20 28" fill="none">
+      <rect x="6" y="1" width="8" height="14" rx="4" stroke="#86868B" stroke-width="1.2"/>
+      <circle cx="10" cy="7" r="1.5" fill="#86868B">
+        <animate attributeName="cy" values="6;11;6" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ======================== FEATURES ======================== -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[620px] mb-16">
+      <p class="section-label text-[#8B5CF6]">Funkcje multi-tenant</p>
+      <h2 class="section-title">
+        Zarządzaj wieloma firmami<br/>z&nbsp;jednego&nbsp;konta.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
+      {[
+        {
+          title: 'Przełączanie kontekstu',
+          desc: 'Lista klientów w menu bocznym. Kliknij nazwę firmy, a cały panel pokaże jej dane: flotę, kierowców, trasy, raporty. Technicznie: nagłówek X-Company-Context, cache Redis TTL 8h.',
+          icon: `<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'Zagregowany dashboard',
+          desc: 'Widok podsumowujący wszystkich klientów: łączna liczba pojazdów, kierowców, tras. Wygasające dokumenty pogrupowane per klient. Alerty ze wszystkich firm w jednym miejscu.',
+          icon: `<rect x="3" y="3" width="7" height="7" rx="1" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'Eksport FK per klient',
+          desc: 'Generuj kilometrówki PDF i pliki EDI++ osobno dla każdego klienta. Import w Insert GT, Rewizor GT, InsERT nexo, Comarch, Symfonia.',
+          icon: `<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'Zarządzanie klientami',
+          desc: 'Dodawaj i usuwaj firmy klientów. Wyszukuj po NIP lub nazwie, albo utwórz nową firmę i wyślij zaproszenie automatycznie.',
+          icon: `<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" stroke-width="1.6"/><circle cx="9" cy="7" r="4" stroke-width="1.6"/><line x1="19" y1="8" x2="19" y2="14" stroke-width="1.6"/><line x1="22" y1="11" x2="16" y2="11" stroke-width="1.6"/>`,
+        },
+        {
+          title: '3 poziomy dostępu',
+          desc: 'Dla każdego klienta ustaw inny poziom: pełne zarządzanie, tylko odczyt lub wyłącznie raporty. Elastyczny model współpracy.',
+          icon: `<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'White-label (po Sprint 7)',
+          desc: 'Własny branding panelu dla Twojego biura rachunkowego. Logo, kolory i domena — klienci widzą Twoją markę.',
+          icon: `<path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" stroke-width="1.6"/>`,
+        },
+      ].map(item => (
+        <div class="card group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background: #8B5CF612;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ACCESS LEVELS ======================== -->
+<section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="section-label text-[#8B5CF6]">Poziomy dostępu</p>
+      <h2 class="section-title">
+        Dopasuj zakres do&nbsp;współpracy.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
+      {[
+        {
+          level: 'PEŁNY',
+          title: 'Pełne zarządzanie',
+          desc: 'Wszystko jak właściciel firmy — flota, kierowcy, trasy, raporty, eksporty, alerty.',
+          bullets: ['Zarządzanie flotą i kierowcami', 'Przeglądanie tras', 'Raporty i eksporty FK', 'Zarządzanie alertami'],
+          featured: true,
+          icon: `<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="1.6"/>`,
+        },
+        {
+          level: 'TYLKO ODCZYT',
+          title: 'Przeglądanie danych',
+          desc: 'Podgląd floty, kierowców i tras bez możliwości edycji — plus generowanie raportów.',
+          bullets: ['Podgląd floty i kierowców', 'Podgląd tras i szczegółów', 'Raporty i eksporty FK', 'Brak edycji danych'],
+          featured: false,
+          icon: `<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="1.6"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-width="1.6"/>`,
+        },
+        {
+          level: 'TYLKO RAPORTY',
+          title: 'Wyłącznie raporty',
+          desc: 'Dostęp wyłącznie do generowania raportów i eksportów FK — bez wglądu w operacje.',
+          bullets: ['Kilometrówki PDF', 'Eksporty FK (EDI++)', 'Brak dostępu do floty', 'Brak dostępu do tras'],
+          featured: false,
+          icon: `<path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="1.6"/>`,
+        },
+      ].map(item => (
+        <div class:list={[
+          'rounded-[20px] p-7 text-left transition-all duration-300',
+          item.featured
+            ? 'bg-[#8B5CF6] text-white border border-[#8B5CF6] shadow-[0_8px_40px_rgba(139,92,246,0.30)]'
+            : 'card',
+        ]}>
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center" style={item.featured ? 'background: rgba(255,255,255,0.15);' : 'background: #8B5CF612;'}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={item.featured ? 'white' : '#8B5CF6'} stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+          </div>
+          <p class:list={['text-[10.5px] font-bold uppercase tracking-[0.1em] mb-3', item.featured ? 'text-white/60' : 'text-[#8B5CF6]']}>{item.level}</p>
+          <h3 class:list={['font-display font-semibold text-[1.15rem] mb-2 tracking-[-0.01em]', item.featured ? 'text-white' : 'text-[#1D1D1F]']}>{item.title}</h3>
+          <p class:list={['text-[14px] leading-relaxed mb-5', item.featured ? 'text-white/70' : 'text-[#6E6E73]']}>{item.desc}</p>
+          <ul class="flex flex-col gap-2.5">
+            {item.bullets.map((b, i) => (
+              <li class:list={['flex items-center gap-2.5 text-[13.5px]', item.featured ? 'text-white/90' : 'text-[#6E6E73]']}>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0">
+                  {(b.startsWith('Brak'))
+                    ? <path d="M4 12L12 4M4 4l8 8" stroke={item.featured ? 'rgba(255,255,255,0.4)' : '#FF3B30'} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    : <path d="M2 8l4 4 8-8" stroke={item.featured ? 'white' : '#8B5CF6'} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  }
+                </svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ======================== BENEFITS ======================== -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="section-label text-[#8B5CF6]">Korzyści</p>
+      <h2 class="section-title">
+        Dlaczego biura rachunkowe<br/>wybierają&nbsp;BusiKM?
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] mx-auto">
+      {[
+        {
+          title: 'Skalowalny kanał dystrybucji',
+          desc: 'Jedno biuro rachunkowe obsługuje 5\u201320 firm transportowych. Każdy nowy klient = dodatkowy przychód bez dodatkowej infrastruktury.',
+          icon: `<path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="1.6"/>`,
+          color: '#8B5CF6',
+        },
+        {
+          title: 'Wszystkie funkcje księgowego',
+          desc: 'Dla każdego klienta masz pełen zestaw narzędzi księgowych: raporty, eksporty FK, kilometrówki PDF, dostęp do historii zmian z auditem.',
+          icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/>`,
+          color: '#34C759',
+        },
+        {
+          title: 'Nielimitowani klienci',
+          desc: 'Plan Enterprise nie stawia limitów na liczbę obsługiwanych firm. Rozwijaj portfolio bez obaw o koszty per klient.',
+          icon: `<circle cx="12" cy="12" r="10" stroke-width="1.6"/><line x1="2" y1="12" x2="22" y2="12" stroke-width="1.6"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-width="1.6"/>`,
+          color: '#005CE8',
+        },
+        {
+          title: 'Grace period 14 dni',
+          desc: 'Po wygaśnięciu trialu masz jeszcze 14 dni na decyzję. Dane pozostają bezpieczne, dostęp read-only. Bez stresu.',
+          icon: `<circle cx="12" cy="12" r="10" stroke-width="1.6"/><polyline points="12 6 12 12 16 14" stroke-width="1.6"/>`,
+          color: '#FF9500',
+        },
+      ].map(item => (
+        <div class="card group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shrink-0" style={`background: ${item.color}12;`}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={item.color} stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+            </div>
+            <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-[-0.01em]">{item.title}</h3>
+          </div>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ENTERPRISE TRIAL ======================== -->
+<section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[900px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="section-label text-[#8B5CF6]">Enterprise trial</p>
+      <h2 class="section-title">
+        3 miesiące Enterprise.<br/>Bez karty kredytowej.
+      </h2>
+    </div>
+
+    <div class="reveal rounded-[20px] bg-[#8B5CF6] p-8 sm:p-12 text-white shadow-[0_8px_40px_rgba(139,92,246,0.30)]">
+      <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
+        <div class="w-14 h-14 bg-white/15 rounded-[18px] flex items-center justify-center flex-shrink-0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display text-[1.5rem] font-bold tracking-[-0.02em] mb-2">Po rejestracji jako biuro rachunkowe automatycznie otrzymujesz pełną funkcjonalność planu Enterprise na 3 miesiące.</h3>
+          <p class="text-white/70 text-[15px] leading-relaxed">Wystarczy dodać minimum 3 klientów w okresie trialu. Pasek postępu w panelu pokazuje Twoje postępy.</p>
+        </div>
+      </div>
+
+      <!-- Progress bar mock -->
+      <div class="bg-white/10 rounded-[16px] p-6 mb-8">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-[13px] font-semibold text-white/80">Postęp aktywacji trialu</span>
+          <span class="text-[13px] font-bold text-white">2 z 3 klientów</span>
+        </div>
+        <div class="w-full h-3 rounded-full bg-white/10">
+          <div class="h-full rounded-full bg-white w-2/3 transition-all duration-700"></div>
+        </div>
+        <p class="text-[12px] text-white/50 mt-2">Dodaj jeszcze 1 klienta, aby aktywować pełny trial Enterprise</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.5rem] font-bold mb-1">3 mies.</p>
+          <p class="text-[13px] text-white/60">Pełna funkcjonalność Enterprise</p>
+        </div>
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.5rem] font-bold mb-1">min. 3</p>
+          <p class="text-[13px] text-white/60">Podłączonych klientów (warunek)</p>
+        </div>
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.5rem] font-bold mb-1">14 dni</p>
+          <p class="text-[13px] text-white/60">Grace period po wygaśnięciu</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FAQ ======================== -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[720px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="section-label text-[#8B5CF6]">FAQ</p>
+      <h2 class="section-title">
+        Najczęstsze pytania
+      </h2>
+    </div>
+
+    <div class="reveal-stagger flex flex-col gap-4">
+      {[
+        {
+          q: 'Ile firm mogę obsługiwać na planie Enterprise?',
+          a: 'Bez limitu. Plan Enterprise nie stawia ograniczeń co do liczby podłączonych firm klientów.',
+        },
+        {
+          q: 'Co się dzieje po zakończeniu 3-miesięcznego trialu?',
+          a: 'Masz 14 dni grace period na podjęcie decyzji. W tym czasie dane pozostają bezpieczne, a dostęp jest read-only. Możesz wykupić subskrypcję Enterprise lub downgrade do obsługi 1 klienta.',
+        },
+        {
+          q: 'Jak działa przełączanie kontekstu technicznie?',
+          a: 'Przełączanie odbywa się za pomocą nagłówka X-Company-Context. Sesja jest cache\'owana w Redis z TTL 8h, co zapewnia płynne działanie bez ponownej autentykacji.',
+        },
+        {
+          q: 'Czy klient widzi, że mam dostęp do jego danych?',
+          a: 'Tak. Pełna transparentność — klient zawsze widzi, że Twoje biuro ma dostęp. Może w każdej chwili cofnąć dostęp. Wcześniej wygenerowane raporty pozostają na Twoim koncie.',
+        },
+        {
+          q: 'Czy mogę ustawić różne poziomy dostępu dla różnych klientów?',
+          a: 'Tak. Dla każdego klienta osobno wybierasz: pełne zarządzanie, tylko odczyt lub wyłącznie raporty. Możesz zmienić poziom w dowolnym momencie.',
+        },
+        {
+          q: 'Kiedy będzie dostępna opcja white-label?',
+          a: 'Opcja własnego brandingu (logo, kolory, domena) planowana jest po Sprint 7. Będzie dostępna wyłącznie na planie Enterprise.',
+        },
+      ].map(item => (
+        <details class="card group cursor-pointer">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold text-[1rem] text-[#1D1D1F] tracking-[-0.01em] list-none [&::-webkit-details-marker]:hidden">
+            {item.q}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 transition-transform duration-300 group-open:rotate-45"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </summary>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73] mt-4">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FINAL CTA ======================== -->
+<section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#8B5CF6]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Zarządzaj wszystkimi klientami<br/>z&nbsp;jednego&nbsp;panelu.
+    </h2>
+    <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
+      3-miesięczny trial Enterprise. Pełna funkcjonalność multi-tenant, raporty i eksporty FK per klient. Bez karty kredytowej.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#8B5CF6] text-white text-[15px] font-semibold hover:bg-[#7C3AED] transition-colors duration-200 shadow-[0_4px_16px_rgba(139,92,246,0.4)]">
+        Wypróbuj 3 miesiące za darmo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
+        Zobacz wszystkie funkcje
+      </a>
+    </div>
+  </div>
+</section>
+
+</MarketingLayout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  .animate-bounce-slow { animation: bounce-slow 2.5s ease-in-out infinite; }
+
+  .btn-primary-purple {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem; border-radius: 9999px;
+    background: #8B5CF6; color: white; font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(139,92,246,0.4);
+  }
+  .btn-primary-purple:hover { background: #7C3AED; box-shadow: 0 4px 12px rgba(139,92,246,0.35); }
+
+  .btn-secondary-purple {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem; border-radius: 9999px;
+    border: 1px solid #D2D2D7; color: #1D1D1F; font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; transition: all 0.2s;
+  }
+  .btn-secondary-purple:hover { border-color: #8B5CF6; background: #8B5CF6/5; color: #8B5CF6; }
+
+  .section-label {
+    font-size: 12.5px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem);
+    font-weight: 700; letter-spacing: -0.03em; color: #1D1D1F; line-height: 1.15;
+  }
+
+  .card {
+    background: white; border-radius: 20px; padding: 1.75rem;
+    border: 1px solid transparent; transition: all 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card:hover {
+    border-color: rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+
+  /* Reveal animations */
+  .reveal, .reveal-stagger { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible, .reveal-stagger.is-visible { opacity: 1; transform: none; }
+  .reveal-stagger.is-visible > * { animation: stagger-in 0.5s ease both; }
+  .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0s; }
+  .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 0.08s; }
+  .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 0.16s; }
+  .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.24s; }
+  .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.32s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.40s; }
+
+  @keyframes stagger-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Hero sequencing */
+  .hero-seq-1, .hero-seq-2, .hero-seq-3, .hero-seq-4, .hero-seq-5 {
+    opacity: 0; animation: hero-fade-in 0.8s ease forwards;
+  }
+  .hero-seq-1 { animation-delay: 0.1s; }
+  .hero-seq-2 { animation-delay: 0.25s; }
+  .hero-seq-3 { animation-delay: 0.4s; }
+  .hero-seq-4 { animation-delay: 0.55s; }
+  .hero-seq-5 { animation-delay: 0.7s; }
+
+  @keyframes hero-fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+  );
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>
