@@ -106,10 +106,20 @@ class Subscription(models.Model):
 
 ### Model subskrypcji biura rachunkowego
 
-| Plan | Cena | Klienci | Eksport FK | Dashboard zbiorczy | Przełączanie firm |
-|------|------|---------|------------|-------------------|-------------------|
-| **Free** | 0 zł | 1 firma | nie | nie | nie |
-| **Enterprise** | 149 zł/mies. (roczna: 127 zł) | bez limitu | tak | tak | tak |
+| Funkcja | **Free** | **Enterprise** |
+|---------|----------|----------------|
+| Cena | 0 zł | 149 zł/mies. (roczna: 127 zł) |
+| Widoczność klientów | wszyscy (read-only) | wszyscy (pełny dostęp) |
+| Przeglądanie tras/pojazdów | tak | tak |
+| Przełączanie firm | tak (read-only) | tak (pełny dostęp) |
+| Generowanie nowych raportów PDF | **nie** (paywall) | tak |
+| Eksport FK (EDI++) | **nie** (paywall) | tak |
+| Dashboard zbiorczy | **nie** | tak |
+| White-label | nie | tak (post-MVP) |
+
+Kluczowe: BR na planie Free **widzi dane wszystkich klientów**, ale nie może generować raportów ani eksportować do FK. Każde kliknięcie "Generuj raport" wyświetla paywall z propozycją upgrade do Enterprise.
+
+Efekt: klienci BR nadal wysyłają dane do systemu, BR widzi je w panelu, ale musi ręcznie przepisywać zamiast kliknąć "Eksportuj" → silna motywacja do upgrade.
 
 Uwaga: subskrypcja BR jest niezależna od subskrypcji klientów BR. Każda firma transportowa płaci za siebie (Starter/Professional/Enterprise per pojazd).
 

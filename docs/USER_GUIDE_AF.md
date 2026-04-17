@@ -212,16 +212,20 @@ W trakcie trialu masz pełen dostęp: bez limitu klientów, eksport FK, dashboar
 Po 3 miesiącach masz dwie opcje:
 
 1. **Wykupujesz Enterprise (149 zł/mies.)** — kontynuujesz z pełną funkcjonalnością, bez limitu klientów. Roczna: 127 zł/mies. (rabat 15%).
-2. **Nie płacisz** — po 14 dniach grace period Twoje konto zostaje obniżone do planu **Free**. Możesz obsługiwać tylko **1 firmę**. Tracisz eksport FK, dashboard zbiorczy i przełączanie firm.
+2. **Nie płacisz** — po 14 dniach grace period Twoje konto przechodzi na plan **Free**.
 
-### Co NIE jest usuwane przy downgrade
+### Co się zmienia na planie Free
 
-- Dane wszystkich klientów zachowane w bazie
-- Historia przejazdów i wygenerowane raporty dostępne
-- Profile firm, konfiguracja — bez zmian
-- Klienci ponad limit → tryb tylko do odczytu
+- **Widzisz dane wszystkich klientów** — przeglądasz trasy, pojazdy, kierowców w trybie read-only
+- **Przełączasz się między firmami** — ale tylko do odczytu
+- **NIE możesz generować nowych raportów PDF** — kliknięcie "Generuj raport" wyświetla propozycję upgrade
+- **NIE możesz eksportować do FK** — kliknięcie "Eksportuj" wyświetla propozycję upgrade
+- **NIE masz dashboardu zbiorczego** — wyświetla się propozycja upgrade
+- Wcześniej wygenerowane raporty nadal dostępne do pobrania
 
-Po wykupieniu Enterprise odzyskujesz dostęp do wszystkich klientów.
+### Co to oznacza w praktyce
+
+Twoi klienci (firmy transportowe) nadal wysyłają dane do BusiKM — trasy, przejazdy, kilometry. Ty widzisz wszystko w panelu, ale musisz ręcznie przepisywać dane zamiast kliknąć "Eksportuj". Upgrade do Enterprise przywraca pełną funkcjonalność jednym kliknięciem.
 
 ### Ważne: subskrypcje są niezależne
 

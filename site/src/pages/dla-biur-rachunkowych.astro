@@ -282,7 +282,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         },
         {
           title: 'Grace period 14 dni',
-          desc: 'Po wygaśnięciu trialu masz jeszcze 14 dni na decyzję. Dane pozostają bezpieczne, dostęp read-only. Bez stresu.',
+          desc: 'Po wygaśnięciu trialu masz 14 dni grace period. Potem Free: widzisz dane wszystkich klientów, ale raporty i eksport FK wymagają Enterprise (149 zł/mies.).',
           icon: `<circle cx="12" cy="12" r="10" stroke-width="1.6"/><polyline points="12 6 12 12 16 14" stroke-width="1.6"/>`,
           color: '#FF9500',
         },
@@ -318,7 +318,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         </div>
         <div>
           <h3 class="font-display text-[1.5rem] font-bold tracking-[-0.02em] mb-2">Po rejestracji jako biuro rachunkowe automatycznie otrzymujesz pełną funkcjonalność planu Enterprise na 3 miesiące.</h3>
-          <p class="text-white/70 text-[15px] leading-relaxed">Podłączaj klientów w swoim tempie — bez wymogu minimalnej liczby. Po trialu: 149 zł/mies. lub Free (1 firma).</p>
+          <p class="text-white/70 text-[15px] leading-relaxed">Podłączaj klientów w swoim tempie — bez wymogu minimalnej liczby. Po trialu: 149 zł/mies. lub Free (widzisz dane, ale musisz przepisywać ręcznie).</p>
         </div>
       </div>
 
@@ -328,20 +328,24 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           <p class="text-[12px] font-semibold uppercase tracking-[0.08em] text-white/50 mb-2">Po trialu — Free</p>
           <p class="font-display text-[2rem] font-bold mb-2">0 zł</p>
           <ul class="flex flex-col gap-2 text-[13px] text-white/60">
-            <li>1 firma klient</li>
-            <li>Raporty PDF</li>
-            <li>Bez eksportu FK</li>
-            <li>Bez przełączania firm</li>
+            <li>Widzisz dane wszystkich klientów</li>
+            <li>Przeglądanie tras (read-only)</li>
+            <li>Przełączanie firm (read-only)</li>
+            <li class="text-[#FF9500]">Brak generowania raportów PDF</li>
+            <li class="text-[#FF9500]">Brak eksportu FK</li>
+            <li class="text-[#FF9500]">Brak dashboardu zbiorczego</li>
           </ul>
+          <p class="text-[11px] text-white/40 mt-3">Dane widoczne, ale musisz przepisywać ręcznie</p>
         </div>
         <div class="bg-white/15 rounded-[16px] p-6 border border-white/20">
           <p class="text-[12px] font-semibold uppercase tracking-[0.08em] text-white/50 mb-2">Enterprise</p>
           <p class="font-display text-[2rem] font-bold mb-2">149 zł<span class="text-[14px] font-normal text-white/50"> / mies.</span></p>
           <ul class="flex flex-col gap-2 text-[13px] text-white/80">
-            <li>Bez limitu klientów</li>
-            <li>Eksport FK (EDI++)</li>
-            <li>Dashboard zbiorczy</li>
-            <li>Przełączanie firm 1 kliknięciem</li>
+            <li>Bez limitu klientów — pełny dostęp</li>
+            <li>Generowanie raportów PDF 1 kliknięciem</li>
+            <li>Eksport FK (EDI++) 1 kliknięciem</li>
+            <li>Dashboard zbiorczy wszystkich firm</li>
+            <li>Przełączanie firm z pełnym dostępem</li>
           </ul>
           <p class="text-[11px] text-white/40 mt-3">Roczna: 127 zł/mies. (rabat 15%)</p>
         </div>
