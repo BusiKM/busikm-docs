@@ -5,8 +5,8 @@
     <circle cx="30" cy="8" r="6" fill="#1D1D1F"/>
     <circle cx="28" cy="6" r="1.8" fill="white" opacity="0.35"/>
   </g>
-  <text x="43" y="25" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
-        font-size="22" letter-spacing="-0.025em" dominant-baseline="central">
+  <text x="43" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="22" letter-spacing="-0.025em">
     <tspan font-weight="500" fill="#1D1D1F">Busi</tspan><tspan font-weight="800" fill="#005CE8">KM</tspan>
   </text>
 </svg>
