@@ -113,7 +113,8 @@ Firmy uczestniczące w testach pilotażowych (User Acceptance Testing):
 Biura rachunkowe jako strategiczni partnerzy:
 
 - **3 miesiące** planu Enterprise za darmo.
-- **Warunek**: minimum 3 obsługiwane firmy-klienty w BusiKM.
+- **Brak wymogu minimalnej liczby klientów** — BR podłącza klientów w swoim tempie.
+- Po trialu: **149 zł/mies.** za panel multi-klient (bez limitu firm) lub downgrade do Free (1 firma).
 - Cel: AF testuje multi-tenant, a klienci AF korzystają z integracji FK.
 
 ### 3.4 Klienci biur rachunkowych
@@ -379,7 +380,7 @@ Przy śr. 6 pojazdów × 80 PLN = 172 800 PLN MRR
 
 #### Faza 1 (launch — pilot)
 
-- AF otrzymuje **3 miesiące Enterprise za darmo** (warunek: min 3 klientów).
+- AF otrzymuje **3 miesiące Enterprise za darmo** (bez wymogu min. liczby klientów).
 - Klienci AF: **3 miesiące Professional za darmo**.
 - Cel: walidacja modelu, zbieranie feedbacku.
 

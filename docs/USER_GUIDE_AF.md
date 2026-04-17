@@ -199,25 +199,33 @@ Poziom dostępu ustala się wspólnie z klientem — zależy od zakresu współp
 
 ---
 
-## 10. Warunek trialu
+## 10. Trial i subskrypcja
 
-Twój 3-miesięczny trial Enterprise wymaga spełnienia jednego warunku:
+### 3-miesięczny trial Enterprise
 
-**Musisz dodać minimum 3 klientów w okresie trialu.**
+Po rejestracji jako biuro rachunkowe dostajesz **3 miesiące planu Enterprise za darmo**. Nie ma wymogu minimalnej liczby klientów — podłączasz firmy w swoim tempie.
 
-### Jak to śledzić
-
-- W panelu zobaczysz **pasek postępu** pokazujący, ilu klientów masz (np. „2 z 3 wymaganych").
-- Po dodaniu 3 klientów pasek zmieni kolor na zielony.
+W trakcie trialu masz pełen dostęp: bez limitu klientów, eksport FK, dashboard zbiorczy, przełączanie firm.
 
 ### Co po zakończeniu trialu
 
 Po 3 miesiącach masz dwie opcje:
 
-1. **Wykup subskrypcję Enterprise** — kontynuujesz korzystanie z pełnej funkcjonalności.
-2. **Nie wykupujesz** — Twoje konto zostaje obniżone (downgrade). Stracisz dostęp do funkcji multi-klient i będziesz mógł obsługiwać tylko jednego klienta.
+1. **Wykupujesz Enterprise (149 zł/mies.)** — kontynuujesz z pełną funkcjonalnością, bez limitu klientów. Roczna: 127 zł/mies. (rabat 15%).
+2. **Nie płacisz** — po 14 dniach grace period Twoje konto zostaje obniżone do planu **Free**. Możesz obsługiwać tylko **1 firmę**. Tracisz eksport FK, dashboard zbiorczy i przełączanie firm.
 
-Dane Twoich klientów nie zostaną usunięte — będą dostępne po wykupieniu subskrypcji.
+### Co NIE jest usuwane przy downgrade
+
+- Dane wszystkich klientów zachowane w bazie
+- Historia przejazdów i wygenerowane raporty dostępne
+- Profile firm, konfiguracja — bez zmian
+- Klienci ponad limit → tryb tylko do odczytu
+
+Po wykupieniu Enterprise odzyskujesz dostęp do wszystkich klientów.
+
+### Ważne: subskrypcje są niezależne
+
+Twoja subskrypcja BR (Free / Enterprise 149 zł/mies.) jest **niezależna** od subskrypcji Twoich klientów. Każda firma transportowa płaci za siebie (Starter 59 zł / Professional 89 zł per pojazd). Opłaty się nie łączą.
 
 ---
 

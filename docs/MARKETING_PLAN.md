@@ -136,7 +136,7 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 ### Partnerstwa z biurami rachunkowymi (kanał główny)
 
 - 1 biuro rachunkowe = 5–20 klientów z flotami.
-- Oferta: **3 miesiące Enterprise za darmo** (warunek: minimum 3 klientów).
+- Oferta: **3 miesiące Enterprise za darmo** (bez wymogu min. liczby klientów).
 - Każdy klient BR otrzymuje 3 miesiące planu Professional.
 - Co-marketing: "Rekomendowane przez [nazwa BR]" na stronie partnera.
 
@@ -234,7 +234,7 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 
 | Element                   | Szczegóły                                                  |
 |---------------------------|------------------------------------------------------------|
-| Warunek wejścia           | Minimum 3 klientów z flotami 2,5t–3,5t                    |
+| Warunek wejścia           | Brak — BR podłącza klientów w swoim tempie                 |
 | Oferta dla BR             | 3 miesiące planu Enterprise za darmo                       |
 | Oferta dla klientów BR    | 3 miesiące planu Professional za darmo                     |
 | Co-marketing              | Badge "Rekomendowane przez [nazwa BR]" na stronie partnera |

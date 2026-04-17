@@ -100,9 +100,18 @@ class Subscription(models.Model):
 - **Dla kogo:** biura rachunkowe (accounting firms)
 - **Plan w trakcie triala:** Enterprise
 - **Czas trwania:** 3 miesiące
-- **Warunek aktywności:** minimum 3 podłączonych klientów
-- **Po wygaśnięciu:** grace period (dodatkowe 14 dni) lub downgrade
-- **Cel:** biuro testuje integrację z wieloma klientami jednocześnie
+- **Brak wymogu minimalnej liczby klientów** — BR podłącza klientów w swoim tempie
+- **Po wygaśnięciu:** grace period (dodatkowe 14 dni), potem downgrade do planu Free (1 klient)
+- **Cel:** biuro testuje integrację z klientami, im więcej podłączy tym silniejszy efekt loss aversion przy downgrade
+
+### Model subskrypcji biura rachunkowego
+
+| Plan | Cena | Klienci | Eksport FK | Dashboard zbiorczy | Przełączanie firm |
+|------|------|---------|------------|-------------------|-------------------|
+| **Free** | 0 zł | 1 firma | nie | nie | nie |
+| **Enterprise** | 149 zł/mies. (roczna: 127 zł) | bez limitu | tak | tak | tak |
+
+Uwaga: subskrypcja BR jest niezależna od subskrypcji klientów BR. Każda firma transportowa płaci za siebie (Starter/Professional/Enterprise per pojazd).
 
 ### af_client_trial (3 miesiące)
 
