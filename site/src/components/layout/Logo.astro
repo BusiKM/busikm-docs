@@ -9,18 +9,26 @@ const { variant = 'full', color = 'dark', size = 'md' } = Astro.props;
 const heights = { sm: 28, md: 34, lg: 42 };
 const h = heights[size];
 
-const src = variant === 'full'
-  ? (color === 'white' ? '/logo/busikm_full_white.svg' : '/logo/busikm_full_dark.svg')
-  : (color === 'brand' ? '/logo/busikm_badge_brand_2x.png' : color === 'white' ? '/logo/busikm_badge_white_2x.png' : '/logo/busikm_badge_dark_2x.png');
+const logos: Record<string, Record<string, string>> = {
+  full: {
+    dark: '/logo/logo_light-mode.png',
+    white: '/logo/logo_dark-mode.png',
+    brand: '/logo/logo_light-mode.png',
+  },
+  mark: {
+    dark: '/logo/logo_rounded-dark.png',
+    white: '/logo/logo_rounded-light.png',
+    brand: '/logo/logo_rounded-brand.png',
+  },
+};
 
-const imgWidth = variant === 'full' ? Math.round(h * (128/44)) : h;
+const src = logos[variant][color];
 ---
 
 <a href="/" class="inline-flex items-center shrink-0" aria-label="BusiKM — strona główna">
   <img
     src={src}
     alt="BusiKM"
-    width={imgWidth}
     height={h}
     style={`height:${h}px;width:auto;`}
     loading="eager"
