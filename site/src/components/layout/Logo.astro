@@ -1,36 +1,28 @@
 ---
 interface Props {
-  variant?: 'full' | 'mark';
-  color?: 'dark' | 'white' | 'brand';
+  color?: 'dark' | 'white';
   size?: 'sm' | 'md' | 'lg';
 }
-const { variant = 'full', color = 'dark', size = 'md' } = Astro.props;
+const { color = 'dark', size = 'md' } = Astro.props;
 
-const heights = { sm: 28, md: 34, lg: 42 };
-const h = heights[size];
+const iconSizes = { sm: 24, md: 28, lg: 34 };
+const iconH = iconSizes[size];
 
-const logos: Record<string, Record<string, string>> = {
-  full: {
-    dark: '/logo/logo_light-mode.png',
-    white: '/logo/logo_dark-mode.png',
-    brand: '/logo/logo_light-mode.png',
-  },
-  mark: {
-    dark: '/logo/logo_rounded-dark.png',
-    white: '/logo/logo_rounded-light.png',
-    brand: '/logo/logo_rounded-brand.png',
-  },
+const icons: Record<string, string> = {
+  dark: '/logo/ios-icon-iOS-Default.png',
+  white: '/logo/ios-icon-iOS-ClearDark.png',
 };
 
-const src = logos[variant][color];
+const src = icons[color];
 ---
 
 <a href="/" class="inline-flex items-center shrink-0" aria-label="BusiKM — strona główna">
   <img
     src={src}
     alt="BusiKM"
-    height={h}
-    style={`height:${h}px;width:auto;`}
+    height={iconH}
+    width={iconH}
+    style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
     loading="eager"
   />
 </a>

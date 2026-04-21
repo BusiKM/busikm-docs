@@ -4,11 +4,37 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Opis repozytorium
 
-To jest repozytorium **dokumentacji** projektu BusiKM — platformy SaaS do automatycznej ewidencji przebiegu pojazdow 2,5-3,5 t. Nie zawiera kodu zrodlowego — jedynie pliki `.md` w katalogu `docs/`.
+To jest repozytorium **dokumentacji i strony marketingowej** projektu BusiKM — platformy SaaS do automatycznej ewidencji przebiegu pojazdow 2,5-3,5 t. Zawiera:
 
-Kod zrodlowy znajduje sie w oddzielnych repozytoriach (backend, mobile, web).
+- `docs/` — pliki `.md` z dokumentacja techniczna i biznesowa (po polsku)
+- `site/` — strona marketingowa busikm.pl (Astro 6 + Tailwind CSS 4)
 
-## Struktura dokumentacji
+Kod zrodlowy platformy (backend, mobile, web) znajduje sie w oddzielnych repozytoriach.
+
+## Komendy — strona marketingowa (`site/`)
+
+Wszystkie komendy uruchamiane z katalogu `site/`:
+
+```bash
+cd site
+npm install          # instalacja zaleznosci (wymaga Node >= 22.12.0)
+npm run dev          # serwer deweloperski na localhost:4321
+npm run build        # build produkcyjny do site/dist/
+npm run preview      # podglad buildu produkcyjnego
+```
+
+Deploy: Vercel (statyczny output, konfiguracja w `site/vercel.json`).
+
+## Architektura strony (`site/`)
+
+- **Framework**: Astro 6 (static output) + Tailwind CSS 4 (via Vite plugin) + @astrojs/sitemap
+- **Layouty**: `BaseLayout.astro` (bazowy) → `MarketingLayout.astro` (strony marketingowe) / `DocsLayout.astro` (dokumentacja techniczna)
+- **Komponenty**: `site/src/components/` — podzial na `layout/`, `home/`, `shared/`, `diagrams/`, `biznes/`, `guides/`, `tech/`
+- **Strony marketingowe**: index, cennik, funkcje, roadmapa, strony per rola (dla-kierowcow, dla-wlascicieli, dla-ksiegowych, dla-biur-rachunkowych)
+- **Strony docs**: `site/src/pages/docs/` — renderowane z danych z `docs/*.md`
+- **Skrypty pomocnicze**: `site/scripts/generate-icons.mjs`, `site/scripts/generate-og.mjs`
+
+## Struktura dokumentacji (`docs/`)
 
 Wszystkie dokumenty sa w `docs/` i pisane po polsku:
 
@@ -28,7 +54,7 @@ Wszystkie dokumenty sa w `docs/` i pisane po polsku:
 - **SUBSCRIPTION_MANAGEMENT.md**, **MONETIZATION.md**, **MARKETING_PLAN.md** — model biznesowy
 - **GLOSSARY.md** — slownik pojec
 
-## Stack technologiczny projektu
+## Stack technologiczny projektu (dokumentowany)
 
 | Warstwa | Technologia |
 |---------|-------------|
@@ -40,7 +66,7 @@ Wszystkie dokumenty sa w `docs/` i pisane po polsku:
 | CI/CD | GitHub Actions + EAS Build + Vercel |
 | API Docs | drf-spectacular (OpenAPI 3.0) -> orval (generowany klient TS) |
 
-## Kluczowe wzorce architektoniczne
+## Kluczowe wzorce architektoniczne (dokumentowane)
 
 - **RBAC** — 4 role: `driver`, `owner`, `accountant`, `accounting_firm`
 - **CompanyScopedMixin** — izolacja danych miedzy firmami (tenant isolation)
@@ -50,9 +76,10 @@ Wszystkie dokumenty sa w `docs/` i pisane po polsku:
 - **Conventional Commits** — format: `<type>(<scope>): <opis>`
 - **Git flow** — feature/* -> develop -> staging -> main
 
-## Konwencje dokumentacji
+## Konwencje
 
-- Dokumenty pisane po polsku
+- Dokumenty w `docs/` pisane po polsku
 - Polskie znaki diakrytyczne w naglowkach, ale w tresci technicznej czesto bez (np. nazwy klas, opisy pol)
 - Tabele Markdown jako glowny format prezentacji danych
 - Kazdy dokument zawiera date ostatniej aktualizacji na koncu
+- Strona marketingowa (`site/`): komponenty Astro, Tailwind CSS 4 utility classes, strona w jezyku polskim
