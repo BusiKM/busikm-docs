@@ -384,7 +384,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
             <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#FF950012;color:#FF9500;">Eksport jednym kliknięciem</span>
           </div>
           <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">Raport dla MF w 10 sekund.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Właściciel lub księgowy klika "Generuj raport" — gotowy PDF / XLSX zgodny ze wzorem MF. Eksport EDI++ do Insert GT, planowane: Comarch, Symfonia, KSeF.</p>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Właściciel lub księgowy klika "Generuj raport" — gotowy PDF / XLSX zgodny ze wzorem MF. Eksport EDI++ do Insert GT. Planowane: Comarch, Symfonia, KSeF.</p>
           <ul class="flex flex-col gap-2">
             {['PDF ewidencji wg wzoru Ministerstwa Finansów', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki: 0,8358 PLN/km (>900cc), 0,5214 PLN/km (≤900cc)', 'Comarch ERP, Symfonia, KSeF (planowane)'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
@@ -685,8 +685,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
       <div class="flex flex-col gap-6">
         {[
-          { q: 'Q3 2026', title: 'MVP Launch', desc: '5–10 firm pilotażowych · MRR 5 000 PLN', color: '#005CE8', current: true },
-          { q: 'Q3 2026', title: 'Monetyzacja + FK', desc: 'Stripe Billing · Comarch + Symfonia + KSeF · 100 firm', color: '#005CE8', current: false },
+          { q: 'Q2 2026', title: 'MVP Launch', desc: '5–10 firm pilotażowych · MRR 5 000 PLN', color: '#005CE8', current: true },
+          { q: 'Q2 2026', title: 'Post-MVP', desc: 'Stripe Billing · Comarch + Symfonia', color: '#FF9500', current: false },
+          { q: 'Q3 2026', title: 'KSeF + Scale', desc: 'KSeF · white-label · 100 firm · 30k MRR', color: '#005CE8', current: false },
           { q: 'Q2 2027', title: 'AI Features', desc: 'RAG Engine · OCR faktur · Public API · 1,8M ARR', color: '#34C759', current: false },
           { q: 'Q3 2027', title: 'Ekspansja CZ/SK', desc: 'Lokalizacja + partnerstwa · 3M ARR', color: '#34C759', current: false },
           { q: '2028', title: 'Scale', desc: '5–9 rynków CEE · Financing round · 15M ARR', color: '#FF9500', current: false },
