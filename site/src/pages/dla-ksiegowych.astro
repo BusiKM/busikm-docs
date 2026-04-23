@@ -141,7 +141,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
             {[
               'Kodowanie: Windows-1250 (automatyczna konwersja z UTF-8)',
               'Końce linii: CRLF',
-              'Separator dziesiętny: przecinek (np. 0,8358)',
+              'Separator dziesiętny: przecinek (np. 1,15)',
               'Sekcje: [NAGLOWEK], [FIRMA], [POJAZD], [POZYCJA], [PODSUMOWANIE]',
             ].map(b => (
               <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
@@ -169,7 +169,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           {[
             { letter: 'C', name: 'Comarch ERP Optima', desc: 'Synchronizacja przez REST API — eksport tras i kosztów do modułu księgowego, bez plików.' },
             { letter: 'S', name: 'Symfonia', desc: 'Eksport XML/CSV zgodny ze schematem Symfonia Finanse i Księgowość.' },
-            { letter: 'K', name: 'KSeF', desc: 'Integracja z Krajowym Systemem e-Faktur — wystawianie i pobieranie e-faktur bezpośrednio z BusiKM.' },
           ].map(item => (
             <div class="flex items-start gap-3">
               <span class="w-8 h-8 bg-white rounded-xl flex items-center justify-center text-[13px] font-bold text-[#FF9500] shrink-0 mt-0.5">{item.letter}</span>
@@ -183,9 +182,37 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </div>
     </div>
 
+    <!-- Co zawiera eksport -->
+    <div class="reveal mt-12 grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="bg-[#005CE8]/[0.04] border border-[#005CE8]/15 rounded-[20px] p-6">
+        <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-3">1. Ewidencja przebiegu (VAT)</h4>
+        <p class="text-[13px] text-[#6E6E73] mb-3">Podstawa do odliczenia 100% VAT (art. 86a ust. 7 ustawy o VAT):</p>
+        <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
+          {['Daty i cele wyjazdów', 'Trasy (skąd / dokąd)', 'Kilometry per wyjazd', 'Stany licznika (start/koniec okresu)', 'Podsumowanie miesięczne per pojazd'].map(b => (
+            <li class="flex items-center gap-2">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {b}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="bg-[#F5F5F7] rounded-[20px] p-6">
+        <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-3">2. Rozliczenie kosztów (PIT)</h4>
+        <p class="text-[13px] text-[#6E6E73] mb-3">Podstawa do kosztów uzyskania przychodu (art. 23 ust. 7 ustawy o PIT):</p>
+        <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
+          {['Suma km × stawka wg Dz.U. 2023 poz. 5', 'Automatyczny dobór stawki wg daty przejazdu', 'Formaty: PDF wg wzoru MF, XLSX, EDI++', 'Planowane: Comarch ERP Optima, Symfonia'].map(b => (
+            <li class="flex items-center gap-2">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#FF9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {b}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
     <!-- Stawki za km -->
-    <div class="reveal mt-12 bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-5 tracking-[-0.01em]">Stawki za kilometr (Rozporządzenie Ministra Infrastruktury)</h3>
+    <div class="reveal mt-8 bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-5 tracking-[-0.01em]">Stawki za kilometr (Dz.U. 2023 poz. 5, od 17.01.2023)</h3>
       <div class="overflow-x-auto">
         <table class="w-full text-[14px]">
           <thead>
@@ -195,11 +222,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
             </tr>
           </thead>
           <tbody class="text-[#6E6E73]">
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &le; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,5214</td></tr>
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &gt; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,8358</td></tr>
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód ciężarowy</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,8358</td></tr>
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Motocykl</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,2302</td></tr>
-            <tr><td class="py-2.5 pr-4">Motorower</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,1382</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &le; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,89</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &gt; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">1,15</td></tr>
+            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Motocykl</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,69</td></tr>
+            <tr><td class="py-2.5 pr-4">Motorower</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,42</td></tr>
           </tbody>
         </table>
       </div>
@@ -223,7 +249,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { q: 'Czy jako księgowy mogę edytować dane tras?', a: 'Nie. Rola księgowego ma wyłącznie dostęp read-only do floty, kierowców i tras. Gwarantuje to pełną integralność danych — nikt nie zmieni danych operacyjnych poza osobami odpowiedzialnymi.' },
         { q: 'W jakim formacie generowana jest kilometrówka?', a: 'Kilometrówka generowana jest jako PDF zgodny ze wzorem Ministerstwa Finansów. Zawiera stan drogomierza (początkowy i końcowy), stawkę za km, listę tras i podsumowanie. Gotowa do wydruku lub przesłania do US.' },
         { q: 'Jak działa eksport do Insert GT?', a: 'BusiKM generuje plik .epp w formacie EDI++ — kodowanie Windows-1250, separator przecinkowy, sekcje NAGLOWEK, FIRMA, POJAZD, POZYCJA, PODSUMOWANIE. Plik importujesz w Insert GT: Narzędzia → Import EDI++.' },
-        { q: 'Jakie stawki za km obsługuje system?', a: 'Domyślnie ustawowe: samochód ≤900 cm³ = 0,5214 PLN/km, samochód >900 cm³ = 0,8358 PLN/km. Stawki są konfigurowalne w panelu firmy, a system przechowuje historię zmian z datami obowiązywania.' },
+        { q: 'Jakie stawki za km obsługuje system?', a: 'Domyślnie ustawowe wg Dz.U. 2023 poz. 5: samochód ≤900 cm³ = 0,89 zł/km, samochód >900 cm³ = 1,15 zł/km. System dobiera stawkę obowiązującą w dniu przejazdu i przechowuje pełną historię zmian.' },
         { q: 'Czy mogę wygenerować raport VAT 50%?', a: 'Tak. System automatycznie wylicza odliczenie VAT 50% na podstawie ewidencji przebiegu pojazdu. Zestawienie dostępne per pojazd i per okres — gotowe dane do deklaracji podatkowej.' },
         { q: 'Czy jest ślad audytowy zmian?', a: 'Tak. System rejestruje pełną historię zmian (audit trail) — kto, kiedy i co zmienił. Jako księgowy masz wgląd w tę historię, co jest niezbędne przy kontrolach skarbowych.' },
       ].map(faq => (

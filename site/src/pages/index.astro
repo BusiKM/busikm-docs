@@ -4,7 +4,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 <MarketingLayout
   title="BusiKM — Elektroniczna kilometrówka dla flot"
-  description="Automatyczna ewidencja przebiegu pojazdów 2,5–3,5 t. Zgodna z przepisami MF 2026. GPS + AI + eksport jednym kliknięciem."
+  description="Automatyczna ewidencja przebiegu pojazdów firmowych. GPS + AI + raport MF + eksport do systemów FK jednym kliknięciem."
 >
 
 <!-- ======================== HERO ======================== -->
@@ -17,7 +17,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   <div class="relative z-10 text-center max-w-[820px] mx-auto pt-16 pb-10">
     <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-8">
       <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
-      <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Platforma SaaS · Polska · Zgodność MF 2026</span>
+      <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Platforma SaaS · Polska · Zgodność z ustawą o VAT</span>
     </div>
 
     <h1 class="hero-seq-2 font-display text-[clamp(2.4rem,6vw,4.2rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
@@ -41,19 +41,19 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </a>
     </div>
 
-    <!-- Stats with counter animation -->
+    <!-- Value props -->
     <div class="hero-seq-5 flex flex-wrap justify-center gap-8 sm:gap-14 text-center">
       <div>
-        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#1D1D1F]" data-count="300000" data-suffix="">0</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">pojazdów na rynku</div>
+        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#005CE8]">100% VAT</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">od paliwa — zamiast 50%</div>
       </div>
       <div>
-        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#1D1D1F]" data-count="80000" data-suffix="">0</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">firm transportowych</div>
+        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">10 sekund</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">raport MF gotowy</div>
       </div>
       <div>
-        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#FF3B30]" data-count="30000" data-suffix=" zł">0 zł</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">kara za brak ewidencji</div>
+        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#34C759]">0 błędów</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">AI klasyfikuje cel trasy</div>
       </div>
     </div>
   </div>
@@ -174,9 +174,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
       {[
-        { title: 'Kara do 30 000 zł', desc: 'Brak ewidencji czasu pracy kierowców pojazdów 2,5–3,5 t = kara administracyjna. Błędna ewidencja = do 8 000 zł + korekty podatkowe.', accent: '#FF3B30', icon: `<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>` },
-        { title: '2–4 godz. miesięcznie', desc: 'Tyle zajmuje ręczne wypełnianie kilometrówki. Na pojazd. Czas kierowcy + właściciela + księgowego = koszt ~480 zł/pojazd/rok.', accent: '#FF9500', icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>` },
-        { title: 'Błędy w danych', desc: 'Ręcznie wpisywane kilometry, daty i cele tras → błędy PKWiU, odrzucony zwrot VAT 50%, straty podatkowe i korekty.', accent: '#005CE8', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/>` },
+        { title: 'Utrata odliczenia VAT', desc: 'Brak ewidencji przebiegu = korekta deklaracji VAT + zaległości z odsetkami ustawowymi. Kontrola obejmuje 3 lata wstecz — przy flocie kilku pojazdów łączny koszt to dziesiątki tysięcy złotych.', accent: '#FF3B30', icon: `<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>` },
+        { title: 'Stracony czas', desc: 'Ręczne wpisywanie dat, celów i kilometrów na każdy przejazd. Potem weryfikacja, poprawki, kompletowanie — to godziny pracy kierowcy, właściciela i księgowego.', accent: '#FF9500', icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>` },
+        { title: 'Błędy w danych', desc: 'Ręcznie wpisywane kilometry, daty i cele tras → błędy w ewidencji, US kwestionuje prawo do 100% odliczenia VAT, korekty i straty podatkowe.', accent: '#005CE8', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/>` },
       ].map(item => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${item.accent}12`}>
@@ -189,52 +189,63 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </div>
 
     <div class="reveal mt-8 text-center">
-      <p class="text-[14px] text-[#86868B]">Średni koszt ręcznej ewidencji: <span class="font-semibold text-[#1D1D1F]">480 zł / pojazd / rok</span></p>
+      <p class="text-[14px] text-[#86868B]">BusiKM eliminuje ręczną pracę — <span class="font-semibold text-[#1D1D1F]">GPS + AI = zero wpisywania</span></p>
     </div>
   </div>
 </section>
 
-<!-- ======================== NEW: PRZEPISY (URGENCY) ======================== -->
+<!-- ======================== DLACZEGO KILOMETRÓWKA ======================== -->
 <section class="py-24 sm:py-32 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center max-w-[720px] mx-auto mb-16">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Nowe przepisy</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Tracisz pieniądze</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
-        Od lipca 2026 — nowy obowiązek&nbsp;prawny.
+        Prowadzisz firmę z&nbsp;pojazdem? Tracisz&nbsp;pieniądze bez&nbsp;kilometrówki.
       </h2>
       <p class="text-[16px] text-[#6E6E73] leading-relaxed">
-        Nowelizacja przepisów wprowadza obowiązek prowadzenia ewidencji czasu pracy kierowców pojazdów 2,5–3,5 t DMC wykonujących krajowy transport rzeczy. Firmy mają 3 miesiące na wdrożenie.
+        Każdy przedsiębiorca który chce odliczać 100% VAT od paliwa, serwisu i eksploatacji pojazdu firmowego musi prowadzić ewidencję przebiegu (art. 86a ustawy o&nbsp;VAT) i zgłosić pojazd do US na druku VAT-26. Bez tego — odliczysz tylko 50%.
       </p>
     </div>
 
-    <!-- Timeline -->
-    <div class="reveal-stagger flex flex-col sm:flex-row items-stretch gap-4 sm:gap-0 max-w-[900px] mx-auto">
+    <!-- Financial impact -->
+    <div class="reveal bg-[#FF3B30]/[0.04] border border-[#FF3B30]/15 rounded-[20px] p-7 max-w-[900px] mx-auto mb-12">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="flex-1">
+          <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-3">Ile tracisz bez ewidencji?</h3>
+          <p class="text-[14.5px] text-[#6E6E73] leading-relaxed">Flota 5 pojazdów, tankowanie ~400 zł/mies./pojazd. Bez kilometrówki odliczasz 50% VAT zamiast 100%. <span class="font-semibold text-[#FF3B30]">Realna strata: ponad 2 000 zł rocznie tylko na paliwie.</span> Doliczone serwisy, opony i ubezpieczenia — kwota rośnie.</p>
+        </div>
+        <div class="text-center shrink-0">
+          <div class="font-display text-[2.5rem] font-bold tracking-[-0.03em] text-[#FF3B30]">~2 000 zł</div>
+          <div class="text-[12px] text-[#86868B]">strata / rok / 5 pojazdów</div>
+          <div class="text-[11px] text-[#86868B] mt-0.5">tylko paliwo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who needs it -->
+    <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-[900px] mx-auto mb-12">
       {[
-        { date: 'Kwiecień 2026', label: 'Uchwalenie przepisów', desc: 'Publikacja w Dzienniku Ustaw', color: '#005CE8', active: true },
-        { date: 'Lipiec 2026', label: 'Wejście w życie', desc: 'Start obowiązku ewidencji', color: '#FF9500', active: false },
-        { date: 'Październik 2026', label: 'Koniec okresu przejściowego', desc: '3 miesiące na adaptację', color: '#FF3B30', active: false },
-      ].map((step, i) => (
-        <div class="flex-1 relative">
-          <div class={`rounded-[20px] p-6 border transition-all duration-300 ${step.active ? 'bg-[#005CE8]/[0.04] border-[#005CE8]/20' : 'bg-[#F5F5F7] border-transparent hover:border-black/[0.06]'}`}>
-            <div class="flex items-center gap-2 mb-3">
-              <div class="w-3 h-3 rounded-full" style={`background:${step.color}`}></div>
-              <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style={`color:${step.color}`}>{step.date}</span>
-            </div>
-            <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-1">{step.label}</h3>
-            <p class="text-[13px] text-[#6E6E73]">{step.desc}</p>
-          </div>
-          {i < 2 && <div class="hidden sm:block absolute top-1/2 -right-2 w-4 text-[#D2D2D7]"><svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>}
+        { icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`, label: 'Floty dostawcze' },
+        { icon: `<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>`, label: 'Serwisy i instalatorzy' },
+        { icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`, label: 'Przedstawiciele handlowi' },
+        { icon: `<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>`, label: 'Firmy budowlane' },
+        { icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>`, label: 'Biura nieruchomości' },
+        { icon: `<path d="M5 12h14M12 5l7 7-7 7"/>`, label: 'Kurierzy i last-mile' },
+      ].map(s => (
+        <div class="flex items-center gap-3 p-4 rounded-2xl bg-[#F5F5F7]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" set:html={s.icon}/>
+          <span class="text-[13.5px] font-medium text-[#1D1D1F]">{s.label}</span>
         </div>
       ))}
     </div>
 
-    <!-- Key facts -->
-    <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 max-w-[900px] mx-auto">
+    <!-- Legal basis -->
+    <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[900px] mx-auto">
       {[
-        { num: '2,5–3,5 t', label: 'DMC pojazdów objętych' },
-        { num: '30 000 zł', label: 'max kara za brak ewidencji' },
-        { num: '8 000 zł', label: 'max kara za błędną ewidencję' },
-        { num: '3 mies.', label: 'na wdrożenie systemu' },
+        { num: 'Art. 86a', label: 'ustawy o VAT' },
+        { num: 'VAT-26', label: 'zgłoszenie pojazdu do US' },
+        { num: '100%', label: 'odliczenia VAT z ewidencją' },
+        { num: '50%', label: 'bez ewidencji (utrata połowy)' },
       ].map(f => (
         <div class="text-center p-4 rounded-2xl bg-[#F5F5F7]">
           <div class="font-display text-[1.3rem] font-bold tracking-[-0.02em] text-[#1D1D1F]">{f.num}</div>
@@ -244,7 +255,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </div>
 
     <div class="reveal text-center mt-10">
-      <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FF3B30] text-white text-[14px] font-semibold hover:bg-[#D63028] transition-colors">
+      <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005CE8] text-white text-[14px] font-semibold hover:bg-[#003FAD] transition-colors">
         Porozmawiajmy o wdrożeniu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -384,9 +395,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
             <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#FF950012;color:#FF9500;">Eksport jednym kliknięciem</span>
           </div>
           <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">Raport dla MF w 10 sekund.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Właściciel lub księgowy klika "Generuj raport" — gotowy PDF / XLSX zgodny ze wzorem MF. Eksport EDI++ do Insert GT. Planowane: Comarch, Symfonia, KSeF.</p>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Właściciel lub księgowy klika "Generuj raport" — gotowy PDF / XLSX zgodny ze wzorem MF. Eksport EDI++ do Insert GT. Planowane: Comarch, Symfonia.</p>
           <ul class="flex flex-col gap-2">
-            {['PDF ewidencji wg wzoru Ministerstwa Finansów', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki: 0,8358 PLN/km (>900cc), 0,5214 PLN/km (≤900cc)', 'Comarch ERP, Symfonia, KSeF (planowane)'].map(b => (
+            {['PDF ewidencji wg wzoru Ministerstwa Finansów', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki wg Dz.U. 2023 poz. 5: 1,15 zł/km (>900cc), 0,89 zł/km (≤900cc)', 'Comarch ERP, Symfonia (planowane)'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
@@ -440,10 +451,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {[
         { title: 'GPS + MF + FK w jednym', desc: 'Żaden konkurent nie łączy automatycznego śledzenia GPS, raportu zgodnego z MF i eksportu do polskich systemów FK.', icon: `<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>`, color: '#005CE8' },
-        { title: 'Segment 2,5–3,5 t', desc: 'Konkurenci celują w ciężarówki TIR. BusiKM jest zaprojektowany specjalnie dla pojazdów dostawczych i busów.', icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`, color: '#34C759' },
+        { title: 'Każdy pojazd firmowy', desc: 'Nie tylko busy i floty — BusiKM działa dla każdego przedsiębiorcy, który chce odliczać 100% VAT: handlowca, hydraulika, lekarza.', icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`, color: '#34C759' },
         { title: '14 dni za darmo', desc: 'Pełny plan Professional na 14 dni. Bez karty kredytowej. Po próbie — automatyczny downgrade do Free.', icon: `<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>`, color: '#FF9500' },
         { title: 'Kanał biur rachunkowych', desc: '1 biuro rachunkowe = 5–20 klientów. Skalowalna dystrybucja B2B2B. 3 miesiące Enterprise za darmo dla BR.', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`, color: '#8B5CF6' },
-        { title: 'Polskie systemy FK', desc: 'Insert GT (EDI++), Comarch ERP Optima, Symfonia, KSeF. Format dostosowany do polskich realiów księgowych.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
+        { title: 'Polskie systemy FK', desc: 'Insert GT (EDI++), Comarch ERP Optima, Symfonia. Format dostosowany do polskich realiów księgowych.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
         { title: 'Roadmapa 3 lata', desc: 'MVP → Billing → AI → Ekspansja CZ/SK → Scale → Exit. Docelowo 20M PLN ARR. Produkt budowany na poważnie.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`, color: '#005CE8' },
       ].map(u => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.06] hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 group">
@@ -472,7 +483,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       {[
         { href: '/dla-kierowcow', role: 'Kierowca', headline: 'Jedź. My zapisujemy.', bullets: ['GPS w tle — zamknij aplikację, jedź', 'Zatwierdzanie trasy jednym kliknięciem', 'Zdjęcia drogomierza (opcjonalne)', 'Tryb offline — sync po powrocie online'], color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
         { href: '/dla-wlascicieli', role: 'Właściciel floty', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time (Mapbox)', 'Raport MF jednym kliknięciem', 'Alerty: OC, przegląd, tachograf, prawo jazdy', 'Compliance dashboard — wskaźniki zgodności'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
-        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ (Insert GT) jednym kliknięciem', 'Stawka 0,8358 PLN/km — automatyczny oblicz', 'Dostęp read-only — gwarancja integralności'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
+        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ (Insert GT) jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — gwarancja integralności'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
         { href: '/dla-biur-rachunkowych', role: 'Biuro rachunkowe', headline: 'Obsłuż dziesiątki klientów.', bullets: ['Panel multi-klient (Enterprise)', 'Przełączanie firm bez wylogowania', '3 poziomy dostępu per klient', '3 miesiące Enterprise za darmo'], color: '#8B5CF6', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>` },
       ].map(r => (
         <a href={r.href} class="group bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 block">
@@ -552,7 +563,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       {[
         { plan: 'Starter', price: '59', unit: 'zł / pojazd / mies.', desc: 'Do 10 pojazdów · min. 149 zł/mies.', bullets: ['GPS auto + raporty PDF', 'Powiadomienia push', 'Alerty dokumentów', 'Zaproszenia dla kierowców'], featured: false },
         { plan: 'Professional', price: '89', unit: 'zł / pojazd / mies.', desc: 'Do 50 pojazdów · min. 249 zł/mies.', bullets: ['Wszystko ze Starter +', 'Eksport FK (Insert GT EDI++)', 'Mapa real-time + raporty CSV', 'Compliance dashboard + offline'], featured: true },
-        { plan: 'Enterprise', price: '149', unit: 'zł / pojazd / mies.', desc: 'Bez limitu pojazdów', bullets: ['Wszystko z Professional +', 'Multi-tenant (biura rachunkowe)', 'API + Comarch + Symfonia + KSeF', 'Dedykowane wsparcie + white-label'], featured: false },
+        { plan: 'Enterprise', price: '149', unit: 'zł / pojazd / mies.', desc: 'Bez limitu pojazdów', bullets: ['Wszystko z Professional +', 'Multi-tenant (biura rachunkowe)', 'API + Comarch + Symfonia', 'Dedykowane wsparcie + white-label'], featured: false },
       ].map(p => (
         <div class:list={[
           'rounded-[20px] p-7 text-left border transition-all duration-300',
@@ -594,7 +605,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#6E6E73] mb-6">Integracje z systemami FK</p>
       <div class="fk-stagger flex flex-wrap justify-center items-center gap-8 sm:gap-12 mt-8">
-        {['Insert GT', 'Comarch ERP', 'Symfonia', 'KSeF', 'Subiekt GT', 'Optima'].map(name => (
+        {['Insert GT', 'Comarch ERP', 'Symfonia', 'Subiekt GT', 'Optima'].map(name => (
           <span class="text-[16px] font-semibold text-[#AEAEB2] hover:text-[#1D1D1F] transition-colors duration-300 cursor-default">{name}</span>
         ))}
       </div>
@@ -603,10 +614,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <!-- Mileage rates -->
     <div class="reveal grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[800px] mx-auto mb-14">
       {[
-        { vehicle: 'Samochód >900cc', rate: '0,8358' },
-        { vehicle: 'Samochód ≤900cc', rate: '0,5214' },
-        { vehicle: 'Motocykl', rate: '0,2302' },
-        { vehicle: 'Motorower', rate: '0,1382' },
+        { vehicle: 'Samochód >900cc', rate: '1,15' },
+        { vehicle: 'Samochód ≤900cc', rate: '0,89' },
+        { vehicle: 'Motocykl', rate: '0,69' },
+        { vehicle: 'Motorower', rate: '0,42' },
       ].map(r => (
         <div class="text-center p-4 rounded-2xl bg-[#F5F5F7]">
           <div class="font-display text-[1.1rem] font-bold tracking-[-0.02em] text-[#005CE8]">{r.rate}</div>
@@ -618,7 +629,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
       {[
         { title: 'Dane w UE', desc: 'Serwery w Polsce, zgodność RODO, szyfrowanie AES-256 w tranzycie i spoczynku.', icon: `<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>`, color: '#005CE8' },
-        { title: 'Zgodność MF 2026', desc: 'Ewidencja wg wzoru Ministerstwa Finansów. Format EDI++ (Windows-1250, CRLF) dla Insert GT.', icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, color: '#34C759' },
+        { title: 'Zgodność z ustawą o VAT', desc: 'Ewidencja przebiegu wg wzoru MF (art. 86a ustawy o VAT). Format EDI++ (Windows-1250, CRLF) dla Insert GT.', icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, color: '#34C759' },
         { title: 'Uptime 99,9%', desc: 'SLA gwarantowane. Sentry + Prometheus + Grafana + Uptime Kuma. Monitoring 24/7.', icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`, color: '#FF9500' },
       ].map(t => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-6 text-center border border-transparent hover:bg-white hover:border-black/[0.06] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
@@ -687,7 +698,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         {[
           { q: 'Q2 2026', title: 'MVP Launch', desc: '5–10 firm pilotażowych · MRR 5 000 PLN', color: '#005CE8', current: true },
           { q: 'Q2 2026', title: 'Post-MVP', desc: 'Stripe Billing · Comarch + Symfonia', color: '#FF9500', current: false },
-          { q: 'Q3 2026', title: 'KSeF + Scale', desc: 'KSeF · white-label · 100 firm · 30k MRR', color: '#005CE8', current: false },
+          { q: 'Q3 2026', title: 'Scale', desc: 'White-label · 100 firm · 30k MRR', color: '#005CE8', current: false },
           { q: 'Q2 2027', title: 'AI Features', desc: 'RAG Engine · OCR faktur · Public API · 1,8M ARR', color: '#34C759', current: false },
           { q: 'Q3 2027', title: 'Ekspansja CZ/SK', desc: 'Lokalizacja + partnerstwa · 3M ARR', color: '#34C759', current: false },
           { q: '2028', title: 'Scale', desc: '5–9 rynków CEE · Financing round · 15M ARR', color: '#FF9500', current: false },
@@ -769,40 +780,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
   );
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
-
-  // Counter animation on hero stats
-  // hero-seq-5 becomes visible at ~1.7s (0.7s delay + 1s anim), so wait for that
-  const counterEls = document.querySelectorAll('[data-count]');
-
-  function runCounter(el: HTMLElement) {
-    const target = parseInt(el.dataset.count || '0');
-    const suffix = el.dataset.suffix || '';
-    const duration = 3800;
-    const start = performance.now();
-
-    function format(n: number) {
-      return n.toLocaleString('pl-PL').replace(/\u00a0/g, ' ') + suffix;
-    }
-
-    // Smooth single curve: fast middle, gentle start, very slow last stretch
-    function ease(t: number): number {
-      return 1 - Math.pow(1 - t, 6);
-    }
-
-    function animate(now: number) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const current = Math.round(target * ease(progress));
-      el.textContent = format(current);
-      if (progress < 1) requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-  }
-
-  // Delay counter start to sync with hero-seq-5 reveal (visible ~1.7s after load)
-  setTimeout(() => {
-    counterEls.forEach(el => runCounter(el as HTMLElement));
-  }, 500);
 
   // Staggered FK names
   const fkStagger = document.querySelector('.fk-stagger');

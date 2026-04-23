@@ -112,7 +112,7 @@ Insert GT (produkt firmy InsERT) korzysta z formatu wymiany danych **EDI++**. Pl
 | Rozszerzenie pliku   | `.epp`                           |
 | Kodowanie            | **Windows-1250** (NIE UTF-8!)    |
 | Końce linii          | **CRLF** (`\r\n`)               |
-| Separator dziesiętny | **przecinek** (np. `0,8358`)     |
+| Separator dziesiętny | **przecinek** (np. `1,15`)       |
 | Format daty          | `YYYY-MM-DD` (np. `2026-04-15`) |
 | Separator pól        | znak `=` (klucz=wartość)         |
 | Komentarze           | linie zaczynające się od `;`     |
@@ -151,7 +151,7 @@ MARKA=Toyota
 MODEL=Corolla
 POJEMNOSC=1496
 KATEGORIA=SAMOCHOD_POWYZEJ_900
-STAWKA_ZA_KM=0,8358
+STAWKA_ZA_KM=1,15
 WLASCICIEL=PRACOWNIK
 
 [OKRES]
@@ -167,8 +167,8 @@ TRASA_SKAD=Warszawa, ul. Marszałkowska 1
 TRASA_DOKAD=Warszawa, ul. Puławska 100
 CEL_WYJAZDU=Spotkanie z klientem ABC
 KILOMETRY=12,50
-STAWKA=0,8358
-KWOTA=10,45
+STAWKA=1,15
+KWOTA=14,38
 
 [POZYCJA]
 LP=2
@@ -177,14 +177,14 @@ TRASA_SKAD=Warszawa, ul. Marszałkowska 1
 TRASA_DOKAD=Łódź, ul. Piotrkowska 50
 CEL_WYJAZDU=Szkolenie pracowników
 KILOMETRY=137,00
-STAWKA=0,8358
-KWOTA=114,50
+STAWKA=1,15
+KWOTA=157,55
 
 [PODSUMOWANIE]
 LICZBA_POZYCJI=2
 SUMA_KILOMETROW=149,50
-SUMA_KWOT=124,95
-STAWKA_ZA_KM=0,8358
+SUMA_KWOT=171,93
+STAWKA_ZA_KM=1,15
 ```
 
 ### Opis pól poszczególnych sekcji
@@ -593,15 +593,14 @@ class ComarchOptimaIntegration(AbstractFKIntegration):
 
 ## Stawki za km
 
-Stawki za 1 km przebiegu pojazdu niebędącego własnością pracodawcy (zgodnie z Rozporządzeniem Ministra Infrastruktury):
+Stawki za 1 km przebiegu pojazdu niebędącego własnością pracodawcy (Rozporządzenie Ministra Infrastruktury z 22.12.2022 r., Dz.U. 2023 poz. 5, obowiązuje od 17.01.2023):
 
-| Kategoria pojazdu                     | Stawka za km (PLN) |
-|---------------------------------------|---------------------|
-| Samochód osobowy o pojemności ≤ 900 cm³  | **0,5214**         |
-| Samochód osobowy o pojemności > 900 cm³  | **0,8358**         |
-| Samochód ciężarowy                       | **0,8358**         |
-| Motocykl                                 | **0,2302**         |
-| Motorower                                | **0,1382**         |
+| Kategoria pojazdu                        | Stawka za km (PLN) |
+|------------------------------------------|---------------------|
+| Samochód osobowy o pojemności ≤ 900 cm³  | **0,89**            |
+| Samochód osobowy o pojemności > 900 cm³  | **1,15**            |
+| Motocykl                                 | **0,69**            |
+| Motorower                                | **0,42**            |
 
 ### Konfiguracja w BusiKM
 
