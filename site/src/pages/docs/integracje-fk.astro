@@ -7,13 +7,14 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
     <h1>Integracja z systemami FK</h1>
 
     <h2>1. Przegląd</h2>
-    <p>BusiKM eksportuje dane kilometrówek i delegacji do polskich systemów FK. Eliminacja ręcznego przepisywania.</p>
+    <p>BusiKM eksportuje ewidencję przebiegu i faktury paliwowe do polskich systemów FK. Dane zbierane automatycznie przez GPS trafiają do systemu księgowego jednym kliknięciem — bez ręcznego przepisywania.</p>
     <table>
-      <thead><tr><th>System</th><th>Format</th><th>Faza</th></tr></thead>
+      <thead><tr><th>System</th><th>Format eksportu</th><th>Metoda importu</th><th>Faza</th></tr></thead>
       <tbody>
-        <tr><td><strong>Insert GT / Rewizor GT / nexo</strong></td><td>EDI++ (.epp)</td><td>MVP (Sprint 5)</td></tr>
-        <tr><td>Comarch ERP Optima</td><td>REST API</td><td>Post-MVP (maj 2026)</td></tr>
-        <tr><td>Symfonia</td><td>XML/CSV</td><td>Post-MVP (maj 2026)</td></tr>
+        <tr><td><strong>Insert GT / Rewizor GT / nexo</strong></td><td>EPP (EDI++)</td><td>Operacje &rarr; Dodaj na podstawie &rarr; plik .epp</td><td>MVP (Sprint 5)</td></tr>
+        <tr><td>Comarch ERP Optima</td><td>XML</td><td>Narzędzia &rarr; Importy &rarr; Import z pliku XML</td><td>Post-MVP (maj 2026)</td></tr>
+        <tr><td>Symfonia FK</td><td>TXT (szablon AMS)</td><td>Księgowość &rarr; Import specjalny &rarr; plik + szablon</td><td>Post-MVP (maj 2026)</td></tr>
+        <tr><td>wFirma</td><td>REST API</td><td>Automatyczna synchronizacja</td><td>Rok 2</td></tr>
       </tbody>
     </table>
 
@@ -25,7 +26,7 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
     def export_mileage_log(self, mileage_log) -> bytes: ...
 
     @abstractmethod
-    def export_delegation(self, delegation) -> bytes: ...
+    def export_fuel_invoices(self, invoices) -> bytes: ...
 
     @abstractmethod
     def validate_data(self, data: dict) -> list[str]: ...
@@ -35,73 +36,151 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
 
 # Implementacje:
 class InsertGTIntegration(AbstractFKIntegration): ...
-class OptimaPKIntegration(AbstractFKIntegration): ...
+class ComarchOptimaIntegration(AbstractFKIntegration): ...
 class SymfoniaIntegration(AbstractFKIntegration): ...
 class WFirmaIntegration(AbstractFKIntegration): ...</code></pre>
 
-    <h2>3. Insert GT — format EDI++</h2>
+    <h2>3. Co eksportujemy</h2>
+    <p>Każdy eksport zawiera dane do dwóch osobnych rozliczeń:</p>
+    <table>
+      <thead><tr><th>Dane</th><th>Podstawa prawna</th><th>Co zawiera</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ewidencja przebiegu</strong></td><td>Art. 86a ustawy o VAT</td><td>Daty, trasy, cele, km, stawki, kwoty, kierowca, potwierdzenie</td></tr>
+        <tr><td><strong>Faktury paliwowe</strong></td><td>Art. 86a + VAT-26</td><td>Nr faktury, NIP kontrahenta, netto/VAT/brutto, % odliczenia</td></tr>
+        <tr><td><strong>Rozliczenie kosztów PIT</strong></td><td>Art. 23 ust. 7 ustawy o PIT</td><td>Suma km &times; stawka wg Dz.U. 2023 poz. 5</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Insert GT — format EPP (EDI++)</h2>
     <h3>Wymagania techniczne</h3>
     <table>
       <thead><tr><th>Parametr</th><th>Wartość</th></tr></thead>
       <tbody>
         <tr><td>Kodowanie</td><td>Windows-1250</td></tr>
         <tr><td>Końce linii</td><td>CRLF (\r\n)</td></tr>
-        <tr><td>Separator pól</td><td>| (pipe)</td></tr>
+        <tr><td>Separator pól</td><td>= (klucz=wartość)</td></tr>
         <tr><td>Separator dziesiętny</td><td>, (przecinek)</td></tr>
-        <tr><td>Format daty</td><td>RRRR-MM-DD</td></tr>
+        <tr><td>Format daty</td><td>yyyymmddhhnnss</td></tr>
         <tr><td>Rozszerzenie pliku</td><td>.epp</td></tr>
+        <tr><td>Import w programie</td><td>Operacje &rarr; Dodaj na podstawie &rarr; wskaż plik .epp</td></tr>
       </tbody>
     </table>
 
-    <h3>Struktura pliku kilometrówki</h3>
+    <h3>Struktura pliku EPP</h3>
+    <p>Plik EPP zawiera dokumenty typu <strong>FZ (faktura zakupu)</strong> — jedną sekcję per faktura paliwowa plus pozycję ewidencji przebiegu:</p>
     <pre><code>[NAGLOWEK]
-TYP=EWIDENCJA_PRZEBIEGU
 WERSJA=1.0
-DATA_EXPORTU=2026-07-15
-FIRMA_NIP=1234567890
-FIRMA_NAZWA=Transport ABC Sp. z o.o.
+TYP=FZ
+DATA_EXPORTU=20260715120000
 
-[POJAZD]
-REJESTRACJA=WA 12345
-MARKA=Mercedes-Benz
-MODEL=Sprinter 316 CDI
-POJEMNOSC=2143
-NUMER_VIN=WDB9066351S123456
-DMC=3500
+[FIRMA]
+NIP=1234567890
+NAZWA=Transport ABC Sp. z o.o.
+ADRES=ul. Przemysłowa 12, 00-001 Warszawa
 
-[EWIDENCJA]
-DATA|CEL|TRASA_SKAD|TRASA_DOKAD|KM|STAWKA|KWOTA|KIEROWCA|UWAGI
-2026-07-01|Dostawa towaru|Warszawa|Kraków|295,5|1,15|339,8|Jan Kowalski|
-2026-07-02|Odbiór paczek|Kraków|Łódź|260,0|1,15|299,0|Jan Kowalski|
-2026-07-03|Serwis|Łódź|Warszawa|135,8|1,15|156,2|Jan Kowalski|pilne
+[DOKUMENT]
+TYP_DOKUMENTU=FZ
+NUMER_FAKTURY=FV/2026/07/001
+DATA_WYSTAWIENIA=20260701
+DATA_OPERACJI=20260701
+NIP_KONTRAHENTA=9876543210
+NAZWA_KONTRAHENTA=Shell Polska Sp. z o.o.
+WARTOSC_NETTO=487,80
+STAWKA_VAT=23
+KWOTA_VAT=112,19
+WARTOSC_BRUTTO=600,00
+ODLICZENIE_VAT=100
+OPIS=Paliwo WA 12345 lipiec 2026
 
-[PODSUMOWANIE]
-RAZEM_KM=691,3
-RAZEM_KWOTA=795,0</code></pre>
+[EWIDENCJA_PRZEBIEGU]
+NR_REJESTRACYJNY=WA 12345
+OKRES_OD=20260701
+OKRES_DO=20260731
+KM_LACZNIE=691,3
+STAWKA_KM=1,15
+WARTOSC_KM=795,0
+KIEROWCA=Jan Kowalski
+OPIS=Kilometrówka WA 12345 07/2026: 691,3 km × 1,15 zł/km = 795,00 zł</code></pre>
 
-    <h2>4. Mapowanie BusiKM → EDI++</h2>
+    <h2>5. Comarch ERP Optima — format XML</h2>
+    <h3>Import w programie</h3>
+    <p>Narzędzia &rarr; Importy &rarr; Import z pliku XML</p>
+
+    <h3>Struktura pliku XML</h3>
+    <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Import&gt;
+  &lt;Dokument typ="FZ"&gt;
+    &lt;NumerFaktury&gt;FV/2026/07/001&lt;/NumerFaktury&gt;
+    &lt;DataWystawienia&gt;2026-07-01&lt;/DataWystawienia&gt;
+    &lt;DataOperacji&gt;2026-07-01&lt;/DataOperacji&gt;
+    &lt;Firma&gt;
+      &lt;NIP&gt;1234567890&lt;/NIP&gt;
+      &lt;Nazwa&gt;Transport ABC Sp. z o.o.&lt;/Nazwa&gt;
+    &lt;/Firma&gt;
+    &lt;Kontrahent&gt;
+      &lt;NIP&gt;9876543210&lt;/NIP&gt;
+      &lt;Nazwa&gt;Shell Polska Sp. z o.o.&lt;/Nazwa&gt;
+    &lt;/Kontrahent&gt;
+    &lt;WartoscNetto&gt;487.80&lt;/WartoscNetto&gt;
+    &lt;StawkaVAT&gt;23&lt;/StawkaVAT&gt;
+    &lt;KwotaVAT&gt;112.19&lt;/KwotaVAT&gt;
+    &lt;WartoscBrutto&gt;600.00&lt;/WartoscBrutto&gt;
+    &lt;OdliczenieVAT&gt;100&lt;/OdliczenieVAT&gt;
+    &lt;Opis&gt;Paliwo WA 12345 lipiec 2026&lt;/Opis&gt;
+  &lt;/Dokument&gt;
+  &lt;EwidencjaPrzebiegu&gt;
+    &lt;NrRejestracyjny&gt;WA 12345&lt;/NrRejestracyjny&gt;
+    &lt;OkresOd&gt;2026-07-01&lt;/OkresOd&gt;
+    &lt;OkresDo&gt;2026-07-31&lt;/OkresDo&gt;
+    &lt;KmLacznie&gt;691.3&lt;/KmLacznie&gt;
+    &lt;StawkaKm&gt;1.15&lt;/StawkaKm&gt;
+    &lt;WartoscKm&gt;795.00&lt;/WartoscKm&gt;
+    &lt;Kierowca&gt;Jan Kowalski&lt;/Kierowca&gt;
+  &lt;/EwidencjaPrzebiegu&gt;
+&lt;/Import&gt;</code></pre>
+
+    <h2>6. Symfonia FK — format TXT z szablonem AMS</h2>
+    <h3>Import w programie</h3>
+    <p>Księgowość &rarr; Import specjalny &rarr; wskaż plik TXT i szablon AMS. Szablon konfiguruje się raz — przy kolejnych importach księgowa tylko wskazuje plik.</p>
+
+    <h3>Struktura pliku TXT</h3>
+    <p>Trzy typy rekordów, rozdzielane średnikami:</p>
+    <pre><code># Rekord DOK — dokument (faktura zakupu)
+DOK;2026-07-01;FV/2026/07/001;9876543210;Shell Polska;487,80;112,19;600,00;Paliwo WA 12345
+
+# Rekord VAT — pozycja rejestru VAT
+VAT;23;487,80;112,19;100
+
+# Rekord KM — ewidencja przebiegu (kilometrówka)
+KM;WA 12345;691,3;1,15;795,00;Jan Kowalski;2026-07-01;2026-07-31</code></pre>
+
+    <h2>7. Mapowanie danych BusiKM &rarr; FK</h2>
     <table>
-      <thead><tr><th>Pole EDI++</th><th>Źródło BusiKM</th><th>Transformacja</th></tr></thead>
+      <thead><tr><th>Dane FK</th><th>Źródło w BusiKM</th><th>Transformacja</th></tr></thead>
       <tbody>
-        <tr><td>DATA</td><td>Trip.start_time</td><td>Format RRRR-MM-DD</td></tr>
-        <tr><td>CEL</td><td>Trip.purpose</td><td>Mapowanie enum → tekst</td></tr>
-        <tr><td>TRASA_SKAD</td><td>Trip.start_address</td><td>Reverse geocoding</td></tr>
-        <tr><td>TRASA_DOKAD</td><td>Trip.end_address</td><td>Reverse geocoding</td></tr>
-        <tr><td>KM</td><td>Trip.distance_km</td><td>Zaokrąglenie do 1 miejsca, przecinek</td></tr>
-        <tr><td>STAWKA</td><td>MileageRate.rate_per_km</td><td>Aktualna stawka MF</td></tr>
-        <tr><td>KWOTA</td><td>KM × STAWKA</td><td>Obliczenie, zaokrąglenie do 1 miejsca</td></tr>
-        <tr><td>KIEROWCA</td><td>User.full_name</td><td>Imię + Nazwisko</td></tr>
+        <tr><td>Nr faktury</td><td>FuelInvoice.number</td><td>Bezpośrednie</td></tr>
+        <tr><td>Data faktury</td><td>FuelInvoice.date</td><td>Format wg systemu FK</td></tr>
+        <tr><td>NIP kontrahenta</td><td>FuelInvoice.vendor_nip</td><td>Bezpośrednie</td></tr>
+        <tr><td>Netto / VAT / brutto</td><td>FuelInvoice.net / vat / gross</td><td>Decimal(10,2)</td></tr>
+        <tr><td>% odliczenia VAT</td><td>Vehicle.vat26_status</td><td>50% jeśli brak VAT-26, 100% jeśli zgłoszony</td></tr>
+        <tr><td>Nr rejestracyjny</td><td>Vehicle.registration</td><td>Bezpośrednie</td></tr>
+        <tr><td>Km łącznie</td><td>SUM(Trip.distance_km)</td><td>Per pojazd per miesiąc</td></tr>
+        <tr><td>Stawka km</td><td>MileageRate.rate_per_km</td><td>Wg daty przejazdu z tabeli stawek historycznych</td></tr>
+        <tr><td>Wartość km</td><td>Km &times; stawka</td><td>Obliczenie</td></tr>
+        <tr><td>Kierowca</td><td>User.full_name</td><td>Imię + Nazwisko</td></tr>
       </tbody>
     </table>
 
-    <h2>5. Kodowanie znaków polskich</h2>
-    <p>Insert GT wymaga <strong>Windows-1250</strong>. Python konwersja:</p>
-    <pre><code>content = edi_content.encode('windows-1250', errors='replace')
-# Znaki niedostępne w Win-1250 zastępowane '?'</code></pre>
-    <p>Mapowanie znaków: ą→ą, ć→ć, ę→ę, ł→ł, ń→ń, ó→ó, ś→ś, ź→ź, ż→ż (poprawne w Windows-1250).</p>
+    <h2>8. Kodowanie znaków polskich</h2>
+    <p>Insert GT wymaga <strong>Windows-1250</strong>. Comarch i Symfonia — UTF-8. Konwersja w Pythonie:</p>
+    <pre><code># Insert GT — Windows-1250
+content = edi_content.encode('windows-1250', errors='replace')
 
-    <h2>6. Endpoint eksportu</h2>
-    <pre><code>{`POST /api/v1/exports/mileage-log/
+# Comarch / Symfonia — UTF-8 (domyślne)
+content = xml_content.encode('utf-8')</code></pre>
+
+    <h2>9. Endpoint eksportu</h2>
+    <pre><code>{`POST /api/v1/exports/
 Content-Type: application/json
 Authorization: Bearer <token>
 
@@ -109,30 +188,43 @@ Authorization: Bearer <token>
   "vehicle_id": "uuid",
   "month": 7,
   "year": 2026,
-  "provider": "insert_gt",
-  "format": "edi_plus_plus"
+  "provider": "insert_gt",   // insert_gt | optima | symfonia
+  "include_invoices": true    // dołącz faktury paliwowe
 }
 
 → 200 OK (application/octet-stream, Content-Disposition: attachment)`}</code></pre>
 
-    <h2>7. Historia eksportów</h2>
+    <h2>10. Historia eksportów</h2>
     <table>
       <thead><tr><th>Pole</th><th>Typ</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td>provider</td><td>CharField</td><td>insert_gt / optima / symfonia / ksef</td></tr>
-        <tr><td>export_type</td><td>CharField</td><td>mileage_log / delegation</td></tr>
+        <tr><td>provider</td><td>CharField</td><td>insert_gt / optima / symfonia / wfirma</td></tr>
+        <tr><td>export_type</td><td>CharField</td><td>mileage_log / invoices / combined</td></tr>
         <tr><td>status</td><td>CharField</td><td>pending / success / failed</td></tr>
         <tr><td>file_url</td><td>URLField</td><td>Presigned URL do pobrania (TTL 15 min)</td></tr>
         <tr><td>error_message</td><td>TextField</td><td>Opis błędu (jeśli failed)</td></tr>
       </tbody>
     </table>
 
-    <h2>8. Planowane integracje (Post-MVP)</h2>
+    <h2>11. Stawki kilometrówki</h2>
+    <p>Stawki za 1 km przebiegu wg Rozporządzenia Ministra Infrastruktury z 22.12.2022 r. (Dz.U. 2023 poz. 5), obowiązują od 17.01.2023:</p>
     <table>
-      <thead><tr><th>System</th><th>Metoda</th><th>Planowany sprint</th></tr></thead>
+      <thead><tr><th>Kategoria pojazdu</th><th>Stawka za km (PLN)</th></tr></thead>
       <tbody>
-        <tr><td>Comarch ERP Optima</td><td>REST API (XL API)</td><td>Post-MVP (maj 2026)</td></tr>
-        <tr><td>Symfonia</td><td>Import XML/CSV</td><td>Post-MVP (maj 2026)</td></tr>
+        <tr><td>Samochód osobowy &le; 900 cm&sup3;</td><td><strong>0,89</strong></td></tr>
+        <tr><td>Samochód osobowy &gt; 900 cm&sup3;</td><td><strong>1,15</strong></td></tr>
+        <tr><td>Motocykl</td><td><strong>0,69</strong></td></tr>
+        <tr><td>Motorower</td><td><strong>0,42</strong></td></tr>
+      </tbody>
+    </table>
+    <p>System dobiera stawkę obowiązującą w dniu przejazdu z tabeli <code>mileage_rates</code> (pole <code>valid_from</code>). Rekordów nie usuwamy — tylko dodajemy nowe z nową datą <code>valid_from</code> przy każdej nowelizacji rozporządzenia.</p>
+
+    <h2>12. Planowane integracje</h2>
+    <table>
+      <thead><tr><th>System</th><th>Metoda</th><th>Planowany termin</th></tr></thead>
+      <tbody>
+        <tr><td>Comarch ERP Optima</td><td>XML import</td><td>Post-MVP (maj 2026)</td></tr>
+        <tr><td>Symfonia FK</td><td>TXT + szablon AMS</td><td>Post-MVP (maj 2026)</td></tr>
         <tr><td>wFirma</td><td>REST API</td><td>Rok 2</td></tr>
       </tbody>
     </table>
