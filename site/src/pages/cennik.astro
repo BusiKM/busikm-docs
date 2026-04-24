@@ -1,478 +1,219 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-
-const checkGreen = '<path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>';
-const checkWhite = '<path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>';
-const xMark = '<line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/>';
-
-interface Feature {
-  name: string;
-  free: string;
-  starter: string;
-  pro: string;
-  enterprise: string;
-}
-
-const featureGroups: { title: string; features: Feature[] }[] = [
-  {
-    title: 'Autoryzacja i konto',
-    features: [
-      { name: 'Rejestracja + logowanie (JWT)', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Weryfikacja e-mail', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Zarządzanie użytkownikami', free: '1 kierowca', starter: 'do 10', pro: 'do 50', enterprise: 'Bez limitu' },
-    ],
-  },
-  {
-    title: 'Firma i subskrypcja',
-    features: [
-      { name: 'CRUD firmy', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Multi-tenant (biuro rachunkowe)', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-      { name: 'Stripe billing', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Flota',
-    features: [
-      { name: 'Pojazdy (CRUD)', free: '1 pojazd', starter: 'do 10', pro: 'do 50', enterprise: 'Bez limitu' },
-      { name: 'Dokumenty pojazdów', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Alerty OC / przegląd / tachograf', free: 'x', starter: 'push', pro: 'push + e-mail', enterprise: 'push + e-mail + SMS' },
-    ],
-  },
-  {
-    title: 'Kierowcy',
-    features: [
-      { name: 'Kierowcy (CRUD)', free: '1 kierowca', starter: 'do 10', pro: 'do 50', enterprise: 'Bez limitu' },
-      { name: 'Zaproszenia e-mail', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Alerty prawa jazdy (PJ)', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Trasy',
-    features: [
-      { name: 'Start/stop trasy + GPS', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Obliczanie dystansu', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Klasyfikacja (służbowa/prywatna)', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Zdjęcia licznika', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Dokumenty i raporty',
-    features: [
-      { name: 'Ewidencja przebiegu PDF (MF)', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Raporty kosztów floty (CSV+PDF)', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Raporty delegacji (CSV+PDF)', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Dashboard zgodności', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Niestandardowe raporty', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Eksport FK',
-    features: [
-      { name: 'Insert GT EDI++ (ewidencja)', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'EDI++ delegacje', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Comarch ERP Optima', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-      { name: 'Symfonia', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Aplikacja mobilna',
-    features: [
-      { name: 'Logowanie + rejestracja tras', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'GPS background + aparat', free: 'check', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Powiadomienia push', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Podgląd floty', free: 'Ograniczony', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Tryb offline (WatermelonDB)', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-    ],
-  },
-  {
-    title: 'Panel webowy',
-    features: [
-      { name: 'Dashboard', free: 'Podstawowy', starter: 'check', pro: 'check', enterprise: 'Zagregowany AF' },
-      { name: 'Zarządzanie flotą', free: '1 pojazd', starter: 'do 10', pro: 'do 50', enterprise: 'Bez limitu' },
-      { name: 'Pobieranie raportów', free: 'x', starter: 'PDF', pro: 'PDF + CSV', enterprise: 'PDF + CSV + custom' },
-      { name: 'Zarządzanie użytkownikami', free: 'x', starter: 'check', pro: 'check', enterprise: 'check' },
-      { name: 'Eksport FK (UI)', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Mapa w czasie rzeczywistym', free: 'x', starter: 'x', pro: 'check', enterprise: 'check' },
-      { name: 'Przełączanie klientów (AF)', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-      { name: 'Dostęp API', free: 'x', starter: 'x', pro: 'x', enterprise: 'check' },
-    ],
-  },
-];
-
-function cellHtml(val: string, isPro: boolean): string {
-  if (val === 'check') return isPro ? checkWhite : checkGreen;
-  if (val === 'x') return xMark;
-  return '';
-}
-function cellText(val: string): string | null {
-  if (val === 'check' || val === 'x') return null;
-  return val;
-}
 ---
 
-<MarketingLayout title="Cennik" description="Transparentny cennik BusiKM -- placisz za pojazd. 4 plany subskrypcji: Free, Starter, Professional, Enterprise. 14-dniowy trial gratis.">
+<MarketingLayout title="Cennik — BusiKM" description="BusiKM — elektroniczna kilometrówka GPS dla firm i flot. Od 19 zł/pojazd/mies. Dla biur rachunkowych: firmy klientów dostają dostęp gratis. Zgodność z art. 86a ustawy o VAT.">
 
 <!-- ======================== HERO ======================== -->
 <section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
-  <!-- Ambient glow -->
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#005CE8]/[0.04] blur-[140px]"></div>
   </div>
 
   <div class="relative z-10 max-w-[820px] mx-auto text-center">
-    <!-- Pill badge -->
     <div class="reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-8">
       <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
-      <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Cennik &middot; model per-vehicle/month</span>
+      <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Cennik &middot; model per pojazd / miesiąc</span>
     </div>
 
     <h1 class="reveal font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
       Transparentny cennik.<br/>Płacisz za&nbsp;pojazd.
     </h1>
 
-    <p class="reveal text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[560px] mx-auto">
+    <p class="reveal text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[560px] mx-auto mb-10">
       Przewidywalne koszty, które skalują się z Twoją flotą. Bez ukrytych opłat. 14-dniowy trial bez karty kredytowej.
     </p>
+
+    <!-- Toggle -->
+    <div class="reveal inline-flex items-center bg-[#F5F5F7] rounded-full p-1">
+      <button id="tab-br" class="px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 bg-[#005CE8] text-white">Dla biur rachunkowych</button>
+      <button id="tab-firms" class="px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 text-[#6E6E73] hover:text-[#1D1D1F]">Dla firm</button>
+    </div>
   </div>
 </section>
 
-<!-- ======================== PRICING CARDS ======================== -->
-<section class="relative bg-white px-5 pb-24">
-  <div class="max-w-[1120px] mx-auto">
-
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+<!-- ======================== PRICING — DLA FIRM ======================== -->
+<section id="pricing-firms" class="relative bg-white px-5 pb-24 hidden">
+  <div class="max-w-[960px] mx-auto">
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 items-start">
 
       <!-- Free -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] flex flex-col">
+      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
         <div class="mb-6">
           <h3 class="font-display text-[1.1rem] font-semibold text-[#1D1D1F] mb-1">Free</h3>
-          <p class="text-[13px] text-[#86868B]">Na start, jeden pojazd</p>
+          <p class="text-[13px] text-[#86868B]">Testowanie, jednoosobowe działalności</p>
         </div>
         <div class="mb-6">
           <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-[#1D1D1F]">0</span>
-          <span class="text-[15px] font-semibold text-[#86868B] ml-1">PLN</span>
+          <span class="text-[15px] font-semibold text-[#86868B] ml-1">zł</span>
         </div>
         <ul class="space-y-3 text-[13.5px] text-[#6E6E73] mb-8 flex-1">
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            1 pojazd, 1 kierowca
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Podstawowe śledzenie GPS
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ewidencja przebiegu
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span class="text-[#D2D2D7]">Brak raportów i eksportu FK</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span class="text-[#D2D2D7]">Brak push i mapy</span>
-          </li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>1 pojazd, 1 kierowca</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>GPS tracking + ewidencja przebiegu</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Klasyfikacja tras (służbowa/prywatna)</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zdjęcia licznika</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/></svg><span class="text-[#C7C7CC]">Brak raportów PDF, eksportu FK, push, mapy</span></li>
         </ul>
-        <a href="#trial" class="block text-center border border-[#D2D2D7] text-[#1D1D1F] font-semibold text-[14px] px-5 py-3 rounded-full hover:bg-[#F5F5F7] hover:border-[#B0B0B8] transition-all">
-          Rozpocznij za darmo
-        </a>
+        <a href="#trial" class="block text-center border border-[#D2D2D7] text-[#1D1D1F] font-semibold text-[14px] px-5 py-3 rounded-full hover:bg-[#F5F5F7] transition-all">Rozpocznij za darmo</a>
       </div>
 
       <!-- Starter -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] flex flex-col">
+      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
         <div class="mb-6">
           <h3 class="font-display text-[1.1rem] font-semibold text-[#1D1D1F] mb-1">Starter</h3>
-          <p class="text-[13px] text-[#86868B]">Małe floty do 10 pojazdów</p>
+          <p class="text-[13px] text-[#86868B]">Małe floty 2–10 pojazdów</p>
         </div>
         <div class="mb-1">
-          <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-[#1D1D1F]">59</span>
-          <span class="text-[15px] font-semibold text-[#86868B] ml-1">PLN</span>
+          <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-[#1D1D1F]">19</span>
+          <span class="text-[15px] font-semibold text-[#86868B] ml-1">zł</span>
         </div>
-        <p class="text-[12px] text-[#86868B] mb-6">za pojazd / miesiąc &middot; min. 149 PLN/mies.</p>
+        <p class="text-[12px] text-[#86868B] mb-6">za pojazd / miesiąc &middot; min. 38 zł/mies.</p>
         <ul class="space-y-3 text-[13.5px] text-[#6E6E73] mb-8 flex-1">
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Do 10 pojazdów i kierowców
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Raporty PDF
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Powiadomienia push
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Alerty dokumentów
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Zaproszenia dla kierowców
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span class="text-[#D2D2D7]">Brak eksportu FK i mapy</span>
-          </li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Wszystko z Free</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Do 10 pojazdów i kierowców</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Raporty PDF wg wzoru MF (art. 86a)</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eksport CSV</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Alerty dokumentów (push)</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zaproszenia dla kierowców</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><line x1="5" y1="5" x2="11" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="5" x2="5" y2="11" stroke="#D2D2D7" stroke-width="1.5" stroke-linecap="round"/></svg><span class="text-[#C7C7CC]">Brak eksportu FK i mapy real-time</span></li>
         </ul>
-        <a href="#trial" class="block text-center bg-[#1D1D1F] text-white font-semibold text-[14px] px-5 py-3 rounded-full hover:bg-[#333] transition-all">
-          Wypróbuj 14 dni
-        </a>
+        <a href="#trial" class="block text-center bg-[#1D1D1F] text-white font-semibold text-[14px] px-5 py-3 rounded-full hover:bg-[#333] transition-all">Wypróbuj 14 dni za darmo</a>
       </div>
 
-      <!-- Professional (FEATURED) -->
+      <!-- Professional -->
       <div class="rounded-[20px] p-7 border border-[#005CE8] bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.30)] transition-all duration-300 sm:scale-[1.04] flex flex-col relative">
-        <!-- Badge -->
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
           <span class="bg-[#34C759] text-white text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap tracking-wide uppercase">Najpopularniejszy</span>
         </div>
         <div class="mb-6 mt-2">
           <h3 class="font-display text-[1.1rem] font-semibold text-white mb-1">Professional</h3>
-          <p class="text-[13px] text-white/70">Średnie floty do 50 pojazdów</p>
+          <p class="text-[13px] text-white/70">Floty 11–50 pojazdów, firmy z księgową</p>
         </div>
         <div class="mb-1">
-          <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-white">89</span>
-          <span class="text-[15px] font-semibold text-white/70 ml-1">PLN</span>
+          <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-white">29</span>
+          <span class="text-[15px] font-semibold text-white/70 ml-1">zł</span>
         </div>
-        <p class="text-[12px] text-white/60 mb-6">za pojazd / miesiąc &middot; min. 249 PLN/mies.</p>
+        <p class="text-[12px] text-white/60 mb-6">za pojazd / miesiąc &middot; min. 319 zł/mies.</p>
         <ul class="space-y-3 text-[13.5px] text-white/90 mb-8 flex-1">
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Do 50 pojazdów i kierowców
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Raporty PDF + CSV/Excel
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Pełny eksport FK (EDI++)
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Mapa w czasie rzeczywistym
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Dashboard zgodności
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Tryb offline + raporty zaawansowane
-          </li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Wszystko ze Starter</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Do 50 pojazdów i kierowców</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pełny eksport FK: Insert GT EDI++</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Mapa floty w czasie rzeczywistym</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dashboard zgodności</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tryb offline + raporty PDF/CSV/Excel</li>
+          <li class="flex items-start gap-2.5"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Alerty dokumentów — push + e-mail</li>
         </ul>
-        <a href="#trial" class="block text-center bg-white text-[#005CE8] font-bold text-[14px] px-5 py-3 rounded-full hover:bg-white/90 transition-all">
-          Wypróbuj 14 dni
-        </a>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] flex flex-col">
-        <div class="mb-6">
-          <h3 class="font-display text-[1.1rem] font-semibold text-[#1D1D1F] mb-1">Enterprise</h3>
-          <p class="text-[13px] text-[#86868B]">Duże floty i biura rachunkowe</p>
-        </div>
-        <div class="mb-1">
-          <span class="font-display text-[2.8rem] font-bold tracking-[-0.04em] text-[#1D1D1F]">149</span>
-          <span class="text-[15px] font-semibold text-[#86868B] ml-1">PLN</span>
-        </div>
-        <p class="text-[12px] text-[#86868B] mb-6">za pojazd / miesiąc &middot; min. indywidualnie</p>
-        <ul class="space-y-3 text-[13.5px] text-[#6E6E73] mb-8 flex-1">
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Bez limitu pojazdów i kierowców
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Multi-tenant (biura rachunkowe)
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Dostęp API + white-label
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Comarch, Symfonia
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Niestandardowe raporty
-          </li>
-          <li class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Dedykowane wsparcie
-          </li>
-        </ul>
-        <a href="#trial" class="block text-center bg-[#1D1D1F] text-white font-semibold text-[14px] px-5 py-3 rounded-full hover:bg-[#333] transition-all">
-          Skontaktuj się
-        </a>
+        <a href="#trial" class="block text-center bg-white text-[#005CE8] font-bold text-[14px] px-5 py-3 rounded-full hover:bg-white/90 transition-all">Wypróbuj 14 dni za darmo</a>
       </div>
 
     </div>
 
-    <!-- Annual discount note -->
-    <p class="reveal text-center text-[13.5px] text-[#86868B] mt-10">
-      Przy rozliczeniu rocznym <span class="font-semibold text-[#34C759]">&minus;15%</span> &mdash; Starter 50 PLN, Professional 76 PLN za pojazd/miesiąc.
+    <p class="reveal text-center text-[13px] text-[#86868B] mt-8 max-w-[520px] mx-auto">
+      Ceny przed pełnym wdrożeniem MVP. Po okresie pilotażowym zapytamy użytkowników o optymalny model cenowy. Przy rozliczeniu rocznym <span class="font-semibold text-[#34C759]">&minus;15%</span>.
+    </p>
+    <p class="reveal text-center text-[13px] text-[#86868B] mt-3">
+      Powyżej 50 pojazdów? Napisz do nas: <a href="mailto:kontakt@busikm.pl" class="text-[#005CE8] font-medium hover:underline">kontakt@busikm.pl</a>
     </p>
   </div>
 </section>
 
-<!-- ======================== FEATURE COMPARISON TABLE ======================== -->
-<section class="py-24 bg-[#F5F5F7] px-5">
-  <div class="max-w-[1120px] mx-auto">
+<!-- ======================== PRICING — DLA BIUR RACHUNKOWYCH ======================== -->
+<section id="pricing-br" class="relative bg-white px-5 pb-24">
+  <div class="max-w-[960px] mx-auto">
 
-    <div class="reveal text-center mb-14">
-      <p class="section-label text-[#005CE8]">Porównanie</p>
-      <h2 class="section-title">Szczegółowe porównanie planów</h2>
-      <p class="text-[#6E6E73] mt-4 max-w-[520px] mx-auto text-[15px]">Pełna matryca funkcji na podstawie dokumentacji technicznej BusiKM.</p>
+    <div class="reveal text-center mb-12">
+      <h2 class="font-display text-[clamp(1.6rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+        Model per pojazd. Firmy klientów dostają&nbsp;BusiKM&nbsp;gratis.
+      </h2>
+      <p class="text-[15px] text-[#6E6E73] max-w-[600px] mx-auto leading-relaxed">
+        Płacisz za aktywne pojazdy klientów. Aktywny pojazd = minimum 1 trasa w miesiącu. Twoi klienci otrzymują pełny dostęp Professional bez dodatkowych opłat.
+      </p>
     </div>
 
-    <div class="reveal overflow-x-auto rounded-[20px] border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <table class="w-full text-[13.5px]">
-        <thead>
-          <tr class="border-b border-black/[0.06]">
-            <th class="text-left px-5 py-4 font-semibold text-[#1D1D1F] min-w-[220px]">Funkcja</th>
-            <th class="text-center px-4 py-4 font-semibold text-[#86868B]">Free</th>
-            <th class="text-center px-4 py-4 font-semibold text-[#86868B]">Starter</th>
-            <th class="text-center px-4 py-4 font-semibold text-[#005CE8] bg-[#005CE8]/[0.04]">Professional</th>
-            <th class="text-center px-4 py-4 font-semibold text-[#86868B]">Enterprise</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-black/[0.04]">
-          {featureGroups.map(group => (
-            <>
-              <tr class="bg-[#F5F5F7]">
-                <td colspan="5" class="px-5 py-2.5 font-bold text-[#1D1D1F] text-[11px] uppercase tracking-[0.08em]">{group.title}</td>
-              </tr>
-              {group.features.map(f => (
-                <tr class="hover:bg-[#FAFAFA] transition-colors">
-                  <td class="px-5 py-3 text-[#6E6E73]">{f.name}</td>
-                  <td class="text-center px-4 py-3">
-                    {cellText(f.free) ? (
-                      <span class="text-[12px] text-[#86868B]">{cellText(f.free)}</span>
-                    ) : (
-                      <svg class="w-4 h-4 inline-block" viewBox="0 0 16 16" fill="none" set:html={cellHtml(f.free, false)} />
-                    )}
-                  </td>
-                  <td class="text-center px-4 py-3">
-                    {cellText(f.starter) ? (
-                      <span class="text-[12px] text-[#86868B]">{cellText(f.starter)}</span>
-                    ) : (
-                      <svg class="w-4 h-4 inline-block" viewBox="0 0 16 16" fill="none" set:html={cellHtml(f.starter, false)} />
-                    )}
-                  </td>
-                  <td class="text-center px-4 py-3 bg-[#005CE8]/[0.04]">
-                    {cellText(f.pro) ? (
-                      <span class="text-[12px] text-[#005CE8] font-medium">{cellText(f.pro)}</span>
-                    ) : (
-                      <svg class="w-4 h-4 inline-block" viewBox="0 0 16 16" fill="none" set:html={cellHtml(f.pro, false)} />
-                    )}
-                  </td>
-                  <td class="text-center px-4 py-3">
-                    {cellText(f.enterprise) ? (
-                      <span class="text-[12px] text-[#86868B]">{cellText(f.enterprise)}</span>
-                    ) : (
-                      <svg class="w-4 h-4 inline-block" viewBox="0 0 16 16" fill="none" set:html={cellHtml(f.enterprise, false)} />
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </>
+    <!-- Tier cards -->
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 mb-12">
+      {[
+        { range: '1–50', price: '49', savings: '27' },
+        { range: '51–150', price: '39', savings: '37' },
+        { range: '151+', price: '29', savings: '47' },
+      ].map((t, i) => (
+        <div class:list={['rounded-[20px] p-7 border transition-all duration-300', i === 2 ? 'border-[#005CE8]/20 bg-[#005CE8]/[0.03] shadow-[0_4px_20px_rgba(0,92,232,0.10)]' : 'border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]']}>
+          <p class="text-[12px] font-semibold text-[#86868B] uppercase tracking-[0.06em] mb-3">{t.range} pojazdów</p>
+          <div class="mb-4">
+            <span class="font-display text-[2.2rem] font-bold tracking-[-0.04em] text-[#1D1D1F]">{t.price}</span>
+            <span class="text-[14px] text-[#86868B] ml-1">zł / pojazd / mies.</span>
+          </div>
+          <div class="space-y-2 text-[13px] text-[#6E6E73]">
+            <div class="flex justify-between"><span>Koszt ręczny który eliminujesz</span><span class="font-mono text-[#FF3B30]">76 zł</span></div>
+            <div class="flex justify-between pt-2 border-t border-black/[0.06]"><span class="font-semibold text-[#1D1D1F]">Oszczędność / pojazd / mies.</span><span class="font-mono font-bold text-[#34C759]">+{t.savings} zł</span></div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- What BR gets / What clients get -->
+    <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
+      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+        <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-4">Co dostaje biuro rachunkowe</h3>
+        <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73]">
+          {['Panel multi-tenant (wiele firm)', 'Przełączanie kontekstu między klientami', 'Zbiorczy dashboard wszystkich flot', 'Eksport FK: Insert GT, Comarch, Symfonia', 'Zbiorczy raport PDF / CSV', 'Dashboard oszczędności', 'RBAC — poziomy dostępu per klient', 'Alerty dokumentów dla wszystkich flot'].map(b => (
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{b}</li>
           ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== TRIAL & ONBOARDING ======================== -->
-<section id="trial" class="py-24 bg-white px-5">
-  <div class="max-w-[1120px] mx-auto">
-
-    <div class="reveal text-center mb-14">
-      <p class="section-label text-[#005CE8]">Trial</p>
-      <h2 class="section-title">Wypróbuj bez zobowiązań</h2>
-      <p class="text-[#6E6E73] mt-4 max-w-[520px] mx-auto text-[15px]">Trzy ścieżki testowania BusiKM &mdash; dobierz tę, która pasuje do Twojej sytuacji.</p>
+        </ul>
+      </div>
+      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+        <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-4">Co dostają firmy klienta (gratis)</h3>
+        <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73]">
+          {['Pełny Professional bez opłat', 'Aplikacja mobilna (iOS + Android)', 'Raporty PDF wg wzoru MF', 'Alert VAT-26 przy dodawaniu pojazdu', 'GPS background tracking', 'Tryb offline'].map(b => (
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{b}</li>
+          ))}
+        </ul>
+      </div>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-5">
+    <!-- Trial box -->
+    <div class="reveal rounded-[20px] p-7 bg-[#005CE8]/[0.04] border border-[#005CE8]/15 text-center mb-12">
+      <h3 class="font-display font-bold text-[1.2rem] text-[#1D1D1F] mb-2">3 miesiące gratis</h3>
+      <p class="text-[14.5px] text-[#6E6E73] mb-5 max-w-[480px] mx-auto">Bez warunków, bez karty kredytowej. Pełny dostęp przez cały okres próbny. Po trialu płacisz tylko za aktywne pojazdy klientów.</p>
+      <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#005CE8] text-white font-semibold text-[14px] px-7 py-3.5 rounded-full hover:bg-[#003FAD] transition-all">
+        Zacznij bezpłatny trial
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
 
-      <!-- Reverse trial -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]">
-        <div class="w-11 h-11 rounded-2xl bg-[#005CE8]/[0.08] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <!-- ROI Calculator for BR -->
+    <div class="reveal rounded-[20px] p-7 sm:p-10 bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-6 text-center">Kalkulator oszczędności biura</h3>
+
+      <div class="max-w-[500px] mx-auto mb-8">
+        <div class="flex justify-between items-baseline mb-3">
+          <label class="text-[14px] font-semibold text-[#1D1D1F]">Ile pojazdów obsługujesz u klientów?</label>
+          <span id="br-vehicles-val" class="font-display text-[1.1rem] font-bold text-[#005CE8]">50</span>
         </div>
-        <h3 class="font-display text-[1.05rem] font-semibold text-[#1D1D1F] mb-2">Reverse trial &mdash; 14 dni</h3>
-        <p class="text-[13.5px] text-[#6E6E73] mb-5">
-          Każda nowa firma otrzymuje <span class="font-semibold text-[#1D1D1F]">pełny dostęp do planu Professional</span> przez 14 dni. Po tym czasie automatyczny downgrade do planu Free.
-        </p>
-        <ul class="space-y-2.5 text-[13px] text-[#6E6E73]">
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Wszystkie funkcje Professional
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Bez karty kredytowej
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            +7 dni jeśli 0 tras w trakcie trialu (jednorazowo)
-          </li>
-        </ul>
+        <input type="range" id="br-vehicles" min="10" max="500" value="50" step="10" class="w-full h-1.5 bg-[#E8E8ED] rounded-full appearance-none cursor-pointer accent-[#005CE8] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-[#005CE8] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_2px_6px_rgba(0,92,232,0.3)] [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-[#005CE8] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0" />
+        <div class="flex justify-between text-[11px] text-[#86868B] mt-1"><span>10</span><span>500</span></div>
       </div>
 
-      <!-- Biuro rachunkowe -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]">
-        <div class="w-11 h-11 rounded-2xl bg-[#005CE8]/[0.08] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-4 rounded-2xl bg-[#F5F5F7]">
+          <div class="text-[12px] text-[#86868B] mb-1">Koszt BusiKM / mies.</div>
+          <div id="br-cost" class="font-display text-[1.2rem] font-bold text-[#1D1D1F]">—</div>
         </div>
-        <h3 class="font-display text-[1.05rem] font-semibold text-[#1D1D1F] mb-2">Biuro rachunkowe &mdash; 3 miesiące</h3>
-        <p class="text-[13.5px] text-[#6E6E73] mb-5">
-          Biura rachunkowe otrzymują <span class="font-semibold text-[#1D1D1F]">plan Enterprise za darmo</span> przez 3 miesiące. Klienci biura: 3 miesiące Professional gratis.
-        </p>
-        <ul class="space-y-2.5 text-[13px] text-[#6E6E73]">
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Multi-tenant, eksport FK
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Warunek: min. 3 klientów
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Rabaty grupowe po pilotażu
-          </li>
-        </ul>
+        <div class="p-4 rounded-2xl bg-[#F5F5F7]">
+          <div class="text-[12px] text-[#86868B] mb-1">Koszt ręczny / mies.</div>
+          <div id="br-manual" class="font-display text-[1.2rem] font-bold text-[#FF3B30]">—</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-[#34C759]/[0.06]">
+          <div class="text-[12px] text-[#86868B] mb-1">Oszczędność / mies.</div>
+          <div id="br-monthly" class="font-display text-[1.2rem] font-bold text-[#34C759]">—</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-[#005CE8]/[0.04]">
+          <div class="text-[12px] text-[#86868B] mb-1">Oszczędność / rok</div>
+          <div id="br-yearly" class="font-display text-[1.4rem] font-bold text-[#005CE8]">—</div>
+        </div>
       </div>
 
-      <!-- Auto-extend -->
-      <div class="rounded-[20px] p-7 border border-black/[0.06] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]">
-        <div class="w-11 h-11 rounded-2xl bg-[#005CE8]/[0.08] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-        </div>
-        <h3 class="font-display text-[1.05rem] font-semibold text-[#1D1D1F] mb-2">Automatyczne przedłużenie</h3>
-        <p class="text-[13.5px] text-[#6E6E73] mb-5">
-          Jeśli w trakcie 14-dniowego trialu nie zarejestrujesz żadnej trasy, <span class="font-semibold text-[#1D1D1F]">otrzymasz dodatkowe 7 dni</span> na przetestowanie platformy.
-        </p>
-        <ul class="space-y-2.5 text-[13px] text-[#6E6E73]">
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Jednorazowe przedłużenie
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Warunek: 0 zarejestrowanych tras
-          </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Pełny Professional przez cały okres
-          </li>
-        </ul>
-      </div>
-
+      <p class="text-[11px] text-[#86868B] text-center mt-4 max-w-[560px] mx-auto">Kalkulacja oparta na koszcie 2h pracy księgowej per pojazd miesięcznie przy stawce 38 zł/h (koszt pracodawcy wg danych rynkowych 2026: brutto 5 083 zł + ZUS 19,96% = 6 098 zł / 160h).</p>
     </div>
   </div>
 </section>
@@ -480,64 +221,29 @@ function cellText(val: string): string | null {
 <!-- ======================== FAQ ======================== -->
 <section class="py-24 bg-[#F5F5F7] px-5">
   <div class="max-w-[680px] mx-auto">
-
     <div class="reveal text-center mb-14">
-      <p class="section-label text-[#005CE8]">FAQ</p>
-      <h2 class="section-title">Najczęściej zadawane pytania</h2>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">FAQ</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Najczęściej zadawane pytania</h2>
     </div>
 
     <div class="reveal space-y-3">
-
-      <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
-        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
-          Co się dzieje po zakończeniu trialu?
-          <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed">
-          Po zakończeniu 14-dniowego reverse trialu Twoje konto automatycznie przechodzi na plan <strong class="text-[#1D1D1F]">Free</strong> (1 pojazd, 1 kierowca, brak raportów). Wszystkie dane pozostają zachowane &mdash; nic nie tracisz. W dowolnym momencie możesz przejść na plan płatny i odzyskać dostęp do wszystkich funkcji.
-        </div>
-      </details>
-
-      <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
-        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
-          Czy mogę zmienić plan w trakcie?
-          <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed">
-          Tak. Możesz w dowolnym momencie przejść na wyższy lub niższy plan. Przy upgrade natychmiastowy dostęp do nowych funkcji. Przy downgrade zmiana wchodzi w życie od następnego okresu rozliczeniowego. Rozliczenie jest proporcjonalne (proration).
-        </div>
-      </details>
-
-      <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
-        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
-          Jak wygląda fakturowanie?
-          <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed">
-          Faktura VAT jest generowana automatycznie przy każdej płatności. Rozliczenie odbywa się miesięcznie lub rocznie (z 15% rabatem). Obsługujemy karty płatnicze, BLIK/Przelewy24 oraz przelewy bankowe. Płatności przetwarza Stripe.
-        </div>
-      </details>
-
-      <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
-        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
-          Czy jest minimalna kwota miesięczna?
-          <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed">
-          Tak. Plan Starter ma minimalną opłatę <strong class="text-[#1D1D1F]">149 PLN/miesiąc</strong> (niezależnie od liczby pojazdów), a Professional <strong class="text-[#1D1D1F]">249 PLN/miesiąc</strong>. Firma z 1 pojazdem na planie Starter zapłaci 149 PLN, ale firma z 3+ pojazdami płaci standardowo 59 PLN &times; liczba pojazdów. Enterprise &mdash; minimalna kwota ustalana indywidualnie.
-        </div>
-      </details>
-
-      <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
-        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
-          Co zawiera plan Enterprise dla biur rachunkowych?
-          <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed">
-          Plan Enterprise obejmuje multi-tenant z przełączaniem kontekstu firmy (TenantContextMiddleware), pełny eksport do systemów FK (Comarch, Symfonia), dostęp API, white-label, niestandardowe raporty oraz dedykowane wsparcie. Biura rachunkowe otrzymują 3 miesiące Enterprise gratis (min. 3 klientów).
-        </div>
-      </details>
-
+      {[
+        { q: 'Co się dzieje po zakończeniu trialu?', a: 'Po zakończeniu 14-dniowego reverse trialu Twoje konto automatycznie przechodzi na plan <strong>Free</strong> (1 pojazd, 1 kierowca, brak raportów). Wszystkie dane pozostają zachowane — nic nie tracisz. W dowolnym momencie możesz przejść na plan płatny.' },
+        { q: 'Czy mogę zmienić plan w trakcie?', a: 'Tak. Przy upgrade natychmiastowy dostęp do nowych funkcji. Przy downgrade zmiana wchodzi w życie od następnego okresu rozliczeniowego. Rozliczenie jest proporcjonalne (proration).' },
+        { q: 'Czym różni się plan dla biura od planu dla firmy?', a: 'Biuro rachunkowe płaci za aktywne pojazdy wszystkich swoich klientów łącznie, w modelu hurtowym (29–49 zł/pojazd). Firmy klientów biura otrzymują BusiKM za darmo jako część obsługi księgowej. Firma bez biura rachunkowego płaci indywidualnie (19–29 zł/pojazd).' },
+        { q: 'Co to jest aktywny pojazd?', a: 'Pojazd który zarejestrował minimum 1 trasę w danym miesiącu kalendarzowym. Pojazdy bez aktywności w danym miesiącu nie są wliczane do rachunku biura.' },
+        { q: 'Co jeśli firma klienta odejdzie z biura rachunkowego?', a: 'Firma może kontynuować korzystanie z BusiKM samodzielnie w planie Starter (19 zł/pojazd) lub Professional (29 zł/pojazd). Cała historia tras i dokumentów pozostaje w systemie.' },
+        { q: 'Czy muszę zgłosić pojazd do urzędu skarbowego?', a: 'Tak. Aby legalnie odliczać 100% VAT od pojazdu firmowego musisz zgłosić go na druku VAT-26 do urzędu skarbowego (art. 86a ust. 12 ustawy o VAT) przed pierwszym odliczeniem. BusiKM przypomni Ci o tym przy dodawaniu każdego pojazdu.' },
+        { q: 'Ile pojazdów muszę mieć żeby się opłacało?', a: 'Już od 1 pojazdu w planie Free. Przy 2+ pojazdach w planie Starter (19 zł/pojazd) miesięczna oszczędność na odzyskanym VAT przekracza koszt subskrypcji. Sprawdź kalkulator ROI na stronie głównej.' },
+      ].map(faq => (
+        <details class="group rounded-[16px] bg-white border border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.04)] overflow-hidden transition-all">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-[#1D1D1F] text-[15px] hover:bg-[#FAFAFA] transition-colors select-none">
+            {faq.q}
+            <svg class="w-4 h-4 text-[#86868B] shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-[14px] text-[#6E6E73] leading-relaxed" set:html={faq.a} />
+        </details>
+      ))}
     </div>
   </div>
 </section>
@@ -547,15 +253,15 @@ function cellText(val: string): string | null {
   <div class="max-w-[820px] mx-auto py-24 sm:py-28 text-center relative z-10">
     <div class="reveal">
       <h2 class="font-display text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-        Gotowy, żeby usprawnić<br/>zarządzanie flotą?
+        Gotowy, żeby usprawnić<br/>ewidencję przebiegu?
       </h2>
       <p class="text-[#86868B] text-[15px] max-w-[480px] mx-auto mb-10 leading-relaxed">
         14 dni pełnego dostępu do Professional. Bez karty. Bez zobowiązań. Dane zostają nawet po downgrade.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/cennik" class="inline-flex items-center gap-2 bg-[#005CE8] text-white font-semibold text-[15px] px-7 py-3.5 rounded-full hover:bg-[#0050CC] transition-all">
+        <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#005CE8] text-white font-semibold text-[15px] px-7 py-3.5 rounded-full hover:bg-[#0050CC] transition-all">
           Zacznij bezpłatnie
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/dla-biur-rachunkowych" class="inline-flex items-center gap-2 border border-white/20 text-white font-semibold text-[15px] px-7 py-3.5 rounded-full hover:bg-white/[0.06] transition-all">
           Dla biur rachunkowych
@@ -563,25 +269,67 @@ function cellText(val: string): string | null {
       </div>
     </div>
   </div>
-
-  <!-- Subtle glow -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#005CE8]/[0.06] blur-[120px] rounded-full pointer-events-none"></div>
 </section>
 
 </MarketingLayout>
 
-<style>
-  .section-label {
-    font-size: 12.5px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.1em; margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem);
-    font-weight: 700; letter-spacing: -0.03em; color: #1D1D1F; line-height: 1.15;
-  }
-</style>
-
 <script>
+  // Toggle tabs
+  const tabFirms = document.getElementById('tab-firms')!;
+  const tabBr = document.getElementById('tab-br')!;
+  const pricingFirms = document.getElementById('pricing-firms')!;
+  const pricingBr = document.getElementById('pricing-br')!;
+
+  function showFirms() {
+    tabFirms.className = 'px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 bg-[#005CE8] text-white';
+    tabBr.className = 'px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 text-[#6E6E73] hover:text-[#1D1D1F]';
+    pricingFirms.classList.remove('hidden');
+    pricingBr.classList.add('hidden');
+  }
+
+  function showBr() {
+    tabBr.className = 'px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 bg-[#005CE8] text-white';
+    tabFirms.className = 'px-6 py-2.5 rounded-full text-[14px] font-semibold transition-all duration-200 text-[#6E6E73] hover:text-[#1D1D1F]';
+    pricingBr.classList.remove('hidden');
+    pricingFirms.classList.add('hidden');
+  }
+
+  tabFirms.addEventListener('click', showFirms);
+  tabBr.addEventListener('click', showBr);
+
+  // BR ROI Calculator
+  const brSlider = document.getElementById('br-vehicles') as HTMLInputElement;
+
+  function fmt(n: number): string {
+    return Math.round(n).toLocaleString('pl-PL').replace(/\u00a0/g, ' ') + ' zł';
+  }
+
+  function calcBrCost(vehicles: number): number {
+    if (vehicles <= 50) return vehicles * 49;
+    if (vehicles <= 150) return 50 * 49 + (vehicles - 50) * 39;
+    return 50 * 49 + 100 * 39 + (vehicles - 150) * 29;
+  }
+
+  function calcBr() {
+    const vehicles = parseInt(brSlider.value);
+    (document.getElementById('br-vehicles-val') as HTMLElement).textContent = String(vehicles);
+
+    const cost = calcBrCost(vehicles);
+    const manual = vehicles * 76;
+    const monthly = manual - cost;
+    const yearly = monthly * 12;
+
+    (document.getElementById('br-cost') as HTMLElement).textContent = fmt(cost);
+    (document.getElementById('br-manual') as HTMLElement).textContent = fmt(manual);
+    (document.getElementById('br-monthly') as HTMLElement).textContent = fmt(monthly);
+    (document.getElementById('br-yearly') as HTMLElement).textContent = fmt(yearly);
+  }
+
+  brSlider.addEventListener('input', calcBr);
+  calcBr();
+
+  // Reveal animations
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
