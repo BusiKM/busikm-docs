@@ -4,621 +4,447 @@
 
 1. [Przegląd](#przegląd)
 2. [Architektura](#architektura)
-3. [Insert GT — format EDI++](#insert-gt--format-edi)
-4. [Insert GT — struktura pliku kilometrówki](#insert-gt--struktura-pliku-kilometrówki)
-5. [Insert GT — struktura pliku delegacji](#insert-gt--struktura-pliku-delegacji)
-6. [Mapowanie BusiKM → EDI++](#mapowanie-busikm--edi)
-7. [Kodowanie znaków](#kodowanie-znaków)
-8. [Endpoint i przepływ eksportu](#endpoint-i-przepływ-eksportu)
-9. [Import w Insert GT](#import-w-insert-gt)
-10. [Historia eksportów](#historia-eksportów)
-11. [Rozwiązywanie problemów](#rozwiązywanie-problemów)
-12. [Planowane integracje (post-MVP)](#planowane-integracje-post-mvp)
-13. [Stawki za km](#stawki-za-km)
+3. [Modele danych FK](#modele-danych-fk)
+4. [Stawki za km (MileageRate)](#stawki-za-km-mileagerate)
+5. [Insert GT — format EPP (EDI++)](#insert-gt--format-epp-edi)
+6. [Comarch ERP Optima — format XML](#comarch-erp-optima--format-xml)
+7. [Symfonia FK — format TXT/AMS](#symfonia-fk--format-txtams)
+8. [Endpointy eksportu](#endpointy-eksportu)
+9. [Walidacja przed eksportem](#walidacja-przed-eksportem)
+10. [Throttling i limity](#throttling-i-limity)
+11. [AuditLog — dziennik audytowy](#auditlog--dziennik-audytowy)
+12. [Import w systemach FK](#import-w-systemach-fk)
+13. [Rozwiązywanie problemów](#rozwiązywanie-problemów)
 
 ---
 
 ## Przegląd
 
-BusiKM umożliwia eksport danych kilometrówek i delegacji do polskich systemów finansowo-księgowych (FK). Celem jest eliminacja ręcznego przepisywania danych — użytkownik generuje plik eksportu w BusiKM, a następnie importuje go w swoim systemie FK.
+BusiKM umożliwia eksport danych ewidencji przebiegu i faktur paliwowych do polskich systemów finansowo-księgowych (FK). Celem jest eliminacja ręcznego przepisywania danych — użytkownik generuje plik eksportu w BusiKM, a następnie importuje go w swoim systemie FK.
 
-**MVP (Sprint 5-6):**
-- **Insert GT** — eksport w formacie EDI++ (pliki `.epp`)
+**Zaimplementowane integracje:**
+- **Insert GT** — eksport w formacie EPP (EDI++ 1.05.1), plik `.epp`
+- **Comarch ERP Optima** — eksport XML, import przez UI Comarch
+- **Symfonia FK** — eksport TXT z szablonem AMS, import specjalny
 
-**Post-MVP (Sprint 7+):**
-- **Comarch ERP Optima** — synchronizacja przez REST API
-- **Symfonia** — eksport XML/CSV
-- **KSeF** — integracja z Krajowym Systemem e-Faktur (e-faktury)
+**Podstawa prawna ewidencji:**
+- art. 86a ustawy o VAT (odliczenie 50% vs 100% VAT)
+- art. 23 ust. 7 ustawy o PIT (koszty pojazdu)
+- druk VAT-26 (zgłoszenie pojazdu do US)
+- Rozp. MI 22.12.2022 (Dz.U. 2023 poz. 5) — stawki km od 17.01.2023
 
 ---
 
 ## Architektura
 
-System integracji oparty jest na wzorcu **Strategy**, co umożliwia dodawanie nowych systemów FK bez modyfikacji istniejącego kodu.
+### Serwisy generatorów
 
-### Klasy bazowe
-
-```python
-class AbstractFKIntegration(ABC):
-    """Bazowa klasa abstrakcyjna dla wszystkich integracji FK."""
-
-    @abstractmethod
-    def export_mileage_log(self, mileage_log: MileageLog) -> bytes:
-        """Generuje plik eksportu kilometrówki."""
-
-    @abstractmethod
-    def export_delegation(self, delegation: Delegation) -> bytes:
-        """Generuje plik eksportu delegacji."""
-
-    @abstractmethod
-    def validate_data(self, data: dict) -> list[str]:
-        """Waliduje dane przed eksportem. Zwraca listę błędów."""
-
-    @abstractmethod
-    def get_file_extension(self) -> str:
-        """Zwraca rozszerzenie pliku eksportu."""
+```
+busikm/services/
+  epp_generator.py     # Insert GT — EPP/EDI++ Windows-1250
+  xml_generator.py     # Comarch ERP Optima — UTF-8 XML
+  txt_generator.py     # Symfonia FK — UTF-8 TXT + szablon AMS
+  export_service.py    # Orchestrator — łączy generatory z DB i AuditLog
+  export_validator.py  # Walidacja stanu danych przed eksportem
 ```
 
-### Factory i rejestr
+### ExportService — orchestrator
 
 ```python
-# Rejestr integracji z dekoratorem
-_INTEGRATION_REGISTRY: dict[str, type[AbstractFKIntegration]] = {}
-
-def register_integration(name: str):
-    """Dekorator rejestrujący klasę integracji."""
-    def decorator(cls):
-        _INTEGRATION_REGISTRY[name] = cls
-        return cls
-    return decorator
-
-class FKIntegrationFactory:
-    @staticmethod
-    def create(system_name: str, context: dict) -> AbstractFKIntegration:
-        """Tworzy instancję integracji na podstawie nazwy systemu."""
-        cls = _INTEGRATION_REGISTRY.get(system_name)
-        if cls is None:
-            raise ValueError(f"Nieznany system FK: {system_name}")
-        return cls(context)
+service = ExportService(company, period_year, period_month, user)
+result = service.export_insert_gt()
+result = service.export_comarch()
+result = service.export_symfonia(include_ams=True)
 ```
 
-### Dodawanie nowego systemu
-
-Dodanie obsługi nowego systemu FK wymaga wyłącznie utworzenia nowej klasy — zero zmian w istniejącym kodzie:
-
-```python
-@register_integration('comarch_optima')
-class ComarchOptimaIntegration(AbstractFKIntegration):
-    # implementacja metod...
-```
-
-Użycie:
-
-```python
-integration = FKIntegrationFactory.create('insert_gt', context)
-file_bytes = integration.export_mileage_log(mileage_log)
-```
+Każda metoda wykonuje w `transaction.atomic()`:
+1. Generuje plik przez odpowiedni generator
+2. Oznacza `MonthlyMileageSummary.status = 'exported'`
+3. Blokuje faktury paliwowe (`FuelInvoice.is_locked = True`)
+4. Tworzy rekord `AuditLog` z `action='export_generated'`
 
 ---
 
-## Insert GT — format EDI++
+## Modele danych FK
 
-Insert GT (produkt firmy InsERT) korzysta z formatu wymiany danych **EDI++**. Pliki mają rozszerzenie `.epp`.
+### MonthlyMileageSummary
 
-### Wymagania techniczne formatu
+Miesięczne podsumowanie ewidencji przebiegu per pojazd.
 
-| Parametr             | Wartość                          |
-|----------------------|----------------------------------|
-| Rozszerzenie pliku   | `.epp`                           |
-| Kodowanie            | **Windows-1250** (NIE UTF-8!)    |
-| Końce linii          | **CRLF** (`\r\n`)               |
-| Separator dziesiętny | **przecinek** (np. `1,15`)       |
-| Format daty          | `YYYY-MM-DD` (np. `2026-04-15`) |
-| Separator pól        | znak `=` (klucz=wartość)         |
-| Komentarze           | linie zaczynające się od `;`     |
+| Pole | Opis |
+|---|---|
+| `vehicle`, `company` | FK do pojazdu i firmy |
+| `period_year`, `period_month` | Rok i miesiąc okresu |
+| `odometer_start`, `odometer_end` | Stany licznika |
+| `total_km_business` | Łączne km służbowe |
+| `total_km_private` | Łączne km prywatne |
+| `rate_per_km` | Stawka km (snapshot) |
+| `total_cost_pit` | Koszt PIT łączny |
+| `status` | `draft / pending / approved / exported` |
+| `has_unconfirmed_trips` | Flaga — czy są niezatwierdzone trasy |
+| `exported_insert_at` | Timestamp eksportu Insert GT |
+| `exported_comarch_at` | Timestamp eksportu Comarch |
+| `exported_symfonia_at` | Timestamp eksportu Symfonia |
 
-**Uwaga krytyczna:** Kodowanie musi być Windows-1250. Pliki w UTF-8 spowodują błędy importu w Insert GT — polskie znaki diakrytyczne będą wyświetlane nieprawidłowo.
+**Metody:** `recalculate()`, `approve(user)`, `mark_exported(fk_system, filename)`
+
+### FuelInvoice
+
+Faktury paliwowe i eksploatacyjne pojazdu.
+
+| Pole | Opis |
+|---|---|
+| `invoice_number`, `invoice_date` | Numer i data faktury |
+| `vendor_nip`, `vendor_name_short` | Dane dostawcy |
+| `amount_net`, `vat_rate` | Kwota netto i stawka VAT |
+| `vat_amount`, `amount_gross` | Kwoty obliczane automatycznie |
+| `vat_deduction_pct` | Snapshot % odliczenia z pojazdu |
+| `vat_deductible_amount` | Kwota VAT do odliczenia |
+| `is_locked` | Blokada po eksporcie do FK |
+| `epp_description` | Opis do EPP (computed) |
+| `vat_symbol_epp` | Symbol VAT dla EPP: `23`, `8`, `zw` |
+
+Unique constraint: `(company, invoice_number)`
+
+### MileageRate
+
+Immutable tabela stawek km z historią.
+
+| Pole | Opis |
+|---|---|
+| `vehicle_type` | `car / motorcycle / moped` |
+| `engine_capacity_max_cc` | Max pojemność (null = bez limitu) |
+| `rate_per_km` | Stawka w PLN |
+| `valid_from` | Data wejścia w życie |
+| `valid_to` | Data wygaśnięcia (null = aktualny) |
+| `is_active` | Czy stawka jest aktywna |
+| `regulation_ref` | Odniesienie do rozporządzenia |
+
+**Zasada immutability:** Rekordy nigdy nie są edytowane ani usuwane — tylko dodawane. `save()` i `delete()` na istniejącym rekordzie rzucają `PermissionError`.
+
+**Metoda:** `MileageRate.get_rate_for_vehicle(vehicle_type, engine_capacity_cc, trip_date)` — zwraca stawkę obowiązującą w dniu przejazdu.
+
+### AuditLog
+
+Nienaruszalny dziennik zmian dokumentów podatkowych (FK-011).
+
+Każda operacja na danych podatkowych (zmiana trasy, eksport, zatwierdzenie, zmiana VAT-26) jest automatycznie logowana. Rekordy są read-only — `save()` na istniejącym i `delete()` rzucają `PermissionError`. IP adresy anonimizowane po 90 dniach (RODO).
 
 ---
 
-## Insert GT — struktura pliku kilometrówki
+## Stawki za km (MileageRate)
 
-Plik `.epp` kilometrówki składa się z sekcji oznaczonych nawiasami kwadratowymi.
+Rozporządzenie Ministra Infrastruktury z 22.12.2022 r. (Dz.U. 2023 poz. 5), obowiązuje od 17.01.2023:
 
-### Przykładowy plik
+| Kategoria pojazdu | Stawka za km (PLN) |
+|---|---|
+| Samochód osobowy ≤ 900 cm³ | **0,89** |
+| Samochód osobowy > 900 cm³ | **1,15** |
+| Motocykl | **0,69** |
+| Motorower | **0,42** |
+
+Poprzednie stawki (2007–2023, Rozp. MI 23.10.2007):
+
+| Kategoria | Stawka |
+|---|---|
+| Samochód ≤ 900 cm³ | 0,5214 PLN/km |
+| Samochód > 900 cm³ | 0,8358 PLN/km |
+| Motocykl | 0,2302 PLN/km |
+| Motorower | 0,1382 PLN/km |
+
+**Algorytm query:**
+```python
+MileageRate.get_rate_for_vehicle(
+    vehicle_type='car',
+    engine_capacity_cc=1600,
+    trip_date=date(2026, 10, 15)
+)
+# Filtruje: valid_from <= trip_date
+# Priorytet: stawki z limitem cc (engine_capacity_max_cc NOT NULL)
+# Sortuje: najnowsza valid_from najpierw
+# Zwraca: first() lub None
+```
+
+Snapshot stawki zapisywany w `Trip.rate_per_km` w momencie zapisu trasy i nigdy nie zmienia się retroaktywnie.
+
+---
+
+## Insert GT — format EPP (EDI++)
+
+### Wymagania techniczne
+
+| Parametr | Wartość |
+|---|---|
+| Rozszerzenie | `.epp` |
+| Kodowanie | **Windows-1250** (cp1250) |
+| Separator pól | przecinek `,` |
+| Separator dziesiętny | kropka `.` (np. `513.00`) |
+| Format daty | `yyyymmddhhnnss` |
+| Specyfikacja | EDI++ 1.05.1 |
+
+**Uwaga krytyczna:** Kodowanie musi być Windows-1250. Pliki UTF-8 spowodują błędy polskich znaków w Insert GT.
+
+### Struktura pliku
 
 ```
-; BusiKM - eksport kilometrówki do Insert GT
-; Wygenerowano: 2026-04-15 10:30:00
-
+[INFO]           ← dane firmy, wersja, okres
+[NAGLOWEK]       ← nagłówek dokumentu FZ (per faktura)
+[ZAWARTOSC]      ← stawki VAT per pozycja
+[NAGLOWEK]       ← nagłówek dokumentu KM (kilometrówka)
+[ZAWARTOSC]      ← stawka npo (nie podlega VAT)
 [NAGLOWEK]
-WERSJA=1.0
-TYP=KILOMETROWKA
-DATA_EKSPORTU=2026-04-15
-SYSTEM=BusiKM
-WERSJA_SYSTEMU=1.2.0
-
-[FIRMA]
-NIP=5261234567
-NAZWA=Przykładowa Firma Sp. z o.o.
-ADRES=ul. Marszałkowska 1
-KOD_POCZTOWY=00-001
-MIASTO=Warszawa
-
-[POJAZD]
-NUMER_REJESTRACYJNY=WA12345
-MARKA=Toyota
-MODEL=Corolla
-POJEMNOSC=1496
-KATEGORIA=SAMOCHOD_POWYZEJ_900
-STAWKA_ZA_KM=1,15
-WLASCICIEL=PRACOWNIK
-
-[OKRES]
-DATA_OD=2026-04-01
-DATA_DO=2026-04-30
-MIESIAC=4
-ROK=2026
-
-[POZYCJA]
-LP=1
-DATA=2026-04-01
-TRASA_SKAD=Warszawa, ul. Marszałkowska 1
-TRASA_DOKAD=Warszawa, ul. Puławska 100
-CEL_WYJAZDU=Spotkanie z klientem ABC
-KILOMETRY=12,50
-STAWKA=1,15
-KWOTA=14,38
-
-[POZYCJA]
-LP=2
-DATA=2026-04-02
-TRASA_SKAD=Warszawa, ul. Marszałkowska 1
-TRASA_DOKAD=Łódź, ul. Piotrkowska 50
-CEL_WYJAZDU=Szkolenie pracowników
-KILOMETRY=137,00
-STAWKA=1,15
-KWOTA=157,55
-
-[PODSUMOWANIE]
-LICZBA_POZYCJI=2
-SUMA_KILOMETROW=149,50
-SUMA_KWOT=171,93
-STAWKA_ZA_KM=1,15
-```
-
-### Opis pól poszczególnych sekcji
-
-**[NAGLOWEK]** — metadane pliku eksportu:
-- `WERSJA` — wersja formatu EDI++
-- `TYP` — typ dokumentu (`KILOMETROWKA` lub `DELEGACJA`)
-- `DATA_EKSPORTU` — data wygenerowania pliku
-- `SYSTEM` / `WERSJA_SYSTEMU` — identyfikacja systemu źródłowego
-
-**[FIRMA]** — dane firmy zlecającej:
-- `NIP` — numer identyfikacji podatkowej (10 cyfr)
-- `NAZWA`, `ADRES`, `KOD_POCZTOWY`, `MIASTO` — dane adresowe
-
-**[POJAZD]** — dane pojazdu:
-- `NUMER_REJESTRACYJNY` — tablica rejestracyjna
-- `POJEMNOSC` — pojemność silnika w cm³
-- `KATEGORIA` — `SAMOCHOD_DO_900` / `SAMOCHOD_POWYZEJ_900` / `CIEZAROWY`
-- `STAWKA_ZA_KM` — stawka za 1 km w PLN
-- `WLASCICIEL` — `PRACOWNIK` lub `FIRMA`
-
-**[POZYCJA]** — pojedynczy przejazd (powtarzana N razy):
-- `LP` — liczba porządkowa
-- `DATA` — data przejazdu
-- `TRASA_SKAD` / `TRASA_DOKAD` — punkty trasy
-- `CEL_WYJAZDU` — cel służbowy
-- `KILOMETRY` — dystans w km (przecinek dziesiętny)
-- `KWOTA` — koszt = kilometry x stawka
-
-**[PODSUMOWANIE]** — sumy kontrolne:
-- `LICZBA_POZYCJI` — ile sekcji [POZYCJA]
-- `SUMA_KILOMETROW` / `SUMA_KWOT` — sumy do weryfikacji
-
----
-
-## Insert GT — struktura pliku delegacji
-
-```
-; BusiKM - eksport delegacji do Insert GT
-; Wygenerowano: 2026-04-15 10:30:00
-
+KONTRAHENCI      ← kartoteka dostawców
+[ZAWARTOSC]      ← jeden rekord per unikalny NIP
 [NAGLOWEK]
-WERSJA=1.0
-TYP=DELEGACJA
-DATA_EKSPORTU=2026-04-15
-SYSTEM=BusiKM
-WERSJA_SYSTEMU=1.2.0
-
-[FIRMA]
-NIP=5261234567
-NAZWA=Przykładowa Firma Sp. z o.o.
-ADRES=ul. Marszałkowska 1
-KOD_POCZTOWY=00-001
-MIASTO=Warszawa
-
-[PRACOWNIK]
-IMIE=Jan
-NAZWISKO=Kowalski
-STANOWISKO=Przedstawiciel handlowy
-NUMER_EWIDENCYJNY=PH-001
-
-[DELEGACJA]
-NUMER=DEL/2026/04/001
-DATA_OD=2026-04-10
-DATA_DO=2026-04-12
-GODZINA_OD=08:00
-GODZINA_DO=18:00
-MIEJSCE_DOCELOWE=Kraków
-CEL=Targi branżowe IT Solutions 2026
-SRODEK_TRANSPORTU=SAMOCHOD_PRYWATNY
-
-[KOSZTY]
-DIETY=120,00
-NOCLEGI=350,00
-PRZEJAZDY=228,98
-INNE_KOSZTY=45,00
-OPIS_INNE=Opłata parkingowa
-SUMA_KOSZTOW=743,98
-ZALICZKA=500,00
-DO_ROZLICZENIA=243,98
-
-[DELEGACJA]
-NUMER=DEL/2026/04/002
-DATA_OD=2026-04-14
-DATA_DO=2026-04-14
-GODZINA_OD=07:00
-GODZINA_DO=20:00
-MIEJSCE_DOCELOWE=Wrocław
-CEL=Spotkanie z klientem XYZ
-SRODEK_TRANSPORTU=SAMOCHOD_PRYWATNY
-
-[KOSZTY]
-DIETY=45,00
-NOCLEGI=0,00
-PRZEJAZDY=285,47
-INNE_KOSZTY=0,00
-SUMA_KOSZTOW=330,47
-ZALICZKA=0,00
-DO_ROZLICZENIA=330,47
-
-[PODSUMOWANIE]
-LICZBA_DELEGACJI=2
-SUMA_DIET=165,00
-SUMA_NOCLEGOW=350,00
-SUMA_PRZEJAZDOW=514,45
-SUMA_INNYCH=45,00
-SUMA_KOSZTOW=1074,45
-SUMA_ZALICZEK=500,00
-SUMA_DO_ROZLICZENIA=574,45
+PRACOWNICY       ← kartoteka kierowców (Tabela 16)
+[ZAWARTOSC]      ← PESEL, NIP, adres, zatrudnienie
 ```
 
----
+### Nazwa pliku
 
-## Mapowanie BusiKM → EDI++
+Format: `busikm_{NIP}_{YYYY}_{MM}.epp`  
+Przykład: `busikm_5260211183_2026_10.epp`
 
-### Kilometrówka — sekcja [POJAZD]
-
-| Pole EDI++               | Źródło BusiKM                  | Transformacja                                |
-|--------------------------|--------------------------------|----------------------------------------------|
-| `NUMER_REJESTRACYJNY`    | `Vehicle.registration_number`  | bez zmian                                    |
-| `MARKA`                  | `Vehicle.make`                 | bez zmian                                    |
-| `MODEL`                  | `Vehicle.model`                | bez zmian                                    |
-| `POJEMNOSC`              | `Vehicle.engine_capacity_cc`   | wartość w cm³, int                           |
-| `KATEGORIA`              | `Vehicle.engine_capacity_cc`   | ≤900 → `SAMOCHOD_DO_900`, >900 → `SAMOCHOD_POWYZEJ_900`, ciężarowy → `CIEZAROWY` |
-| `STAWKA_ZA_KM`           | `MileageRate.rate_per_km`      | Decimal → string z przecinkiem               |
-
-### Kilometrówka — sekcja [POZYCJA]
-
-| Pole EDI++       | Źródło BusiKM            | Transformacja                          |
-|------------------|--------------------------|----------------------------------------|
-| `LP`             | indeks iteracji          | numeracja od 1                         |
-| `DATA`           | `Trip.date`              | format YYYY-MM-DD                      |
-| `TRASA_SKAD`     | `Trip.start_address`     | geocoded address lub nazwa punktu      |
-| `TRASA_DOKAD`    | `Trip.end_address`       | geocoded address lub nazwa punktu      |
-| `CEL_WYJAZDU`    | `Trip.purpose`           | tekst, max 200 znaków                  |
-| `KILOMETRY`      | `Trip.distance_km`       | Decimal(2) → string z przecinkiem      |
-| `STAWKA`         | `MileageRate.rate_per_km`| Decimal(4) → string z przecinkiem      |
-| `KWOTA`          | obliczane                | `KILOMETRY` x `STAWKA`, zaokrąglenie do 2 miejsc |
-
-### Delegacja — sekcja [KOSZTY]
-
-| Pole EDI++         | Źródło BusiKM                      | Transformacja                  |
-|--------------------|-------------------------------------|-------------------------------|
-| `DIETY`            | `Delegation.diet_amount`            | Decimal(2) → string z przecinkiem |
-| `NOCLEGI`          | `Delegation.accommodation_cost`     | Decimal(2) → string z przecinkiem |
-| `PRZEJAZDY`        | suma Trip.cost w ramach delegacji   | obliczana suma                |
-| `INNE_KOSZTY`      | `Delegation.other_costs`            | Decimal(2) → string z przecinkiem |
-| `DO_ROZLICZENIA`   | `SUMA_KOSZTOW` - `ZALICZKA`        | może być ujemne (nadpłata)    |
-
----
-
-## Kodowanie znaków
-
-### Problem
-
-BusiKM operuje na UTF-8 (standard w Django/PostgreSQL). Insert GT wymaga Windows-1250. Bezpośredni eksport UTF-8 powoduje zniekształcenie polskich znaków diakrytycznych.
-
-### Mapowanie polskich znaków
-
-| Znak | UTF-8 (hex) | Windows-1250 (hex) |
-|------|-------------|---------------------|
-| ą    | C4 85       | B9                  |
-| ć    | C4 87       | E6                  |
-| ę    | C4 99       | EA                  |
-| ł    | C5 82       | B3                  |
-| ń    | C5 84       | F1                  |
-| ó    | C3 B3       | F3                  |
-| ś    | C5 9B       | 9C                  |
-| ź    | C5 BA       | 9F                  |
-| ż    | C5 BC       | BF                  |
-| Ą    | C4 84       | A5                  |
-| Ć    | C4 86       | C6                  |
-| Ę    | C4 98       | CA                  |
-| Ł    | C5 81       | A3                  |
-| Ń    | C5 83       | D1                  |
-| Ó    | C3 93       | D3                  |
-| Ś    | C5 9A       | 8C                  |
-| Ź    | C5 B9       | 8F                  |
-| Ż    | C5 BB       | AF                  |
-
-### Klasa EDIEncoder
+### Klasa EPPGenerator
 
 ```python
-class EDIEncoder:
-    """Konwersja tekstu UTF-8 → Windows-1250 z obsługą błędów."""
+from busikm.services.epp_generator import EPPGenerator
 
-    ENCODING = 'windows-1250'
-    ERROR_HANDLER = 'replace'  # nieznane znaki → '?'
-
-    @classmethod
-    def encode(cls, text: str) -> bytes:
-        """Konwertuje string UTF-8 na bajty Windows-1250."""
-        return text.encode(cls.ENCODING, errors=cls.ERROR_HANDLER)
-
-    @classmethod
-    def encode_line(cls, key: str, value: str) -> bytes:
-        """Koduje pojedynczą linię klucz=wartość z CRLF."""
-        line = f"{key}={value}"
-        return cls.encode(line) + b'\r\n'
-
-    @classmethod
-    def encode_section(cls, name: str) -> bytes:
-        """Koduje nagłówek sekcji [NAZWA] z CRLF."""
-        return cls.encode(f"[{name}]") + b'\r\n'
+gen = EPPGenerator(company, period_year=2026, period_month=10)
+content_bytes = gen.generate_bytes()  # bytes w cp1250
+filename = gen.get_filename()
 ```
-
-**Zasada:** Nieznane znaki (np. emoji, cyrylica) są zastępowane znakiem `?` — system nigdy nie przerywa eksportu z powodu niekodowalnego znaku.
 
 ---
 
-## Endpoint i przepływ eksportu
+## Comarch ERP Optima — format XML
 
-### Przepływ asynchroniczny
+### Wymagania techniczne
+
+| Parametr | Wartość |
+|---|---|
+| Rozszerzenie | `.xml` |
+| Kodowanie | UTF-8 |
+| Format daty | `YYYY-MM-DD` |
+| Separator dziesiętny | kropka `.` |
+
+### Struktura XML
+
+```xml
+<BusiKMExport wersja="1.0" system="ComarchERPOptima">
+  <Naglowek>
+    <Firma><NIP>...</NIP>...</Firma>
+    <Okres>2026-10</Okres>
+  </Naglowek>
+  <Dokumenty>
+    <Dokument typ="FZ">   ← per faktura paliwowa
+      <NumerFaktury>...</NumerFaktury>
+      <Kontrahent>...</Kontrahent>
+      <Kwoty><Pozycja>...</Pozycja></Kwoty>
+    </Dokument>
+    <Dokument typ="KM">   ← ewidencja przebiegu
+      <EwidencjaPrzebiegu>...</EwidencjaPrzebiegu>
+      <Trasy>
+        <Trasa>...</Trasa>  ← per przejazd
+      </Trasy>
+    </Dokument>
+  </Dokumenty>
+</BusiKMExport>
+```
+
+Import: Comarch ERP Optima → Narzędzia → Importy → Import z pliku XML
+
+---
+
+## Symfonia FK — format TXT/AMS
+
+### Wymagania techniczne
+
+| Parametr | Wartość |
+|---|---|
+| Rozszerzenie | `.txt` |
+| Kodowanie | UTF-8 |
+| Separator pól | średnik `;` |
+| Separator dziesiętny | **przecinek** `,` (np. `513,00`) |
+| Format daty | `DD-MM-YYYY` |
+
+### Typy rekordów
+
+| Typ | Opis | Pola |
+|---|---|---|
+| `DOK` | Nagłówek dokumentu (FZ lub KM) | 13 pól |
+| `VAT` | Rejestr VAT per stawka | 7 pól |
+| `ZAP` | Zapis dodatkowy — trasa lub podsumowanie | 12 pól |
+| `KON` | Dane kontrahenta | 7 pól |
+
+Linie zaczynające się od `#` to komentarze — ignorowane przez AMS.
+
+### Szablon AMS
+
+Plik `busikm_symfonia.ams` generowany opcjonalnie wraz z TXT (`include_ams=True`). Definiuje mapowanie kolumn TXT na pola Symfonii. Należy skopiować do katalogu szablonów Symfonii i wskazać przy pierwszym imporcie.
+
+Gdy `include_ams=True` — endpoint zwraca ZIP zawierający oba pliki.
+
+Import: Symfonia FK → Księgowość → Import specjalny → wskaż `.txt` i `.ams`
+
+---
+
+## Endpointy eksportu
+
+### Wspólna konwencja
+
+Wszystkie endpointy:
+- **Metoda:** `POST`
+- **Period w URL:** format `YYYY-MM` (np. `2026-10`) — tylko zakończone miesiące
+- **Body:** JSON z `company_id` i opcjonalnym `force`
+- **Throttle:** max **3 eksporty per firma per miesiąc** per system FK
+- **Response headers:** `X-Invoices-Count`, `X-KM-Included`, `X-Warnings`, `X-Export-Period`
+
+### Insert GT
 
 ```
-POST /api/v1/export/insert-gt/
-  Body: { "mileage_log_id": 42, "period": "2026-04" }
-  → 202 Accepted
-  → Response: { "export_id": "abc-123", "status": "pending" }
-
-  [Celery task w tle]
-  → Generowanie pliku .epp
-  → Zapis w ExportRecord (status=completed, file_path=...)
-
-GET /api/v1/export/{export_id}/
-  → 200 OK
-  → Response: { "status": "completed", "download_url": "/api/v1/export/abc-123/download/" }
-
-GET /api/v1/export/{export_id}/download/
-  → 200 OK
-  → Content-Type: application/octet-stream
-  → Content-Disposition: attachment; filename="kilometrowka_2026-04_WA12345.epp"
-  → Body: plik .epp (Windows-1250)
+POST /api/exports/insert-gt/{period}/
+Body: {"company_id": 123, "force": false}
+Response: plik .epp (application/octet-stream)
+Header: Content-Disposition: attachment; filename="busikm_5260211183_2026_10.epp"
 ```
 
-### Model ExportRecord
+### Comarch ERP Optima
+
+```
+POST /api/exports/comarch/{period}/
+Body: {"company_id": 123, "force": false}
+Response: plik .xml (application/xml)
+```
+
+### Symfonia FK
+
+```
+POST /api/exports/symfonia/{period}/
+Body: {"company_id": 123, "force": false, "include_ams": false}
+Response: plik .txt (text/plain) lub .zip gdy include_ams=true
+Header: X-AMS-Included: true|false
+```
+
+### Kody odpowiedzi
+
+| Kod | Opis |
+|---|---|
+| 200 | Plik do pobrania |
+| 400 | Błąd walidacji (nieprawidłowy period, brak company_id, zły fk_system) |
+| 401 | Brak autoryzacji |
+| 403 | Brak dostępu do firmy |
+| 422 | Dane nie gotowe (summary nie approved, brak danych) |
+| 429 | Throttle — max 3 eksporty/mies. |
+
+---
+
+## Walidacja przed eksportem
+
+`ExportValidator` sprawdza przed każdym eksportem:
+
+**Błędy blokujące (→ 422):**
+- Brak faktur paliwowych i brak summary dla okresu
+- Firma używa innego systemu FK niż endpoint
+
+**Ostrzeżenia (→ 200 + `X-Warnings`):**
+- Summary nie jest `approved` (dozwolone tylko z `force=True` przez superusera)
+- Niezatwierdzone trasy w miesiącu
+- Niekompletne trasy (brak odometer_end)
+- Okres był już eksportowany do tego systemu FK
+
+---
+
+## Throttling i limity
+
+Każdy system FK ma osobny licznik w Redis cache:
+
+```
+Klucz: export_{fk_system}_{company_id}_{YYYY}_{MM}
+Limit: 3 eksporty per firma per miesiąc
+```
+
+Po 3 eksportach endpoint zwraca `429 Too Many Requests`. Licznik resetuje się automatycznie po 31 dniach.
+
+---
+
+## AuditLog — dziennik audytowy
+
+Każdy eksport tworzy rekord `AuditLog`:
 
 ```python
-class ExportRecord(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    export_type = models.CharField(choices=[
-        ('mileage_log', 'Kilometrówka'),
-        ('delegation', 'Delegacja'),
-    ])
-    fk_system = models.CharField(default='insert_gt')
-    status = models.CharField(choices=[
-        ('pending', 'Oczekuje'),
-        ('processing', 'Generowanie'),
-        ('completed', 'Zakończono'),
-        ('failed', 'Błąd'),
-    ])
-    file_path = models.FileField(upload_to='exports/', null=True)
-    error_message = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    period_start = models.DateField()
-    period_end = models.DateField()
+AuditLog.create_log(
+    action='export_generated',
+    obj=summary,
+    performed_by=user,
+    extra_data={
+        'fk_system': 'insert_gt',
+        'file_name': 'busikm_5260211183_2026_10.epp',
+        'records_count': 5,
+        'km_included': True,
+        'period': '2026-10',
+    }
+)
 ```
+
+Logi audytowe dostępne przez:
+- `GET /api/audit-logs/` (admin)
+- `GET /api/audit-logs/for-object/?model=monthlymileagesummary&object_id=123`
+- `GET /api/audit-logs/compliance-report/?company=1&date_from=2026-10-01&date_to=2026-10-31`
 
 ---
 
-## Import w Insert GT
+## Import w systemach FK
 
-### Instrukcja importu — Insert GT (Subiekt GT / Rachmistrz GT)
+### Insert GT (Subiekt GT / Rachmistrz GT / nexo)
 
-1. Otwórz program Insert GT
+1. Otwórz Insert GT
 2. Przejdź do **Narzędzia → Import danych → Import EDI++**
-3. Kliknij **Wybierz plik** i wskaż pobrany plik `.epp`
-4. System wyświetli **podgląd importowanych danych** — zweryfikuj poprawność
-5. Kliknij **Importuj** — dane zostaną dodane do ewidencji
+3. Wskaż pobrany plik `.epp`
+4. Zweryfikuj podgląd danych
+5. Kliknij **Importuj**
 
-### Instrukcja importu — Rewizor GT
+### Comarch ERP Optima
 
-1. Otwórz Rewizor GT
-2. Przejdź do **Ewidencje → Import dokumentów → Z pliku EDI++**
-3. Wskaż plik `.epp`
-4. Dopasuj konta księgowe (jednorazowa konfiguracja)
-5. Potwierdź import
+1. Otwórz Comarch ERP Optima
+2. Przejdź do **Narzędzia → Importy → Import z pliku XML**
+3. Wskaż pobrany plik `.xml`
+4. Zatwierdź import
 
-### Instrukcja importu — InsERT nexo
+### Symfonia FK (pierwsze uruchomienie)
 
-1. Otwórz InsERT nexo
-2. Przejdź do **Administracja → Import / Eksport → Import EDI++**
-3. Przeciągnij plik `.epp` lub kliknij **Przeglądaj**
-4. Sprawdź podgląd i zatwierdź
+1. Skopiuj `busikm_symfonia.ams` do katalogu szablonów Symfonii
+2. Otwórz Symfonia FK → **Księgowość → Import specjalny**
+3. Wskaż plik `.txt` i szablon `busikm_symfonia.ams`
+4. Zatwierdź import
 
----
-
-## Historia eksportów
-
-### Lista eksportów
-
-`GET /api/v1/export/` — zwraca listę eksportów z paginacją i filtrami:
-- `?fk_system=insert_gt` — filtr po systemie FK
-- `?status=completed` — filtr po statusie
-- `?period=2026-04` — filtr po okresie
-- `?export_type=mileage_log` — filtr po typie dokumentu
-
-### Szczegóły eksportu
-
-`GET /api/v1/export/{id}/` — pełne dane eksportu wraz ze statusem i linkiem do pobrania.
-
-### Ponowne pobranie
-
-`GET /api/v1/export/{id}/download/` — ponowne pobranie wygenerowanego pliku. Pliki przechowywane przez 90 dni, potem archiwizowane.
-
-### Ponowienie nieudanego eksportu
-
-`POST /api/v1/export/{id}/retry/` — ponawia generowanie pliku dla eksportów ze statusem `failed`.
-
-### Regeneracja zarchiwizowanego eksportu
-
-`POST /api/v1/export/{id}/regenerate/` — ponownie generuje plik na podstawie aktualnych danych. Przydatne po archiwizacji lub korekcie danych źródłowych.
-
-### Statystyki eksportów
-
-`GET /api/v1/export/statistics/` — zbiorczy widok:
-- łączna liczba eksportów (per system FK, per typ)
-- procent udanych / nieudanych
-- średni czas generowania
+Kolejne importy — już bez kroku z szablonu AMS.
 
 ---
 
 ## Rozwiązywanie problemów
 
-### Problem: Polskie znaki wyświetlają się nieprawidłowo w Insert GT
+### Problem: Polskie znaki nieprawidłowe w Insert GT
 
-**Przyczyna:** Plik został wygenerowany w kodowaniu UTF-8 zamiast Windows-1250.
+**Przyczyna:** Plik w UTF-8 zamiast Windows-1250.  
+**Sprawdź:** `file -bi plik.epp` — powinno zwrócić `charset=windows-1250`
 
-**Rozwiązanie:** Sprawdź czy `EDIEncoder` jest używany. Zweryfikuj kodowanie pliku:
-```bash
-file -bi exported_file.epp
-# Oczekiwane: text/plain; charset=iso-8859-2 lub windows-1250
-```
+### Problem: Insert GT odrzuca plik „Nieprawidłowy format"
 
-### Problem: Insert GT odrzuca plik — "Nieprawidłowy format"
+**Przyczyna:** Brak wymaganej sekcji lub błędna kolejność.  
+**Sprawdź:** Obecność `[INFO]`, `[NAGLOWEK]`, `[ZAWARTOSC]`
 
-**Przyczyna:** Końce linii LF zamiast CRLF, lub brak wymaganej sekcji.
+### Problem: Kwoty w Symfonii są błędne
 
-**Rozwiązanie:** Sprawdź końce linii:
-```bash
-xxd exported_file.epp | grep "0d 0a"
-# Każda linia powinna kończyć się 0d 0a (CR LF)
-```
-Zweryfikuj obecność wymaganych sekcji: `[NAGLOWEK]`, `[FIRMA]`, `[PODSUMOWANIE]`.
+**Przyczyna:** Separator dziesiętny — kropka zamiast przecinka.  
+**Oczekiwane:** `513,00` (przecinek), nie `513.00`
 
-### Problem: Kwoty się nie zgadzają po imporcie
+### Problem: Eksport zwraca 422
 
-**Przyczyna:** Separator dziesiętny — kropka zamiast przecinka.
+**Przyczyna:** Summary nie jest w statusie `approved`.  
+**Rozwiązanie:** Zatwierdź podsumowanie miesięczne przez `POST /api/monthly-summaries/{id}/approve/` lub użyj `"force": true` (tylko superuser).
 
-**Rozwiązanie:** Upewnij się, że `format_decimal()` zamienia kropkę na przecinek:
-```python
-def format_decimal(value: Decimal, places: int = 2) -> str:
-    formatted = f"{value:.{places}f}"
-    return formatted.replace('.', ',')
-```
+### Problem: Eksport zwraca 429
 
-### Problem: Eksport trwa zbyt długo
-
-**Przyczyna:** Duża liczba pozycji (>1000 przejazdów w miesiącu).
-
-**Rozwiązanie:** Celery task przetwarza pozycje w partiach (batch_size=100). Sprawdź logi Celery pod kątem timeout.
-
-### Problem: Plik ma rozmiar 0 bajtów
-
-**Przyczyna:** Brak danych w wybranym okresie lub błąd walidacji.
-
-**Rozwiązanie:** Sprawdź `ExportRecord.error_message`. Zweryfikuj, że istnieją przejazdy w zadanym okresie.
-
----
-
-## Planowane integracje (post-MVP)
-
-### Comarch ERP Optima (Sprint 8+)
-
-- **Metoda:** REST API (bezpośrednia synchronizacja, bez plików)
-- **Autoryzacja:** OAuth 2.0 lub klucz API
-- **Zakres:** dwukierunkowy sync — eksport kilometrówek, import danych firmowych
-- **Format danych:** JSON
-- **Korzyść:** brak ręcznego importu plików, dane w czasie rzeczywistym
-
-```python
-@register_integration('comarch_optima')
-class ComarchOptimaIntegration(AbstractFKIntegration):
-    BASE_URL = "https://api.comarch.com/optima/v1"
-    # ...
-```
-
-### Symfonia (Sprint 9+)
-
-- **Metoda:** eksport plików XML lub CSV
-- **Format XML:** zgodny ze schematem Symfonia Finanse i Księgowość
-- **Format CSV:** separator `;`, kodowanie Windows-1250
-- **Import:** ręczny (użytkownik importuje plik w Symfonii)
-
-### KSeF — Krajowy System e-Faktur (Sprint 10+)
-
-- **Metoda:** API KSeF (REST)
-- **Zakres:** generowanie e-faktur za usługi transportowe
-- **Format:** FA(2) — struktura XML e-faktury
-- **Autoryzacja:** token sesji KSeF, podpis kwalifikowany lub zaufany
-- **Wymagania:** certyfikat kwalifikowany lub profil zaufany firmy
-
----
-
-## Stawki za km
-
-Stawki za 1 km przebiegu pojazdu niebędącego własnością pracodawcy (Rozporządzenie Ministra Infrastruktury z 22.12.2022 r., Dz.U. 2023 poz. 5, obowiązuje od 17.01.2023):
-
-| Kategoria pojazdu                        | Stawka za km (PLN) |
-|------------------------------------------|---------------------|
-| Samochód osobowy o pojemności ≤ 900 cm³  | **0,89**            |
-| Samochód osobowy o pojemności > 900 cm³  | **1,15**            |
-| Motocykl                                 | **0,69**            |
-| Motorower                                | **0,42**            |
-
-### Konfiguracja w BusiKM
-
-Stawki są konfigurowalne w panelu administracyjnym firmy:
-
-```python
-class MileageRate(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    vehicle_category = models.CharField(choices=[
-        ('car_under_900', 'Samochód ≤ 900 cm³'),
-        ('car_over_900', 'Samochód > 900 cm³'),
-        ('truck', 'Samochód ciężarowy'),
-        ('motorcycle', 'Motocykl'),
-        ('moped', 'Motorower'),
-    ])
-    rate_per_km = models.DecimalField(max_digits=6, decimal_places=4)
-    valid_from = models.DateField()
-    valid_until = models.DateField(null=True, blank=True)
-```
-
-**Uwaga:** Stawki mogą ulec zmianie w drodze rozporządzenia. System przechowuje historię stawek z datami obowiązywania (`valid_from` / `valid_until`), dzięki czemu archiwalne kilometrówki zawsze korzystają ze stawek aktualnych w momencie przejazdu.
+**Przyczyna:** Przekroczony limit 3 eksportów/mies.  
+**Rozwiązanie:** Poczekaj do kolejnego miesiąca lub skontaktuj się z adminem.

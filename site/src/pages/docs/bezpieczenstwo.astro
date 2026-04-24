@@ -2,362 +2,74 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Bezpieczeństwo" description="JWT, RBAC, izolacja danych, rate limiting, OWASP Top 10, upload security.">
+<DocsLayout title="Bezpieczeństwo i RODO" description="Bezpieczeństwo danych w BusiKM — szyfrowanie, kontrola dostępu, RODO, archiwizacja.">
   <div class="prose">
-    <h1>BusiKM — Dokumentacja bezpieczeństwa</h1>
+    <h1>Bezpieczeństwo i ochrona danych</h1>
 
-    <h2>1. Uwierzytelnianie JWT</h2>
+    <p>BusiKM przechowuje dane podatkowe (ewidencja przebiegu, faktury paliwowe) objęte obowiązkiem archiwizacji. Bezpieczeństwo tych danych jest priorytetem.</p>
 
-    <h3>Przepływ logowania</h3>
-    <p>System BusiKM wykorzystuje dwutokenowy mechanizm JWT (JSON Web Token) oparty na bibliotece <code>djangorestframework-simplejwt</code>:</p>
-
-    <pre><code>{`Użytkownik                  Backend                    Redis (DB2)
-    |                          |                          |
-    |-- POST /api/auth/login ->|                          |
-    |                          |-- Weryfikacja danych     |
-    |                          |-- Generowanie tokenów    |
-    |<-- access + refresh -----|                          |
-    |                          |                          |
-    |-- request + access ----->|                          |
-    |                          |-- Walidacja tokenu       |
-    |<-- odpowiedź ------------|                          |
-    |                          |                          |
-    |-- POST /api/auth/refresh |                          |
-    |   + refresh token ------>|                          |
-    |                          |-- Rotacja tokenu ------->|-- Blacklist starego
-    |<-- nowy access + refresh |                          |`}</code></pre>
-
-    <h3>Parametry tokenów</h3>
+    <h2>1. Szyfrowanie</h2>
     <table>
-      <thead><tr><th>Parametr</th><th>Wartość</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Warstwa</th><th>Standard</th></tr></thead>
       <tbody>
-        <tr><td>Access token TTL</td><td>15 minut</td><td>Krótki czas życia minimalizuje ryzyko przejęcia</td></tr>
-        <tr><td>Refresh token TTL</td><td>7 dni</td><td>Umożliwia dłuższe sesje bez ponownego logowania</td></tr>
-        <tr><td>Algorytm</td><td>HS256</td><td>HMAC z kluczem symetrycznym (SECRET_KEY)</td></tr>
-        <tr><td>Rotacja refresh</td><td>Włączona</td><td>Każde odświeżenie generuje nowy refresh token</td></tr>
-        <tr><td>Blacklisting</td><td>Redis DB2</td><td>Unieważnione tokeny przechowywane w Redis</td></tr>
+        <tr><td>Dane w tranzycie</td><td>TLS 1.3 (HTTPS)</td></tr>
+        <tr><td>Dane w spoczynku</td><td>AES-256</td></tr>
+        <tr><td>Tokeny sesji</td><td>JWT z rotacją refresh tokenów</td></tr>
+        <tr><td>Hasła</td><td>bcrypt z solą</td></tr>
       </tbody>
     </table>
 
-    <h3>Rotacja tokenów</h3>
-    <p>Po każdym użyciu refresh tokena:</p>
-    <ol>
-      <li>Stary refresh token trafia na blacklistę w Redis DB2.</li>
-      <li>Generowany jest nowy pair access + refresh.</li>
-      <li>Klient otrzymuje oba nowe tokeny.</li>
-    </ol>
-    <p>Zapobiega to ponownemu użyciu skradzionego refresh tokena.</p>
-
-    <h3>Mechanizm token_version — wylogowanie ze wszystkich urządzeń</h3>
-    <p>Każdy użytkownik posiada pole <code>token_version</code> w modelu. Przy operacji „wyloguj ze wszystkich urządzeń":</p>
-    <ol>
-      <li><code>token_version</code> jest inkrementowany.</li>
-      <li>Wszystkie istniejące tokeny zawierają starą wersję.</li>
-      <li>Middleware porównuje <code>token_version</code> z tokenu z aktualnym w bazie.</li>
-      <li>Niezgodność wersji powoduje odrzucenie tokenu (HTTP 401).</li>
-    </ol>
-
-    <hr />
-
-    <h2>2. Kontrola dostępu oparta na rolach (RBAC)</h2>
-
-    <h3>Role systemowe</h3>
+    <h2>2. Kontrola dostępu (RBAC)</h2>
+    <p>System obsługuje 4 role z oddzielnymi uprawnieniami:</p>
     <table>
-      <thead><tr><th>Rola</th><th>Identyfikator</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Rola</th><th>Dostęp</th></tr></thead>
       <tbody>
-        <tr><td>Kierowca</td><td><code>driver</code></td><td>Rejestracja tras, podgląd własnych danych</td></tr>
-        <tr><td>Właściciel firmy</td><td><code>owner</code></td><td>Pełny dostęp do danych firmy, zarządzanie użytkownikami</td></tr>
-        <tr><td>Księgowy</td><td><code>accountant</code></td><td>Dostęp do danych finansowych i raportów firmy</td></tr>
-        <tr><td>Biuro rachunkowe</td><td><code>accounting_firm</code></td><td>Obsługa wielu firm klientów z różnym poziomem dostępu</td></tr>
+        <tr><td><strong>Kierowca</strong></td><td>Tylko własne trasy i pojazdy przypisane</td></tr>
+        <tr><td><strong>Właściciel</strong></td><td>Pełny dostęp do swojej firmy</td></tr>
+        <tr><td><strong>Księgowy</strong></td><td>Read-only — raporty, eksport FK</td></tr>
+        <tr><td><strong>Biuro rachunkowe</strong></td><td>Dostęp do firm klientów z przełączaniem kontekstu</td></tr>
       </tbody>
     </table>
+    <p>Izolacja danych między firmami (tenant isolation) — użytkownik jednej firmy nigdy nie widzi danych innej firmy.</p>
 
-    <h3>Klasy uprawnień (Permission Classes)</h3>
-    <table>
-      <thead><tr><th>Klasa</th><th>Opis</th></tr></thead>
-      <tbody>
-        <tr><td><code>IsDriver</code></td><td>Dostęp tylko dla kierowców</td></tr>
-        <tr><td><code>IsOwner</code></td><td>Dostęp tylko dla właścicieli firm</td></tr>
-        <tr><td><code>IsAccountant</code></td><td>Dostęp tylko dla księgowych</td></tr>
-        <tr><td><code>IsAccountingFirm</code></td><td>Dostęp tylko dla biur rachunkowych</td></tr>
-        <tr><td><code>IsDriverOrOwner</code></td><td>Dostęp dla kierowców i właścicieli</td></tr>
-        <tr><td><code>IsOwnerOrAccountantOrAF</code></td><td>Dostęp dla właścicieli, księgowych i biur rachunkowych</td></tr>
-        <tr><td><code>IsAccountantOrAF</code></td><td>Dostęp dla księgowych i biur rachunkowych</td></tr>
-      </tbody>
-    </table>
-
-    <h3>ActionPermissionMixin</h3>
-    <pre><code>{`class TripViewSet(ActionPermissionMixin, viewsets.ModelViewSet):
-    action_permissions = {
-        'list':     [IsAuthenticated, IsDriverOrOwner],
-        'create':   [IsAuthenticated, IsDriver],
-        'retrieve': [IsAuthenticated, IsOwnTrip],
-        'export':   [IsAuthenticated, IsOwnerOrAccountantOrAF],
-    }`}</code></pre>
-
-    <hr />
-
-    <h2>3. Izolacja danych firmowych</h2>
-
-    <h3>CompanyScopedMixin</h3>
-    <pre><code>{`class CompanyScopedMixin:
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            company_id=self.request.user.company_id
-        )`}</code></pre>
-
-    <h3>Zasada 404 zamiast 403</h3>
-    <p>Gdy użytkownik próbuje uzyskać dostęp do obiektu należącego do innej firmy, system zwraca <strong>HTTP 404 (Not Found)</strong>, a nie 403 (Forbidden). Dzięki temu:</p>
+    <h2>3. Zgodność z RODO</h2>
     <ul>
-      <li>Atakujący nie wie, czy obiekt istnieje.</li>
-      <li>Nie można enumerować zasobów innych firm.</li>
-      <li>Brak wycieku informacji o strukturze danych.</li>
+      <li><strong>Minimalizacja danych</strong> — zbieramy tylko dane niezbędne do ewidencji przebiegu</li>
+      <li><strong>Prawo do usunięcia</strong> — użytkownik może zażądać usunięcia konta i danych</li>
+      <li><strong>Prawo do eksportu</strong> — dane dostępne do pobrania w formacie PDF / CSV</li>
+      <li><strong>Lokalizacja danych</strong> — serwery w Unii Europejskiej</li>
+      <li><strong>Przetwarzanie GPS</strong> — dane lokalizacyjne przetwarzane wyłącznie w celu obliczenia trasy</li>
     </ul>
 
-    <h3>Pokrycie testami</h3>
-    <p>Izolacja firmowa jest zabezpieczona ponad <strong>50 testami</strong> weryfikującymi brak dostępu do obiektów cudzej firmy, poprawność filtrowania list, zwracanie 404 i brak możliwości modyfikacji danych innej firmy.</p>
-
-    <hr />
-
-    <h2>4. Uprawnienia na poziomie obiektu</h2>
-
-    <table>
-      <thead><tr><th>Klasa</th><th>Zastosowanie</th></tr></thead>
-      <tbody>
-        <tr><td><code>IsOwnTrip</code></td><td>Kierowca widzi i edytuje tylko swoje trasy</td></tr>
-        <tr><td><code>IsOwnVehicle</code></td><td>Kierowca widzi tylko pojazdy przypisane do niego</td></tr>
-        <tr><td><code>IsOwnCompany</code></td><td>Użytkownik może modyfikować tylko dane swojej firmy</td></tr>
-      </tbody>
-    </table>
-
-    <pre><code>{`class IsOwnTrip(BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.user.role == 'driver':
-            return obj.driver_id == request.user.id
-        return True  # Właściciele widzą wszystkie trasy firmy`}</code></pre>
-
-    <hr />
-
-    <h2>5. Izolacja multi-tenant dla biur rachunkowych</h2>
-
-    <h3>Architektura</h3>
-    <pre><code>{`Biuro rachunkowe
-    |
-    |-- Klient A (full access)
-    |-- Klient B (read_only)
-    |-- Klient C (reports_only)`}</code></pre>
-
-    <h3>Poziomy dostępu</h3>
-    <table>
-      <thead><tr><th>Poziom</th><th>Opis</th><th>Dozwolone operacje</th></tr></thead>
-      <tbody>
-        <tr><td><code>full</code></td><td>Pełny dostęp</td><td>Odczyt, zapis, edycja, eksport, raporty</td></tr>
-        <tr><td><code>read_only</code></td><td>Tylko odczyt</td><td>Przeglądanie danych, bez modyfikacji</td></tr>
-        <tr><td><code>reports_only</code></td><td>Tylko raporty</td><td>Generowanie i pobieranie raportów</td></tr>
-      </tbody>
-    </table>
-
-    <hr />
-
-    <h2>6. Ograniczanie liczby zapytań (Rate Limiting)</h2>
-
-    <h3>Warstwa globalna (Middleware)</h3>
-    <table>
-      <thead><tr><th>Typ użytkownika</th><th>Limit</th><th>Okno czasowe</th></tr></thead>
-      <tbody>
-        <tr><td>Anonimowy</td><td>100 zapytań</td><td>1 minuta</td></tr>
-        <tr><td>Uwierzytelniony</td><td>300 zapytań</td><td>1 minuta</td></tr>
-      </tbody>
-    </table>
-    <p>Implementacja oparta na algorytmie <strong>sliding window</strong> w Redis.</p>
-
-    <h3>Warstwa DRF (Throttle Classes)</h3>
-    <table>
-      <thead><tr><th>Klasa throttle</th><th>Limit</th><th>Zakres</th><th>Zastosowanie</th></tr></thead>
-      <tbody>
-        <tr><td><code>AnonRateThrottle</code></td><td>30/min</td><td>Per IP</td><td>Endpointy publiczne</td></tr>
-        <tr><td><code>UserRateThrottle</code></td><td>120/min</td><td>Per user</td><td>Endpointy uwierzytelnione</td></tr>
-        <tr><td><code>LoginRateThrottle</code></td><td>5/min</td><td>Per email</td><td>Logowanie (ochrona brute force)</td></tr>
-        <tr><td><code>GPSUploadThrottle</code></td><td>10/min</td><td>Per user</td><td>Upload danych GPS</td></tr>
-        <tr><td><code>ExportThrottle</code></td><td>5/min</td><td>Per user</td><td>Generowanie eksportów/raportów</td></tr>
-      </tbody>
-    </table>
-
-    <hr />
-
-    <h2>7. Ochrona przed atakami brute force</h2>
-
-    <pre><code>{`Próba logowania
-    |
-    |-- Sprawdzenie limitu per IP -----> Przekroczony? -> 429
-    |
-    |-- Sprawdzenie limitu per email --> Przekroczony? -> 429
-    |
-    |-- Weryfikacja danych logowania
-    |       |
-    |       |-- Niepoprawne -> Log + inkrementacja liczników
-    |       |
-    |       |-- Poprawne -> Reset liczników + wydanie tokenów`}</code></pre>
-
-    <hr />
-
-    <h2>8. Zgodność z OWASP Top 10</h2>
-
-    <table>
-      <thead><tr><th>ID</th><th>Kategoria</th><th>Status</th><th>Implementacja</th></tr></thead>
-      <tbody>
-        <tr><td>A01</td><td>Broken Access Control</td><td>Zabezpieczone</td><td>RBAC, CompanyScopedMixin, uprawnienia obiektowe, 50+ testów izolacji, 404 zamiast 403</td></tr>
-        <tr><td>A02</td><td>Cryptographic Failures</td><td>Zabezpieczone</td><td>JWT z HS256, hasła hashowane (bcrypt/argon2), HTTPS everywhere, brak PII w logach</td></tr>
-        <tr><td>A03</td><td>Injection</td><td>Zabezpieczone</td><td>Django ORM (parametryzowane zapytania), walidacja serializatorów DRF, brak raw SQL</td></tr>
-        <tr><td>A04</td><td>Insecure Design</td><td>Zabezpieczone</td><td>Wielowarstwowa architektura bezpieczeństwa, zasada najmniejszych uprawnień, code review</td></tr>
-        <tr><td>A05</td><td>Security Misconfiguration</td><td>Zabezpieczone</td><td>DEBUG=False w produkcji, usunięty domyślny SECRET_KEY, CSP headers, HSTS</td></tr>
-        <tr><td>A06</td><td>Vulnerable Components</td><td>Zabezpieczone</td><td>pip-audit, npm audit, Dependabot, bandit SAST, regularne aktualizacje</td></tr>
-        <tr><td>A07</td><td>Identification and Authentication Failures</td><td>Zabezpieczone</td><td>JWT z rotacją, brute force protection, token_version, blacklisting</td></tr>
-        <tr><td>A08</td><td>Software and Data Integrity Failures</td><td>Zabezpieczone</td><td>Podpisane tokeny JWT, walidacja MIME plików, CI/CD z kontrolą integralności</td></tr>
-        <tr><td>A09</td><td>Security Logging and Monitoring Failures</td><td>Zabezpieczone</td><td>Logowanie nieudanych logowań, rate limit events, structured logging</td></tr>
-        <tr><td>A10</td><td>Server-Side Request Forgery (SSRF)</td><td>Zabezpieczone</td><td>Brak endpointów pobierających URL od użytkownika, walidacja uploadu plików</td></tr>
-      </tbody>
-    </table>
-
-    <hr />
-
-    <h2>9. Bezpieczeństwo transportu</h2>
-    <h3>HTTPS</h3>
+    <h2>4. Archiwizacja danych</h2>
+    <p>Ewidencja przebiegu pojazdu podlega archiwizacji przez <strong>5 lat</strong> (art. 86a ustawy o VAT, art. 70 Ordynacji podatkowej). BusiKM przechowuje dane przez wymagany okres i udostępnia je na żądanie przy kontroli skarbowej.</p>
     <ul>
-      <li>Cała komunikacja odbywa się wyłącznie przez HTTPS.</li>
-      <li>Konfiguracja <code>SECURE_SSL_REDIRECT = True</code> wymusza przekierowanie HTTP -&gt; HTTPS.</li>
+      <li>Dane historyczne niemodyfikowalne (immutable)</li>
+      <li>Dziennik audytowy — każda zmiana dokumentu podatkowego jest logowana</li>
+      <li>Backup danych — automatyczny, codzienny</li>
     </ul>
 
-    <h3>HSTS</h3>
-    <pre><code>{`SECURE_HSTS_SECONDS = 31536000        # 1 rok
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True`}</code></pre>
+    <h2>5. Bezpieczeństwo aplikacji</h2>
+    <ul>
+      <li>Ochrona przed OWASP Top 10 (SQL injection, XSS, CSRF)</li>
+      <li>Rate limiting na endpointach API</li>
+      <li>Walidacja i sanityzacja wszystkich danych wejściowych</li>
+      <li>Bezpieczne przechowywanie tokenów w aplikacji mobilnej (Secure Storage)</li>
+      <li>Monitoring błędów i incydentów 24/7</li>
+    </ul>
 
-    <h3>Bezpieczne ciasteczka</h3>
-    <pre><code>{`SESSION_COOKIE_SECURE = True      # Tylko przez HTTPS
-CSRF_COOKIE_SECURE = True         # Tylko przez HTTPS
-SESSION_COOKIE_HTTPONLY = True     # Niedostępne z JavaScript`}</code></pre>
+    <h2>6. Elektroniczny podpis</h2>
+    <p>Zgodnie z interpretacją Ministerstwa Finansów, logowanie do systemu (login + hasło) stanowi podpis elektroniczny w rozumieniu art. 86a ust. 7 ustawy o VAT. Każde zatwierdzenie trasy przez kierowcę i podsumowania przez właściciela/podatnika jest logowane z timestampem i identyfikatorem użytkownika.</p>
 
-    <hr />
-
-    <h2>10. Polityka CORS</h2>
+    <h2>7. Uptime i monitoring</h2>
     <table>
-      <thead><tr><th>Środowisko</th><th>Dozwolone origin</th></tr></thead>
+      <thead><tr><th>Parametr</th><th>Wartość</th></tr></thead>
       <tbody>
-        <tr><td>Development</td><td><code>http://localhost:3000</code>, <code>http://localhost:8081</code></td></tr>
-        <tr><td>Staging</td><td><code>https://staging.busikm.pl</code></td></tr>
-        <tr><td>Produkcja</td><td><code>https://app.busikm.pl</code>, <code>https://busikm.pl</code></td></tr>
+        <tr><td>SLA</td><td>99,9% uptime</td></tr>
+        <tr><td>Monitoring</td><td>24/7 z automatycznymi alertami</td></tr>
+        <tr><td>Backup</td><td>Codzienny, retencja 30 dni</td></tr>
+        <tr><td>Disaster recovery</td><td>RTO &lt; 4h, RPO &lt; 1h</td></tr>
       </tbody>
     </table>
-
-    <hr />
-
-    <h2>11. Bezpieczeństwo uploadu plików</h2>
-    <h3>Walidacja wielopoziomowa</h3>
-    <ol>
-      <li><strong>Walidacja rozszerzenia</strong> — dozwolone tylko określone rozszerzenia plików.</li>
-      <li><strong>Walidacja MIME type</strong> — sprawdzenie nagłówka Content-Type.</li>
-      <li><strong>Walidacja magic bytes</strong> — odczyt pierwszych bajtów pliku w celu weryfikacji rzeczywistego formatu.</li>
-      <li><strong>Limit rozmiaru</strong> — maksymalnie 10–15 MB w zależności od typu pliku.</li>
-    </ol>
-
-    <h3>Ochrona przed XSS przez pliki</h3>
-    <p>Wszystkie pliki serwowane z nagłówkiem <code>Content-Disposition: attachment</code>.</p>
-
-    <h3>Przechowywanie plików</h3>
-    <ul>
-      <li>Pliki przechowywane w <strong>prywatnym bucket S3</strong> (brak publicznego dostępu).</li>
-      <li>Dostęp do plików wyłącznie przez <strong>presigned URLs</strong> z ograniczonym czasem ważności.</li>
-    </ul>
-
-    <hr />
-
-    <h2>12. Zarządzanie sekretami</h2>
-    <table>
-      <thead><tr><th>Środowisko</th><th>Mechanizm</th><th>Opis</th></tr></thead>
-      <tbody>
-        <tr><td>Backend (dev/prod)</td><td>Plik <code>.env</code></td><td>Nigdy nie commitowany do repozytorium (w <code>.gitignore</code>)</td></tr>
-        <tr><td>Aplikacja mobilna</td><td>EAS Secrets</td><td>Szyfrowane zmienne środowiskowe Expo Application Services</td></tr>
-        <tr><td>CI/CD</td><td>GitHub Secrets</td><td>Szyfrowane zmienne dostępne w GitHub Actions</td></tr>
-        <tr><td>Produkcja</td><td>Zmienne środowiskowe</td><td>Ustawiane bezpośrednio na platformie hostingowej</td></tr>
-      </tbody>
-    </table>
-
-    <hr />
-
-    <h2>13. Bezpieczeństwo warstwy webowej</h2>
-    <h3>Ciasteczka httpOnly dla JWT</h3>
-    <ul>
-      <li>Token niedostępny z poziomu JavaScript (ochrona przed XSS).</li>
-      <li>Automatycznie dołączany do zapytań przez przeglądarkę.</li>
-      <li>Flagi <code>Secure</code> i <code>SameSite=Lax</code>.</li>
-    </ul>
-
-    <h3>Wzorzec BFF (Backend for Frontend)</h3>
-    <ol>
-      <li>Klient webowy komunikuje się z BFF na tej samej domenie.</li>
-      <li>BFF zarządza tokenami JWT (przechowuje w httpOnly cookies).</li>
-      <li>BFF przekazuje zapytania do API, dołączając token w nagłówku Authorization.</li>
-      <li>Eliminuje to konieczność przechowywania tokenów w localStorage/sessionStorage.</li>
-    </ol>
-
-    <h3>Nagłówki bezpieczeństwa</h3>
-    <pre><code>{`# Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:", "https:")
-
-# Pozostałe nagłówki
-X_FRAME_OPTIONS = 'DENY'                    # Ochrona przed clickjacking
-SECURE_CONTENT_TYPE_NOSNIFF = True           # Blokada MIME sniffing
-SECURE_BROWSER_XSS_FILTER = True             # Filtr XSS przeglądarki`}</code></pre>
-
-    <hr />
-
-    <h2>14. Bezpieczeństwo aplikacji mobilnej</h2>
-    <h3>SecureStore (Expo)</h3>
-    <ul>
-      <li>Na iOS: Keychain (szyfrowanie sprzętowe).</li>
-      <li>Na Android: Keystore + EncryptedSharedPreferences.</li>
-      <li>Dane niedostępne dla innych aplikacji.</li>
-    </ul>
-
-    <hr />
-
-    <h2>15. Skanowanie zależności i analiza statyczna</h2>
-    <table>
-      <thead><tr><th>Narzędzie</th><th>Typ</th><th>Język</th><th>Zastosowanie</th></tr></thead>
-      <tbody>
-        <tr><td><code>bandit</code></td><td>SAST</td><td>Python</td><td>Analiza statyczna kodu pod kątem podatności</td></tr>
-        <tr><td><code>pip-audit</code></td><td>SCA</td><td>Python</td><td>Skanowanie zależności pip pod kątem znanych CVE</td></tr>
-        <tr><td><code>npm audit</code></td><td>SCA</td><td>JavaScript</td><td>Skanowanie zależności npm pod kątem znanych CVE</td></tr>
-        <tr><td><code>eslint-plugin-security</code></td><td>SAST</td><td>JavaScript</td><td>Reguły ESLint wykrywające niebezpieczne wzorce</td></tr>
-        <tr><td><code>Dependabot</code></td><td>SCA</td><td>Wszystkie</td><td>Automatyczne PR z aktualizacjami bezpieczeństwa</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Polityka reakcji na podatności</h3>
-    <ul>
-      <li><strong>Krytyczne (Critical)</strong> — natychmiastowa naprawa, deploy w ciągu 24h.</li>
-      <li><strong>Wysokie (High)</strong> — naprawa w bieżącym sprincie.</li>
-      <li><strong>Średnie (Medium)</strong> — naprawa w kolejnym sprincie.</li>
-      <li><strong>Niskie (Low)</strong> — umieszczenie w backlogu.</li>
-    </ul>
-
-    <hr />
-
-    <h2>Podsumowanie</h2>
-    <p>Bezpieczeństwo BusiKM opiera się na wielowarstwowej architekturze ochrony:</p>
-    <ol>
-      <li><strong>Warstwa transportu</strong> — HTTPS, HSTS, bezpieczne ciasteczka.</li>
-      <li><strong>Warstwa uwierzytelniania</strong> — JWT z rotacją, blacklisting, token_version.</li>
-      <li><strong>Warstwa autoryzacji</strong> — RBAC, uprawnienia obiektowe, ActionPermissionMixin.</li>
-      <li><strong>Warstwa izolacji danych</strong> — CompanyScopedMixin, TenantContextMiddleware.</li>
-      <li><strong>Warstwa ochrony przed nadużyciem</strong> — rate limiting, brute force protection.</li>
-      <li><strong>Warstwa przechowywania</strong> — szyfrowane tokeny (SecureStore/httpOnly), prywatny S3.</li>
-      <li><strong>Warstwa CI/CD</strong> — automatyczne skanowanie SAST/SCA, Dependabot.</li>
-    </ol>
-    <p>Każda warstwa działa niezależnie — kompromitacja jednej nie oznacza kompromitacji całego systemu (zasada defense in depth).</p>
   </div>
 </DocsLayout>

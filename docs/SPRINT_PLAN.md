@@ -1,385 +1,235 @@
-# BusiKM — Plan sprintow
+# BusiKM — Plan sprintów
 
-> Dokument zastepuje poprzednie pliki `JIRA_PLAN.md` i `JIRA_MIGRATION_PLAN.md`.
-> Wszystkie numery ticketow sa rzeczywistymi identyfikatorami Jira (projekt BKM).
+> Dokument zaktualizowany zgodnie z rzeczywistym stanem Jira (BKM board).
+> Wszystkie numery ticketów są rzeczywistymi identyfikatorami Jira (projekt BKM).
+> Taski bez widocznego numeru w backlogu = DONE (przeniesione do historii).
 
 ---
 
-## 1. Przeglad harmonogramu
+## 1. Przegląd harmonogramu
 
 ```
-Sprint 0  [15 Apr – 30 Apr]  Infra & Setup           ████░░░░░░░░░░░░  13 items
-Sprint 1  [ 1 May – 14 May]  Auth & RBAC             ████░░░░░░░░░░░░  10 items
-Sprint 2  [15 May – 28 May]  Company base            ██░░░░░░░░░░░░░░   4 items
-Sprint 3  [29 May – 11 Jun]  Fleet+Drivers+Mobile    ████████░░░░░░░░  16 items
-Sprint 4  [12 Jun – 25 Jun]  Trips+PDF+FK+Web        ██████████░░░░░░  21 items
-Sprint 5  [26 Jun –  9 Jul]  Launch MVP              ██████████░░░░░░  21 items  MVP LIVE
----------- linia MVP ----------
-Sprint 6  [10 Jul – 23 Jul]  Post-MVP: AF+ext        ██████░░░░░░░░░░  11 items
-Sprint 7  [24 Jul –  6 Aug]  Post-MVP: raporty+E2E   ████░░░░░░░░░░░░   8 items
+Sprint 0  [15 Apr – 30 Apr]  Infra & Setup           DONE  13 items  BKM-12–24
+Sprint 1  [ 1 May – 14 May]  Auth & RBAC             DONE  10 items  BKM-25–34
+Sprint 2  [15 May – 28 May]  Company base            DONE   4 items  BKM-35–44
+Sprint 3  [29 May – 11 Jun]  Fleet+Drivers           DONE  11 items  BKM-41–52
+Sprint 4  [23 Apr – 30 Apr]  KM+FK+Documents         ACT   35 items  BKM-62–67, BKM-121–149
+Sprint 5  [ 1 May – 14 Jul]  Mobile+Web+Launch       TODO  46 items  BKM-68–78, BKM-91–115
+---------- backlog pusty po Sprint 5 ----------
 ```
 
-**Sprinty 0-5 = MVP (12 tygodni).** Sprinty 6-7 = post-MVP (4 tygodnie).
-
-| Faza     | Sprinty | Czas trwania | Liczba ticketow |
-|----------|---------|--------------|-----------------|
-| MVP      | 0 – 5   | 12 tygodni   | 85              |
-| Post-MVP | 6 – 7   | 4 tygodnie   | 19              |
-| **Razem**| 0 – 7   | 16 tygodni   | **104**         |
+**Uwaga:** Sprinty 6 i 7 z poprzedniego planu zostały wchłonięte do Sprint 5 — Jira pokazuje Sprint 5 jako 46 items z datą do 14 Jul, backlog jest pusty.
 
 ---
 
-## 2. Szczegoly sprintow
+## 2. Szczegóły sprintów
 
-### Sprint 0 — Project Setup (15 Apr – 30 Apr)
+### Sprint 0 — Project Setup ✅ DONE
 
-**Cel:** Infrastruktura, repozytoria, CI/CD, staging.
+BKM-12 do BKM-24 — infrastruktura, repozytoria, CI/CD, staging, Confluence.
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-12 | Utworzenie repo: busikm-backend (Django)      | Infra         |
-| BKM-13 | Utworzenie repo: busikm-mobile (React Native) | Infra         |
-| BKM-14 | Utworzenie repo: busikm-web (Next.js)         | Infra         |
-| BKM-15 | Docker Compose: PostgreSQL + Redis + MongoDB  | Infra         |
-| BKM-16 | Django project scaffold (config, apps, settings) | Backend    |
-| BKM-17 | drf-spectacular setup + Swagger UI + ReDoc    | Backend       |
-| BKM-18 | CI pipeline: GitHub Actions (lint, test, build) | DevOps      |
-| BKM-19 | Branch protection rules (develop, staging, main) | DevOps     |
-| BKM-20 | Sentry setup (BE + mobile + web)              | Monitoring    |
-| BKM-21 | Prometheus + Grafana setup                    | Monitoring    |
-| BKM-22 | Jira + Confluence space setup                 | Project Mgmt  |
-| BKM-23 | Staging environment provisioning              | DevOps        |
-| BKM-24 | Confluence: Architecture docs (initial)       | Docs          |
+### Sprint 1 — Auth & RBAC ✅ DONE
 
-**Milestone:** Repozytoria, Docker, CI, staging gotowe.
+BKM-25 do BKM-34 — JWT auth, CustomUser, RBAC, refresh tokens, testy.
 
-**Uwagi:** Sprint zerowy — brak velocity referencyjnej. Skupienie na automatyzacji i standardach.
+### Sprint 2 — Company Base ✅ DONE
+
+BKM-35, BKM-38, BKM-40, BKM-44 — Company, Subscription, Vehicle model.
+
+### Sprint 3 — Fleet + Drivers ✅ DONE
+
+BKM-41–52 — CRUD pojazdów i kierowców, upload dokumentów, alerty, zaproszenia.
+
+> **Uwaga:** Mobile scaffold (BKM-68–72) z oryginalnego planu Sprint 3 — przeniesiony do Sprint 5.
 
 ---
 
-### Sprint 1 — Auth & RBAC (1 May – 14 May)
+### Sprint 4 — Kilometrówka + FK + Documents 🔄 AKTYWNY
 
-**Cel:** Pelny cykl uwierzytelniania JWT z rolami.
+**Daty:** 23 Apr – 30 Apr
+**Cel:** Ewidencja przebiegu wg art. 86a VAT, eksport do 3 systemów FK, PDF dokumenty.
+**Items:** 35
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-25 | Rejestracja uzytkownika z wyborem roli        | Auth          |
-| BKM-26 | Login -> JWT (access + refresh token)         | Auth          |
-| BKM-27 | Refresh token rotation + blacklist (Redis)    | Auth          |
-| BKM-28 | Endpoint GET /auth/me/ — profil usera         | Auth          |
-| BKM-29 | Logout — blacklist refresh token              | Auth          |
-| BKM-30 | CustomUser model (email login, role enum)     | Auth          |
-| BKM-31 | Permission classes: IsDriver, IsOwner, etc.   | Auth          |
-| BKM-32 | Rate limiting middleware (Redis)              | Auth          |
-| BKM-33 | Unit testy: auth flow                         | Testing       |
-| BKM-34 | Integration test: full auth cycle             | Testing       |
+#### FK Integration — modele (11 items)
 
-**Milestone:** Pelny JWT auth dzialajacy end-to-end.
+| Key | Summary | Status |
+|---|---|---|
+| BKM-121 | Aktualizacja modelu Company — pola FK i dane nadawcy EPP | CODE REVIEW |
+| BKM-122 | Aktualizacja modelu Vehicle — pola VAT-26, VIN, silnik, typ paliwa | CODE REVIEW |
+| BKM-123 | Aktualizacja modelu Trip — pola ewidencji wg art. 86a ust. 7 | IN PROGRESS |
+| BKM-124 | Aktualizacja modelu Trip — potwierdzenia kierowcy i właściciela | TO DO |
+| BKM-125 | Aktualizacja modelu Trip — snapshot stawki km i kosztu trasy | TO DO |
+| BKM-126 | Stworzenie modelu MonthlyMileageSummary | TO DO |
+| BKM-127 | Stworzenie modelu FuelInvoice | TO DO |
+| BKM-128 | Stworzenie modelu MileageRate — tabela stawek km z historią | TO DO |
+| BKM-129 | Aktualizacja modelu Driver — PESEL, NIP, adres EPP | TO DO |
+| BKM-130 | Stworzenie modelu AuditLog — nienaruszalny dziennik zmian | TO DO |
+| BKM-131 | Migracje bazy danych — wszystkie nowe i zaktualizowane modele | TO DO |
 
-**Uwagi:** BKM-30 (CustomUser) powinien byc pierwszym ticketem — migracje DB zalezne.
+#### FK Integration — fixtures, walidacje, testy (7 items)
 
----
+| Key | Summary | Status |
+|---|---|---|
+| BKM-132 | Fixtures — MileageRate wg Rozp. MI 22.12.2022 (Dz.U. 2023 poz. 5) | TO DO |
+| BKM-133 | Walidacje biznesowe — licznik, VAT, stawki km, ciągłość ewidencji | TO DO |
+| BKM-134 | Testy jednostkowe — Company, Vehicle, Driver | TO DO |
+| BKM-135 | Testy jednostkowe — Trip, FuelInvoice, MileageRate | TO DO |
+| BKM-136 | Testy jednostkowe — MonthlyMileageSummary i AuditLog | TO DO |
+| BKM-147 | Aktualizacja modelu Vehicle — alert VAT-26 przy dodawaniu pojazdu | TO DO |
+| BKM-148 | Query MileageRate — selekcja stawki po dacie (valid_from <= trip_date) | TO DO |
 
-### Sprint 2 — Company, Fleet, Drivers (15 May – 28 May)
+#### FK Integration — serializery i admin (4 items)
 
-**Cel:** Modele firmowe i subskrypcyjne — fundament multi-tenancy.
+| Key | Summary | Status |
+|---|---|---|
+| BKM-137 | Aktualizacja serializerów DRF — Company, Vehicle, Driver | TO DO |
+| BKM-138 | Aktualizacja serializerów DRF — Trip, FuelInvoice | TO DO |
+| BKM-139 | Aktualizacja serializerów DRF — MonthlyMileageSummary, MileageRate, AuditLog | TO DO |
+| BKM-140 | Aktualizacja admin Django — rejestracja nowych i zaktualizowanych modeli | TO DO |
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-35 | CRUD firma transportowa                       | Company       |
-| BKM-38 | Company model + Subscription model            | Company       |
-| BKM-40 | Testy: izolacja danych miedzy firmami         | Testing       |
-| BKM-44 | Vehicle model + VehicleDocument model         | Fleet         |
+#### FK Integration — generatory i endpointy (7 items)
 
-**Milestone:** Company + Subscription + Vehicle models gotowe.
+| Key | Summary | Status |
+|---|---|---|
+| BKM-141 | Generator pliku EPP (EDI++) — Insert GT | TO DO |
+| BKM-142 | Generator pliku XML — Comarch ERP Optima | TO DO |
+| BKM-143 | Generator pliku TXT/AMS — Symfonia FK | TO DO |
+| BKM-144 | Endpoint API — POST /exports/insert-gt/{period} | TO DO |
+| BKM-145 | Endpoint API — POST /exports/comarch/{period} | TO DO |
+| BKM-146 | Endpoint API — POST /exports/symfonia/{period} | TO DO |
+| BKM-149 | Aktualizacja dokumentacji API — nowe endpointy i modele | TO DO |
 
-**Uwagi:** Tickety BKM-36 (AF), BKM-37 (multi-tenant), BKM-39 (TenantContext) przeniesione do Sprintu 6 — nie sa wymagane dla MVP. Sprint lzejszy (4 itemy) celowo — bufor na dojrzewanie auth z S1.
+#### Document Generation (6 items)
 
----
+| Key | Summary | Status |
+|---|---|---|
+| BKM-62 | Generacja kilometrówki PDF (wzór MF) | TO DO |
+| BKM-63 | Raport kosztów floty (CSV + PDF) | TO DO |
+| BKM-64 | Zestawienie delegacji kierowców | TO DO |
+| BKM-65 | PDF generator service (WeasyPrint) | TO DO |
+| BKM-66 | Celery task: async PDF generation | TO DO |
+| BKM-67 | Testy: PDF output validation | TO DO |
 
-### Sprint 3 — Trips & GPS + Mobile scaffold (29 May – 11 Jun)
+**Milestone:** Pełna ewidencja przebiegu zgodna z art. 86a VAT + eksport do Insert GT / Comarch / Symfonia + PDF kilometrówki.
 
-**Cel:** CRUD floty i kierowcow, alerty, scaffold aplikacji mobilnej.
-
-#### Fleet (6 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-41 | CRUD pojazdow                                 | Fleet         |
-| BKM-42 | Upload dokumentow                             | Fleet         |
-| BKM-43 | System alertow OC/przeglad/tachograf          | Fleet         |
-| BKM-45 | Alert model + Celery task                     | Fleet         |
-| BKM-46 | File storage adapter S3/MinIO                 | Infra         |
-| BKM-47 | Testy vehicle CRUD                            | Testing       |
-
-#### Drivers (5 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-48 | CRUD kierowcow                                | Drivers       |
-| BKM-49 | Ewidencja uprawnien i alerty PJ (basic)       | Drivers       |
-| BKM-50 | Zaproszenie kierowcy email                    | Drivers       |
-| BKM-51 | Driver model extensions                       | Drivers       |
-| BKM-52 | Testy driver management                       | Testing       |
-
-#### Mobile scaffold (5 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-68 | Expo scaffold + Router                        | Mobile        |
-| BKM-69 | API client axios                              | Mobile        |
-| BKM-70 | Zustand stores                                | Mobile        |
-| BKM-71 | Ekran login/register                          | Mobile        |
-| BKM-72 | Role-based navigation                         | Mobile        |
-
-**Milestone:** Fleet + Driver CRUD dzialajace, aplikacja mobilna uruchamia sie.
-
-**Uwagi:** Rownolegle sciezki (BE fleet/drivers + mobile scaffold) — wymaga koordynacji.
+**Zależności:** BKM-131 (migracje) blokuje BKM-132–149. BKM-65 (WeasyPrint) blokuje BKM-62, 66.
 
 ---
 
-### Sprint 4 — Trips API + Kilometrowka + FK + Web scaffold (12 Jun – 25 Jun)
+### Sprint 5 — Mobile core + Web + Launch MVP
 
-**Cel:** GPS tracking, generacja PDF kilometrowki, eksport FK, scaffold webowy.
+**Daty:** 1 May – 14 Jul
+**Cel:** Pełna aplikacja mobilna, panel webowy, launch MVP, UAT.
+**Items:** 46
 
-#### Trips (9 items)
+#### Mobile App — Core (11 items)
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-53 | Start/stop trasy                              | Trips         |
-| BKM-54 | Bulk GPS upload                               | Trips         |
-| BKM-55 | Lista tras z filtrami                         | Trips         |
-| BKM-56 | Klasyfikacja sluzbowa/prywatna                | Trips         |
-| BKM-57 | Upload zdjecia drogomierza                    | Trips         |
-| BKM-58 | Trip model + GPSPoint MongoDB                 | Trips         |
-| BKM-59 | GPS processing Celery distance calc           | Trips         |
-| BKM-60 | Object-level permissions                      | Trips         |
-| BKM-61 | Testy trip lifecycle                          | Testing       |
+| Key | Summary |
+|---|---|
+| BKM-68 | Expo project scaffold + Expo Router |
+| BKM-69 | API client setup (axios + interceptors) |
+| BKM-70 | Zustand store: auth, trip, fleet |
+| BKM-71 | Ekran login/register |
+| BKM-72 | Role-based navigation (driver vs owner) |
+| BKM-73 | GPS tracking: background location + batching |
+| BKM-74 | Ekran start/stop trasy |
+| BKM-75 | Zdjęcie drogomierza (camera + upload) |
+| BKM-76 | Lista tras (infinite scroll) |
+| BKM-77 | Push notifications (alerty) |
+| BKM-78 | Flota overview (owner view) |
 
-#### Documents (3 items)
+#### Web App — Dashboard (1 item)
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-62 | Generacja kilometrowki PDF (wzor MF)          | Documents     |
-| BKM-65 | PDF generator service WeasyPrint              | Documents     |
-| BKM-66 | Celery async PDF generation                   | Documents     |
+| Key | Summary |
+|---|---|
+| BKM-91 | Testy: Playwright E2E |
 
-#### Mobile (2 items)
+#### FK Integration — historia i UI (8 items)
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-73 | GPS tracking background + batching            | Mobile        |
-| BKM-74 | Ekran start/stop trasy                        | Mobile        |
+| Key | Summary |
+|---|---|
+| BKM-92 | Research: EDI++ format specification |
+| BKM-93 | AbstractFKIntegration base class |
+| BKM-94 | Eksport danych do formatu EDI++ |
+| BKM-95 | Endpoint POST /export/insert-gt/ |
+| BKM-96 | Historia eksportów + status tracking |
+| BKM-97 | UI: panel eksportu FK w web app |
+| BKM-98 | Testy: EDI++ output validation |
+| BKM-99 | Confluence: Insert GT Integration Guide |
 
-#### FK Integration (4 items)
+#### MVP Launch & Quality (13 items)
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-92 | Research EDI++                                | FK            |
-| BKM-93 | AbstractFKIntegration base                    | FK            |
-| BKM-94 | Eksport EDI++                                 | FK            |
-| BKM-95 | Endpoint POST /export/insert-gt/              | FK            |
+| Key | Summary |
+|---|---|
+| BKM-100 | Security audit: bandit, npm audit, OWASP |
+| BKM-101 | Performance testing: k6/locust |
+| BKM-102 | Staging deploy: BE + Web + Mobile |
+| BKM-103 | Monitoring dashboards: Grafana |
+| BKM-104 | Uptime Kuma: health check monitoring |
+| BKM-105 | Production environment provisioning |
+| BKM-106 | Deployment runbook (Confluence) |
+| BKM-107 | UAT: onboarding 5–10 firm pilotażowych |
+| BKM-108 | Incident response playbook |
+| BKM-109 | Changelog / release notes template |
+| BKM-110 | Usage tracking — metryki per firma |
+| BKM-114 | Trial management — auto-expiry, downgrade, email |
+| BKM-115 | Landing page: "Elektroniczna kilometrówka 2.5t-3.5t" |
 
-#### Web scaffold (3 items)
+#### Driver Management (1 item)
 
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-82 | Next.js scaffold                              | Web           |
-| BKM-83 | Auth flow + middleware                        | Web           |
-| BKM-84 | API client from OpenAPI                       | Web           |
+| Key | Summary |
+|---|---|
+| BKM-113 | Ewidencja uprawnień — compliance dashboard |
 
-**Milestone:** GPS tracking + kilometrowka PDF + eksport EDI++ + web auth.
+**MILESTONE: MVP LIVE**
 
-**Uwagi:** Najwiekszy sprint (21 items). Wymaga scislego podzialu na podzespoly: BE trips, mobile GPS, FK, web scaffold. Priorytet: BKM-58 (model) blokuje reszte Trips.
-
----
-
-### Sprint 5 — Mobile core + Web + Launch (26 Jun – 9 Jul)
-
-**Cel:** Dokonczenie mobile/web, launch MVP, UAT.
-
-#### Mobile (5 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-75 | Zdjecie drogomierza camera                    | Mobile        |
-| BKM-76 | Lista tras infinite scroll                    | Mobile        |
-| BKM-77 | Push notifications                            | Mobile        |
-| BKM-78 | Flota overview owner                          | Mobile        |
-| BKM-80 | EAS Build iOS+Android                         | Mobile        |
-
-#### Web (4 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-85 | Dashboard wlasciciela                         | Web           |
-| BKM-87 | Raporty kilometrowka/koszty/CSV               | Web           |
-| BKM-88 | User management zaproszenia                   | Web           |
-| BKM-90 | Responsive design                             | Web           |
-
-#### FK (3 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-96 | Historia eksportow                            | FK            |
-| BKM-97 | UI panel eksportu FK                          | Web           |
-| BKM-99 | Confluence Insert GT guide                    | Docs          |
-
-#### Launch (7 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-100 | Security audit                               | Launch        |
-| BKM-102 | Staging deploy BE+Web+Mobile                 | Launch        |
-| BKM-103 | Monitoring Grafana                           | Monitoring    |
-| BKM-104 | Uptime Kuma                                  | Monitoring    |
-| BKM-106 | Deployment runbook                           | Docs          |
-| BKM-107 | UAT onboarding 5-10 firm                     | Launch        |
-| BKM-109 | Changelog template                           | Docs          |
-
-#### New (2 items)
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-114 | Trial management auto-expiry                 | Billing       |
-| BKM-115 | Landing page 2.5t-3.5t                       | Web           |
-
-**MILESTONE: MVP LIVE** — ustawa wchodzi w zycie.
-
-**Uwagi:** Deadline twardy (9 Jul). BKM-107 (UAT) wymaga dzialajacego staging min. tydzien przed koncem sprintu. EAS Build (BKM-80) planowac na poczatek sprintu — review Apple moze trwac dni.
+**Uwagi:**
+- BKM-68–78 (Mobile) przeniesione z oryginalnego Sprint 3/4
+- BKM-92–99 (poprzednie FK taski) pozostają — uzupełniają nowe BKM-121–149 z S4
+- Sprint trwa do 14 Jul ze względu na zakres 46 items
 
 ---
 
-### Sprint 6 — Post-MVP: AF + Rozszerzenia (10 Jul – 23 Jul)
+## 3. Zależności
 
-**Cel:** Biuro rachunkowe (AF), multi-tenant, rejestracja self-serve.
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-36 | Biuro rachunkowe rejestracja                  | AF            |
-| BKM-37 | Multi-tenant przelaczanie                     | AF            |
-| BKM-39 | TenantContext middleware                       | AF            |
-| BKM-89 | Panel biura rachunkowego web                  | Web           |
-| BKM-86 | Realtime mapa WebSocket                       | Web           |
-| BKM-105 | Production provisioning                      | DevOps        |
-| BKM-108 | Incident response playbook                   | Docs          |
-| BKM-110 | Usage tracking metryki                       | Analytics     |
-| BKM-111 | Self-serve registration 14-day trial         | Billing       |
-| BKM-112 | AF registration 3-month trial                | Billing       |
-| BKM-113 | Compliance dashboard                         | Compliance    |
-
-**Milestone:** AF multi-tenant live, rejestracja otwarta dla nowych firm.
-
-**Uwagi:** BKM-37 i BKM-39 sa blokujace dla BKM-89 (panel AF). Sekwencja: middleware -> model -> UI.
+| Zależność | Blokujący | Blokowany |
+|---|---|---|
+| Migracje FK | BKM-131 (S4) | BKM-132–BKM-149 |
+| MileageRate fixtures | BKM-132 (S4) | BKM-133 |
+| PDF generator | BKM-65 (S4) | BKM-62, BKM-66 |
+| Mobile auth | BKM-71 (S5) | BKM-73, BKM-74 |
+| Staging deploy | BKM-102 (S5) | BKM-107 (UAT) |
 
 ---
 
-### Sprint 7 — Post-MVP: Billing prep + Raporty + E2E (24 Jul – 6 Aug)
+## 4. Definition of Done
 
-**Cel:** Raporty zaawansowane, testy E2E, przygotowanie pod billing.
-
-| Key    | Summary                                      | Epic          |
-|--------|----------------------------------------------|---------------|
-| BKM-63 | Raport kosztow floty                          | Documents     |
-| BKM-64 | Zestawienie delegacji                         | Documents     |
-| BKM-67 | Testy PDF validation                          | Testing       |
-| BKM-91 | Playwright E2E                                | Testing       |
-| BKM-98 | Testy EDI++ validation                        | Testing       |
-| BKM-101 | Performance testing k6                       | Testing       |
-| BKM-79 | WatermelonDB offline                          | Mobile        |
-| BKM-81 | Detox E2E                                     | Testing       |
-
-**Milestone:** Pelny zestaw funkcji, planowanie integracji Stripe billing.
-
-**Uwagi:** Sprint testowy — idealny moment na stabilizacje przed skalowaniem.
-
----
-
-## 3. Zaleznosci miedzy sprintami
-
-```
-Sprint 0 ──> Sprint 1 ──> Sprint 2 ──> Sprint 3 ──> Sprint 4 ──> Sprint 5 (MVP)
-  Infra        Auth       Company      Fleet/Drv    Trips/PDF     Launch
-                                         │              │
-                                         └── Mobile ────┘
-                                                         │
-                                              Sprint 6 ──┘──> Sprint 7
-                                                AF/ext        Reports/E2E
-```
-
-| Zaleznosc                          | Blokujacy        | Blokowany         |
-|------------------------------------|-------------------|--------------------|
-| CustomUser model                   | BKM-30 (S1)      | BKM-25, BKM-26    |
-| Company model                      | BKM-38 (S2)      | BKM-41, BKM-48    |
-| Vehicle model                      | BKM-44 (S2)      | BKM-41, BKM-42    |
-| Trip model (MongoDB)               | BKM-58 (S4)      | BKM-53–BKM-61     |
-| PDF generator                      | BKM-65 (S4)      | BKM-62, BKM-66    |
-| Celery setup                       | BKM-15 (S0)      | BKM-45, BKM-59    |
-| Mobile auth                        | BKM-71 (S3)      | BKM-73, BKM-74    |
-| Web auth                           | BKM-83 (S4)      | BKM-85, BKM-87    |
-| TenantContext middleware            | BKM-39 (S6)      | BKM-89             |
-| Staging deploy                     | BKM-23 (S0)      | BKM-102            |
-
----
-
-## 4. Mitygacja ryzyka
-
-| Ryzyko                                        | Prawdop. | Wplyw  | Mitygacja                                          |
-|-----------------------------------------------|----------|--------|----------------------------------------------------|
-| Apple review opoznia release iOS              | Wysoki   | Wysoki | EAS Build na poczatku S5, TestFlight wczesniej     |
-| GPS tracking niestabilny na Android           | Sredni   | Wysoki | Testy na fizycznych urzadzeniach od S3             |
-| Wydajnosc MongoDB przy duzym GPS data         | Sredni   | Sredni | Indeksy geo2dsphere, testy obciazeniowe w S7       |
-| EDI++ specyfikacja niekompletna               | Sredni   | Sredni | Research (BKM-92) na poczatku S4, konsultacja z FK |
-| Przekroczenie velocity w S4/S5 (21 items)     | Wysoki   | Sredni | Priorytetyzacja MoSCoW, bufor w S2 (4 items)      |
-| Opoznienie UAT z firmami pilotazowymi         | Sredni   | Wysoki | Rekrutacja firm od S3, staging deploy w polowie S5 |
-| Zmiana wymagan prawnych (ustawa)              | Niski    | Wysoki | Monitoring legislacyjny, elastyczna architektura   |
-
----
-
-## 5. Zalozenia velocity
-
-| Parametr                    | Wartosc                              |
-|-----------------------------|--------------------------------------|
-| Dlugosc sprintu             | 2 tygodnie                           |
-| Planowana velocity          | ~30 story points / sprint            |
-| Rozmiar zespolu             | 2-3 developerow + 1 QA              |
-| Estymacja ticketow          | Fibonacci (1, 2, 3, 5, 8, 13)       |
-| Sredni rozmiar ticketu      | 3-5 SP                               |
-| Bufor na nieprzewidziane    | 15-20% capacity                      |
-
-**Uwaga:** Sprint 2 (4 itemy) celowo lzejszy — sluzy jako bufor i czas na stabilizacje auth (S1). Sprinty 4 i 5 (po 21 items) sa najciezsze — wymagaja pelnej velocity i ewentualnego wsparcia.
-
----
-
-## 6. Definition of Done
-
-Ticket uznajemy za ukonczony gdy:
+Ticket uznajemy za ukończony gdy:
 
 - [ ] Kod przechodzi code review (min. 1 approval)
-- [ ] Wszystkie testy jednostkowe przechodza (coverage >= 80%)
-- [ ] Testy integracyjne przechodza na CI
+- [ ] Testy jednostkowe przechodzą (coverage >= 80%)
+- [ ] Testy integracyjne przechodzą na CI
 - [ ] Dokumentacja API zaktualizowana (drf-spectacular)
-- [ ] Brak bledow krytycznych w Sentry
+- [ ] Brak błędów krytycznych w Sentry
 - [ ] Ticket przeniesiony do Done w Jira
-- [ ] Changelog zaktualizowany (od S5)
 
-Dla sprintow launchowych (S5+):
-- [ ] Deploy na staging przeszedl pomyslnie
-- [ ] Smoke testy na staging zaliczone
-- [ ] Metryki Grafana/Prometheus bez anomalii
+Dla FK Integration (BKM-121–BKM-149) dodatkowo:
+- [ ] Walidacje biznesowe (art. 86a VAT) pokryte testami
+- [ ] AuditLog tworzony dla wszystkich operacji na danych podatkowych
+- [ ] Immutability MileageRate zweryfikowana testami
+- [ ] Eksport przetestowany na pliku importowanym do systemu FK
 
 ---
 
-## Podsumowanie
+## 5. Podsumowanie
 
-| Sprint | Items | Zakres                       | Daty              |
-|--------|-------|------------------------------|--------------------|
-| 0      | 13    | Infra                        | 15 Apr – 30 Apr   |
-| 1      | 10    | Auth                         | 1 May – 14 May    |
-| 2      | 4     | Company base                 | 15 May – 28 May   |
-| 3      | 16    | Fleet+Drivers+Mobile scaffold| 29 May – 11 Jun   |
-| 4      | 21    | Trips+PDF+FK+Web scaffold    | 12 Jun – 25 Jun   |
-| 5      | 21    | Launch MVP                   | 26 Jun – 9 Jul    |
-| 6      | 11    | Post-MVP: AF+extensions      | 10 Jul – 23 Jul   |
-| 7      | 8     | Post-MVP: raporty+E2E        | 24 Jul – 6 Aug    |
-| **Razem** | **104** |                           |                    |
+| Sprint | Items | Zakres | Status |
+|---|---|---|---|
+| 0 | 13 | Infra & Setup | ✅ DONE |
+| 1 | 10 | Auth & RBAC | ✅ DONE |
+| 2 | 4 | Company base | ✅ DONE |
+| 3 | 11 | Fleet + Drivers | ✅ DONE |
+| 4 | 35 | KM + FK + Documents | 🔄 AKTYWNY (23–30 Apr) |
+| 5 | 46 | Mobile + Web + Launch | TODO (1 May – 14 Jul) |
+
+**Łącznie:** 119 items | MVP deadline: 14 Jul
