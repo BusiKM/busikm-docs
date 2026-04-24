@@ -283,12 +283,51 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- (old ROI calculator removed) -->
-<!-- ======================== SOLUTION ======================== -->
+<!-- ======================== CO AUTOMATYZUJEMY ======================== -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center max-w-[720px] mx-auto mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dokumenty i eksport</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+        Wszystko co Twoja księgowa robi ręcznie — BusiKM generuje automatycznie.
+      </h2>
+      <p class="text-[16px] text-[#6E6E73] leading-relaxed">Kierowcy klientów jeżdżą z aplikacją — GPS rejestruje trasy, AI klasyfikuje cel. Ty dostajesz gotowe dokumenty w panelu biura i eksportujesz do FK jednym kliknięciem.</p>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        { title: 'Ewidencja przebiegu PDF', desc: 'Raport wg wzoru MF (art. 86a ustawy o VAT) — per pojazd, per miesiąc. Gotowy do kontroli US. Daty, trasy, cele, km, stawki, kwoty.', color: '#005CE8', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
+        { title: 'Eksport EDI++ (Insert GT)', desc: 'Plik .epp w formacie EDI++ — Windows-1250, CRLF, gotowy do importu w Insert GT, Rewizor GT i InsERT nexo. Ewidencja + delegacje.', color: '#34C759', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>` },
+        { title: 'Comarch + Symfonia', desc: 'Eksport REST API do Comarch ERP Optima i XML/CSV do Symfonia FK. Bez ręcznego przepisywania danych między systemami.', color: '#FF9500', icon: `<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>` },
+        { title: 'Raport kosztów floty', desc: 'Zbiorczy raport CSV + PDF dla wszystkich pojazdów firmy klienta — paliwo, serwisy, przebieg, koszty per pojazd i per okres.', color: '#005CE8', icon: `<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>` },
+        { title: 'Kalkulacja VAT', desc: 'Automatyczne obliczenie kwoty do odliczenia per pojazd: km × stawka wg Dz.U. 2023 poz. 5. Stawka dobierana wg daty przejazdu.', color: '#34C759', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>` },
+        { title: 'Zbiorczy dashboard BR', desc: 'Jeden panel dla wszystkich firm klientów. Przełączanie kontekstu jednym kliknięciem. Status ewidencji, alerty dokumentów, eksporty.', color: '#8B5CF6', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
+      ].map(item => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${item.color}12`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={item.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+          </div>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <p class="text-[14px] text-[#86868B] mb-6">Wszystkie dane zbierane automatycznie przez GPS + AI — <span class="font-semibold text-[#1D1D1F]">zero ręcznego wpisywania przez księgową</span></p>
+      <a href="/cennik" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005CE8] text-white text-[14px] font-semibold hover:bg-[#003FAD] transition-colors">
+        3 miesiące gratis dla biur
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== JAK TO DZIAŁA DLA BR ======================== -->
 <section class="py-24 sm:py-36 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal max-w-[640px] mb-20">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Rozwiązanie</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jak to działa</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
         Trzy kroki. Zero papieru.
       </h2>
@@ -300,10 +339,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <div class="flex-1">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-display text-[3.5rem] font-bold tracking-[-0.04em] leading-none select-none" style="color:rgba(29,29,31,0.06)">01</span>
-            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#005CE812;color:#005CE8;">Automatyczne śledzenie</span>
+            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#005CE812;color:#005CE8;">Kierowcy klientów</span>
           </div>
-          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">GPS rejestruje każdy przejazd.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Kierowca włącza aplikację mobilną — BusiKM automatycznie śledzi trasę w tle. Adaptacyjny GPS dostosowuje częstotliwość odczytu do prędkości. Poniżej 10% baterii — automatyczne wstrzymanie.</p>
+          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">Kierowca jedzie — dane trafiają do Ciebie.</h3>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Kierowca klienta wlacza aplikacje — BusiKM automatycznie sledzi trase w tle. Dane GPS trafiaja do panelu biura bez zadnego wysilku ze strony kierowcy ani ksiegowej.</p>
           <ul class="flex flex-col gap-2">
             {['Śledzenie w tle — zamknij aplikację, jedź', 'Statystyki na żywo: prędkość, dystans, czas', 'Tryb offline — sync po powrocie online', 'iOS 15+ / Android 10+ (React Native + Expo)'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
@@ -371,10 +410,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <div class="flex-1">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-display text-[3.5rem] font-bold tracking-[-0.04em] leading-none select-none" style="color:rgba(29,29,31,0.06)">02</span>
-            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#34C75912;color:#34C759;">Klasyfikacja AI</span>
+            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#34C75912;color:#34C759;">Zero ręcznego wpisywania</span>
           </div>
-          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">AI klasyfikuje cel trasy.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Algorytm uczy się wzorców — rozpoznaje regularne trasy służbowe, proponuje cel (klient, baza, serwis). Kierowca zatwierdza jednym dotknięciem. Bez wpisywania.</p>
+          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">AI klasyfikuje — księgowa nie przepisuje.</h3>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Algorytm rozpoznaje regularne trasy, proponuje cel wyjazdu. Kierowca zatwierdza jednym dotkniêciem. Twoja księgowa nie musi weryfikować 30 wpisów ręcznie.</p>
           <ul class="flex flex-col gap-2">
             {['Automatyczne rozpoznawanie powtarzalnych tras', 'Klasyfikacja: służbowa / prywatna', 'Zatwierdzanie jednym kliknięciem', 'RAG Engine — asystent przepisów (Q2 2027)'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
@@ -413,10 +452,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <div class="flex-1">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-display text-[3.5rem] font-bold tracking-[-0.04em] leading-none select-none" style="color:rgba(29,29,31,0.06)">03</span>
-            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#FF950012;color:#FF9500;">Eksport jednym kliknięciem</span>
+            <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#FF950012;color:#FF9500;">Eksport do FK</span>
           </div>
-          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">Raport dla MF w 10 sekund.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Właściciel lub księgowy klika "Generuj raport" — gotowy PDF / XLSX zgodny ze wzorem MF. Eksport EDI++ do Insert GT. Planowane: Comarch, Symfonia.</p>
+          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">1 klik — dane w Twoim FK.</h3>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Klikasz "Eksportuj" w panelu biura — plik EDI++ trafia do Insert GT. Raport PDF wg wzoru MF gotowy do kontroli US. Planowane: Comarch, Symfonia.</p>
           <ul class="flex flex-col gap-2">
             {['PDF ewidencji wg wzoru Ministerstwa Finansów', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki wg Dz.U. 2023 poz. 5: 1,15 zł/km (>900cc), 0,89 zł/km (≤900cc)', 'Comarch ERP, Symfonia (planowane)'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
@@ -463,20 +502,20 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 <section class="py-24 sm:py-32 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dlaczego BusiKM</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dlaczego biura wybierają BusiKM</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Jedyna platforma łącząca GPS,&nbsp;MF&nbsp;i&nbsp;FK.
+        Więcej klientów. Mniej&nbsp;pracy.
       </h2>
     </div>
 
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {[
-        { title: 'GPS + MF + FK w jednym', desc: 'Żaden konkurent nie łączy automatycznego śledzenia GPS, raportu zgodnego z MF i eksportu do polskich systemów FK.', icon: `<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>`, color: '#005CE8' },
-        { title: 'Każdy pojazd firmowy', desc: 'Nie tylko busy i floty — BusiKM działa dla każdego przedsiębiorcy, który chce odliczać 100% VAT: handlowca, hydraulika, lekarza.', icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`, color: '#34C759' },
-        { title: '14 dni za darmo', desc: 'Pełny plan Professional na 14 dni. Bez karty kredytowej. Po próbie — automatyczny downgrade do Free.', icon: `<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>`, color: '#FF9500' },
-        { title: 'Kanał biur rachunkowych', desc: '1 biuro rachunkowe = 5–20 klientów. Skalowalna dystrybucja B2B2B. 3 miesiące Enterprise za darmo dla BR.', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`, color: '#8B5CF6' },
-        { title: 'Polskie systemy FK', desc: 'Insert GT (EDI++), Comarch ERP Optima, Symfonia. Format dostosowany do polskich realiów księgowych.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
-        { title: 'Roadmapa 3 lata', desc: 'MVP → Billing → AI → Ekspansja CZ/SK → Scale → Exit. Docelowo 20M PLN ARR. Produkt budowany na poważnie.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`, color: '#005CE8' },
+        { title: 'Obsługuj więcej klientów', desc: 'BusiKM eliminuje 2h pracy per pojazd miesięcznie. Przy 30 pojazdach to cały etat — obsługujesz więcej firm bez zatrudniania.', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`, color: '#005CE8' },
+        { title: 'Klienci korzystają gratis', desc: 'Firmy Twoich klientów dostają pełny Professional za 0 zł — GPS, raporty MF, 100% VAT. Lepszą usługę bez dodatkowej opłaty.', icon: `<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>`, color: '#34C759' },
+        { title: 'Insert GT, Comarch, Symfonia', desc: 'Eksport EDI++ do Insert GT jednym kliknięciem. Planowane: Comarch ERP Optima i Symfonia. Zero przepisywania danych.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
+        { title: 'Panel multi-klient', desc: 'Jeden dashboard dla wszystkich firm klientów. Przełączanie kontekstu bez wylogowania. Status ewidencji na pierwszy rzut oka.', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>`, color: '#8B5CF6' },
+        { title: '3 miesiące za darmo', desc: 'Pełny dostęp bez warunków, bez karty kredytowej. Po trialu płacisz tylko za aktywne pojazdy klientów (od 29 zł/pojazd).', icon: `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`, color: '#005CE8' },
+        { title: '25+ pojazdów = bez etatu', desc: 'Przy 25-35 pojazdach ręczna ewidencja to cały etat (~6 100 zł/mies.). BusiKM obsługuje tę samą liczbę za ułamek kosztu.', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>`, color: '#FF3B30' },
       ].map(u => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.06] hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${u.color}12`}>
@@ -539,18 +578,18 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 <section class="py-24 sm:py-32 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Nasi użytkownicy</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Klienci biur rachunkowych</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Stworzony dla ludzi transportu.
+        Dla kogo prowadzisz kilometrówkę?
       </h2>
     </div>
 
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5">
       {[
-        { name: 'Marek', role: 'Właściciel floty · 5 vanów, 6 kierowców', quote: 'Miałem dosyć papierów. BusiKM oszczędza mi 4 godziny miesięcznie na każdym pojeździe. Raporty generuję jednym kliknięciem.', color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
-        { name: 'Anna', role: 'Księgowa · firma transportowa', quote: 'Eksport do Insert GT jednym kliknięciem. Koniec z przepisywaniem danych z papierowych formularzy. Oszczędzam 2 godziny tygodniowo.', color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>` },
-        { name: 'Tomek', role: 'Kierowca · busy dostawcze', quote: 'Klikam raz na start. Reszta jest automatyczna. Nie muszę nic wpisywać — GPS śledzi trasę w tle, nawet bez internetu.', color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
-        { name: 'Ewa', role: 'Właścicielka biura rachunkowego · 15 klientów', quote: 'Obsługuję 15 firm transportowych z jednego panelu. Przełączam kontekst jednym kliknięciem. Oszczędność czasu jest ogromna.', color: '#8B5CF6', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/>` },
+        { name: 'Firmy budowlane', role: '5-15 pojazdów · ekipy mobilne', quote: 'Hydraulicy, elektrycy, ekipy remontowe — dziesiątki dojazdów dziennie. Ręczna ewidencja to koszmar dla księgowej.', color: '#FF9500', icon: `<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>` },
+        { name: 'Firmy dostawcze', role: '3-20 vanów · kurierzy', quote: 'Last-mile delivery, busy dostawcze — setki tras miesięcznie. BusiKM rejestruje wszystko automatycznie, eksport do FK jednym klikiem.', color: '#005CE8', icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>` },
+        { name: 'Handlowcy i serwisy', role: '2-10 pojazdów · dojazdy do klientów', quote: 'Przedstawiciele handlowi, serwisy techniczne, biura nieruchomości — każdy wyjazd musi mieć udokumentowany cel.', color: '#34C759', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>` },
+        { name: 'Firmy sprzatajace', role: '5-25 vanów · stale trasy', quote: 'Stałe trasy do obiektów, kilkadziesiąt pojazdów — powtarzalne trasy rozpoznawane przez AI, zero ręcznej klasyfikacji.', color: '#8B5CF6', icon: `<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>` },
       ].map(p => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:bg-white hover:border-black/[0.06] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
           <div class="flex items-center gap-3 mb-5">
@@ -562,7 +601,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
               <p class="text-[12px] text-[#86868B]">{p.role}</p>
             </div>
           </div>
-          <p class="text-[14.5px] leading-relaxed text-[#424245] italic">„{p.quote}"</p>
+          <p class="text-[14.5px] leading-relaxed text-[#424245]">{p.quote}</p>
         </div>
       ))}
     </div>
