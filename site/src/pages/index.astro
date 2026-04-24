@@ -283,42 +283,131 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ======================== CO AUTOMATYZUJEMY ======================== -->
+<!-- ======================== DANE I INTEGRACJE FK ======================== -->
 <section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center max-w-[720px] mx-auto mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dokumenty i eksport</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dane i integracje</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
-        Wszystko co Twoja księgowa robi ręcznie — BusiKM generuje automatycznie.
+        Zbiera dane automatycznie. Eksportuje jednym&nbsp;kliknięciem.
       </h2>
-      <p class="text-[16px] text-[#6E6E73] leading-relaxed">Kierowcy klientów jeżdżą z aplikacją — GPS rejestruje trasy, AI klasyfikuje cel. Ty dostajesz gotowe dokumenty w panelu biura i eksportujesz do FK jednym kliknięciem.</p>
+      <p class="text-[16px] text-[#6E6E73] leading-relaxed">Kierowca jedzie — BusiKM zapisuje. Koniec miesiąca — księgowa klika Eksportuj. Zero przepisywania.</p>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {[
-        { title: 'Ewidencja przebiegu PDF', desc: 'Raport wg wzoru MF (art. 86a ustawy o VAT) — per pojazd, per miesiąc. Gotowy do kontroli US. Daty, trasy, cele, km, stawki, kwoty.', color: '#005CE8', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
-        { title: 'Eksport EDI++ (Insert GT)', desc: 'Plik .epp w formacie EDI++ — Windows-1250, CRLF, gotowy do importu w Insert GT, Rewizor GT i InsERT nexo. Ewidencja + delegacje.', color: '#34C759', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>` },
-        { title: 'Comarch + Symfonia', desc: 'Eksport REST API do Comarch ERP Optima i XML/CSV do Symfonia FK. Bez ręcznego przepisywania danych między systemami.', color: '#FF9500', icon: `<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>` },
-        { title: 'Raport kosztów floty', desc: 'Zbiorczy raport CSV + PDF dla wszystkich pojazdów firmy klienta — paliwo, serwisy, przebieg, koszty per pojazd i per okres.', color: '#005CE8', icon: `<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>` },
-        { title: 'Kalkulacja VAT', desc: 'Automatyczne obliczenie kwoty do odliczenia per pojazd: km × stawka wg Dz.U. 2023 poz. 5. Stawka dobierana wg daty przejazdu.', color: '#34C759', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>` },
-        { title: 'Zbiorczy dashboard BR', desc: 'Jeden panel dla wszystkich firm klientów. Przełączanie kontekstu jednym kliknięciem. Status ewidencji, alerty dokumentów, eksporty.', color: '#8B5CF6', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
-      ].map(item => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
-          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${item.color}12`}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={item.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+    <!-- Two columns -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+
+      <!-- LEFT: Co zbiera BusiKM -->
+      <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-6">Co BusiKM zbiera automatycznie</h3>
+
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center gap-2 mb-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span class="text-[13px] font-bold text-[#005CE8] uppercase tracking-[0.04em]">Pojazd</span></div>
+            <ul class="space-y-1 text-[13px] text-[#6E6E73] pl-6">
+              <li>Nr rejestracyjny, marka, model, VIN</li>
+              <li>Stan licznika (zdjecie + GPS)</li>
+              <li>Status VAT-26 (czy zgłoszony do US)</li>
+            </ul>
           </div>
-          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+          <div>
+            <div class="flex items-center gap-2 mb-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-[13px] font-bold text-[#34C759] uppercase tracking-[0.04em]">Każda trasa (GPS)</span></div>
+            <ul class="space-y-1 text-[13px] text-[#6E6E73] pl-6">
+              <li>Data i godzina wyjazdu / przyjazdu</li>
+              <li>Trasa: skąd / dokąd (adresy)</li>
+              <li>Kilometry (GPS)</li>
+              <li>Cel wyjazdu (jedyne pole ręczne)</li>
+              <li>Klasyfikacja: służbowa / prywatna</li>
+              <li>Kierowca + elektroniczne potwierdzenie</li>
+            </ul>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span class="text-[13px] font-bold text-[#FF9500] uppercase tracking-[0.04em]">Podsumowanie miesięczne</span></div>
+            <ul class="space-y-1 text-[13px] text-[#6E6E73] pl-6">
+              <li>Łączne km per pojazd per miesiąc</li>
+              <li>Stawka km wg Dz.U. 2023 poz. 5</li>
+              <li>Wartość: km x stawka (koszt PIT)</li>
+              <li>Suma VAT do odliczenia (50% / 100%)</li>
+              <li>Potwierdzenie przez podatnika</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Co trafia do FK -->
+      <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-6">Co trafia do programu księgowego</h3>
+
+        <!-- FK tabs -->
+        <div class="flex gap-1 mb-5 bg-[#F5F5F7] rounded-xl p-1">
+          <button data-fk-tab="insert" class="fk-tab flex-1 py-2 px-3 rounded-lg text-[12.5px] font-semibold transition-all bg-[#005CE8] text-white">Insert GT</button>
+          <button data-fk-tab="comarch" class="fk-tab flex-1 py-2 px-3 rounded-lg text-[12.5px] font-semibold transition-all text-[#6E6E73] hover:text-[#1D1D1F]">Comarch</button>
+          <button data-fk-tab="symfonia" class="fk-tab flex-1 py-2 px-3 rounded-lg text-[12.5px] font-semibold transition-all text-[#6E6E73] hover:text-[#1D1D1F]">Symfonia</button>
+        </div>
+
+        <!-- Insert GT content -->
+        <div id="fk-insert" class="fk-content">
+          <div class="bg-[#F5F5F7] rounded-xl p-4 mb-4">
+            <p class="text-[12px] font-semibold text-[#1D1D1F] mb-1">Plik EPP (EDI++) — Windows-1250</p>
+            <p class="text-[11.5px] text-[#86868B]">Operacje &rarr; Dodaj na podstawie &rarr; wskaż plik .epp</p>
+          </div>
+          <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
+            {['Nagłówek firmy (NIP, nazwa, adres)', 'Typ dokumentu: FZ (faktura zakupu)', 'Numer i data faktury paliwowej', 'NIP i dane kontrahenta (stacja / serwis)', 'Wartość netto / VAT / brutto', 'Symbol stawki VAT + procent odliczenia', 'Ewidencja przebiegu: km x stawka = kwota', 'Imię i nazwisko kierowcy'].map(i => (
+              <li class="flex items-start gap-2"><svg class="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{i}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Comarch content -->
+        <div id="fk-comarch" class="fk-content hidden">
+          <div class="bg-[#F5F5F7] rounded-xl p-4 mb-4">
+            <p class="text-[12px] font-semibold text-[#1D1D1F] mb-1">Plik XML — import w Comarch ERP Optima</p>
+            <p class="text-[11.5px] text-[#86868B]">Narzędzia &rarr; Importy &rarr; Import z pliku XML</p>
+          </div>
+          <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
+            {['<Dokument typ="FZ"> per faktura paliwowa', 'NIP i dane firmy + kontrahenta', 'Data wystawienia i data operacji', 'Wartość netto / VAT / brutto', 'OdliczenieVAT: 50 lub 100', '<EwidencjaPrzebiegu> per pojazd per miesiąc', 'Nr rejestracyjny, km, stawka, wartość', 'Imię i nazwisko kierowcy'].map(i => (
+              <li class="flex items-start gap-2"><svg class="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{i}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Symfonia content -->
+        <div id="fk-symfonia" class="fk-content hidden">
+          <div class="bg-[#F5F5F7] rounded-xl p-4 mb-4">
+            <p class="text-[12px] font-semibold text-[#1D1D1F] mb-1">Plik TXT z szablonem AMS</p>
+            <p class="text-[11.5px] text-[#86868B]">Księgowość &rarr; Import specjalny &rarr; wskaż plik i szablon</p>
+          </div>
+          <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
+            {['Rekord DOK: data, nr faktury, NIP, netto/VAT/brutto', 'Rekord VAT: stawka, kwota, procent odliczenia', 'Rekord KM: nr rej., km, stawka, wartość, kierowca', 'Szablon AMS konfiguruje się raz', 'Kolejne importy: tylko wskaż plik'].map(i => (
+              <li class="flex items-start gap-2"><svg class="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{i}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver box -->
+    <div class="reveal rounded-[20px] p-6 bg-[#005CE8]/[0.04] border border-[#005CE8]/15 max-w-[900px] mx-auto mb-8">
+      <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Jedyne co robi kierowca: wpisuje cel wyjazdu.</h3>
+      <p class="text-[14px] text-[#6E6E73] leading-relaxed">Wszystko inne — GPS, kilometry, licznik, dane pojazdu, stawka km, VAT — BusiKM uzupełnia automatycznie. Kierowca wpisuje tylko cel podróży, bo wymaga tego art. 86a ust. 7 ustawy o VAT. Jedno pole. Kilka sekund.</p>
+    </div>
+
+    <!-- Compliance tiles -->
+    <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[900px] mx-auto">
+      {[
+        { icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, title: 'Art. 86a ustawy o VAT', desc: 'Wszystkie wymagane pola ewidencji', color: '#005CE8' },
+        { icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>`, title: 'Wzór MF', desc: 'PDF zgodny z drukiem MF', color: '#34C759' },
+        { icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, title: 'Podpis elektroniczny', desc: 'Login + hasło = podpis (interpretacja MF)', color: '#FF9500' },
+        { icon: `<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>`, title: 'Archiwizacja 5 lat', desc: 'Dane w UE, dostępne przy kontroli', color: '#8B5CF6' },
+      ].map(t => (
+        <div class="text-center p-5 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+          <div class="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style={`background:${t.color}10`}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={t.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={t.icon}/>
+          </div>
+          <h4 class="font-semibold text-[13px] text-[#1D1D1F] mb-1">{t.title}</h4>
+          <p class="text-[11.5px] text-[#86868B]">{t.desc}</p>
         </div>
       ))}
-    </div>
-
-    <div class="reveal mt-10 text-center">
-      <p class="text-[14px] text-[#86868B] mb-6">Wszystkie dane zbierane automatycznie przez GPS + AI — <span class="font-semibold text-[#1D1D1F]">zero ręcznego wpisywania przez księgową</span></p>
-      <a href="/cennik" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005CE8] text-white text-[14px] font-semibold hover:bg-[#003FAD] transition-colors">
-        3 miesiące gratis dla biur
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
     </div>
   </div>
 </section>
@@ -529,50 +618,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ======================== ROLES ======================== -->
-<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dla kogo</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Jeden system. Cztery role.
-      </h2>
-    </div>
-
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5">
-      {[
-        { href: '/dla-kierowcow', role: 'Kierowca', headline: 'Jedź. My zapisujemy.', bullets: ['GPS w tle — zamknij aplikację, jedź', 'Zatwierdzanie trasy jednym kliknięciem', 'Zdjęcia drogomierza (opcjonalne)', 'Tryb offline — sync po powrocie online'], color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
-        { href: '/dla-wlascicieli', role: 'Właściciel floty', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time (Mapbox)', 'Raport MF jednym kliknięciem', 'Alerty: OC, przegląd, tachograf, prawo jazdy', 'Compliance dashboard — wskaźniki zgodności'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
-        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ (Insert GT) jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — gwarancja integralności'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
-        { href: '/dla-biur-rachunkowych', role: 'Biuro rachunkowe', headline: 'Obsłuż dziesiątki klientów.', bullets: ['Panel multi-klient (Enterprise)', 'Przełączanie firm bez wylogowania', '3 poziomy dostępu per klient', '3 miesiące Enterprise za darmo'], color: '#8B5CF6', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>` },
-      ].map(r => (
-        <a href={r.href} class="group bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 block">
-          <div class="flex items-center gap-4 mb-5">
-            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${r.color}12`}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={r.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={r.icon}/>
-            </div>
-            <div>
-              <p class="text-[11.5px] font-semibold uppercase tracking-[0.08em]" style={`color:${r.color}`}>{r.role}</p>
-              <p class="font-display text-[1.1rem] font-bold tracking-[-0.02em] text-[#1D1D1F]">{r.headline}</p>
-            </div>
-          </div>
-          <ul class="flex flex-col gap-2.5 mb-6">
-            {r.bullets.map(b => (
-              <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M5 8l2 2 4-4" stroke={r.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                {b}
-              </li>
-            ))}
-          </ul>
-          <span class="inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style={`color:${r.color}`}>
-            Dowiedz się więcej
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="transition-transform duration-200 group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
 
 <!-- ======================== NEW: PERSONY ======================== -->
 <section class="py-24 sm:py-32 bg-white px-5">
@@ -605,57 +650,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         </div>
       ))}
     </div>
-  </div>
-</section>
-
-<!-- ======================== PRICING ======================== -->
-<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
-  <div class="max-w-[960px] mx-auto text-center">
-    <div class="reveal mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Cennik</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
-        Proste, uczciwe ceny.
-      </h2>
-      <p class="text-[16px] text-[#6E6E73]">14 dni bezpłatnie — pełny Professional. Bez karty kredytowej.</p>
-    </div>
-
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      {[
-        { plan: 'Starter', price: '59', unit: 'zł / pojazd / mies.', desc: 'Do 10 pojazdów · min. 149 zł/mies.', bullets: ['GPS auto + raporty PDF', 'Powiadomienia push', 'Alerty dokumentów', 'Zaproszenia dla kierowców'], featured: false },
-        { plan: 'Professional', price: '89', unit: 'zł / pojazd / mies.', desc: 'Do 50 pojazdów · min. 249 zł/mies.', bullets: ['Wszystko ze Starter +', 'Eksport FK (Insert GT EDI++)', 'Mapa real-time + raporty CSV', 'Compliance dashboard + offline'], featured: true },
-        { plan: 'Enterprise', price: '149', unit: 'zł / pojazd / mies.', desc: 'Bez limitu pojazdów', bullets: ['Wszystko z Professional +', 'Multi-tenant (biura rachunkowe)', 'API + Comarch + Symfonia', 'Dedykowane wsparcie + white-label'], featured: false },
-      ].map(p => (
-        <div class:list={[
-          'rounded-[20px] p-7 text-left border transition-all duration-300',
-          p.featured
-            ? 'bg-[#005CE8] text-white border-[#005CE8] shadow-[0_8px_40px_rgba(0,92,232,0.30)] sm:scale-[1.04]'
-            : 'bg-white text-[#1D1D1F] border-black/[0.06] shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]',
-        ]}>
-          {p.featured && <p class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-white/50 mb-4">Najpopularniejszy</p>}
-          <p class:list={['text-[11.5px] font-semibold uppercase tracking-[0.08em] mb-3', p.featured ? 'text-white/70' : 'text-[#86868B]']}>{p.plan}</p>
-          <div class="mb-1">
-            <span class="font-display text-[2.2rem] font-bold tracking-[-0.03em]">{p.price}</span>
-            <span class:list={['text-[12px] ml-1', p.featured ? 'text-white/60' : 'text-[#86868B]']}>{p.unit}</span>
-          </div>
-          <p class:list={['text-[12.5px] mb-5', p.featured ? 'text-white/60' : 'text-[#6E6E73]']}>{p.desc}</p>
-          <ul class="flex flex-col gap-2 mb-6">
-            {p.bullets.map(b => (
-              <li class:list={['flex items-center gap-2 text-[13px]', p.featured ? 'text-white/90' : 'text-[#6E6E73]']}>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke={p.featured ? 'white' : '#34C759'} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                {b}
-              </li>
-            ))}
-          </ul>
-          <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class:list={[
-            'block text-center py-2.5 rounded-xl text-[13.5px] font-semibold transition-colors duration-200',
-            p.featured ? 'bg-white text-[#005CE8] hover:bg-[#F0F6FF]' : 'bg-[#005CE8]/8 text-[#005CE8] hover:bg-[#005CE8]/15',
-          ]}>
-            Porozmawiajmy
-          </a>
-        </div>
-      ))}
-    </div>
-    <p class="reveal text-[13px] text-[#86868B]">Rabat 15% przy płatności rocznej. Biura rachunkowe: 3 miesiące Enterprise za darmo.</p>
   </div>
 </section>
 
@@ -899,4 +893,17 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
   roiVehicles.addEventListener('input', calcROI);
   calcROI();
+
+  // FK tabs
+  document.querySelectorAll('.fk-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = (btn as HTMLElement).dataset.fkTab;
+      document.querySelectorAll('.fk-tab').forEach(b => {
+        (b as HTMLElement).className = 'fk-tab flex-1 py-2 px-3 rounded-lg text-[12.5px] font-semibold transition-all text-[#6E6E73] hover:text-[#1D1D1F]';
+      });
+      (btn as HTMLElement).className = 'fk-tab flex-1 py-2 px-3 rounded-lg text-[12.5px] font-semibold transition-all bg-[#005CE8] text-white';
+      document.querySelectorAll('.fk-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById('fk-' + tab)?.classList.remove('hidden');
+    });
+  });
 </script>
