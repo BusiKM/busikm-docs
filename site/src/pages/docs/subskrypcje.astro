@@ -13,7 +13,7 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
         ('free', 'Free'),
         ('starter', 'Starter'),
         ('professional', 'Professional'),
-        ('enterprise', 'Enterprise'),
+        ('br_panel', 'Panel biura rachunkowego'),
     ])
     status = models.CharField(choices=[
         ('trial', 'Okres próbny'),
@@ -39,7 +39,7 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
       <tbody>
         <tr><td><strong>Reverse trial</strong></td><td>14 dni</td><td>Professional</td><td>Nowa firma — pełny dostęp, potem downgrade do Free</td></tr>
         <tr><td><strong>Pilot</strong></td><td>6 miesięcy</td><td>Professional</td><td>Pierwsi klienci — bezpłatnie w zamian za feedback</td></tr>
-        <tr><td><strong>AF trial</strong></td><td>3 miesiące</td><td>Enterprise</td><td>Biuro rachunkowe — wymagane min. 3 klientów</td></tr>
+        <tr><td><strong>AF trial</strong></td><td>3 miesiące</td><td>Panel BR</td><td>Biuro rachunkowe — pełny dostęp, potem progi cenowe 49/39/29 zł/pojazd</td></tr>
         <tr><td><strong>AF client trial</strong></td><td>3 miesiące</td><td>Professional</td><td>Klient zaproszony przez biuro rachunkowe</td></tr>
       </tbody>
     </table>
@@ -48,7 +48,7 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
     <pre><code>Rejestracja firmy
      │
      ▼
-Trial aktywny (Professional / Enterprise)
+Trial aktywny (Professional / Panel BR)
      │  ← Banner: "Pozostało X dni trialu"
      │  ← Email: 7, 3, 1 dzień przed końcem
      │
