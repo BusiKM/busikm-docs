@@ -698,84 +698,59 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ======================== NEW: TECHNOLOGIA ======================== -->
+<!-- ======================== CENNIK BR NA HOMEPAGE ======================== -->
 <section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Technologia</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Enterprise-grade od pierwszego dnia.
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Cennik dla biur rachunkowych</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+        Im więcej pojazdów, tym&nbsp;taniej.
       </h2>
+      <p class="text-[16px] text-[#6E6E73]">Płacisz za aktywne pojazdy klientów. Klienci korzystają z BusiKM gratis.</p>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- Pricing tiers -->
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[900px] mx-auto mb-10">
       {[
-        { title: 'Backend', desc: 'Django 5.x + DRF + Celery + PostgreSQL 16 + MongoDB 7 + Redis 7', icon: `<rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>`, color: '#005CE8' },
-        { title: 'Bezpieczeństwo', desc: 'AES-256, JWT + refresh rotation, RBAC (4 role), RODO, OWASP Top 10', icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, color: '#34C759' },
-        { title: 'Monitoring', desc: 'Sentry (errors) + Prometheus + Grafana (metrics) + Uptime Kuma (uptime)', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`, color: '#FF9500' },
-        { title: 'API', desc: 'OpenAPI 3.0 (drf-spectacular) → orval → generowany klient TypeScript', icon: `<path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>`, color: '#8B5CF6' },
+        { range: '1–50 pojazdów', price: '49', savings: '27', highlight: false },
+        { range: '51–150 pojazdów', price: '39', savings: '37', highlight: false },
+        { range: '151+ pojazdów', price: '29', savings: '47', highlight: true },
       ].map(t => (
-        <div class="bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
-          <div class="w-11 h-11 rounded-[14px] mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${t.color}12`}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={t.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={t.icon}/>
+        <div class:list={['rounded-[20px] p-7 text-center transition-all duration-300', t.highlight ? 'bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.25)]' : 'bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]']}>
+          <p class:list={['text-[12px] font-semibold uppercase tracking-[0.06em] mb-3', t.highlight ? 'text-white/60' : 'text-[#86868B]']}>{t.range}</p>
+          <div class="mb-2">
+            <span class:list={['font-display text-[2.5rem] font-bold tracking-[-0.04em]', t.highlight ? 'text-white' : 'text-[#1D1D1F]']}>{t.price}</span>
+            <span class:list={['text-[14px] ml-1', t.highlight ? 'text-white/60' : 'text-[#86868B]']}>zł / pojazd / mies.</span>
           </div>
-          <h3 class="font-display font-semibold text-[0.95rem] text-[#1D1D1F] mb-2">{t.title}</h3>
-          <p class="text-[12.5px] leading-relaxed text-[#6E6E73]">{t.desc}</p>
+          <div class:list={['text-[13px] mb-3', t.highlight ? 'text-white/70' : 'text-[#6E6E73]']}>Eliminujesz koszt 76 zł/pojazd</div>
+          <div class:list={['font-display text-[1.3rem] font-bold', t.highlight ? 'text-white' : 'text-[#34C759]']}>+{t.savings} zł oszczędności</div>
+          <div class:list={['text-[11.5px] mt-0.5', t.highlight ? 'text-white/50' : 'text-[#86868B]']}>na każdym pojeździe / mies.</div>
         </div>
       ))}
     </div>
 
-    <div class="reveal text-center mt-8">
-      <a href="/docs" class="inline-flex items-center gap-2 text-[14px] font-semibold text-[#005CE8] hover:text-[#003FAD] transition-colors">
-        Pełna dokumentacja techniczna
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== NEW: ROADMAPA PREVIEW ======================== -->
-<section class="py-24 sm:py-32 bg-white px-5">
-  <div class="max-w-[900px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Roadmapa</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Wizja na 3 lata.
-      </h2>
-    </div>
-
-    <div class="reveal relative">
-      <!-- Vertical line -->
-      <div class="absolute left-5 sm:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#005CE8] via-[#34C759] to-[#FF9500]"></div>
-
-      <div class="flex flex-col gap-6">
-        {[
-          { q: 'Q2 2026', title: 'MVP Launch', desc: '5–10 firm pilotażowych · MRR 5 000 PLN', color: '#005CE8', current: true },
-          { q: 'Q2 2026', title: 'Post-MVP', desc: 'Stripe Billing · Comarch + Symfonia', color: '#FF9500', current: false },
-          { q: 'Q3 2026', title: 'Scale', desc: 'White-label · 100 firm · 30k MRR', color: '#005CE8', current: false },
-          { q: 'Q2 2027', title: 'AI Features', desc: 'RAG Engine · OCR faktur · Public API · 1,8M ARR', color: '#34C759', current: false },
-          { q: 'Q3 2027', title: 'Ekspansja CZ/SK', desc: 'Lokalizacja + partnerstwa · 3M ARR', color: '#34C759', current: false },
-          { q: '2028', title: 'Scale', desc: '5–9 rynków CEE · Financing round · 15M ARR', color: '#FF9500', current: false },
-          { q: 'Q4 2028', title: 'Pre-Exit', desc: 'Big 4 audit · Data room · 20M ARR · 12 osób', color: '#1D1D1F', current: false },
-        ].map(m => (
-          <div class="relative pl-14 sm:pl-16">
-            <div class={`absolute left-[14px] sm:left-[18px] top-1.5 w-3.5 h-3.5 rounded-full border-2 ${m.current ? 'bg-white border-[#005CE8] ring-4 ring-[#005CE8]/15' : 'bg-white'}`} style={!m.current ? `border-color:${m.color}` : undefined}></div>
-            <div class="flex flex-wrap items-baseline gap-3">
-              <span class="text-[12px] font-bold uppercase tracking-[0.06em]" style={`color:${m.color}`}>{m.q}</span>
-              <span class="font-display font-semibold text-[15px] text-[#1D1D1F]">{m.title}</span>
-              {m.current && <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#005CE8] text-white uppercase">Teraz</span>}
-            </div>
-            <p class="text-[13px] text-[#6E6E73] mt-1">{m.desc}</p>
-          </div>
-        ))}
+    <!-- Key benefits row -->
+    <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[900px] mx-auto mb-10">
+      <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+        <span class="text-[13.5px] text-[#1D1D1F] font-medium">3 miesiące gratis</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="text-[13.5px] text-[#1D1D1F] font-medium">Bez karty kredytowej</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+        <span class="text-[13.5px] text-[#1D1D1F] font-medium">Klienci korzystają gratis</span>
       </div>
     </div>
 
-    <div class="reveal text-center mt-10">
-      <a href="/roadmapa" class="inline-flex items-center gap-2 text-[14px] font-semibold text-[#005CE8] hover:text-[#003FAD] transition-colors">
-        Pełna roadmapa + plan sprintów
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="reveal text-center">
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-all" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
+        Zobacz pełny cennik
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
+      <p class="text-[12px] text-[#86868B] mt-4">Firmy indywidualne: od 19 zł/pojazd &middot; <a href="/cennik" class="text-[#005CE8] hover:underline">porównaj plany</a></p>
     </div>
   </div>
 </section>
@@ -787,18 +762,18 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
   <div class="relative reveal text-center max-w-[680px] mx-auto">
     <h2 class="font-display text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-      Porozmawiajmy o&nbsp;Twoich potrzebach.
+      3 miesiące gratis. Zacznij&nbsp;dziś.
     </h2>
     <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
-      Umów krótkie spotkanie — opowiemy jak BusiKM może pomóc w&nbsp;ewidencji przebiegu Twojej floty. Bez zobowiązań.
+      Pełny dostęp do panelu biura rachunkowego. Bez karty kredytowej. Po trialu płacisz tylko za aktywne pojazdy klientów.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
       <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
-        Umów spotkanie
+        Zacznij bezpłatny trial
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/docs" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
-        Dokumentacja techniczna
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
+        Zobacz cennik
       </a>
     </div>
   </div>
