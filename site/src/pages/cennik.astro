@@ -21,7 +21,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </h1>
 
     <p class="reveal text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[560px] mx-auto mb-10">
-      Przewidywalne koszty, które skalują się z Twoją flotą. Bez ukrytych opłat. 14-dniowy trial bez karty kredytowej.
+      Przewidywalne koszty, które skalują się z Twoją flotą. Bez ukrytych opłat. Bez karty kredytowej.
     </p>
 
     <!-- Toggle -->
@@ -108,7 +108,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
     </div>
 
-    <p class="reveal text-center text-[13px] text-[#86868B] mt-8 max-w-[520px] mx-auto">
+    <div class="reveal text-center mt-8 mb-4">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#34C759]/[0.08] text-[13px] font-semibold text-[#34C759]">14 dni pełnego dostępu do Professional — za darmo, bez karty kredytowej</span>
+    </div>
+    <p class="reveal text-center text-[13px] text-[#86868B] max-w-[520px] mx-auto">
       Ceny przed pełnym wdrożeniem MVP. Po okresie pilotażowym zapytamy użytkowników o optymalny model cenowy. Przy rozliczeniu rocznym <span class="font-semibold text-[#34C759]">&minus;15%</span>.
     </p>
     <p class="reveal text-center text-[13px] text-[#86868B] mt-3">
@@ -228,7 +231,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
     <div class="reveal space-y-3">
       {[
-        { q: 'Co się dzieje po zakończeniu trialu?', a: 'Po zakończeniu 14-dniowego reverse trialu Twoje konto automatycznie przechodzi na plan <strong>Free</strong> (1 pojazd, 1 kierowca, brak raportów). Wszystkie dane pozostają zachowane — nic nie tracisz. W dowolnym momencie możesz przejść na plan płatny.' },
+        { q: 'Co się dzieje po zakończeniu trialu?', a: '<strong>Firmy:</strong> po 14 dniach konto przechodzi na plan Free (1 pojazd, brak raportów). Dane pozostają. <strong>Biura rachunkowe:</strong> po 3 miesiącach przechodzisz na płatny model per aktywny pojazd (od 29 zł). Klienci biura nadal korzystają gratis.' },
         { q: 'Czy mogę zmienić plan w trakcie?', a: 'Tak. Przy upgrade natychmiastowy dostęp do nowych funkcji. Przy downgrade zmiana wchodzi w życie od następnego okresu rozliczeniowego. Rozliczenie jest proporcjonalne (proration).' },
         { q: 'Czym różni się plan dla biura od planu dla firmy?', a: 'Biuro rachunkowe płaci za aktywne pojazdy wszystkich swoich klientów łącznie, w modelu hurtowym (29–49 zł/pojazd). Firmy klientów biura otrzymują BusiKM za darmo jako część obsługi księgowej. Firma bez biura rachunkowego płaci indywidualnie (19–29 zł/pojazd).' },
         { q: 'Co to jest aktywny pojazd?', a: 'Pojazd który zarejestrował minimum 1 trasę w danym miesiącu kalendarzowym. Pojazdy bez aktywności w danym miesiącu nie są wliczane do rachunku biura.' },
@@ -256,7 +259,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         Gotowy, żeby usprawnić<br/>ewidencję przebiegu?
       </h2>
       <p class="text-[#86868B] text-[15px] max-w-[480px] mx-auto mb-10 leading-relaxed">
-        14 dni pełnego dostępu do Professional. Bez karty. Bez zobowiązań. Dane zostają nawet po downgrade.
+        Firmy: 14 dni Professional gratis. Biura rachunkowe: 3 miesiące gratis. Bez karty. Dane zostają nawet po downgrade.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#005CE8] text-white font-semibold text-[15px] px-7 py-3.5 rounded-full hover:bg-[#0050CC] transition-all">
