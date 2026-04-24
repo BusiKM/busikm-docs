@@ -619,35 +619,62 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 
-<!-- ======================== NEW: PERSONY ======================== -->
+<!-- ======================== KTO KORZYSTA ======================== -->
 <section class="py-24 sm:py-32 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Klienci biur rachunkowych</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Dla kogo prowadzisz kilometrówkę?
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Kto korzysta</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+        Jedna platforma. Cztery&nbsp;role.
       </h2>
+      <p class="text-[16px] text-[#6E6E73]">Web, iOS i Android — każda rola ma dedykowany widok i uprawnienia.</p>
     </div>
 
+    <!-- Platform badges -->
+    <div class="reveal flex flex-wrap justify-center gap-3 mb-12">
+      {[
+        { label: 'Web (Next.js)', icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>` },
+        { label: 'iOS (iPhone)', icon: `<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
+        { label: 'Android', icon: `<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
+      ].map(p => (
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[13px] font-medium text-[#6E6E73]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86868B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={p.icon}/>
+          {p.label}
+        </div>
+      ))}
+    </div>
+
+    <!-- 4 roles -->
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5">
       {[
-        { name: 'Firmy budowlane', role: '5-15 pojazdów · ekipy mobilne', quote: 'Hydraulicy, elektrycy, ekipy remontowe — dziesiątki dojazdów dziennie. Ręczna ewidencja to koszmar dla księgowej.', color: '#FF9500', icon: `<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>` },
-        { name: 'Firmy dostawcze', role: '3-20 vanów · kurierzy', quote: 'Last-mile delivery, busy dostawcze — setki tras miesięcznie. BusiKM rejestruje wszystko automatycznie, eksport do FK jednym klikiem.', color: '#005CE8', icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>` },
-        { name: 'Handlowcy i serwisy', role: '2-10 pojazdów · dojazdy do klientów', quote: 'Przedstawiciele handlowi, serwisy techniczne, biura nieruchomości — każdy wyjazd musi mieć udokumentowany cel.', color: '#34C759', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>` },
-        { name: 'Firmy sprzatajace', role: '5-25 vanów · stale trasy', quote: 'Stałe trasy do obiektów, kilkadziesiąt pojazdów — powtarzalne trasy rozpoznawane przez AI, zero ręcznej klasyfikacji.', color: '#8B5CF6', icon: `<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>` },
-      ].map(p => (
-        <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:bg-white hover:border-black/[0.06] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-full flex items-center justify-center" style={`background:${p.color}12`}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={p.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={p.icon}/>
+        { href: '/dla-biur-rachunkowych', role: 'Biuro rachunkowe', headline: 'Panel multi-klient. Eksport do FK.', bullets: ['Zbiorczy dashboard wszystkich firm klientów', 'Eksport do Insert GT, Comarch, Symfonia', 'Przełączanie kontekstu jednym kliknięciem', '3 miesiące gratis'], color: '#8B5CF6', icon: `<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>` },
+        { href: '/dla-wlascicieli', role: 'Właściciel firmy', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time', 'Raporty PDF wg wzoru MF', 'Alerty: OC, przegląd, prawo jazdy', 'Compliance dashboard'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
+        { href: '/dla-kierowcow', role: 'Kierowca', headline: 'Jedź. My zapisujemy.', bullets: ['GPS w tle — zamknij aplikację, jedź', 'Zatwierdzanie trasy jednym kliknięciem', 'Tryb offline — sync po powrocie', 'iOS + Android (React Native + Expo)'], color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
+        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — integralność danych'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
+      ].map(r => (
+        <a href={r.href} class="group bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:bg-white hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 block">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${r.color}12`}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={r.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={r.icon}/>
             </div>
             <div>
-              <p class="font-display font-semibold text-[15px] text-[#1D1D1F]">{p.name}</p>
-              <p class="text-[12px] text-[#86868B]">{p.role}</p>
+              <p class="text-[11.5px] font-semibold uppercase tracking-[0.08em]" style={`color:${r.color}`}>{r.role}</p>
+              <p class="font-display text-[1.1rem] font-bold tracking-[-0.02em] text-[#1D1D1F]">{r.headline}</p>
             </div>
           </div>
-          <p class="text-[14.5px] leading-relaxed text-[#424245]">{p.quote}</p>
-        </div>
+          <ul class="flex flex-col gap-2.5 mb-5">
+            {r.bullets.map(b => (
+              <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M5 8l2 2 4-4" stroke={r.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+          <span class="inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style={`color:${r.color}`}>
+            Dowiedz się więcej
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="transition-transform duration-200 group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
       ))}
     </div>
   </div>
