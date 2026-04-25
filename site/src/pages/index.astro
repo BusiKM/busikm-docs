@@ -261,10 +261,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       <div class="max-w-[500px] mx-auto mb-8">
         <div class="flex justify-between items-baseline mb-3">
           <label class="text-[14px] font-semibold text-[#1D1D1F]">Ile pojazdów obsługujesz u klientów?</label>
-          <span id="roi-vehicles-val" class="font-display text-[1.1rem] font-bold text-[#005CE8]">30</span>
+          <span id="roi-vehicles-val" class="font-display text-[1.1rem] font-bold text-[#005CE8]">40</span>
         </div>
-        <input type="range" id="roi-vehicles" min="5" max="200" value="30" step="5" class="w-full h-1.5 bg-[#E8E8ED] rounded-full appearance-none cursor-pointer accent-[#005CE8] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-[#005CE8] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_2px_6px_rgba(0,92,232,0.3)] [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-[#005CE8] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0" />
-        <div class="flex justify-between text-[11px] text-[#86868B] mt-1"><span>5</span><span>200</span></div>
+        <input type="range" id="roi-vehicles" min="5" max="120" value="40" step="5" class="w-full h-1.5 bg-[#E8E8ED] rounded-full appearance-none cursor-pointer accent-[#005CE8] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-[#005CE8] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_2px_6px_rgba(0,92,232,0.3)] [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-[#005CE8] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0" />
+        <div class="flex justify-between text-[11px] text-[#86868B] mt-1"><span>5</span><span>120</span></div>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-6">
         <div class="p-4 rounded-2xl bg-[#F5F5F7]"><div class="text-[12px] text-[#86868B] mb-1">Koszt BusiKM / mies.</div><div id="roi-cost" class="font-display text-[1.2rem] font-bold text-[#1D1D1F]">—</div></div>
@@ -291,21 +291,22 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </div>
     </div>
 
-    <!-- Client segments -->
-    <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-[900px] mx-auto mb-12">
-      {[
-        { icon: `<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3a2 2 0 012 2v5a2 2 0 01-2 2h-1"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`, label: 'Floty dostawcze' },
-        { icon: `<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>`, label: 'Serwisy i instalatorzy' },
-        { icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`, label: 'Przedstawiciele handlowi' },
-        { icon: `<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>`, label: 'Firmy budowlane' },
-        { icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>`, label: 'Biura nieruchomości' },
-        { icon: `<path d="M5 12h14M12 5l7 7-7 7"/>`, label: 'Kurierzy i last-mile' },
-      ].map(s => (
-        <div class="flex items-center gap-3 p-4 rounded-2xl bg-[#F5F5F7]">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" set:html={s.icon}/>
-          <span class="text-[13.5px] font-medium text-[#1D1D1F]">{s.label}</span>
+    <!-- Jak to wygląda w Twoim biurze -->
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] mx-auto mb-12">
+      <div class="rounded-[20px] p-6 bg-[#F5F5F7]">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[12px] font-bold text-[#005CE8] uppercase tracking-[0.04em]">Małe biuro</span>
+          <span class="text-[12px] text-[#86868B]">1–3 osoby, 40–60 klientów</span>
         </div>
-      ))}
+        <p class="text-[14px] leading-relaxed text-[#6E6E73]">Twoi klienci mają łącznie <span class="font-semibold text-[#1D1D1F]">30–40 samochodów</span>. Zbierasz od nich kilometrówki w Excelu, dzwonisz gdy coś brakuje, przeliczasz proporcje ręcznie. BusiKM to eliminuje — dane gotowe, zatwierdzone, eksport jednym kliknięciem.</p>
+      </div>
+      <div class="rounded-[20px] p-6 bg-[#F5F5F7]">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[12px] font-bold text-[#8B5CF6] uppercase tracking-[0.04em]">Średnie biuro</span>
+          <span class="text-[12px] text-[#86868B]">5–10 osób, 100–200 klientów</span>
+        </div>
+        <p class="text-[14px] leading-relaxed text-[#6E6E73]">Samochody Twoich klientów to <span class="font-semibold text-[#1D1D1F]">70–120 pojazdów</span>. Przy VAT-26 każdy to 2h pracy miesięcznie. To <span class="font-semibold text-[#FF3B30]">140–240h rocznie — 1,5 etatu</span> tylko na kilometrówki. BusiKM redukuje ten czas o 80%.</p>
+      </div>
     </div>
 
     <!-- Legal basis -->
