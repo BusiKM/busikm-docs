@@ -170,9 +170,42 @@ const faqs = [
         </div>
       </div>
 
-      <!-- Live fleet map mockup -->
+      <!-- Live fleet — desktop: map, mobile: vehicle list -->
       <div class="reveal mt-12 max-w-[900px] mx-auto">
-        <div class="rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+        <!-- MOBILE: vehicle status cards -->
+        <div class="sm:hidden rounded-[20px] bg-white border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] p-5">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#34C759] animate-pulse"></span>
+            <span class="text-[13px] font-semibold text-[#1D1D1F]">5 pojazdów w trasie</span>
+          </div>
+          <div class="space-y-3">
+            {[
+              { plate: 'WA 12345', model: 'Sprinter', status: 'W trasie', detail: 'Warszawa → Kraków · 82 km/h', driver: 'Jan Kowalski', color: '#005CE8' },
+              { plate: 'GD 54321', model: 'Crafter', status: 'W trasie', detail: 'Warszawa → Gdańsk · 95 km/h', driver: 'Piotr Nowak', color: '#34C759' },
+              { plate: 'KR 98765', model: 'Ducato', status: 'W trasie', detail: 'Łódź → Wrocław · 67 km/h', driver: 'Adam Wiśniewski', color: '#FF9500' },
+              { plate: 'PO 11223', model: 'Transit', status: 'W trasie', detail: 'Wrocław → Poznań · 88 km/h', driver: 'Marek Zieliński', color: '#8B5CF6' },
+              { plate: 'GD 44556', model: 'Boxer', status: 'W trasie', detail: 'Gdańsk → Łódź · 72 km/h', driver: 'Tomek Lewandowski', color: '#FF3B30' },
+            ].map(v => (
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F5F5F7]">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={`background:${v.color}12`}>
+                  <div class="w-3 h-3 rounded-full" style={`background:${v.color}`}></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2">
+                    <span class="text-[13px] font-bold text-[#1D1D1F]">{v.plate}</span>
+                    <span class="text-[11px] text-[#86868B]">{v.model}</span>
+                  </div>
+                  <div class="text-[12px] font-medium truncate" style={`color:${v.color}`}>{v.detail}</div>
+                  <div class="text-[11px] text-[#86868B]">{v.driver}</div>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M6 4l4 4-4 4" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- DESKTOP: animated Poland map -->
+        <div class="hidden sm:block rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
           <!-- Browser chrome -->
           <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
             <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
@@ -185,75 +218,136 @@ const faqs = [
             </div>
           </div>
 
-          <!-- Map SVG -->
-          <svg viewBox="0 0 900 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="block">
+          <!-- Map SVG — Poland with realistic geography -->
+          <svg viewBox="0 0 900 420" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="block">
             <defs>
-              <pattern id="mapGrid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M 45 0 L 0 0 0 45" fill="none" stroke="#E2E2E7" stroke-width="0.6"/></pattern>
+              <filter id="tBlur"><feGaussianBlur stdDeviation="20"/></filter>
             </defs>
-            <rect width="900" height="400" fill="#FAFAFA"/><rect width="900" height="400" fill="url(#mapGrid)"/>
 
-            <!-- Streets -->
-            <path d="M 0 200 C 200 190 400 210 600 195 C 700 188 800 180 900 175" stroke="#D2D2D7" stroke-width="8" fill="none" stroke-linecap="round"/>
-            <path d="M 0 120 C 150 115 300 108 450 105 C 600 102 750 100 900 98" stroke="#D2D2D7" stroke-width="5" fill="none"/>
-            <path d="M 0 300 C 200 295 500 290 700 285 C 800 282 850 280 900 278" stroke="#D2D2D7" stroke-width="5" fill="none"/>
-            <path d="M 150 0 L 160 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
-            <path d="M 450 0 L 460 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
-            <path d="M 700 0 L 710 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+            <!-- Background — land color across entire map -->
+            <rect width="900" height="420" fill="#E8ECE5"/>
 
-            <!-- Route 1: blue — active delivery -->
-            <path id="ownerR1" d="M 80 340 C 120 320 180 280 250 240 C 320 200 400 180 500 170 C 600 160 700 155 800 140" stroke="#005CE8" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800">
-              <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
-            </path>
-            <path d="M 80 340 C 120 320 180 280 250 240 C 320 200 400 180 500 170 C 600 160 700 155 800 140" stroke="#005CE8" stroke-width="10" fill="none" opacity="0.06" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800">
-              <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" fill="freeze"/>
-            </path>
+            <!-- Terrain — subtle green patches -->
+            <ellipse cx="350" cy="250" rx="100" ry="60" fill="#D5E8D0" opacity="0.25" filter="url(#tBlur)"/>
+            <ellipse cx="600" cy="200" rx="80" ry="50" fill="#D5E8D0" opacity="0.2" filter="url(#tBlur)"/>
+            <ellipse cx="500" cy="360" rx="80" ry="30" fill="#C8D5C0" opacity="0.3" filter="url(#tBlur)"/>
 
-            <!-- Route 2: green — returning -->
-            <path id="ownerR2" d="M 750 320 C 680 290 580 260 480 250 C 380 240 280 235 200 220" stroke="#34C759" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8" stroke-dasharray="600" stroke-dashoffset="600">
-              <animate attributeName="stroke-dashoffset" from="600" to="0" dur="2s" begin="0.8s" fill="freeze"/>
-            </path>
+            <!-- Wisła river — Kraków→Warszawa→Gdańsk -->
+            <path d="M 516 335 C 540 320 570 305 590 280 C 605 255 608 230 606 210 C 604 200 605 193 606 188 C 590 178 550 168 505 163 C 460 150 420 140 404 135 C 408 100 408 70 408 44" stroke="#A8C8E0" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M 516 335 C 540 320 570 305 590 280 C 605 255 608 230 606 210 C 604 200 605 193 606 188 C 590 178 550 168 505 163 C 460 150 420 140 404 135 C 408 100 408 70 408 44" stroke="#C8DDF0" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.15"/>
 
-            <!-- Moving vehicles -->
-            <g><circle r="5" fill="#005CE8"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#ownerR1"/></animateMotion></circle>
-            <circle r="14" fill="#005CE8" opacity="0.08"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#ownerR1"/></animateMotion></circle></g>
+            <!-- Odra river -->
+            <path d="M 202 315 C 210 300 230 280 260 264 C 250 240 240 210 235 190 C 225 160 200 130 170 110" stroke="#A8C8E0" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
 
-            <g><circle r="4.5" fill="#34C759"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#ownerR2"/></animateMotion></circle>
-            <circle r="12" fill="#34C759" opacity="0.06"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#ownerR2"/></animateMotion></circle></g>
+            <!-- Highways — dashed, connecting cities -->
+            <path d="M 606 188 L 477 220" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
+            <path d="M 606 188 C 570 250 540 300 516 335" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
+            <path d="M 606 188 C 540 150 470 100 408 44" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
+            <path d="M 477 220 C 400 240 340 260 272 264" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
+            <path d="M 272 264 C 268 230 265 200 263 175" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
+            <path d="M 408 44 C 440 120 460 170 477 220" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
 
-            <!-- Static vehicles with pulse -->
-            <circle cx="450" cy="105" r="10" fill="#FF9500" opacity="0.08"><animate attributeName="r" values="10;16;10" dur="2.5s" repeatCount="indefinite"/></circle>
-            <circle cx="450" cy="105" r="6" fill="white" stroke="#FF9500" stroke-width="2.5"/><circle cx="450" cy="105" r="2.5" fill="#FF9500"/>
+            <!-- Cities at real positions -->
+            <!-- Warszawa (606, 188) — main hub, largest marker -->
+            <circle cx="606" cy="188" r="16" fill="#005CE8" opacity="0.06"><animate attributeName="r" values="16;24;16" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="606" cy="188" r="8" fill="white" stroke="#005CE8" stroke-width="2.5"/><circle cx="606" cy="188" r="3.5" fill="#005CE8"/>
+            <rect x="573" y="200" width="66" height="17" rx="5" fill="#005CE8"/><text x="606" y="212" text-anchor="middle" fill="white" font-size="8.5" font-family="system-ui" font-weight="600">Warszawa</text>
 
-            <circle cx="700" cy="285" r="10" fill="#8B5CF6" opacity="0.08"><animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="700" cy="285" r="6" fill="white" stroke="#8B5CF6" stroke-width="2.5"/><circle cx="700" cy="285" r="2.5" fill="#8B5CF6"/>
+            <!-- Kraków (516, 335) -->
+            <circle cx="516" cy="335" r="6" fill="white" stroke="#34C759" stroke-width="2"/><circle cx="516" cy="335" r="2.5" fill="#34C759"/>
+            <text x="516" y="352" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Kraków</text>
 
-            <circle cx="80" cy="340" r="12" fill="#005CE8" opacity="0.08"><animate attributeName="r" values="12;18;12" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="80" cy="340" r="7" fill="white" stroke="#005CE8" stroke-width="2.5"/><circle cx="80" cy="340" r="3" fill="#005CE8"/>
+            <!-- Łódź (477, 220) -->
+            <circle cx="477" cy="220" r="6" fill="white" stroke="#FF9500" stroke-width="2"/><circle cx="477" cy="220" r="2.5" fill="#FF9500"/>
+            <text x="477" y="237" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Łódź</text>
 
-            <!-- Info cards -->
+            <!-- Wrocław (272, 264) -->
+            <circle cx="272" cy="264" r="6" fill="white" stroke="#8B5CF6" stroke-width="2"/><circle cx="272" cy="264" r="2.5" fill="#8B5CF6"/>
+            <text x="272" y="281" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Wrocław</text>
+
+            <!-- Gdańsk (408, 44) -->
+            <circle cx="408" cy="44" r="6" fill="white" stroke="#FF3B30" stroke-width="2"/><circle cx="408" cy="44" r="2.5" fill="#FF3B30"/>
+            <text x="408" y="37" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Gdańsk</text>
+
+            <!-- Poznań (263, 175) -->
+            <circle cx="263" cy="175" r="5" fill="white" stroke="#86868B" stroke-width="1.5"/><circle cx="263" cy="175" r="2" fill="#86868B"/>
+            <text x="263" y="168" text-anchor="middle" fill="#AEAEB2" font-size="8" font-family="system-ui">Poznań</text>
+
+            <!-- Katowice (439, 321) — small marker -->
+            <circle cx="439" cy="321" r="4" fill="white" stroke="#86868B" stroke-width="1.2"/><circle cx="439" cy="321" r="1.5" fill="#86868B"/>
+            <text x="439" y="337" text-anchor="middle" fill="#AEAEB2" font-size="7.5" font-family="system-ui">Katowice</text>
+
+            <!-- Bydgoszcz (353, 127) — small marker -->
+            <circle cx="353" cy="127" r="4" fill="white" stroke="#86868B" stroke-width="1.2"/><circle cx="353" cy="127" r="1.5" fill="#86868B"/>
+            <text x="353" y="120" text-anchor="middle" fill="#AEAEB2" font-size="7.5" font-family="system-ui">Bydgoszcz</text>
+
+            <!-- Routes — curves following real highways between correct city positions -->
+            <!-- R1: Warszawa(606,188)→Kraków(516,335) via E77/S7 through Radom -->
+            <path id="oR1" d="M 606 188 C 600 210 585 245 570 270 C 555 295 540 315 530 328 C 525 332 520 334 516 335" stroke="#005CE8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" fill="freeze"/></path>
+            <path d="M 606 188 C 600 210 585 245 570 270 C 555 295 540 315 530 328 C 525 332 520 334 516 335" stroke="#005CE8" stroke-width="10" fill="none" opacity="0.04" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" fill="freeze"/></path>
+
+            <!-- R2: Warszawa(606,188)→Gdańsk(408,44) via A1/S7 through Toruń -->
+            <path id="oR2" d="M 606 188 C 580 170 540 145 500 120 C 470 100 440 75 420 55 C 414 48 410 45 408 44" stroke="#34C759" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="350" stroke-dashoffset="350"><animate attributeName="stroke-dashoffset" from="350" to="0" dur="1.8s" begin="0.3s" fill="freeze"/></path>
+
+            <!-- R3: Łódź(477,220)→Wrocław(272,264) via A8/S8 -->
+            <path id="oR3" d="M 477 220 C 445 230 410 240 380 248 C 350 256 320 260 290 263 C 280 264 275 264 272 264" stroke="#FF9500" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="250" stroke-dashoffset="250"><animate attributeName="stroke-dashoffset" from="250" to="0" dur="1.5s" begin="0.5s" fill="freeze"/></path>
+
+            <!-- R4: Wrocław(272,264)→Poznań(263,175) via S5 north -->
+            <path id="oR4" d="M 272 264 C 270 245 268 225 266 210 C 265 200 264 190 263 180 C 263 178 263 176 263 175" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="120"><animate attributeName="stroke-dashoffset" from="120" to="0" dur="1.2s" begin="0.7s" fill="freeze"/></path>
+
+            <!-- R5: Gdańsk(408,44)→Łódź(477,220) via A1 through Toruń/Kutno -->
+            <path id="oR5" d="M 408 44 C 415 70 425 100 435 130 C 445 155 455 180 465 200 C 470 208 474 215 477 220" stroke="#FF3B30" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="280" stroke-dashoffset="280"><animate attributeName="stroke-dashoffset" from="280" to="0" dur="1.6s" begin="0.4s" fill="freeze"/></path>
+
+            <!-- 5 moving vehicle dots with glow -->
+            <g><circle r="5.5" fill="#005CE8"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#oR1"/></animateMotion></circle><circle r="14" fill="#005CE8" opacity="0.08"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#oR1"/></animateMotion></circle></g>
+
+            <g><circle r="5" fill="#34C759"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#oR2"/></animateMotion></circle><circle r="13" fill="#34C759" opacity="0.08"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#oR2"/></animateMotion></circle></g>
+
+            <g><circle r="4.5" fill="#FF9500"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#oR3"/></animateMotion></circle><circle r="12" fill="#FF9500" opacity="0.08"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#oR3"/></animateMotion></circle></g>
+
+            <g><circle r="4.5" fill="#8B5CF6"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#oR4"/></animateMotion></circle><circle r="11" fill="#8B5CF6" opacity="0.08"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#oR4"/></animateMotion></circle></g>
+
+            <g><circle r="4.5" fill="#FF3B30"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#oR5"/></animateMotion></circle><circle r="12" fill="#FF3B30" opacity="0.08"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#oR5"/></animateMotion></circle></g>
+
+            <!-- Info cards — positioned near mid-route for each vehicle -->
+            <!-- 1: Warszawa→Kraków — card near Radom area -->
             <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze"/>
-              <rect x="520" y="85" width="155" height="55" rx="12" fill="white" filter="drop-shadow(0 3px 12px rgba(0,0,0,0.12))"/>
-              <text x="535" y="105" fill="#1D1D1F" font-size="12" font-family="system-ui" font-weight="700">WA 12345</text>
-              <text x="535" y="122" fill="#005CE8" font-size="10" font-family="system-ui" font-weight="600">W trasie · 42 km/h</text>
-              <text x="535" y="134" fill="#86868B" font-size="9" font-family="system-ui">Jan Kowalski</text>
+              <rect x="620" y="250" width="165" height="50" rx="10" fill="white" filter="drop-shadow(0 3px 12px rgba(0,0,0,0.12))"/>
+              <text x="633" y="266" fill="#1D1D1F" font-size="10.5" font-family="system-ui" font-weight="700">WA 12345 · Sprinter</text>
+              <text x="633" y="280" fill="#005CE8" font-size="9" font-family="system-ui" font-weight="600">→ Kraków · 82 km/h</text>
+              <text x="633" y="292" fill="#86868B" font-size="8" font-family="system-ui">J. Kowalski</text>
             </g>
 
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.2s" fill="freeze"/>
-              <rect x="410" y="45" width="130" height="42" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
-              <text x="425" y="65" fill="#FF9500" font-size="11" font-family="system-ui" font-weight="700">KR 98765</text>
-              <text x="425" y="80" fill="#86868B" font-size="9" font-family="system-ui">Postój · 12 min</text>
+            <!-- 2: Warszawa→Gdańsk — card near Toruń area -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2s" fill="freeze"/>
+              <rect x="505" y="95" width="150" height="50" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
+              <text x="518" y="111" fill="#34C759" font-size="10.5" font-family="system-ui" font-weight="700">GD 54321 · Crafter</text>
+              <text x="518" y="125" fill="#86868B" font-size="9" font-family="system-ui">→ Gdańsk · 95 km/h</text>
+              <text x="518" y="137" fill="#86868B" font-size="8" font-family="system-ui">P. Nowak</text>
             </g>
 
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.8s" fill="freeze"/>
-              <rect x="715" y="240" width="140" height="42" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
-              <text x="730" y="258" fill="#8B5CF6" font-size="11" font-family="system-ui" font-weight="700">GD 54321</text>
-              <text x="730" y="273" fill="#86868B" font-size="9" font-family="system-ui">U klienta · 25 min</text>
+            <!-- 3: Łódź→Wrocław — card near Sieradz area -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.3s" fill="freeze"/>
+              <rect x="310" y="275" width="145" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+              <text x="323" y="291" fill="#FF9500" font-size="10.5" font-family="system-ui" font-weight="700">KR 98765 · Ducato</text>
+              <text x="323" y="305" fill="#86868B" font-size="8.5" font-family="system-ui">→ Wrocław · 67 km/h</text>
+              <text x="323" y="317" fill="#86868B" font-size="8" font-family="system-ui">A. Wiśniewski</text>
             </g>
 
-            <!-- Base label -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.5s" fill="freeze"/>
-              <rect x="48" y="352" width="64" height="20" rx="7" fill="#005CE8"/>
-              <text x="80" y="366" text-anchor="middle" fill="white" font-size="9.5" font-family="system-ui" font-weight="600">Baza</text>
+            <!-- 4: Wrocław→Poznań — card left of route -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.6s" fill="freeze"/>
+              <rect x="120" y="200" width="140" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+              <text x="133" y="216" fill="#8B5CF6" font-size="10.5" font-family="system-ui" font-weight="700">PO 11223 · Transit</text>
+              <text x="133" y="230" fill="#86868B" font-size="8.5" font-family="system-ui">→ Poznań · 88 km/h</text>
+              <text x="133" y="242" fill="#86868B" font-size="8" font-family="system-ui">M. Zieliński</text>
+            </g>
+
+            <!-- 5: Gdańsk→Łódź — card near Kutno area -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.9s" fill="freeze"/>
+              <rect x="380" y="150" width="140" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+              <text x="393" y="166" fill="#FF3B30" font-size="10.5" font-family="system-ui" font-weight="700">GD 44556 · Boxer</text>
+              <text x="393" y="180" fill="#86868B" font-size="8.5" font-family="system-ui">→ Łódź · 72 km/h</text>
+              <text x="393" y="192" fill="#86868B" font-size="8" font-family="system-ui">T. Lewandowski</text>
             </g>
           </svg>
         </div>

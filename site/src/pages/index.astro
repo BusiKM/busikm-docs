@@ -58,81 +58,110 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </div>
   </div>
 
-  <!-- Hero dashboard -->
+  <!-- Hero — BR panel map with 3 client vehicles -->
   <div class="hero-seq-5 relative w-full max-w-[860px] mx-auto">
     <div class="relative rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <!-- Browser chrome -->
       <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">app.busikm.pl/dashboard</div>
+        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">app.busikm.pl/biuro/klienci</div>
+        <div class="flex items-center gap-1.5 ml-auto">
+          <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+          <span class="text-[11px] text-[#34C759] font-semibold hidden sm:inline">3 pojazdy w trasie</span>
+        </div>
       </div>
-      <div class="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+      <!-- Client switcher + stats bar -->
+      <div class="p-4 sm:p-5 bg-white border-b border-black/[0.04]">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-[11px] text-[#86868B] shrink-0">Klient:</span>
+          <span class="px-3 py-1 rounded-lg text-[11px] font-semibold bg-[#8B5CF6] text-white">TransKowalski</span>
+          <span class="px-3 py-1 rounded-lg text-[11px] font-semibold bg-[#F5F5F7] text-[#6E6E73]">FlotaNowak</span>
+          <span class="px-3 py-1 rounded-lg text-[11px] font-semibold bg-[#F5F5F7] text-[#86868B] hidden sm:inline">+ 8 więcej</span>
+        </div>
+      </div>
+
+      <!-- Map — wide landscape, 3 routes -->
+      <div class="hidden sm:block" style="height:240px">
+        <svg viewBox="0 0 860 240" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <defs><filter id="hmBlur"><feGaussianBlur stdDeviation="12"/></filter></defs>
+          <rect width="860" height="240" fill="#E8ECE5"/>
+
+          <!-- Terrain -->
+          <ellipse cx="300" cy="120" rx="120" ry="60" fill="#D5E8D0" opacity="0.3" filter="url(#hmBlur)"/>
+          <ellipse cx="650" cy="150" rx="80" ry="40" fill="#D5E8D0" opacity="0.2" filter="url(#hmBlur)"/>
+
+          <!-- River hint -->
+          <path d="M 400 230 C 420 200 450 160 470 130 C 490 100 500 70 510 30" stroke="#A8C8E0" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+          <!-- Highways -->
+          <path d="M 150 180 L 400 130" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
+          <path d="M 400 130 L 680 90" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
+          <path d="M 400 130 L 350 30" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
+
+          <!-- Cities -->
+          <circle cx="400" cy="130" r="7" fill="white" stroke="#005CE8" stroke-width="2"/><circle cx="400" cy="130" r="3" fill="#005CE8"/>
+          <text x="400" y="152" text-anchor="middle" fill="#6E6E73" font-size="9" font-family="system-ui" font-weight="500">Warszawa</text>
+
+          <circle cx="680" cy="90" r="5" fill="white" stroke="#34C759" stroke-width="1.5"/><circle cx="680" cy="90" r="2" fill="#34C759"/>
+          <text x="680" y="108" text-anchor="middle" fill="#AEAEB2" font-size="8" font-family="system-ui">Lublin</text>
+
+          <circle cx="150" cy="180" r="5" fill="white" stroke="#FF9500" stroke-width="1.5"/><circle cx="150" cy="180" r="2" fill="#FF9500"/>
+          <text x="150" y="198" text-anchor="middle" fill="#AEAEB2" font-size="8" font-family="system-ui">Wrocław</text>
+
+          <circle cx="350" cy="30" r="5" fill="white" stroke="#8B5CF6" stroke-width="1.5"/><circle cx="350" cy="30" r="2" fill="#8B5CF6"/>
+          <text x="350" y="23" text-anchor="middle" fill="#AEAEB2" font-size="8" font-family="system-ui">Gdańsk</text>
+
+          <!-- Route 1: Warszawa→Lublin -->
+          <path id="hmR1" d="M 400 130 C 460 125 540 110 600 100 C 640 95 660 92 680 90" stroke="#005CE8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="400" stroke-dashoffset="400"><animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" begin="0.5s" fill="freeze"/></path>
+
+          <!-- Route 2: Warszawa→Wrocław -->
+          <path id="hmR2" d="M 395 135 C 340 145 280 155 230 165 C 200 172 170 178 150 180" stroke="#FF9500" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="350" stroke-dashoffset="350"><animate attributeName="stroke-dashoffset" from="350" to="0" dur="1.8s" begin="0.8s" fill="freeze"/></path>
+
+          <!-- Route 3: Warszawa→Gdańsk -->
+          <path id="hmR3" d="M 398 125 C 390 100 375 70 365 50 C 358 40 353 33 350 30" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="200" stroke-dashoffset="200"><animate attributeName="stroke-dashoffset" from="200" to="0" dur="1.5s" begin="1s" fill="freeze"/></path>
+
+          <!-- Moving dots -->
+          <g><circle r="5" fill="#005CE8"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#hmR1"/></animateMotion></circle><circle r="12" fill="#005CE8" opacity="0.07"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#hmR1"/></animateMotion></circle></g>
+          <g><circle r="4.5" fill="#FF9500"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#hmR2"/></animateMotion></circle><circle r="11" fill="#FF9500" opacity="0.07"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#hmR2"/></animateMotion></circle></g>
+          <g><circle r="4" fill="#8B5CF6"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#hmR3"/></animateMotion></circle><circle r="10" fill="#8B5CF6" opacity="0.07"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#hmR3"/></animateMotion></circle></g>
+
+          <!-- Info cards -->
+          <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.8s" fill="freeze"/>
+            <rect x="530" y="65" width="140" height="42" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.10))"/>
+            <text x="545" y="81" fill="#005CE8" font-size="10" font-family="system-ui" font-weight="700">WA 12345 · Sprinter</text>
+            <text x="545" y="98" fill="#86868B" font-size="8.5" font-family="system-ui">→ Lublin · 92 km/h</text>
+          </g>
+          <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.2s" fill="freeze"/>
+            <rect x="195" y="145" width="135" height="42" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+            <text x="210" y="161" fill="#FF9500" font-size="10" font-family="system-ui" font-weight="700">KR 98765 · Ducato</text>
+            <text x="210" y="178" fill="#86868B" font-size="8.5" font-family="system-ui">→ Wrocław · 78 km/h</text>
+          </g>
+          <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.5s" fill="freeze"/>
+            <rect x="390" y="42" width="130" height="42" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+            <text x="405" y="58" fill="#8B5CF6" font-size="10" font-family="system-ui" font-weight="700">GD 54321 · Crafter</text>
+            <text x="405" y="75" fill="#86868B" font-size="8.5" font-family="system-ui">→ Gdańsk · 88 km/h</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Mobile: vehicle list instead of map -->
+      <div class="sm:hidden p-4 space-y-2">
         {[
-          { label: 'Przejechane km (mies.)', value: '4 820', change: '+12%', color: '#005CE8' },
-          { label: 'Trasy zatwierdzone', value: '143 / 147', change: '97% auto', color: '#34C759' },
-          { label: 'Raport MF', value: 'Gotowy', change: 'Pobierz PDF', color: '#FF9500' },
-        ].map(c => (
-          <div class="bg-white rounded-2xl p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-            <p class="text-[11.5px] text-[#86868B] mb-2">{c.label}</p>
-            <p class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{c.value}</p>
-            <p class="text-[11.5px] mt-1" style={`color:${c.color}`}>{c.change}</p>
+          { plate: 'WA 12345', dest: '→ Lublin · 92 km/h', color: '#005CE8' },
+          { plate: 'KR 98765', dest: '→ Wrocław · 78 km/h', color: '#FF9500' },
+          { plate: 'GD 54321', dest: '→ Gdańsk · 88 km/h', color: '#8B5CF6' },
+        ].map(v => (
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F5F5F7]">
+            <div class="w-3 h-3 rounded-full shrink-0" style={`background:${v.color}`}></div>
+            <div>
+              <span class="text-[12px] font-bold text-[#1D1D1F]">{v.plate}</span>
+              <span class="text-[11px] ml-2" style={`color:${v.color}`}>{v.dest}</span>
+            </div>
           </div>
         ))}
-        <!-- Map - hidden on very small screens, simplified -->
-        <div class="sm:col-span-3 bg-white rounded-2xl overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.06)] hidden sm:block" style="height:200px">
-          <svg viewBox="0 0 840 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="mg" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F0F0F2" stroke-width="0.8"/></pattern>
-            </defs>
-            <rect width="840" height="200" fill="#FAFAFA"/><rect width="840" height="200" fill="url(#mg)"/>
-            <path d="M 0 130 C 100 125 180 110 280 100 C 380 90 500 95 600 85 C 700 75 780 60 840 55" stroke="#E2E2E7" stroke-width="10" fill="none" stroke-linecap="round"/>
-            <path d="M 0 80 C 120 75 200 60 320 50 C 440 40 560 55 680 45 C 760 38 800 30 840 25" stroke="#E2E2E7" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M 120 0 C 130 50 160 100 180 200" stroke="#E2E2E7" stroke-width="5" fill="none"/><path d="M 400 0 C 420 60 440 120 480 200" stroke="#E2E2E7" stroke-width="5" fill="none"/><path d="M 680 0 C 690 50 710 110 720 200" stroke="#E2E2E7" stroke-width="5" fill="none"/>
-            <!-- Route 1: blue — realistic city driving with turns, intersections, direction changes -->
-            <path id="hr1" d="M 70 165 C 80 160 95 158 110 145 C 125 132 130 118 150 108 C 170 98 195 102 220 95 C 245 88 255 72 280 65 C 305 58 340 62 380 55 C 420 48 440 38 470 42 C 500 46 520 55 550 48 C 580 41 610 32 650 35 C 680 38 710 40 745 38" stroke="#005CE8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1200" stroke-dashoffset="1200"><animate attributeName="stroke-dashoffset" from="1200" to="0" dur="3s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/></path>
-            <!-- Route 1 glow -->
-            <path d="M 70 165 C 80 160 95 158 110 145 C 125 132 130 118 150 108 C 170 98 195 102 220 95 C 245 88 255 72 280 65 C 305 58 340 62 380 55 C 420 48 440 38 470 42 C 500 46 520 55 550 48 C 580 41 610 32 650 35 C 680 38 710 40 745 38" stroke="#005CE8" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.07" stroke-dasharray="1200" stroke-dashoffset="1200"><animate attributeName="stroke-dashoffset" from="1200" to="0" dur="3s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/></path>
-
-            <!-- Route 2: green — shorter delivery route with sharp turns -->
-            <path id="hr2" d="M 460 175 C 445 165 420 148 400 130 C 385 115 375 95 355 78 C 340 65 310 52 285 40 C 265 30 240 22 220 18" stroke="#34C759" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="500" stroke-dashoffset="500" opacity="0.8"><animate attributeName="stroke-dashoffset" from="500" to="0" dur="2.2s" begin="1.2s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/></path>
-            <path d="M 460 175 C 445 165 420 148 400 130 C 385 115 375 95 355 78 C 340 65 310 52 285 40 C 265 30 240 22 220 18" stroke="#34C759" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.05" stroke-dasharray="500" stroke-dashoffset="500"><animate attributeName="stroke-dashoffset" from="500" to="0" dur="2.2s" begin="1.2s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/></path>
-
-            <!-- Start point: blue with pulse ring -->
-            <circle cx="70" cy="165" r="12" fill="#005CE8" opacity="0.08"><animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.1;0;0.1" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="70" cy="165" r="7" fill="white" stroke="#005CE8" stroke-width="2.5"/><circle cx="70" cy="165" r="3" fill="#005CE8"/>
-
-            <!-- Moving vehicle dot on route 1 -->
-            <g><circle r="5" fill="#005CE8" opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="3.3s" fill="freeze"/><animateMotion dur="8s" repeatCount="indefinite" begin="3.3s"><mpath href="#hr1"/></animateMotion></circle>
-            <circle r="12" fill="#005CE8" opacity="0"><animate attributeName="opacity" values="0;0.08;0" dur="1.5s" begin="3.3s" repeatCount="indefinite"/><animateMotion dur="8s" repeatCount="indefinite" begin="3.3s"><mpath href="#hr1"/></animateMotion></circle></g>
-
-            <!-- Destination 1: orange with pulse -->
-            <circle cx="745" cy="38" r="12" fill="#FF9500" opacity="0.08"><animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.1;0;0.1" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="745" cy="38" r="7" fill="white" stroke="#FF9500" stroke-width="2.5"/><circle cx="745" cy="38" r="3" fill="#FF9500"/>
-
-            <!-- Green route endpoints -->
-            <circle cx="460" cy="175" r="6" fill="white" stroke="#34C759" stroke-width="2"/><circle cx="460" cy="175" r="2.5" fill="#34C759"/>
-            <circle cx="220" cy="18" r="6" fill="white" stroke="#34C759" stroke-width="2"/><circle cx="220" cy="18" r="2.5" fill="#34C759"/>
-
-            <!-- Info card — positioned between routes, not overlapping -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="2.2s" fill="freeze"/>
-              <rect x="530" y="68" width="130" height="42" rx="12" fill="white" filter="drop-shadow(0 3px 12px rgba(0,0,0,0.12))"/>
-              <text x="595" y="85" text-anchor="middle" fill="#1D1D1F" font-size="11" font-family="system-ui" font-weight="700">14,2 km</text>
-              <text x="595" y="100" text-anchor="middle" fill="#86868B" font-size="8.5" font-family="system-ui">00:18:34 · w trasie</text>
-            </g>
-
-            <!-- Labels with fade-in -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.5s" fill="freeze"/><rect x="38" y="177" width="64" height="20" rx="7" fill="#005CE8"/><text x="70" y="191" text-anchor="middle" fill="white" font-size="9.5" font-family="system-ui" font-weight="600">Baza</text></g>
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="3s" fill="freeze"/><rect x="713" y="48" width="64" height="20" rx="7" fill="#FF9500"/><text x="745" y="62" text-anchor="middle" fill="white" font-size="9.5" font-family="system-ui" font-weight="600">Klient</text></g>
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1.5s" fill="freeze"/><rect x="428" y="180" width="64" height="18" rx="6" fill="#34C759"/><text x="460" y="193" text-anchor="middle" fill="white" font-size="8.5" font-family="system-ui" font-weight="600">Magazyn</text></g>
-          </svg>
-        </div>
-        <!-- Mobile: simple stat instead of map -->
-        <div class="sm:hidden bg-white rounded-2xl p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06)] text-center">
-          <p class="text-[11.5px] text-[#86868B] mb-1">Aktywne pojazdy w trasie</p>
-          <p class="font-display text-[2rem] font-bold text-[#005CE8]">3</p>
-          <p class="text-[11.5px] text-[#34C759] mt-1">GPS aktywny</p>
-        </div>
       </div>
     </div>
 
@@ -142,17 +171,17 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <p class="text-[11px] font-semibold text-[#1D1D1F]">Raport zatwierdzony</p>
-        <p class="text-[10.5px] text-[#86868B]">Właśnie teraz</p>
+        <p class="text-[11px] font-semibold text-[#1D1D1F]">Eksport FK gotowy</p>
+        <p class="text-[10.5px] text-[#86868B]">TransKowalski · Insert GT</p>
       </div>
     </div>
-    <div class="absolute -bottom-3 -left-2 sm:left-4 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-black/[0.05] px-4 py-3 flex items-center gap-3 animate-float" style="animation-delay: 1.5s;">
+    <div class="absolute -bottom-3 sm:-bottom-3 -left-2 sm:left-4 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-black/[0.05] px-4 py-3 flex items-center gap-3 animate-float hidden sm:flex" style="animation-delay: 1.5s;">
       <div class="w-8 h-8 rounded-full bg-[#005CE8]/12 flex items-center justify-center shrink-0">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" fill="#005CE8"/><circle cx="8" cy="8" r="6" stroke="#005CE8" stroke-width="1.5" fill="none"/></svg>
       </div>
       <div>
-        <p class="text-[11px] font-semibold text-[#1D1D1F]">GPS aktywny</p>
-        <p class="text-[10.5px] text-[#86868B]">3 pojazdy w trasie</p>
+        <p class="text-[11px] font-semibold text-[#1D1D1F]">3 pojazdy w trasie</p>
+        <p class="text-[10.5px] text-[#86868B]">GPS aktywny</p>
       </div>
     </div>
   </div>
