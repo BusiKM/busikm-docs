@@ -44,8 +44,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <!-- Value props -->
     <div class="hero-seq-5 flex flex-wrap justify-center gap-8 sm:gap-14 text-center">
       <div>
-        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#005CE8]">76 zł</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">oszczędzasz na każdym pojeździe</div>
+        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#005CE8]">47 zł</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">oszczędności na każdym pojeździe</div>
       </div>
       <div>
         <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#34C759]">0 zł</div>
@@ -818,9 +818,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <!-- Pricing tiers -->
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[900px] mx-auto mb-10">
       {[
-        { range: '1–50 pojazdów', price: '49', savings: '27', highlight: false },
-        { range: '51–150 pojazdów', price: '39', savings: '37', highlight: false },
-        { range: '151+ pojazdów', price: '29', savings: '47', highlight: true },
+        { range: '1–30 pojazdów', price: '49', savings: '27', highlight: false },
+        { range: '31–80 pojazdów', price: '39', savings: '37', highlight: false },
+        { range: '81+ pojazdów', price: '29', savings: '47', highlight: true },
       ].map(t => (
         <div class:list={['rounded-[20px] p-7 text-center transition-all duration-300', t.highlight ? 'bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.25)]' : 'bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]']}>
           <p class:list={['text-[12px] font-semibold uppercase tracking-[0.06em] mb-3', t.highlight ? 'text-white/60' : 'text-[#86868B]']}>{t.range}</p>
@@ -948,9 +948,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   }
 
   function calcBrCost(v: number): number {
-    if (v <= 50) return v * 49;
-    if (v <= 150) return 50 * 49 + (v - 50) * 39;
-    return 50 * 49 + 100 * 39 + (v - 150) * 29;
+    if (v <= 30) return v * 49;
+    if (v <= 80) return 30 * 49 + (v - 30) * 39;
+    return 30 * 49 + 50 * 39 + (v - 80) * 29;
   }
 
   function calcROI() {
