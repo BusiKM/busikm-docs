@@ -169,6 +169,95 @@ const faqs = [
           </div>
         </div>
       </div>
+
+      <!-- Live fleet map mockup -->
+      <div class="reveal mt-12 max-w-[900px] mx-auto">
+        <div class="rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+          <!-- Browser chrome -->
+          <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+            <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
+            <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">app.busikm.pl/dashboard/mapa</div>
+            <div class="flex items-center gap-1.5 ml-auto">
+              <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+              <span class="text-[11px] text-[#34C759] font-semibold">5 pojazdów w trasie</span>
+            </div>
+          </div>
+
+          <!-- Map SVG -->
+          <svg viewBox="0 0 900 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="block">
+            <defs>
+              <pattern id="mapGrid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M 45 0 L 0 0 0 45" fill="none" stroke="#E2E2E7" stroke-width="0.6"/></pattern>
+            </defs>
+            <rect width="900" height="400" fill="#FAFAFA"/><rect width="900" height="400" fill="url(#mapGrid)"/>
+
+            <!-- Streets -->
+            <path d="M 0 200 C 200 190 400 210 600 195 C 700 188 800 180 900 175" stroke="#D2D2D7" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M 0 120 C 150 115 300 108 450 105 C 600 102 750 100 900 98" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+            <path d="M 0 300 C 200 295 500 290 700 285 C 800 282 850 280 900 278" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+            <path d="M 150 0 L 160 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+            <path d="M 450 0 L 460 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+            <path d="M 700 0 L 710 400" stroke="#D2D2D7" stroke-width="5" fill="none"/>
+
+            <!-- Route 1: blue — active delivery -->
+            <path id="ownerR1" d="M 80 340 C 120 320 180 280 250 240 C 320 200 400 180 500 170 C 600 160 700 155 800 140" stroke="#005CE8" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800">
+              <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+            </path>
+            <path d="M 80 340 C 120 320 180 280 250 240 C 320 200 400 180 500 170 C 600 160 700 155 800 140" stroke="#005CE8" stroke-width="10" fill="none" opacity="0.06" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800">
+              <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" fill="freeze"/>
+            </path>
+
+            <!-- Route 2: green — returning -->
+            <path id="ownerR2" d="M 750 320 C 680 290 580 260 480 250 C 380 240 280 235 200 220" stroke="#34C759" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8" stroke-dasharray="600" stroke-dashoffset="600">
+              <animate attributeName="stroke-dashoffset" from="600" to="0" dur="2s" begin="0.8s" fill="freeze"/>
+            </path>
+
+            <!-- Moving vehicles -->
+            <g><circle r="5" fill="#005CE8"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#ownerR1"/></animateMotion></circle>
+            <circle r="14" fill="#005CE8" opacity="0.08"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#ownerR1"/></animateMotion></circle></g>
+
+            <g><circle r="4.5" fill="#34C759"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#ownerR2"/></animateMotion></circle>
+            <circle r="12" fill="#34C759" opacity="0.06"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#ownerR2"/></animateMotion></circle></g>
+
+            <!-- Static vehicles with pulse -->
+            <circle cx="450" cy="105" r="10" fill="#FF9500" opacity="0.08"><animate attributeName="r" values="10;16;10" dur="2.5s" repeatCount="indefinite"/></circle>
+            <circle cx="450" cy="105" r="6" fill="white" stroke="#FF9500" stroke-width="2.5"/><circle cx="450" cy="105" r="2.5" fill="#FF9500"/>
+
+            <circle cx="700" cy="285" r="10" fill="#8B5CF6" opacity="0.08"><animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="700" cy="285" r="6" fill="white" stroke="#8B5CF6" stroke-width="2.5"/><circle cx="700" cy="285" r="2.5" fill="#8B5CF6"/>
+
+            <circle cx="80" cy="340" r="12" fill="#005CE8" opacity="0.08"><animate attributeName="r" values="12;18;12" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="80" cy="340" r="7" fill="white" stroke="#005CE8" stroke-width="2.5"/><circle cx="80" cy="340" r="3" fill="#005CE8"/>
+
+            <!-- Info cards -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze"/>
+              <rect x="520" y="85" width="155" height="55" rx="12" fill="white" filter="drop-shadow(0 3px 12px rgba(0,0,0,0.12))"/>
+              <text x="535" y="105" fill="#1D1D1F" font-size="12" font-family="system-ui" font-weight="700">WA 12345</text>
+              <text x="535" y="122" fill="#005CE8" font-size="10" font-family="system-ui" font-weight="600">W trasie · 42 km/h</text>
+              <text x="535" y="134" fill="#86868B" font-size="9" font-family="system-ui">Jan Kowalski</text>
+            </g>
+
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.2s" fill="freeze"/>
+              <rect x="410" y="45" width="130" height="42" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
+              <text x="425" y="65" fill="#FF9500" font-size="11" font-family="system-ui" font-weight="700">KR 98765</text>
+              <text x="425" y="80" fill="#86868B" font-size="9" font-family="system-ui">Postój · 12 min</text>
+            </g>
+
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.8s" fill="freeze"/>
+              <rect x="715" y="240" width="140" height="42" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
+              <text x="730" y="258" fill="#8B5CF6" font-size="11" font-family="system-ui" font-weight="700">GD 54321</text>
+              <text x="730" y="273" fill="#86868B" font-size="9" font-family="system-ui">U klienta · 25 min</text>
+            </g>
+
+            <!-- Base label -->
+            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.5s" fill="freeze"/>
+              <rect x="48" y="352" width="64" height="20" rx="7" fill="#005CE8"/>
+              <text x="80" y="366" text-anchor="middle" fill="white" font-size="9.5" font-family="system-ui" font-weight="600">Baza</text>
+            </g>
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
