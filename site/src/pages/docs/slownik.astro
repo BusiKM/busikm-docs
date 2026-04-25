@@ -4,63 +4,62 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
 
 <DocsLayout title="Słownik pojęć">
   <div class="prose">
-    <h1>Slownik pojec BusiKM</h1>
+    <h1>Słownik pojęć BusiKM</h1>
 
-    <h2>1. Pojecia transportowe</h2>
+    <h2>1. Pojęcia transportowe</h2>
     <table>
-      <thead><tr><th>Skrot / Termin</th><th>Pelna nazwa</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Skrót / Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>DMC</strong></td><td>Dopuszczalna Masa Calkowita</td><td>Maksymalna dopuszczalna waga pojazdu. Wplyw na kategorie oplat.</td></tr>
-        <tr><td><strong>OC</strong></td><td>Ubezpieczenie OC</td><td>Obowiazkowe ubezpieczenie od szkod wyrzadzonych osobom trzecim.</td></tr>
-        <tr><td><strong>AC</strong></td><td>Autocasco</td><td>Dobrowolne ubezpieczenie pojazdu od uszkodzen i kradziezy.</td></tr>
-        <tr><td><strong>PJ</strong></td><td>Prawo Jazdy</td><td>BusiKM sledzi daty waznosci i kategorie.</td></tr>
-        <tr><td><strong>Tachograf G2V2</strong></td><td>Tachograf cyfrowy II generacji</td><td>Obowiazkowe urzadzenie rejestrujace czas jazdy. Wymog UE.</td></tr>
-        <tr><td><strong>ADR</strong></td><td>Certyfikat przewozu towarow niebezpiecznych</td><td>BusiKM sledzi daty waznosci certyfikatow ADR.</td></tr>
-        <tr><td><strong>CMR</strong></td><td>Konwencja o umowie przewozu drogowego</td><td>Miedzynarodowa konwencja regulujaca odpowiedzialnosc przewoznika.</td></tr>
-        <tr><td><strong>Kilometrowka</strong></td><td>Ewidencja przebiegu pojazdu</td><td>Dokument rejestrujacy trasy sluzbowe. Wymagany przez ustawe o VAT (art. 86a) do odliczenia 100% VAT.</td></tr>
-        <tr><td><strong>Wzor MF</strong></td><td>Wzor Ministerstwa Finansow</td><td>Urzedowy szablon ewidencji przebiegu pojazdu.</td></tr>
-        <tr><td><strong>VAT-26</strong></td><td>Informacja o pojazdach wykorzystywanych wylacznie do dzialalnosci gospodarczej</td><td>Formularz zglaszany do urzedu skarbowego, wymagany przy odliczeniu 100% VAT.</td></tr>
+        <tr><td><strong>DMC</strong></td><td>Dopuszczalna Masa Całkowita</td><td>Maksymalna dopuszczalna waga pojazdu. Wpływa na kategorię opłat.</td></tr>
+        <tr><td><strong>OC</strong></td><td>Ubezpieczenie OC</td><td>Obowiązkowe ubezpieczenie od szkód wyrządzonych osobom trzecim.</td></tr>
+        <tr><td><strong>AC</strong></td><td>Autocasco</td><td>Dobrowolne ubezpieczenie pojazdu od uszkodzeń i kradzieży.</td></tr>
+        <tr><td><strong>PJ</strong></td><td>Prawo Jazdy</td><td>BusiKM śledzi daty ważności i kategorie.</td></tr>
+        <tr><td><strong>Tachograf G2V2</strong></td><td>Tachograf cyfrowy II generacji</td><td>Obowiązkowe urządzenie rejestrujące czas jazdy. Wymóg UE.</td></tr>
+        <tr><td><strong>ADR</strong></td><td>Certyfikat przewozu towarów niebezpiecznych</td><td>BusiKM śledzi daty ważności certyfikatów ADR.</td></tr>
+        <tr><td><strong>CMR</strong></td><td>Konwencja o umowie przewozu drogowego</td><td>Międzynarodowa konwencja regulująca odpowiedzialność przewoźnika.</td></tr>
+        <tr><td><strong>Kilometrówka</strong></td><td>Ewidencja przebiegu pojazdu</td><td>Dokument rejestrujący trasy służbowe. Wymagany przez ustawę o VAT (art. 86a) do odliczenia 100% VAT.</td></tr>
+        <tr><td><strong>Wzór MF</strong></td><td>Wzór Ministerstwa Finansów</td><td>Urzędowy szablon ewidencji przebiegu pojazdu.</td></tr>
+        <tr><td><strong>VAT-26</strong></td><td>Informacja o pojazdach wykorzystywanych wyłącznie do działalności gospodarczej</td><td>Formularz zgłaszany do urzędu skarbowego, wymagany przy odliczeniu 100% VAT.</td></tr>
       </tbody>
     </table>
 
-    <h2>2. Pojecia dotyczace systemu BusiKM</h2>
+    <h2>2. Pojęcia dotyczące systemu BusiKM</h2>
     <table>
       <thead><tr><th>Termin</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>Aktywny pojazd</strong></td><td>Pojazd zarejestrowany w systemie, dla ktorego prowadzona jest ewidencja. Liczba aktywnych pojazdow jest ograniczona planem subskrypcyjnym.</td></tr>
-        <tr><td><strong>Panel BR</strong></td><td>Panel biura rachunkowego -- dedykowany interfejs do obslugi wielu firm z jednego konta. Umozliwia przelaczanie miedzy klientami.</td></tr>
-        <tr><td><strong>Role uzytkownikow</strong></td><td>System uprawnien oparty na rolach: Kierowca, Wlasciciel, Ksiegowy, Biuro rachunkowe. Kazda rola ma inny poziom dostepu do danych.</td></tr>
-        <tr><td><strong>Izolacja danych firm</strong></td><td>Dane kazdej firmy sa calkowicie oddzielone. Uzytkownicy widza tylko dane firmy, do ktorej naleza.</td></tr>
-        <tr><td><strong>Przelaczanie kontekstu</strong></td><td>Funkcja dostepna dla biur rachunkowych -- mozliwosc przelaczania sie miedzy obslugiwanymi firmami bez ponownego logowania.</td></tr>
-        <tr><td><strong>Tryb offline</strong></td><td>Aplikacja mobilna dziala bez dostepu do internetu. Dane sa zapisywane lokalnie i synchronizowane po odzyskaniu polaczenia.</td></tr>
-        <tr><td><strong>GPS tracking</strong></td><td>Automatyczne sledzenie trasy za pomoca GPS telefonu. Dziala w tle, nawet gdy ekran jest wylaczony.</td></tr>
-        <tr><td><strong>Reverse trial</strong></td><td>14-dniowy okres probny z dostepem do planu Professional. Po jego zakonczeniu konto zostaje przeniesione do planu Free.</td></tr>
-        <tr><td><strong>Feature gating</strong></td><td>Ograniczanie dostepu do funkcji na podstawie planu subskrypcyjnego. Np. raporty sa dostepne od planu Starter.</td></tr>
+        <tr><td><strong>Aktywny pojazd</strong></td><td>Pojazd z minimum 1 trasą w danym miesiącu. Liczba aktywnych pojazdów określa koszt dla biura rachunkowego.</td></tr>
+        <tr><td><strong>Panel BR</strong></td><td>Panel biura rachunkowego — dedykowany interfejs do obsługi wielu firm z jednego konta. Umożliwia przełączanie między klientami.</td></tr>
+        <tr><td><strong>Role użytkowników</strong></td><td>System uprawnień oparty na rolach: Kierowca, Właściciel, Księgowy, Biuro rachunkowe. Każda rola ma inny poziom dostępu do danych.</td></tr>
+        <tr><td><strong>Izolacja danych firm</strong></td><td>Dane każdej firmy są całkowicie oddzielone. Użytkownicy widzą tylko dane firmy, do której należą.</td></tr>
+        <tr><td><strong>Przełączanie kontekstu</strong></td><td>Funkcja dostępna dla biur rachunkowych — możliwość przełączania się między obsługiwanymi firmami bez ponownego logowania.</td></tr>
+        <tr><td><strong>Tryb offline</strong></td><td>Aplikacja mobilna działa bez dostępu do internetu. Dane są zapisywane lokalnie i synchronizowane po odzyskaniu połączenia.</td></tr>
+        <tr><td><strong>GPS tracking</strong></td><td>Automatyczne śledzenie trasy za pomocą GPS telefonu. Działa w tle, nawet gdy ekran jest wyłączony.</td></tr>
+        <tr><td><strong>Reverse trial</strong></td><td>14-dniowy okres próbny z dostępem do planu Professional. Po jego zakończeniu konto zostaje przeniesione do planu Free.</td></tr>
+        <tr><td><strong>Feature gating</strong></td><td>Ograniczanie dostępu do funkcji na podstawie planu subskrypcyjnego. Np. raporty są dostępne od planu Starter.</td></tr>
       </tbody>
     </table>
 
-    <h2>3. Pojecia finansowo-ksiegowe</h2>
+    <h2>3. Pojęcia finansowo-księgowe</h2>
     <table>
-      <thead><tr><th>Skrot / Termin</th><th>Pelna nazwa</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Skrót / Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>EDI++</strong></td><td>Electronic Data Interchange (InsERT)</td><td>Format eksportu danych do programow InsERT (Subiekt GT, Rewizor GT).</td></tr>
-        <tr><td><strong>FK</strong></td><td>System finansowo-ksiegowy</td><td>Oprogramowanie ksiegowe, do ktorego BusiKM eksportuje dane (np. Insert GT, Comarch, Symfonia).</td></tr>
-        <tr><td><strong>KSeF</strong></td><td>Krajowy System e-Faktur</td><td>Rzadowy system elektronicznych faktur. BusiKM przygotowuje dane zgodne z KSeF.</td></tr>
-        <tr><td><strong>AF</strong></td><td>Accounting Firm (Biuro rachunkowe)</td><td>Biuro rachunkowe -- kluczowy kanal dystrybucji BusiKM.</td></tr>
+        <tr><td><strong>EDI++</strong></td><td>Electronic Data Interchange (InsERT)</td><td>Format eksportu danych do programów InsERT (Subiekt GT, Rewizor GT).</td></tr>
+        <tr><td><strong>FK</strong></td><td>System finansowo-księgowy</td><td>Oprogramowanie księgowe, do którego BusiKM eksportuje dane (np. Insert GT, Comarch, Symfonia).</td></tr>
+        <tr><td><strong>AF</strong></td><td>Accounting Firm (Biuro rachunkowe)</td><td>Biuro rachunkowe — kluczowy kanał dystrybucji BusiKM.</td></tr>
       </tbody>
     </table>
 
-    <h2>4. Pojecia biznesowe</h2>
+    <h2>4. Pojęcia biznesowe</h2>
     <table>
-      <thead><tr><th>Skrot</th><th>Pelna nazwa</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Skrót</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>MRR</strong></td><td>Monthly Recurring Revenue</td><td>Miesieczny przychod cykliczny z subskrypcji.</td></tr>
-        <tr><td><strong>ARR</strong></td><td>Annual Recurring Revenue</td><td>Roczny przychod cykliczny. MRR x 12.</td></tr>
-        <tr><td><strong>ARPU</strong></td><td>Average Revenue Per User</td><td>Sredni przychod na firme.</td></tr>
-        <tr><td><strong>CAC</strong></td><td>Customer Acquisition Cost</td><td>Koszt pozyskania klienta (marketing + sprzedaz).</td></tr>
-        <tr><td><strong>LTV</strong></td><td>Lifetime Value</td><td>Calkowity przychod od klienta w czasie wspolpracy.</td></tr>
-        <tr><td><strong>Churn</strong></td><td>Wskaznik rezygnacji</td><td>Procent klientow rezygnujacych z subskrypcji miesieczne.</td></tr>
-        <tr><td><strong>NPS</strong></td><td>Net Promoter Score</td><td>Wskaznik satysfakcji klientow (-100 do 100).</td></tr>
+        <tr><td><strong>MRR</strong></td><td>Monthly Recurring Revenue</td><td>Miesięczny przychód cykliczny z subskrypcji.</td></tr>
+        <tr><td><strong>ARR</strong></td><td>Annual Recurring Revenue</td><td>Roczny przychód cykliczny. MRR &times; 12.</td></tr>
+        <tr><td><strong>ARPU</strong></td><td>Average Revenue Per User</td><td>Średni przychód na firmę.</td></tr>
+        <tr><td><strong>CAC</strong></td><td>Customer Acquisition Cost</td><td>Koszt pozyskania klienta (marketing + sprzedaż).</td></tr>
+        <tr><td><strong>LTV</strong></td><td>Lifetime Value</td><td>Całkowity przychód od klienta w czasie współpracy.</td></tr>
+        <tr><td><strong>Churn</strong></td><td>Wskaźnik rezygnacji</td><td>Procent klientów rezygnujących z subskrypcji miesięcznie.</td></tr>
+        <tr><td><strong>NPS</strong></td><td>Net Promoter Score</td><td>Wskaźnik satysfakcji klientów (-100 do 100).</td></tr>
       </tbody>
     </table>
   </div>

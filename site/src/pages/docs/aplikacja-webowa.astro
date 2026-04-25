@@ -2,100 +2,100 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Aplikacja webowa">
+<DocsLayout title="Panel webowy">
   <div class="prose">
     <h1>Panel webowy BusiKM</h1>
 
-    <p>Panel webowy BusiKM to aplikacja przegladarkowa do zarzadzania flota, przegladania tras, generowania raportow i eksportu danych do systemow FK. Dostepna na komputerze i tablecie.</p>
+    <p>Panel webowy BusiKM to aplikacja przeglądarkowa do zarządzania flotą, przeglądania tras, generowania raportów i eksportu danych do systemów FK. Dostępna na komputerze i tablecie.</p>
 
     <h2>1. Panele per rola</h2>
 
-    <h3>Wlasciciel firmy</h3>
+    <h3>Właściciel firmy</h3>
     <ul>
-      <li><strong>Dashboard</strong> -- statystyki floty: aktywne trasy, laczny przebieg, liczba pojazdow i kierowcow</li>
-      <li><strong>Mapa floty</strong> -- pozycje kierowcow w czasie rzeczywistym na mapie interaktywnej</li>
-      <li><strong>Wykresy</strong> -- przebieg miesieczny, koszty eksploatacji</li>
-      <li><strong>Alerty dokumentow</strong> -- powiadomienia o wygasajacych: OC, przeglad techniczny, tachograf, prawo jazdy</li>
-      <li><strong>Ostatnie trasy</strong> -- tabela z sortowaniem i filtrami</li>
-      <li><strong>Zarzadzanie uzytkownikami</strong> -- dodawanie kierowcow, ksiegowych, przypisywanie rol</li>
+      <li><strong>Dashboard</strong> — statystyki floty: aktywne trasy, łączny przebieg, liczba pojazdów i kierowców</li>
+      <li><strong>Mapa floty</strong> — pozycje kierowców w czasie rzeczywistym na mapie interaktywnej</li>
+      <li><strong>Wykresy</strong> — przebieg miesięczny, koszty eksploatacji</li>
+      <li><strong>Alerty dokumentów</strong> — powiadomienia o wygasających: OC, przegląd techniczny, tachograf, prawo jazdy</li>
+      <li><strong>Ostatnie trasy</strong> — tabela z sortowaniem i filtrami</li>
+      <li><strong>Zarządzanie użytkownikami</strong> — dodawanie kierowców, księgowych, przypisywanie ról</li>
     </ul>
 
     <h3>Biuro rachunkowe</h3>
     <ul>
-      <li><strong>Przelaczanie miedzy klientami</strong> -- obsluga wielu firm z jednego konta</li>
-      <li><strong>Zagregowane statystyki</strong> -- podglad danych ze wszystkich obslugiwanych firm</li>
-      <li><strong>Zbiorczy eksport FK</strong> -- generowanie eksportow dla wybranych klientow jednoczesnie</li>
+      <li><strong>Przełączanie między klientami</strong> — obsługa wielu firm z jednego konta</li>
+      <li><strong>Zagregowane statystyki</strong> — podgląd danych ze wszystkich obsługiwanych firm</li>
+      <li><strong>Zbiorczy eksport FK</strong> — generowanie eksportów dla wybranych klientów jednocześnie</li>
     </ul>
 
-    <h3>Ksiegowy</h3>
+    <h3>Księgowy</h3>
     <ul>
-      <li><strong>Tryb tylko do odczytu</strong> -- podglad tras, pojazdow, dokumentow</li>
-      <li><strong>Raporty do pobrania</strong> -- ewidencja przebiegu, raporty kosztow</li>
-      <li><strong>Status eksportow FK</strong> -- historia wygenerowanych plikow eksportu</li>
+      <li><strong>Tryb tylko do odczytu</strong> — podgląd tras, pojazdów, dokumentów</li>
+      <li><strong>Raporty do pobrania</strong> — ewidencja przebiegu, raporty kosztów</li>
+      <li><strong>Status eksportów FK</strong> — historia wygenerowanych plików eksportu</li>
     </ul>
 
     <h2>2. Raporty i eksport</h2>
     <table>
       <thead><tr><th>Format</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td>PDF</td><td>Ewidencja przebiegu pojazdu wg szablonu Ministerstwa Finansow</td></tr>
+        <tr><td>PDF</td><td>Ewidencja przebiegu pojazdu wg szablonu Ministerstwa Finansów</td></tr>
         <tr><td>CSV</td><td>Eksport danych do arkuszy kalkulacyjnych</td></tr>
         <tr><td>Excel</td><td>Raporty z formatowaniem, gotowe do wydruku</td></tr>
-        <tr><td>EDI++ / FK</td><td>Eksport do systemow finansowo-ksiegowych (Insert GT, Comarch, Symfonia)</td></tr>
+        <tr><td>EDI++ / FK</td><td>Eksport do systemów FK (Insert GT, Comarch, Symfonia)</td></tr>
       </tbody>
     </table>
 
     <h2>3. Mapa w czasie rzeczywistym</h2>
     <ul>
-      <li>Interaktywna mapa z pozycjami kierowcow aktualizowanymi na biezaco</li>
+      <li>Interaktywna mapa z pozycjami kierowców aktualizowanymi na bieżąco</li>
       <li>Wizualizacja tras GPS na mapie</li>
-      <li>Grupowanie pojazdow na mapie przy duzym oddaleniu</li>
-      <li>Mapa kolorow intensywnosci tras (heatmapa)</li>
+      <li>Grupowanie pojazdów na mapie przy dużym oddaleniu</li>
+      <li>Mapa kolorów intensywności tras (heatmapa)</li>
     </ul>
 
     <h2>4. Tabele danych</h2>
-    <p>Wszystkie tabele (pojazdy, trasy, kierowcy, raporty) oferuja:</p>
+    <p>Wszystkie tabele (pojazdy, trasy, kierowcy, raporty) oferują:</p>
     <ul>
       <li>Sortowanie po kolumnach</li>
       <li>Filtrowanie (data, status, pojazd, kierowca)</li>
-      <li>Paginacja -- przeglad duzych zbiorow danych</li>
-      <li>Akcje zbiorcze -- zaznacz wiele pozycji i eksportuj lub usun</li>
+      <li>Paginacja — przegląd dużych zbiorów danych</li>
+      <li>Akcje zbiorcze — zaznacz wiele pozycji i eksportuj lub usuń</li>
     </ul>
 
-    <h2>5. Zarzadzanie alertami dokumentow</h2>
-    <p>System automatycznie monitoruje daty waznosci dokumentow i powiadamia o:</p>
+    <h2>5. Zarządzanie alertami dokumentów</h2>
+    <p>System automatycznie monitoruje daty ważności dokumentów i powiadamia o:</p>
     <ul>
-      <li>Ubezpieczenie OC -- 30 / 14 / 7 dni przed wygasnieciem</li>
-      <li>Przeglad techniczny -- 30 / 14 / 7 dni przed wygasnieciem</li>
-      <li>Tachograf -- legalizacja i kalibracja</li>
-      <li>Prawo jazdy -- termin waznosci</li>
+      <li>Ubezpieczenie OC — 30 / 14 / 7 dni przed wygaśnięciem</li>
+      <li>Przegląd techniczny — 30 / 14 / 7 dni przed wygaśnięciem</li>
+      <li>Tachograf — legalizacja i kalibracja</li>
+      <li>Prawo jazdy — termin ważności</li>
       <li>Certyfikaty ADR i inne dokumenty kierowcy</li>
     </ul>
 
-    <h2>6. Zarzadzanie uzytkownikami (role)</h2>
-    <p>System udostepnia 4 role z roznymi uprawnieniami:</p>
+    <h2>6. Zarządzanie użytkownikami (role)</h2>
+    <p>System udostępnia 4 role z różnymi uprawnieniami:</p>
     <table>
       <thead><tr><th>Rola</th><th>Uprawnienia</th></tr></thead>
       <tbody>
-        <tr><td>Kierowca</td><td>Rejestracja tras, podglad wlasnych danych</td></tr>
-        <tr><td>Wlasciciel</td><td>Pelny dostep -- flota, kierowcy, raporty, ustawienia</td></tr>
-        <tr><td>Ksiegowy</td><td>Dostep tylko do odczytu, raporty, eksport FK</td></tr>
-        <tr><td>Biuro rachunkowe</td><td>Obsluga wielu firm, eksport zbiorczy, pelna analityka</td></tr>
+        <tr><td>Kierowca</td><td>Rejestracja tras, podgląd własnych danych</td></tr>
+        <tr><td>Właściciel</td><td>Pełny dostęp — flota, kierowcy, raporty, ustawienia</td></tr>
+        <tr><td>Księgowy</td><td>Dostęp tylko do odczytu, raporty, eksport FK</td></tr>
+        <tr><td>Biuro rachunkowe</td><td>Obsługa wielu firm, eksport zbiorczy, pełna analityka</td></tr>
       </tbody>
     </table>
 
-    <h2>7. Responsywnosc</h2>
+    <h2>7. Responsywność</h2>
     <ul>
-      <li>Panel dziala na komputerze, laptopie i tablecie</li>
-      <li>Na mniejszych ekranach tabele zamieniaja sie w karty</li>
-      <li>Nawigacja boczna zwijana na urzadzeniach mobilnych</li>
+      <li>Panel działa na komputerze, laptopie i tablecie</li>
+      <li>Na mniejszych ekranach tabele zamieniają się w karty</li>
+      <li>Nawigacja boczna zwijana na urządzeniach mobilnych</li>
     </ul>
 
-    <h2>8. Bezpieczenstwo</h2>
+    <h2>8. Bezpieczeństwo</h2>
     <ul>
-      <li>Bezpieczne logowanie z automatycznym odswiezaniem sesji</li>
-      <li>Niezalogowani uzytkownicy automatycznie przekierowywani do strony logowania</li>
-      <li>Kazda rola widzi tylko dane, do ktorych ma uprawnienia</li>
+      <li>Bezpieczne logowanie z automatycznym odświeżaniem sesji</li>
+      <li>Niezalogowani użytkownicy automatycznie przekierowywani do strony logowania</li>
+      <li>Każda rola widzi tylko dane, do których ma uprawnienia</li>
     </ul>
   </div>
 </DocsLayout>

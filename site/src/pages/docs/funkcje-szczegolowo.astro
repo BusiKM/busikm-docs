@@ -4,16 +4,16 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
 
 <DocsLayout title="Funkcje szczegółowo">
   <div class="prose">
-    <h1>Kompletna dokumentacja funkcjonalnosci</h1>
+    <h1>Kompletna dokumentacja funkcjonalności</h1>
 
-    <h2>1. Role uzytkownikow</h2>
+    <h2>1. Role użytkowników</h2>
     <table>
       <thead><tr><th>Rola</th><th>Interfejs</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td>Kierowca</td><td>Aplikacja mobilna</td><td>Rejestracja tras, GPS, zdjecia licznika</td></tr>
-        <tr><td>Wlasciciel</td><td>Panel webowy + Aplikacja mobilna</td><td>Zarzadzanie flota, raporty, alerty</td></tr>
-        <tr><td>Ksiegowy</td><td>Panel webowy</td><td>Raporty, eksport FK, tylko odczyt</td></tr>
-        <tr><td>Biuro rachunkowe</td><td>Panel webowy</td><td>Obsluga wielu firm, dashboard zagregowany</td></tr>
+        <tr><td>Kierowca</td><td>Aplikacja mobilna</td><td>Rejestracja tras, GPS, zdjęcia licznika</td></tr>
+        <tr><td>Właściciel</td><td>Panel webowy + Aplikacja mobilna</td><td>Zarządzanie flotą, raporty, alerty</td></tr>
+        <tr><td>Księgowy</td><td>Panel webowy</td><td>Raporty, eksport FK, tylko odczyt</td></tr>
+        <tr><td>Biuro rachunkowe</td><td>Panel webowy</td><td>Obsługa wielu firm, dashboard zagregowany</td></tr>
       </tbody>
     </table>
 
@@ -27,7 +27,7 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
         <tr><td>Raporty</td><td>Nie</td><td>PDF</td><td>PDF + CSV</td><td>PDF + CSV + custom</td></tr>
         <tr><td>Eksport FK</td><td>Nie</td><td>Nie</td><td>Tak (EDI++)</td><td>Tak (wszystkie)</td></tr>
         <tr><td>Mapa real-time</td><td>Nie</td><td>Nie</td><td>Tak</td><td>Tak</td></tr>
-        <tr><td>Obsluga wielu firm</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
+        <tr><td>Obsługa wielu firm</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
         <tr><td>API</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
         <tr><td>Wsparcie</td><td>Brak</td><td>Email</td><td>Email + czat</td><td>Dedykowane</td></tr>
       </tbody>
@@ -37,33 +37,33 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
 
     <h3>Trasy</h3>
     <table>
-      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Wlasciciel</th><th>Ksiegowy</th><th>Biuro rach.</th></tr></thead>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Rozpoczecie trasy</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
-        <tr><td>Sledzenie GPS</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
-        <tr><td>Obliczanie dystansu</td><td>Auto</td><td>Podglad</td><td>Podglad</td><td>Podglad</td></tr>
+        <tr><td>Rozpoczęcie trasy</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Śledzenie GPS</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Obliczanie dystansu</td><td>Auto</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
         <tr><td>Klasyfikacja trasy</td><td>Tak</td><td>Tak (edycja)</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
-        <tr><td>Zdjecia licznika</td><td>Tak</td><td>Podglad</td><td>Podglad</td><td>Podglad</td></tr>
-        <tr><td>Lista tras</td><td>Tylko wlasne</td><td>Wszystkie</td><td>Wszystkie (RO)</td><td>Per klient</td></tr>
-        <tr><td>Edycja trasy</td><td>Tylko wlasne</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Zdjęcia licznika</td><td>Tak</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
+        <tr><td>Lista tras</td><td>Tylko własne</td><td>Wszystkie</td><td>Wszystkie (RO)</td><td>Per klient</td></tr>
+        <tr><td>Edycja trasy</td><td>Tylko własne</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
         <tr><td>Usuwanie trasy</td><td>Nie</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
       </tbody>
     </table>
 
     <h3>Dokumenty i raporty</h3>
     <table>
-      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Wlasciciel</th><th>Ksiegowy</th><th>Biuro rach.</th></tr></thead>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
         <tr><td>Ewidencja przebiegu PDF (MF)</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Raporty kosztow floty</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Raporty kosztów floty</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
         <tr><td>Raporty delegacji</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Dashboard zgodnosci</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (zagregowany)</td></tr>
+        <tr><td>Dashboard zgodności</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (zagregowany)</td></tr>
       </tbody>
     </table>
 
     <h3>Eksport FK</h3>
     <table>
-      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Wlasciciel</th><th>Ksiegowy</th><th>Biuro rach.</th></tr></thead>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
         <tr><td>Insert GT EDI++</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
         <tr><td>EDI++ delegacje</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
@@ -72,45 +72,35 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
       </tbody>
     </table>
 
-    <h2>4. Funkcje MVP vs Post-MVP</h2>
+    <h2>4. Funkcje w MVP</h2>
     <h3>MVP</h3>
     <table>
       <thead><tr><th>Grupa</th><th>Funkcje</th></tr></thead>
       <tbody>
-        <tr><td>Konto</td><td>Rejestracja, logowanie, reset hasla, weryfikacja email</td></tr>
-        <tr><td>Firma</td><td>Tworzenie firmy, model subskrypcji, trial 14 dni, pilot 6 miesiecy</td></tr>
-        <tr><td>Flota</td><td>Zarzadzanie pojazdami, dokumenty, alerty (OC, przeglad, tachograf)</td></tr>
-        <tr><td>Kierowcy</td><td>Zarzadzanie kierowcami, zaproszenia, alerty prawa jazdy</td></tr>
-        <tr><td>Trasy</td><td>Start/stop, GPS w tle, obliczanie dystansu, klasyfikacja, zdjecia licznika</td></tr>
+        <tr><td>Konto</td><td>Rejestracja, logowanie, reset hasła, weryfikacja email</td></tr>
+        <tr><td>Firma</td><td>Tworzenie firmy, model subskrypcji, trial 14 dni</td></tr>
+        <tr><td>Flota</td><td>Zarządzanie pojazdami, dokumenty, alerty (OC, przegląd, tachograf)</td></tr>
+        <tr><td>Kierowcy</td><td>Zarządzanie kierowcami, zaproszenia, alerty prawa jazdy</td></tr>
+        <tr><td>Trasy</td><td>Start/stop, GPS w tle, obliczanie dystansu, klasyfikacja, zdjęcia licznika</td></tr>
         <tr><td>Dokumenty</td><td>Ewidencja przebiegu PDF (szablon MF)</td></tr>
         <tr><td>Eksport FK</td><td>Insert GT EDI++ (ewidencja)</td></tr>
         <tr><td>Aplikacja mobilna</td><td>Logowanie, rejestracja trasy, GPS, aparat, lista tras, powiadomienia push</td></tr>
-        <tr><td>Panel webowy</td><td>Logowanie, dashboard, flota, trasy, raporty, uzytkownicy, eksport</td></tr>
+        <tr><td>Panel webowy</td><td>Logowanie, dashboard, flota, trasy, raporty, użytkownicy, eksport</td></tr>
       </tbody>
     </table>
 
-    <h3>Post-MVP (Q3 2026)</h3>
-    <table>
-      <thead><tr><th>Grupa</th><th>Funkcje</th></tr></thead>
-      <tbody>
-        <tr><td>Panel biura rachunkowego</td><td>Rejestracja biura, zarzadzanie klientami, przelaczanie miedzy firmami</td></tr>
-        <tr><td>Mapa</td><td>Pozycje kierowcow w czasie rzeczywistym na mapie interaktywnej</td></tr>
-        <tr><td>Raporty</td><td>Dashboard zgodnosci, koszty floty, delegacje</td></tr>
-        <tr><td>Eksport FK</td><td>EDI++ delegacje</td></tr>
-        <tr><td>Tryb offline</td><td>Pelna baza lokalna z automatyczna synchronizacja</td></tr>
-      </tbody>
-    </table>
+    <p>Wszystkie powyższe funkcje — w tym panel biura rachunkowego, mapa real-time, Comarch ERP Optima, Symfonia FK i tryb offline — wchodzą do MVP.</p>
 
     <h2>5. Ograniczenia planu Free</h2>
     <table>
       <thead><tr><th>Obszar</th><th>Ograniczenie</th><th>Komunikat</th></tr></thead>
       <tbody>
-        <tr><td>Pojazdy</td><td>Maks. 1</td><td>"Uaktualnij plan, aby dodac wiecej pojazdow"</td></tr>
-        <tr><td>Kierowcy</td><td>Maks. 1</td><td>"Uaktualnij plan, aby zaprosic wiecej kierowcow"</td></tr>
-        <tr><td>Raporty</td><td>Brak</td><td>"Raporty dostepne od planu Starter"</td></tr>
-        <tr><td>Eksport FK</td><td>Zablokowany</td><td>"Eksport FK dostepny od planu Professional"</td></tr>
-        <tr><td>Mapa real-time</td><td>Zablokowana</td><td>"Mapa dostepna od planu Professional"</td></tr>
-        <tr><td>Zaproszenia</td><td>Wylaczone</td><td>"Zaproszenia dostepne od planu Starter"</td></tr>
+        <tr><td>Pojazdy</td><td>Maks. 1</td><td>„Uaktualnij plan, aby dodać więcej pojazdów"</td></tr>
+        <tr><td>Kierowcy</td><td>Maks. 1</td><td>„Uaktualnij plan, aby zaprosić więcej kierowców"</td></tr>
+        <tr><td>Raporty</td><td>Brak</td><td>„Raporty dostępne od planu Starter"</td></tr>
+        <tr><td>Eksport FK</td><td>Zablokowany</td><td>„Eksport FK dostępny od planu Professional"</td></tr>
+        <tr><td>Mapa real-time</td><td>Zablokowana</td><td>„Mapa dostępna od planu Professional"</td></tr>
+        <tr><td>Zaproszenia</td><td>Wyłączone</td><td>„Zaproszenia dostępne od planu Starter"</td></tr>
       </tbody>
     </table>
   </div>
