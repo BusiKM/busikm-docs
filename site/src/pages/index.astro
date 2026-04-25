@@ -949,8 +949,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
   function calcBrCost(v: number): number {
     if (v <= 30) return v * 49;
-    if (v <= 80) return 30 * 49 + (v - 30) * 39;
-    return 30 * 49 + 50 * 39 + (v - 80) * 29;
+    if (v <= 80) return v * 39;
+    return v * 29;
   }
 
   function calcROI() {
