@@ -194,8 +194,57 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ======================== KALKULATOR OSZCZĘDNOŚCI BR ======================== -->
+<!-- ======================== 3 TARCZE PODATKOWE ======================== -->
 <section class="py-24 sm:py-32 bg-white px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center max-w-[720px] mx-auto mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jeden system. Trzy tarcze.</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+        Kilometrówka chroni Twoich klientów w&nbsp;trzech obszarach.
+      </h2>
+      <p class="text-[16px] text-[#6E6E73] leading-relaxed">Firmy często nie wiedzą, że bez ewidencji przebiegu US może zakwestionować nie tylko VAT, ale też koszty w PIT i zwroty za delegacje. BusiKM zabezpiecza wszystkie trzy.</p>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[960px] mx-auto">
+      <!-- VAT -->
+      <div class="rounded-[20px] p-7 bg-[#005CE8]/[0.04] border border-[#005CE8]/15">
+        <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center bg-[#005CE8]/10">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-1">100% VAT</h3>
+        <p class="text-[12px] font-semibold text-[#005CE8] mb-3">Art. 86a ustawy o VAT</p>
+        <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pełne odliczenie VAT od paliwa, serwisów i eksploatacji pojazdu firmowego. Bez ewidencji — tylko 50%.</p>
+      </div>
+
+      <!-- PIT/CIT -->
+      <div class="rounded-[20px] p-7 bg-[#34C759]/[0.04] border border-[#34C759]/15">
+        <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center bg-[#34C759]/10">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-1">100% kosztów PIT/CIT</h3>
+        <p class="text-[12px] font-semibold text-[#34C759] mb-3">Art. 23 ust. 7 ustawy o PIT</p>
+        <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pełne koszty uzyskania przychodu od pojazdu wyłącznie firmowego. Kilometrówka GPS to dowód przy kontroli. Bez niej — max 75%.</p>
+      </div>
+
+      <!-- Delegacje -->
+      <div class="rounded-[20px] p-7 bg-[#FF9500]/[0.04] border border-[#FF9500]/15">
+        <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center bg-[#FF9500]/10">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-1">Zwrot km bez PIT</h3>
+        <p class="text-[12px] font-semibold text-[#FF9500] mb-3">Art. 21 ust. 1 pkt 23b ustawy o PIT</p>
+        <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pracownik jeździ prywatnym autem służbowo? Zwrot kosztów (km × stawka) jest zwolniony z PIT — jeśli masz ewidencję.</p>
+      </div>
+    </div>
+
+    <div class="reveal text-center mt-10">
+      <p class="text-[14px] text-[#86868B] max-w-[600px] mx-auto">Bez kilometrówki US może zakwestionować koszty pojazdu w PIT <span class="font-semibold text-[#FF3B30]">za 3 lata wstecz + odsetki ustawowe</span>. BusiKM to ubezpieczenie — dane GPS, potwierdzone elektronicznie, gotowe na kontrolę.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== KALKULATOR OSZCZĘDNOŚCI BR ======================== -->
+<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center max-w-[720px] mx-auto mb-16">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Kalkulator oszczędności</p>
@@ -604,7 +653,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { title: 'Insert GT, Comarch, Symfonia', desc: 'Eksport EDI++ do Insert GT jednym kliknięciem. Planowane: Comarch ERP Optima i Symfonia. Zero przepisywania danych.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
         { title: 'Panel multi-klient', desc: 'Jeden dashboard dla wszystkich firm klientów. Przełączanie kontekstu bez wylogowania. Status ewidencji na pierwszy rzut oka.', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>`, color: '#8B5CF6' },
         { title: '3 miesiące za darmo', desc: 'Pełny dostęp bez warunków, bez karty kredytowej. Po trialu płacisz tylko za aktywne pojazdy klientów (od 29 zł/pojazd).', icon: `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`, color: '#005CE8' },
-        { title: '25+ pojazdów = bez etatu', desc: 'Przy 25-35 pojazdach ręczna ewidencja to cały etat (~6 100 zł/mies.). BusiKM obsługuje tę samą liczbę za ułamek kosztu.', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>`, color: '#FF3B30' },
+        { title: 'Ochrona przed kontrolą US', desc: 'Dane GPS z elektronicznym potwierdzeniem kierowcy — gotowe na kontrolę skarbową. VAT + PIT + delegacje zabezpieczone w jednym systemie.', icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, color: '#FF3B30' },
       ].map(u => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.06] hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${u.color}12`}>
@@ -651,6 +700,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { href: '/dla-wlascicieli', role: 'Właściciel firmy', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time', 'Raporty PDF wg wzoru MF', 'Alerty: OC, przegląd, prawo jazdy', 'Compliance dashboard'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
         { href: '/dla-kierowcow', role: 'Kierowca', headline: 'Jedź. My zapisujemy.', bullets: ['GPS w tle — zamknij aplikację, jedź', 'Zatwierdzanie trasy jednym kliknięciem', 'Tryb offline — sync po powrocie', 'iOS + Android (React Native + Expo)'], color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
         { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — integralność danych'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
+        { href: '/dla-wlascicieli', role: 'Mobilni pracownicy', headline: 'Prywatne auto służbowo? Zwrot bez PIT.', bullets: ['Ewidencja przebiegu prywatnego auta', 'Zwrot km × stawka zwolniony z PIT', 'Handlowcy, serwisanci, doradcy', 'Art. 21 ust. 1 pkt 23b ustawy o PIT'], color: '#FF3B30', icon: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>` },
       ].map(r => (
         <a href={r.href} class="group bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:bg-white hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 block">
           <div class="flex items-center gap-4 mb-5">

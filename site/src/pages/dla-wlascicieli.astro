@@ -80,32 +80,36 @@ const moreFeatures = [
 
 const faqs = [
   {
-    q: 'Ile pojazdów mogę dodać w ramach jednego konta?',
-    a: 'To zależy od planu subskrypcyjnego. Plan Free — 1 pojazd, Starter (19 zł/pojazd) — do 10, Professional (29 zł/pojazd) — do 50. Powyżej 50 — napisz do nas.',
+    q: 'Czy kilometrówka chroni mnie tylko w kwestii VAT?',
+    a: 'Nie — BusiKM zabezpiecza trzy obszary: 100% odliczenia VAT (art. 86a), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7) oraz zwroty km dla pracowników na prywatnych autach (art. 21 ust. 1 pkt 23b). Jeden system, trzy tarcze podatkowe.',
+  },
+  {
+    q: 'Czy muszę zgłosić pojazd do urzędu skarbowego?',
+    a: 'Tak — aby odliczać 100% VAT, musisz złożyć druk VAT-26 elektronicznie przez e-Urząd Skarbowy przed pierwszym odliczeniem. BusiKM przypomni Ci o tym przy dodawaniu pojazdu.',
+  },
+  {
+    q: 'Ile pojazdów mogę dodać?',
+    a: 'Plan Free — 1 pojazd. Starter (19 zł/pojazd) — do 10. Professional (29 zł/pojazd) — do 50. Powyżej 50 — napisz do nas na kontakt@busikm.pl.',
   },
   {
     q: 'Czy mogę śledzić pojazdy na mapie w czasie rzeczywistym?',
-    a: 'Tak. Dashboard zawiera mapę Mapbox GL z pozycjami kierowców aktualizowanymi przez WebSocket. Widzisz kierunek jazdy, status (w ruchu / zatrzymany) oraz klasteryzację przy wielu pojazdach.',
+    a: 'Tak. Dashboard właściciela zawiera interaktywną mapę z pozycjami kierowców aktualizowanymi na żywo. Widzisz kierunek jazdy, status (w ruchu / zatrzymany) i możesz filtrować po pojazdach.',
   },
   {
     q: 'Jakie dokumenty monitoruje system alertów?',
-    a: 'System monitoruje: polisę OC pojazdu, przegląd techniczny, legalizację tachografu oraz prawo jazdy kierowcy. Alerty wysyłane są 30, 14 i 7 dni przed wygaśnięciem oraz po terminie.',
+    a: 'Polisę OC, przegląd techniczny, legalizację tachografu i prawo jazdy kierowcy. Alerty push i e-mail 30, 14 i 7 dni przed wygaśnięciem.',
   },
   {
-    q: 'Czy kilometrówka PDF jest zgodna z wymogami Ministerstwa Finansów?',
-    a: 'Tak. Generowany raport PDF jest w pełni zgodny ze wzorem MF i zawiera wszystkie wymagane pola: data, trasa, cel, przebieg, stawka i kwota.',
+    q: 'Czy mogę zaprosić księgowego lub biuro rachunkowe?',
+    a: 'Tak. System obsługuje 4 role: kierowca, właściciel, księgowy (read-only) i biuro rachunkowe (multi-klient). Każda rola ma dedykowane uprawnienia.',
   },
   {
-    q: 'Jak działa eksport do systemu FK?',
-    a: 'BusiKM generuje pliki w formacie EDI++ kompatybilnym z Insert GT. Wystarczy pobrać plik i zaimportować go do systemu FK — zero ręcznego przepisywania.',
+    q: 'Mam leasing z limitem km — czy BusiKM pilnuje limit?',
+    a: 'Tak. System monitoruje przebieg i alertuje gdy zbliżasz się do limitu leasingowego — unikasz kar za nadprzebieg.',
   },
   {
-    q: 'Czy mogę zaprosić księgowego do mojego konta?',
-    a: 'Tak. System obsługuje 4 role: kierowca, właściciel, księgowy i biuro rachunkowe. Każda rola ma własny zestaw uprawnień i widoków.',
-  },
-  {
-    q: 'Czy sama kilometrówka wystarczy do odliczenia 100% VAT?',
-    a: 'Nie — oprócz prowadzenia ewidencji przebiegu musisz również zgłosić pojazd do urzędu skarbowego na druku VAT-26 (art. 86a ust. 12 ustawy o VAT). Zgłoszenie składasz elektronicznie przez e-Urząd Skarbowy przed pierwszym odliczeniem pełnego VAT. BusiKM przypomni Ci o tym przy dodawaniu nowego pojazdu.',
+    q: 'Moi pracownicy jeżdżą prywatnymi autami służbowo. Mogę im zwracać koszty?',
+    a: 'Tak — zwrot km × stawka jest zwolniony z PIT pracownika (art. 21 ust. 1 pkt 23b), ale wymaga ewidencji przebiegu. BusiKM prowadzi ją automatycznie z GPS.',
   },
 ];
 ---
@@ -234,6 +238,41 @@ const faqs = [
             </li>
           ))}
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PIT + ANALITYKA ============ -->
+  <section class="py-20 sm:py-28 bg-white px-5">
+    <div class="max-w-[1120px] mx-auto">
+      <div class="reveal text-center max-w-[680px] mx-auto mb-14">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Ochrona podatkowa</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+          Kilometrówka chroni nie tylko VAT.
+        </h2>
+      </div>
+
+      <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] mx-auto">
+        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">100% kosztów w PIT/CIT</h3>
+          <p class="text-[12px] font-semibold text-[#34C759] mb-3">Art. 23 ust. 7 ustawy o PIT</p>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pojazd wyłącznie firmowy? Możesz odliczyć 100% kosztów eksploatacji. Bez ewidencji — US może ograniczyć do 75% i naliczyć korektę za 3 lata wstecz. Kilometrówka GPS to Twój dowód.</p>
+        </div>
+        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Analityka kosztów floty</h3>
+          <p class="text-[12px] font-semibold text-[#005CE8] mb-3">Dashboard właściciela</p>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Ile kosztuje każdy pojazd miesięcznie? Paliwo + serwisy + przebieg per pojazd i per kierowca. Porównuj efektywność kosztową i podejmuj decyzje na danych.</p>
+        </div>
+        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Alert limitu leasingowego</h3>
+          <p class="text-[12px] font-semibold text-[#FF9500] mb-3">Leasing operacyjny</p>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Leasing z limitem km? BusiKM monitoruje przebieg i alertuje, zanim przekroczysz limit — unikasz kar za nadprzebieg.</p>
+        </div>
+        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Zwrot km dla pracowników</h3>
+          <p class="text-[12px] font-semibold text-[#FF3B30] mb-3">Art. 21 ust. 1 pkt 23b ustawy o PIT</p>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pracownik jeździ prywatnym autem służbowo? Zwrot kosztów (km × stawka) jest zwolniony z PIT — ale tylko z ewidencją. BusiKM prowadzi ją automatycznie.</p>
+        </div>
       </div>
     </div>
   </section>
