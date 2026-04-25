@@ -19,12 +19,12 @@
   <text x="165" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#1D1D1F" letter-spacing="-0.5">BusiKM</text>
 
   <!-- Main headline -->
-  <text x="80" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="700" fill="#1D1D1F" letter-spacing="-2.5">Automatyzuj</text>
-  <text x="80" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="700" fill="#1D1D1F" letter-spacing="-2.5">kilometr&#243;wk&#281;</text>
-  <text x="80" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="700" fill="#005CE8" letter-spacing="-2.5">swoich klient&#243;w.</text>
+  <text x="80" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="74" font-weight="700" fill="#1D1D1F" letter-spacing="-1">Automatyzuj</text>
+  <text x="80" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="74" font-weight="700" fill="#1D1D1F" letter-spacing="-1">kilometr&#243;wk&#281;</text>
+  <text x="80" y="395" font-family="system-ui, -apple-system, sans-serif" font-size="74" font-weight="700" fill="#005CE8" letter-spacing="-1">swoich klient&#243;w.</text>
 
   <!-- Subtitle -->
-  <text x="80" y="430" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#6E6E73">GPS + eksport do Insert GT, Comarch, Symfonia</text>
+  <text x="80" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#6E6E73">GPS + eksport do Insert GT, Comarch, Symfonia</text>
 
   <!-- Bottom -->
   <text x="80" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#86868B">busikm.pl</text>
@@ -38,7 +38,7 @@
     <rect x="24" y="30" width="52" height="52" rx="14" fill="#005CE8" opacity="0.08"/>
     <text x="50" y="64" text-anchor="middle" font-family="system-ui" font-size="24" fill="#005CE8">&#8595;</text>
     <text x="96" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#86868B">Oszcz&#281;dno&#347;&#263; na pojeździe / mies.</text>
-    <text x="96" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#005CE8" letter-spacing="-1">76 z&#322;</text>
+    <text x="96" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#005CE8" letter-spacing="-1">47 z&#322;</text>
 
     <!-- Card 2: clients free -->
     <g transform="translate(0, 140)">
