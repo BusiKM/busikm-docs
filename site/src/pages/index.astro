@@ -202,17 +202,17 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 <section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal max-w-[620px] mb-16">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Problem biura rachunkowego</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Znasz to?</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Ręczna kilometrówka zabiera czas Twoim&nbsp;księgowym.
+        „Wpisz tam coś" — mówi klient. A&nbsp;za&nbsp;2&nbsp;lata kontrola.
       </h2>
     </div>
 
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
       {[
-        { title: '2h na każdy pojazd', desc: 'Weryfikacja dokumentów, wprowadzenie 30 wpisów, faktury paliwowe, kalkulacja km × stawka, weryfikacja końcowa. Pomnóż × liczbę pojazdów klientów.', accent: '#FF9500', icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>` },
-        { title: '76 zł / pojazd / mies.', desc: 'Tyle kosztuje Cię ręczne prowadzenie ewidencji jednego pojazdu (2h × 38 zł/h kosztu pracodawcy). Przy 30 pojazdach to 2 280 zł miesięcznie.', accent: '#FF3B30', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>` },
-        { title: 'Błędy = ryzyko klienta', desc: 'Ręcznie wpisywane km i cele tras → błędy w ewidencji → US kwestionuje 100% VAT klienta. To Twoja odpowiedzialność jako biura.', accent: '#005CE8', icon: `<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>` },
+        { title: 'Dzwonisz, piszesz, czekasz', desc: 'Koniec miesiąca — 5 klientów nie oddało dokumentów. Kilometrówki brakuje, faktura za paliwo bez numeru rejestracyjnego. Co miesiąc to samo.', accent: '#FF9500', icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>` },
+        { title: 'Klient zgaduje przebieg', desc: '„Ile pan przejechał?" — „No jakoś 2 tysiące." Nie ma ewidencji, nie ma GPS, nie ma dowodu. A Ty odpowiadasz za dokumentację przy kontroli US.', accent: '#FF3B30', icon: `<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>` },
+        { title: '76 zł kosztu na każde auto', desc: '2h pracy Twojej księgowej per pojazd miesięcznie. Przy 30 pojazdach to 2 280 zł — i tak masz ryzyko błędu, bo dane nie są potwierdzone przez kierowcę.', accent: '#005CE8', icon: `<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>` },
       ].map(item => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background:${item.accent}12`}>
@@ -225,7 +225,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </div>
 
     <div class="reveal mt-8 text-center">
-      <p class="text-[14px] text-[#86868B]">BusiKM eliminuje tę pracę — <span class="font-semibold text-[#1D1D1F]">kierowcy jeżdżą, dane trafiają do Twojego FK automatycznie</span></p>
+      <p class="text-[14px] text-[#86868B]">Z BusiKM klient sam zatwierdza trasę w telefonie. <span class="font-semibold text-[#1D1D1F]">Ty dostajesz gotowy plik do importu — nie musisz dzwonić.</span></p>
     </div>
   </div>
 </section>
