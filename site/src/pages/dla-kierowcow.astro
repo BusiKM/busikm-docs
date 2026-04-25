@@ -51,6 +51,48 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
+<!-- MAREK — PERSONA KIEROWCY -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[900px] mx-auto">
+    <div class="reveal rounded-[20px] p-7 sm:p-9 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="flex items-start gap-5 mb-6">
+        <div class="w-14 h-14 rounded-full bg-[#005CE8]/10 flex items-center justify-center shrink-0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-1">Marek, 38 lat. Przedstawiciel handlowy.</h3>
+          <p class="text-[13px] text-[#86868B]">Toyota Corolla firmowa, 3 000–4 000 km/mies. Śląsk.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div>
+          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-2">Bez BusiKM</p>
+          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li>Koniec miesiąca — siedzi z kalendarzem i odtwarza trasy z pamięci</li>
+            <li>Wpisuje „Katowice → Gliwice, wizyta" bo nie pamięta adresu</li>
+            <li>Faktura za paliwo ginie w kieszeni kurtki, potem w praniu</li>
+            <li>Podpisuje kilometrówkę Ani nie czytając bo „ona wie lepiej"</li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-2">Z BusiKM</p>
+          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li><strong class="text-[#1D1D1F]">GPS sam zapisuje</strong> — zero siedzenia na koniec miesiąca</li>
+            <li><strong class="text-[#1D1D1F]">Potwierdza cel jednym tapnięciem</strong> po przyjeździe</li>
+            <li><strong class="text-[#1D1D1F]">10 sekund × kilkanaście razy</strong> zamiast 60 minut raz w miesiącu</li>
+            <li><strong class="text-[#1D1D1F]">GPS potwierdza że był</strong> u klienta — nikt nie zarzuci fałszerstwa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[#005CE8]/[0.04] border border-[#005CE8]/10">
+        <p class="text-[14px] text-[#1D1D1F]"><strong>Prywatność Marka.</strong> BusiKM śledzi lokalizację wyłącznie podczas aktywnej trasy służbowej. Prywatne jazdy? Wyłącz jednym przyciskiem. Szef widzi tylko to co sam zaznaczysz jako służbowe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- JAK TO DZIAŁA -->
 <section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
@@ -157,9 +199,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { title: 'Klasyfikacja tras', desc: 'Oznacz trasę jako służbową lub prywatną. AI uczy się Twoich wzorców i proponuje cel automatycznie.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.6"/>`, color: '#005CE8' },
         { title: 'Historia przejazdów', desc: 'Przegląd wszystkich tras z filtrami: po dacie, pojeździe, typie. Mapa z przebiegiem każdej trasy.', icon: `<path d="M12 20h9" stroke-width="1.6"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-width="1.6"/>`, color: '#34C759' },
         { title: 'Profil i dokumenty', desc: 'Twoje dane, prawo jazdy, kwalifikacja zawodowa — z automatycznymi alertami o zbliżającym się wygaśnięciu.', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.6"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.6"/>`, color: '#FF9500' },
-        { title: 'Batch upload GPS', desc: 'Dane GPS zebrane offline synchronizują się wsadowo po powrocie online — bez utraty ani jednego punktu.', icon: `<polyline points="16 16 12 12 8 16" stroke-width="1.6"/><line x1="12" y1="12" x2="12" y2="21" stroke-width="1.6"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" stroke-width="1.6"/>`, color: '#8B5CF6' },
-        { title: 'Expo + React Native', desc: 'Natywna wydajność na iOS i Android. Aktualizacje OTA przez EAS Update — bez czekania na App Store.', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-width="1.6"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="1.6"/>`, color: '#FF3B30' },
-        { title: 'Bezpieczeństwo', desc: 'Token JWT w expo-secure-store. Dane szyfrowane AES-256 w tranzycie i w spoczynku. Zgodność z RODO.', icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="1.6"/><path d="M7 11V7a5 5 0 0110 0v4" stroke-width="1.6"/>`, color: '#005CE8' },
+        { title: 'Synchronizacja offline', desc: 'Dane GPS zebrane bez internetu synchronizują się automatycznie po powrocie online — bez utraty ani jednego punktu.', icon: `<polyline points="16 16 12 12 8 16" stroke-width="1.6"/><line x1="12" y1="12" x2="12" y2="21" stroke-width="1.6"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" stroke-width="1.6"/>`, color: '#8B5CF6' },
+        { title: 'Dowód że byłeś', desc: 'GPS potwierdza że byłeś u klienta w konkretnym czasie. Nikt nie zarzuci że sfałszowałeś kilometrówkę — masz obiektywne dane.', icon: `<path d="M9 11l3 3L22 4" stroke-width="1.6"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-width="1.6"/>`, color: '#FF3B30' },
+        { title: 'Bezpieczeństwo i prywatność', desc: 'Dane szyfrowane, zgodność z RODO. Lokalizacja śledzona tylko podczas aktywnej trasy — poza nią Twoja prywatność jest chroniona.', icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="1.6"/><path d="M7 11V7a5 5 0 0110 0v4" stroke-width="1.6"/>`, color: '#005CE8' },
       ].map(f => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
@@ -186,10 +228,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal-stagger flex flex-col gap-3">
       {[
         { q: 'Czy aplikacja zużywa dużo baterii?', a: 'Nie. BusiKM korzysta z adaptacyjnego GPS — częstotliwość odczytu lokalizacji dostosowuje się do prędkości. Gdy jedziesz szybko, odczyty co 5s. Gdy stoisz, co 30s. Poniżej 10% baterii śledzenie jest wstrzymywane.' },
-        { q: 'Czy pracodawca widzi moją lokalizację po pracy?', a: 'Nie. Pracodawca widzi Twoją lokalizację wyłącznie podczas aktywnej trasy — od kliknięcia "Rozpocznij" do "Zakończ". Poza tym czasem lokalizacja nie jest śledzona ani udostępniana.' },
-        { q: 'Co jeśli stracę zasięg w trasie?', a: 'Dane GPS zapisywane są lokalnie. Po odzyskaniu internetu automatycznie synchronizują się z serwerem. Trasa zostanie zarejestrowana kompletnie, bez przerw.' },
-        { q: 'Co jeśli zapomnę zakończyć trasę?', a: 'Właściciel firmy może zakończyć trasę za Ciebie z poziomu panelu webowego. Ale warto pamiętać o kończeniu tras samodzielnie dla dokładności danych.' },
-        { q: 'Na jakich telefonach działa aplikacja?', a: 'BusiKM działa na iOS 15+ i Android 10+ (API 29). Aplikacja jest zbudowana na React Native + Expo SDK 52+, co gwarantuje natywną wydajność.' },
+        { q: 'Czy szef widzi wszystkie moje trasy — też prywatne?', a: 'Nie. Szef widzi wyłącznie trasy które sam zaznaczysz jako służbowe. Prywatne trasy możesz wyłączyć jednym przyciskiem. Poza aktywną trasą służbową lokalizacja nie jest śledzona.' },
+        { q: 'Ile czasu zajmuje mi korzystanie z aplikacji?', a: '10 sekund na trasę — klikasz "Rozpocznij" przed wyjazdem, "Zakończ" po przyjeździe i potwierdzasz cel. GPS robi resztę. Zamiast godziny na koniec miesiąca z kalendarzem — kilkanaście tapnięć dziennie.' },
+        { q: 'Co jeśli stracę zasięg w trasie?', a: 'Dane GPS zapisywane są lokalnie. Po odzyskaniu internetu synchronizują się automatycznie. Trasa zostanie kompletna, bez przerw.' },
+        { q: 'Co jeśli zapomnę zakończyć trasę?', a: 'Właściciel firmy może zakończyć trasę z panelu webowego. Ale warto kończenie tras samodzielnie — dla dokładności danych.' },
+        { q: 'Na jakich telefonach działa?', a: 'iPhone z iOS 15+ i Android 10+. Jeśli masz Google Maps — BusiKM też zadziała.' },
+        { q: 'Czy muszę wpisywać cel każdej trasy?', a: 'Tak, ale to jedno krótkie pole — np. "klient ABC" lub "dostawa Gliwice". Możesz wybrać z listy wcześniejszych celów. AI podpowiada cel na podstawie powtarzalnych tras.' },
       ].map(faq => (
         <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
           <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[15px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
