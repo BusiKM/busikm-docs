@@ -36,7 +36,7 @@ Zgodna z przepisami Ministerstwa Finansów 2026.
 ## Stack technologiczny
 - Backend: Django 5.x + DRF + Celery + PostgreSQL + MongoDB + Redis
 - Mobile: React Native + Expo SDK 52+ (iOS 15+, Android 10+)
-- Web: Next.js 14 + Tailwind + SWR + Recharts + Mapbox
+- Web: Next.js 16 + Tailwind + SWR + Recharts + Mapbox
 - API: OpenAPI 3.0 (drf-spectacular) → orval (klient TypeScript)
 
 ## Strona

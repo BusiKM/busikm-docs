@@ -4,7 +4,7 @@
 
 | Warstwa            | Technologia                              |
 | ------------------ | ---------------------------------------- |
-| Framework          | Next.js 14 (App Router)                  |
+| Framework          | Next.js 16 (App Router)                  |
 | Jezyk              | TypeScript (strict mode)                 |
 | Stylowanie         | Tailwind CSS                             |
 | Pobieranie danych  | SWR                                      |

@@ -10,7 +10,7 @@
 ```
 +---------------------+     +---------------------+
 |   Aplikacja Mobile  |     |    Panel Webowy      |
-|  (React Native /    |     |  (Next.js 14 /       |
+|  (React Native /    |     |  (Next.js 16 /       |
 |   Expo SDK 52+)     |     |   Vercel)            |
 +----------+----------+     +----------+----------+
            |                           |
@@ -57,7 +57,7 @@
 | Routing (mob) | Expo Router v4                       | File-based routing, deep linking, typowane sciezki                |
 | State (mob)   | Zustand                              | Lekki, minimalny boilerplate, kompatybilny z React Native         |
 | HTTP (mob)    | Axios                                | Interceptory, automatyczny refresh tokenow                        |
-| Web           | Next.js 14 App Router                | SSR/SSG, React Server Components, optymalizacja SEO               |
+| Web           | Next.js 16 App Router                | SSR/SSG, React Server Components, optymalizacja SEO               |
 | CSS           | Tailwind CSS                         | Utility-first, szybki prototyping, brak CSS-in-JS runtime         |
 | Data (web)    | SWR                                  | Cache-first fetching, rewalidacja, mutacje optymistyczne          |
 | Wykresy       | Recharts                             | Deklaratywne wykresy React, responsywnosc                         |
@@ -148,7 +148,7 @@ mobile/
 
 ---
 
-## 5. Web (Next.js 14)
+## 5. Web (Next.js 16)
 
 ### 5.1 Architektura
 

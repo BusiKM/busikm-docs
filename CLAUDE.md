@@ -66,7 +66,7 @@ Pelna lista: `ls docs/`. Kazdy dokument zawiera date ostatniej aktualizacji na k
 |---------|-------------|
 | Backend | Django 5.x + DRF + Celery + Daphne (ASGI) |
 | Mobile | React Native + Expo SDK 52+ + Expo Router v4 + Zustand |
-| Web | Next.js 14 (App Router) + Tailwind + SWR + Recharts + Mapbox |
+| Web | Next.js 16 (App Router) + Tailwind + SWR + Recharts + Mapbox |
 | Bazy danych | PostgreSQL 16 + MongoDB 7 + Redis 7 |
 | CI/CD | GitHub Actions + EAS Build + Vercel |
 

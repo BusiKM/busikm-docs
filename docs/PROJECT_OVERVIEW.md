@@ -88,7 +88,7 @@ BusiKM to platforma SaaS, która automatyzuje cały cykl ewidencji przebiegu:
 | Moduł | Funkcje |
 |---|---|
 | Aplikacja mobilna (RN/Expo) | Rejestracja GPS w tle, start/stop trasy, podgląd historii |
-| Panel webowy (Next.js 14) | Dashboard floty, mapa pojazdów, zatwierdzanie tras |
+| Panel webowy (Next.js 16) | Dashboard floty, mapa pojazdów, zatwierdzanie tras |
 | Backend API (Django REST) | Zarządzanie użytkownikami, pojazdami, trasami; RBAC |
 | Raporty | PDF kilometrówki wg wzoru MF, filtrowanie po dacie/pojeździe |
 | Eksport FK | Eksport EDI++ do Insert GT |
@@ -183,7 +183,7 @@ Szczegółowy plan techniczny: [ROADMAP.md](./ROADMAP.md) | Plan Jira: [JIRA_PLA
 |---|---|
 | Backend API | Django REST Framework (Python 3.12) |
 | Aplikacja mobilna | React Native + Expo |
-| Panel webowy | Next.js 14 (App Router) |
+| Panel webowy | Next.js 16 (App Router) |
 | Baza relacyjna | PostgreSQL |
 | Baza GPS / telemetria | MongoDB |
 | Cache / kolejki | Redis |
