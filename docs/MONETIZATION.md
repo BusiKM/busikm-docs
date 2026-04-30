@@ -50,35 +50,50 @@ i jest zrozumiały dla klientów — "płacę za każdy samochód w firmie".
 
 ## 2. Plany subskrypcji
 
-### Tabela planów
+### Tabela planów dla firm
 
-| Cecha                        | Free          | Starter                  | Professional              | Enterprise                |
-|------------------------------|---------------|--------------------------|---------------------------|---------------------------|
-| **Cena**                     | 0 PLN         | 59 PLN/pojazd/mies.      | 89 PLN/pojazd/mies.       | 149 PLN/pojazd/mies.      |
-| **Min. opłata miesięczna**   | —             | 149 PLN                  | 249 PLN                   | indywidualnie             |
-| **Max pojazdów**             | 1             | 10                       | 50                        | bez limitu                |
-| **Max kierowców**            | 1             | 10                       | 50                        | bez limitu                |
-| **Śledzenie GPS**            | tak           | tak                      | tak                       | tak                       |
-| **Ewidencja przebiegu**      | tak           | tak                      | tak                       | tak                       |
-| **Raporty PDF**              | nie           | tak                      | tak                       | tak                       |
-| **Eksport CSV/Excel**        | nie           | nie                      | tak                       | tak                       |
-| **Eksport do FK**            | nie           | nie                      | tak                       | tak                       |
-| **Powiadomienia push**       | nie           | tak                      | tak                       | tak                       |
-| **Mapa real-time**           | nie           | nie                      | tak                       | tak                       |
-| **Multi-tenant (AF)**        | nie           | nie                      | nie                       | tak                       |
-| **Dostęp API**               | nie           | nie                      | nie                       | tak                       |
-| **Dedykowane wsparcie**      | nie           | nie                      | nie                       | tak                       |
-| **Raporty zaawansowane**     | nie           | nie                      | tak                       | tak                       |
-| **Rozliczenie roczne**       | —             | 50 PLN/poj./mies. (-15%) | 76 PLN/poj./mies. (-15%)  | indywidualnie (-15%)      |
+| Cecha                        | Free          | Starter                       | Professional                  |
+|------------------------------|---------------|-------------------------------|-------------------------------|
+| **Cena**                     | 0 zł          | 19 zł/pojazd/mies.            | 29 zł/pojazd/mies.            |
+| **Min. opłata miesięczna**   | —             | 38 zł                         | 319 zł                        |
+| **Max pojazdów**             | 1             | 10                            | 50                            |
+| **Max kierowców**            | 1             | 10                            | 50                            |
+| **Śledzenie GPS**            | tak           | tak                           | tak                           |
+| **Ewidencja przebiegu**      | tak           | tak                           | tak                           |
+| **Klasyfikacja tras**        | tak           | tak                           | tak                           |
+| **Zdjęcia licznika**         | tak           | tak                           | tak                           |
+| **Raporty PDF (art. 86a)**   | nie           | tak                           | tak                           |
+| **Eksport CSV**              | nie           | tak                           | tak                           |
+| **Eksport CSV/Excel**        | nie           | tylko CSV                     | tak (CSV/Excel)               |
+| **Eksport do FK**            | nie           | nie                           | tak (Insert GT, Comarch, Symfonia) |
+| **Alerty dokumentów (push)** | nie           | tak                           | tak                           |
+| **Alerty dokumentów (e-mail)**| nie          | nie                           | tak                           |
+| **Mapa floty real-time**     | nie           | nie                           | tak                           |
+| **Dashboard zgodności**      | nie           | nie                           | tak                           |
+| **Tryb offline**             | nie           | nie                           | tak                           |
+| **Zaproszenia kierowców**    | nie           | tak                           | tak                           |
+| **Rozliczenie roczne**       | —             | -15% rabatu                   | -15% rabatu                   |
+
+Powyżej 50 pojazdów na planie Professional → kontakt indywidualny (`kontakt@busikm.pl`). Brak osobnego planu o nazwie "Enterprise" — flota 50+ otrzymuje warunki dopasowane do skali.
+
+### Tabela cen dla biur rachunkowych
+
+Plan `af_standard`: rozliczenie **per aktywny pojazd klienta** (aktywny = min. 1 trasa w danym miesiącu kalendarzowym).
+
+| Liczba aktywnych pojazdów łącznie u klientów BR | Cena za pojazd / mies. |
+|-------------------------------------------------|------------------------|
+| 1–30                                            | 49 zł                  |
+| 31–80                                           | 39 zł                  |
+| 81+                                             | 29 zł                  |
+
+Klienci biura rachunkowego (status `af_client`) korzystają z BusiKM **gratis** dopóki BR ma aktywną subskrypcję `af_standard` (lub `af_trial`). Funkcjonalnie odpowiadają planowi Professional.
 
 ### Logika minimów
 
 Minimalna opłata miesięczna zapewnia rentowność małych kont:
 
-- **Starter**: min 149 PLN = pokrycie kosztów nawet przy 1-2 pojazdach
-  (firma z 1 pojazdem płaci 149 PLN, z 3+ płaci 59 PLN × N)
-- **Professional**: min 249 PLN = pokrycie kosztów przy małych flotach
-  (firma z 1-2 pojazdami płaci 249 PLN, z 3+ płaci 89 PLN × N)
+- **Starter**: min 38 zł = stawka za 2 pojazdy (firma z 1 pojazdem płaci 38 zł, z 3+ płaci 19 zł × N).
+- **Professional**: min 319 zł = stawka za 11 pojazdów (firma z 1–10 pojazdami płaci 319 zł, z 11+ płaci 29 zł × N).
 
 ### Feature gating
 
@@ -112,18 +127,23 @@ Firmy uczestniczące w testach pilotażowych (User Acceptance Testing):
 
 Biura rachunkowe jako strategiczni partnerzy:
 
-- **3 miesiące** planu Enterprise za darmo.
-- **Brak wymogu minimalnej liczby klientów** — BR podłącza klientów w swoim tempie.
-- Po trialu: **149 zł/mies.** za panel multi-klient (bez limitu firm) lub downgrade do Free (1 firma).
-- Cel: AF testuje multi-tenant, a klienci AF korzystają z integracji FK.
+- **3 miesiące pełnego panelu BR za darmo** (`af_trial`) — bez karty kredytowej, bez wymogu minimalnej liczby klientów. BR podłącza klientów we własnym tempie.
+- Po trialu: **14 dni grace period**, potem decyzja:
+  - kontynuacja jako `af_standard` — rozliczenie **per aktywny pojazd klienta** (49 / 39 / 29 zł wg tieru),
+  - downgrade do BR Free — read-only podgląd klientów, paywall na PDF / eksport FK / dashboard zbiorczy.
+- Cel: BR testuje panel multi-tenant z realnymi klientami; im więcej podłączy w trakcie trialu, tym silniejszy efekt loss aversion przy potencjalnym downgrade.
 
 ### 3.4 Klienci biur rachunkowych
 
-Firmy dołączające przez biuro rachunkowe:
+Firmy dołączające przez biuro rachunkowe (status `af_client`):
 
-- **3 miesiące** planu Professional za darmo.
-- Trial **zsynchronizowany** z trialem AF — start odliczania od momentu aktywacji AF.
-- Po zakończeniu: klient przechodzi na plan płatny lub Free.
+- **Pełny dostęp odpowiadający planowi Professional za 0 zł**, dopóki BR ma aktywną subskrypcję `af_trial` lub `af_standard`. Brak własnej karty kredytowej, brak własnej subskrypcji.
+- Klient nie ma własnej daty wygaśnięcia — życie subskrypcji zsynchronizowane z subskrypcją BR.
+- Jeśli BR przejdzie na BR Free (lub anuluje subskrypcję): klient traci status `af_client` i może wybrać:
+  - kontynuację samodzielnie w planie Starter (19 zł/poj.) lub Professional (29 zł/poj.),
+  - przejście do innego biura rachunkowego z aktywnym `af_standard`,
+  - korzystanie z planu Free (1 pojazd, bez raportów).
+- Cała historia tras i dokumentów pozostaje w systemie niezależnie od scenariusza.
 
 ### 3.5 Auto-extend dla nieaktywnych
 
@@ -180,7 +200,7 @@ Analiza polskiego rynku fleet management SaaS:
 | AutoPlan         | per-firma flat fee   | 199-599 PLN            |
 | **Średnia rynkowa** | —                 | **50-120 PLN/pojazd**  |
 
-BusiKM celuje w **środek rynku** (59-89 PLN) z wyraźną wartością dodaną: integracja z FK.
+BusiKM celuje w **niski koniec rynku** (19–29 zł/pojazd) z wyraźną wartością dodaną: integracja z FK i panel dla biur rachunkowych. Strategia: agresywne ceny + kanał BR jako efekt mnożnikowy.
 
 ### 4.4 Timeline decyzji cenowej
 
@@ -196,40 +216,42 @@ BusiKM celuje w **środek rynku** (59-89 PLN) z wyraźną wartością dodaną: i
 
 ## 5. Prognozy przychodowe
 
+> **Założenia bazowe prognoz:** średnia ARPU/pojazd ≈ 27 zł (mix planów: ~40% Starter @ 19 zł, ~50% Professional @ 29 zł, ~10% BR `af_standard` w średnim tierze ~39 zł). Klienci BR (`af_client`) są nievliczani jako "płacący" — to BR rozlicza ich pojazdy w modelu hurtowym.
+
 ### 5.1 Scenariusz konserwatywny
 
 Założenia: organiczny wzrost, brak agresywnego marketingu, wolna konwersja pilotów.
 
 | Miesiąc | Firmy (total) | Firmy (płacące) | Śr. pojazdów | Pojazdy płacące | Śr. ARPU/poj. | MRR          | ARR          |
 |---------|---------------|-----------------|---------------|-----------------|----------------|--------------|--------------|
-| 3       | 10            | 0 (pilot)       | 3             | 0               | —              | 0 PLN        | —            |
-| 6       | 50            | 30              | 5             | 150             | 75 PLN         | 11 250 PLN   | 135 000 PLN  |
-| 12      | 150           | 100             | 6             | 600             | 80 PLN         | 48 000 PLN   | 576 000 PLN  |
-| 24      | 500           | 350             | 7             | 2 450           | 85 PLN         | 208 250 PLN  | 2 499 000 PLN|
-| 36      | 1 500         | 1 000           | 8             | 8 000           | 85 PLN         | 680 000 PLN  | 8 160 000 PLN|
+| 3       | 10            | 0 (pilot)       | 3             | 0               | —              | 0 zł         | —            |
+| 6       | 50            | 30              | 5             | 150             | 25 zł          | 3 750 zł     | 45 000 zł    |
+| 12      | 150           | 100             | 6             | 600             | 27 zł          | 16 200 zł    | 194 400 zł   |
+| 24      | 500           | 350             | 7             | 2 450           | 28 zł          | 68 600 zł    | 823 200 zł   |
+| 36      | 1 500         | 1 000           | 8             | 8 000           | 28 zł          | 224 000 zł   | 2 688 000 zł |
 
 ### 5.2 Scenariusz bazowy
 
-Założenia: umiarkowany marketing, aktywna współpraca z AF, dobra konwersja.
+Założenia: umiarkowany marketing, aktywna współpraca z BR, dobra konwersja.
 
 | Miesiąc | Firmy (total) | MRR              | ARR              |
 |---------|---------------|------------------|------------------|
-| 6       | 100           | 30 000 PLN       | 360 000 PLN      |
-| 12      | 300           | 125 000 PLN      | 1 500 000 PLN    |
-| 24      | 1 000         | 500 000 PLN      | 6 000 000 PLN    |
-| 36      | 3 000         | 1 667 000 PLN    | 20 000 000 PLN   |
+| 6       | 100           | 10 000 zł        | 120 000 zł       |
+| 12      | 300           | 42 000 zł        | 504 000 zł       |
+| 24      | 1 000         | 168 000 zł       | 2 016 000 zł     |
+| 36      | 3 000         | 560 000 zł       | 6 720 000 zł     |
 
 ### 5.3 Scenariusz optymistyczny
 
-Założenia: viralowy wzrost przez biura rachunkowe (1 AF = 10-20 firm klientów),
+Założenia: viralowy wzrost przez biura rachunkowe (1 BR = 10–20 firm klientów),
 silny product-market fit, szybka ekspansja.
 
 | Miesiąc | Firmy (total) | MRR              | ARR              |
 |---------|---------------|------------------|------------------|
-| 6       | 200           | 60 000 PLN       | 720 000 PLN      |
-| 12      | 500           | 250 000 PLN      | 3 000 000 PLN    |
-| 24      | 2 000         | 1 000 000 PLN    | 12 000 000 PLN   |
-| 36      | 5 000         | 2 917 000 PLN    | 35 000 000 PLN   |
+| 6       | 200           | 20 000 zł        | 240 000 zł       |
+| 12      | 500           | 84 000 zł        | 1 008 000 zł     |
+| 24      | 2 000         | 336 000 zł       | 4 032 000 zł     |
+| 36      | 5 000         | 980 000 zł       | 11 760 000 zł    |
 
 ### Kluczowy driver: efekt mnożnikowy AF
 
@@ -247,12 +269,12 @@ W scenariuszu optymistycznym kluczowe jest pozyskanie biur rachunkowych:
 
 | Metryka                          | Wartość docelowa       | Komentarz                                    |
 |----------------------------------|------------------------|----------------------------------------------|
-| **CAC (self-serve)**             | < 500 PLN              | SEO, content marketing, referrals            |
-| **CAC (kanał AF)**               | < 2 000 PLN            | Koszt pozyskania AF + onboarding             |
-| **ARPU/firma/miesiąc**           | 400-680 PLN            | Śr. 5-8 pojazdów × 80 PLN                   |
-| **LTV (Lifetime Value)**         | 15 360 PLN             | 8 poj. × 80 PLN × 24 mies.                  |
-| **LTV/CAC ratio (self-serve)**   | > 30×                  | 15 360 / 500 = 30.7×                        |
-| **LTV/CAC ratio (AF channel)**   | > 7×                   | 15 360 / 2 000 = 7.7×                       |
+| **CAC (self-serve)**             | < 200 zł               | SEO, content marketing, referrals            |
+| **CAC (kanał BR)**               | < 800 zł               | Koszt pozyskania BR + onboarding             |
+| **ARPU/firma/miesiąc**           | 135–225 zł             | Śr. 5–8 pojazdów × 27 zł                     |
+| **LTV (Lifetime Value)**         | 5 184 zł               | 8 poj. × 27 zł × 24 mies.                    |
+| **LTV/CAC ratio (self-serve)**   | > 25×                  | 5 184 / 200 = 25.9×                          |
+| **LTV/CAC ratio (BR channel)**   | > 6×                   | 5 184 / 800 = 6.5×                           |
 | **Monthly churn**                | < 5%                   | Cel: < 3% po roku                            |
 | **Net Revenue Retention (NRR)**  | > 110%                 | Expansion revenue (więcej pojazdów)          |
 | **Gross margin**                 | > 80%                  | SaaS — niski koszt krańcowy per user         |
@@ -261,18 +283,19 @@ W scenariuszu optymistycznym kluczowe jest pozyskanie biur rachunkowych:
 
 ```
 LTV = Średnia liczba pojazdów × ARPU/pojazd × Średni lifetime (miesiące)
-LTV = 8 × 80 PLN × 24 = 15 360 PLN
+LTV = 8 × 27 zł × 24 = 5 184 zł
 
 Przy uwzględnieniu expansion (firmy dodają pojazdy):
-LTV_adj = 15 360 × 1.1 (NRR) ≈ 16 896 PLN
+LTV_adj = 5 184 × 1.1 (NRR) ≈ 5 702 zł
 ```
 
 ### Próg rentowności per firma
 
 ```
-Koszt obsługi firmy/miesiąc ≈ 40-80 PLN (infra + support)
-Min. przychód na pokrycie kosztów: 80 PLN/miesiąc
-= 1 pojazd na planie Professional (89 PLN) → rentowne od 1 pojazdu
+Koszt obsługi firmy/miesiąc ≈ 15–30 zł (infra + support)
+Min. przychód na pokrycie kosztów: 30 zł/miesiąc
+= 2 pojazdy na planie Starter (38 zł) → rentowne od 2 pojazdów
+= 1 pojazd na planie Professional (319 zł min.) → wysoce rentowne
 ```
 
 ---
@@ -359,11 +382,12 @@ Szczegóły implementacji: [SUBSCRIPTION_MANAGEMENT.md](./SUBSCRIPTION_MANAGEMEN
 ### Efekt mnożnikowy
 
 ```
-1 biuro rachunkowe (AF) = 5-20 firm klientów
+1 biuro rachunkowe (BR) = 5–20 firm klientów
 
-Pozyskanie 50 AF × śr. 12 klientów = 600 firm
-Przy konwersji 60% na płatne = 360 firm płacących
-Przy śr. 6 pojazdów × 80 PLN = 172 800 PLN MRR
+Pozyskanie 50 BR × śr. 12 klientów × śr. 6 pojazdów = 3 600 aktywnych pojazdów
+Mix tierów: ~40% w 31–80 (39 zł), ~50% w 81+ (29 zł), ~10% w 1–30 (49 zł)
+Średnia ARPU/pojazd ≈ 33 zł → MRR z kanału BR ≈ 118 800 zł
+Klienci BR (af_client) korzystają gratis — przychód generuje wyłącznie BR.
 ```
 
 ### Dlaczego AF to idealny kanał?
@@ -376,29 +400,28 @@ Przy śr. 6 pojazdów × 80 PLN = 172 800 PLN MRR
 | **Niski churn**                 | Klient nie zmienia narzędzia jeśli AF je rekomenduje |
 | **Integracja FK**               | Eksport danych do systemu FK biura — lock-in         |
 
-### Model współpracy z AF
+### Model współpracy z BR
 
 #### Faza 1 (launch — pilot)
 
-- AF otrzymuje **3 miesiące Enterprise za darmo** (bez wymogu min. liczby klientów).
-- Klienci AF: **3 miesiące Professional za darmo**.
+- BR otrzymuje **3 miesiące pełnego panelu BR za darmo** (`af_trial`), bez wymogu min. liczby klientów.
+- Klienci BR (`af_client`) korzystają z BusiKM **gratis** dopóki BR ma aktywną subskrypcję.
 - Cel: walidacja modelu, zbieranie feedbacku.
 
 #### Faza 2 (post-pilot — skalowanie)
 
-- **Pakiety cenowe**: AF + N klientów = rabat grupowy.
-  - AF + 5 klientów: 10% rabatu dla wszystkich
-  - AF + 10 klientów: 15% rabatu
-  - AF + 20 klientów: 20% rabatu
-- AF negocjuje indywidualne warunki Enterprise.
+- **Standardowy cennik `af_standard`**: 49 / 39 / 29 zł per aktywny pojazd klienta (tiery 1–30 / 31–80 / 81+).
+- Rabat -15% przy rozliczeniu rocznym z góry.
+- Klienci nadal korzystają gratis — koszt ponosi wyłącznie BR.
 
 #### Faza 3 (post-MVP — program partnerski)
 
-- **AF Referral Program**: AF otrzymuje prowizję od przychodów z poleconych klientów.
-  - Opcja A: % od przychodu (np. 10-15%) przez 12 miesięcy.
-  - Opcja B: jednorazowa premia za pozyskanie (np. 500 PLN/firma).
-- Panel partnerski: AF widzi swoich klientów, ich status subskrypcji, prowizje.
-- Materiały marketingowe: white-label landing page, szablony emaili.
+- **Program partnerski BR**: dodatkowe benefity dla biur z dużym wolumenem.
+  - Wyższe rabaty roczne dla 200+ aktywnych pojazdów.
+  - Dedykowany opiekun handlowy.
+  - White-label panelu BR (subdomena, logo, kolory) — opcja w cenniku indywidualnym.
+- Panel partnerski: BR widzi swoich klientów, status pojazdów, faktury, dashboard oszczędności.
+- Materiały marketingowe: szablony emaili dla klientów, broszury, kalkulator oszczędności do osadzenia na stronie BR.
 
 ---
 
@@ -418,11 +441,11 @@ Mnożnik zależy od wzrostu, retencji, marży i skali rynku.
 
 ### Scenariusze wyceny (rok 3 — miesiąc 36)
 
-| Scenariusz       | ARR (rok 3)      | Mnożnik | Wycena          |
+| Scenariusz       | ARR (rok 3)       | Mnożnik | Wycena          |
 |------------------|-------------------|---------|-----------------|
-| Konserwatywny    | 8 160 000 PLN     | 5×      | 40 800 000 PLN  |
-| Bazowy           | 20 000 000 PLN    | 7×      | 140 000 000 PLN |
-| Optymistyczny    | 35 000 000 PLN    | 8×      | 280 000 000 PLN |
+| Konserwatywny    | 2 688 000 zł      | 5×      | 13 440 000 zł   |
+| Bazowy           | 6 720 000 zł      | 7×      | 47 040 000 zł   |
+| Optymistyczny    | 11 760 000 zł     | 8×      | 94 080 000 zł   |
 
 ### Czynniki wpływające na wycenę
 
@@ -451,15 +474,17 @@ Mnożnik zależy od wzrostu, retencji, marży i skali rynku.
 
 | Element                  | Decyzja                                                  |
 |--------------------------|----------------------------------------------------------|
-| Model cenowy             | Per-vehicle/month z minimalną opłatą                     |
-| Plany                    | Free / Starter / Professional / Enterprise               |
+| Model cenowy (firmy)     | Per-vehicle/month z minimalną opłatą                     |
+| Model cenowy (BR)        | Per aktywny pojazd klienta, tiery 49 / 39 / 29 zł        |
+| Plany                    | Free / Starter / Professional + `af_standard` (BR)       |
 | Waluta                   | PLN (docelowo EUR)                                       |
 | Pricing MVP              | Docelowe widełki — finalna cena po pilotażu              |
-| Trial                    | 14-day reverse trial (Professional → Free)               |
-| Billing MVP              | Ręczny (przelew) → Stripe (Sprint 7+)                   |
-| Kanał dystrybucji        | Biura rachunkowe (AF) — efekt mnożnikowy                 |
-| Target ARR (rok 3, baza) | 20M PLN                                                  |
-| Target wycena (rok 3)    | 40-280M PLN (zależnie od scenariusza)                    |
+| Trial firm               | 14 dni Professional → Free                               |
+| Trial BR                 | 3 miesiące pełnego panelu, 14 dni grace, → BR Free       |
+| Billing MVP              | Ręczny (przelew) → Stripe (Sprint 7+)                    |
+| Kanał dystrybucji        | Biura rachunkowe (BR) — efekt mnożnikowy                 |
+| Target ARR (rok 3, baza) | 6,7 M zł                                                 |
+| Target wycena (rok 3)    | 13–94 M zł (zależnie od scenariusza)                     |
 
 > Implementacja techniczna subskrypcji, feature gating, trial management i integracji Stripe
 > jest opisana w [SUBSCRIPTION_MANAGEMENT.md](./SUBSCRIPTION_MANAGEMENT.md).

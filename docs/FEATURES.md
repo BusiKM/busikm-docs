@@ -30,18 +30,43 @@
 
 ## 2. Plany subskrypcyjne
 
-| Cecha | Free | Starter | Professional | Enterprise |
-|-------|------|---------|-------------|------------|
-| **Cena** | 0 PLN | 59 PLN/pojazd/mies. | 89 PLN/pojazd/mies. | 149 PLN/pojazd/mies. |
-| **Pojazdy** | 1 | do 10 | do 50 | bez limitu |
-| **Kierowcy** | 1 | do 10 | do 50 | bez limitu |
-| **Sledzenie GPS** | Tak | Tak | Tak | Tak |
-| **Raporty** | Nie | PDF | PDF + CSV | PDF + CSV + niestandardowe |
-| **Eksport FK** | Nie | Nie | Tak | Tak |
-| **Mapa w czasie rzeczywistym** | Nie | Nie | Tak | Tak |
-| **Multi-tenant (AF)** | Nie | Nie | Nie | Tak |
-| **API** | Nie | Nie | Nie | Tak |
-| **Wsparcie** | Brak | E-mail | E-mail + czat | Dedykowane |
+### Plany dla firm
+
+| Cecha | Free | Starter | Professional |
+|-------|------|---------|--------------|
+| **Cena** | 0 zł | 19 zł/pojazd/mies. | 29 zł/pojazd/mies. |
+| **Min. opłata miesięczna** | — | 38 zł | 319 zł |
+| **Pojazdy** | 1 | do 10 | do 50 |
+| **Kierowcy** | 1 | do 10 | do 50 |
+| **Śledzenie GPS** | Tak | Tak | Tak |
+| **Klasyfikacja tras (służbowa/prywatna)** | Tak | Tak | Tak |
+| **Zdjęcia licznika** | Tak | Tak | Tak |
+| **Raporty PDF (art. 86a)** | Nie | Tak | Tak |
+| **Eksport CSV** | Nie | Tak | Tak |
+| **Eksport Excel** | Nie | Nie | Tak |
+| **Eksport FK (Insert GT, Comarch, Symfonia)** | Nie | Nie | Tak |
+| **Alerty dokumentów (push)** | Nie | Tak | Tak |
+| **Alerty dokumentów (e-mail)** | Nie | Nie | Tak |
+| **Mapa floty real-time** | Nie | Nie | Tak |
+| **Dashboard zgodności** | Nie | Nie | Tak |
+| **Tryb offline (mobilny)** | Nie | Nie | Tak |
+| **Wsparcie** | Brak | E-mail | E-mail + czat |
+
+Powyżej 50 pojazdów → kontakt indywidualny (`kontakt@busikm.pl`). Rozliczenie roczne: rabat -15%.
+
+### Plan dla biur rachunkowych (`af_standard`)
+
+Rozliczenie hurtowe per **aktywny pojazd klienta** (aktywny = min. 1 trasa w danym miesiącu kalendarzowym).
+
+| Liczba aktywnych pojazdów łącznie | Cena za pojazd / mies. |
+|-----------------------------------|------------------------|
+| 1–30                              | 49 zł                  |
+| 31–80                             | 39 zł                  |
+| 81+                               | 29 zł                  |
+
+Co dostaje BR: panel multi-tenant, przełączanie kontekstu firm, zbiorczy dashboard, eksport FK, RBAC per klient, alerty dla wszystkich flot.
+
+Co dostają firmy klienta BR (status `af_client`): pełny dostęp odpowiadający planowi Professional **gratis**, dopóki BR ma aktywną subskrypcję `af_trial` lub `af_standard`.
 
 ---
 
@@ -169,107 +194,111 @@
 
 ## 4. Matryca funkcji per plan
 
+> Uwaga: dla biur rachunkowych (`af_standard`) wszystkie funkcje Professional są dostępne bez limitu pojazdów/kierowców — patrz sekcja 2 (plan dla biur rachunkowych).
+
 ### 4.1 Autoryzacja i konto
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Rejestracja + logowanie | Tak | Tak | Tak | Tak |
-| JWT + refresh rotation | Tak | Tak | Tak | Tak |
-| Weryfikacja e-mail | Tak | Tak | Tak | Tak |
-| Zarzadzanie uzytkownikami | 1 kierowca | do 10 | do 50 | Bez limitu |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Rejestracja + logowanie | Tak | Tak | Tak |
+| JWT + refresh rotation | Tak | Tak | Tak |
+| Weryfikacja e-mail | Tak | Tak | Tak |
+| Zarzadzanie uzytkownikami | 1 kierowca | do 10 | do 50 |
 
 ### 4.2 Firma i subskrypcja
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| CRUD firmy | Tak | Tak | Tak | Tak |
-| Model subskrypcji | Tak | Tak | Tak | Tak |
-| Multi-tenant AF | Nie | Nie | Nie | Tak |
-| Stripe billing | Nie | Tak | Tak | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| CRUD firmy | Tak | Tak | Tak |
+| Model subskrypcji | Tak | Tak | Tak |
+| Multi-tenant (BR) | Nie | Nie | Nie (dostępne wyłącznie w `af_standard`) |
+| Stripe billing | Nie | Tak | Tak |
 
 ### 4.3 Flota
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Pojazdy (CRUD) | 1 pojazd | do 10 | do 50 | Bez limitu |
-| Dokumenty pojazdow | Tak | Tak | Tak | Tak |
-| Alerty OC | Nie | Tak (push) | Tak (push + e-mail) | Tak (push + e-mail + SMS) |
-| Alerty przeglad | Nie | Tak (push) | Tak (push + e-mail) | Tak (push + e-mail + SMS) |
-| Alerty tachograf | Nie | Tak (push) | Tak (push + e-mail) | Tak (push + e-mail + SMS) |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Pojazdy (CRUD) | 1 pojazd | do 10 | do 50 |
+| Dokumenty pojazdow | Tak | Tak | Tak |
+| Alerty OC | Nie | Tak (push) | Tak (push + e-mail) |
+| Alerty przeglad | Nie | Tak (push) | Tak (push + e-mail) |
+| Alerty tachograf | Nie | Tak (push) | Tak (push + e-mail) |
 
 ### 4.4 Kierowcy
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Kierowcy (CRUD) | 1 kierowca | do 10 | do 50 | Bez limitu |
-| Zaproszenia | Nie | Tak | Tak | Tak |
-| Alerty PJ | Nie | Tak | Tak | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Kierowcy (CRUD) | 1 kierowca | do 10 | do 50 |
+| Zaproszenia | Nie | Tak | Tak |
+| Alerty PJ | Nie | Tak | Tak |
 
 ### 4.5 Trasy
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Start/stop trasy | Tak | Tak | Tak | Tak |
-| Sledzenie GPS (background) | Tak | Tak | Tak | Tak |
-| Batch upload GPS | Tak | Tak | Tak | Tak |
-| Obliczanie dystansu | Tak | Tak | Tak | Tak |
-| Klasyfikacja (sluzbowa/prywatna) | Tak | Tak | Tak | Tak |
-| Zdjecia licznika | Tak | Tak | Tak | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Start/stop trasy | Tak | Tak | Tak |
+| Sledzenie GPS (background) | Tak | Tak | Tak |
+| Batch upload GPS | Tak | Tak | Tak |
+| Obliczanie dystansu | Tak | Tak | Tak |
+| Klasyfikacja (sluzbowa/prywatna) | Tak | Tak | Tak |
+| Zdjecia licznika | Tak | Tak | Tak |
 
 ### 4.6 Dokumenty i raporty
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Ewidencja przebiegu PDF (MF) | Nie | Tak | Tak | Tak |
-| Raporty kosztow floty (CSV+PDF) | Nie | Nie | Tak | Tak |
-| Raporty delegacji (CSV+PDF) | Nie | Nie | Tak | Tak |
-| Dashboard zgodnosci | Nie | Nie | Tak | Tak |
-| Niestandardowe raporty | Nie | Nie | Nie | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Ewidencja przebiegu PDF (MF, art. 86a) | Nie | Tak | Tak |
+| Eksport CSV | Nie | Tak | Tak |
+| Eksport Excel | Nie | Nie | Tak |
+| Raporty kosztow floty (CSV+PDF) | Nie | Nie | Tak |
+| Raporty delegacji (CSV+PDF) | Nie | Nie | Tak |
+| Dashboard zgodnosci | Nie | Nie | Tak |
 
 ### 4.7 Eksport FK
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Insert GT EDI++ (ewidencja) | Nie | Nie | Tak | Tak |
-| EDI++ delegacje | Nie | Nie | Tak | Tak |
-| Comarch ERP Optima | Nie | Nie | Nie | Tak |
-| Symfonia | Nie | Nie | Nie | Tak |
-| KSeF | Nie | Nie | Nie | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Insert GT EDI++ (ewidencja) | Nie | Nie | Tak |
+| EDI++ delegacje | Nie | Nie | Tak |
+| Comarch ERP Optima (XML) | Nie | Nie | Tak |
+| Symfonia FK (TXT/AMS) | Nie | Nie | Tak |
+| KSeF | Nie | Nie | Post-MVP |
 
 ### 4.8 Aplikacja mobilna
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Logowanie | Tak | Tak | Tak | Tak |
-| Rejestracja tras | Tak | Tak | Tak | Tak |
-| GPS background | Tak | Tak | Tak | Tak |
-| Aparat (licznik) | Tak | Tak | Tak | Tak |
-| Lista tras | Tak | Tak | Tak | Tak |
-| Powiadomienia push | Nie | Tak | Tak | Tak |
-| Podglad floty | Ograniczony | Tak | Tak | Tak |
-| Tryb offline (WatermelonDB) | Nie | Nie | Tak | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Logowanie | Tak | Tak | Tak |
+| Rejestracja tras | Tak | Tak | Tak |
+| GPS background | Tak | Tak | Tak |
+| Aparat (licznik) | Tak | Tak | Tak |
+| Lista tras | Tak | Tak | Tak |
+| Powiadomienia push | Nie | Tak | Tak |
+| Podglad floty | Ograniczony | Tak | Tak |
+| Tryb offline (WatermelonDB) | Nie | Nie | Tak |
 
 ### 4.9 Panel webowy
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Dashboard | Podstawowy | Tak | Tak | Tak (zagregowany AF) |
-| Zarzadzanie flota | 1 pojazd | do 10 | do 50 | Bez limitu |
-| Zarzadzanie trasami | Tak | Tak | Tak | Tak |
-| Pobieranie raportow | Nie | PDF | PDF + CSV | PDF + CSV + custom |
-| Zarzadzanie uzytkownikami | Nie | Tak | Tak | Tak |
-| Eksport FK (UI) | Nie | Nie | Tak | Tak |
-| Mapa w czasie rzeczywistym | Nie | Nie | Tak | Tak |
-| Przelaczanie klientow (AF) | Nie | Nie | Nie | Tak |
-| API access | Nie | Nie | Nie | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Dashboard | Podstawowy | Tak | Tak |
+| Zarzadzanie flota | 1 pojazd | do 10 | do 50 |
+| Zarzadzanie trasami | Tak | Tak | Tak |
+| Pobieranie raportow | Nie | PDF + CSV | PDF + CSV + Excel |
+| Zarzadzanie uzytkownikami | Nie | Tak | Tak |
+| Eksport FK (UI) | Nie | Nie | Tak |
+| Mapa floty w czasie rzeczywistym | Nie | Nie | Tak |
+| Przelaczanie klientow (BR) | Nie | Nie | Nie (tylko `af_standard`) |
+
+> Plan biura rachunkowego (`af_standard`) udostępnia panel multi-tenant z przełączaniem klientów oraz zagregowany dashboard wszystkich flot — szczegóły w [SUBSCRIPTION_MANAGEMENT.md](./SUBSCRIPTION_MANAGEMENT.md).
 
 ### 4.10 Monitoring
 
-| Funkcja | Free | Starter | Professional | Enterprise |
-|---------|------|---------|-------------|------------|
-| Sentry | Tak | Tak | Tak | Tak |
-| Grafana | Tak | Tak | Tak | Tak |
-| Uptime Kuma | Tak | Tak | Tak | Tak |
+| Funkcja | Free | Starter | Professional |
+|---------|------|---------|--------------|
+| Sentry | Tak | Tak | Tak |
+| Grafana | Tak | Tak | Tak |
+| Uptime Kuma | Tak | Tak | Tak |
 
 > Monitoring jest wewnetrzny i niezalezny od planu uzytkownika.
 
@@ -441,10 +470,10 @@
 
 | Aspekt | MVP (Sprint 0-5) | Post-MVP (Sprint 6-7) | Post-Sprint 7 |
 |--------|-------------------|----------------------|----------------|
-| **Cel** | Dzialajacy produkt dla kierowcow i wlascicieli | Rozszerzenie o AF i zaawansowane funkcje | Monetyzacja i skalowanie |
+| **Cel** | Dzialajacy produkt dla kierowcow i wlascicieli | Rozszerzenie o BR i zaawansowane funkcje | Monetyzacja i skalowanie |
 | **Role** | Kierowca, Wlasciciel, Ksiegowy | + Biuro Rachunkowe | Wszystkie |
-| **Plany** | Free, Starter, Professional | + Enterprise | Pelna oferta |
-| **Integracje FK** | EDI++ ewidencja | + EDI++ delegacje | + Comarch, Symfonia, KSeF |
+| **Plany** | Free, Starter, Professional | + `af_standard` (BR) | Pelna oferta |
+| **Integracje FK** | Insert GT EDI++, Comarch, Symfonia | + EDI++ delegacje, AMS | + KSeF, white-label BR |
 | **Testy** | Jednostkowe, integracyjne | + E2E, wydajnosciowe | Pelne pokrycie |
 | **Infrastruktura** | Staging | + Produkcja | Skalowalna |
 
@@ -465,48 +494,52 @@
 | Mapa real-time | Zablokowana | "Mapa dostepna od planu Professional" |
 | Zaproszenia | Wylaczone | "Zaproszenia dostepne od planu Starter" |
 
-### 7.2 Ograniczenia planu Starter (59 PLN/pojazd/mies.)
+### 7.2 Ograniczenia planu Starter (19 zł/pojazd/mies., min. 38 zł)
 
 | Obszar | Ograniczenie | Roznica vs Professional |
 |--------|-------------|------------------------|
 | Pojazdy | Maks. 10 | Professional: do 50 |
 | Kierowcy | Maks. 10 | Professional: do 50 |
-| Raporty | Tylko PDF | Professional: PDF + CSV |
-| Eksport FK | Brak | Professional: EDI++ |
-| Mapa real-time | Brak | Professional: Tak |
+| Raporty | PDF (art. 86a) + CSV | Professional: + Excel |
+| Eksport FK | Brak | Professional: Insert GT, Comarch, Symfonia |
+| Mapa floty real-time | Brak | Professional: Tak |
 | Dashboard zgodnosci | Brak | Professional: Tak |
 | Raporty kosztow floty | Brak | Professional: Tak |
 | Raporty delegacji | Brak | Professional: Tak |
-| Tryb offline | Brak | Professional: Tak |
+| Tryb offline (mobilny) | Brak | Professional: Tak |
+| Alerty e-mail | Brak (tylko push) | Professional: push + e-mail |
 
-### 7.3 Ograniczenia planu Professional (89 PLN/pojazd/mies.)
+### 7.3 Plan Professional (29 zł/pojazd/mies., min. 319 zł)
 
-| Obszar | Ograniczenie | Roznica vs Enterprise |
-|--------|-------------|----------------------|
-| Pojazdy | Maks. 50 | Enterprise: bez limitu |
-| Kierowcy | Maks. 50 | Enterprise: bez limitu |
-| Multi-tenant AF | Brak | Enterprise: Tak |
-| API access | Brak | Enterprise: Tak |
-| Comarch/Symfonia/KSeF | Brak | Enterprise: Tak |
-| Niestandardowe raporty | Brak | Enterprise: Tak |
-| Dedykowane wsparcie | Brak | Enterprise: Tak |
-| White-label | Brak | Enterprise: Tak |
-
-### 7.4 Plan Enterprise (149 PLN/pojazd/mies.) - bez ograniczen
+Plan Professional zawiera komplet funkcji niezbędnych dla firm z flotą 2,5–3,5 t. Powyżej 50 pojazdów lub 50 kierowców → kontakt indywidualny (`kontakt@busikm.pl`) — warunki dopasowane do skali.
 
 | Obszar | Dostepnosc |
 |--------|-----------|
-| Pojazdy | Bez limitu |
-| Kierowcy | Bez limitu |
-| Wszystkie raporty | Tak |
-| Wszystkie eksporty FK | Tak |
-| Multi-tenant AF | Tak |
-| API access | Tak |
-| Mapa real-time | Tak |
-| Tryb offline | Tak |
-| Niestandardowe raporty | Tak |
-| Dedykowane wsparcie | Tak |
-| White-label | Tak (Post-Sprint 7) |
+| Pojazdy | do 50 (powyżej — kontakt indywidualny) |
+| Kierowcy | do 50 (powyżej — kontakt indywidualny) |
+| Raporty PDF (art. 86a, MF) | Tak |
+| Eksport CSV / Excel | Tak |
+| Eksport FK (Insert GT EDI++, Comarch ERP Optima, Symfonia FK) | Tak |
+| Mapa floty w czasie rzeczywistym | Tak |
+| Dashboard zgodności | Tak |
+| Tryb offline (mobilny, WatermelonDB) | Tak |
+| Alerty dokumentów (push + e-mail) | Tak |
+| Multi-tenant (BR) | Nie — wymaga planu `af_standard` |
+
+### 7.4 Plan dla biur rachunkowych (`af_standard`)
+
+Rozliczenie hurtowe per aktywny pojazd klienta: 49 / 39 / 29 zł (tiery 1–30 / 31–80 / 81+). Funkcjonalnie udostępnia wszystko z planu Professional **bez limitu pojazdów/kierowców** plus:
+
+| Obszar | Dostepnosc w `af_standard` |
+|--------|---------------------------|
+| Panel multi-tenant (wiele firm klientów) | Tak |
+| Przełączanie kontekstu między klientami | Tak |
+| Zbiorczy dashboard wszystkich flot | Tak |
+| Dashboard oszczędności (wartość vs koszt ręczny) | Tak |
+| RBAC — poziomy dostępu per klient | Tak |
+| Zbiorczy raport PDF / CSV (multi-firma) | Tak |
+| Klienci BR (`af_client`) korzystają gratis | Tak (dopóki BR ma aktywną subskrypcję) |
+| White-label (subdomena, logo) | Post-MVP |
 
 ### 7.5 Mechanizm feature gating
 
@@ -515,9 +548,10 @@
 | **Backend** | Middleware sprawdzajacy plan subskrypcji przed kazdym zapytaniem do chronionych endpointow |
 | **Frontend (web)** | Komponenty UI ukryte lub zablokowane z komunikatem o koniecznosci upgrade'u |
 | **Frontend (mobile)** | Ekrany paywall z opisem funkcji i przyciskiem "Uaktualnij plan" |
-| **Limity zasobow** | Walidacja przy tworzeniu pojazdu/kierowcy - odmowa z kodem HTTP 403 i opisem limitu |
-| **Trial** | 14-dniowy reverse trial: pelny dostep Professional, po wygasnieciu downgrade do Free |
-| **Trial AF** | 3-miesieczny trial Enterprise dla biur rachunkowych |
+| **Limity zasobow** | Walidacja przy tworzeniu pojazdu/kierowcy — odmowa z kodem HTTP 403 i opisem limitu |
+| **Trial firm** | 14-dniowy reverse trial: pelny dostep Professional, po wygasnieciu downgrade do Free |
+| **Trial BR** | 3-miesięczny `af_trial`: pelny panel BR, po wygasnieciu 14 dni grace, potem `af_standard` lub BR Free |
+| **`af_client`** | Brak własnej daty wygaśnięcia — feature gating dziedziczy z subskrypcji powiązanego BR |
 
 ---
 

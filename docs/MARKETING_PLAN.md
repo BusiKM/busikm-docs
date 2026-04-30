@@ -136,8 +136,9 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 ### Partnerstwa z biurami rachunkowymi (kanał główny)
 
 - 1 biuro rachunkowe = 5–20 klientów z flotami.
-- Oferta: **3 miesiące Enterprise za darmo** (bez wymogu min. liczby klientów).
-- Każdy klient BR otrzymuje 3 miesiące planu Professional.
+- Oferta: **3 miesiące pełnego panelu BR za darmo** (`af_trial`, bez karty, bez wymogu min. liczby klientów).
+- Klienci BR (`af_client`) korzystają z BusiKM **gratis** dopóki BR ma aktywną subskrypcję — nie mają własnej karty kredytowej ani daty wygaśnięcia.
+- Po trialu BR przechodzi na `af_standard` (49 / 39 / 29 zł per aktywny pojazd klienta) lub na BR Free (read-only, paywall na PDF/eksport FK).
 - Co-marketing: "Rekomendowane przez [nazwa BR]" na stronie partnera.
 
 ### Content marketing
@@ -177,7 +178,7 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 | Właściciele firm       | "Elektroniczna kilometrówka w 3 minuty. Bez papieru, bez stresu."   |
 | Kierowcy              | "Kliknij raz — trasa się zarejestruje sama."                        |
 | Księgowe               | "Kilometrówka PDF + eksport do Insert GT jednym kliknięciem."       |
-| Biura rachunkowe       | "Obsługuj 20 firm z jednego panelu. 3 miesiące Enterprise gratis."  |
+| Biura rachunkowe       | "Obsługuj 20 firm z jednego panelu. 3 miesiące pełnego panelu BR gratis. Klienci korzystają za darmo."  |
 
 ### Ton komunikacji
 
@@ -213,7 +214,7 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 
 5. **Sekcja dla biur rachunkowych**
    - Dedykowany blok z opisem programu partnerskiego.
-   - CTA: **"Dołącz jako partner — 3 miesiące Enterprise gratis"**
+   - CTA: **"Dołącz jako partner — 3 miesiące panelu BR gratis"**
 
 6. **FAQ**
    - Pytania o ustawę, o aplikację, o bezpieczeństwo danych.
@@ -235,18 +236,19 @@ To okno rynkowe, które BusiKM musi wykorzystać.
 | Element                   | Szczegóły                                                  |
 |---------------------------|------------------------------------------------------------|
 | Warunek wejścia           | Brak — BR podłącza klientów w swoim tempie                 |
-| Oferta dla BR             | 3 miesiące planu Enterprise za darmo                       |
-| Oferta dla klientów BR    | 3 miesiące planu Professional za darmo                     |
+| Oferta dla BR             | 3 miesiące pełnego panelu BR za darmo (`af_trial`)         |
+| Oferta dla klientów BR    | Pełny BusiKM **gratis** dopóki BR ma aktywną subskrypcję   |
+| Cennik po trialu          | `af_standard`: 49 / 39 / 29 zł per aktywny pojazd klienta (tiery 1–30 / 31–80 / 81+) |
 | Co-marketing              | Badge "Rekomendowane przez [nazwa BR]" na stronie partnera |
-| Prowizja (faza późniejsza)| Do rozważenia po walidacji modelu                          |
+| Program partnerski        | Faza 3 (post-MVP): wyższe rabaty roczne, white-label       |
 
 ### Ścieżka partnera
 
 1. BR rejestruje się jako partner na busikm.pl.
-2. BR otrzymuje dostęp do panelu Enterprise (multi-klient).
-3. BR zaprasza swoich klientów — każdy dostaje 3 miesiące Professional.
-4. BR zarządza ewidencjami klientów z jednego panelu.
-5. Po 3 miesiącach — konwersja na plan płatny.
+2. BR otrzymuje dostęp do pełnego panelu BR (multi-klient) na 3 miesiące za darmo.
+3. BR zaprasza swoich klientów — każdy z nich korzysta z BusiKM gratis dopóki BR ma aktywną subskrypcję.
+4. BR zarządza ewidencjami klientów z jednego panelu (eksport FK, dashboard zbiorczy).
+5. Po 3 miesiącach + 14 dniach grace period — przejście na `af_standard` (rozliczenie hurtowe per aktywny pojazd) lub na BR Free (read-only, paywall).
 
 ### Webinar dla biur rachunkowych
 

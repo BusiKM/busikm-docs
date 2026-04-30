@@ -15,11 +15,19 @@ Zgodna z przepisami Ministerstwa Finansów 2026.
 - Panel multi-klient dla biur rachunkowych
 - Alerty dokumentów (OC, przegląd, tachograf, prawo jazdy)
 
-## Cennik (PLN/pojazd/miesiąc)
-- Free: 0 PLN (1 pojazd)
-- Starter: 59 PLN (do 10 pojazdów)
-- Professional: 89 PLN (do 50 pojazdów, eksport FK)
-- Enterprise: 149 PLN (bez limitu, multi-tenant, API)
+## Cennik dla firm (zł/pojazd/miesiąc)
+- Free: 0 zł (1 pojazd, 1 kierowca, bez raportów)
+- Starter: 19 zł, min. 38 zł (do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push)
+- Professional: 29 zł, min. 319 zł (do 50 pojazdów, eksport FK Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, offline)
+- Powyżej 50 pojazdów → kontakt indywidualny. Rozliczenie roczne: rabat -15%.
+- Trial dla firm: 14 dni Professional gratis, bez karty kredytowej.
+
+## Cennik dla biur rachunkowych (per aktywny pojazd klienta)
+- 1–30 pojazdów: 49 zł/pojazd/mies.
+- 31–80 pojazdów: 39 zł/pojazd/mies.
+- 81+ pojazdów: 29 zł/pojazd/mies.
+- Klienci biura rachunkowego korzystają z BusiKM gratis dopóki BR ma aktywną subskrypcję.
+- Trial dla BR: 3 miesiące pełnego panelu gratis, bez karty.
 
 ## Grupy docelowe
 1. Kierowcy pojazdów dostawczych 2,5–3,5 t

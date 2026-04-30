@@ -29,7 +29,7 @@
 3. Wpisz **nazwę biura rachunkowego**.
 4. Wybierz rolę **„Biuro rachunkowe"**.
 5. Potwierdź rejestrację klikając link aktywacyjny wysłany na Twój e-mail.
-6. Po zalogowaniu automatycznie otrzymujesz **3-miesięczny okres próbny planu Enterprise** — pełna funkcjonalność, obsługa wielu klientów.
+6. Po zalogowaniu automatycznie otrzymujesz **3-miesięczny okres próbny pełnego panelu BR** (`af_trial`) — pełna funkcjonalność, obsługa wielu klientów, bez karty kredytowej, bez wymogu minimalnej liczby klientów.
 
 ---
 
@@ -201,35 +201,41 @@ Poziom dostępu ustala się wspólnie z klientem — zależy od zakresu współp
 
 ## 10. Trial i subskrypcja
 
-### 3-miesięczny trial Enterprise
+### 3-miesięczny trial pełnego panelu BR (`af_trial`)
 
-Po rejestracji jako biuro rachunkowe dostajesz **3 miesiące planu Enterprise za darmo**. Nie ma wymogu minimalnej liczby klientów — podłączasz firmy w swoim tempie.
+Po rejestracji jako biuro rachunkowe dostajesz **3 miesiące pełnego panelu BR za darmo**. Bez karty kredytowej, bez wymogu minimalnej liczby klientów — podłączasz firmy w swoim tempie.
 
-W trakcie trialu masz pełen dostęp: bez limitu klientów, eksport FK, dashboard zbiorczy, przełączanie firm.
+W trakcie trialu masz pełen dostęp: bez limitu klientów, eksport FK, dashboard zbiorczy, przełączanie firm. Twoi klienci (firmy transportowe) korzystają z BusiKM **gratis** — nie płacą nic, nie potrzebują własnej karty kredytowej.
 
 ### Co po zakończeniu trialu
 
-Po 3 miesiącach masz dwie opcje:
+Po 3 miesiącach (+ 14 dni grace period) masz dwie opcje:
 
-1. **Wykupujesz Enterprise (149 zł/mies.)** — kontynuujesz z pełną funkcjonalnością, bez limitu klientów. Roczna: 127 zł/mies. (rabat 15%).
-2. **Nie płacisz** — po 14 dniach grace period Twoje konto przechodzi na plan **Free**.
+1. **Przechodzisz na `af_standard`** — rozliczenie hurtowe per **aktywny pojazd klienta** (aktywny = min. 1 trasa w miesiącu):
+   - 1–30 aktywnych pojazdów → 49 zł / pojazd / mies.
+   - 31–80 → 39 zł / pojazd / mies.
+   - 81+ → 29 zł / pojazd / mies.
+   - Rozliczenie roczne: rabat -15%.
+   - Klienci nadal korzystają gratis.
+2. **Nie płacisz** — Twoje konto przechodzi na **BR Free** (paywall na PDF / eksport FK / dashboard zbiorczy).
 
-### Co się zmienia na planie Free
+### Co się zmienia na BR Free
 
 - **Widzisz dane wszystkich klientów** — przeglądasz trasy, pojazdy, kierowców w trybie read-only
 - **Przełączasz się między firmami** — ale tylko do odczytu
-- **NIE możesz generować nowych raportów PDF** — kliknięcie "Generuj raport" wyświetla propozycję upgrade
-- **NIE możesz eksportować do FK** — kliknięcie "Eksportuj" wyświetla propozycję upgrade
-- **NIE masz dashboardu zbiorczego** — wyświetla się propozycja upgrade
+- **NIE możesz generować nowych raportów PDF** — kliknięcie "Generuj raport" wyświetla propozycję powrotu do `af_standard`
+- **NIE możesz eksportować do FK** — kliknięcie "Eksportuj" wyświetla propozycję powrotu do `af_standard`
+- **NIE masz dashboardu zbiorczego** — paywall
 - Wcześniej wygenerowane raporty nadal dostępne do pobrania
+- Klienci tracą status `af_client` — muszą przejść na własny plan Starter/Professional, do innego BR z aktywną subskrypcją lub na Free
 
 ### Co to oznacza w praktyce
 
-Twoi klienci (firmy transportowe) nadal wysyłają dane do BusiKM — trasy, przejazdy, kilometry. Ty widzisz wszystko w panelu, ale musisz ręcznie przepisywać dane zamiast kliknąć "Eksportuj". Upgrade do Enterprise przywraca pełną funkcjonalność jednym kliknięciem.
+Twoi klienci (firmy transportowe) nadal wysyłają dane do BusiKM — trasy, przejazdy, kilometry. Ty widzisz wszystko w panelu, ale musisz ręcznie przepisywać dane zamiast kliknąć "Eksportuj". Powrót do `af_standard` przywraca pełną funkcjonalność jednym kliknięciem.
 
-### Ważne: subskrypcje są niezależne
+### Ważne: model rozliczeń
 
-Twoja subskrypcja BR (Free / Enterprise 149 zł/mies.) jest **niezależna** od subskrypcji Twoich klientów. Każda firma transportowa płaci za siebie (Starter 59 zł / Professional 89 zł per pojazd). Opłaty się nie łączą.
+Twoja subskrypcja BR (`af_trial` lub `af_standard`) **obejmuje wszystkich Twoich klientów** — to BR rozlicza pojazdy klientów hurtowo. Klienci (status `af_client`) nie mają własnej karty kredytowej, nie płacą za siebie. Jeśli klient odejdzie od Twojego biura, może wykupić własną subskrypcję Starter (19 zł/poj.) lub Professional (29 zł/poj.).
 
 ---
 
@@ -248,12 +254,12 @@ Transparentność jest ważna — Twoi klienci wiedzą o Twoim dostępie.
 
 ### Ilu klientów mogę obsługiwać?
 
-- **Trial (3 miesiące):** do 10 klientów.
-- **Plan Enterprise (płatny):** bez limitu klientów.
+- **Trial (`af_trial`, 3 miesiące):** bez limitu klientów.
+- **Plan `af_standard` (płatny):** bez limitu klientów. Płacisz tylko za **aktywne pojazdy** (te z min. 1 trasą w danym miesiącu).
 
 ### Czy klient płaci osobno za BusiKM?
 
-Tak. Każdy klient (firma transportowa) ma **własną, niezależną subskrypcję** BusiKM. Twoje biuro rachunkowe ma osobną subskrypcję na funkcję multi-klient. Opłaty się nie łączą.
+Nie. Klienci Twojego biura (status `af_client`) korzystają z BusiKM **gratis** dopóki Ty masz aktywną subskrypcję (`af_trial` lub `af_standard`). To Ty rozliczasz wszystkie ich pojazdy hurtowo. Klient otrzymuje funkcjonalność odpowiadającą planowi Professional.
 
 ### Jak wytłumaczyć klientowi, czym jest BusiKM?
 

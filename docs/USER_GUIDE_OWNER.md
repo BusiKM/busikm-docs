@@ -305,17 +305,17 @@ Pełna funkcjonalność (raporty, eksporty, zarządzanie zespołem) dostępna je
 
 ### Ile kosztuje BusiKM?
 
-Przez pierwsze **14 dni** korzystasz za darmo ze wszystkich funkcji (okres próbny). Po tym czasie dostępne są plany:
+Przez pierwsze **14 dni** korzystasz za darmo ze wszystkich funkcji planu Professional (okres próbny, bez karty kredytowej). Po tym czasie dostępne są plany:
 
-- **Starter** — 59 zł/pojazd/miesiąc (do 10 pojazdów)
-- **Professional** — 89 zł/pojazd/miesiąc (do 50 pojazdów)
-- **Enterprise** — 149 zł/pojazd/miesiąc (bez limitu)
+- **Free** — 0 zł (1 pojazd, 1 kierowca, GPS + ewidencja, bez raportów)
+- **Starter** — 19 zł/pojazd/mies., min. 38 zł (do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push)
+- **Professional** — 29 zł/pojazd/mies., min. 319 zł (do 50 pojazdów, eksport FK do Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, tryb offline)
 
-Jest też darmowy plan **Free** (1 pojazd, 1 kierowca, bez raportów).
+Powyżej 50 pojazdów → kontakt indywidualny (`kontakt@busikm.pl`). Rozliczenie roczne: rabat -15%.
 
 ### Czy mogę eksportować dane do Comarch Optima lub Symfonii?
 
-Obecnie wspieramy eksport do **Insert GT / Rewizor GT** (format EDI++). Integracje z Comarch Optima i Symfonią są planowane — pojawią się w kolejnych aktualizacjach.
+Tak. Plan Professional obejmuje pełny eksport FK: **Insert GT / Rewizor GT** (EDI++), **Comarch ERP Optima** (XML) oraz **Symfonia FK** (TXT/AMS).
 
 ### Jak zmienić plan subskrypcji?
 

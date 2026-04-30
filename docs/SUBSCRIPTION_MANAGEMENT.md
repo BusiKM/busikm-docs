@@ -28,24 +28,23 @@ class Subscription(models.Model):
         ('free', 'Free'),
         ('starter', 'Starter'),
         ('professional', 'Professional'),
-        ('enterprise', 'Enterprise'),
+        ('af_standard', 'Biuro rachunkowe (per aktywny pojazd)'),
     ])
 
     status = models.CharField(max_length=20, choices=[
         ('trial', 'Okres próbny'),
         ('pilot', 'Pilot'),
         ('af_trial', 'Trial biura rachunkowego'),
-        ('af_client_trial', 'Trial klienta BR'),
+        ('af_client', 'Klient BR (gratis)'),
         ('active', 'Aktywna'),
         ('expired', 'Wygasła'),
         ('cancelled', 'Anulowana'),
     ])
 
     trial_type = models.CharField(max_length=20, null=True, choices=[
-        ('reverse_trial', 'Reverse trial'),
-        ('pilot', 'Pilot'),
-        ('af_trial', 'Trial BR'),
-        ('af_client', 'Trial klienta BR'),
+        ('reverse_trial', 'Reverse trial 14 dni'),
+        ('pilot', 'Pilot 6 miesięcy'),
+        ('af_trial', 'Trial BR 3 miesiące'),
     ])
 
     valid_until = models.DateTimeField()
@@ -59,21 +58,27 @@ class Subscription(models.Model):
 
 ## Matryca funkcji planów
 
-| Funkcja                  | Free  | Starter | Professional | Enterprise |
-|--------------------------|-------|---------|--------------|------------|
-| `gps_tracking`           | -     | +       | +            | +          |
-| `pdf_reports`            | -     | +       | +            | +          |
-| `fleet_cost_reports`     | -     | -       | +            | +          |
-| `delegation_reports`     | -     | -       | +            | +          |
-| `fk_export`              | -     | -       | +            | +          |
-| `realtime_map`           | -     | -       | +            | +          |
-| `multi_tenant`           | -     | -       | -            | +          |
-| `push_notifications`     | -     | +       | +            | +          |
-| `api_access`             | -     | -       | -            | +          |
-| **max_vehicles**         | 1     | 5       | 50           | bez limitu |
-| **max_drivers**          | 1     | 5       | 50           | bez limitu |
+| Funkcja                  | Free  | Starter | Professional | BR (af_standard) |
+|--------------------------|-------|---------|--------------|------------------|
+| `gps_tracking`           | +     | +       | +            | + (klienci BR)   |
+| `trip_classification`    | +     | +       | +            | +                |
+| `odometer_photo`         | +     | +       | +            | +                |
+| `pdf_reports`            | -     | +       | +            | +                |
+| `csv_export`             | -     | +       | +            | +                |
+| `document_alerts_push`   | -     | +       | +            | +                |
+| `document_alerts_email`  | -     | -       | +            | +                |
+| `fleet_cost_reports`     | -     | -       | +            | +                |
+| `delegation_reports`     | -     | -       | +            | +                |
+| `fk_export`              | -     | -       | +            | +                |
+| `realtime_map`           | -     | -       | +            | +                |
+| `compliance_dashboard`   | -     | -       | +            | +                |
+| `offline_mode`           | -     | -       | +            | +                |
+| `multi_tenant`           | -     | -       | -            | +                |
+| **max_vehicles**         | 1     | 10      | 50           | bez limitu       |
+| **max_drivers**          | 1     | 10      | 50           | bez limitu       |
+| **Cena**                 | 0 zł  | 19 zł/poj./mies. (min. 38 zł) | 29 zł/poj./mies. (min. 319 zł) | 49 / 39 / 29 zł per aktywny pojazd klienta (tiery 1–30 / 31–80 / 81+) |
 
-**Legenda:** `+` = dostępne, `-` = niedostępne
+**Legenda:** `+` = dostępne, `-` = niedostępne. Powyżej 50 pojazdów na planie Professional → kontakt indywidualny. Rozliczenie roczne: rabat -15%.
 
 ---
 
@@ -98,38 +103,58 @@ class Subscription(models.Model):
 ### af_trial (3 miesiące)
 
 - **Dla kogo:** biura rachunkowe (accounting firms)
-- **Plan w trakcie triala:** Enterprise
+- **Plan w trakcie triala:** pełny panel BR (`af_standard`) — funkcjonalnie identyczny z planem płatnym, bez kosztu
 - **Czas trwania:** 3 miesiące
-- **Brak wymogu minimalnej liczby klientów** — BR podłącza klientów w swoim tempie
-- **Po wygaśnięciu:** grace period (dodatkowe 14 dni), potem downgrade do planu Free (1 klient)
+- **Bez karty kredytowej, bez wymogu minimalnej liczby klientów** — BR podłącza klientów we własnym tempie
+- **Po wygaśnięciu:** 14 dni grace period, potem downgrade do planu Free (BR widzi klientów read-only, paywall na PDF / eksport FK / dashboard zbiorczy)
 - **Cel:** biuro testuje integrację z klientami, im więcej podłączy tym silniejszy efekt loss aversion przy downgrade
 
-### Model subskrypcji biura rachunkowego
+### Model subskrypcji biura rachunkowego (`af_standard`)
 
-| Funkcja | **Free** | **Enterprise** |
-|---------|----------|----------------|
-| Cena | 0 zł | 149 zł/mies. (roczna: 127 zł) |
-| Widoczność klientów | wszyscy (read-only) | wszyscy (pełny dostęp) |
-| Przeglądanie tras/pojazdów | tak | tak |
-| Przełączanie firm | tak (read-only) | tak (pełny dostęp) |
-| Generowanie nowych raportów PDF | **nie** (paywall) | tak |
-| Eksport FK (EDI++) | **nie** (paywall) | tak |
-| Dashboard zbiorczy | **nie** | tak |
-| White-label | nie | tak (post-MVP) |
+Po zakończeniu triala biuro przechodzi na model **per aktywny pojazd klienta**. Aktywny pojazd = pojazd z minimum 1 trasą w danym miesiącu kalendarzowym.
 
-Kluczowe: BR na planie Free **widzi dane wszystkich klientów**, ale nie może generować raportów ani eksportować do FK. Każde kliknięcie "Generuj raport" wyświetla paywall z propozycją upgrade do Enterprise.
+| Liczba aktywnych pojazdów | Cena za pojazd / mies. |
+|---------------------------|------------------------|
+| 1–30                      | 49 zł                  |
+| 31–80                     | 39 zł                  |
+| 81+                       | 29 zł                  |
 
-Efekt: klienci BR nadal wysyłają dane do systemu, BR widzi je w panelu, ale musi ręcznie przepisywać zamiast kliknąć "Eksportuj" → silna motywacja do upgrade.
+Rozliczenie roczne: rabat -15%.
 
-Uwaga: subskrypcja BR jest niezależna od subskrypcji klientów BR. Każda firma transportowa płaci za siebie (Starter/Professional/Enterprise per pojazd).
+**Co dostaje BR (plan `af_standard`):**
 
-### af_client_trial (3 miesiące)
+- Panel multi-tenant z przełączaniem kontekstu między klientami
+- Zbiorczy dashboard wszystkich flot, dashboard oszczędności
+- Pełny eksport FK (Insert GT EDI++, Comarch ERP Optima XML, Symfonia FK TXT/AMS)
+- Zbiorcze raporty PDF / CSV
+- RBAC — poziomy dostępu per klient
+- Alerty dokumentów dla wszystkich flot
 
-- **Dla kogo:** klienci biur rachunkowych (zaproszeni przez BR)
-- **Plan w trakcie triala:** Professional
-- **Czas trwania:** 3 miesiące
-- **Po wygaśnięciu:** automatyczny downgrade do planu Free
-- **Cel:** klient BR korzysta z systemu bez konieczności własnej rejestracji
+**Co dostają firmy klienta BR (status `af_client`):**
+
+- Pełny dostęp do funkcji odpowiadających planowi Professional (mobile + web), **gratis**, dopóki BR ma aktywną subskrypcję `af_standard` (lub `af_trial`)
+- Aplikacja mobilna iOS + Android, raporty PDF wg wzoru MF, alerty VAT-26, GPS background, tryb offline
+- Brak własnej subskrypcji — firma nie płaci nic, nie ma karty kredytowej
+
+**Po wygaśnięciu/anulowaniu subskrypcji BR (downgrade na Free):**
+
+| Funkcja | **BR Free** | **BR `af_standard`** |
+|---------|-------------|----------------------|
+| Widoczność klientów                | wszyscy (read-only)         | wszyscy (pełny dostęp)        |
+| Przeglądanie tras/pojazdów         | tak                         | tak                           |
+| Przełączanie kontekstu firm        | tak (read-only)             | tak                           |
+| Generowanie nowych raportów PDF    | **nie** (paywall)           | tak                           |
+| Eksport FK (EDI++/XML/TXT)         | **nie** (paywall)           | tak                           |
+| Dashboard zbiorczy                 | **nie**                     | tak                           |
+| White-label                        | nie                         | tak (post-MVP)                |
+
+Kluczowe: BR na planie Free **widzi dane wszystkich klientów**, ale nie może generować raportów ani eksportować do FK. Każde kliknięcie "Generuj raport" wyświetla paywall z propozycją powrotu do `af_standard`.
+
+Efekt: klienci BR nadal wysyłają dane do systemu, BR widzi je w panelu, ale musi ręcznie przepisywać zamiast kliknąć "Eksportuj" → silna motywacja do utrzymania subskrypcji.
+
+**Co się dzieje, jeśli firma odejdzie od biura rachunkowego:**
+
+Firma traci status `af_client` i może kontynuować korzystanie z BusiKM samodzielnie w planie Starter (19 zł/poj.) lub Professional (29 zł/poj.). Cała historia tras i dokumentów pozostaje w systemie.
 
 ---
 
@@ -293,6 +318,10 @@ class FeatureGateMiddleware:
 }
 ```
 
+### Status `af_client`
+
+Firma ze statusem `af_client` nie ma własnego planu — feature gating dziedziczy z subskrypcji powiązanego biura rachunkowego (`af_trial` lub `af_standard`). Kiedy BR przejdzie na Free, klient automatycznie traci dostęp do funkcji premium (PDF/eksport FK), o ile nie wykupi własnej subskrypcji Starter/Professional.
+
 ---
 
 ## Banner informacyjny triala
@@ -389,14 +418,21 @@ def check_expiring_subscriptions():
     """Codzienne sprawdzanie subskrypcji — 7:00."""
     now = timezone.now()
 
-    # 1. Downgrade wygasłych
+    # 1. Downgrade wygasłych — uwaga:
+    #    - 'pilot' NIE jest downgrade'owany (obsługa ręczna)
+    #    - 'af_client' NIE ma własnej daty wygaśnięcia — żyje tak długo,
+    #      jak BR ma aktywne 'af_trial' lub 'af_standard'
     expired = Subscription.objects.filter(
         valid_until__lte=now,
-        status__in=['trial', 'af_trial', 'af_client_trial'],
-    ).exclude(status='pilot')  # piloty NIE są downgrade'owane
+        status__in=['trial', 'af_trial'],
+    )
 
     for sub in expired:
-        if check_auto_extend(sub):
+        if sub.status == 'af_trial':
+            # Dla af_trial: 14 dni grace period przed downgrade
+            if (now - sub.valid_until).days < 14:
+                continue
+        elif check_auto_extend(sub):
             continue  # przedłużono, nie downgrade'uj
         downgrade_to_free(sub)
         send_trial_email(sub, 'expired')
@@ -406,7 +442,7 @@ def check_expiring_subscriptions():
         threshold = now + timedelta(days=days)
         expiring = Subscription.objects.filter(
             valid_until__date=threshold.date(),
-            status__in=['trial', 'af_trial', 'af_client_trial'],
+            status__in=['trial', 'af_trial'],
         )
         for sub in expiring:
             send_trial_email(sub, f'reminder_{days}d')

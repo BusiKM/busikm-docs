@@ -107,22 +107,33 @@ Szczegółowy plan sprintów: [ROADMAP.md](./ROADMAP.md)
 
 ## 6. Model biznesowy
 
-Subskrypcja per pojazd / miesiąc z 4 planami:
+Subskrypcja per pojazd / miesiąc z 3 planami dla firm i osobnym modelem hurtowym dla biur rachunkowych:
 
-| Plan | Cena/pojazd/mies. | Limit pojazdów | Kluczowe cechy |
-|---|---|---|---|
-| Free | 0 PLN | 1 | Podstawowa ewidencja, PDF |
-| Starter | 19 PLN | 5 | Eksport FK, panel webowy |
-| Professional | 39 PLN | 20 | Mapa live, raporty zaawansowane |
-| Enterprise | Indywidualnie | 20+ | SLA, API, dedykowane wsparcie |
+| Plan | Cena/pojazd/mies. | Min. opłata | Limit pojazdów | Kluczowe cechy |
+|---|---|---|---|---|
+| Free | 0 zł | — | 1 | GPS, ewidencja, klasyfikacja, zdjęcia licznika |
+| Starter | 19 zł | 38 zł | 10 | + raporty PDF (art. 86a), CSV, alerty push |
+| Professional | 29 zł | 319 zł | 50 | + eksport FK (Insert GT, Comarch, Symfonia), mapa real-time, dashboard zgodności, offline |
+
+Powyżej 50 pojazdów → kontakt indywidualny. Rozliczenie roczne: rabat -15%.
+
+**Plan dla biur rachunkowych** (`af_standard`) — rozliczenie per aktywny pojazd klienta (aktywny = min. 1 trasa w miesiącu):
+
+| Liczba aktywnych pojazdów | Cena za pojazd / mies. |
+|---------------------------|------------------------|
+| 1–30                      | 49 zł                  |
+| 31–80                     | 39 zł                  |
+| 81+                       | 29 zł                  |
+
+Klienci biura rachunkowego (`af_client`) korzystają z BusiKM **gratis** dopóki BR ma aktywną subskrypcję.
 
 **Strategia pozyskiwania klientów:**
 
 - **Reverse trial 14 dni** — nowy użytkownik dostaje plan Professional na 14 dni, po czym wraca do Free.
 - **Pilot 6 miesięcy** — pierwsi klienci korzystają bezpłatnie przez 6 miesięcy w zamian za feedback.
-- **Biura rachunkowe** — trial 3 miesiące, potem prowizyjny model partnerski.
+- **Biura rachunkowe** — 3 miesiące pełnego panelu BR za darmo, 14 dni grace, potem rozliczenie hurtowe per aktywny pojazd.
 
-Szczegóły monetyzacji zostaną opisane w `docs/MONETIZATION.md`.
+Szczegóły monetyzacji: [MONETIZATION.md](./MONETIZATION.md). Implementacja techniczna subskrypcji: [SUBSCRIPTION_MANAGEMENT.md](./SUBSCRIPTION_MANAGEMENT.md).
 
 ---
 
@@ -134,7 +145,7 @@ Szczegóły monetyzacji zostaną opisane w `docs/MONETIZATION.md`.
 | Eksport do Insert GT (EDI++) | Wbudowany | Brak | Brak |
 | GPS tracking w tle | Tak (RN/Expo) | Nie dotyczy | Tak, ale bez kilometrówki |
 | Tryb biura rachunkowego | Multi-client | Nie dotyczy | Brak |
-| Cena dla SMB | Od 0 PLN | Koszt pracy | Wysoka (rozwiązania flotowe) |
+| Cena dla SMB | Od 0 zł (Free) / 19 zł (Starter) | Koszt pracy | Wysoka (rozwiązania flotowe) |
 | Czas wdrożenia | Minuty (self-service) | Nie dotyczy | Dni/tygodnie |
 
 **Kluczowe wyróżniki:**

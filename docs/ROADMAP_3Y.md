@@ -101,10 +101,10 @@ i biur rachunkowych w Polsce (docelowo CEE). Roadmapa obejmuje 3 lata: od urucho
   - Customer Portal (zmiana planu, anulowanie, historia faktur)
   - Automatyczna faktura VAT (Stripe Tax lub wlasna generacja)
 - Feature gating aktywowany:
-  - Free: do 3 pojazdow, raporty podstawowe
-  - Starter (29 PLN/pojazd/mies.): pelna funkcjonalnosc, bez FK
-  - Professional (49 PLN/pojazd/mies.): integracje FK, compliance dashboard
-  - Enterprise (79 PLN/pojazd/mies.): white-label, API, dedykowane wsparcie
+  - Free: 1 pojazd, podstawowa ewidencja (GPS, klasyfikacja, zdjęcia licznika), bez raportów
+  - Starter (19 zł/pojazd/mies., min. 38 zł): do 10 pojazdów, raporty PDF (art. 86a) + CSV, alerty push
+  - Professional (29 zł/pojazd/mies., min. 319 zł): do 50 pojazdów, eksport FK (Insert GT, Comarch, Symfonia), mapa real-time, dashboard zgodności, offline
+  - Plan biura rachunkowego `af_standard`: 49 / 39 / 29 zł per aktywny pojazd klienta (tiery 1–30 / 31–80 / 81+); klienci BR korzystają gratis dopóki BR ma aktywną subskrypcję
 
 **Integracje FK:**
 - Comarch ERP Optima — pelna integracja (REST API)
@@ -208,8 +208,8 @@ i biur rachunkowych w Polsce (docelowo CEE). Roadmapa obejmuje 3 lata: od urucho
 - Rekomendacje oszczednosci (alternatywne trasy, optymalizacja postojow)
 
 **Premium AI tier:**
-- Dodatkowa warstwa cenowa: +15 PLN/pojazd/mies. za funkcje AI
-- Lub: pakiet AI wlaczony w plan Enterprise
+- Dodatkowa warstwa cenowa: +15 zł/pojazd/mies. za funkcje AI (add-on do planów Starter/Professional)
+- Dla biur rachunkowych: pakiet AI dostępny w planie `af_standard` w cenie podstawowej tieru
 
 **KPI Q2 2027:**
 
@@ -474,20 +474,22 @@ i biur rachunkowych w Polsce (docelowo CEE). Roadmapa obejmuje 3 lata: od urucho
 
 ### Scenariusz bazowy
 
-| Kwartal   | Firmy | Platne | Sr. poj./firma | ARPU (PLN/mies.) | MRR (PLN)  | ARR (PLN)     |
-|-----------|-------|--------|-----------------|-------------------|------------|---------------|
-| Q3 2026   | 50    | 10     | 5               | 500               | 5 000      | 60 000        |
-| Q4 2026   | 200   | 100    | 6               | 300               | 30 000     | 360 000       |
-| Q1 2027   | 500   | 300    | 6               | 267               | 80 000     | 960 000       |
-| Q2 2027   | 800   | 500    | 7               | 300               | 150 000    | 1 800 000     |
-| Q3 2027   | 1 200 | 800    | 7               | 313               | 250 000    | 3 000 000     |
-| Q4 2027   | 1 800 | 1 200  | 8               | 333               | 400 000    | 4 800 000     |
-| Q1 2028   | 2 500 | 1 700  | 8               | 353               | 600 000    | 7 200 000     |
-| Q2 2028   | 3 500 | 2 400  | 8               | 347               | 833 000    | 10 000 000    |
-| Q3 2028   | 5 000 | 3 500  | 9               | 357               | 1 250 000  | 15 000 000    |
-| Q4 2028   | 6 000 | 4 200  | 9               | 397               | 1 667 000  | 20 000 000    |
-| Q1 2029   | 6 500 | 4 600  | 9               | 399               | 1 833 000  | 22 000 000    |
-| Q2 2029   | 7 000 | 5 000  | 10              | 400               | 2 000 000  | 24 000 000    |
+> Założenia: średnia ARPU/pojazd ≈ 25–28 zł (mix Starter @ 19 zł / Professional @ 29 zł / `af_standard` @ 29–49 zł). ARPU/firma = śr. liczba pojazdów × ARPU/pojazd. Klienci BR (`af_client`) korzystają gratis — przychód z kanału BR generuje wyłącznie biuro rachunkowe (nievliczone do kolumny "Płatne firmy").
+
+| Kwartal   | Firmy | Platne | Sr. poj./firma | ARPU (zł/firma/mies.) | MRR (zł)   | ARR (zł)      |
+|-----------|-------|--------|-----------------|------------------------|------------|---------------|
+| Q3 2026   | 50    | 10     | 5               | 125                    | 1 250      | 15 000        |
+| Q4 2026   | 200   | 100    | 6               | 150                    | 15 000     | 180 000       |
+| Q1 2027   | 500   | 300    | 6               | 150                    | 45 000     | 540 000       |
+| Q2 2027   | 800   | 500    | 7               | 175                    | 87 500     | 1 050 000     |
+| Q3 2027   | 1 200 | 800    | 7               | 175                    | 140 000    | 1 680 000     |
+| Q4 2027   | 1 800 | 1 200  | 8               | 216                    | 259 200    | 3 110 000     |
+| Q1 2028   | 2 500 | 1 700  | 8               | 216                    | 367 200    | 4 406 000     |
+| Q2 2028   | 3 500 | 2 400  | 8               | 216                    | 518 400    | 6 220 000     |
+| Q3 2028   | 5 000 | 3 500  | 9               | 243                    | 850 500    | 10 200 000    |
+| Q4 2028   | 6 000 | 4 200  | 9               | 243                    | 1 020 600  | 12 250 000    |
+| Q1 2029   | 6 500 | 4 600  | 9               | 252                    | 1 159 200  | 13 900 000    |
+| Q2 2029   | 7 000 | 5 000  | 10              | 280                    | 1 400 000  | 16 800 000    |
 
 ### Scenariusz konserwatywny (0.6x bazowego)
 

@@ -55,7 +55,7 @@
 | NPS                  | Net Promoter Score                               | Wskaznik satysfakcji klienta (skala -100 do 100). Pytanie: "Czy polecilbys BusiKM?"             |
 | Van Westendorp       | Van Westendorp Price Sensitivity Meter           | Metoda badania wrazliwosci cenowej. 4 pytania o cene: za tania, akceptowalna, droga, za droga.  |
 | Reverse trial        | Reverse trial (odwrocony trial)                  | Model trialu: pelna funkcjonalnosc przez 14 dni, po zakonczeniu degradacja do planu Free.        |
-| Feature gating       | Feature gating (bramkowanie funkcji)             | Ograniczanie dostepu do funkcji na podstawie planu subskrypcyjnego (Free/Starter/Pro/Enterprise). |
+| Feature gating       | Feature gating (bramkowanie funkcji)             | Ograniczanie dostepu do funkcji na podstawie planu subskrypcyjnego (Free / Starter / Professional / `af_standard` dla biur rachunkowych). |
 | AF                   | Accounting Firm (biuro rachunkowe)               | Biuro rachunkowe — kluczowy kanal dystrybucji BusiKM. Obsluguje wiele firm transportowych.       |
 
 ---
