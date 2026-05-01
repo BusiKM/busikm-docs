@@ -2,65 +2,65 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Słownik pojęć">
+<DocsLayout title="Słownik pojęć" description="Słownik pojęć używanych w BusiKM — terminy podatkowe, transportowe i dotyczące funkcji systemu.">
   <div class="prose">
-    <h1>Słownik pojęć BusiKM</h1>
+    <h1>Słownik pojęć</h1>
 
-    <h2>1. Pojęcia transportowe</h2>
+    <p>Skróty i pojęcia, z którymi można się spotkać w pracy z BusiKM. Dla biur rachunkowych i księgowych przygotowaliśmy odwołania do konkretnych przepisów.</p>
+
+    <h2>1. Pojęcia podatkowe</h2>
     <table>
-      <thead><tr><th>Skrót / Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>DMC</strong></td><td>Dopuszczalna Masa Całkowita</td><td>Maksymalna dopuszczalna waga pojazdu. Wpływa na kategorię opłat.</td></tr>
-        <tr><td><strong>OC</strong></td><td>Ubezpieczenie OC</td><td>Obowiązkowe ubezpieczenie od szkód wyrządzonych osobom trzecim.</td></tr>
-        <tr><td><strong>AC</strong></td><td>Autocasco</td><td>Dobrowolne ubezpieczenie pojazdu od uszkodzeń i kradzieży.</td></tr>
-        <tr><td><strong>PJ</strong></td><td>Prawo Jazdy</td><td>BusiKM śledzi daty ważności i kategorie.</td></tr>
-        <tr><td><strong>Tachograf G2V2</strong></td><td>Tachograf cyfrowy II generacji</td><td>Obowiązkowe urządzenie rejestrujące czas jazdy. Wymóg UE.</td></tr>
-        <tr><td><strong>ADR</strong></td><td>Certyfikat przewozu towarów niebezpiecznych</td><td>BusiKM śledzi daty ważności certyfikatów ADR.</td></tr>
-        <tr><td><strong>CMR</strong></td><td>Konwencja o umowie przewozu drogowego</td><td>Międzynarodowa konwencja regulująca odpowiedzialność przewoźnika.</td></tr>
-        <tr><td><strong>Kilometrówka</strong></td><td>Ewidencja przebiegu pojazdu</td><td>Dokument rejestrujący trasy służbowe. Wymagany przez ustawę o VAT (art. 86a) do odliczenia 100% VAT.</td></tr>
-        <tr><td><strong>Wzór MF</strong></td><td>Wzór Ministerstwa Finansów</td><td>Urzędowy szablon ewidencji przebiegu pojazdu.</td></tr>
-        <tr><td><strong>VAT-26</strong></td><td>Informacja o pojazdach wykorzystywanych wyłącznie do działalności gospodarczej</td><td>Formularz zgłaszany do urzędu skarbowego, wymagany przy odliczeniu 100% VAT.</td></tr>
+        <tr><td><strong>Kilometrówka</strong></td><td>Ewidencja przebiegu pojazdu</td><td>Dokument rejestrujący trasy służbowe pojazdu firmowego. Wymagany do 100% odliczenia VAT (art. 86a ustawy o VAT) oraz 100% kosztów uzyskania przychodu w PIT/CIT (art. 23 ust. 7 ustawy o PIT).</td></tr>
+        <tr><td><strong>Elementy ewidencji</strong></td><td>Art. 86a ust. 7 ustawy o VAT</td><td>Ustawa nie definiuje urzędowego szablonu, a wymagane elementy ewidencji przebiegu: numer rejestracyjny pojazdu, numer kolejny wpisu, datę i cel wyjazdu, opis trasy (skąd&ndash;dokąd), liczbę kilometrów, dane kierowcy oraz potwierdzenie autentyczności wpisu (podpis własnoręczny lub elektroniczny). BusiKM generuje raporty zawierające komplet tych elementów.</td></tr>
+        <tr><td><strong>VAT-26</strong></td><td>Informacja o pojazdach wykorzystywanych wyłącznie do działalności gospodarczej</td><td>Formularz zgłaszany do naczelnika urzędu skarbowego (art. 86a ust. 12 ustawy o VAT) przed pierwszym odliczeniem 100% VAT od pojazdu.</td></tr>
+        <tr><td><strong>Stawki przebiegu</strong></td><td>Dz.U. 2023 poz. 5</td><td>Aktualne stawki za 1 km przebiegu pojazdu prywatnego użytkowanego w celach służbowych: 0,89 zł (samochód osobowy ≤ 900 cm³), 1,15 zł (> 900 cm³), 0,69 zł (motocykl), 0,42 zł (motorower).</td></tr>
+        <tr><td><strong>Zwrot km</strong></td><td>Zwrot kosztów używania prywatnego samochodu</td><td>Wypłata dla pracownika za przejazdy własnym samochodem w celach służbowych, zwolniona z PIT (art. 21 ust. 1 pkt 23b ustawy o PIT) pod warunkiem prowadzenia ewidencji.</td></tr>
+        <tr><td><strong>Archiwizacja 5 lat</strong></td><td>Art. 70 Ordynacji podatkowej</td><td>Obowiązek przechowywania dokumentów podatkowych przez 5 lat licząc od końca roku kalendarzowego, w którym powstał obowiązek podatkowy.</td></tr>
       </tbody>
     </table>
 
-    <h2>2. Pojęcia dotyczące systemu BusiKM</h2>
-    <table>
-      <thead><tr><th>Termin</th><th>Opis</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Aktywny pojazd</strong></td><td>Pojazd z minimum 1 trasą w danym miesiącu. Liczba aktywnych pojazdów określa koszt dla biura rachunkowego.</td></tr>
-        <tr><td><strong>Panel BR</strong></td><td>Panel biura rachunkowego — dedykowany interfejs do obsługi wielu firm z jednego konta. Umożliwia przełączanie między klientami.</td></tr>
-        <tr><td><strong>Role użytkowników</strong></td><td>System uprawnień oparty na rolach: Kierowca, Właściciel, Księgowy, Biuro rachunkowe. Każda rola ma inny poziom dostępu do danych.</td></tr>
-        <tr><td><strong>Izolacja danych firm</strong></td><td>Dane każdej firmy są całkowicie oddzielone. Użytkownicy widzą tylko dane firmy, do której należą.</td></tr>
-        <tr><td><strong>Przełączanie kontekstu</strong></td><td>Funkcja dostępna dla biur rachunkowych — możliwość przełączania się między obsługiwanymi firmami bez ponownego logowania.</td></tr>
-        <tr><td><strong>Tryb offline</strong></td><td>Aplikacja mobilna działa bez dostępu do internetu. Dane są zapisywane lokalnie i synchronizowane po odzyskaniu połączenia.</td></tr>
-        <tr><td><strong>GPS tracking</strong></td><td>Automatyczne śledzenie trasy za pomocą GPS telefonu. Działa w tle, nawet gdy ekran jest wyłączony.</td></tr>
-        <tr><td><strong>Reverse trial</strong></td><td>14-dniowy okres próbny z dostępem do planu Professional. Po jego zakończeniu konto zostaje przeniesione do planu Free.</td></tr>
-        <tr><td><strong>Feature gating</strong></td><td>Ograniczanie dostępu do funkcji na podstawie planu subskrypcyjnego. Np. raporty są dostępne od planu Starter.</td></tr>
-      </tbody>
-    </table>
-
-    <h2>3. Pojęcia finansowo-księgowe</h2>
-    <table>
-      <thead><tr><th>Skrót / Termin</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
-      <tbody>
-        <tr><td><strong>EDI++</strong></td><td>Electronic Data Interchange (InsERT)</td><td>Format eksportu danych do programów InsERT (Subiekt GT, Rewizor GT).</td></tr>
-        <tr><td><strong>FK</strong></td><td>System finansowo-księgowy</td><td>Oprogramowanie księgowe, do którego BusiKM eksportuje dane (np. Insert GT, Comarch, Symfonia).</td></tr>
-        <tr><td><strong>AF</strong></td><td>Accounting Firm (Biuro rachunkowe)</td><td>Biuro rachunkowe — kluczowy kanał dystrybucji BusiKM.</td></tr>
-      </tbody>
-    </table>
-
-    <h2>4. Pojęcia biznesowe</h2>
+    <h2>2. Pojęcia dotyczące pojazdów</h2>
     <table>
       <thead><tr><th>Skrót</th><th>Pełna nazwa</th><th>Opis</th></tr></thead>
       <tbody>
-        <tr><td><strong>MRR</strong></td><td>Monthly Recurring Revenue</td><td>Miesięczny przychód cykliczny z subskrypcji.</td></tr>
-        <tr><td><strong>ARR</strong></td><td>Annual Recurring Revenue</td><td>Roczny przychód cykliczny. MRR &times; 12.</td></tr>
-        <tr><td><strong>ARPU</strong></td><td>Average Revenue Per User</td><td>Średni przychód na firmę.</td></tr>
-        <tr><td><strong>CAC</strong></td><td>Customer Acquisition Cost</td><td>Koszt pozyskania klienta (marketing + sprzedaż).</td></tr>
-        <tr><td><strong>LTV</strong></td><td>Lifetime Value</td><td>Całkowity przychód od klienta w czasie współpracy.</td></tr>
-        <tr><td><strong>Churn</strong></td><td>Wskaźnik rezygnacji</td><td>Procent klientów rezygnujących z subskrypcji miesięcznie.</td></tr>
-        <tr><td><strong>NPS</strong></td><td>Net Promoter Score</td><td>Wskaźnik satysfakcji klientów (-100 do 100).</td></tr>
+        <tr><td><strong>OC</strong></td><td>Ubezpieczenie OC</td><td>Obowiązkowe ubezpieczenie odpowiedzialności cywilnej. BusiKM przypomina o terminach ważności.</td></tr>
+        <tr><td><strong>AC</strong></td><td>Autocasco</td><td>Dobrowolne ubezpieczenie pojazdu od uszkodzeń i kradzieży.</td></tr>
+        <tr><td><strong>Przegląd techniczny</strong></td><td>Okresowe badanie techniczne</td><td>Obowiązkowe badanie stacji kontroli pojazdów. Termin ważności śledzony przez BusiKM z alertem 30/14/7 dni przed wygaśnięciem.</td></tr>
+        <tr><td><strong>Tachograf</strong></td><td>Urządzenie rejestrujące czas pracy kierowcy</td><td>Wymagane w pojazdach o DMC powyżej 3,5 t lub przewożących powyżej 9 osób. Termin legalizacji śledzony przez BusiKM.</td></tr>
+        <tr><td><strong>Prawo jazdy</strong></td><td>Uprawnienia do kierowania pojazdem</td><td>BusiKM monitoruje daty ważności i kategorie prawa jazdy każdego kierowcy w firmie.</td></tr>
+        <tr><td><strong>ADR</strong></td><td>Świadectwo do przewozu materiałów niebezpiecznych</td><td>Certyfikat wymagany przy przewozie ładunków klasyfikowanych jako niebezpieczne. Termin ważności w alertach BusiKM.</td></tr>
       </tbody>
     </table>
+
+    <h2>3. Pojęcia dotyczące BusiKM</h2>
+    <table>
+      <thead><tr><th>Termin</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Aktywny pojazd</strong></td><td>Pojazd z co najmniej jedną zarejestrowaną trasą w danym miesiącu kalendarzowym. Pojazdy bez aktywności nie są wliczane do rozliczenia z biurem rachunkowym.</td></tr>
+        <tr><td><strong>Panel biura rachunkowego</strong></td><td>Dedykowany interfejs umożliwiający obsługę wielu firm klientów z jednego konta. Zawiera przełączanie kontekstu, zbiorczy dashboard i eksport FK per klient.</td></tr>
+        <tr><td><strong>Przełączanie kontekstu</strong></td><td>Funkcja w panelu biura rachunkowego &mdash; przejście między firmami klientów bez ponownego logowania. Każde przełączenie jest logowane w dzienniku audytowym.</td></tr>
+        <tr><td><strong>Izolacja danych</strong></td><td>Dane każdej firmy są całkowicie oddzielone. Użytkownicy jednej firmy nie widzą i technicznie nie mogą uzyskać dostępu do danych innej firmy.</td></tr>
+        <tr><td><strong>Klasyfikacja tras</strong></td><td>Oznaczenie każdej trasy jako służbowa lub prywatna. BusiKM proponuje klasyfikację automatycznie, ale ostateczne zatwierdzenie należy do kierowcy lub właściciela.</td></tr>
+        <tr><td><strong>Tryb offline</strong></td><td>Aplikacja mobilna działa bez dostępu do internetu. Trasy są rejestrowane lokalnie i synchronizowane z serwerem po odzyskaniu połączenia &mdash; bez ryzyka utraty danych.</td></tr>
+        <tr><td><strong>Pilotaż</strong></td><td>Program dla pierwszych firm i biur rachunkowych korzystających z BusiKM. Dożywotni dostęp gratis w zamian za udział w walidacji nowych funkcji. Piloci otrzymują nowe funkcje przed publicznym wdrożeniem.</td></tr>
+        <tr><td><strong>Dziennik audytowy</strong></td><td>Zapis każdej operacji na dokumentach podatkowych: kto, kiedy, co zmienił. Dostępny do wglądu na żądanie organów skarbowych.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Formaty eksportu do systemów księgowych</h2>
+    <table>
+      <thead><tr><th>Format</th><th>System docelowy</th><th>Opis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EDI++ (.epp)</strong></td><td>Insert GT, Subiekt GT, Rewizor GT</td><td>Standard wymiany danych InsERT. Plik importowany w programie księgowym przez funkcję &bdquo;Operacje &rarr; Dodaj na podstawie&rdquo;.</td></tr>
+        <tr><td><strong>XML Optima</strong></td><td>Comarch ERP Optima</td><td>Format XML zgodny ze schematem importu Comarch. Plik wczytywany w module księgowym Optimy.</td></tr>
+        <tr><td><strong>TXT / AMS</strong></td><td>Symfonia FK, Symfonia ERP</td><td>Plik tekstowy z definicją kolumn (.ams). Importowany przez kreator importu w programie Symfonia.</td></tr>
+        <tr><td><strong>KSeF</strong></td><td>Krajowy System e-Faktur (post-MVP)</td><td>Integracja z państwowym systemem e-Faktur Ministerstwa Finansów. Powiązanie faktur paliwowych z trasami pojazdu &mdash; planowana w Q3 2026.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Pomoc i kontakt</h2>
+    <p>Brakuje pojęcia? Pojawiło się w pracy i nie jest jasne, jak BusiKM je obsługuje? Napiszą Państwo na <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a> &mdash; odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>

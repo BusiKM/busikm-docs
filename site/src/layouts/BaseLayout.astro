@@ -83,24 +83,17 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
         "url": siteUrl
       },
       "offers": {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
+        "name": "Pilotaż MVP — dożywotnio gratis",
+        "price": "0",
         "priceCurrency": "PLN",
-        "lowPrice": "0",
-        "highPrice": "49",
-        "offerCount": "6",
-        "offers": [
-          { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "PLN", "description": "1 pojazd, 1 kierowca, GPS + ewidencja, bez raportów" },
-          { "@type": "Offer", "name": "Starter", "price": "19", "priceCurrency": "PLN", "description": "Do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push. Bez minimalnej opłaty miesięcznej." },
-          { "@type": "Offer", "name": "Professional", "price": "29", "priceCurrency": "PLN", "description": "Do 50 pojazdów, eksport FK Insert GT/Comarch/Symfonia, mapa real-time, dashboard zgodności, offline. Bez minimalnej opłaty miesięcznej." },
-          { "@type": "Offer", "name": "Biuro rachunkowe — tier 1–30 pojazdów", "price": "49", "priceCurrency": "PLN", "description": "Per aktywny pojazd klienta, panel multi-tenant, klienci korzystają gratis" },
-          { "@type": "Offer", "name": "Biuro rachunkowe — tier 31–80 pojazdów", "price": "39", "priceCurrency": "PLN", "description": "Per aktywny pojazd klienta, panel multi-tenant, klienci korzystają gratis" },
-          { "@type": "Offer", "name": "Biuro rachunkowe — tier 81+ pojazdów", "price": "29", "priceCurrency": "PLN", "description": "Per aktywny pojazd klienta, panel multi-tenant, klienci korzystają gratis" }
-        ]
+        "description": "BusiKM jest na etapie pilotażu MVP. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu.",
+        "availability": "https://schema.org/LimitedAvailability"
       },
       "featureList": [
         "GPS background tracking",
         "Automatyczna klasyfikacja tras AI",
-        "Raport ewidencji przebiegu wg wzoru MF",
+        "Raport ewidencji przebiegu zgodny z art. 86a ustawy o VAT",
         "Eksport Insert GT (EDI++)",
         "Tryb offline",
         "Panel multi-klient dla biur rachunkowych",

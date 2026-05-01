@@ -10,26 +10,29 @@ Hook: kilometrówka która wytrzyma kontrolę US (5 lat wstecz).
 ## Kluczowe funkcje
 - Automatyczne śledzenie GPS w tle (iOS/Android)
 - Klasyfikacja celu trasy przez AI
-- Raport ewidencji przebiegu wg wzoru MF (PDF/XLSX)
+- Raport ewidencji przebiegu zgodny z art. 86a ust. 7 ustawy o VAT (PDF/XLSX)
 - Eksport do Insert GT (format EDI++)
 - Tryb offline z automatyczną synchronizacją
 - Dashboard zarządzania flotą (mapa real-time)
 - Panel multi-klient dla biur rachunkowych
 - Alerty dokumentów (OC, przegląd, tachograf, prawo jazdy)
 
-## Cennik dla firm (zł/pojazd/miesiąc)
-- Free: 0 zł (1 pojazd, 1 kierowca, bez raportów)
-- Starter: 19 zł/pojazd/mies., bez minimalnej opłaty (do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push)
-- Professional: 29 zł/pojazd/mies., bez minimalnej opłaty (do 50 pojazdów, eksport FK Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, offline)
-- Powyżej 50 pojazdów → kontakt indywidualny. Rozliczenie roczne: rabat -15%.
-- Trial dla firm: 14 dni Professional gratis, bez karty kredytowej.
+## Status produktu i cennik
+BusiKM jest na etapie pilotażu MVP. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi użytkownikami i realnych danych z używania produktu.
 
-## Cennik dla biur rachunkowych (per aktywny pojazd klienta)
-- 1–30 pojazdów: 49 zł/pojazd/mies.
-- 31–80 pojazdów: 39 zł/pojazd/mies.
-- 81+ pojazdów: 29 zł/pojazd/mies.
-- Klienci biura rachunkowego korzystają z BusiKM gratis dopóki BR ma aktywną subskrypcję.
-- Trial dla BR: 3 miesiące pełnego panelu gratis, bez karty.
+## Program pilotażowy — dożywotnio gratis
+- Dla firm (JDG, mikrofirmy, firmy z księgową): pełna funkcjonalność produktu (GPS, klasyfikacja AI, raporty PDF wg art. 86a, eksport FK do Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, tryb offline) — dożywotnio gratis.
+- Dla biur rachunkowych: pełen panel multi-tenant + wszystkie firmy klientów biura korzystają z BusiKM również dożywotnio gratis, dopóki biuro pozostaje w pilotażu.
+- Bez karty kredytowej, bez warunków minimalnych, bez konwersji wymuszonej.
+- W zamian prosimy o udział w krótkiej rozmowie maksymalnie raz w miesiącu (co działa, co nie, ile to dla Ciebie warte).
+- Po ogłoszeniu cennika piloci pozostają w programie pilotażowym dożywotnio (konwersja na płatny plan jest dobrowolna).
+
+## Dlaczego pilotaż jest dożywotni
+Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
+- Każda nowa funkcja w BusiKM trafia najpierw do pilotów. To oni mówią co zmienić, co poprawić, co by się przydało — a my na podstawie ich feedbacku decydujemy, co trafi na publiczny rynek.
+- Zależy nam, by produkt jak najlepiej odpowiadał realnym potrzebom rynku, a nie wyobrażeniom zespołu produktowego.
+- Piloci są pierwszą linią walidacji każdego release'u — w zamian otrzymują dożywotni dostęp gratis do produktu.
+- Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
 ## Grupy docelowe
 1. Marek — kierowcy pracowniczy (przedstawiciele handlowi, serwisanci) z autem firmowym

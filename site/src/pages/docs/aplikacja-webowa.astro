@@ -2,100 +2,103 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Panel webowy">
+<DocsLayout title="Panel webowy" description="Panel webowy BusiKM — dashboard floty, mapa real-time, dashboard zgodności, panel multi-tenant dla biur rachunkowych, eksport do FK.">
   <div class="prose">
-    <h1>Panel webowy BusiKM</h1>
+    <h1>Panel webowy</h1>
 
-    <p>Panel webowy BusiKM to aplikacja przeglądarkowa do zarządzania flotą, przeglądania tras, generowania raportów i eksportu danych do systemów FK. Dostępna na komputerze i tablecie.</p>
+    <p>Panel webowy BusiKM to aplikacja przeglądarkowa dla właścicieli firm, księgowych i biur rachunkowych. Każda rola otrzymuje interfejs dopasowany do swoich obowiązków &mdash; bez nadmiarowych funkcji i z zachowaniem ścisłej kontroli nad zakresem danych.</p>
 
-    <h2>1. Panele per rola</h2>
-
-    <h3>Właściciel firmy</h3>
+    <h2>1. Panel właściciela firmy</h2>
+    <p>Właściciel widzi pełen obraz floty &mdash; trasy w czasie rzeczywistym, status dokumentów, raporty.</p>
     <ul>
-      <li><strong>Dashboard</strong> — statystyki floty: aktywne trasy, łączny przebieg, liczba pojazdów i kierowców</li>
-      <li><strong>Mapa floty</strong> — pozycje kierowców w czasie rzeczywistym na mapie interaktywnej</li>
-      <li><strong>Wykresy</strong> — przebieg miesięczny, koszty eksploatacji</li>
-      <li><strong>Alerty dokumentów</strong> — powiadomienia o wygasających: OC, przegląd techniczny, tachograf, prawo jazdy</li>
-      <li><strong>Ostatnie trasy</strong> — tabela z sortowaniem i filtrami</li>
-      <li><strong>Zarządzanie użytkownikami</strong> — dodawanie kierowców, księgowych, przypisywanie ról</li>
+      <li><strong>Dashboard</strong> &mdash; aktywne trasy, łączny przebieg miesiąca, liczba pojazdów i kierowców, statystyki wykorzystania</li>
+      <li><strong>Mapa floty w czasie rzeczywistym</strong> &mdash; interaktywna mapa z pozycjami pojazdów aktualizowanymi w trybie ciągłym (technologia WebSocket)</li>
+      <li><strong>Lista tras</strong> &mdash; wszystkie przejazdy z filtrami (data, kierowca, pojazd, klasyfikacja), eksport do CSV i Excel</li>
+      <li><strong>Zarządzanie pojazdami</strong> &mdash; dane techniczne, dokumenty (OC, przegląd, tachograf), zdjęcia licznika</li>
+      <li><strong>Zarządzanie kierowcami</strong> &mdash; przypisanie kierowców do pojazdów, zaproszenia, daty ważności prawa jazdy i certyfikatów</li>
+      <li><strong>Raporty PDF ewidencji</strong> &mdash; zawierają wszystkie elementy wymagane przez art. 86a ust. 7 ustawy o VAT</li>
+      <li><strong>Konfiguracja alertów</strong> &mdash; częstotliwość powiadomień push i e-mail dla każdego typu dokumentu</li>
     </ul>
 
-    <h3>Biuro rachunkowe</h3>
+    <h2>2. Panel biura rachunkowego</h2>
+    <p>Panel multi-tenant zaprojektowany pod realia pracy biura obsługującego wielu klientów &mdash; przełączanie firm bez wylogowania, zbiorcze widoki, eksporty per klient.</p>
     <ul>
-      <li><strong>Przełączanie między klientami</strong> — obsługa wielu firm z jednego konta</li>
-      <li><strong>Zagregowane statystyki</strong> — podgląd danych ze wszystkich obsługiwanych firm</li>
-      <li><strong>Zbiorczy eksport FK</strong> — generowanie eksportów dla wybranych klientów jednocześnie</li>
+      <li><strong>Lista klientów</strong> &mdash; wszystkie obsługiwane firmy z szybkim podglądem statusu (aktywne pojazdy, zaległe trasy, dokumenty wygasające w tym miesiącu)</li>
+      <li><strong>Przełączanie kontekstu</strong> &mdash; jedno kliknięcie przenosi do panelu wybranej firmy klienta. Każde przełączenie zapisywane w dzienniku audytowym</li>
+      <li><strong>Zagregowany dashboard</strong> &mdash; podsumowanie wszystkich klientów: łączny przebieg, liczba aktywnych pojazdów, dokumenty do uzupełnienia</li>
+      <li><strong>Zbiorczy eksport FK</strong> &mdash; generowanie eksportów dla wybranych klientów jednocześnie (Insert GT, Comarch, Symfonia)</li>
+      <li><strong>Podgląd rozliczenia miesięcznego</strong> &mdash; zestawienie aktywnych pojazdów u klientów z prognozą rachunku za bieżący miesiąc</li>
+      <li><strong>RBAC per klient</strong> &mdash; możliwość przypisania konkretnych pracowników biura do konkretnych klientów</li>
     </ul>
 
-    <h3>Księgowy</h3>
+    <h2>3. Panel księgowego</h2>
+    <p>Tryb pracy zoptymalizowany pod cykl rozliczeniowy: zamknięcie miesiąca &rarr; weryfikacja tras &rarr; eksport do FK.</p>
     <ul>
-      <li><strong>Tryb tylko do odczytu</strong> — podgląd tras, pojazdów, dokumentów</li>
-      <li><strong>Raporty do pobrania</strong> — ewidencja przebiegu, raporty kosztów</li>
-      <li><strong>Status eksportów FK</strong> — historia wygenerowanych plików eksportu</li>
+      <li><strong>Dostęp tylko do odczytu</strong> &mdash; księgowy widzi wszystkie dane firmy, ale nie może edytować ani usuwać zatwierdzonych tras</li>
+      <li><strong>Raporty PDF ewidencji</strong> &mdash; pobieranie ewidencji za wybrany okres, zgodnej z art. 86a ust. 7</li>
+      <li><strong>Eksporty FK</strong> &mdash; generowanie plików importowych do programu księgowego (Insert GT, Comarch, Symfonia)</li>
+      <li><strong>Historia eksportów</strong> &mdash; dziennik wcześniej wygenerowanych plików z możliwością ponownego pobrania</li>
+      <li><strong>Filtr "wymagają działania"</strong> &mdash; trasy bez klasyfikacji, brakujące zdjęcia licznika, niezatwierdzone przejazdy</li>
     </ul>
 
-    <h2>2. Raporty i eksport</h2>
+    <h2>4. Mapa floty w czasie rzeczywistym</h2>
+    <p>Interaktywna mapa pokazuje aktualne pozycje wszystkich pojazdów firmy. Pozycje są aktualizowane w trybie ciągłym &mdash; bez konieczności odświeżania strony.</p>
+    <ul>
+      <li>Mapa Mapbox z polską warstwą OpenStreetMap</li>
+      <li>Pozycje pojazdów aktualizowane na bieżąco w trakcie trwania trasy</li>
+      <li>Klik na pojazd pokazuje: kierowcę, aktualną prędkość, czas startu trasy, planowany cel (jeśli kierowca go wybrał)</li>
+      <li>Trasa od startu do bieżącej pozycji rysowana na mapie</li>
+      <li>Filtrowanie pojazdów: wszystkie, aktywne, w garażu</li>
+      <li>Heatmap tygodniowy &mdash; mapa intensywności wykorzystania pojazdów</li>
+    </ul>
+
+    <h2>5. Dashboard zgodności dokumentów</h2>
+    <p>Dla biur rachunkowych i właścicieli firm jeden ekran daje pełen obraz, gdzie są problemy compliance &mdash; zanim staną się problemem przy kontroli skarbowej lub policyjnej.</p>
+    <ul>
+      <li><strong>OC</strong> &mdash; lista pojazdów z datami wygaśnięcia, kolorowy status (zielony / pomarańczowy / czerwony)</li>
+      <li><strong>Przegląd techniczny</strong> &mdash; daty kolejnych badań</li>
+      <li><strong>Tachograf</strong> &mdash; daty legalizacji i kalibracji</li>
+      <li><strong>Prawo jazdy kierowców</strong> &mdash; daty ważności i kategorie</li>
+      <li><strong>VAT-26</strong> &mdash; lista pojazdów zgłoszonych do urzędu skarbowego z datami zgłoszenia</li>
+      <li><strong>Trasy bez klasyfikacji</strong> &mdash; przejazdy oczekujące na zatwierdzenie przez kierowcę lub właściciela</li>
+      <li><strong>Eksport do PDF</strong> &mdash; gotowy raport zgodności do wewnętrznej dokumentacji firmy</li>
+    </ul>
+
+    <h2>6. Eksport do systemów FK</h2>
+    <p>Eksport ewidencji przebiegu pojazdu do trzech najczęściej używanych w Polsce systemów księgowych. Format każdego pliku jest zgodny z wymaganiami danego programu &mdash; wystarczy wczytać plik, bez ręcznego przepisywania.</p>
     <table>
-      <thead><tr><th>Format</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Format</th><th>System docelowy</th><th>Co eksportujemy</th></tr></thead>
       <tbody>
-        <tr><td>PDF</td><td>Ewidencja przebiegu pojazdu wg szablonu Ministerstwa Finansów</td></tr>
-        <tr><td>CSV</td><td>Eksport danych do arkuszy kalkulacyjnych</td></tr>
-        <tr><td>Excel</td><td>Raporty z formatowaniem, gotowe do wydruku</td></tr>
-        <tr><td>EDI++ / FK</td><td>Eksport do systemów FK (Insert GT, Comarch, Symfonia)</td></tr>
+        <tr><td>EDI++ (.epp)</td><td>Insert GT, Subiekt GT, Rewizor GT</td><td>Ewidencja przebiegu, kalkulacja VAT</td></tr>
+        <tr><td>XML</td><td>Comarch ERP Optima</td><td>Ewidencja przebiegu, dokumenty pojazdu</td></tr>
+        <tr><td>TXT / AMS</td><td>Symfonia FK, Symfonia ERP</td><td>Ewidencja przebiegu z definicją kolumn</td></tr>
+        <tr><td>PDF / CSV / Excel</td><td>Inne systemy lub archiwum</td><td>Raport ewidencji do druku lub importu manualnego</td></tr>
+      </tbody>
+    </table>
+    <p>Eksport delegacji pracowniczych (zwroty kilometrowe) i integracja z KSeF &mdash; planowane w Q3 2026.</p>
+
+    <h2>7. Alerty dokumentów</h2>
+    <p>System automatycznie monitoruje daty ważności dokumentów i wysyła powiadomienia 30, 14 oraz 7 dni przed wygaśnięciem. Powiadomienia są dostarczane jednocześnie:</p>
+    <ul>
+      <li>Push do aplikacji mobilnej kierowcy odpowiedzialnego za pojazd</li>
+      <li>Push do aplikacji właściciela firmy</li>
+      <li>E-mail do księgowego i biura rachunkowego (do wglądu)</li>
+      <li>Wpis w dashboardzie zgodności</li>
+    </ul>
+
+    <h2>8. Role i kontrola dostępu</h2>
+    <p>Dostęp do danych jest ściśle uzależniony od roli użytkownika i kontekstu firmy:</p>
+    <table>
+      <thead><tr><th>Rola</th><th>Co widzi w panelu webowym</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kierowca</strong></td><td>Wyłącznie własne trasy. Bez dostępu do panelu webowego z poziomu komputera (kierowca pracuje w aplikacji mobilnej).</td></tr>
+        <tr><td><strong>Właściciel</strong></td><td>Wszystkie trasy, pojazdy, kierowcy i dokumenty swojej firmy. Może edytować wszystko poza zatwierdzonymi raportami podatkowymi.</td></tr>
+        <tr><td><strong>Księgowy</strong></td><td>Wszystkie dane firmy w trybie tylko do odczytu. Może generować raporty i eksporty FK.</td></tr>
+        <tr><td><strong>Biuro rachunkowe</strong></td><td>Wszystkie firmy klientów z możliwością przełączania kontekstu. Pełny dostęp w każdej firmie tożsamy z księgowym wewnętrznym.</td></tr>
       </tbody>
     </table>
 
-    <h2>3. Mapa w czasie rzeczywistym</h2>
-    <ul>
-      <li>Interaktywna mapa z pozycjami kierowców aktualizowanymi na bieżąco</li>
-      <li>Wizualizacja tras GPS na mapie</li>
-      <li>Grupowanie pojazdów na mapie przy dużym oddaleniu</li>
-      <li>Mapa kolorów intensywności tras (heatmapa)</li>
-    </ul>
-
-    <h2>4. Tabele danych</h2>
-    <p>Wszystkie tabele (pojazdy, trasy, kierowcy, raporty) oferują:</p>
-    <ul>
-      <li>Sortowanie po kolumnach</li>
-      <li>Filtrowanie (data, status, pojazd, kierowca)</li>
-      <li>Paginacja — przegląd dużych zbiorów danych</li>
-      <li>Akcje zbiorcze — zaznacz wiele pozycji i eksportuj lub usuń</li>
-    </ul>
-
-    <h2>5. Zarządzanie alertami dokumentów</h2>
-    <p>System automatycznie monitoruje daty ważności dokumentów i powiadamia o:</p>
-    <ul>
-      <li>Ubezpieczenie OC — 30 / 14 / 7 dni przed wygaśnięciem</li>
-      <li>Przegląd techniczny — 30 / 14 / 7 dni przed wygaśnięciem</li>
-      <li>Tachograf — legalizacja i kalibracja</li>
-      <li>Prawo jazdy — termin ważności</li>
-      <li>Certyfikaty ADR i inne dokumenty kierowcy</li>
-    </ul>
-
-    <h2>6. Zarządzanie użytkownikami (role)</h2>
-    <p>System udostępnia 4 role z różnymi uprawnieniami:</p>
-    <table>
-      <thead><tr><th>Rola</th><th>Uprawnienia</th></tr></thead>
-      <tbody>
-        <tr><td>Kierowca</td><td>Rejestracja tras, podgląd własnych danych</td></tr>
-        <tr><td>Właściciel</td><td>Pełny dostęp — flota, kierowcy, raporty, ustawienia</td></tr>
-        <tr><td>Księgowy</td><td>Dostęp tylko do odczytu, raporty, eksport FK</td></tr>
-        <tr><td>Biuro rachunkowe</td><td>Obsługa wielu firm, eksport zbiorczy, pełna analityka</td></tr>
-      </tbody>
-    </table>
-
-    <h2>7. Responsywność</h2>
-    <ul>
-      <li>Panel działa na komputerze, laptopie i tablecie</li>
-      <li>Na mniejszych ekranach tabele zamieniają się w karty</li>
-      <li>Nawigacja boczna zwijana na urządzeniach mobilnych</li>
-    </ul>
-
-    <h2>8. Bezpieczeństwo</h2>
-    <ul>
-      <li>Bezpieczne logowanie z automatycznym odświeżaniem sesji</li>
-      <li>Niezalogowani użytkownicy automatycznie przekierowywani do strony logowania</li>
-      <li>Każda rola widzi tylko dane, do których ma uprawnienia</li>
-    </ul>
+    <h2>9. Wsparcie merytoryczne</h2>
+    <p>Mają Państwo pytania dotyczące funkcji panelu, scenariuszy obsługi klientów lub konkretnych przypadków podatkowych? Prosimy o kontakt na <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>

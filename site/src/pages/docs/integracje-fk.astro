@@ -6,17 +6,30 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
   <div class="prose">
     <h1>Integracje z systemami FK</h1>
 
-    <p>BusiKM eksportuje ewidencję przebiegu i faktury paliwowe do polskich systemów finansowo-księgowych. Jeden klik — dane trafiają do Twojego FK bez ręcznego przepisywania.</p>
+    <p>BusiKM eksportuje ewidencję przebiegu pojazdu do trzech najpopularniejszych w Polsce systemów księgowych. Format każdego pliku jest zgodny z natywnym importem danego programu &mdash; bez konieczności konwersji ani ręcznego przepisywania danych.</p>
 
-    <h2>1. Obsługiwane systemy</h2>
+    <p>Dla biur rachunkowych obsługujących wielu klientów oznacza to: jeden plik per klient, gotowy do wczytania w cyklu rozliczeniowym.</p>
+
+    <h2>1. Obsługiwane systemy w MVP</h2>
     <table>
-      <thead><tr><th>System</th><th>Format eksportu</th><th>Import w programie</th><th>Status</th></tr></thead>
+      <thead><tr><th>System</th><th>Format eksportu</th><th>Import w programie</th></tr></thead>
       <tbody>
-        <tr><td><strong>Insert GT / Rewizor GT / nexo</strong></td><td>EPP (EDI++)</td><td>Operacje &rarr; Dodaj na podstawie &rarr; plik .epp</td><td>MVP</td></tr>
-        <tr><td><strong>Comarch ERP Optima</strong></td><td>XML</td><td>Narzędzia &rarr; Importy &rarr; Import z pliku XML</td><td>MVP</td></tr>
-        <tr><td><strong>Symfonia FK</strong></td><td>TXT + szablon AMS</td><td>Księgowość &rarr; Import specjalny &rarr; plik + szablon</td><td>MVP</td></tr>
+        <tr><td><strong>Insert GT / Rewizor GT / nexo</strong></td><td>EPP (EDI++)</td><td>Operacje &rarr; Dodaj na podstawie &rarr; plik .epp</td></tr>
+        <tr><td><strong>Comarch ERP Optima</strong></td><td>XML</td><td>Narzędzia &rarr; Importy &rarr; Import z pliku XML</td></tr>
+        <tr><td><strong>Symfonia FK</strong></td><td>TXT + szablon AMS</td><td>Księgowość &rarr; Import specjalny &rarr; plik + szablon</td></tr>
       </tbody>
     </table>
+    <p>W MVP eksport obejmuje wyłącznie <strong>ewidencję przebiegu pojazdu</strong> &mdash; podstawowy dokument wymagany do 100% odliczenia VAT (art. 86a) i 100% kosztów uzyskania przychodu w PIT/CIT (art. 23 ust. 7).</p>
+
+    <h2>1.1. Planowane integracje (Q3 2026)</h2>
+    <table>
+      <thead><tr><th>Integracja</th><th>Co umożliwi</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Eksport delegacji pracowniczych</strong></td><td>Zwroty kilometrowe pracowników (art. 21 ust. 1 pkt 23b) eksportowane do Insert GT, Comarch i Symfonii w jednym cyklu z ewidencją przebiegu</td></tr>
+        <tr><td><strong>Krajowy System e-Faktur (KSeF)</strong></td><td>Automatyczne pobieranie faktur paliwowych z KSeF i powiązywanie ich z trasami pojazdu na podstawie daty oraz lokalizacji stacji</td></tr>
+      </tbody>
+    </table>
+    <p>Funkcje są obecnie w fazie projektowej i zostaną zwalidowane z biurami rachunkowymi w pilotażu przed publicznym wdrożeniem.</p>
 
     <h2>2. Co zawiera eksport</h2>
     <p>Każdy eksport zawiera dane do dwóch rozliczeń:</p>
@@ -86,12 +99,15 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
     </table>
     <p>System automatycznie dobiera stawkę obowiązującą w dniu przejazdu. Historyczne dokumenty pozostają poprawne po zmianie stawki.</p>
 
-    <h2>7. Wymagania</h2>
+    <h2>7. Wymagania techniczne</h2>
     <ul>
-      <li>Eksport FK dostępny na planie <strong>Professional</strong> (firmy) lub <strong>Panel BR</strong> (biura rachunkowe)</li>
-      <li>Pojazd musi mieć uzupełniony numer rejestracyjny</li>
-      <li>Ewidencja za dany miesiąc musi być zatwierdzona przed eksportem</li>
-      <li>Historia eksportów dostępna w panelu — status, data, plik do pobrania</li>
+      <li>Pojazd musi mieć uzupełniony numer rejestracyjny i kategorię (samochód osobowy / motocykl / motorower)</li>
+      <li>Ewidencja przebiegu za dany miesiąc musi być zatwierdzona przez właściciela lub księgowego przed eksportem</li>
+      <li>W przypadku pojazdu zgłoszonego na druku VAT-26 &mdash; system automatycznie zastosuje 100% odliczenie VAT</li>
+      <li>Historia wszystkich wcześniejszych eksportów dostępna w panelu webowym (status, data, plik do ponownego pobrania)</li>
     </ul>
+
+    <h2>8. Wsparcie dla biur rachunkowych</h2>
+    <p>Mają Państwo nietypowy scenariusz, klienta z mieszanym taborem (część na VAT-26, część prywatna z ryczałtem) lub specyficzne wymagania importu w Państwa wersji programu księgowego? Prosimy o kontakt na <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Każdy przypadek omawiamy indywidualnie i odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>

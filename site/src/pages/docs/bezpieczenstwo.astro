@@ -2,74 +2,78 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Bezpieczeństwo i RODO" description="Bezpieczeństwo danych w BusiKM — szyfrowanie, kontrola dostępu, RODO, archiwizacja.">
+<DocsLayout title="Bezpieczeństwo i RODO" description="Bezpieczeństwo danych w BusiKM — szyfrowanie, kontrola dostępu, RODO, archiwizacja zgodna z Ordynacją podatkową.">
   <div class="prose">
     <h1>Bezpieczeństwo i ochrona danych</h1>
 
-    <p>BusiKM przechowuje dane podatkowe (ewidencja przebiegu, faktury paliwowe) objęte obowiązkiem archiwizacji. Bezpieczeństwo tych danych jest priorytetem.</p>
+    <p>BusiKM przechowuje dokumenty objęte obowiązkiem archiwizacji podatkowej &mdash; ewidencję przebiegu pojazdu, faktury paliwowe, dokumenty pojazdów. Naszym zobowiązaniem wobec firm i biur rachunkowych jest, aby te dane były bezpieczne, dostępne na żądanie organów skarbowych i odporne na utratę.</p>
 
-    <h2>1. Szyfrowanie</h2>
+    <h2>1. Szyfrowanie i transmisja danych</h2>
+    <p>Wszystkie dane przesyłane między aplikacją mobilną, panelem webowym a serwerami BusiKM są szyfrowane standardem stosowanym w bankowości i instytucjach państwowych. Dane przechowywane na serwerach również są szyfrowane &mdash; nawet w przypadku nieautoryzowanego dostępu do dysku, treść pozostaje nieczytelna.</p>
+    <ul>
+      <li>Transmisja danych: szyfrowanie TLS 1.3 (HTTPS)</li>
+      <li>Dane na serwerach: szyfrowanie AES-256</li>
+      <li>Hasła użytkowników: hashowane (nieodwracalne) &mdash; nawet zespół BusiKM nie ma dostępu do haseł</li>
+    </ul>
+
+    <h2>2. Kontrola dostępu i izolacja danych</h2>
+    <p>System BusiKM zapewnia ścisłą kontrolę nad tym, kto i co widzi. Każdy użytkownik ma przypisaną rolę z określonym zakresem uprawnień:</p>
     <table>
-      <thead><tr><th>Warstwa</th><th>Standard</th></tr></thead>
+      <thead><tr><th>Rola</th><th>Co widzi i co może zrobić</th></tr></thead>
       <tbody>
-        <tr><td>Dane w tranzycie</td><td>TLS 1.3 (HTTPS)</td></tr>
-        <tr><td>Dane w spoczynku</td><td>AES-256</td></tr>
-        <tr><td>Tokeny sesji</td><td>JWT z rotacją refresh tokenów</td></tr>
-        <tr><td>Hasła</td><td>bcrypt z solą</td></tr>
+        <tr><td><strong>Kierowca</strong></td><td>Wyłącznie własne trasy i pojazdy do niego przypisane. Nie widzi tras innych kierowców ani danych firmowych.</td></tr>
+        <tr><td><strong>Właściciel</strong></td><td>Pełny dostęp do swojej firmy &mdash; wszyscy kierowcy, wszystkie pojazdy, wszystkie trasy. Może zatwierdzać dokumenty.</td></tr>
+        <tr><td><strong>Księgowy</strong></td><td>Dostęp do raportów i eksportów FK swojej firmy w trybie tylko do odczytu. Nie może edytować ani usuwać tras.</td></tr>
+        <tr><td><strong>Biuro rachunkowe</strong></td><td>Dostęp do firm swoich klientów z możliwością przełączania kontekstu. Każda firma to osobna, izolowana przestrzeń &mdash; biuro nie miesza danych klientów ze sobą.</td></tr>
       </tbody>
     </table>
+    <p>Klient biura rachunkowego zawsze widzi, że jego biuro ma dostęp do danych jego firmy. W każdej chwili może ten dostęp odwołać.</p>
 
-    <h2>2. Kontrola dostępu (RBAC)</h2>
-    <p>System obsługuje 4 role z oddzielnymi uprawnieniami:</p>
-    <table>
-      <thead><tr><th>Rola</th><th>Dostęp</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Kierowca</strong></td><td>Tylko własne trasy i pojazdy przypisane</td></tr>
-        <tr><td><strong>Właściciel</strong></td><td>Pełny dostęp do swojej firmy</td></tr>
-        <tr><td><strong>Księgowy</strong></td><td>Read-only — raporty, eksport FK</td></tr>
-        <tr><td><strong>Biuro rachunkowe</strong></td><td>Dostęp do firm klientów z przełączaniem kontekstu</td></tr>
-      </tbody>
-    </table>
-    <p>Izolacja danych między firmami (tenant isolation) — użytkownik jednej firmy nigdy nie widzi danych innej firmy.</p>
-
-    <h2>3. Zgodność z RODO</h2>
+    <h2>3. Zgodność z RODO (GDPR)</h2>
+    <p>BusiKM jest zgodny z wymaganiami Rozporządzenia o Ochronie Danych Osobowych. Dla biur rachunkowych oznacza to brak dodatkowych obowiązków &mdash; jesteśmy procesorem danych w rozumieniu art. 28 RODO i podpisujemy umowę powierzenia danych osobowych (DPA).</p>
     <ul>
-      <li><strong>Minimalizacja danych</strong> — zbieramy tylko dane niezbędne do ewidencji przebiegu</li>
-      <li><strong>Prawo do usunięcia</strong> — użytkownik może zażądać usunięcia konta i danych</li>
-      <li><strong>Prawo do eksportu</strong> — dane dostępne do pobrania w formacie PDF / CSV</li>
-      <li><strong>Lokalizacja danych</strong> — serwery w Unii Europejskiej</li>
-      <li><strong>Przetwarzanie GPS</strong> — dane lokalizacyjne przetwarzane wyłącznie w celu obliczenia trasy</li>
+      <li><strong>Minimalizacja danych</strong> &mdash; zbieramy tylko to, co jest niezbędne do prowadzenia ewidencji przebiegu pojazdu</li>
+      <li><strong>Prawo do usunięcia</strong> &mdash; firma może zażądać usunięcia konta i danych z zachowaniem retencji wymaganej prawem podatkowym</li>
+      <li><strong>Prawo do eksportu</strong> &mdash; pełen eksport danych firmy w formacie PDF, CSV lub Excel na żądanie</li>
+      <li><strong>Lokalizacja danych</strong> &mdash; serwery wyłącznie na terenie Unii Europejskiej, brak transferu poza EOG</li>
+      <li><strong>Dane lokalizacyjne (GPS)</strong> &mdash; przetwarzane wyłącznie w celu obliczenia trasy i odległości; nie są udostępniane podmiotom zewnętrznym</li>
+      <li><strong>Umowa powierzenia (DPA)</strong> &mdash; udostępniamy biurom rachunkowym do podpisu na żądanie</li>
     </ul>
 
-    <h2>4. Archiwizacja danych</h2>
-    <p>Ewidencja przebiegu pojazdu podlega archiwizacji przez <strong>5 lat</strong> (art. 86a ustawy o VAT, art. 70 Ordynacji podatkowej). BusiKM przechowuje dane przez wymagany okres i udostępnia je na żądanie przy kontroli skarbowej.</p>
+    <h2>4. Archiwizacja zgodna z prawem podatkowym</h2>
+    <p>Ewidencja przebiegu pojazdu, faktury paliwowe i dokumenty rozliczeniowe podlegają archiwizacji przez <strong>5 lat licząc od końca roku kalendarzowego</strong>, w którym powstał obowiązek podatkowy (art. 70 Ordynacji podatkowej). BusiKM przechowuje te dane przez cały wymagany okres i udostępnia je na żądanie przy kontroli skarbowej.</p>
     <ul>
-      <li>Dane historyczne niemodyfikowalne (immutable)</li>
-      <li>Dziennik audytowy — każda zmiana dokumentu podatkowego jest logowana</li>
-      <li>Backup danych — automatyczny, codzienny</li>
+      <li>Dokumenty historyczne są niemodyfikowalne &mdash; po zatwierdzeniu trasy nie można jej cofnąć ani zmienić bez logowania zdarzenia</li>
+      <li>Dziennik audytowy &mdash; każda zmiana dokumentu (kto, kiedy, co) jest zapisywana i dostępna do wglądu</li>
+      <li>Codzienne kopie zapasowe z retencją 30 dni</li>
     </ul>
 
-    <h2>5. Bezpieczeństwo aplikacji</h2>
+    <h2>5. Podpis elektroniczny w ewidencji</h2>
+    <p>Zgodnie z interpretacją Ministerstwa Finansów (art. 86a ust. 7 ustawy o VAT), zalogowanie do systemu loginem i hasłem stanowi formę podpisu elektronicznego, jeżeli każda zatwierdzona operacja jest jednoznacznie powiązana z użytkownikiem.</p>
+    <p>BusiKM rejestruje przy każdym zatwierdzeniu trasy i każdym podpisaniu dokumentu zbiorczego: identyfikator użytkownika, dokładny czas (z dokładnością do sekundy) oraz wersję dokumentu. Spełnia to wymóg z art. 86a ust. 7.</p>
+
+    <h2>6. Bezpieczeństwo aplikacji</h2>
+    <p>Aplikacja jest projektowana zgodnie z międzynarodowymi standardami bezpieczeństwa (m.in. wytyczne OWASP). Mamy zewnętrzny audyt bezpieczeństwa raz w roku, monitoring incydentów 24/7 oraz procedury reagowania na incydenty.</p>
     <ul>
-      <li>Ochrona przed OWASP Top 10 (SQL injection, XSS, CSRF)</li>
-      <li>Rate limiting na endpointach API</li>
-      <li>Walidacja i sanityzacja wszystkich danych wejściowych</li>
-      <li>Bezpieczne przechowywanie tokenów w aplikacji mobilnej (Secure Storage)</li>
-      <li>Monitoring błędów i incydentów 24/7</li>
+      <li>Ograniczenie liczby zapytań (rate limiting) chroniące przed nadużyciem</li>
+      <li>Walidacja każdego pola danych wprowadzanych przez użytkowników</li>
+      <li>Bezpieczne przechowywanie haseł i tokenów na urządzeniu mobilnym</li>
+      <li>Powiadomienia o nietypowych logowaniach</li>
     </ul>
 
-    <h2>6. Elektroniczny podpis</h2>
-    <p>Zgodnie z interpretacją Ministerstwa Finansów, logowanie do systemu (login + hasło) stanowi podpis elektroniczny w rozumieniu art. 86a ust. 7 ustawy o VAT. Każde zatwierdzenie trasy przez kierowcę i podsumowania przez właściciela/podatnika jest logowane z timestampem i identyfikatorem użytkownika.</p>
-
-    <h2>7. Uptime i monitoring</h2>
+    <h2>7. Dostępność i ciągłość pracy</h2>
+    <p>Dla biur rachunkowych obsługujących wielu klientów ciągłość pracy systemu to wymóg podstawowy &mdash; przed terminami ZUS, JPK i deklaracji nie może być przestoju.</p>
     <table>
       <thead><tr><th>Parametr</th><th>Wartość</th></tr></thead>
       <tbody>
-        <tr><td>SLA</td><td>99,9% uptime</td></tr>
-        <tr><td>Monitoring</td><td>24/7 z automatycznymi alertami</td></tr>
-        <tr><td>Backup</td><td>Codzienny, retencja 30 dni</td></tr>
-        <tr><td>Disaster recovery</td><td>RTO &lt; 4h, RPO &lt; 1h</td></tr>
+        <tr><td>Dostępność (SLA)</td><td>99,9% &mdash; maks. 8h 45min niedostępności rocznie</td></tr>
+        <tr><td>Monitoring</td><td>Całodobowy, automatyczne alerty na zespół dyżurny</td></tr>
+        <tr><td>Kopie zapasowe</td><td>Codzienne, retencja 30 dni, geograficznie rozłożone</td></tr>
+        <tr><td>Czas przywrócenia po awarii</td><td>Maks. 4h przywrócenia działania, maks. 1h utraty danych</td></tr>
       </tbody>
     </table>
+
+    <h2>8. Wsparcie merytoryczne dla biur rachunkowych</h2>
+    <p>Jeśli mają Państwo pytania dotyczące zgodności BusiKM z obsługą Państwa klientów, audytu, RODO lub konkretnych wymagań branżowych &mdash; prosimy o kontakt na <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>

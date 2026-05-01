@@ -29,12 +29,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </p>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
-      <a href="/cennik#trial-br" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
-        3 miesiące gratis
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
+        Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#F5F5F7] transition-all duration-200">
-        Zobacz cennik
+        O programie pilotażowym
       </a>
       <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#F5F5F7] transition-all duration-200">
         Funkcje
@@ -44,8 +44,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <!-- Value props -->
     <div class="hero-seq-5 flex flex-wrap justify-center gap-8 sm:gap-14 text-center">
       <div>
-        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#005CE8]">47 zł</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">oszczędności na każdym pojeździe</div>
+        <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#005CE8]">0 zł</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">pilotaż dożywotnio gratis</div>
       </div>
       <div>
         <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#34C759]">0 zł</div>
@@ -53,7 +53,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </div>
       <div>
         <div class="font-display text-[1.75rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">1 klik</div>
-        <div class="text-[12.5px] text-[#86868B] mt-0.5">eksport do Insert GT / Comarch</div>
+        <div class="text-[12.5px] text-[#86868B] mt-0.5">eksport do Insert GT / Comarch / Symfonia</div>
       </div>
     </div>
   </div>
@@ -283,16 +283,16 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 <section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center max-w-[720px] mx-auto mb-16">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Kalkulator oszczędności</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Skala kosztu ręcznej księgowości</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
-        Ile zaoszczędzi Twoje biuro z&nbsp;BusiKM?
+        Ile pracy eliminuje BusiKM?
       </h2>
       <p class="text-[16px] text-[#6E6E73] leading-relaxed">
-        Każdy pojazd klienta to 2h pracy Twojej księgowej (76 zł). BusiKM automatyzuje ten proces — eksport do FK jednym kliknięciem. Klienci biura korzystają z BusiKM gratis.
+        Każdy pojazd klienta to średnio 2h pracy Twojej księgowej miesięcznie (~76 zł kosztu pracodawcy). BusiKM automatyzuje cały ten proces — eksport do FK jednym kliknięciem. Cennik BusiKM ustalimy po pilotażu z Tobą.
       </p>
     </div>
 
-    <!-- BR Calculator -->
+    <!-- Manual cost calculator (no BusiKM price hint) -->
     <div class="reveal bg-white rounded-[20px] p-7 sm:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-black/[0.06] max-w-[900px] mx-auto mb-12">
       <div class="max-w-[500px] mx-auto mb-8">
         <div class="flex justify-between items-baseline mb-3">
@@ -302,16 +302,15 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <input type="range" id="roi-vehicles" min="1" max="120" value="40" step="1" class="w-full h-1.5 bg-[#E8E8ED] rounded-full appearance-none cursor-pointer accent-[#005CE8] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-[#005CE8] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_2px_6px_rgba(0,92,232,0.3)] [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:bg-[#005CE8] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0" />
         <div class="flex justify-between text-[11px] text-[#86868B] mt-1"><span>1</span><span>120</span></div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-6">
-        <div class="p-4 rounded-2xl bg-[#F5F5F7]"><div class="text-[12px] text-[#86868B] mb-1">Koszt BusiKM / mies.</div><div id="roi-cost" class="font-display text-[1.2rem] font-bold text-[#1D1D1F]">—</div></div>
-        <div class="p-4 rounded-2xl bg-[#FF3B30]/[0.04]"><div class="text-[12px] text-[#86868B] mb-1">Koszt ręczny / mies.</div><div id="roi-manual" class="font-display text-[1.2rem] font-bold text-[#FF3B30]">—</div></div>
-        <div class="p-4 rounded-2xl bg-[#34C759]/[0.06]"><div class="text-[12px] text-[#86868B] mb-1">Oszczędność / mies.</div><div id="roi-monthly" class="font-display text-[1.2rem] font-bold text-[#34C759]">—</div></div>
-        <div class="p-4 rounded-2xl bg-[#005CE8]/[0.04]"><div class="text-[12px] text-[#86868B] mb-1">Oszczędność / rok</div><div id="roi-yearly" class="font-display text-[1.4rem] font-bold text-[#005CE8]">—</div></div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mb-6">
+        <div class="p-5 rounded-2xl bg-[#FF3B30]/[0.04]"><div class="text-[12px] text-[#86868B] mb-1">Godzin pracy księgowej / mies.</div><div id="roi-hours" class="font-display text-[1.4rem] font-bold text-[#FF3B30]">—</div></div>
+        <div class="p-5 rounded-2xl bg-[#FF3B30]/[0.04]"><div class="text-[12px] text-[#86868B] mb-1">Koszt ręczny / mies.</div><div id="roi-manual" class="font-display text-[1.4rem] font-bold text-[#FF3B30]">—</div></div>
+        <div class="p-5 rounded-2xl bg-[#FF3B30]/[0.04]"><div class="text-[12px] text-[#86868B] mb-1">Koszt ręczny / rok</div><div id="roi-yearly-manual" class="font-display text-[1.4rem] font-bold text-[#FF3B30]">—</div></div>
       </div>
       <div class="text-center p-5 rounded-2xl bg-[#005CE8]/[0.04] border border-[#005CE8]/15">
-        <div class="text-[13px] text-[#6E6E73] mb-1">Twoja roczna oszczędność</div>
+        <div class="text-[13px] text-[#6E6E73] mb-1">Tyle pracy eliminuje BusiKM rocznie</div>
         <div id="roi-yearly-big" class="font-display text-[2.5rem] font-bold tracking-[-0.03em] text-[#005CE8]">—</div>
-        <div id="roi-equiv" class="text-[12px] text-[#6E6E73] mt-1">—</div>
+        <div class="text-[12px] text-[#6E6E73] mt-2">W pilotażu MVP otrzymujesz to dożywotnio gratis. Cennik komercyjny ustalimy z Tobą.</div>
       </div>
     </div>
 
@@ -361,8 +360,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </div>
 
     <div class="reveal text-center mt-10">
-      <a href="/cennik#trial-br" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005CE8] text-white text-[14px] font-semibold hover:bg-[#003FAD] transition-colors">
-        3 miesiące gratis dla biur
+      <a href="/cennik" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005CE8] text-white text-[14px] font-semibold hover:bg-[#003FAD] transition-colors">
+        Pilotaż dożywotnio gratis dla biur
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -474,7 +473,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
     <!-- Driver box -->
     <div class="reveal rounded-[20px] p-6 bg-[#005CE8]/[0.04] border border-[#005CE8]/15 max-w-[900px] mx-auto mb-8">
-      <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Jedyne co robi kierowca: wpisuje cel wyjazdu.</h3>
+      <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Jedyne co robi kierowca: wybiera cel wyjazdu.</h3>
       <p class="text-[14px] text-[#6E6E73] leading-relaxed">Wszystko inne — GPS, kilometry, licznik, dane pojazdu, stawka km, VAT — BusiKM uzupełnia automatycznie. Kierowca wpisuje tylko cel podróży, bo wymaga tego art. 86a ust. 7 ustawy o VAT. Jedno pole. Kilka sekund.</p>
     </div>
 
@@ -482,7 +481,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal-stagger grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[900px] mx-auto">
       {[
         { icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, title: 'Art. 86a ustawy o VAT', desc: 'Wszystkie wymagane pola ewidencji', color: '#005CE8' },
-        { icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>`, title: 'Wzór MF', desc: 'PDF zgodny z drukiem MF', color: '#34C759' },
+        { icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>`, title: 'Art. 86a ust. 7', desc: 'PDF z elementami wymaganymi przez ustawę o VAT', color: '#34C759' },
         { icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, title: 'Podpis elektroniczny', desc: 'Login + hasło = podpis (interpretacja MF)', color: '#FF9500' },
         { icon: `<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>`, title: 'Archiwizacja 5 lat', desc: 'Dane w UE, dostępne przy kontroli', color: '#8B5CF6' },
       ].map(t => (
@@ -630,9 +629,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
             <span class="px-3 py-1 rounded-full text-[11.5px] font-semibold" style="background:#FF950012;color:#FF9500;">Eksport do FK</span>
           </div>
           <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[-0.025em] text-[#1D1D1F] leading-[1.2] mb-4">1 klik — dane w Twoim FK.</h3>
-          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Klikasz "Eksportuj" w panelu biura — dane trafiają do Insert GT, Comarch lub Symfonia. Raport PDF wg wzoru MF gotowy do kontroli US.</p>
+          <p class="text-[15px] leading-[1.75] text-[#6E6E73] mb-4">Klikasz "Eksportuj" w panelu biura — dane trafiają do Insert GT, Comarch lub Symfonia. Raport PDF z elementami wymaganymi przez art. 86a, gotowy do kontroli US.</p>
           <ul class="flex flex-col gap-2">
-            {['PDF ewidencji wg wzoru Ministerstwa Finansów', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki wg Dz.U. 2023 poz. 5: 1,15 zł/km (>900cc), 0,89 zł/km (≤900cc)', 'Comarch ERP Optima + Symfonia FK'].map(b => (
+            {['PDF ewidencji z elementami wymaganymi przez art. 86a ustawy o VAT', 'Insert GT (EDI++ format, Windows-1250)', 'Stawki wg Dz.U. 2023 poz. 5: 1,15 zł/km (>900cc), 0,89 zł/km (≤900cc)', 'Comarch ERP Optima + Symfonia FK'].map(b => (
               <li class="flex items-center gap-2.5 text-[13.5px] text-[#6E6E73]">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
@@ -689,7 +688,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { title: 'Klienci korzystają gratis', desc: 'Firmy Twoich klientów dostają pełny Professional za 0 zł — GPS, raporty MF, 100% VAT. Lepszą usługę bez dodatkowej opłaty.', icon: `<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>`, color: '#34C759' },
         { title: 'Insert GT, Comarch, Symfonia', desc: 'Eksport do Insert GT (EDI++), Comarch ERP Optima (XML) i Symfonia FK (TXT/AMS). Jeden klik — zero przepisywania.', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`, color: '#FF9500' },
         { title: 'Panel multi-klient', desc: 'Jeden dashboard dla wszystkich firm klientów. Przełączanie kontekstu bez wylogowania. Status ewidencji na pierwszy rzut oka.', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>`, color: '#8B5CF6' },
-        { title: '3 miesiące za darmo', desc: 'Pełny dostęp bez warunków, bez karty kredytowej. Po trialu płacisz tylko za aktywne pojazdy klientów (od 29 zł/pojazd).', icon: `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`, color: '#005CE8' },
+        { title: 'Pilotaż dożywotnio gratis', desc: 'Pełny dostęp bez warunków, bez karty kredytowej. Cennik komercyjny ogłosimy po analizie informacji od użytkowników pilotażowych — piloci pozostają w programie pilotażowym dożywotnio.', icon: `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`, color: '#005CE8' },
         { title: 'Ochrona przed kontrolą US', desc: 'Dane GPS z elektronicznym potwierdzeniem kierowcy — gotowe na kontrolę skarbową. VAT + PIT + delegacje zabezpieczone w jednym systemie.', icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`, color: '#FF3B30' },
       ].map(u => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.06] hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 group">
@@ -733,10 +732,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <!-- 4 roles -->
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5">
       {[
-        { href: '/dla-biur-rachunkowych', role: 'Biuro rachunkowe', headline: 'Panel multi-klient. Eksport do FK.', bullets: ['Zbiorczy dashboard wszystkich firm klientów', 'Eksport do Insert GT, Comarch, Symfonia', 'Przełączanie kontekstu jednym kliknięciem', '3 miesiące gratis'], color: '#8B5CF6', icon: `<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>` },
-        { href: '/dla-wlascicieli', role: 'Właściciel firmy', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time', 'Raporty PDF wg wzoru MF', 'Alerty: OC, przegląd, prawo jazdy', 'Compliance dashboard'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
+        { href: '/dla-biur-rachunkowych', role: 'Biuro rachunkowe', headline: 'Panel multi-klient. Eksport do FK.', bullets: ['Zbiorczy dashboard wszystkich firm klientów', 'Eksport do Insert GT, Comarch, Symfonia', 'Przełączanie kontekstu jednym kliknięciem', 'Pilotaż dożywotnio gratis'], color: '#8B5CF6', icon: `<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>` },
+        { href: '/dla-wlascicieli', role: 'Właściciel firmy', headline: 'Cała flota. Jeden ekran.', bullets: ['Dashboard z mapą real-time', 'Raporty PDF zgodne z art. 86a', 'Alerty: OC, przegląd, prawo jazdy', 'Compliance dashboard'], color: '#34C759', icon: `<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>` },
         { href: '/dla-kierowcow', role: 'Kierowca', headline: 'Jedź. My zapisujemy.', bullets: ['GPS w tle — zamknij aplikację, jedź', 'Zatwierdzanie trasy jednym kliknięciem', 'Tryb offline — sync po powrocie', 'iOS + Android (React Native + Expo)'], color: '#005CE8', icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>` },
-        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji wg wzoru MF', 'Eksport EDI++ jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — integralność danych'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
+        { href: '/dla-ksiegowych', role: 'Księgowy', headline: 'Dane gotowe do FK.', bullets: ['PDF ewidencji zgodny z art. 86a', 'Eksport EDI++ jednym kliknięciem', 'Stawki wg Dz.U. — automatyczny dobór', 'Dostęp read-only — integralność danych'], color: '#FF9500', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>` },
       ].map(r => (
         <a href={r.href} class="group bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:bg-white hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 block">
           <div class="flex items-center gap-4 mb-5">
@@ -796,7 +795,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
       {[
         { title: 'Dane w UE', desc: 'Serwery w Polsce, zgodność RODO, szyfrowanie AES-256 w tranzycie i spoczynku.', icon: `<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>`, color: '#005CE8' },
-        { title: 'Zgodność z ustawą o VAT', desc: 'Ewidencja przebiegu wg wzoru MF (art. 86a ustawy o VAT). Format EDI++ (Windows-1250, CRLF) dla Insert GT.', icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, color: '#34C759' },
+        { title: 'Zgodność z ustawą o VAT', desc: 'Ewidencja przebiegu z elementami wymaganymi przez art. 86a ust. 7 ustawy o VAT. Format EDI++ (Windows-1250, CRLF) dla Insert GT.', icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`, color: '#34C759' },
         { title: 'Uptime 99,9%', desc: 'SLA gwarantowane. Sentry + Prometheus + Grafana + Uptime Kuma. Monitoring 24/7.', icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`, color: '#FF9500' },
       ].map(t => (
         <div class="bg-[#F5F5F7] rounded-[20px] p-6 text-center border border-transparent hover:bg-white hover:border-black/[0.06] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
@@ -817,36 +816,35 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Cennik dla biur rachunkowych</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
-        Im więcej pojazdów, tym&nbsp;taniej.
+        Pilotaż MVP. Dożywotnio gratis.
       </h2>
-      <p class="text-[16px] text-[#6E6E73]">Płacisz za aktywne pojazdy klientów. Klienci korzystają z BusiKM gratis.</p>
+      <p class="text-[16px] text-[#6E6E73]">Cennik komercyjny ogłosimy po analizie informacji od użytkowników pilotażowych. Pierwsze biura rachunkowe i ich klienci korzystają z BusiKM bezterminowo za 0 zł.</p>
     </div>
 
-    <!-- Pricing tiers -->
+    <!-- Pilot benefits -->
     <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[900px] mx-auto mb-10">
-      {[
-        { range: '1–30 pojazdów', price: '49', savings: '27', highlight: false },
-        { range: '31–80 pojazdów', price: '39', savings: '37', highlight: false },
-        { range: '81+ pojazdów', price: '29', savings: '47', highlight: true },
-      ].map(t => (
-        <div class:list={['rounded-[20px] p-7 text-center transition-all duration-300', t.highlight ? 'bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.25)]' : 'bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)]']}>
-          <p class:list={['text-[12px] font-semibold uppercase tracking-[0.06em] mb-3', t.highlight ? 'text-white/60' : 'text-[#86868B]']}>{t.range}</p>
-          <div class="mb-2">
-            <span class:list={['font-display text-[2.5rem] font-bold tracking-[-0.04em]', t.highlight ? 'text-white' : 'text-[#1D1D1F]']}>{t.price}</span>
-            <span class:list={['text-[14px] ml-1', t.highlight ? 'text-white/60' : 'text-[#86868B]']}>zł / pojazd / mies.</span>
-          </div>
-          <div class:list={['text-[13px] mb-3', t.highlight ? 'text-white/70' : 'text-[#6E6E73]']}>Eliminujesz koszt 76 zł/pojazd</div>
-          <div class:list={['font-display text-[1.3rem] font-bold', t.highlight ? 'text-white' : 'text-[#34C759]']}>+{t.savings} zł oszczędności</div>
-          <div class:list={['text-[11.5px] mt-0.5', t.highlight ? 'text-white/50' : 'text-[#86868B]']}>na każdym pojeździe / mies.</div>
-        </div>
-      ))}
+      <div class="rounded-[20px] p-7 text-center bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="font-display text-[2.5rem] font-bold tracking-[-0.04em] text-[#1D1D1F] mb-2">∞</div>
+        <p class="text-[14px] text-[#1D1D1F] font-semibold mb-1">Dożywotni dostęp</p>
+        <p class="text-[12.5px] text-[#6E6E73] leading-relaxed">Piloci pozostają w programie pilotażowym bezterminowo. Po ogłoszeniu cennika konwersja jest dobrowolna.</p>
+      </div>
+      <div class="rounded-[20px] p-7 text-center bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.25)]">
+        <div class="font-display text-[2.5rem] font-bold tracking-[-0.04em] text-white mb-2">0 zł</div>
+        <p class="text-[14px] text-white font-semibold mb-1">Pilotaż MVP</p>
+        <p class="text-[12.5px] text-white/80 leading-relaxed">Pełna funkcjonalność produktu. Bez karty kredytowej, bez warunków minimalnych. W zamian — krótka rozmowa raz w miesiącu.</p>
+      </div>
+      <div class="rounded-[20px] p-7 text-center bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="font-display text-[2.5rem] font-bold tracking-[-0.04em] text-[#34C759] mb-2">0 zł</div>
+        <p class="text-[14px] text-[#1D1D1F] font-semibold mb-1">Klienci biura</p>
+        <p class="text-[12.5px] text-[#6E6E73] leading-relaxed">Wszystkie firmy klientów biura rachunkowego korzystają z BusiKM również gratis, dopóki biuro pozostaje w pilotażu.</p>
+      </div>
     </div>
 
     <!-- Key benefits row -->
     <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[900px] mx-auto mb-10">
       <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
-        <span class="text-[13.5px] text-[#1D1D1F] font-medium">3 miesiące gratis</span>
+        <span class="text-[13.5px] text-[#1D1D1F] font-medium">Pełna funkcjonalność produktu</span>
       </div>
       <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -854,16 +852,16 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </div>
       <div class="flex items-center gap-3 p-4 rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
-        <span class="text-[13.5px] text-[#1D1D1F] font-medium">Klienci korzystają gratis</span>
+        <span class="text-[13.5px] text-[#1D1D1F] font-medium">Pierwsi w kolejce do nowych funkcji</span>
       </div>
     </div>
 
     <div class="reveal text-center">
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-all" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
-        Zobacz pełny cennik
+        Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <p class="text-[12px] text-[#86868B] mt-4">Firmy indywidualne: od 19 zł/pojazd &middot; <a href="/cennik" class="text-[#005CE8] hover:underline">porównaj plany</a></p>
+      <p class="text-[12px] text-[#86868B] mt-4">Pilotaż dostępny dla firm i biur rachunkowych &middot; <a href="/cennik" class="text-[#005CE8] hover:underline">poznaj szczegóły</a></p>
     </div>
   </div>
 </section>
@@ -875,18 +873,18 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
   <div class="relative reveal text-center max-w-[680px] mx-auto">
     <h2 class="font-display text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-      3 miesiące gratis. Zacznij&nbsp;dziś.
+      Pilotaż dożywotnio gratis.<br/>Zacznij&nbsp;dziś.
     </h2>
     <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
-      Pełny dostęp do panelu biura rachunkowego. Bez karty kredytowej. Po trialu płacisz tylko za aktywne pojazdy klientów.
+      Pełny dostęp do panelu biura rachunkowego. Bez karty kredytowej. Wszystkie firmy klientów biura korzystają również gratis &mdash; dopóki biuro pozostaje w pilotażu.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="/cennik#trial-br" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
-        3 miesiące gratis
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
+        Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
-        Zobacz cennik
+        O programie pilotażowym
       </a>
     </div>
   </div>
@@ -947,36 +945,29 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     fkIO.observe(fkStagger);
   }
 
-  // BR ROI Calculator
+  // Manual-cost calculator (no BusiKM price)
   const roiVehicles = document.getElementById('roi-vehicles') as HTMLInputElement;
 
-  function fmt(n: number): string {
+  function fmtZl(n: number): string {
     return Math.round(n).toLocaleString('pl-PL').replace(/\u00a0/g, ' ') + ' zł';
   }
-
-  function calcBrCost(v: number): number {
-    if (v <= 30) return v * 49;
-    if (v <= 80) return v * 39;
-    return v * 29;
+  function fmtH(n: number): string {
+    return n.toLocaleString('pl-PL').replace(/\u00a0/g, ' ') + ' h';
   }
 
   function calcROI() {
     const vehicles = parseInt(roiVehicles.value);
     (document.getElementById('roi-vehicles-val') as HTMLElement).textContent = String(vehicles);
 
-    const manualCost = vehicles * 76;
-    const busikm = calcBrCost(vehicles);
-    const monthly = manualCost - busikm;
-    const yearly = monthly * 12;
-
-    (document.getElementById('roi-cost') as HTMLElement).textContent = fmt(busikm);
-    (document.getElementById('roi-manual') as HTMLElement).textContent = fmt(manualCost);
-    (document.getElementById('roi-monthly') as HTMLElement).textContent = fmt(monthly);
-    (document.getElementById('roi-yearly') as HTMLElement).textContent = fmt(yearly);
-    (document.getElementById('roi-yearly-big') as HTMLElement).textContent = '+' + fmt(yearly);
-
     const hoursPerMonth = vehicles * 2;
-    (document.getElementById('roi-equiv') as HTMLElement).textContent = 'To ' + hoursPerMonth + 'h pracy księgowej mniej / miesiąc';
+    const manualCost = vehicles * 76;
+    const yearlyManual = manualCost * 12;
+    const yearlyHours = hoursPerMonth * 12;
+
+    (document.getElementById('roi-hours') as HTMLElement).textContent = fmtH(hoursPerMonth);
+    (document.getElementById('roi-manual') as HTMLElement).textContent = fmtZl(manualCost);
+    (document.getElementById('roi-yearly-manual') as HTMLElement).textContent = fmtZl(yearlyManual);
+    (document.getElementById('roi-yearly-big') as HTMLElement).textContent = fmtH(yearlyHours);
   }
 
   roiVehicles.addEventListener('input', calcROI);

@@ -2,11 +2,11 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Aplikacja mobilna">
+<DocsLayout title="Aplikacja mobilna" description="Aplikacja mobilna BusiKM dla kierowców — automatyczna rejestracja trasy GPS, klasyfikacja, zdjęcie licznika, tryb offline.">
   <div class="prose">
-    <h1>Aplikacja mobilna BusiKM</h1>
+    <h1>Aplikacja mobilna</h1>
 
-    <p>Aplikacja mobilna BusiKM to narzędzie dla kierowców do automatycznej rejestracji przejazdów służbowych. Dostępna na iOS i Android, działa również bez dostępu do internetu.</p>
+    <p>Aplikacja BusiKM dla kierowców jest projektowana z jednym założeniem: <strong>kierowca nie powinien wpisywać niczego ręcznie pod koniec miesiąca</strong>. Wszystko, co da się zarejestrować automatycznie &mdash; GPS, czas, przebieg &mdash; jest rejestrowane bez ingerencji użytkownika. Kierowca wybiera jedynie cel każdego wyjazdu.</p>
 
     <h2>1. Wymagania systemowe</h2>
     <table>
@@ -16,88 +16,80 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
         <tr><td>Android</td><td>10.0 (API 29) lub nowszy</td></tr>
       </tbody>
     </table>
-    <p>Aplikacja dostępna w App Store i Google Play.</p>
+    <p>Aplikacja będzie dostępna w App Store i Google Play. Aktualizacje są dostarczane automatycznie.</p>
 
     <h2>2. Rejestracja trasy</h2>
+    <p>Cykl rejestracji trasy ograniczono do minimum, by nie obciążać kierowcy formalnościami w trakcie pracy:</p>
     <ul>
-      <li><strong>Start/stop jednym kliknięciem</strong> — rozpoczęcie i zakończenie trasy jednym przyciskiem</li>
-      <li><strong>Śledzenie GPS w tle</strong> — aplikacja rejestruje trasę nawet gdy ekran jest wyłączony</li>
-      <li><strong>Automatyczne obliczanie dystansu</strong> — przebieg wyliczany na podstawie punktów GPS</li>
-      <li><strong>Klasyfikacja trasy</strong> — oznacz przejazd jako służbowy lub prywatny</li>
-      <li><strong>Cel wyjazdu</strong> — jedyne pole do ręcznego wpisania (wymagane przez przepisy)</li>
+      <li><strong>Start jednym przyciskiem</strong> &mdash; aplikacja zaczyna nagrywać trasę GPS</li>
+      <li><strong>Tło</strong> &mdash; nagrywanie trwa nawet gdy ekran jest wyłączony lub kierowca korzysta z innych aplikacji (np. nawigacja)</li>
+      <li><strong>Stop jednym przyciskiem</strong> &mdash; aplikacja kończy trasę, oblicza przebieg na podstawie zarejestrowanych punktów GPS</li>
+      <li><strong>Wybór celu wyjazdu</strong> &mdash; kierowca wybiera jedyne pole z listy zdefiniowanych celów (spotkanie z klientem, dostawa, serwis, prywatne itd.). Lista jest konfigurowalna przez właściciela firmy</li>
+      <li><strong>Klasyfikacja</strong> &mdash; aplikacja proponuje klasyfikację (służbowa / prywatna) na podstawie wybranego celu; kierowca może ją zmienić jednym tapnięciem</li>
     </ul>
+    <p>Cała operacja po stronie kierowcy zajmuje kilka sekund &mdash; reszta jest automatyczna.</p>
 
-    <h2>3. Zdjęcie licznika</h2>
+    <h2>3. Zdjęcie licznika (drogomierza)</h2>
+    <p>Zdjęcie stanu licznika dołączone do trasy stanowi dowód faktycznego przebiegu i jest pomocne przy rozliczeniach z biurem rachunkowym oraz w przypadku ewentualnej kontroli skarbowej.</p>
     <ul>
-      <li>Zrób zdjęcie stanu licznika aparatem telefonu</li>
-      <li>Zdjęcie dołączane do trasy jako dowód przebiegu</li>
-      <li>Właściciel i księgowy mogą przeglądać zdjęcia w panelu webowym</li>
+      <li>Zdjęcie wykonywane wbudowanym aparatem aplikacji</li>
+      <li>Automatycznie powiązane z konkretną trasą</li>
+      <li>Dostępne do podglądu w panelu webowym dla właściciela, księgowego i biura rachunkowego</li>
+      <li>Zdjęcie można zrobić na początku i na końcu trasy lub raz dziennie &mdash; konfigurowane przez właściciela</li>
     </ul>
 
     <h2>4. Adaptacyjne śledzenie GPS</h2>
-    <p>Aplikacja automatycznie dostosowuje dokładność GPS do poziomu baterii, aby zminimalizować zużycie energii:</p>
+    <p>Aplikacja automatycznie dostosowuje dokładność GPS do poziomu baterii telefonu. Cel: nie wyczerpać baterii kierowcy w trakcie pracy w terenie.</p>
     <table>
-      <thead><tr><th>Poziom baterii</th><th>Tryb GPS</th></tr></thead>
+      <thead><tr><th>Poziom baterii</th><th>Tryb GPS</th><th>Wpływ na dokładność</th></tr></thead>
       <tbody>
-        <tr><td>Powyżej 50%</td><td>Wysoka dokładność</td></tr>
-        <tr><td>20–50%</td><td>Zrównoważony</td></tr>
-        <tr><td>10–20%</td><td>Oszczędzanie energii</td></tr>
-        <tr><td>Poniżej 10%</td><td>Minimalny (tylko sieć)</td></tr>
+        <tr><td>Powyżej 50%</td><td>Wysoka dokładność</td><td>Pełna precyzja, częste pomiary</td></tr>
+        <tr><td>20–50%</td><td>Zrównoważony</td><td>Lekka oszczędność energii, dokładność wystarczająca dla ewidencji</td></tr>
+        <tr><td>10–20%</td><td>Oszczędzanie energii</td><td>Rzadsze pomiary, większe odstępy między punktami trasy</td></tr>
+        <tr><td>Poniżej 10%</td><td>Minimalny</td><td>Tryb awaryjny &mdash; nagrywanie kontynuowane, ale z minimalną częstotliwością</td></tr>
       </tbody>
     </table>
 
     <h2>5. Tryb offline</h2>
+    <p>Aplikacja jest zaprojektowana, by działać w warunkach, w których internet nie zawsze jest dostępny &mdash; tereny wiejskie, parkingi podziemne, trasy przygraniczne.</p>
     <ul>
-      <li>Trasy są rejestrowane nawet bez dostępu do internetu</li>
-      <li>Dane GPS zapisywane lokalnie na urządzeniu</li>
-      <li>Automatyczna synchronizacja po odzyskaniu połączenia</li>
-      <li>Żadne dane nie zostaną utracone</li>
+      <li>Trasy są rejestrowane lokalnie w pełni, niezależnie od stanu sieci</li>
+      <li>Dane GPS, zdjęcia licznika i klasyfikacja są zapisywane na urządzeniu</li>
+      <li>Po odzyskaniu połączenia aplikacja automatycznie synchronizuje wszystkie zaległe dane z serwerem</li>
+      <li>Synchronizacja jest deduplikowana &mdash; żadna trasa nie pojawi się dwa razy</li>
+      <li>Kierowca widzi w interfejsie status synchronizacji każdej trasy (zsynchronizowana / oczekuje)</li>
     </ul>
 
     <h2>6. Powiadomienia push</h2>
-    <p>Aplikacja wysyła powiadomienia o:</p>
+    <p>Aplikacja wysyła trzy kategorie powiadomień. Każda jest niezależnie konfigurowalna przez użytkownika.</p>
+
+    <h3>6.1. Alerty dokumentów</h3>
+    <p>Powiadomienia o terminach wygaśnięcia dokumentów pojazdu i kierowcy &mdash; OC, przegląd techniczny, tachograf, prawo jazdy. Wysyłane na 30, 14 i 7 dni przed datą ważności do właściciela, księgowego (do wglądu) oraz kierowcy odpowiedzialnego za pojazd.</p>
+
+    <h3>6.2. Potwierdzenia tras</h3>
+    <p>Po zakończeniu każdej trasy przez kierowcę właściciel firmy otrzymuje powiadomienie z podstawowymi informacjami (kierowca, pojazd, czas, przebieg). Pozwala to na bieżąco kontrolować pracę zespołu bez konieczności logowania do panelu.</p>
+
+    <h3>6.3. Komunikaty produktowe</h3>
+    <p>Informacje o nowych funkcjach, ważnych zmianach w przepisach, planowanych przerwach technicznych. Wysyłane przez zespół BusiKM bezpośrednio do użytkowników. Częstotliwość: zwykle nie częściej niż raz w miesiącu.</p>
+
+    <h2>7. Bezpieczeństwo i logowanie</h2>
     <ul>
-      <li>Wygasających dokumentach (OC, przegląd techniczny, tachograf, prawo jazdy)</li>
-      <li>Nowych zaproszeniach do firmy</li>
-      <li>Ważnych zmianach w systemie</li>
+      <li>Logowanie loginem i hasłem użytkownika</li>
+      <li>Hasło nie jest przechowywane na urządzeniu &mdash; po zalogowaniu aplikacja wymienia je na bezpieczny token sesji</li>
+      <li>Automatyczne wylogowanie po długim okresie nieaktywności</li>
+      <li>Powiadomienie e-mail o zalogowaniu z nowego urządzenia</li>
+      <li>Dane na urządzeniu są szyfrowane przez system operacyjny telefonu (iOS / Android)</li>
     </ul>
 
-    <h2>7. Bezpieczeństwo</h2>
-    <ul>
-      <li>Logowanie za pomocą adresu email i hasła</li>
-      <li>Tokeny dostępu przechowywane w bezpiecznym magazynie urządzenia</li>
-      <li>Automatyczne wylogowanie po wygaśnięciu sesji</li>
-      <li>Możliwość dostępu przez zaproszenie do firmy</li>
-    </ul>
+    <h2>8. Role w aplikacji</h2>
 
-    <h2>8. Ekrany aplikacji</h2>
-    <h3>Widok kierowcy</h3>
-    <table>
-      <thead><tr><th>Zakładka</th><th>Co zawiera</th></tr></thead>
-      <tbody>
-        <tr><td>Trasa</td><td>Przycisk start/stop, mapa GPS z bieżącą pozycją</td></tr>
-        <tr><td>Historia</td><td>Lista zarejestrowanych przejazdów z filtrami</td></tr>
-        <tr><td>Pojazd</td><td>Dane pojazdu, dokumenty, daty ważności</td></tr>
-        <tr><td>Profil</td><td>Ustawienia konta, powiadomienia</td></tr>
-      </tbody>
-    </table>
+    <h3>Kierowca</h3>
+    <p>Najprostszy interfejs: lista przypisanych pojazdów, przycisk rozpoczęcia trasy, lista wcześniejszych tras, ustawienia konta. Kierowca widzi wyłącznie własne trasy &mdash; nie ma dostępu do tras innych kierowców ani do danych firmowych.</p>
 
-    <h3>Widok właściciela</h3>
-    <table>
-      <thead><tr><th>Zakładka</th><th>Co zawiera</th></tr></thead>
-      <tbody>
-        <tr><td>Dashboard</td><td>Statystyki floty, aktywne trasy</td></tr>
-        <tr><td>Flota</td><td>Lista pojazdów z dokumentami</td></tr>
-        <tr><td>Kierowcy</td><td>Lista kierowców, zaproszenia</td></tr>
-        <tr><td>Trasy</td><td>Wszystkie przejazdy z filtrami</td></tr>
-        <tr><td>Więcej</td><td>Raporty, ustawienia, alerty</td></tr>
-      </tbody>
-    </table>
+    <h3>Właściciel firmy</h3>
+    <p>Rozszerzony interfejs: dashboard floty, lista pojazdów z dokumentami, lista kierowców, wszystkie trasy w firmie z filtrami, raporty PDF zgodne z art. 86a ustawy o VAT, ustawienia firmy. Właściciel może zatwierdzać dokumenty, zarządzać kierowcami i konfigurować alerty.</p>
 
-    <h2>9. Dystrybucja</h2>
-    <ul>
-      <li>Aplikacja dostępna w App Store (iOS) i Google Play (Android)</li>
-      <li>Aktualizacje dostarczane automatycznie</li>
-    </ul>
+    <h2>9. Wsparcie i pytania</h2>
+    <p>Pytania techniczne, problemy z aplikacją lub propozycje funkcji &mdash; <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>
