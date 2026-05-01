@@ -4,12 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Opis repozytorium
 
-To jest repozytorium **dokumentacji i strony marketingowej** projektu BusiKM — platformy SaaS do automatycznej ewidencji przebiegu pojazdow 2,5-3,5 t. Zawiera:
+To jest repozytorium **strony marketingowej** projektu BusiKM — platformy SaaS do automatycznej ewidencji przebiegu pojazdów osobowych w działalności gospodarczej. Zawiera wyłącznie:
 
-- `docs/` — pliki `.md` z dokumentacja techniczna i biznesowa (po polsku)
 - `site/` — strona marketingowa busikm.pl (Astro 6 + Tailwind CSS 4)
 
-Kod zrodlowy platformy (backend, mobile, web) znajduje sie w oddzielnych repozytoriach.
+Dokumentacja techniczna i biznesowa (`PROJECT_OVERVIEW`, `ARCHITECTURE`, `FEATURES`, `MONETIZATION`, `SUBSCRIPTION_MANAGEMENT`, `MARKETING_PLAN`, user guides itd.) została przeniesiona do repozytorium backendu. Kod źródłowy platformy (backend, mobile, web) znajduje się w oddzielnych repozytoriach.
 
 ## Komendy — strona marketingowa (`site/`)
 
@@ -48,19 +47,7 @@ Caly system designu zdefiniowany w `@theme {}` w pliku `global.css`:
 
 Uzywaj tokenow z `@theme` zamiast hardkodowanych wartosci kolorow.
 
-## Dokumentacja (`docs/`)
-
-Wszystkie dokumenty pisane po polsku. Kluczowe pliki:
-
-- **PROJECT_OVERVIEW.md** — wizja, misja, rynek, model biznesowy, timeline
-- **ARCHITECTURE.md** — architektura techniczna platformy (stack, wzorce RBAC, CompanyScopedMixin, TenantContextMiddleware)
-- **DATABASE_SCHEMA.md** — schemat baz danych (PostgreSQL + MongoDB + Redis)
-- **API_SPECIFICATION.md** — specyfikacja API (OpenAPI 3.0)
-- **FEATURES.md** — matryca funkcji per rola i per plan subskrypcyjny
-
-Pelna lista: `ls docs/`. Kazdy dokument zawiera date ostatniej aktualizacji na koncu.
-
-## Stack technologiczny platformy (dokumentowany, nie w tym repo)
+## Stack technologiczny platformy (dokumentowany w repo backendu, nie w tym repo)
 
 | Warstwa | Technologia |
 |---------|-------------|
@@ -80,8 +67,6 @@ Pelna lista: `ls docs/`. Kazdy dokument zawiera date ostatniej aktualizacji na k
 
 ## Konwencje
 
-- Dokumenty w `docs/` pisane po polsku
 - Strona marketingowa (`site/`) w jezyku polskim, komponenty Astro + Tailwind CSS 4 utility classes
-- Tabele Markdown jako glowny format prezentacji danych w dokumentacji
 - **Conventional Commits** — format: `<type>(<scope>): <opis>`
 - **Git flow** — feature/* -> develop -> staging -> main

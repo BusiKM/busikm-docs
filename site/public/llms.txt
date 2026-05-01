@@ -19,8 +19,8 @@ Hook: kilometrówka która wytrzyma kontrolę US (5 lat wstecz).
 
 ## Cennik dla firm (zł/pojazd/miesiąc)
 - Free: 0 zł (1 pojazd, 1 kierowca, bez raportów)
-- Starter: 19 zł, min. 38 zł (do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push)
-- Professional: 29 zł, min. 319 zł (do 50 pojazdów, eksport FK Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, offline)
+- Starter: 19 zł/pojazd/mies., bez minimalnej opłaty (do 10 pojazdów, raporty PDF wg art. 86a, CSV, alerty push)
+- Professional: 29 zł/pojazd/mies., bez minimalnej opłaty (do 50 pojazdów, eksport FK Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, offline)
 - Powyżej 50 pojazdów → kontakt indywidualny. Rozliczenie roczne: rabat -15%.
 - Trial dla firm: 14 dni Professional gratis, bez karty kredytowej.
 
