@@ -8,35 +8,44 @@
 
 ## 1. Wizja i misja
 
-**Wizja:** Każda polska firma transportowa prowadzi elektroniczną kilometrówkę — bez papierów, bez błędów, bez kar.
+**Wizja:** Każda polska mobilna mikrofirma prowadzi elektroniczną kilometrówkę — bez papierów, bez błędów, bez ryzyka kontroli US.
 
-**Misja:** BusiKM automatyzuje ewidencję przebiegu pojazdów 2,5–3,5 t, eliminując papierowe formularze i integrując się z systemami księgowymi. Dajemy kierowcom aplikację mobilną, właścicielom flot — panel zarządzania, a księgowym — gotowe eksporty do FK.
+**Misja:** BusiKM automatyzuje ewidencję przebiegu samochodów osobowych w działalności gospodarczej, eliminując papierowe formularze i integrując się z systemami księgowymi. Dajemy kierowcom aplikację mobilną, właścicielom JDG i mikrofirm — panel zarządzania, a księgowym i biurom rachunkowym — gotowe eksporty do FK z prawidłowymi proporcjami VAT.
 
-**Cel strategiczny:** Zdobycie pozycji lidera na polskim rynku e-kilometrówek dla segmentu SMB w ciągu 24 miesięcy od uruchomienia. Planowane wyjście z inwestycji (sprzedaż spółki) w Q2 2029.
+**Cel strategiczny:** Zdobycie pozycji lidera na polskim rynku e-kilometrówek w segmencie JDG / mikrofirm i jako standardowe narzędzie biur rachunkowych w ciągu 24 miesięcy od uruchomienia. Planowane wyjście z inwestycji (sprzedaż spółki) w Q2 2029.
 
 ---
 
 ## 2. Problem
 
-### Nowe przepisy
+### Trzy obszary podatkowe wymagające ewidencji
 
-Od lipca 2026 r. wchodzi w życie nowelizacja ustawy o transporcie drogowym, która nakłada na pojazdy o DMC 2,5–3,5 t obowiązek prowadzenia ewidencji przebiegu (kilometrówki) zgodnej ze wzorem Ministerstwa Finansów.
+Brak prawidłowej kilometrówki naraża firmę na utratę odliczeń w trzech niezależnych obszarach:
+
+| Obszar | Podstawa prawna | Skutek braku ewidencji |
+|--------|-----------------|------------------------|
+| 100% odliczenia VAT od pojazdu firmowego | art. 86a ustawy o VAT + druk VAT-26 | Spadek do 50% VAT, korekta JPK wstecz, dopłata + odsetki |
+| 100% kosztów pojazdu w PIT/CIT | art. 23 ust. 7 ustawy o PIT | Koszty zakwestionowane przez US, dopłata podatku |
+| Zwrot km dla pracowników bez PIT | art. 21 ust. 1 pkt 23b ustawy o PIT | Zwrot opodatkowany jako przychód, składki ZUS |
+
+Stawki ewidencji: **Dz.U. 2023 poz. 5** — 0,89 / 1,15 / 0,69 / 0,42 zł/km wg pojemności silnika.
 
 ### Obecna rzeczywistość
 
 | Aspekt | Stan obecny | Konsekwencje |
 |---|---|---|
-| Format ewidencji | Papierowe formularze lub Excel | Błędy, brak standaryzacji |
-| Wprowadzanie danych | Ręczne, po zakończeniu trasy | Opóźnienia, przeinaczenia |
-| Kontrola | Brak weryfikacji w czasie rzeczywistym | Właściciel nie wie, co się dzieje z flotą |
-| Zgodność z przepisami | Niejednolita | Ryzyko kar do 12 000 PLN za pojazd |
-| Integracja z FK | Brak lub ręczne przepisywanie | Podwójna praca księgowych |
+| Format ewidencji | Papierowe formularze lub Excel | Błędy, brak standaryzacji, łatwo zgubić |
+| Wprowadzanie danych | Ręczne, po zakończeniu miesiąca z pamięci | Opóźnienia, przeinaczenia, "wpisz tam coś" |
+| Weryfikowalność w US | Brak twardych dowodów GPS | Trudno udowodnić służbowy charakter trasy |
+| Zgodność z przepisami | Niejednolita | Ryzyko korekt JPK i dopłat 15 000 – 40 000 zł |
+| Integracja z FK | Brak lub ręczne przepisywanie | Podwójna praca księgowych, błędy w VAT |
 
-### Kary i ryzyko
+### Kary i ryzyko kontroli US
 
-- Brak prowadzenia ewidencji: kara administracyjna do **12 000 PLN/pojazd**.
-- Nieprawidłowa ewidencja: kara do **8 000 PLN** + korekty podatkowe.
-- Firmy mają **3 miesiące** na dostosowanie się — czas nagli.
+- Kontrola podatkowa może sięgnąć **5 lat wstecz**.
+- Brak / nieprawidłowa ewidencja → korekta JPK + dopłata zaległego VAT (różnica 100% vs 50%) → 15 000 – 40 000 zł plus odsetki za zwłokę.
+- Brak ewidencji → koszty pojazdu zakwestionowane w PIT/CIT → kolejna dopłata podatku.
+- Hook emocjonalny dla klienta: **"spij spokojnie wiedząc, że dokumentacja wytrzyma kontrolę"**, nie "zaoszczędź 2h w miesiącu".
 
 ---
 
@@ -56,28 +65,33 @@ BusiKM to platforma SaaS, która automatyzuje cały cykl ewidencji przebiegu:
 
 ### Wielkość rynku
 
-| Segment | Szacunek | Źródło |
+Polska 2026: **2,8 mln aktywnych firm** (REGON), 96% to mikrofirmy, 82,4% nowych rejestracji to JDG.
+
+| Segment | Wielkość | Źródło |
 |---|---|---|
-| Pojazdy 2,5–3,5 t w Polsce | ~300 000 | CEPiK, GUS |
-| Firmy posiadające takie pojazdy | ~80 000 | szacunek własny |
-| Segment SMB (5–20 pojazdów) | ~25 000 firm | szacunek własny |
-| TAM (Total Addressable Market) | ~90 mln PLN/rok | przy śr. 30 PLN/pojazd/mies. |
+| **A. JDG mobile (1 auto)** | 400 000 – 600 000 firm | REGON, GUS, szacunek własny |
+| **B. Mikrofirma 2–5 aut** | 150 000 – 250 000 firm | szacunek własny |
+| **C. Biura rachunkowe (kanał)** | 17 181 biur | rejestr Krajowej Izby Doradców Podatkowych |
+| Wzrost organiczny | ~50 000 nowych JDG/rok | GUS rejestracje |
+| TAM (Total Addressable Market) | ~150 mln zł/rok | mix Starter/Professional + kanał BR |
 
 ### Persony użytkowników
 
 | Persona | Opis | Główna potrzeba |
 |---|---|---|
-| **Kierowca** | Pracownik w terenie, korzysta z telefonu | Prosta aplikacja, która działa w tle |
-| **Właściciel / Dyspozytor** | Zarządza flotą 5–20 pojazdów | Podgląd floty, zatwierdzanie tras, kontrola kosztów |
-| **Księgowy** | Wewnętrzny lub zewnętrzny | Gotowe raporty MF, eksport do Insert GT |
-| **Biuro rachunkowe** | Obsługuje wielu klientów transportowych | Multi-tenant, zbiorczy eksport, fakturowanie |
+| **Marek (kierowca pracowniczy)** | 38 lat, handlowiec, Toyota Corolla firmowa, 3 000–4 000 km/mies., Śląsk | "GPS sam zapisuje" — 10 sekund × kilkanaście razy zamiast 60 minut na koniec miesiąca |
+| **Jan (właściciel JDG)** | 38 lat, handlowiec / budowlaniec / serwisant / doradca, jedno auto na leasingu | Kilometrówka która **wytrzyma kontrolę US** |
+| **Ania (księgowa)** | 34 lata, główna księgowa firmy budowlanej, 18 aut, Poznań | Eksport z **właściwymi proporcjami VAT** + twarde liczby dla CFO |
+| **Magda (właścicielka BR)** | 41 lat, biuro rachunkowe, 3 pracownice, 90 klientów, Wrocław | Klient sam zatwierdza trasę → gotowy plik do importu w Comarch → klienci korzystają gratis |
 
 ### Segmenty docelowe
 
-- Polskie firmy transportowe SMB (5–20 pojazdów o DMC 2,5–3,5 t)
-- Firmy kurierskie z własnymi busami
-- Firmy budowlane posiadające flotę vanów
-- Biura rachunkowe obsługujące klientów transportowych
+- **JDG mobile** — handlowcy, doradcy, budowlańcy, serwisanci. 1 auto na leasingu. Biuro rachunkowe 250–400 zł/mies. Hook: ochrona przed kontrolą US.
+- **Mikrofirmy 2–5 aut** — budowlane, sprzątające, kurierskie, agencje handlowe. Mix VAT-26 / 50% VAT / prywatne.
+- **Firmy z księgową wewnętrzną** — 5–50 aut, mix proporcji VAT, potrzebują eksportu do FK.
+- **Biura rachunkowe** — 17 181 firm w Polsce, kluczowy kanał dystrybucji (1 BR = 5–20 klientów = 25 500 pojazdów przy 10% adopcji).
+
+> Szczegółowy plan komunikacji per persona, kalendarz treści i program partnerski BR — patrz [MARKETING_PLAN.md](./MARKETING_PLAN.md).
 
 ---
 
@@ -150,10 +164,11 @@ Szczegóły monetyzacji: [MONETIZATION.md](./MONETIZATION.md). Implementacja tec
 
 **Kluczowe wyróżniki:**
 
-1. **Jedyne rozwiązanie łączące GPS + kilometrówkę MF + eksport FK** w jednej platformie.
-2. **Zaprojektowane dla segmentu 2,5–3,5 t** — konkurenci celują w ciężki transport (powyżej 3,5 t).
-3. **Niski próg wejścia** — plan Free + reverse trial eliminuje barierę zakupu.
-4. **Kanał biur rachunkowych** — skalowalne pozyskiwanie klientów B2B2B.
+1. **Jedyne rozwiązanie łączące GPS + kilometrówkę MF + eksport FK** w jednej platformie, w cenie 19–29 zł/pojazd.
+2. **Zaprojektowane dla JDG i mikrofirm** — konkurenci flotowi celują w segment 50+ pojazdów (50–150 zł/pojazd, kompleksowe wdrożenia).
+3. **Trzy obszary podatkowe ochronione** — art. 86a (VAT), art. 23 ust. 7 (PIT/CIT), art. 21 ust. 1 pkt 23b (zwroty pracownicze) w jednym narzędziu.
+4. **Niski próg wejścia** — plan Free + reverse trial eliminuje barierę zakupu.
+5. **Kanał biur rachunkowych** — model "klienci gratis dopóki BR ma sub" eliminuje tarcie sprzedażowe; 17 181 BR = ogromne pole dystrybucji.
 
 ---
 

@@ -409,7 +409,7 @@ Co dostają firmy klienta BR (status `af_client`): pełny dostęp odpowiadający
 | WEB-09 | Mapa w czasie rzeczywistym | WebSocket + Mapbox, pozycje kierowcow na zywo | Post-MVP |
 | WEB-10 | Dashboard AF | Zagregowany widok dla biur rachunkowych | Post-MVP |
 | WEB-11 | Przelaczanie klientow | Zmiana kontekstu klienta w ramach AF | Post-MVP |
-| WEB-12 | Landing page | Strona informacyjna o nowych przepisach (2.5t-3.5t) | Post-MVP |
+| WEB-12 | Landing page | Strona główna + 4 strony segmentowe (kierowca / właściciel / księgowa / BR) z hookiem ochrony przed kontrolą US | MVP |
 
 ### 5.10 Monitoring
 
@@ -453,7 +453,7 @@ Co dostają firmy klienta BR (status `af_client`): pełny dostęp odpowiadający
 | **Infrastruktura** | Provisioning produkcyjny |
 | **Rejestracja** | Self-serve z auto trial, rejestracja AF z 3-miesiecznym trialem |
 | **Analityka** | Usage tracking |
-| **Marketing** | Landing page (nowe przepisy 2.5t-3.5t) |
+| **Marketing** | Strony segmentowe per persona (Marek/Jan/Ania/Magda), kalkulator ROI dla BR, FAQ z odniesieniami do art. 86a / 23 / 21 |
 
 ### 6.3 Funkcje planowane (Post-Sprint 7)
 
@@ -511,7 +511,7 @@ Co dostają firmy klienta BR (status `af_client`): pełny dostęp odpowiadający
 
 ### 7.3 Plan Professional (29 zł/pojazd/mies., min. 319 zł)
 
-Plan Professional zawiera komplet funkcji niezbędnych dla firm z flotą 2,5–3,5 t. Powyżej 50 pojazdów lub 50 kierowców → kontakt indywidualny (`kontakt@busikm.pl`) — warunki dopasowane do skali.
+Plan Professional zawiera komplet funkcji niezbędnych dla firm z flotą do 50 pojazdów osobowych — JDG, mikrofirmy 2–5 aut oraz firmy z księgową wewnętrzną. Powyżej 50 pojazdów lub 50 kierowców → kontakt indywidualny (`kontakt@busikm.pl`) — warunki dopasowane do skali.
 
 | Obszar | Dostepnosc |
 |--------|-----------|

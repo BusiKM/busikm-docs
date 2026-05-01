@@ -265,10 +265,10 @@ Nie. Klienci Twojego biura (status `af_client`) korzystają z BusiKM **gratis** 
 
 Najprościej: prześlij klientowi link do rejestracji na **busikm.pl** z informacją, że:
 
-- BusiKM automatyzuje kilometrówkę, która od lipca 2026 jest obowiązkowa dla pojazdów 2,5–3,5 t.
-- Kierowca nagrywa trasy telefonem, a system generuje raport zgodny z wzorem MF.
-- Jako biuro rachunkowe możesz bezpośrednio pobierać raporty i eksporty FK, bez wymiany papierów.
-- Nowi użytkownicy otrzymują **14 dni darmowego dostępu** (firmy) lub **3 miesiące** (biura rachunkowe).
+- BusiKM automatyzuje kilometrówkę wymaganą do **100% odliczenia VAT** (art. 86a) i **100% kosztów pojazdu w PIT/CIT** (art. 23 ust. 7).
+- Kierowca nagrywa trasy telefonem, system generuje raport zgodny ze wzorem MF z prawidłowymi proporcjami VAT i stawkami wg Dz.U. 2023 poz. 5.
+- Jako biuro rachunkowe pobierasz raporty i eksporty FK (Insert GT / Comarch / Symfonia) bezpośrednio z panelu — bez wymiany papierów ani wpisywania "coś pod presją klienta".
+- Klient korzysta z BusiKM **gratis** (status `af_client`) dopóki Twoje biuro ma aktywną subskrypcję — bez własnej karty kredytowej, bez limitów czasowych.
 
 ### Czy mogę usunąć klienta z mojej listy?
 

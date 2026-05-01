@@ -173,7 +173,7 @@ BKM-41–52 — CRUD pojazdów i kierowców, upload dokumentów, alerty, zaprosz
 | BKM-109 | Changelog / release notes template |
 | BKM-110 | Usage tracking — metryki per firma |
 | BKM-114 | Trial management — auto-expiry, downgrade, email |
-| BKM-115 | Landing page: "Elektroniczna kilometrówka 2.5t-3.5t" |
+| BKM-115 | Landing page: "Kilometrówka która wytrzyma kontrolę US" + 4 strony segmentowe |
 
 #### Driver Management (1 item)
 

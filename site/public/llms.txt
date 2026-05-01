@@ -1,9 +1,11 @@
 # BusiKM — Elektroniczna kilometrówka
 
 ## O produkcie
-BusiKM to platforma SaaS do automatycznej ewidencji przebiegu pojazdów 2,5–3,5 t DMC.
-Łączy GPS tracking, klasyfikację tras AI i eksport do polskich systemów FK (Insert GT, Comarch, Symfonia, KSeF).
-Zgodna z przepisami Ministerstwa Finansów 2026.
+BusiKM to platforma SaaS do automatycznej ewidencji przebiegu samochodów osobowych w działalności gospodarczej.
+Chroni trzy obszary podatkowe: 100% odliczenia VAT (art. 86a + druk VAT-26), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7), zwrot km dla pracowników bez PIT (art. 21 ust. 1 pkt 23b).
+Łączy GPS tracking, klasyfikację tras AI i eksport do polskich systemów FK (Insert GT EDI++, Comarch ERP Optima, Symfonia FK).
+Stawki przebiegu wg Dz.U. 2023 poz. 5.
+Hook: kilometrówka która wytrzyma kontrolę US (5 lat wstecz).
 
 ## Kluczowe funkcje
 - Automatyczne śledzenie GPS w tle (iOS/Android)
@@ -30,16 +32,18 @@ Zgodna z przepisami Ministerstwa Finansów 2026.
 - Trial dla BR: 3 miesiące pełnego panelu gratis, bez karty.
 
 ## Grupy docelowe
-1. Kierowcy pojazdów dostawczych 2,5–3,5 t
-2. Właściciele flot transportowych (5–50 pojazdów)
-3. Księgowi (eksport do systemów FK)
-4. Biura rachunkowe (panel multi-klient)
+1. Marek — kierowcy pracowniczy (przedstawiciele handlowi, serwisanci) z autem firmowym
+2. Jan — JDG mobile z 1 autem (handlowcy, doradcy, budowlańcy, serwisanci) — 400-600 tys. firm w Polsce
+3. Ania — księgowe firm z mieszanym taborem (VAT-26 / 50% VAT / prywatne ryczałtem)
+4. Magda — właścicielki biur rachunkowych (multi-tenant, klienci gratis dopóki BR ma sub) — 17 181 biur w Polsce
 
 ## Rynek
-- 300 000 pojazdów 2,5–3,5 t w Polsce
-- 80 000 firm transportowych
-- Od lipca 2026: obowiązek ewidencji (kara do 30 000 PLN)
-- TAM: ~90 mln PLN/rok
+- 2,8 mln aktywnych firm w Polsce (REGON), 96% mikro, 82,4% nowych rejestracji = JDG
+- Segment A (JDG mobile, 1 auto): 400 000 – 600 000 firm
+- Segment B (mikrofirmy 2–5 aut): 150 000 – 250 000 firm
+- Segment C (BR jako kanał): 17 181 biur × śr. 15 pojazdów/biuro = potencjał 250 000+ pojazdów
+- Wzrost organiczny: ~50 000 nowych JDG/rok
+- TAM: ~150 mln zł/rok
 
 ## Stack technologiczny
 - Backend: Django 5.x + DRF + Celery + PostgreSQL + MongoDB + Redis

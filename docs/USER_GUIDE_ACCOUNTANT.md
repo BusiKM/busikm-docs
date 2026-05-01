@@ -179,4 +179,10 @@ Zalecamy generowanie **raz w miesiącu** — na koniec miesiąca lub na początk
 
 ### Czy raporty są zgodne z przepisami?
 
-Tak. Kilometrówka generowana przez BusiKM jest zgodna ze wzorem Ministerstwa Finansów, obowiązującym od lipca 2026 roku dla pojazdów o DMC 2,5–3,5 t.
+Tak. Kilometrówka generowana przez BusiKM jest zgodna ze wzorem Ministerstwa Finansów wymaganym do:
+
+- **100% odliczenia VAT** od pojazdu firmowego (art. 86a ustawy o VAT + druk VAT-26),
+- **100% kosztów pojazdu w PIT/CIT** (art. 23 ust. 7 ustawy o PIT),
+- **zwrotu kilometrowego pracownika bez PIT** (art. 21 ust. 1 pkt 23b).
+
+Stawki przebiegu obliczane są wg **Dz.U. 2023 poz. 5** — 0,89 / 1,15 zł/km dla samochodów osobowych (≤ 900 cm³ / > 900 cm³), 0,69 zł/km dla motocykli, 0,42 zł/km dla motorowerów. System dobiera stawkę automatycznie po dacie trasy.
