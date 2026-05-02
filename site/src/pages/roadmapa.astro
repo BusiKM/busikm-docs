@@ -10,15 +10,15 @@ const phases = [
     label: 'Faza 1 — Domknięcie funkcji systemowych',
     period: '1 — 22 maja 2026',
     color: '#005CE8',
-    summary: 'Osiem obszarów funkcjonalnych dopracowywanych przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla biura rachunkowego, księgowej lub kierowcy.',
+    summary: 'Osiem obszarów funkcjonalnych dopracowywanych przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla właściciela floty, dyspozytora, kierowcy i księgowego.',
     sprints: [
-      { id: '5a', range: '1—4 maja', title: 'Model rozliczeń dla biur rachunkowych', desc: 'Hurtowe rozliczanie aktywnych pojazdów wszystkich klientów biura w jednym cyklu, automatyczne miesięczne podsumowanie do faktury.', tickets: 14 },
+      { id: '5a', range: '1—4 maja', title: 'Model rozliczeń per aktywny pojazd', desc: 'Hurtowe rozliczanie aktywnych pojazdów floty w jednym cyklu, automatyczne miesięczne podsumowanie. Obsługa firm transportowych z&nbsp;wieloma oddziałami oraz biur rachunkowych prowadzących wiele firm transportowych jednocześnie.', tickets: 14 },
       { id: '5b', range: '5—6 maja', title: 'Plan indywidualny dla większych flot', desc: 'Wsparcie dla firm, które nie mieszczą się w standardowym zakresie — indywidualne warunki i obsługa per kontrakt.', tickets: 7 },
-      { id: '6a', range: '7—9 maja', title: 'Program pilotażowy', desc: 'System zaproszeń dla pierwszych firm i biur rachunkowych, panel administracyjny do zarządzania pilotami, automatyczne mailingi powitalne.', tickets: 8 },
-      { id: '6b', range: '10 maja', title: 'Dashboard zgodności dokumentów', desc: 'Zagregowany status dokumentów floty (OC, przegląd, tachograf, prawo jazdy) — na poziomie firmy lub całego portfela klientów biura rachunkowego.', tickets: 3 },
+      { id: '6a', range: '7—9 maja', title: 'Program pilotażowy', desc: 'System zaproszeń dla pierwszych firm transportowych, panel administracyjny do zarządzania pilotami, automatyczne mailingi powitalne.', tickets: 8 },
+      { id: '6b', range: '10 maja', title: 'Dashboard zgodności dokumentów', desc: 'Zagregowany status dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy) &mdash; na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe.', tickets: 3 },
       { id: '7a', range: '11—13 maja', title: 'Powiadomienia push', desc: 'Trzy kanały komunikacji: alerty wygasających dokumentów, potwierdzenia zakończonych tras dla właściciela, komunikaty produktowe od zespołu.', tickets: 10 },
       { id: '7b', range: '14—15 maja', title: 'Automatyzacja cyklu próbnego', desc: 'Sekwencja przypomnień przed wygaśnięciem trialu, automatyczne przedłużenie dla kont, które jeszcze nie zarejestrowały żadnej trasy.', tickets: 6 },
-      { id: '8', range: '16—20 maja', title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo dla właścicieli i biur rachunkowych — bez konieczności odświeżania strony.', tickets: 12 },
+      { id: '8', range: '16—20 maja', title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo dla właściciela floty i&nbsp;dyspozytora &mdash; bez konieczności odświeżania strony.', tickets: 12 },
       { id: '9', range: '21—22 maja', title: 'Domknięcie zakresu MVP', desc: 'Walidacje danych firmowych przy tworzeniu klienta, bezpieczne odzyskiwanie usuniętych obiektów, rozszerzony monitoring stanu systemu.', tickets: 7 },
     ],
   },
@@ -27,7 +27,7 @@ const phases = [
     label: 'Faza 2 — Panel webowy',
     period: '23 maja — 21 czerwca 2026',
     color: '#34C759',
-    summary: 'Pełen panel webowy dla księgowych, właścicieli firm i biur rachunkowych — od dashboardu floty po zaawansowane raporty i eksport do systemów księgowych.',
+    summary: 'Pełen panel webowy dla właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy &mdash; od dashboardu floty po zaawansowane raporty i eksport do systemów księgowych.',
     sprints: [
       { id: '10a', range: '23—26 maja', title: 'Fundament panelu webowego', desc: 'Bezpieczna autoryzacja, spójny system designu, pełna responsywność — działa na komputerze, laptopie i tablecie.', tickets: 6 },
       { id: '10b', range: '27—30 maja', title: 'Główne widoki dla właściciela firmy', desc: 'Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur paliwowych z filtrowaniem i sortowaniem, szczegóły każdego obiektu z dokumentami i historią.', tickets: 7 },
@@ -67,7 +67,7 @@ const phases = [
       { id: '18', range: '22—31 lipca', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
       { id: '19', range: '1—10 sierpnia', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
       { id: '20', range: '11—17 sierpnia', title: 'Delegacje pracownicze i KSeF', desc: 'Eksport zwrotów kilometrowych pracowników (art. 21 ust. 1 pkt 23b) do trzech systemów księgowych. Integracja z Krajowym Systemem e-Faktur — faktury paliwowe powiązane z trasami pojazdu.', tickets: 5 },
-      { id: '21', range: '18—22 sierpnia', title: 'Analityka dla biur rachunkowych', desc: 'Zaawansowane raporty kosztów per klient, porównania międzymiesięczne, wykrywanie trendów w wykorzystaniu floty.', tickets: 4 },
+      { id: '21', range: '18—22 sierpnia', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i&nbsp;per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty &mdash; dla właścicieli firm transportowych i&nbsp;biur rachunkowych prowadzących analizę.', tickets: 4 },
       { id: '22', range: '23—24 sierpnia', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
     ],
   },
@@ -94,11 +94,11 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
         Plan rozwoju produktu.<br>
-        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Z myślą o&nbsp;biurach rachunkowych.</span>
+        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Z myślą o&nbsp;firmach transportowych.</span>
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Pięć sprintów za nami, trzydzieści przed nami. MVP LIVE w&nbsp;ostatnim tygodniu lipca 2026, finalizacja produktu pod koniec sierpnia. Każda nowa funkcja BusiKM trafia najpierw do pilotów &mdash; biur rachunkowych, księgowych i&nbsp;właścicieli firm.
+        Pięć sprintów za nami, trzydzieści przed nami. MVP LIVE w&nbsp;ostatnim tygodniu lipca 2026, finalizacja produktu pod koniec sierpnia. Każda nowa funkcja BusiKM trafia najpierw do pilotów &mdash; właścicieli firm transportowych, dyspozytorów, księgowych i&nbsp;biur rachunkowych obsługujących firmy.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -225,7 +225,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       <div class="text-center mb-16">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Co przed nami</p>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">{ totalSprints } sprintów do MVP. Cztery fazy.</h2>
-        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Każda faza ma jasny cel biznesowy i przekłada się na konkretną wartość dla biura rachunkowego, księgowego i właściciela firmy.</p>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Każda faza ma jasny cel biznesowy i przekłada się na konkretną wartość dla właściciela firmy transportowej, dyspozytora, księgowego i kierowcy.</p>
       </div>
 
       <!-- Phases overview — color legend -->
@@ -341,10 +341,10 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       <div class="text-center mb-12 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Rola pilotów</p>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Każda nowa funkcja przechodzi przez biura rachunkowe.
+          Każda nowa funkcja przechodzi przez firmy transportowe.
         </h2>
         <p class="text-lg text-gray-500 leading-relaxed">
-          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z biurami rachunkowymi i firmami pilotażowymi. To one mówią, czy działa zgodnie z praktyką księgową, czy wymaga doprecyzowania &mdash; albo czy nie ma sensu w obecnej formie.
+          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z firmami transportowymi pilotażowymi &mdash; właścicielami flot, dyspozytorami, kierowcami, księgowymi. To oni mówią, czy działa zgodnie z&nbsp;praktyką transportową, czy wymaga doprecyzowania &mdash; albo czy nie ma sensu w&nbsp;obecnej formie.
         </p>
       </div>
 
@@ -383,7 +383,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
         Współtwórz BusiKM od początku.
       </h2>
       <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
-        Zapraszamy ograniczoną liczbę biur rachunkowych i firm do programu pilotażowego &mdash; dożywotni dostęp gratis, w zamian za udział w walidacji nowych funkcji.
+        Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego &mdash; dożywotni dostęp gratis, w&nbsp;zamian za udział w&nbsp;walidacji nowych funkcji.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">

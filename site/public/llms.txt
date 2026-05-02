@@ -1,61 +1,73 @@
-# BusiKM — Elektroniczna kilometrówka
+# BusiKM — Kontrola pracy kierowców i rentowność zleceń
 
 ## O produkcie
-BusiKM to platforma SaaS do automatycznej ewidencji przebiegu samochodów osobowych w działalności gospodarczej.
-Chroni trzy obszary podatkowe: 100% odliczenia VAT (art. 86a + druk VAT-26), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7), zwrot km dla pracowników bez PIT (art. 21 ust. 1 pkt 23b).
-Łączy GPS tracking, klasyfikację tras AI i eksport do polskich systemów FK (Insert GT EDI++, Comarch ERP Optima, Symfonia FK).
-Stawki przebiegu wg Dz.U. 2023 poz. 5.
-Hook: kilometrówka która wytrzyma kontrolę US (5 lat wstecz).
+BusiKM to platforma SaaS dla firm transportowych krajowych i międzynarodowych. Łączy GPS w czasie rzeczywistym, ewidencję czasu pracy kierowcy, monitoring dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy), rozliczanie kosztów zleceń i eksport do polskich systemów księgowych (Insert GT EDI++, Comarch ERP Optima, Symfonia FK).
+
+Wsparcie dla zgodności z prawem podatkowym: 100% odliczenia VAT (art. 86a + druk VAT-26), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7), zwrot km dla pracowników bez PIT (art. 21 ust. 1 pkt 23b). Stawki przebiegu wg Dz.U. 2023 poz. 5.
+
+Hook: pełna kontrola nad pracą kierowców i rentownością zleceń. Gotowość pod nowy obowiązek tachografu G2V2 od 2 lipca 2026 (pakiet mobilności UE).
 
 ## Kluczowe funkcje
-- Automatyczne śledzenie GPS w tle (iOS/Android)
-- Klasyfikacja celu trasy przez AI
-- Raport ewidencji przebiegu zgodny z art. 86a ust. 7 ustawy o VAT (PDF/XLSX)
-- Eksport do Insert GT (format EDI++)
-- Tryb offline z automatyczną synchronizacją
-- Dashboard zarządzania flotą (mapa real-time)
-- Panel multi-klient dla biur rachunkowych
-- Alerty dokumentów (OC, przegląd, tachograf, prawo jazdy)
+- Mapa floty w czasie rzeczywistym (pozycje pojazdów na żywo)
+- GPS background tracking w aplikacji mobilnej (iOS/Android)
+- Ewidencja czasu pracy kierowcy (jazda / pauza / dyspozycyjność, zgodność z AETR i pakietem mobilności)
+- Zatwierdzanie tras przez właściciela (kontrola pracy zespołu)
+- Raporty kosztów floty per zlecenie / per pojazd / per kierowca (CSV, PDF)
+- Alerty dokumentów: OC, AC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy, ADR (90/30/14 dni przed wygaśnięciem)
+- Compliance dashboard — zagregowany status dokumentów floty
+- Tryb offline w aplikacji mobilnej
+- Eksport ewidencji przebiegu do Insert GT (EDI++), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS)
+- Raport PDF zgodny z art. 86a ust. 7 ustawy o VAT
+- Zdjęcia drogomierza i dokumentów wprost z aparatu telefonu
+
+## Cztery role w aplikacji
+1. **Właściciel firmy transportowej** — pełen dashboard floty, mapa real-time, status kierowców, alerty dokumentów, zatwierdzanie tras, raporty kosztów.
+2. **Kierowca** — aplikacja mobilna iOS/Android. Start/stop trasy jednym tapnięciem, GPS w tle, tryb offline, zdjęcia drogomierza.
+3. **Księgowy wewnętrzny firmy** — dostęp tylko do odczytu, raporty PDF, eksport do FK, kontrola integralności danych.
+4. **Biuro rachunkowe obsługujące firmę transportową** — panel multi-tenant z przełączaniem kontekstu między klientami, zbiorczy dashboard, eksport per klient.
+
+## Tachograf G2V2 i pakiet mobilności UE
+Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t używane w transporcie międzynarodowym muszą być wyposażone w tachograf cyfrowy drugiej generacji wersja 2 (G2V2). BusiKM monitoruje terminy legalizacji tachografów i wysyła alerty 90/30/14 dni przed wygaśnięciem. Brak aktualnej legalizacji = kara ITD do 10 000 zł i zatrzymanie pojazdu.
+
+Dodatkowo BusiKM wspiera:
+- Ewidencję czasu pracy kierowcy zgodnie z AETR i pakietem mobilności
+- Monitoring wypisów z licencji transportowej
+- Świadectwa kierowców (ADR, kategorie prawa jazdy, badania psychotechniczne)
 
 ## Status produktu i cennik
-BusiKM jest na etapie pilotażu MVP. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi użytkownikami i realnych danych z używania produktu.
+BusiKM jest na etapie pilotażu MVP. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi firmami transportowymi i realnych danych z używania produktu.
 
 ## Program pilotażowy — dożywotnio gratis
-- Dla firm (JDG, mikrofirmy, firmy z księgową): pełna funkcjonalność produktu (GPS, klasyfikacja AI, raporty PDF wg art. 86a, eksport FK do Insert GT / Comarch / Symfonia, mapa real-time, dashboard zgodności, tryb offline) — dożywotnio gratis.
-- Dla biur rachunkowych: pełen panel multi-tenant + wszystkie firmy klientów biura korzystają z BusiKM również dożywotnio gratis, dopóki biuro pozostaje w pilotażu.
+- Dla firm transportowych krajowych (1–50 pojazdów): pełna funkcjonalność produktu — dożywotnio gratis.
+- Dla firm transportowych międzynarodowych (transport poza Polską, tachograf G2V2, AETR, pakiet mobilności): pełen pakiet zgodności + monitoring tachografów i licencji.
+- Dla biur rachunkowych obsługujących firmy transportowe: panel multi-tenant + obsługa wielu firm jednocześnie.
 - Bez karty kredytowej, bez warunków minimalnych, bez konwersji wymuszonej.
-- W zamian prosimy o udział w krótkiej rozmowie maksymalnie raz w miesiącu (co działa, co nie, ile to dla Ciebie warte).
+- W zamian prosimy o udział w krótkiej rozmowie maksymalnie raz w miesiącu (co działa, co nie, czego brakuje).
 - Po ogłoszeniu cennika piloci pozostają w programie pilotażowym dożywotnio (konwersja na płatny plan jest dobrowolna).
 
 ## Dlaczego pilotaż jest dożywotni
 Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Każda nowa funkcja w BusiKM trafia najpierw do pilotów. To oni mówią co zmienić, co poprawić, co by się przydało — a my na podstawie ich feedbacku decydujemy, co trafi na publiczny rynek.
-- Zależy nam, by produkt jak najlepiej odpowiadał realnym potrzebom rynku, a nie wyobrażeniom zespołu produktowego.
+- Zależy nam, by produkt jak najlepiej odpowiadał realnym potrzebom firm transportowych, a nie wyobrażeniom zespołu produktowego.
 - Piloci są pierwszą linią walidacji każdego release'u — w zamian otrzymują dożywotni dostęp gratis do produktu.
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
-## Grupy docelowe
-1. Marek — kierowcy pracowniczy (przedstawiciele handlowi, serwisanci) z autem firmowym
-2. Jan — JDG mobile z 1 autem (handlowcy, doradcy, budowlańcy, serwisanci) — 400-600 tys. firm w Polsce
-3. Ania — księgowe firm z mieszanym taborem (VAT-26 / 50% VAT / prywatne ryczałtem)
-4. Magda — właścicielki biur rachunkowych (multi-tenant, klienci gratis dopóki BR ma sub) — 17 181 biur w Polsce
+## Stan wdrożenia (1 maja 2026)
+- 5 sprintów ukończonych, 95 ticketów zrealizowanych
+- Sprinty 0-4 DONE: infrastruktura, autoryzacja i role, model firmy + multi-tenant, pojazdy + kierowcy + dokumenty, kilometrówka + eksport FK + dokumenty
+- Sprinty 5a-22 zaplanowane: doskonalenie funkcji, panel webowy, aplikacja mobilna, launch produkcyjny
+- MVP LIVE: 22-31 lipca 2026
+- Po MVP: Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
 
-## Rynek
-- 2,8 mln aktywnych firm w Polsce (REGON), 96% mikro, 82,4% nowych rejestracji = JDG
-- Segment A (JDG mobile, 1 auto): 400 000 – 600 000 firm
-- Segment B (mikrofirmy 2–5 aut): 150 000 – 250 000 firm
-- Segment C (BR jako kanał): 17 181 biur × śr. 15 pojazdów/biuro = potencjał 250 000+ pojazdów
-- Wzrost organiczny: ~50 000 nowych JDG/rok
-- TAM: ~150 mln zł/rok
-
-## Stack technologiczny
-- Backend: Django 5.x + DRF + Celery + PostgreSQL + MongoDB + Redis
-- Mobile: React Native + Expo SDK 52+ (iOS 15+, Android 10+)
-- Web: Next.js 16 + Tailwind + SWR + Recharts + Mapbox
-- API: OpenAPI 3.0 (drf-spectacular) → orval (klient TypeScript)
+## Stack technologiczny (informacja techniczna)
+- Backend: Django + DRF + Celery + PostgreSQL + MongoDB + Redis
+- Mobile: React Native + Expo (iOS 15+, Android 10+)
+- Web: Next.js 16 + Tailwind + SWR
+- API: OpenAPI 3.0
 
 ## Strona
 - URL: https://busikm.pl
 - Dokumentacja: https://busikm.pl/docs
 - Cennik: https://busikm.pl/cennik
 - Funkcje: https://busikm.pl/funkcje
+- Roadmapa: https://busikm.pl/roadmapa
