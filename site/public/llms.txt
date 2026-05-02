@@ -52,12 +52,12 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Piloci są pierwszą linią walidacji każdego release'u — w zamian otrzymują dożywotni dostęp gratis do produktu.
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
-## Stan wdrożenia (1 maja 2026)
-- 5 sprintów ukończonych, 95 ticketów zrealizowanych
-- Sprinty 0-4 DONE: infrastruktura, autoryzacja i role, model firmy + multi-tenant, pojazdy + kierowcy + dokumenty, kilometrówka + eksport FK + dokumenty
-- Sprinty 5a-22 zaplanowane: doskonalenie funkcji, panel webowy, aplikacja mobilna, launch produkcyjny
-- MVP LIVE: 22-31 lipca 2026
-- Po MVP: Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
+## Stan wdrożenia (6 maja 2026)
+- 7 sprintów ukończonych, 116 ticketów zrealizowanych
+- Sprinty 0-5b DONE: infrastruktura, autoryzacja i role, model firmy + multi-tenant, pojazdy + kierowcy + dokumenty, kilometrówka + eksport FK + dokumenty, hurtowe rozliczenia per aktywny pojazd, plan indywidualny dla większych flot (custom_rate_per_vehicle + contract_notes)
+- Sprinty 6a-22 zaplanowane: program pilotażowy, dashboard zgodności, powiadomienia push, mapa floty real-time, panel webowy, aplikacja mobilna, launch produkcyjny
+- MVP LIVE: 29-30 maja 2026
+- Po MVP (31 maja - 6 czerwca 2026): Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
 
 ## Stack technologiczny (informacja techniczna)
 - Backend: Django + DRF + Celery + PostgreSQL + MongoDB + Redis
