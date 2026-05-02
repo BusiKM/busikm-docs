@@ -1,611 +1,593 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-
-const iconDashboard = `<path d="M3 5h8v8H3zM13 5h8v4h-8zM13 13h8v6h-8zM3 17h8v2H3z" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
-const iconMap = `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="12" cy="9" r="2.5" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconVehicle = `<rect x="2" y="8" width="20" height="10" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M6 8V6a2 2 0 012-2h8a2 2 0 012 2v2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="7" cy="18" r="2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="17" cy="18" r="2" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconDrivers = `<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="9" cy="7" r="4" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconReport = `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" fill="none"/>`;
-const iconAlert = `<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconCompliance = `<path d="M9 11l3 3L22 4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconRBAC = `<path d="M12 2a5 5 0 015 5v3H7V7a5 5 0 015-5z" stroke="#34C759" stroke-width="1.8" fill="none"/><rect x="3" y="10" width="18" height="12" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><circle cx="12" cy="16" r="1.5" stroke="#34C759" stroke-width="1.8" fill="none"/>`;
-const iconExport = `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M7 10l5 5 5-5M12 15V3" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
-const iconWebApp = `<rect x="2" y="3" width="20" height="14" rx="2" stroke="#34C759" stroke-width="1.8" fill="none"/><path d="M8 21h8M12 17v4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" fill="none"/>`;
-
-const features = [
-  {
-    icon: iconDashboard,
-    title: 'Dashboard floty',
-    desc: 'Podsumowanie floty w czasie rzeczywistym: łączna liczba pojazdów, aktywni kierowcy, trasy w bieżącym miesiącu i szacunkowe koszty przebiegu.',
-    color: '#34C759',
-  },
-  {
-    icon: iconMap,
-    title: 'Mapa pojazdów na żywo',
-    desc: 'Pozycje kierowców na mapie Mapbox GL z WebSocket. Markery z kierunkiem jazdy, statusy (w ruchu / zatrzymany) i klasteryzacja.',
-    color: '#0A84FF',
-  },
-  {
-    icon: iconVehicle,
-    title: 'Zarządzanie pojazdami',
-    desc: 'Dodawaj i edytuj pojazdy, przypisuj dokumenty: OC, przegląd techniczny, legalizacja tachografu. Wszystko w jednym miejscu.',
-    color: '#FF9F0A',
-  },
-  {
-    icon: iconDrivers,
-    title: 'Zarządzanie kierowcami',
-    desc: 'Zaproszenia e-mail, przypisywanie pojazdów, ewidencja prawa jazdy i kwalifikacji zawodowych. Automatyczne alerty o statusie dokumentów.',
-    color: '#BF5AF2',
-  },
-  {
-    icon: iconReport,
-    title: 'Raporty zgodne z MF',
-    desc: 'Kilometrówka PDF zgodna ze wzorem Ministerstwa Finansów. Raporty kosztów floty i raporty delegacji w formatach PDF i CSV.',
-    color: '#FF375F',
-  },
-  {
-    icon: iconAlert,
-    title: 'Alerty dokumentów',
-    desc: 'Automatyczne powiadomienia 30, 14 i 7 dni przed wygaśnięciem OC, przeglądu, tachografu i prawa jazdy. Nigdy nie przegapisz terminu.',
-    color: '#FF9F0A',
-  },
-];
-
-const moreFeatures = [
-  {
-    icon: iconCompliance,
-    title: 'Compliance dashboard',
-    desc: 'Wskaźniki kompletności tras, brakujące klasyfikacje, kolorowe statusy dokumentów (zielony / żółty / czerwony).',
-    color: '#34C759',
-  },
-  {
-    icon: iconRBAC,
-    title: 'RBAC — 4 role w systemie',
-    desc: 'Kierowca, właściciel, księgowy, biuro rachunkowe. Każda rola widzi dokładnie to, czego potrzebuje — nic więcej.',
-    color: '#0A84FF',
-  },
-  {
-    icon: iconExport,
-    title: 'Eksport Insert GT EDI++',
-    desc: 'Eksport kilometrówek do systemu FK Insert GT w formacie EDI++. Jeden klik — dane gotowe dla księgowego.',
-    color: '#FF375F',
-  },
-  {
-    icon: iconWebApp,
-    title: 'Panel webowy Next.js',
-    desc: 'Nowoczesny dashboard zbudowany na Next.js 16 + Tailwind + SWR + Recharts + Mapbox. Szybki, responsywny i bezpieczny.',
-    color: '#BF5AF2',
-  },
-];
-
-const faqs = [
-  {
-    q: 'Czy kilometrówka chroni mnie tylko w kwestii VAT?',
-    a: 'Nie — BusiKM zabezpiecza trzy obszary: 100% odliczenia VAT (art. 86a), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7) oraz zwroty km dla pracowników na prywatnych autach (art. 21 ust. 1 pkt 23b). Jeden system, trzy tarcze podatkowe.',
-  },
-  {
-    q: 'Czy muszę zgłosić pojazd do urzędu skarbowego?',
-    a: 'Tak — aby odliczać 100% VAT, musisz złożyć druk VAT-26 elektronicznie przez e-Urząd Skarbowy przed pierwszym odliczeniem. BusiKM przypomni Ci o tym przy dodawaniu pojazdu.',
-  },
-  {
-    q: 'Ile pojazdów mogę dodać?',
-    a: 'BusiKM jest na etapie pilotażu MVP — pierwsze firmy biorą udział dożywotnio gratis. Cennik komercyjny ogłosimy po analizie informacji od użytkowników pilotażowych. Limity pojazdów na poszczególnych planach: Free (1), Starter (do 10), Professional (do 50). Powyżej 50 — napisz do nas na kontakt@busikm.pl.',
-  },
-  {
-    q: 'Czy mogę śledzić pojazdy na mapie w czasie rzeczywistym?',
-    a: 'Tak. Dashboard właściciela zawiera interaktywną mapę z pozycjami kierowców aktualizowanymi na żywo. Widzisz kierunek jazdy, status (w ruchu / zatrzymany) i możesz filtrować po pojazdach.',
-  },
-  {
-    q: 'Jakie dokumenty monitoruje system alertów?',
-    a: 'Polisę OC, przegląd techniczny, legalizację tachografu i prawo jazdy kierowcy. Alerty push i e-mail 30, 14 i 7 dni przed wygaśnięciem.',
-  },
-  {
-    q: 'Czy mogę zaprosić księgowego lub biuro rachunkowe?',
-    a: 'Tak. System obsługuje 4 role: kierowca, właściciel, księgowy (read-only) i biuro rachunkowe (multi-klient). Każda rola ma dedykowane uprawnienia.',
-  },
-  {
-    q: 'Mam leasing z limitem km — czy BusiKM pilnuje limit?',
-    a: 'Tak. System monitoruje przebieg i alertuje gdy zbliżasz się do limitu leasingowego — unikasz kar za nadprzebieg.',
-  },
-  {
-    q: 'Moi pracownicy jeżdżą prywatnymi autami służbowo. Mogę im zwracać koszty?',
-    a: 'Tak — zwrot km × stawka jest zwolniony z PIT pracownika (art. 21 ust. 1 pkt 23b), ale wymaga ewidencji przebiegu. BusiKM prowadzi ją automatycznie z GPS.',
-  },
-];
 ---
 
-<MarketingLayout title="Dla właścicieli firm — BusiKM" description="Pełna kontrola nad flotą pojazdów firmowych. Dashboard, mapa na żywo, alerty dokumentów, zarządzanie kierowcami i raporty zgodne z MF.">
+<MarketingLayout
+  title="Dla właścicieli firm transportowych — BusiKM"
+  description="Pełna kontrola nad flotą busów w transporcie międzynarodowym. Mapa floty na żywo, rentowność per zlecenie, koszty z całej UE w jednym miejscu, alerty G2V2 i pakiet mobilności."
+>
 
-  <!-- ============ HERO ============ -->
-  <section class="relative overflow-hidden bg-white">
-    <!-- subtle blue glow -->
-    <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#34C759]/[0.04] blur-[120px] pointer-events-none"></div>
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.04] blur-[120px] pointer-events-none"></div>
 
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 sm:pt-32 sm:pb-28 text-center">
-      <div class="reveal">
-        <!-- pill badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#34C759]/15 bg-[#34C759]/[0.04] mb-6">
-          <svg class="w-4 h-4 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
-          <span class="text-[13px] font-semibold text-[#1D1D1F]/70">Panel webowy + aplikacja mobilna</span>
+  <div class="relative max-w-[1120px] mx-auto px-4 sm:px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
+    <div class="max-w-[760px] reveal">
+      <!-- pill badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#005CE8] animate-pulse"></span>
+        <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Dla właścicieli firm transportowych · Transport międzynarodowy busami</span>
+      </div>
+
+      <!-- headline -->
+      <h1 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+        Wiesz, gdzie jest każdy bus.<br/>
+        I ile naprawdę zarobiłeś na zleceniu.
+      </h1>
+
+      <!-- subtitle -->
+      <p class="text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[620px] mb-10">
+        BusiKM łączy mapę floty na żywo, ewidencję czasu pracy AETR, rentowność każdego zlecenia w EUR i alerty dokumentów w jednym panelu. Faktury z paliwa z DE, opłaty Maut, hotele we Włoszech — wszystko w jednym widoku, bo KSeF tych dokumentów nie obsłuży.
+      </p>
+
+      <!-- CTA -->
+      <div class="flex flex-wrap gap-3 mb-12">
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
+          Dołącz do pilotażu (gratis dożywotnio)
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+          Zobacz funkcje
+        </a>
+      </div>
+
+      <!-- stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+        {[
+          { num: '~90%', label: 'rynku TSL\u00A0w PL\u00A0to transport międzynarodowy' },
+          { num: '2 lip 2026', label: 'obowiązek tachografu G2V2' },
+          { num: '30 000 €', label: 'kara za naruszenie pakietu mobilności' },
+          { num: '6\u20138%', label: 'typowa marża netto\u00A0\u2014\u00A0każde zł błędu boli' },
+        ].map(s => (
+          <div>
+            <div class="font-display text-[clamp(1.4rem,2.6vw,1.75rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-1 leading-snug">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KRZYSZTOF — PERSONA ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal text-center mb-10 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Czy to o Tobie?</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Krzysztof prowadzi 12 busów po Europie.<br/>Codziennie pyta siebie jedno pytanie.
+      </h2>
+    </div>
+
+    <div class="reveal rounded-[24px] p-7 sm:p-10 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="flex items-start gap-5 mb-7">
+        <div class="w-14 h-14 rounded-full bg-[#005CE8]/10 flex items-center justify-center shrink-0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-
-        <!-- headline -->
-        <h1 class="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] max-w-3xl mx-auto mb-5">
-          Pełna kontrola <br class="hidden sm:block"/>nad Twoją flotą
-        </h1>
-
-        <!-- subtitle -->
-        <p class="text-[15px] sm:text-[17px] leading-relaxed text-[#6E6E73] max-w-2xl mx-auto mb-10">
-          Dashboard z mapą pojazdów na żywo, automatyczne alerty o wygasających dokumentach, kilometrówki zgodne z MF i eksport do systemów FK&nbsp;&mdash;&nbsp;wszystko z jednego panelu.
-        </p>
-
-        <!-- CTA buttons -->
-        <div class="flex flex-wrap justify-center gap-3.5 mb-16">
-          <a href="/cennik" class="px-7 py-3.5 rounded-full bg-[#34C759] text-white text-[15px] font-semibold hover:bg-[#2DA44E] transition-colors duration-200">
-            Wypróbuj za darmo
-          </a>
-          <a href="/funkcje" class="px-7 py-3.5 rounded-full bg-[#F5F5F7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#E8E8ED] transition-colors duration-200">
-            Poznaj funkcje
-          </a>
-        </div>
-
-        <!-- stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl mx-auto">
-          <div>
-            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">100%</div>
-            <div class="text-[13px] text-[#6E6E73] mt-1">kontroli floty</div>
-          </div>
-          <div>
-            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">4 poziomy</div>
-            <div class="text-[13px] text-[#6E6E73] mt-1">alertów dokumentów</div>
-          </div>
-          <div>
-            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">1 klik</div>
-            <div class="text-[13px] text-[#6E6E73] mt-1">generowanie raportów</div>
-          </div>
-          <div>
-            <div class="text-[clamp(1.6rem,3vw,2rem)] font-bold tracking-[-0.03em] text-[#1D1D1F]">100%</div>
-            <div class="text-[13px] text-[#6E6E73] mt-1">compliance MF</div>
-          </div>
+        <div>
+          <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-1">Krzysztof, 47 lat. Właściciel firmy transportowej.</h3>
+          <p class="text-[13px] text-[#86868B]">12 busów 2,5–3,5 t · trasy DE / FR / IT / NL / BE · 8 kierowców · obroty ~3 mln zł rocznie.</p>
         </div>
       </div>
 
-      <!-- Live fleet — desktop: map, mobile: vehicle list -->
-      <div class="reveal mt-12 max-w-[900px] mx-auto">
-        <!-- MOBILE: vehicle status cards -->
-        <div class="sm:hidden rounded-[20px] bg-white border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] p-5">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#34C759] animate-pulse"></span>
-            <span class="text-[13px] font-semibold text-[#1D1D1F]">5 pojazdów w trasie</span>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-7">
+        <div>
+          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-3">Co go boli każdego dnia</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Bus 3 wraca z Mediolanu. Faktura za paliwo z włoskiej Eni przyjdzie w 2 tygodnie. Czy zlecenie wyszło na plus? Nie wie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Kierowca dzwoni z Belgii. Awaria. Krzysztof nie ma jak sprawdzić jak daleko jest najbliższy serwis bez dzwonienia z powrotem do biura.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>12 pojazdów × 6 dokumentów (OC, przegląd, tachograf, licencja, ADR, świadectwo kierowcy) = 72 daty na kalendarzu. Excel.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>2 lipca 2026 wchodzi obowiązek tachografu G2V2. 5 jego pojazdów wymaga wymiany. Ile kosztuje? Kiedy zacząć? Brak planu.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>BAG zatrzymał kierowcę pod Hannoverem za naruszenie 4,5h jazdy. 1 800 EUR mandatu. Krzysztof o niczym nie wiedział.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>KSeF go nie ratuje — niemieckie, włoskie i francuskie faktury kosztowe nigdy do KSeF nie trafią. Excel zostaje.</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-3">Czego naprawdę potrzebuje</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Mapa wszystkich busów</strong> aktualizowana na żywo. Wie gdzie jest każdy, czyje jest zlecenie i ile ETA do mety.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Rentowność per zlecenie — na żywo</strong>. Przychód minus paliwo (z PL+UE), opłaty drogowe (Maut, Telepass, Viatoll), hotele, diety, amortyzacja.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Jedno miejsce na koszty z całej Europy.</strong> Faktura z DE, paragon z FR, opłata IT — OCR, przeliczenie EUR→PLN po kursie NBP, przypisanie do zlecenia.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Compliance dashboard</strong>: czas pracy AETR, powrót do bazy co 4 tygodnie, rotacja co 8 tygodni, kabotaż 3/7.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Alerty G2V2 i licencji</strong> 90/30/14/7 dni przed terminem. Z planem wymiany na timeline.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Gotowy eksport dla księgowej</strong>. Ona przerabia dane, biuro rachunkowe robi tylko JPK i CIT.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-[#005CE8]/[0.04] border border-[#005CE8]/10">
+        <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
+          <strong>„Nie potrzebuję kolejnego systemu. Potrzebuję jednego ekranu.</strong> Gdzie są wszystkie busy, ile zarobiłem na zleceniu BKM-2841, kto ma za 30 dni przegląd i czy mój kierowca w Niemczech nie przekroczy zaraz 4,5h jazdy. Reszta — to tylko szum."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD MOCKUP — RENTOWNOŚĆ ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Pierwszy ekran po zalogowaniu</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Każde aktywne zlecenie. Z rentownością na żywo.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4">
+        Przychód i koszty aktualizują się od razu po dodaniu paragonu z aplikacji kierowcy. Nie musisz czekać do końca miesiąca, żeby sprawdzić, ile wyniosła marża.
+      </p>
+    </div>
+
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <!-- Browser chrome -->
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+        <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
+        <div class="ml-4 flex-1 max-w-[320px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B] font-mono">app.busikm.pl/zlecenia/aktywne</div>
+        <div class="hidden sm:flex items-center gap-1.5 ml-auto">
+          <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+          <span class="text-[11px] text-[#34C759] font-semibold">odświeżane na żywo</span>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="p-5 sm:p-7">
+        <!-- Top stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+          {[
+            { label: 'Aktywne zlecenia', value: '7', sub: '4 PL → UE · 3 powrotne', color: '#005CE8' },
+            { label: 'Przychód miesiąca', value: '186 420 zł', sub: '+12% vs poprzedni mies.', color: '#34C759' },
+            { label: 'Koszty z UE (do księgowej)', value: '47 doku\u00ADmentów', sub: 'OCR · 6 walut · gotowe', color: '#FF9500' },
+            { label: 'Marża netto', value: '7,8%', sub: 'cel: 8% · pilnujemy', color: '#8B5CF6' },
+          ].map(s => (
+            <div class="bg-white rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              <p class="text-[10.5px] text-[#86868B] mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
+              <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] leading-tight">{s.value}</p>
+              <p class="text-[11px] mt-1 leading-tight" style={`color: ${s.color};`}>{s.sub}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Order rows -->
+        <div class="bg-white rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div class="px-4 py-3 bg-[#FAFAFA] border-b border-black/[0.04] flex items-center justify-between">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Aktywne zlecenia · rentowność na żywo</span>
+            <span class="text-[11px] text-[#86868B]">stan na 14:23</span>
           </div>
-          <div class="space-y-3">
+          <div class="divide-y divide-black/[0.04]">
             {[
-              { plate: 'WA 12345', model: 'Sprinter', status: 'W trasie', detail: 'Warszawa → Kraków · 82 km/h', driver: 'Jan Kowalski', color: '#005CE8' },
-              { plate: 'GD 54321', model: 'Crafter', status: 'W trasie', detail: 'Warszawa → Gdańsk · 95 km/h', driver: 'Piotr Nowak', color: '#34C759' },
-              { plate: 'KR 98765', model: 'Ducato', status: 'W trasie', detail: 'Łódź → Wrocław · 67 km/h', driver: 'Adam Wiśniewski', color: '#FF9500' },
-              { plate: 'PO 11223', model: 'Transit', status: 'W trasie', detail: 'Wrocław → Poznań · 88 km/h', driver: 'Marek Zieliński', color: '#8B5CF6' },
-              { plate: 'GD 44556', model: 'Boxer', status: 'W trasie', detail: 'Gdańsk → Łódź · 72 km/h', driver: 'Tomek Lewandowski', color: '#FF3B30' },
-            ].map(v => (
-              <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F5F5F7]">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={`background:${v.color}12`}>
-                  <div class="w-3 h-3 rounded-full" style={`background:${v.color}`}></div>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center gap-2">
-                    <span class="text-[13px] font-bold text-[#1D1D1F]">{v.plate}</span>
-                    <span class="text-[11px] text-[#86868B]">{v.model}</span>
+              {
+                id: 'BKM-2841',
+                vehicle: 'Sprinter DK 12345',
+                driver: 'Jan Kowalski',
+                route: 'Warszawa → Berlin',
+                progress: 62,
+                revenue: '1 850 €',
+                costs: '1 140 €',
+                margin: '+38,4%',
+                marginColor: '#34C759',
+                status: 'W ruchu · 412/670 km',
+                statusColor: '#005CE8',
+              },
+              {
+                id: 'BKM-2842',
+                vehicle: 'Crafter KR 67890',
+                driver: 'Marek Nowak',
+                route: 'Kraków → Mediolan',
+                progress: 28,
+                revenue: '2 350 €',
+                costs: '1 290 €',
+                margin: '+45,1%',
+                marginColor: '#34C759',
+                status: 'W ruchu · 308/1100 km',
+                statusColor: '#34C759',
+              },
+              {
+                id: 'BKM-2843',
+                vehicle: 'Daily WA 11223',
+                driver: 'Piotr Wiśniewski',
+                route: 'Wrocław → Paryż',
+                progress: 45,
+                revenue: '1 980 €',
+                costs: '1 540 €',
+                margin: '+22,2%',
+                marginColor: '#FF9500',
+                status: 'Postój 45/45 min',
+                statusColor: '#FF9500',
+              },
+              {
+                id: 'BKM-2844',
+                vehicle: 'Transit GD 33445',
+                driver: 'Adam Lewandowski',
+                route: 'Gdańsk → Amsterdam',
+                progress: 88,
+                revenue: '1 720 €',
+                costs: '1 850 €',
+                margin: '−7,5%',
+                marginColor: '#FF3B30',
+                status: 'Awaria · serwis Apeldoorn',
+                statusColor: '#FF3B30',
+              },
+            ].map(o => (
+              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] transition-colors">
+                <div class="col-span-12 sm:col-span-3">
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <span class="text-[10px] font-mono text-[#86868B]">{o.id}</span>
                   </div>
-                  <div class="text-[12px] font-medium truncate" style={`color:${v.color}`}>{v.detail}</div>
-                  <div class="text-[11px] text-[#86868B]">{v.driver}</div>
+                  <p class="text-[12.5px] font-semibold text-[#1D1D1F] tracking-[-0.005em] leading-tight">{o.vehicle}</p>
+                  <p class="text-[11px] text-[#86868B] leading-tight">{o.driver}</p>
                 </div>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M6 4l4 4-4 4" stroke="#86868B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="col-span-12 sm:col-span-4">
+                  <p class="text-[12px] text-[#1D1D1F] mb-1.5 font-medium">{o.route}</p>
+                  <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden">
+                    <div class="h-full rounded-full" style={`width:${o.progress}%; background: ${o.statusColor}`}></div>
+                  </div>
+                  <p class="text-[10.5px] mt-1" style={`color: ${o.statusColor}`}>{o.status}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-2">
+                  <p class="text-[10px] text-[#86868B] uppercase tracking-[0.04em]">Przychód</p>
+                  <p class="text-[12.5px] font-mono font-semibold text-[#1D1D1F]">{o.revenue}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-2">
+                  <p class="text-[10px] text-[#86868B] uppercase tracking-[0.04em]">Koszty UE</p>
+                  <p class="text-[12.5px] font-mono font-semibold text-[#6E6E73]">{o.costs}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-1 text-right">
+                  <p class="text-[10px] text-[#86868B] uppercase tracking-[0.04em]">Marża</p>
+                  <p class="text-[13px] font-mono font-bold" style={`color: ${o.marginColor}`}>{o.margin}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <!-- DESKTOP: animated Poland map -->
-        <div class="hidden sm:block rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
-          <!-- Browser chrome -->
-          <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
-            <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
-            <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
-            <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-            <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">app.busikm.pl/dashboard/mapa</div>
-            <div class="flex items-center gap-1.5 ml-auto">
-              <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
-              <span class="text-[11px] text-[#34C759] font-semibold">5 pojazdów w trasie</span>
-            </div>
+        <p class="text-[11px] text-[#86868B] mt-4 italic">
+          Ujemna marża zlecenia BKM-2844: awaria w Apeldoorn doliczyła 320 € do kosztów. Krzysztof wie o tym w chwili dodania faktury serwisowej, nie po zamknięciu miesiąca.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 FILARÓW WARTOŚCI ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-14 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Co dostaje właściciel</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Sześć rzeczy które zmieniają sposób, w jaki zarządzasz flotą.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        {
+          title: 'Mapa floty na żywo',
+          desc: 'Mapbox + WebSocket. Każdy bus aktualizuje pozycję co kilkanaście sekund. Klikasz markera — widzisz: zlecenie, kierowca, ETA, czas pracy AETR, najbliższa stacja paliw.',
+          tech: 'Mapbox GL · GPS w tle · Daphne ASGI',
+          icon: `<path d="M9 4l-7 3v13l7-3 6 3 7-3V4l-7 3-6-3z" stroke-width="1.6"/><path d="M9 4v13M15 7v13" stroke-width="1.6"/>`,
+          color: '#005CE8',
+        },
+        {
+          title: 'Rentowność per zlecenie — na żywo',
+          desc: 'Każde aktywne zlecenie ma w karcie: przychód (z umowy), koszty paliwa (PL+UE), opłaty drogowe (Maut, Telepass, Viatoll, ASFINAG), hotele, diety zagraniczne, amortyzację. Marża aktualizuje się od razu po dodaniu paragonu.',
+          tech: 'Kalkulacja per zlecenie · NBP tabela A · 6 walut',
+          icon: `<path d="M3 3v18h18" stroke-width="1.6"/><path d="M7 14l4-4 4 4 5-5" stroke-width="1.6"/>`,
+          color: '#34C759',
+        },
+        {
+          title: 'Faktury z UE → jedno miejsce',
+          desc: 'KSeF nie obsługuje zagranicznych faktur kosztowych — ale Twoje 60% kosztów to właśnie one. BusiKM przyjmuje paragon ze zdjęcia, OCR czyta DE/IT/FR/ES/EN, przelicza walutę po kursie NBP z dnia poprzedzającego, przypisuje do zlecenia i pojazdu.',
+          tech: 'OCR multi-język · NBP tabela A · auto-przypisanie',
+          icon: `<rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.6"/><path d="M7 8h10M7 12h10M7 16h6" stroke-width="1.6"/>`,
+          color: '#FF9500',
+        },
+        {
+          title: 'Compliance pakietu mobilności',
+          desc: 'Czas pracy AETR (4,5h jazdy + 45 min przerwy, 9h/11h dziennego odpoczynku, 45h tygodniowego), powrót do bazy co 4 tygodnie, rotacja co 8 tygodni, kabotaż 3 operacje w 7 dni. Alerty zanim kierowcę zatrzyma BAG, ITD, Gendarmerie czy Polizia Stradale.',
+          tech: 'AETR · Pakiet Mobilności UE · ITD/BAG-ready',
+          icon: `<circle cx="12" cy="12" r="9" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke-width="1.6"/>`,
+          color: '#8B5CF6',
+        },
+        {
+          title: 'Tachograf G2V2 i dokumenty',
+          desc: 'Od 2 lipca 2026 obowiązek wymiany na G2V2 dla pojazdów >2,5 t w transporcie międzynarodowym. BusiKM pokazuje które pojazdy wymagają wymiany, kiedy, i alertuje 90/30/14/7 dni przed wszystkimi terminami: OC, AC, przegląd, legalizacja tachografu, licencja transportowa, ADR, świadectwa kierowców.',
+          tech: 'Alerty 90/30/14/7 dni · push + e-mail',
+          icon: `<path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke-width="1.6"/><polyline points="22 4 12 14.01 9 11.01" stroke-width="1.6"/>`,
+          color: '#FF3B30',
+        },
+        {
+          title: 'Eksport dla księgowej i biura',
+          desc: 'Twoja księgowa dostaje gotowe rejestry VAT, koszty per zlecenie, paczkę VAT-REF na zwrot z DE/FR/IT, ewidencję przebiegu. Biuro rachunkowe importuje gotowe dane do Insert GT (EDI++ .epp), Comarch ERP Optima (XML) lub Symfonia FK (TXT/AMS).',
+          tech: 'EDI++ · XML · TXT/AMS · CSV',
+          icon: `<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke-width="1.6"/><polyline points="7 10 12 15 17 10" stroke-width="1.6"/><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.6"/>`,
+          color: '#0A84FF',
+        },
+      ].map(f => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
           </div>
-
-          <!-- Map SVG — Poland with realistic geography -->
-          <svg viewBox="0 0 900 420" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="block">
-            <defs>
-              <filter id="tBlur"><feGaussianBlur stdDeviation="20"/></filter>
-            </defs>
-
-            <!-- Background — land color across entire map -->
-            <rect width="900" height="420" fill="#E8ECE5"/>
-
-            <!-- Terrain — subtle green patches -->
-            <ellipse cx="350" cy="250" rx="100" ry="60" fill="#D5E8D0" opacity="0.25" filter="url(#tBlur)"/>
-            <ellipse cx="600" cy="200" rx="80" ry="50" fill="#D5E8D0" opacity="0.2" filter="url(#tBlur)"/>
-            <ellipse cx="500" cy="360" rx="80" ry="30" fill="#C8D5C0" opacity="0.3" filter="url(#tBlur)"/>
-
-            <!-- Wisła river — Kraków→Warszawa→Gdańsk -->
-            <path d="M 516 335 C 540 320 570 305 590 280 C 605 255 608 230 606 210 C 604 200 605 193 606 188 C 590 178 550 168 505 163 C 460 150 420 140 404 135 C 408 100 408 70 408 44" stroke="#A8C8E0" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.5"/>
-            <path d="M 516 335 C 540 320 570 305 590 280 C 605 255 608 230 606 210 C 604 200 605 193 606 188 C 590 178 550 168 505 163 C 460 150 420 140 404 135 C 408 100 408 70 408 44" stroke="#C8DDF0" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.15"/>
-
-            <!-- Odra river -->
-            <path d="M 202 315 C 210 300 230 280 260 264 C 250 240 240 210 235 190 C 225 160 200 130 170 110" stroke="#A8C8E0" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
-
-            <!-- Highways — dashed, connecting cities -->
-            <path d="M 606 188 L 477 220" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
-            <path d="M 606 188 C 570 250 540 300 516 335" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
-            <path d="M 606 188 C 540 150 470 100 408 44" stroke="#CDCDCD" stroke-width="1.5" fill="none" stroke-dasharray="5 3" opacity="0.6"/>
-            <path d="M 477 220 C 400 240 340 260 272 264" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
-            <path d="M 272 264 C 268 230 265 200 263 175" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
-            <path d="M 408 44 C 440 120 460 170 477 220" stroke="#CDCDCD" stroke-width="1.2" fill="none" stroke-dasharray="4 3" opacity="0.5"/>
-
-            <!-- Cities at real positions -->
-            <!-- Warszawa (606, 188) — main hub, largest marker -->
-            <circle cx="606" cy="188" r="16" fill="#005CE8" opacity="0.06"><animate attributeName="r" values="16;24;16" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="606" cy="188" r="8" fill="white" stroke="#005CE8" stroke-width="2.5"/><circle cx="606" cy="188" r="3.5" fill="#005CE8"/>
-            <rect x="573" y="200" width="66" height="17" rx="5" fill="#005CE8"/><text x="606" y="212" text-anchor="middle" fill="white" font-size="8.5" font-family="system-ui" font-weight="600">Warszawa</text>
-
-            <!-- Kraków (516, 335) -->
-            <circle cx="516" cy="335" r="6" fill="white" stroke="#34C759" stroke-width="2"/><circle cx="516" cy="335" r="2.5" fill="#34C759"/>
-            <text x="516" y="352" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Kraków</text>
-
-            <!-- Łódź (477, 220) -->
-            <circle cx="477" cy="220" r="6" fill="white" stroke="#FF9500" stroke-width="2"/><circle cx="477" cy="220" r="2.5" fill="#FF9500"/>
-            <text x="477" y="237" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Łódź</text>
-
-            <!-- Wrocław (272, 264) -->
-            <circle cx="272" cy="264" r="6" fill="white" stroke="#8B5CF6" stroke-width="2"/><circle cx="272" cy="264" r="2.5" fill="#8B5CF6"/>
-            <text x="272" y="281" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Wrocław</text>
-
-            <!-- Gdańsk (408, 44) -->
-            <circle cx="408" cy="44" r="6" fill="white" stroke="#FF3B30" stroke-width="2"/><circle cx="408" cy="44" r="2.5" fill="#FF3B30"/>
-            <text x="408" y="37" text-anchor="middle" fill="#6E6E73" font-size="8.5" font-family="system-ui" font-weight="500">Gdańsk</text>
-
-            <!-- Poznań (263, 175) -->
-            <circle cx="263" cy="175" r="5" fill="white" stroke="#86868B" stroke-width="1.5"/><circle cx="263" cy="175" r="2" fill="#86868B"/>
-            <text x="263" y="168" text-anchor="middle" fill="#AEAEB2" font-size="8" font-family="system-ui">Poznań</text>
-
-            <!-- Katowice (439, 321) — small marker -->
-            <circle cx="439" cy="321" r="4" fill="white" stroke="#86868B" stroke-width="1.2"/><circle cx="439" cy="321" r="1.5" fill="#86868B"/>
-            <text x="439" y="337" text-anchor="middle" fill="#AEAEB2" font-size="7.5" font-family="system-ui">Katowice</text>
-
-            <!-- Bydgoszcz (353, 127) — small marker -->
-            <circle cx="353" cy="127" r="4" fill="white" stroke="#86868B" stroke-width="1.2"/><circle cx="353" cy="127" r="1.5" fill="#86868B"/>
-            <text x="353" y="120" text-anchor="middle" fill="#AEAEB2" font-size="7.5" font-family="system-ui">Bydgoszcz</text>
-
-            <!-- Routes — curves following real highways between correct city positions -->
-            <!-- R1: Warszawa(606,188)→Kraków(516,335) via E77/S7 through Radom -->
-            <path id="oR1" d="M 606 188 C 600 210 585 245 570 270 C 555 295 540 315 530 328 C 525 332 520 334 516 335" stroke="#005CE8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" fill="freeze"/></path>
-            <path d="M 606 188 C 600 210 585 245 570 270 C 555 295 540 315 530 328 C 525 332 520 334 516 335" stroke="#005CE8" stroke-width="10" fill="none" opacity="0.04" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" fill="freeze"/></path>
-
-            <!-- R2: Warszawa(606,188)→Gdańsk(408,44) via A1/S7 through Toruń -->
-            <path id="oR2" d="M 606 188 C 580 170 540 145 500 120 C 470 100 440 75 420 55 C 414 48 410 45 408 44" stroke="#34C759" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="350" stroke-dashoffset="350"><animate attributeName="stroke-dashoffset" from="350" to="0" dur="1.8s" begin="0.3s" fill="freeze"/></path>
-
-            <!-- R3: Łódź(477,220)→Wrocław(272,264) via A8/S8 -->
-            <path id="oR3" d="M 477 220 C 445 230 410 240 380 248 C 350 256 320 260 290 263 C 280 264 275 264 272 264" stroke="#FF9500" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="250" stroke-dashoffset="250"><animate attributeName="stroke-dashoffset" from="250" to="0" dur="1.5s" begin="0.5s" fill="freeze"/></path>
-
-            <!-- R4: Wrocław(272,264)→Poznań(263,175) via S5 north -->
-            <path id="oR4" d="M 272 264 C 270 245 268 225 266 210 C 265 200 264 190 263 180 C 263 178 263 176 263 175" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="120"><animate attributeName="stroke-dashoffset" from="120" to="0" dur="1.2s" begin="0.7s" fill="freeze"/></path>
-
-            <!-- R5: Gdańsk(408,44)→Łódź(477,220) via A1 through Toruń/Kutno -->
-            <path id="oR5" d="M 408 44 C 415 70 425 100 435 130 C 445 155 455 180 465 200 C 470 208 474 215 477 220" stroke="#FF3B30" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="280" stroke-dashoffset="280"><animate attributeName="stroke-dashoffset" from="280" to="0" dur="1.6s" begin="0.4s" fill="freeze"/></path>
-
-            <!-- 5 moving vehicle dots with glow -->
-            <g><circle r="5.5" fill="#005CE8"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#oR1"/></animateMotion></circle><circle r="14" fill="#005CE8" opacity="0.08"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#oR1"/></animateMotion></circle></g>
-
-            <g><circle r="5" fill="#34C759"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#oR2"/></animateMotion></circle><circle r="13" fill="#34C759" opacity="0.08"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#oR2"/></animateMotion></circle></g>
-
-            <g><circle r="4.5" fill="#FF9500"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#oR3"/></animateMotion></circle><circle r="12" fill="#FF9500" opacity="0.08"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#oR3"/></animateMotion></circle></g>
-
-            <g><circle r="4.5" fill="#8B5CF6"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#oR4"/></animateMotion></circle><circle r="11" fill="#8B5CF6" opacity="0.08"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#oR4"/></animateMotion></circle></g>
-
-            <g><circle r="4.5" fill="#FF3B30"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#oR5"/></animateMotion></circle><circle r="12" fill="#FF3B30" opacity="0.08"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#oR5"/></animateMotion></circle></g>
-
-            <!-- Info cards — positioned near mid-route for each vehicle -->
-            <!-- 1: Warszawa→Kraków — card near Radom area -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze"/>
-              <rect x="620" y="250" width="165" height="50" rx="10" fill="white" filter="drop-shadow(0 3px 12px rgba(0,0,0,0.12))"/>
-              <text x="633" y="266" fill="#1D1D1F" font-size="10.5" font-family="system-ui" font-weight="700">WA 12345 · Sprinter</text>
-              <text x="633" y="280" fill="#005CE8" font-size="9" font-family="system-ui" font-weight="600">→ Kraków · 82 km/h</text>
-              <text x="633" y="292" fill="#86868B" font-size="8" font-family="system-ui">J. Kowalski</text>
-            </g>
-
-            <!-- 2: Warszawa→Gdańsk — card near Toruń area -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2s" fill="freeze"/>
-              <rect x="505" y="95" width="150" height="50" rx="10" fill="white" filter="drop-shadow(0 3px 10px rgba(0,0,0,0.10))"/>
-              <text x="518" y="111" fill="#34C759" font-size="10.5" font-family="system-ui" font-weight="700">GD 54321 · Crafter</text>
-              <text x="518" y="125" fill="#86868B" font-size="9" font-family="system-ui">→ Gdańsk · 95 km/h</text>
-              <text x="518" y="137" fill="#86868B" font-size="8" font-family="system-ui">P. Nowak</text>
-            </g>
-
-            <!-- 3: Łódź→Wrocław — card near Sieradz area -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.3s" fill="freeze"/>
-              <rect x="310" y="275" width="145" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
-              <text x="323" y="291" fill="#FF9500" font-size="10.5" font-family="system-ui" font-weight="700">KR 98765 · Ducato</text>
-              <text x="323" y="305" fill="#86868B" font-size="8.5" font-family="system-ui">→ Wrocław · 67 km/h</text>
-              <text x="323" y="317" fill="#86868B" font-size="8" font-family="system-ui">A. Wiśniewski</text>
-            </g>
-
-            <!-- 4: Wrocław→Poznań — card left of route -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.6s" fill="freeze"/>
-              <rect x="120" y="200" width="140" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
-              <text x="133" y="216" fill="#8B5CF6" font-size="10.5" font-family="system-ui" font-weight="700">PO 11223 · Transit</text>
-              <text x="133" y="230" fill="#86868B" font-size="8.5" font-family="system-ui">→ Poznań · 88 km/h</text>
-              <text x="133" y="242" fill="#86868B" font-size="8" font-family="system-ui">M. Zieliński</text>
-            </g>
-
-            <!-- 5: Gdańsk→Łódź — card near Kutno area -->
-            <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.9s" fill="freeze"/>
-              <rect x="380" y="150" width="140" height="50" rx="10" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
-              <text x="393" y="166" fill="#FF3B30" font-size="10.5" font-family="system-ui" font-weight="700">GD 44556 · Boxer</text>
-              <text x="393" y="180" fill="#86868B" font-size="8.5" font-family="system-ui">→ Łódź · 72 km/h</text>
-              <text x="393" y="192" fill="#86868B" font-size="8" font-family="system-ui">T. Lewandowski</text>
-            </g>
-          </svg>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[13.5px] leading-relaxed text-[#6E6E73] mb-3">{f.desc}</p>
+          <p class="text-[11px] font-mono text-[#86868B]">{f.tech}</p>
         </div>
-      </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ FEATURE CARDS ============ -->
-  <section class="bg-[#F5F5F7] py-20 sm:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Funkcje dla właścicieli</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Wszystko w jednym panelu</h2>
-        <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4 max-w-xl mx-auto">Zarządzaj flotą, kierowcami i dokumentami bez wychodzenia z biura.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
-        {features.map((f) => (
-          <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
-            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center mb-5" style={`background: ${f.color}12`}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={f.icon} />
-            </div>
-            <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-2">{f.title}</h3>
-            <p class="text-[14px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MORE FEATURES ============ -->
-  <section class="bg-white py-20 sm:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Jeszcze więcej możliwości</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Zaawansowane narzędzia</h2>
-        <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4 max-w-xl mx-auto">Compliance, eksport FK, role dostępu i nowoczesny panel webowy.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-stagger">
-        {moreFeatures.map((f) => (
-          <div class="bg-[#F5F5F7] rounded-[20px] p-7 border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
-            <div class="flex items-start gap-5">
-              <div class="w-11 h-11 rounded-[14px] flex items-center justify-center shrink-0" style={`background: ${f.color}12`}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={f.icon} />
-              </div>
-              <div>
-                <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-2">{f.title}</h3>
-                <p class="text-[14px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- checklist -->
-      <div class="mt-14 max-w-xl mx-auto reveal">
-        <h3 class="text-[16px] font-semibold text-[#1D1D1F] mb-5 text-center">Co monitoruje system alertów?</h3>
-        <ul class="space-y-3">
-          {[
-            'Polisa OC pojazdu',
-            'Przegląd techniczny',
-            'Legalizacja tachografu',
-            'Prawo jazdy kierowcy',
-          ].map((item) => (
-            <li class="flex items-center gap-3 text-[14.5px] text-[#1D1D1F]">
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-                <path d="M2 8l4 4 8-8" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              {item} &mdash; <span class="text-[#6E6E73]">alerty na 30, 14, 7 dni i po terminie</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CZY TO O TOBIE? ============ -->
-  <section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
-    <div class="max-w-[1120px] mx-auto">
-      <div class="reveal text-center max-w-[680px] mx-auto mb-14">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Czy to o Tobie?</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-          Kontrola US może sięgnąć 5&nbsp;lat&nbsp;wstecz.
+<!-- ============ TACHOGRAF G2V2 — DEEP DIVE ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-5">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF3B30] mb-4">Termin krytyczny</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.12] mb-5">
+          Tachograf G2V2.<br/>2 lipca 2026.<br/>Bez planu — stoisz.
         </h2>
+        <p class="text-[14.5px] leading-relaxed text-[#6E6E73] mb-5">
+          Od 2 lipca 2026 wszystkie pojazdy o DMC powyżej 2,5 t w transporcie międzynarodowym muszą mieć tachograf cyfrowy drugiej generacji wersja 2. Bez tego: kara ITD do 10 000 zł, zatrzymanie pojazdu na granicy i straty ze stojącego zlecenia.
+        </p>
+        <p class="text-[14.5px] leading-relaxed text-[#6E6E73]">
+          BusiKM pokazuje które pojazdy w Twojej flocie muszą zostać wymienione, jakie są terminy ostatecznych wymian (na podstawie daty pierwszej rejestracji) i kiedy zacząć rezerwować wizyty w serwisach.
+        </p>
       </div>
 
-      <!-- Portret Jana -->
-      <div class="reveal rounded-[20px] p-7 sm:p-9 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] max-w-[800px] mx-auto mb-10">
-        <div class="flex items-start gap-5 mb-6">
-          <div class="w-14 h-14 rounded-full bg-[#005CE8]/10 flex items-center justify-center shrink-0">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div class="lg:col-span-7">
+        <div class="rounded-[20px] bg-[#F5F5F7] p-6 sm:p-7">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-4">Plan wymiany G2V2 — Twoja flota</p>
+          <div class="space-y-2.5">
+            {[
+              { plate: 'DK 12345', model: 'MB Sprinter 316', current: 'G1 (2018)', deadline: '2 lip 2026', status: 'WYMAGA WYMIANY', statusColor: '#FF3B30', daysLeft: '60 dni' },
+              { plate: 'KR 67890', model: 'VW Crafter 35', current: 'G2V1 (2021)', deadline: '21 sie 2026', status: 'WYMAGA WYMIANY', statusColor: '#FF9500', daysLeft: '111 dni' },
+              { plate: 'WA 11223', model: 'Iveco Daily 35S', current: 'G2V2 (2024)', deadline: '—', status: 'ZGODNY', statusColor: '#34C759', daysLeft: '—' },
+              { plate: 'GD 33445', model: 'Ford Transit', current: 'G2V2 (2024)', deadline: '—', status: 'ZGODNY', statusColor: '#34C759', daysLeft: '—' },
+              { plate: 'PO 55667', model: 'Fiat Ducato', current: 'G1 (2017)', deadline: '2 lip 2026', status: 'WYMAGA WYMIANY', statusColor: '#FF3B30', daysLeft: '60 dni' },
+            ].map(v => (
+              <div class="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-[12.5px] font-mono font-bold text-[#1D1D1F]">{v.plate}</span>
+                    <span class="text-[11px] text-[#86868B]">· {v.model}</span>
+                    <span class="text-[10px] text-[#86868B] hidden sm:inline">· obecnie {v.current}</span>
+                  </div>
+                  <p class="text-[10.5px] text-[#86868B] mt-0.5 sm:hidden">obecnie {v.current}</p>
+                  <p class="text-[10.5px] mt-0.5" style={`color: ${v.statusColor}`}>{v.status} · termin {v.deadline}</p>
+                </div>
+                <div class="text-right shrink-0">
+                  <p class="text-[10px] text-[#86868B] uppercase tracking-[0.04em]">Pozostało</p>
+                  <p class="text-[12px] font-mono font-bold" style={`color: ${v.statusColor}`}>{v.daysLeft}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div>
-            <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-1">Jan, 38 lat, jednoosobowa działalność</h3>
-            <p class="text-[13px] text-[#86868B]">Handlowiec / budowlaniec / serwisant / doradca</p>
+          <div class="mt-5 pt-4 border-t border-black/[0.06] flex items-center justify-between text-[12px]">
+            <span class="text-[#86868B]">3 z 5 pojazdów wymagają wymiany</span>
+            <span class="font-semibold text-[#FF3B30]">Najbliższy termin: 60 dni</span>
           </div>
         </div>
-        <ul class="space-y-2.5 text-[14px] text-[#6E6E73] leading-relaxed">
-          <li class="flex items-start gap-2.5"><span class="text-[#86868B] mt-1 shrink-0">—</span>Jedno auto osobowe na leasingu, jeździ 2 000–4 000 km miesięcznie</li>
-          <li class="flex items-start gap-2.5"><span class="text-[#86868B] mt-1 shrink-0">—</span>Rozlicza się przez biuro rachunkowe za 250–400 zł/mies.</li>
-          <li class="flex items-start gap-2.5"><span class="text-[#86868B] mt-1 shrink-0">—</span>Kilometrówkę prowadzi w Excelu albo nie prowadzi wcale</li>
-          <li class="flex items-start gap-2.5"><span class="text-[#86868B] mt-1 shrink-0">—</span>Pod koniec miesiąca biuro pyta "ile pan przejechał?" — Jan zgaduje</li>
-          <li class="flex items-start gap-2.5"><span class="text-[#86868B] mt-1 shrink-0">—</span>Kontroli US jeszcze nie miał, ale słyszał że kolega musiał dopłacić 15 000 zł</li>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROZLICZENIA — KSEF + UE ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center max-w-[720px] mx-auto mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Rentowność prawdziwa, nie księgowa</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        KSeF nie powie Ci, ile zarobiłeś.<br/>BusiKM — tak.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4">
+        Krajowy System e-Faktur to świetne narzędzie do polskiego VAT-u. Ale zlecenie z Warszawy do Mediolanu generuje 60% kosztów poza Polską — w EUR, na obcojęzycznych dokumentach, których KSeF nigdy nie zobaczy.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[920px] mx-auto">
+      <div class="rounded-[20px] p-7 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <p class="text-[11px] font-bold text-[#86868B] uppercase tracking-[0.06em] mb-3">Sam KSeF</p>
+        <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-4">Co widzi Twoja księgowa</h3>
+        <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73]">
+          <li class="flex items-start gap-2"><span class="text-[#34C759] shrink-0">✓</span>Faktura sprzedaży do klienta z PL</li>
+          <li class="flex items-start gap-2"><span class="text-[#34C759] shrink-0">✓</span>Faktura za paliwo z polskiej stacji</li>
+          <li class="flex items-start gap-2"><span class="text-[#34C759] shrink-0">✓</span>Faktura za serwis krajowy</li>
+          <li class="flex items-start gap-2"><span class="text-[#FF3B30] shrink-0">✕</span>Faktura za paliwo z OMV w Austrii</li>
+          <li class="flex items-start gap-2"><span class="text-[#FF3B30] shrink-0">✕</span>Opłata Maut (DE) i Telepass (IT)</li>
+          <li class="flex items-start gap-2"><span class="text-[#FF3B30] shrink-0">✕</span>Hotel kierowcy w Lyonie</li>
+          <li class="flex items-start gap-2"><span class="text-[#FF3B30] shrink-0">✕</span>Serwis awaryjny w Apeldoorn (NL)</li>
+          <li class="flex items-start gap-2"><span class="text-[#FF3B30] shrink-0">✕</span>Diety zagraniczne kierowców</li>
         </ul>
-        <div class="mt-6 p-4 rounded-xl bg-[#FF3B30]/[0.04] border border-[#FF3B30]/10">
-          <p class="text-[14px] text-[#1D1D1F] font-semibold">Ból Jana to nie czas — to ryzyko.</p>
-          <p class="text-[13.5px] text-[#6E6E73] mt-1">Wie że powinien mieć porządną dokumentację. Wie że przy kontroli może mieć problem. Excel jest uciążliwy i zapomina o nim. Potrzebuje systemu który działa w tle i daje spokój.</p>
+        <p class="text-[12px] text-[#86868B] mt-4 italic">Wynik: rentowność „papierowa" jest dodatnia. Realna — nie zawsze.</p>
+      </div>
+
+      <div class="rounded-[20px] p-7 bg-[#005CE8] text-white shadow-[0_8px_40px_rgba(0,92,232,0.30)]">
+        <p class="text-[11px] font-bold text-white/60 uppercase tracking-[0.06em] mb-3">KSeF + BusiKM</p>
+        <h3 class="font-display font-semibold text-[1.1rem] mb-4">Pełna rentowność zlecenia</h3>
+        <ul class="space-y-2.5 text-[13.5px] text-white/85">
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">✓</span>Wszystko co KSeF</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Paliwo OMV (AT) → OCR EUR→PLN</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Maut DE + Telepass IT po przejazdach</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Hotel Lyon → przypisany do BKM-2843</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Serwis NL → ujemna marża alarm</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Diety zagraniczne wg krajów (auto z GPS)</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>VAT-REF: ile odzyskać z DE/FR/IT</li>
+          <li class="flex items-start gap-2"><span class="text-white shrink-0">+</span>Amortyzacja per pojazd na km</li>
+        </ul>
+        <p class="text-[12px] text-white/60 mt-4 italic">Wynik: marża 7,8% to liczba prawdziwa, nie nadzieja.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILOTAŻ ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[900px] mx-auto">
+    <div class="reveal rounded-[24px] bg-[#1D1D1F] p-8 sm:p-12 text-white shadow-[0_8px_40px_rgba(0,0,0,0.30)]">
+      <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
+        <div class="w-14 h-14 bg-white/15 rounded-[18px] flex items-center justify-center flex-shrink-0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div>
+          <p class="text-[12px] font-semibold uppercase tracking-[0.08em] text-white/50 mb-2">Pilotaż MVP</p>
+          <h3 class="font-display text-[clamp(1.4rem,3vw,1.9rem)] font-bold tracking-[-0.02em] mb-3 leading-tight">
+            Pełen BusiKM dla Twojej firmy transportowej — dożywotnio gratis.
+          </h3>
+          <p class="text-white/70 text-[15px] leading-relaxed">
+            Dla pierwszych firm transportowych, które wezmą udział w pilotażu, BusiKM pozostaje gratis dożywotnio. W zamian: krótka rozmowa raz w miesiącu — co działa, co warto poprawić, czego brakuje. Cennik komercyjny ogłosimy po analizie feedbacku, piloci pozostają w programie.
+          </p>
         </div>
       </div>
 
-      <!-- 3 segmenty -->
-      <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[960px] mx-auto mb-10">
-        <div class="rounded-[20px] p-6 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-          <p class="text-[12px] font-bold text-[#005CE8] uppercase tracking-[0.04em] mb-2">Segment A</p>
-          <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">JDG z 1 autem</h4>
-          <p class="text-[13px] text-[#6E6E73] mb-3">Handlowcy, doradcy, budowlańcy, serwisanci. 1 500–3 000 km/mies. Biuro rachunkowe.</p>
-          <div class="text-[12px] text-[#86868B]">400–600 tys. firm w Polsce</div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.4rem] font-bold mb-1">∞</p>
+          <p class="text-[12.5px] text-white/60">dożywotni dostęp dla pilotów</p>
         </div>
-        <div class="rounded-[20px] p-6 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-2">Segment B</p>
-          <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">Mikrofirma 2–5 aut</h4>
-          <p class="text-[13px] text-[#6E6E73] mb-3">Firmy budowlane, sprzątające, kurierskie. Więcej aut = więcej bałaganu w dokumentach.</p>
-          <div class="text-[12px] text-[#86868B]">150–250 tys. firm w Polsce</div>
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.4rem] font-bold mb-1">0 zł</p>
+          <p class="text-[12.5px] text-white/60">bez karty kredytowej</p>
         </div>
-        <div class="rounded-[20px] p-6 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-          <p class="text-[12px] font-bold text-[#8B5CF6] uppercase tracking-[0.04em] mb-2">Segment C</p>
-          <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">Twoje biuro rachunkowe</h4>
-          <p class="text-[13px] text-[#6E6E73] mb-3">17 181 biur w Polsce. Każde ma klientów z autami. BusiKM jako standard obsługi.</p>
-          <div class="text-[12px] text-[#86868B]">10% adopcji = 25 500 pojazdów</div>
+        <div class="bg-white/10 rounded-[16px] p-5">
+          <p class="font-display text-[1.4rem] font-bold mb-1">1×/mies.</p>
+          <p class="text-[12.5px] text-white/60">krótka rozmowa o feedbacku</p>
         </div>
       </div>
 
-      <!-- Wspólny mianownik -->
-      <div class="reveal rounded-[20px] p-7 bg-[#005CE8] text-center max-w-[800px] mx-auto">
-        <h3 class="font-display font-bold text-[clamp(1.2rem,3vw,1.6rem)] text-white mb-3 tracking-[-0.02em]">Twoja kilometrówka jest zawsze gotowa, zatwierdzona i&nbsp;nie&nbsp;do&nbsp;podważenia przez&nbsp;US.</h3>
-        <p class="text-[14px] text-white/70 mb-5 max-w-[540px] mx-auto">Kontrola US może zakwestionować koszty pojazdu za 5 lat wstecz. Przy typowym aucie firmowym to 15 000–40 000 zł zaległości plus odsetki. BusiKM to Twoje ubezpieczenie.</p>
-        <a href="/cennik" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#005CE8] text-[14px] font-bold hover:bg-white/90 transition-all">
-          Zacznij za darmo
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#1D1D1F] text-[15px] font-semibold hover:bg-white/90 transition-colors">
+          Dołącz do pilotażu
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PIT + ANALITYKA ============ -->
-  <section class="py-20 sm:py-28 bg-white px-5">
-    <div class="max-w-[1120px] mx-auto">
-      <div class="reveal text-center max-w-[680px] mx-auto mb-14">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Ochrona podatkowa</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-          Kilometrówka chroni nie tylko VAT.
-        </h2>
-      </div>
-
-      <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] mx-auto">
-        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">100% kosztów w PIT/CIT</h3>
-          <p class="text-[12px] font-semibold text-[#34C759] mb-3">Art. 23 ust. 7 ustawy o PIT</p>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pojazd wyłącznie firmowy? Możesz odliczyć 100% kosztów eksploatacji. Bez ewidencji — US może ograniczyć do 75% i naliczyć korektę za 3 lata wstecz. Kilometrówka GPS to Twój dowód.</p>
-        </div>
-        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Analityka kosztów floty</h3>
-          <p class="text-[12px] font-semibold text-[#005CE8] mb-3">Dashboard właściciela</p>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Ile kosztuje każdy pojazd miesięcznie? Paliwo + serwisy + przebieg per pojazd i per kierowca. Porównuj efektywność kosztową i podejmuj decyzje na danych.</p>
-        </div>
-        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Alert limitu leasingowego</h3>
-          <p class="text-[12px] font-semibold text-[#FF9500] mb-3">Leasing operacyjny</p>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Leasing z limitem km? BusiKM monitoruje przebieg i alertuje, zanim przekroczysz limit — unikasz kar za nadprzebieg.</p>
-        </div>
-        <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Zwrot km dla pracowników</h3>
-          <p class="text-[12px] font-semibold text-[#FF3B30] mb-3">Art. 21 ust. 1 pkt 23b ustawy o PIT</p>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73]">Pracownik jeździ prywatnym autem służbowo? Zwrot kosztów (km × stawka) jest zwolniony z PIT — ale tylko z ewidencją. BusiKM prowadzi ją automatycznie.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FAQ ============ -->
-  <section class="bg-[#F5F5F7] py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">FAQ</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">Najczęściej zadawane pytania</h2>
-      </div>
-
-      <div class="space-y-3 reveal-stagger">
-        {faqs.map((faq) => (
-          <details class="group bg-white rounded-2xl transition-all duration-300">
-            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none text-[15px] font-semibold text-[#1D1D1F] select-none">
-              <span>{faq.q}</span>
-              <svg class="w-5 h-5 text-[#6E6E73] shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </summary>
-            <div class="px-6 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ DARK CTA ============ -->
-  <section class="relative overflow-hidden bg-[#0A0A0B] py-20 sm:py-28">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#34C759]/[0.06] blur-[140px] pointer-events-none"></div>
-
-    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center reveal">
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">Zacznij kontrolować flotę już dziś</h2>
-      <p class="text-[15px] leading-relaxed text-[#9E9EA6] mb-10 max-w-xl mx-auto">
-        14 dni darmowego trialu&nbsp;&mdash;&nbsp;pełny dostęp do wszystkich funkcji planu Professional. Bez karty kredytowej.
-      </p>
-      <div class="flex flex-wrap justify-center gap-3.5">
-        <a href="/cennik" class="px-7 py-3.5 rounded-full bg-[#34C759] text-white text-[15px] font-semibold hover:bg-[#2DA44E] transition-colors duration-200">
-          Wypróbuj za darmo
-        </a>
-        <a href="/funkcje" class="px-7 py-3.5 rounded-full bg-white/10 text-white text-[15px] font-semibold hover:bg-white/[0.15] border border-white/[0.12] transition-colors duration-200">
-          Poznaj funkcje
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white text-[15px] font-semibold hover:bg-white/5 transition-colors">
+          Zobacz wszystkie funkcje
         </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ SCROLL REVEAL SCRIPT ============ -->
-  <script>
-    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+<!-- ============ FAQ ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[760px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">FAQ</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęstsze pytania właścicieli
+      </h2>
+    </div>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+    <div class="reveal-stagger flex flex-col gap-3">
+      {[
+        {
+          q: 'Czy BusiKM działa na busach 2,5–3,5 t? Cała moja flota to Sprintery, Crafterzy, Ducato i Transit.',
+          a: 'Tak — BusiKM jest projektowany dokładnie pod transport międzynarodowy busami 2,5–3,5 t. To ~90% rynku TSL w Polsce. Wszystkie funkcje (mapa, AETR, dokumenty, rentowność, koszty UE, G2V2) działają na tej klasie pojazdów.',
+        },
+        {
+          q: 'Mam 5 busów które wymagają wymiany na G2V2. Czy BusiKM mi pokaże plan wymiany?',
+          a: 'Tak. Na podstawie daty pierwszej rejestracji i obecnego typu tachografu BusiKM klasyfikuje pojazdy: ZGODNY (G2V2 zainstalowany), WYMAGA WYMIANY (G1 lub G2V1) z konkretną datą obowiązku — najwcześniej 2 lipca 2026 dla G1 i 21 sierpnia 2026 dla G2V1. Alerty 90/30/14/7 dni przed terminem.',
+        },
+        {
+          q: 'Jak BusiKM radzi sobie z fakturami w EUR z Niemiec, Włoch i Francji?',
+          a: 'Kierowca robi zdjęcie faktury w aplikacji. OCR czyta DE/IT/FR/ES/EN/PL — wyciąga numer, datę, kwotę netto, VAT, sprzedawcę. Walutę przeliczamy po kursie NBP tabela A z dnia poprzedzającego datę wystawienia (zgodnie z UPDOF/UPDOP). Faktura przypisana automatycznie do zlecenia i pojazdu, z których kierowca robił zdjęcie.',
+        },
+        {
+          q: 'Co z VAT-REFUND? Mogę odzyskać VAT z faktur paliwowych z Niemiec?',
+          a: 'Tak, jeśli spełnia warunki dyrektywy 2008/9/WE. BusiKM filtruje faktury kwalifikujące się do zwrotu (paliwo, autostrady, parkingi w niektórych krajach), generuje paczkę dla Twojej księgowej lub biura rachunkowego do złożenia VAT-REF (przez polski US — wniosek trafia do kraju zwrotu). Termin: do 30 września roku następnego.',
+        },
+        {
+          q: 'Czy widzę naruszenia czasu pracy kierowcy zanim zatrzyma go BAG/ITD?',
+          a: 'Tak — BusiKM monitoruje AETR w czasie rzeczywistym: 4,5 h jazdy + 45 min przerwy, 9 h dziennego odpoczynku (max 2× w tygodniu, normalnie 11 h), 45 h tygodniowego, powrót do bazy co 4 tygodnie, rotacja co 8 tygodni. Alerty na panel właściciela i do aplikacji kierowcy zanim wystąpi naruszenie.',
+        },
+        {
+          q: 'Czy kabotaż jest pilnowany? Mam zlecenia z DE→FR z opcją załadunku zwrotnego.',
+          a: 'Tak. BusiKM rozróżnia operacje kabotażowe (przewóz w obrębie kraju innego niż siedziba) i międzynarodowe. Pilnuje limitu 3 operacji kabotażowych w 7 dni od wjazdu po zleceniu międzynarodowym. Po przekroczeniu — alert i blokada możliwości akceptacji kolejnego zlecenia kabotażowego.',
+        },
+        {
+          q: 'Pracuję z księgową w firmie i dodatkowo z biurem rachunkowym. Czy oboje będą mieli dostęp?',
+          a: 'Tak. BusiKM ma 4 role: właściciel (pełen dostęp), księgowy (read-only + raporty + eksport), biuro rachunkowe (multi-tenant, panel z wszystkimi obsługiwanymi firmami), kierowca (aplikacja mobilna). Księgowa wewnętrzna przerabia dane w panelu firmy, biuro rachunkowe robi tylko JPK i CIT na gotowych danych.',
+        },
+        {
+          q: 'Ile kosztuje BusiKM po pilotażu?',
+          a: 'Cennik komercyjny zostanie ogłoszony po analizie feedbacku z pilotażu MVP. Nie chcemy zgadywać ceny — chcemy ustalić ją na podstawie danych od pierwszych użytkowników. Dla firm pilotażowych BusiKM pozostaje dożywotnio gratis (konwersja na płatny plan jest dobrowolna).',
+        },
+      ].map(faq => (
+        <details class="group bg-white rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
+            {faq.q}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => observer.observe(el));
-  </script>
-
-  <style>
-    .reveal,
-    .reveal-stagger > * {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal.is-visible,
-    .reveal-stagger.is-visible > * {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
-    .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
-    .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
-    .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
-    .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
-    .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
-
-    details summary::-webkit-details-marker { display: none; }
-  </style>
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 sm:py-28 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Zacznij zarządzać flotą<br/>w sposób, na jaki zasługuje.
+    </h2>
+    <p class="text-[15px] text-white/60 mb-10 leading-relaxed">
+      Mapa floty, rentowność per zlecenie, koszty z całej UE, alerty G2V2 i pakiet mobilności. Wszystko z jednego panelu — za 0 zł, dożywotnio dla pilotów.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors duration-200 shadow-[0_4px_16px_rgba(0,92,232,0.4)]">
+        Dołącz do pilotażu
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+        Zobacz wszystkie funkcje
+      </a>
+    </div>
+  </div>
+</section>
 
 </MarketingLayout>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }); },
+    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+  );
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>
+
+<style>
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible,
+  .reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+  details summary::-webkit-details-marker { display: none; }
+</style>

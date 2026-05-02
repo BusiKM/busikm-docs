@@ -2,48 +2,51 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 ---
 
-<MarketingLayout title="Dla księgowych — BusiKM" description="Gotowe raporty MF, eksport do FK — zero ręcznej pracy. Kilometrówka PDF, koszty floty, delegacje, integracja z Insert GT.">
+<MarketingLayout
+  title="Dla księgowych w firmach transportowych — BusiKM"
+  description="Faktury z DE/IT/FR/ES czytane automatycznie. Kursy NBP, diety zagraniczne, VAT-REFUND, rentowność per zlecenie i eksport do biura rachunkowego — bez Excela."
+>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#FF9500]/[0.04] blur-[120px]"></div>
   </div>
   <div class="relative max-w-[1120px] mx-auto">
-    <div class="max-w-[680px]">
+    <div class="max-w-[760px]">
       <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#FF9500]/15 bg-[#FF9500]/[0.04] mb-6">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span class="text-[12.5px] font-medium text-[#FF9500]">Panel webowy dla księgowych</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span class="text-[12.5px] font-medium text-[#FF9500]">Dla księgowych w firmach transportowych</span>
       </div>
 
-      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] mb-5">
-        Gotowe raporty MF, eksport do FK —<br/><span class="text-[#FF9500]">zero ręcznej pracy.</span>
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+        Koniec z reklamówką paragonów<br/>z całej Europy.
       </h1>
 
-      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[520px] mb-8">
-        Kilometrówka zgodna ze wzorem Ministerstwa Finansów, koszty floty, delegacje — wszystko generowane automatycznie. Eksport EDI++ do Insert GT jednym kliknięciem.
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[620px] mb-9">
+        BusiKM przyjmuje faktury kosztowe z DE/IT/FR/ES/NL przez OCR, przelicza walutę po kursie NBP, liczy diety per kraj na podstawie GPS i przygotowuje paczkę VAT-REFUND. Twoje biuro rachunkowe dostaje gotowy import do Insert GT, Comarch albo Symfonia.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
         <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FF9500] text-white text-[15px] font-semibold hover:bg-[#E08600] transition-colors shadow-[0_1px_3px_rgba(255,149,0,0.4)]">
-          Poznaj wszystkie funkcje
+          Zobacz funkcje
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
-          Zobacz cennik
+          Cennik (gratis dla pilotów)
         </a>
       </div>
 
       <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
         {[
-          { num: '1-click', label: 'PDF gotowy' },
-          { num: '< 5s', label: 'eksport FK' },
-          { num: '100%', label: 'zgodność MF' },
-          { num: '0', label: 'ręcznego wpisu' },
+          { num: '6', label: 'języków OCR\u00A0(PL/EN/DE/IT/FR/ES)' },
+          { num: 'NBP', label: 'kursy auto z dnia poprzedniego' },
+          { num: 'VAT-REF', label: 'paczka zwrotu z UE' },
+          { num: '−60h/mies.', label: 'mniej ręcznej roboty' },
         ].map(s => (
           <div>
             <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-0.5">{s.label}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-0.5 max-w-[160px] leading-snug">{s.label}</div>
           </div>
         ))}
       </div>
@@ -51,97 +54,211 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ANIA — PERSONA KSIĘGOWEJ -->
+<!-- ============ JOANNA — PERSONA KSIĘGOWEJ ============ -->
 <section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
-  <div class="max-w-[900px] mx-auto">
-    <div class="reveal rounded-[20px] p-7 sm:p-9 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <div class="flex items-start gap-5 mb-6">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal text-center mb-10 max-w-[720px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Czy to o Tobie?</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Joanna ma 12 busów, 30 zleceń międzynarodowych i ostatni tydzień miesiąca.
+      </h2>
+    </div>
+
+    <div class="reveal rounded-[24px] p-7 sm:p-10 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="flex items-start gap-5 mb-7">
         <div class="w-14 h-14 rounded-full bg-[#FF9500]/10 flex items-center justify-center shrink-0">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
-          <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-1">Ania, 34 lata. Główna księgowa, firma budowlana.</h3>
-          <p class="text-[13px] text-[#86868B]">18 samochodów w flocie. Poznań.</p>
+          <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-1">Joanna, 36 lat. Główna księgowa firmy transportowej.</h3>
+          <p class="text-[13px] text-[#86868B]">12 busów 2,5–3,5 t · 30 zleceń międzynarodowych miesięcznie · współpracuje z biurem rachunkowym.</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-7">
         <div>
-          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-2">Jej codzienność</p>
-          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li>5 aut na VAT-26, 8 na 50% VAT, 3 prywatne z ryczałtem — każde inne zasady</li>
-            <li>Co miesiąc goni kierowców o faktury i kilometrówki</li>
-            <li>Każda faktura paliwowa wymaga przypisania do właściwego pojazdu i proporcji VAT</li>
-            <li>Pomyłka = korekta JPK = rozmowa z CFO = stres</li>
+          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-3">Co Joanna robi przez 25 dni miesiąca</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Wprowadza ręcznie faktury kosztowe: paliwo z DE/AT/IT, opłaty Maut, Telepass, Viatoll, hotele, posiłki. 200–300 dokumentów miesięcznie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Tłumaczy faktury z 5 języków: niemiecki „Rechnung", włoski „Fattura", francuski „Facture", hiszpański „Factura", angielski „Invoice".</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Przelicza walutę po kursie NBP tabela A z dnia poprzedzającego — sprawdza w internecie, kopiuje do Excela.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Liczy diety zagraniczne według tabeli MRPiPS (49 € DE, 50 € FR, 48 € IT…) na podstawie odręcznych notatek kierowców.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Co kwartał składa wniosek VAT-REFUND za zwrot VAT z DE/FR/IT — ręcznie zbiera kwalifikujące się faktury.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Liczy rentowność per zlecenie w Excelu. Błąd w jednej formule = cała firma podejmuje decyzję na złym pliku.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Wysyła do biura rachunkowego paczkę plików: PDF-y, Excele, skany. BR wprowadza wszystko jeszcze raz.</li>
           </ul>
         </div>
+
         <div>
-          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-2">Co ją przekona</p>
-          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li><strong class="text-[#1D1D1F]">Kierowca sam zatwierdza</strong> w telefonie — nie musi za nim dzwonić</li>
-            <li><strong class="text-[#1D1D1F]">Eksport z właściwymi proporcjami VAT</strong> per pojazd — gotowy do importu</li>
-            <li><strong class="text-[#1D1D1F]">Twarde liczby dla CFO:</strong> ile godzin oszczędza, jaki koszt ryzyka przy kontroli</li>
+          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-3">Z BusiKM ten sam miesiąc trwa 2 dni</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Faktury same trafiają do panelu</strong> — kierowcy fotografują w aplikacji, OCR czyta 6 języków, system przypisuje do zlecenia i pojazdu.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Kurs NBP automatycznie</strong> — tabela A z dnia poprzedzającego datę faktury, zgodnie z UPDOF/UPDOP. Bez kopiowania.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Diety liczone z GPS</strong> — wjazd i wyjazd z każdego kraju wykryty automatycznie. Stawki MRPiPS aktualne. Ryczałt 25% gdy brak rachunku noclegowego.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">VAT-REFUND paczka</strong> — faktury kwalifikujące się do zwrotu VAT z DE/FR/IT/AT/NL z dyrektywy 2008/9/WE są oznaczone, gotowe do wniosku.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Rentowność per zlecenie na żywo</strong> — nie ma już Excela. Marża aktualizuje się po każdym dodanym paragonie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Biuro rachunkowe ma plik gotowy do importu</strong> — nie wpisuje już niczego, tylko sprawdza i robi JPK_V7 i CIT.</li>
           </ul>
         </div>
       </div>
 
-      <div class="p-4 rounded-xl bg-[#FF9500]/[0.04] border border-[#FF9500]/10">
-        <p class="text-[14px] text-[#1D1D1F]"><strong>„Auta to fragment mojej pracy, ale zajmują nieproporcjonalnie dużo czasu.</strong> 18 samochodów = 18 razy ten sam problem każdego miesiąca. Potrzebuję narzędzia które eliminuje gonienie kierowców i ręczne przypisywanie faktur."</p>
+      <div class="p-5 rounded-2xl bg-[#FF9500]/[0.04] border border-[#FF9500]/10">
+        <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
+          <strong>„Nie chcę kolejnego programu, którego muszę się uczyć.</strong> Chcę żeby księgowość transportowa, która zżera mi 60–80 godzin miesięcznie, zaczęła zajmować 10–15. Reszta to czas na sprawozdania finansowe, ZUS, KSeF i rozmowę z CFO o rentowności floty — a nie nad listą paragonów."
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FUNKCJE DLA KSIĘGOWEGO -->
-<section class="py-24 sm:py-32 bg-white px-5">
+<!-- ============ MOCKUP — KOSZTY UE ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Funkcje</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Wszystko czego potrzebujesz do rozliczeń floty.
+    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Twój pierwszy ekran</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Skrzynka kosztowa UE.<br/>Wszystko już przeliczone.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4">
+        Każda faktura ma walutę oryginalną, kurs NBP, kwotę PLN, status (do zatwierdzenia / zaksięgowana / VAT-REF), pojazd i zlecenie. Filtrujesz, eksportujesz, gotowe.
+      </p>
+    </div>
+
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+        <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
+        <div class="ml-4 flex-1 max-w-[340px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B] font-mono">app.busikm.pl/ksiegowosc/koszty-ue</div>
+      </div>
+
+      <div class="p-5 sm:p-7">
+        <!-- Filter bar -->
+        <div class="flex flex-wrap gap-2 mb-5">
+          {[
+            { label: 'Wszystkie', count: 47, active: true },
+            { label: 'Paliwo', count: 18 },
+            { label: 'Opłaty drogowe', count: 12 },
+            { label: 'Hotele', count: 6 },
+            { label: 'Serwis', count: 3 },
+            { label: 'Do VAT-REF', count: 24 },
+            { label: 'Maj 2026', count: 47 },
+          ].map(f => (
+            <span class:list={['px-3 py-1.5 rounded-xl text-[11.5px] font-semibold transition-colors',
+              f.active ? 'bg-[#1D1D1F] text-white' : 'bg-white text-[#6E6E73] hover:bg-[#FF9500]/10']}>{f.label} <span class="opacity-60">({f.count})</span></span>
+          ))}
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div class="grid grid-cols-12 gap-3 px-4 py-3 bg-[#FAFAFA] border-b border-black/[0.04] text-[10px] uppercase tracking-[0.06em] text-[#86868B] font-semibold">
+            <div class="col-span-3">Faktura · Sprzedawca</div>
+            <div class="col-span-2">Kategoria · Pojazd</div>
+            <div class="col-span-2">Kwota oryg.</div>
+            <div class="col-span-1">Kurs NBP</div>
+            <div class="col-span-2">Kwota PLN</div>
+            <div class="col-span-2">Status</div>
+          </div>
+
+          <div class="divide-y divide-black/[0.04]">
+            {[
+              { num: 'RE-2026-0473', vendor: 'Aral Tankstelle Hamburg', date: '12.05.2026', cat: 'Paliwo · Sprinter DK 12345', orig: '147,32 €', rate: '4,2731', pln: '629,57 zł', status: 'Do VAT-REF', statusColor: '#34C759', flag: 'DE' },
+              { num: 'FT-987654', vendor: 'Telepass S.p.A.', date: '14.05.2026', cat: 'Maut · Crafter KR 67890', orig: '38,40 €', rate: '4,2698', pln: '163,96 zł', status: 'Zaksięgowana', statusColor: '#005CE8', flag: 'IT' },
+              { num: 'F-2026/0892', vendor: 'Ibis Lyon Part-Dieu', date: '15.05.2026', cat: 'Hotel · Daily WA 11223', orig: '78,00 €', rate: '4,2710', pln: '333,14 zł', status: 'Do zatwierdzenia', statusColor: '#FF9500', flag: 'FR' },
+              { num: 'FA-892371', vendor: 'OMV Tankstelle Wien', date: '16.05.2026', cat: 'Paliwo · Sprinter DK 12345', orig: '128,90 €', rate: '4,2754', pln: '551,11 zł', status: 'Do VAT-REF', statusColor: '#34C759', flag: 'AT' },
+              { num: 'F-2026-1102', vendor: 'Garage Hendriks Apeldoorn', date: '17.05.2026', cat: 'Serwis · Transit GD 33445', orig: '420,50 €', rate: '4,2720', pln: '1\u00A0796,17 zł', status: 'Do zatwierdzenia', statusColor: '#FF9500', flag: 'NL' },
+              { num: 'FT-2026/1471', vendor: 'Eni Carburanti', date: '17.05.2026', cat: 'Paliwo · Crafter KR 67890', orig: '163,80 €', rate: '4,2720', pln: '699,75 zł', status: 'Do VAT-REF', statusColor: '#34C759', flag: 'IT' },
+            ].map(r => (
+              <div class="grid grid-cols-12 gap-3 px-4 py-3 items-center text-[11.5px] hover:bg-[#FAFAFA] transition-colors">
+                <div class="col-span-3 min-w-0">
+                  <p class="font-mono text-[10.5px] text-[#86868B]">{r.num}</p>
+                  <p class="font-medium text-[#1D1D1F] truncate">{r.vendor}</p>
+                  <p class="text-[10px] text-[#86868B]">{r.date}</p>
+                </div>
+                <div class="col-span-2 min-w-0">
+                  <p class="text-[#1D1D1F] truncate">{r.cat}</p>
+                </div>
+                <div class="col-span-2 font-mono">
+                  <span class="inline-block w-6 text-[9px] text-[#86868B] mr-1">{r.flag}</span>
+                  <span class="font-semibold text-[#1D1D1F]">{r.orig}</span>
+                </div>
+                <div class="col-span-1 font-mono text-[#86868B]">{r.rate}</div>
+                <div class="col-span-2 font-mono font-semibold text-[#1D1D1F]">{r.pln}</div>
+                <div class="col-span-2">
+                  <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-semibold" style={`background: ${r.statusColor}15; color: ${r.statusColor}`}>{r.status}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-black/[0.04] flex items-center justify-between text-[11px]">
+            <span class="text-[#86868B]">Pokazano 6 z 47 dokumentów · maj 2026</span>
+            <span class="text-[#1D1D1F] font-semibold">Suma PLN: 47 380,12 zł · do VAT-REF: 24 dokumenty (3 920 €)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUNKCJE GŁÓWNE ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[620px] mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Funkcje dla księgowej</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Sześć rzeczy, które robisz miesięcznie<br/>— teraz dzieją się same.
       </h2>
     </div>
 
     <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-5">
       {[
         {
-          title: 'Ewidencja przebiegu (PDF)',
-          desc: 'Kilometrówka zgodna ze wzorem Ministerstwa Finansów — generowana jednym kliknięciem. Gotowa do wydruku i wysyłki do urzędu skarbowego.',
-          icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.6"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.6"/>`,
+          title: 'OCR multi-języczny (PL/EN/DE/IT/FR/ES)',
+          desc: 'Każdy dokument który kierowca sfotografuje — polskie KSeF-y, niemieckie Rechnungi, włoskie Fattury, francuskie Factures, hiszpańskie Facturas, angielskie Invoices — trafia do panelu z wyciągniętymi: numerem, datą, kwotą netto, VAT-em i sprzedawcą. Wszystko z polskimi etykietami.',
           color: '#FF9500',
-          bullets: ['Wzór MF — pełna zgodność z rozporządzeniem', 'Stan drogomierza: początkowy i końcowy', 'Stawka za km konfigurowalna (domyślnie ustawowa)', 'Gotowy do wydruku lub przesłania do US'],
+          bullets: ['Auto-rozpoznanie waluty z dokumentu', 'Walidacja kwoty netto + VAT = brutto', 'Załącznik PDF/JPG zachowany jako dowód przez 5 lat', 'Tryb „do potwierdzenia" gdy OCR ma wątpliwości'],
         },
         {
-          title: 'Dostęp read-only do floty',
-          desc: 'Podgląd pojazdów, kierowców i tras bez możliwości edycji. Gwarancja integralności danych — księgowy nie zmieni danych operacyjnych.',
-          icon: `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke-width="1.6"/>`,
+          title: 'Kursy NBP tabela A — automatycznie',
+          desc: 'Każda faktura w obcej walucie automatycznie pobiera kurs NBP tabela A z dnia poprzedzającego datę wystawienia (zgodnie z art. 11a UPDOP / art. 24c UPDOF). Brak kursu w weekend? System cofa się do ostatniego roboczego dnia. Pełen audit trail.',
+          color: '#005CE8',
+          bullets: ['Automatyczny pull z api.nbp.pl', 'Historia kursów z timestampami', 'Cache 24h dla performansu', 'Zgodność z UPDOP/UPDOF — bez ryzyka korekty'],
+        },
+        {
+          title: 'Diety zagraniczne z GPS',
+          desc: 'BusiKM wie po sekundach kiedy kierowca przekroczył granicę DE→FR i kiedy wyjechał z Włoch. Dieta zagraniczna liczona zgodnie z rozporządzeniem MRPiPS — różne stawki per kraj (49 € DE, 50 € FR, 48 € IT). Plus ryczałt noclegowy gdy brak rachunku.',
           color: '#34C759',
-          bullets: ['Podgląd floty, kierowców i tras', 'Brak uprawnień do edycji danych operacyjnych', 'Gwarancja integralności danych', 'Pełna historia zmian (audit trail)'],
+          bullets: ['Auto-detekcja granic z GPS', 'Stawki per kraj wg aktualnego rozporządzenia', 'Ryczałt 25% diety gdy brak rachunku noclegowego', 'Korekta godzin (powyżej 12h pełna dieta, poniżej 50% lub 33%)'],
         },
         {
-          title: 'Raporty kosztów i delegacji',
-          desc: 'Zestawienia kosztów per pojazd i per kategoria. Delegacje z dietami krajowymi i zagranicznymi — eksport do CSV i PDF.',
-          icon: `<line x1="12" y1="1" x2="12" y2="23" stroke-width="1.6"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-width="1.6"/>`,
-          color: '#8B5CF6',
-          bullets: ['Koszty floty: paliwo, serwis, ubezpieczenie, opłaty', 'Delegacje: diety krajowe i zagraniczne', 'Eksport CSV do dalszej obróbki w Excelu', 'Eksport PDF do wydruku i archiwizacji'],
-        },
-        {
-          title: 'Raporty VAT 50%',
-          desc: 'Automatyczne wyliczenie odliczenia VAT 50% na podstawie ewidencji przebiegu. Gotowe zestawienia do rozliczeń podatkowych.',
-          icon: `<path d="M12 20V10" stroke-width="1.6"/><path d="M18 20V4" stroke-width="1.6"/><path d="M6 20v-4" stroke-width="1.6"/>`,
+          title: 'VAT-REFUND z 8 dyrektywy',
+          desc: 'Faktury z paliwa, autostrad i niektórych innych kategorii kwalifikują się do zwrotu VAT z kraju zakupu (dyrektywa 2008/9/WE). BusiKM identyfikuje kwalifikujące się dokumenty per kraj i generuje paczkę gotową do złożenia wniosku przez polski US do administracji DE/FR/IT/NL/AT.',
           color: '#FF3B30',
-          bullets: ['Kalkulacja VAT 50% na podstawie przebiegu', 'Zestawienie per pojazd i per okres', 'Zgodność z przepisami ustawy o VAT', 'Gotowe dane do deklaracji podatkowej'],
+          bullets: ['Filtr per kraj zwrotu (DE, FR, IT, NL, AT, BE, ES…)', 'Termin: do 30 września roku następnego', 'Minimalna kwota wniosku per kraj (50 EUR rocznie)', 'Eksport paczki z załącznikami w formacie XML/PDF'],
+        },
+        {
+          title: 'Rentowność per zlecenie — live',
+          desc: 'Każde zlecenie ma kartę z przychodem (z umowy), kosztami (paliwo, opłaty, hotele, diety, amortyzacja), marżą i ROI. Aktualizacja po każdym dodanym paragonie. Zero Excela, zero ręcznych formuł.',
+          color: '#8B5CF6',
+          bullets: ['Karta zlecenia z osią czasu kosztów', 'Marża netto, brutto, ROI', 'Porównanie do średniej w firmie i poprzednich tras', 'Eksport raportu PDF dla CFO'],
+        },
+        {
+          title: 'Eksport do biura rachunkowego',
+          desc: 'Twoje BR dostaje gotowy plik do importu w swoim systemie — Insert GT (EDI++ .epp), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS), CSV uniwersalny. Bez wpisywania, bez korekt, bez „Pani Joanno, brakuje pojazdu w fakturze nr 12".',
+          color: '#0A84FF',
+          bullets: ['Insert GT EDI++ .epp', 'Comarch ERP Optima XML', 'Symfonia FK TXT/AMS', 'CSV uniwersalny + JPK_V7 ready'],
         },
       ].map(f => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">{f.desc}</p>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-4">{f.desc}</p>
           <ul class="flex flex-col gap-2">
             {f.bullets.map(b => (
-              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
+              <li class="flex items-start gap-2.5 text-[12.5px] text-[#6E6E73]">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
               </li>
@@ -153,183 +270,122 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- INTEGRACJE FK -->
-<section class="py-24 sm:py-32 bg-white px-5">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="reveal max-w-[620px] mx-auto text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Integracje FK</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Eksportuj dane bezpośrednio do systemu księgowego.
+<!-- ============ DIETY ZAGRANICZNE TABELA ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal text-center mb-10 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Diety zagraniczne</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        BusiKM zna stawki dla wszystkich krajów,<br/>do których jadą Twoje busy.
       </h2>
+      <p class="text-[14px] leading-relaxed text-[#6E6E73] mt-4">
+        Stawki wg rozporządzenia MRPiPS w sprawie należności z tytułu podróży służbowych. Aktualizowane przy każdej zmianie. Ryczałt noclegowy = 25% diety gdy brak rachunku.
+      </p>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 lg:grid-cols-2 gap-5">
-      <!-- Insert GT -->
-      <div class="bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-11 h-11 rounded-[14px] flex items-center justify-center" style="background: #34C75912;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke-width="1.6"/><polyline points="22 4 12 14.01 9 11.01" stroke-width="1.6"/></svg>
-          </div>
-          <div>
-            <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] tracking-[-0.01em]">Insert GT / Rewizor GT</h3>
-            <span class="text-[12px] font-semibold text-[#34C759]">Dostępne w MVP</span>
-          </div>
-        </div>
-        <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">Eksport w formacie EDI++ — pliki <code class="bg-black/[0.04] px-1.5 py-0.5 rounded text-[#1D1D1F] text-[13px]">.epp</code> gotowe do importu w Insert GT, Rewizor GT i InsERT nexo.</p>
-        <div class="bg-white rounded-2xl p-5 mb-4">
-          <h4 class="text-[13px] font-semibold text-[#1D1D1F] mb-3">Wymagania formatu EDI++</h4>
-          <ul class="flex flex-col gap-2">
-            {[
-              'Kodowanie: Windows-1250 (automatyczna konwersja z UTF-8)',
-              'Końce linii: CRLF',
-              'Separator dziesiętny: przecinek (np. 1,15)',
-              'Sekcje: [NAGLOWEK], [FIRMA], [POJAZD], [POZYCJA], [PODSUMOWANIE]',
-            ].map(b => (
-              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
-                <span class="w-1.5 h-1.5 bg-[#FF9500] rounded-full shrink-0 mt-1.5"></span>
-                {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <p class="text-[13px] text-[#6E6E73]">Obsługuje kilometrówki i delegacje. Sumy kontrolne weryfikowane automatycznie.</p>
-      </div>
-
-      <!-- Comarch + Symfonia -->
-      <div class="bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-11 h-11 rounded-[14px] flex items-center justify-center" style="background: #FF950012;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-width="1.6"/><polyline points="12 6 12 12 16 14" stroke-width="1.6"/></svg>
-          </div>
-          <div>
-            <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] tracking-[-0.01em]">Comarch i Symfonia</h3>
-            <span class="text-[12px] font-semibold text-[#34C759]">W MVP</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-5">
-          {[
-            { letter: 'C', name: 'Comarch ERP Optima', desc: 'Synchronizacja przez REST API — eksport tras i kosztów do modułu księgowego, bez plików.' },
-            { letter: 'S', name: 'Symfonia', desc: 'Eksport XML/CSV zgodny ze schematem Symfonia Finanse i Księgowość.' },
-          ].map(item => (
-            <div class="flex items-start gap-3">
-              <span class="w-8 h-8 bg-white rounded-xl flex items-center justify-center text-[13px] font-bold text-[#FF9500] shrink-0 mt-0.5">{item.letter}</span>
-              <div>
-                <h4 class="font-semibold text-[14px] text-[#1D1D1F]">{item.name}</h4>
-                <p class="text-[13px] text-[#6E6E73] leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <!-- Co zawiera eksport -->
-    <div class="reveal mt-12 grid grid-cols-1 sm:grid-cols-2 gap-5">
-      <div class="bg-[#005CE8]/[0.04] border border-[#005CE8]/15 rounded-[20px] p-6">
-        <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-3">1. Ewidencja przebiegu (VAT)</h4>
-        <p class="text-[13px] text-[#6E6E73] mb-3">Podstawa do odliczenia 100% VAT (art. 86a ust. 7 ustawy o VAT):</p>
-        <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
-          {['Daty i cele wyjazdów', 'Trasy (skąd / dokąd)', 'Kilometry per wyjazd', 'Stany licznika (start/koniec okresu)', 'Podsumowanie miesięczne per pojazd'].map(b => (
-            <li class="flex items-center gap-2">
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              {b}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div class="bg-[#F5F5F7] rounded-[20px] p-6">
-        <h4 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-3">2. Rozliczenie kosztów (PIT)</h4>
-        <p class="text-[13px] text-[#6E6E73] mb-3">Podstawa do kosztów uzyskania przychodu (art. 23 ust. 7 ustawy o PIT):</p>
-        <ul class="space-y-1.5 text-[13px] text-[#6E6E73]">
-          {['Suma km × stawka wg Dz.U. 2023 poz. 5', 'Automatyczny dobór stawki wg daty przejazdu', 'Formaty: PDF zgodny z art. 86a, XLSX, EDI++', 'Comarch ERP Optima + Symfonia FK'].map(b => (
-            <li class="flex items-center gap-2">
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" class="shrink-0"><path d="M2 8l4 4 8-8" stroke="#FF9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              {b}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-
-    <!-- Stawki za km -->
-    <div class="reveal mt-8 bg-[#F5F5F7] rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-5 tracking-[-0.01em]">Stawki za kilometr (Dz.U. 2023 poz. 5, od 17.01.2023)</h3>
+    <div class="reveal rounded-[20px] bg-[#F5F5F7] p-6 sm:p-8">
       <div class="overflow-x-auto">
-        <table class="w-full text-[14px]">
+        <table class="w-full text-[13.5px]">
           <thead>
-            <tr class="border-b border-black/[0.08]">
-              <th class="text-left py-3 pr-4 font-semibold text-[#1D1D1F]">Kategoria pojazdu</th>
-              <th class="text-right py-3 pl-4 font-semibold text-[#1D1D1F]">Stawka za km (PLN)</th>
+            <tr class="border-b border-black/[0.08] text-[11px] uppercase tracking-[0.06em] text-[#86868B]">
+              <th class="text-left py-3 pr-4 font-semibold">Kraj</th>
+              <th class="text-right py-3 pl-4 font-semibold">Dieta dzienna</th>
+              <th class="text-right py-3 pl-4 font-semibold">Limit hotelu</th>
+              <th class="text-right py-3 pl-4 font-semibold">Ryczałt noclegowy</th>
+              <th class="text-right py-3 pl-4 font-semibold">Ryczałt komunikacyjny</th>
             </tr>
           </thead>
-          <tbody class="text-[#6E6E73]">
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &le; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">0,89</td></tr>
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Samochód osobowy &gt; 900 cm&sup3;</td><td class="text-right py-2.5 pl-4 font-mono text-[#FF9500] font-semibold">1,15</td></tr>
-            <tr class="border-b border-black/[0.04]"><td class="py-2.5 pr-4">Motocykl</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,69</td></tr>
-            <tr><td class="py-2.5 pr-4">Motorower</td><td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">0,42</td></tr>
+          <tbody>
+            {[
+              { country: 'Niemcy', diet: '49 €', hotel: '170 €', stay: '12,25 €', comm: '4,90 €' },
+              { country: 'Francja', diet: '50 €', hotel: '180 €', stay: '12,50 €', comm: '5,00 €' },
+              { country: 'Włochy', diet: '48 €', hotel: '174 €', stay: '12,00 €', comm: '4,80 €' },
+              { country: 'Hiszpania', diet: '50 €', hotel: '160 €', stay: '12,50 €', comm: '5,00 €' },
+              { country: 'Holandia', diet: '50 €', hotel: '130 €', stay: '12,50 €', comm: '5,00 €' },
+              { country: 'Belgia', diet: '48 €', hotel: '160 €', stay: '12,00 €', comm: '4,80 €' },
+              { country: 'Austria', diet: '52 €', hotel: '130 €', stay: '13,00 €', comm: '5,20 €' },
+              { country: 'Czechy', diet: '41 €', hotel: '120 €', stay: '10,25 €', comm: '4,10 €' },
+            ].map(d => (
+              <tr class="border-b border-black/[0.04]">
+                <td class="py-2.5 pr-4 font-semibold text-[#1D1D1F]">{d.country}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-[#34C759] font-semibold">{d.diet}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.hotel}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.stay}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.comm}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <p class="text-[12px] text-[#86868B] mt-3">Stawki konfigurowalne w panelu firmy. System przechowuje historię stawek z datami obowiązywania.</p>
+      <p class="text-[11.5px] text-[#86868B] mt-4 italic">
+        BusiKM dobiera stawkę obowiązującą w dniu wyjazdu i przelicza pełną dietę / 50% / 33% w zależności od liczby godzin w danym kraju (>12h, 8–12h, 0–8h). Aktualizacje przy każdej zmianie rozporządzenia.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- DELEGACJE I PIT -->
-<section class="py-20 sm:py-28 bg-white px-5">
-  <div class="max-w-[900px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Nie tylko VAT</p>
-      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Kilometrówka w BusiKM zabezpiecza trzy obszary podatkowe.
+<!-- ============ EKSPORT DO BR ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#0A84FF] mb-4">Eksport do biura rachunkowego</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Twoje BR dostaje plik gotowy do importu.<br/>Nie listę PDF-ów do przepisania.
       </h2>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
-      <div class="rounded-[20px] p-6 bg-[#005CE8]/[0.04] border border-[#005CE8]/15">
-        <p class="text-[12px] font-bold text-[#005CE8] uppercase tracking-[0.04em] mb-2">VAT</p>
-        <h3 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">100% odliczenia VAT</h3>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed">Art. 86a ustawy o VAT + druk VAT-26. Ewidencja przebiegu = pełne odliczenie od paliwa i eksploatacji.</p>
-      </div>
-      <div class="rounded-[20px] p-6 bg-[#34C759]/[0.04] border border-[#34C759]/15">
-        <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-2">PIT / CIT</p>
-        <h3 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">100% kosztów KUP</h3>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed">Art. 23 ust. 7 ustawy o PIT. Pojazd wyłącznie firmowy z ewidencją = 100% kosztów. Bez niej — max 75%.</p>
-      </div>
-      <div class="rounded-[20px] p-6 bg-[#FF9500]/[0.04] border border-[#FF9500]/15">
-        <p class="text-[12px] font-bold text-[#FF9500] uppercase tracking-[0.04em] mb-2">Delegacje</p>
-        <h3 class="font-display font-semibold text-[15px] text-[#1D1D1F] mb-2">Zwrot km bez PIT</h3>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed">Art. 21 ust. 1 pkt 23b. Pracownik na prywatnym aucie? Zwrot km × stawka zwolniony z PIT — z ewidencją BusiKM.</p>
-      </div>
+    <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {[
+        { name: 'Insert GT / Rewizor GT / nexo', format: 'EDI++ (.epp)', desc: 'Plik kodowanie Windows-1250, sekcje NAGLOWEK, FIRMA, POJAZD, POZYCJA, PODSUMOWANIE. Importujesz w Insert GT: Narzędzia → Import EDI++.', color: '#34C759' },
+        { name: 'Comarch ERP Optima', format: 'XML', desc: 'Synchronizacja przez REST API albo eksport XML zgodny ze schematem Optima FK. Faktury kosztowe, kursy, rejestry VAT, JPK_V7-ready.', color: '#FF9500' },
+        { name: 'Symfonia FK', format: 'TXT/AMS', desc: 'Eksport zgodny ze schematem Symfonia Finanse i Księgowość. TXT z separatorem albo natywny format AMS.', color: '#005CE8' },
+        { name: 'CSV uniwersalny', format: 'CSV / Excel', desc: 'Dla biur, które nie mają dedykowanej integracji. CSV z kolumnami: data, sprzedawca, NIP, kwota netto, VAT, kategoria, pojazd, zlecenie, kurs, kwota PLN.', color: '#8B5CF6' },
+      ].map(e => (
+        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style={`background: ${e.color}12`}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={e.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] tracking-[-0.01em]">{e.name}</h3>
+              <p class="text-[11px] font-mono text-[#86868B]">{e.format}</p>
+            </div>
+          </div>
+          <p class="text-[13px] text-[#6E6E73] leading-relaxed">{e.desc}</p>
+        </div>
+      ))}
     </div>
 
-    <div class="reveal mt-8 rounded-[16px] p-5 bg-[#FF3B30]/[0.04] border border-[#FF3B30]/10 text-center">
-      <p class="text-[14px] text-[#6E6E73]">Bez ewidencji US może zakwestionować koszty pojazdu <span class="font-semibold text-[#FF3B30]">za 3 lata wstecz + odsetki</span>. BusiKM to ubezpieczenie Twoich klientów.</p>
+    <div class="reveal mt-8 p-5 rounded-2xl bg-[#005CE8]/[0.04] border border-[#005CE8]/15 text-center max-w-[680px] mx-auto">
+      <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
+        <strong>Współpraca z BR po polsku.</strong> Wszystkie eksporty mają polskie etykiety, NIP-y polskie i unijne (VIES), kursy NBP, opisy kategorii zgodne z planem kont. Twoje BR nie pyta „a co to jest Mautstelle?".
+      </p>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
-  <div class="max-w-[720px] mx-auto">
+<!-- ============ FAQ ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Najczęściej zadawane pytania.
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęstsze pytania księgowych
       </h2>
     </div>
 
     <div class="reveal-stagger flex flex-col gap-3">
       {[
-        { q: 'Czy jako księgowy mogę edytować dane tras?', a: 'Nie. Rola księgowego ma wyłącznie dostęp read-only do floty, kierowców i tras. Gwarantuje to pełną integralność danych — nikt nie zmieni danych operacyjnych poza osobami odpowiedzialnymi.' },
-        { q: 'W jakim formacie generowana jest kilometrówka?', a: 'Kilometrówka generowana jest jako PDF zgodny ze wzorem Ministerstwa Finansów. Zawiera stan drogomierza (początkowy i końcowy), stawkę za km, listę tras i podsumowanie. Gotowa do wydruku lub przesłania do US.' },
-        { q: 'Jak działa eksport do Insert GT?', a: 'BusiKM generuje plik .epp w formacie EDI++ — kodowanie Windows-1250, separator przecinkowy, sekcje NAGLOWEK, FIRMA, POJAZD, POZYCJA, PODSUMOWANIE. Plik importujesz w Insert GT: Narzędzia → Import EDI++.' },
-        { q: 'Jakie stawki za km obsługuje system?', a: 'Domyślnie ustawowe wg Dz.U. 2023 poz. 5: samochód ≤900 cm³ = 0,89 zł/km, samochód >900 cm³ = 1,15 zł/km. System dobiera stawkę obowiązującą w dniu przejazdu i przechowuje pełną historię zmian.' },
-        { q: 'Czy mogę wygenerować raport VAT 50%?', a: 'Tak. System automatycznie wylicza odliczenie VAT 50% na podstawie ewidencji przebiegu pojazdu. Zestawienie dostępne per pojazd i per okres — gotowe dane do deklaracji podatkowej.' },
-        { q: 'Czy jest ślad audytowy zmian?', a: 'Tak. System rejestruje pełną historię zmian (audit trail) — kto, kiedy i co zmienił. Jako księgowy masz wgląd w tę historię, co jest niezbędne przy kontrolach skarbowych.' },
+        { q: 'Czy OCR pomyli się przy fakturze niemieckiej z innym formatem?', a: 'OCR pokazuje wynik do potwierdzenia ZANIM go zapisze. Pola z niską pewnością są oznaczone na żółto i wymagają Twojej akceptacji. Możesz w każdym momencie edytować ręcznie. Każdy dokument ma załączone oryginalne zdjęcie/PDF — pełen audit trail.' },
+        { q: 'Skąd BusiKM bierze kursy NBP?', a: 'Bezpośrednio z api.nbp.pl, tabela A, z dnia roboczego poprzedzającego datę faktury (zgodnie z art. 11a ust. 2 UPDOP / art. 24c ust. 6 UPDOF). Jeśli faktura jest wystawiona w poniedziałek — bierzemy kurs z piątku. Cache lokalny 24h, fallback do ostatniego znanego kursu.' },
+        { q: 'Czy mogę edytować kurs NBP dla pojedynczej faktury?', a: 'Tak — w wyjątkowych przypadkach (np. specjalne zasady dla rozliczeń wewnątrzgrupowych) możesz wpisać kurs ręcznie. System loguje zmianę z Twoim podpisem dla auditu.' },
+        { q: 'Czy diety liczone z GPS są zgodne z prawem?', a: 'Tak — dieta przysługuje za czas pobytu w danym kraju, a GPS jest najbardziej precyzyjnym dowodem czasu pobytu. Rozporządzenie MRPiPS nie wymaga konkretnej metody pomiaru, a BusiKM przechowuje dane GPS jako dowód (5 lat retencji). Plus opcjonalna ręczna korekta przez kierowcę.' },
+        { q: 'Co z VAT-REFUND? Czy BusiKM składa wniosek za mnie?', a: 'BusiKM przygotowuje paczkę gotową do wniosku — listę kwalifikujących się faktur per kraj, kwoty zwrotu, załączniki PDF. Sam wniosek składasz przez polski US (e-Urząd Skarbowy → VAT-REF), a US przekazuje do administracji kraju zwrotu. Termin: do 30 września roku następnego.' },
+        { q: 'Czy mogę ograniczyć dostęp dla biura rachunkowego?', a: 'Tak. BR ma rolę „biuro rachunkowe" — read-only do wszystkich raportów i eksportów, brak dostępu do operacji floty (tras, alertów, zarządzania kierowcami). Możesz dodatkowo ograniczyć do wybranych pojazdów albo okresów.' },
+        { q: 'Jak BusiKM różni się od KSeF?', a: 'KSeF obsługuje wyłącznie polskie faktury sprzedażowe i kosztowe. Twoja firma ma 60% kosztów poza Polską (paliwo DE, opłaty IT, hotele FR) — KSeF tych dokumentów nie zobaczy nigdy. BusiKM wypełnia tę lukę: OCR, kursy, diety, VAT-REF dla zagranicznych dokumentów + integruje się z KSeF dla polskich. Razem dają pełen obraz.' },
       ].map(faq => (
-        <details class="group bg-white rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[15px] text-[#1D1D1F] hover:text-[#FF9500] transition-colors">
+        <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#FF9500] transition-colors">
             {faq.q}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
@@ -340,25 +396,25 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 sm:py-28 bg-[#0A0A0B] px-5 overflow-hidden relative">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#FF9500]/15 blur-[150px]"></div>
   </div>
   <div class="relative reveal text-center max-w-[680px] mx-auto">
-    <h2 class="font-display text-[clamp(1.8rem,5vw,3rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-      Gotowe raporty czekają na Ciebie.
+    <h2 class="font-display text-[clamp(1.8rem,5vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Twój koniec miesiąca<br/>nie musi tak wyglądać.
     </h2>
-    <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
-      Zapomnij o ręcznym przepisywaniu danych. BusiKM generuje kilometrówki, koszty floty i delegacje — a eksport do Insert GT to jedno kliknięcie.
+    <p class="text-[15px] text-white/60 mb-10 leading-relaxed">
+      Zaproponuj BusiKM właścicielowi firmy. Pilotaż jest gratis dożywotnio — a Twoje 60–80 godzin księgowości transportowej zamieni się w 10–15.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
-        Poznaj wszystkie funkcje
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FF9500] text-white text-[15px] font-semibold hover:bg-[#E08600] transition-colors duration-200 shadow-[0_4px_16px_rgba(255,149,0,0.4)]">
+        Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
-        Zobacz cennik
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+        Zobacz wszystkie funkcje
       </a>
     </div>
   </div>
@@ -373,3 +429,25 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   );
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 </script>
+
+<style>
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible,
+  .reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+  details summary::-webkit-details-marker { display: none; }
+</style>

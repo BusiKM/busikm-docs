@@ -2,48 +2,51 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 ---
 
-<MarketingLayout title="Dla kierowców — BusiKM" description="Prosta aplikacja mobilna do automatycznej rejestracji kilometrówki. GPS tracking w tle, zdjęcia licznika, tryb offline. iOS i Android.">
+<MarketingLayout
+  title="Dla kierowców — BusiKM"
+  description="Aplikacja mobilna dla kierowców w transporcie międzynarodowym. GPS w tle, paragony OCR z DE/IT/FR/ES, alerty czasu pracy AETR zanim zatrzyma Cię BAG, tryb offline. iOS i Android."
+>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.04] blur-[120px]"></div>
   </div>
   <div class="relative max-w-[1120px] mx-auto">
-    <div class="max-w-[680px]">
+    <div class="max-w-[720px]">
       <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        <span class="text-[12.5px] font-medium text-[#005CE8]">Aplikacja mobilna · iOS 15+ · Android 10+</span>
+        <span class="text-[12.5px] font-medium text-[#005CE8]">Aplikacja dla kierowców · iOS 15+ · Android 10+</span>
       </div>
 
-      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.035em] text-[#1D1D1F] mb-5">
-        Kliknij raz —<br/>reszta jest automatyczna.
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+        Twoja trasa po Europie —<br/>bez stresu z czasem pracy<br/>i papierem w reklamówce.
       </h1>
 
-      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[520px] mb-8">
-        Włącz trasę, jedź, wyłącz. GPS rejestruje wszystko w tle — bez papieru, bez przepisywania, bez stresu. Zdjęcie licznika? Opcjonalne, ale polecamy.
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[600px] mb-9">
+        Aplikacja BusiKM rejestruje trasę GPS w tle, robi OCR paragonów w DE/IT/FR/ES, alarmuje przed obowiązkową przerwą zanim wpadniesz na kontrolę BAG, ITD czy Gendarmerie, i działa bez sieci w tunelach i górach.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
         <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
-          Poznaj wszystkie funkcje
+          Zobacz funkcje aplikacji
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
-          Zobacz cennik
+          Cennik (gratis dla pilotów)
         </a>
       </div>
 
       <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
         {[
-          { num: '3 min', label: 'onboarding' },
-          { num: '0', label: 'papieru' },
-          { num: '24/7', label: 'GPS tracking' },
-          { num: '100%', label: 'offline ready' },
+          { num: 'OCR', label: 'paragon → koszty\u00A0w 3 sek.' },
+          { num: 'AETR', label: 'alerty zanim zatrzyma\u00A0Cię BAG' },
+          { num: 'Offline', label: 'działa bez zasięgu' },
+          { num: '6 języków', label: 'PL/EN/DE/IT/FR/ES' },
         ].map(s => (
           <div>
             <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-0.5">{s.label}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-0.5 max-w-[140px] leading-snug">{s.label}</div>
           </div>
         ))}
       </div>
@@ -51,128 +54,293 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- MAREK — PERSONA KIEROWCY -->
+<!-- ============ TOMASZ — PERSONA ============ -->
 <section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
-  <div class="max-w-[900px] mx-auto">
-    <div class="reveal rounded-[20px] p-7 sm:p-9 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <div class="flex items-start gap-5 mb-6">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="reveal text-center mb-10 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Czy to o Tobie?</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Tomasz wraca z trasy DE→FR→IT.<br/>Ma 47 paragonów. I 30 minut do obowiązkowej przerwy.
+      </h2>
+    </div>
+
+    <div class="reveal rounded-[24px] p-7 sm:p-10 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="flex items-start gap-5 mb-7">
         <div class="w-14 h-14 rounded-full bg-[#005CE8]/10 flex items-center justify-center shrink-0">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
-          <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-1">Marek, 38 lat. Przedstawiciel handlowy.</h3>
-          <p class="text-[13px] text-[#86868B]">Toyota Corolla firmowa, 3 000–4 000 km/mies. Śląsk.</p>
+          <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-1">Tomasz, 41 lat. Kierowca w transporcie międzynarodowym.</h3>
+          <p class="text-[13px] text-[#86868B]">Sprinter 316 · 5–7 dni w trasie · trasy DE / FR / IT / ES · dom co 2 tygodnie.</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-7">
         <div>
-          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-2">Bez BusiKM</p>
-          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li>Koniec miesiąca — siedzi z kalendarzem i odtwarza trasy z pamięci</li>
-            <li>Wpisuje „Katowice → Gliwice, wizyta" bo nie pamięta adresu</li>
-            <li>Faktura za paliwo ginie w kieszeni kurtki, potem w praniu</li>
-            <li>Podpisuje kilometrówkę Ani nie czytając bo „ona wie lepiej"</li>
+          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-3">Bez BusiKM</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Reklamówka pełna paragonów: paliwo OMV, opłata Maut, hotel Ibis Lyon, McDonald's Mediolan. Ma to wszystko spisać po powrocie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Pilnuje 4,5 h jazdy w głowie. Pomyłka = zatrzymanie BAG = 1 800 EUR z jego pensji odszkodowania.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Niemiecka faktura: „Rechnung Nr. 2024-0473". Włoska: „Fattura". Tomasz nie wie co to znaczy — wpisuje co popadnie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Awaria w Apeldoorn. Dzwoni do biura. Biuro pyta gdzie. Tomasz nie wie jak wyjaśnić po polsku, gdzie jest dokładnie.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Telefon od szefa co 4 godziny: „Gdzie jesteś? Co z trasą?". Tomasz nie chce kłamać, ale nie chce też rozmawiać.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>W tunelu Mont Blanc nie ma zasięgu. Aplikacja konkurencji się crashuje. Trasa pęka na pół.</li>
           </ul>
         </div>
+
         <div>
-          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-2">Z BusiKM</p>
-          <ul class="space-y-2 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li><strong class="text-[#1D1D1F]">GPS sam zapisuje</strong> — zero siedzenia na koniec miesiąca</li>
-            <li><strong class="text-[#1D1D1F]">Potwierdza cel jednym tapnięciem</strong> po przyjeździe</li>
-            <li><strong class="text-[#1D1D1F]">10 sekund × kilkanaście razy</strong> zamiast 60 minut raz w miesiącu</li>
-            <li><strong class="text-[#1D1D1F]">GPS potwierdza że był</strong> u klienta — nikt nie zarzuci fałszerstwa</li>
+          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-3">Z BusiKM</p>
+          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Pstryk telefonem</strong>. Faktura niemiecka? OCR czyta DE: kwota, VAT, sprzedawca. Przelicz EUR→PLN. Przypisz do zlecenia. Koniec reklamówki.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Alarm 30 min przed przerwą.</strong> „Po 4,5 h jazdy musisz odpocząć 45 min. Najbliższy parking: A4 Auchy 12 km".</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Aplikacja po polsku</strong>, ale rozumie 6 języków faktur. Włoska „Fattura"? Wiadomo co to.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Awaria? Pin lokalizacji do biura</strong> jednym tapnięciem. Biuro widzi: Apeldoorn, NL, A28, najbliższy serwis 3,2 km.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Szef widzi pozycję</strong>. Mniej telefonów. Spokój.</li>
+            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Tryb offline</strong>. W Mont Blanc, Brennero, na korsykańskim morze, w szwajcarskich górach — działa.</li>
           </ul>
         </div>
       </div>
 
-      <div class="p-4 rounded-xl bg-[#005CE8]/[0.04] border border-[#005CE8]/10">
-        <p class="text-[14px] text-[#1D1D1F]"><strong>Prywatność Marka.</strong> BusiKM śledzi lokalizację wyłącznie podczas aktywnej trasy służbowej. Prywatne jazdy? Wyłącz jednym przyciskiem. Szef widzi tylko to co sam zaznaczysz jako służbowe.</p>
+      <div class="p-5 rounded-2xl bg-[#005CE8]/[0.04] border border-[#005CE8]/10">
+        <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
+          <strong>Prywatność Tomasza.</strong> BusiKM śledzi pozycję wyłącznie podczas aktywnej trasy służbowej. Po zakończeniu zmiany — zero śledzenia. Weekend w domu, prywatne wyjścia, Twój wolny czas — niewidoczne dla nikogo. Wykres czasu pracy widzi Tomasz i jego pracodawca, nikt inny.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- JAK TO DZIAŁA -->
-<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
+<!-- ============ AETR ALERT — DEEP DIVE ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jak to działa</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        10 sekund na trasę. Zero papierów na koniec miesiąca.
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Najważniejsza funkcja</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.12] mb-5">
+          Alerty czasu pracy AETR.<br/>Zanim zatrzyma Cię BAG.
+        </h2>
+        <p class="text-[14.5px] leading-relaxed text-[#6E6E73] mb-5">
+          Pakiet mobilności UE i regulacja AETR mają proste reguły, ale dziesiątki przypadków granicznych. BusiKM monitoruje wszystkie limity i ostrzega zanim zaczniesz naruszać:
+        </p>
+        <ul class="space-y-2 text-[13.5px] text-[#6E6E73]">
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">4,5 h jazdy + 45 min przerwy</strong> — przerwa może być rozbita 15 + 30 min</li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">Dzienne 9 h jazdy</strong>, max 10 h dwa razy w tygodniu</li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">Dzienny odpoczynek 11 h</strong>, skrócony do 9 h max 3× w tygodniu</li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">Tygodniowy odpoczynek 45 h</strong>, skrócony do 24 h naprzemiennie</li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">Powrót do bazy</strong> co 4 tygodnie</li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-1 shrink-0">●</span><strong class="text-[#1D1D1F]">Kabotaż 3 operacje w 7 dni</strong> od wjazdu po zleceniu międzynarodowym</li>
+        </ul>
+        <p class="text-[12.5px] text-[#86868B] mt-5 italic">
+          Pierwsza zasada brzmi prosto. W praktyce kierowca pilnuje 6 limitów jednocześnie, w 5 strefach czasowych, w 3 walutach — po 12 godzinach jazdy. BusiKM robi to za Ciebie.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-[24px] bg-[#0A0A0B] p-1.5 mx-auto max-w-[360px] sm:max-w-[420px]">
+          <div class="rounded-[20px] bg-[#F5F5F7] overflow-hidden">
+            <!-- Phone status bar -->
+            <div class="bg-white px-4 py-2 flex items-center justify-between text-[10px] text-[#86868B] font-mono">
+              <span>14:23</span>
+              <div class="flex items-center gap-1">
+                <span>●●●</span>
+                <span>4G</span>
+                <span>87%</span>
+              </div>
+            </div>
+
+            <!-- Big alert -->
+            <div class="bg-[#FF9500] text-white p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                <span class="text-[10.5px] font-semibold uppercase tracking-[0.06em]">Obowiązkowa przerwa</span>
+              </div>
+              <p class="font-display text-[1.6rem] font-bold leading-tight mb-1">30 min do limitu</p>
+              <p class="text-[12.5px] text-white/85 leading-snug mb-3">Po 4 h 30 min jazdy musisz zatrzymać się na min. 45 min.</p>
+              <div class="bg-white/15 rounded-xl p-3">
+                <p class="text-[10px] uppercase tracking-[0.06em] text-white/70 mb-1">Najbliższy parking AETR</p>
+                <p class="text-[13px] font-semibold leading-snug">A4 Auchy-lès-Hesdin</p>
+                <p class="text-[11px] text-white/80">12 km · ~9 min · darmowy · WC, restauracja</p>
+              </div>
+            </div>
+
+            <!-- Stats list -->
+            <div class="px-4 py-4 space-y-3">
+              <div>
+                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                  <span class="text-[#86868B]">Jazda dzisiaj</span>
+                  <span class="font-mono font-semibold text-[#1D1D1F]">7 h 12 min / 9 h</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:80%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                  <span class="text-[#86868B]">Jazda w tym tygodniu</span>
+                  <span class="font-mono font-semibold text-[#1D1D1F]">38 h 40 min / 56 h</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:69%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                  <span class="text-[#86868B]">Dni do powrotu do bazy</span>
+                  <span class="font-mono font-semibold text-[#1D1D1F]">9 dni / 28 dni</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#005CE8] rounded-full" style="width:32%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                  <span class="text-[#86868B]">Operacje kabotażowe (od 12 maja)</span>
+                  <span class="font-mono font-semibold text-[#1D1D1F]">2 z 3 w 7 dni</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#FF9500] rounded-full" style="width:67%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARAGON OCR ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Koniec reklamówki z paragonami</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Pstryk telefonem.<br/>Aplikacja resztę zrobi sama.
       </h2>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-[960px] mx-auto">
       {[
-        { step: '01', title: 'Zaloguj się', desc: 'Akceptuj zaproszenie od pracodawcy, pobierz aplikację i zaloguj się e-mailem i hasłem.', icon: `<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-width="1.6"/><circle cx="12" cy="7" r="4" stroke-width="1.6"/>` },
-        { step: '02', title: 'Wybierz pojazd', desc: 'Wybierz przypisany pojazd, typ trasy (służbowa/prywatna) i wpisz cel podróży.', icon: `<rect x="1" y="3" width="15" height="13" rx="2" stroke-width="1.6"/><path d="M16 8h2a2 2 0 012 2v1.5" stroke-width="1.6"/><circle cx="5.5" cy="18" r="2.5" stroke-width="1.6"/><circle cx="18.5" cy="18" r="2.5" stroke-width="1.6"/><path d="M8 16h8" stroke-width="1.6"/>` },
-        { step: '03', title: 'Rozpocznij trasę', desc: 'Kliknij duży przycisk "Rozpocznij trasę". Opcjonalnie zrób zdjęcie drogomierza na start.', icon: `<polygon points="5 3 19 12 5 21 5 3" stroke-width="1.6"/>` },
-        { step: '04', title: 'GPS robi resztę', desc: 'Zamknij aplikację, zablokuj telefon — GPS śledzi trasę w tle. Statystyki na żywo po otwarciu.', icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke-width="1.6"/>` },
-      ].map(item => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 relative">
-          <span class="absolute top-4 right-5 font-display text-[2.5rem] font-bold tracking-tight text-[#1D1D1F]/[0.04] leading-none select-none">{item.step}</span>
-          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center" style="background: #005CE812;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
+        {
+          step: '01',
+          country: 'Niemcy · Aral',
+          title: 'Robisz zdjęcie paragonu',
+          desc: 'Po zatankowaniu w stacji Aral. Aparat z nakładką ramki, jeden klik. Działa offline — wyśle się gdy będzie zasięg.',
+          extracted: [
+            { label: 'Sprzedawca', value: 'Aral Tankstelle GmbH' },
+            { label: 'Data', value: '12.05.2026' },
+            { label: 'Kwota brutto', value: '147,32 €' },
+            { label: 'VAT 19%', value: '23,52 €' },
+            { label: 'Liczba litrów', value: '94,5 l' },
+          ],
+        },
+        {
+          step: '02',
+          country: 'Włochy · Telepass',
+          title: 'OCR czyta po włosku',
+          desc: 'Faktura Telepass (autostrada A4 Mediolan→Wenecja). Aplikacja rozumie „Pedaggio", „IVA", „Fattura n." — bez Twojej pracy.',
+          extracted: [
+            { label: 'Sprzedawca', value: 'Telepass S.p.A.' },
+            { label: 'Data', value: '14.05.2026' },
+            { label: 'Pedaggio (opłata)', value: '38,40 €' },
+            { label: 'IVA 22%', value: '6,93 €' },
+            { label: 'Trasa', value: 'Milano Est → Venezia' },
+          ],
+        },
+        {
+          step: '03',
+          country: 'Wszystko gotowe',
+          title: 'Trafia do biura',
+          desc: 'Faktura przeliczona po kursie NBP tabela A z dnia poprzedzającego. Przypisana do zlecenia BKM-2842 i Twojego busa. Księgowa widzi to w panelu firmowym.',
+          extracted: [
+            { label: 'Status', value: 'Zaksięgowana' },
+            { label: 'Zlecenie', value: 'BKM-2842' },
+            { label: 'Pojazd', value: 'Crafter KR 67890' },
+            { label: 'Kurs NBP', value: '4,2731 zł/€' },
+            { label: 'Wartość PLN', value: '629,57 zł' },
+          ],
+        },
+      ].map(s => (
+        <div class="bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-display text-[1.6rem] font-bold tracking-tight text-[#005CE8]/[0.15] leading-none">{s.step}</span>
+            <span class="text-[10.5px] font-mono text-[#86868B] bg-[#F5F5F7] px-2 py-0.5 rounded">{s.country}</span>
           </div>
-          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
-          <p class="text-[13.5px] leading-relaxed text-[#6E6E73]">{item.desc}</p>
+          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{s.title}</h3>
+          <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-4">{s.desc}</p>
+          <div class="bg-[#F5F5F7] rounded-2xl p-3.5">
+            <p class="text-[10px] uppercase tracking-[0.06em] text-[#86868B] mb-2">Wyciągnięte z OCR</p>
+            <div class="space-y-1.5">
+              {s.extracted.map(e => (
+                <div class="flex items-center justify-between text-[11.5px]">
+                  <span class="text-[#86868B]">{e.label}</span>
+                  <span class="font-mono font-semibold text-[#1D1D1F]">{e.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- FUNKCJE DLA KIEROWCY -->
-<section class="py-24 sm:py-32 bg-white px-5">
+<!-- ============ FUNKCJE GŁÓWNE ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
-    <div class="reveal max-w-[620px] mb-16">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Funkcje</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Wszystko czego potrzebujesz w jednej aplikacji.
+    <div class="reveal max-w-[620px] mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Funkcje aplikacji</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Wszystko w jednej aplikacji.<br/>Po polsku. Z prostym interfejsem.
       </h2>
     </div>
 
     <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-5">
       {[
         {
-          title: 'GPS tracking w tle',
-          desc: 'Nie musisz trzymać aplikacji otwartej. GPS rejestruje trasę w tle — możesz zablokować telefon lub korzystać z innych aplikacji.',
-          icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke-width="1.6"/>`,
+          title: 'GPS w tle, bez papieru',
+          desc: 'Klikasz „Rozpocznij trasę" przed wyjazdem. Zamykasz aplikację. Telefon w kieszeni. GPS rejestruje pozycję adaptacyjnie — częściej w ruchu, rzadziej na postoju. Bateria starcza na 12+ h.',
           color: '#005CE8',
-          bullets: ['Adaptacyjny GPS — częstotliwość dopasowana do prędkości', 'Statystyki na żywo: prędkość, dystans, czas, mapa', 'Ikonka BusiKM na pasku powiadomień potwierdza śledzenie', 'Automatyczne wyłączenie poniżej 10% baterii'],
+          bullets: ['Background tracking iOS + Android', 'Adaptacyjny GPS — oszczędza baterię', 'Auto-pauza poniżej 10% baterii', 'Powiadomienie systemowe potwierdza śledzenie'],
+          icon: `<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke-width="1.6"/>`,
         },
         {
-          title: 'Zdjęcia drogomierza',
-          desc: 'Na starcie i końcu trasy możesz zrobić zdjęcie licznika kilometrów — opcjonalne, ale stanowi dodatkowy dowód stanu drogomierza.',
-          icon: `<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke-width="1.6"/><circle cx="12" cy="13" r="4" stroke-width="1.6"/>`,
+          title: 'OCR paragonów wielojęzyczny',
+          desc: 'Aplikacja czyta faktury i paragony w 6 językach: PL, EN, DE, IT, FR, ES. Rozumie różne formaty: niemiecki „Rechnung", włoski „Fattura", francuski „Facture", hiszpański „Factura". Wyciąga kwoty, VAT, sprzedawcę, datę.',
           color: '#34C759',
-          bullets: ['Dedykowany ekran aparatu z nakładką ramki', 'Automatyczny upload z paskiem postępu', 'Metadane EXIF: data, GPS, urządzenie', 'Zdjęcia przechowywane w szyfrowanym S3'],
+          bullets: ['Auto-rozpoznanie waluty (EUR/CHF/GBP/CZK/HUF)', 'Przeliczenie po kursie NBP tabela A', 'Auto-przypisanie do aktywnego zlecenia i pojazdu', 'Zdjęcie zachowane jako dowód księgowy (RODO + 5 lat)'],
+          icon: `<rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.6"/><path d="M7 8h10M7 12h6M7 16h8" stroke-width="1.6"/>`,
         },
         {
-          title: 'Tryb offline',
-          desc: 'BusiKM działa bez połączenia z internetem. Dane GPS zbierane są lokalnie i synchronizują się automatycznie po odzyskaniu sieci.',
-          icon: `<line x1="1" y1="1" x2="23" y2="23" stroke-width="1.6"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55" stroke-width="1.6"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39" stroke-width="1.6"/><path d="M10.71 5.05A16 16 0 0122.56 9" stroke-width="1.6"/><path d="M1.42 9a15.91 15.91 0 014.7-2.88" stroke-width="1.6"/><path d="M8.53 16.11a6 6 0 016.95 0" stroke-width="1.6"/><line x1="12" y1="20" x2="12.01" y2="20" stroke-width="1.6"/>`,
+          title: 'Alerty AETR i pakiet mobilności',
+          desc: 'Pełna kontrola: 4,5h jazdy + 45 min przerwy, 9h dziennego, 11h dziennego odpoczynku, 45h tygodniowego, powrót do bazy co 4 tyg., kabotaż 3/7. Alerty zanim naruszysz limity.',
           color: '#FF9500',
-          bullets: ['Rozpoczynanie i kończenie trasy bez internetu', 'Automatyczna synchronizacja po reconnect', 'Trasa rejestrowana kompletnie, bez przerw', 'Zaawansowana baza lokalna z synchronizacją'],
+          bullets: ['Powiadomienie 30 min przed obowiązkową przerwą', 'Mapa najbliższych parkingów AETR (TIR-tauglich)', 'Licznik dni do powrotu do bazy', 'Historia naruszeń (jeśli były) z eksportem PDF'],
+          icon: `<circle cx="12" cy="12" r="9" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke-width="1.6"/>`,
         },
         {
-          title: 'Powiadomienia push',
-          desc: 'Aplikacja informuje o ważnych sprawach — wygasającym prawie jazdy, kwalifikacji zawodowej czy dokumentach przypisanego pojazdu.',
-          icon: `<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="1.6"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke-width="1.6"/>`,
+          title: 'Tryb offline — w tunelu, w górach',
+          desc: 'Mont Blanc, Brennero, Korsyka, Pireneje, Karpaty — wszędzie tam, gdzie inne aplikacje przestają działać. BusiKM pracuje lokalnie i synchronizuje dane gdy zasięg wraca. Trasa nigdy nie pęka na pół.',
           color: '#8B5CF6',
-          bullets: ['Alerty 30, 14 i 7 dni przed wygaśnięciem dokumentów', 'Prawo jazdy, kwalifikacja zawodowa, OC, przegląd', 'Deep link — kliknięcie przenosi do szczegółów', 'Konfigurowanie przez właściciela floty'],
+          bullets: ['Pełna funkcjonalność bez sieci', 'Offline-first SQLite z replikacją', 'Kolejka uploadów (paragony, zdjęcia, GPS)', 'Brak utraty danych nawet przy braku zasięgu kilkadziesiąt godzin'],
+          icon: `<line x1="1" y1="1" x2="23" y2="23" stroke-width="1.6"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55" stroke-width="1.6"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39" stroke-width="1.6"/><path d="M10.71 5.05A16 16 0 0122.56 9" stroke-width="1.6"/><path d="M1.42 9a15.91 15.91 0 014.7-2.88" stroke-width="1.6"/><path d="M8.53 16.11a6 6 0 016.95 0" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'Pin lokalizacji do biura',
+          desc: 'Awaria, kontrola, problem na granicy? Jedno tapnięcie i biuro dostaje powiadomienie z dokładną lokalizacją, godziną oraz statusem trasy. Mniej rozmów telefonicznych, mniej tłumaczenia po polsku gdzie dokładnie jesteś.',
+          color: '#FF3B30',
+          bullets: ['Push do dyspozytora z mapą i adresem', 'Najbliższy serwis ciężarowy / parking ITD na mapie', 'Rezerwa: telefon awaryjny do dyspozytora', 'Logi wszystkich zdarzeń (kto, kiedy, gdzie)'],
+          icon: `<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke-width="1.6"/>`,
+        },
+        {
+          title: 'Diety i ryczałty automatycznie',
+          desc: 'Aplikacja wie kiedy przekroczyłeś granicę i ile godzin spędziłeś w danym kraju. Dieta zagraniczna liczona automatycznie wg rozporządzenia MRPiPS: 49 € DE, 50 € FR, 48 € IT, 50 € ES. Plus ryczałt noclegowy gdy brak rachunku.',
+          color: '#0A84FF',
+          bullets: ['Granice wykryte z GPS automatycznie', 'Stawki diet per kraj (rozporządzenie MRPiPS)', 'Ryczałt 25% diety gdy brak hotelu/rachunku', 'Eksport zestawienia delegacji do FK'],
+          icon: `<rect x="3" y="6" width="18" height="13" rx="2" stroke-width="1.6"/><path d="M3 10h18M8 6V4m8 2V4" stroke-width="1.6"/>`,
         },
       ].map(f => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
           </div>
-          <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-5">{f.desc}</p>
+          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-4">{f.desc}</p>
           <ul class="flex flex-col gap-2">
             {f.bullets.map(b => (
-              <li class="flex items-start gap-2.5 text-[13px] text-[#6E6E73]">
+              <li class="flex items-start gap-2.5 text-[12.5px] text-[#6E6E73]">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
               </li>
@@ -184,59 +352,66 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- DODATKOWE MOŻLIWOŚCI -->
-<section class="py-24 sm:py-32 bg-[#F5F5F7] px-5">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="reveal text-center mb-14">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Więcej możliwości</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Zaprojektowane z myślą o kierowcy.
+<!-- ============ DOKUMENTY KIEROWCY ============ -->
+<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+  <div class="max-w-[900px] mx-auto">
+    <div class="reveal text-center mb-12">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Twoje dokumenty</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Cztery dokumenty których ITD pyta na każdej kontroli.<br/>Wszystkie w jednym miejscu.
       </h2>
     </div>
 
-    <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
+    <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-4">
       {[
-        { title: 'Klasyfikacja tras', desc: 'Oznacz trasę jako służbową lub prywatną. AI uczy się Twoich wzorców i proponuje cel automatycznie.', icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.6"/>`, color: '#005CE8' },
-        { title: 'Historia przejazdów', desc: 'Przegląd wszystkich tras z filtrami: po dacie, pojeździe, typie. Mapa z przebiegiem każdej trasy.', icon: `<path d="M12 20h9" stroke-width="1.6"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-width="1.6"/>`, color: '#34C759' },
-        { title: 'Profil i dokumenty', desc: 'Twoje dane, prawo jazdy, kwalifikacja zawodowa — z automatycznymi alertami o zbliżającym się wygaśnięciu.', icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><polyline points="14 2 14 8 20 8" stroke-width="1.6"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.6"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.6"/>`, color: '#FF9500' },
-        { title: 'Synchronizacja offline', desc: 'Dane GPS zebrane bez internetu synchronizują się automatycznie po powrocie online — bez utraty ani jednego punktu.', icon: `<polyline points="16 16 12 12 8 16" stroke-width="1.6"/><line x1="12" y1="12" x2="12" y2="21" stroke-width="1.6"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" stroke-width="1.6"/>`, color: '#8B5CF6' },
-        { title: 'Dowód że byłeś', desc: 'GPS potwierdza że byłeś u klienta w konkretnym czasie. Nikt nie zarzuci że sfałszowałeś kilometrówkę — masz obiektywne dane.', icon: `<path d="M9 11l3 3L22 4" stroke-width="1.6"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-width="1.6"/>`, color: '#FF3B30' },
-        { title: 'Bezpieczeństwo i prywatność', desc: 'Dane szyfrowane, zgodność z RODO. Lokalizacja śledzona tylko podczas aktywnej trasy — poza nią Twoja prywatność jest chroniona.', icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="1.6"/><path d="M7 11V7a5 5 0 0110 0v4" stroke-width="1.6"/>`, color: '#005CE8' },
-      ].map(f => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
-          <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
+        { name: 'Prawo jazdy', cat: 'kategoria B/C/C+E', alert: 'Alert 30 dni przed', color: '#005CE8' },
+        { name: 'Karta kierowcy', cat: 'do tachografu G2V2', alert: 'Alert 30 dni przed', color: '#FF9500' },
+        { name: 'Świadectwo kierowcy', cat: 'do przewozu w UE / kraje trzecie', alert: 'Alert 60 dni przed', color: '#34C759' },
+        { name: 'Kwalifikacja zawodowa', cat: 'Kod 95 / kursy okresowe co 5 lat', alert: 'Alert 90 dni przed', color: '#8B5CF6' },
+        { name: 'Badania lekarskie i psycho-techniczne', cat: 'wymagane do prowadzenia C+E', alert: 'Alert 30 dni przed', color: '#FF3B30' },
+        { name: 'Świadectwo ADR', cat: 'jeśli wozisz materiały niebezpieczne', alert: 'Alert 90 dni przed', color: '#0A84FF' },
+      ].map(d => (
+        <div class="bg-white rounded-2xl p-5 flex items-center gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={`background: ${d.color}12`}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={d.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[13.5px] leading-relaxed text-[#6E6E73]">{f.desc}</p>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13.5px] font-semibold text-[#1D1D1F] leading-tight">{d.name}</p>
+            <p class="text-[11.5px] text-[#86868B] leading-tight">{d.cat}</p>
+          </div>
+          <span class="text-[11px] font-medium shrink-0" style={`color: ${d.color}`}>{d.alert}</span>
         </div>
       ))}
     </div>
+
+    <p class="reveal text-[13px] text-[#86868B] text-center mt-7 max-w-[640px] mx-auto leading-relaxed">
+      Aplikacja wysyła alerty push i e-mail przed wygaśnięciem każdego dokumentu. Twój pracodawca też je dostaje — dzięki czemu nikt nigdy nie zapomina.
+    </p>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="py-24 sm:py-32 bg-white px-5">
-  <div class="max-w-[720px] mx-auto">
+<!-- ============ FAQ ============ -->
+<section class="py-20 sm:py-28 bg-white px-5">
+  <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Najczęściej zadawane pytania.
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęstsze pytania kierowców
       </h2>
     </div>
 
     <div class="reveal-stagger flex flex-col gap-3">
       {[
-        { q: 'Czy aplikacja zużywa dużo baterii?', a: 'Nie. BusiKM korzysta z adaptacyjnego GPS — częstotliwość odczytu lokalizacji dostosowuje się do prędkości. Gdy jedziesz szybko, odczyty co 5s. Gdy stoisz, co 30s. Poniżej 10% baterii śledzenie jest wstrzymywane.' },
-        { q: 'Czy szef widzi wszystkie moje trasy — też prywatne?', a: 'Nie. Szef widzi wyłącznie trasy które sam zaznaczysz jako służbowe. Prywatne trasy możesz wyłączyć jednym przyciskiem. Poza aktywną trasą służbową lokalizacja nie jest śledzona.' },
-        { q: 'Ile czasu zajmuje mi korzystanie z aplikacji?', a: '10 sekund na trasę — klikasz "Rozpocznij" przed wyjazdem, "Zakończ" po przyjeździe i potwierdzasz cel. GPS robi resztę. Zamiast godziny na koniec miesiąca z kalendarzem — kilkanaście tapnięć dziennie.' },
-        { q: 'Co jeśli stracę zasięg w trasie?', a: 'Dane GPS zapisywane są lokalnie. Po odzyskaniu internetu synchronizują się automatycznie. Trasa zostanie kompletna, bez przerw.' },
-        { q: 'Co jeśli zapomnę zakończyć trasę?', a: 'Właściciel firmy może zakończyć trasę z panelu webowego. Ale warto kończenie tras samodzielnie — dla dokładności danych.' },
-        { q: 'Na jakich telefonach działa?', a: 'iPhone z iOS 15+ i Android 10+. Jeśli masz Google Maps — BusiKM też zadziała.' },
-        { q: 'Czy muszę wpisywać cel każdej trasy?', a: 'Tak, ale to jedno krótkie pole — np. "klient ABC" lub "dostawa Gliwice". Możesz wybrać z listy wcześniejszych celów. AI podpowiada cel na podstawie powtarzalnych tras.' },
+        { q: 'Czy aplikacja zastępuje tachograf cyfrowy?', a: 'Nie. BusiKM nie zastępuje tachografu G2V2 (to obowiązek prawny dla pojazdów >2,5 t w transporcie międzynarodowym od 2 lipca 2026). Aplikacja pomaga Ci jednak monitorować czas pracy AETR równolegle, żebyś nie naruszył limitów zanim trafi na kontrolę. Tachograf zostaje, BusiKM ostrzega zawczasu.' },
+        { q: 'Czy szef widzi gdzie jadę po pracy albo w weekend?', a: 'Nie. GPS rejestruje pozycję wyłącznie podczas aktywnej trasy służbowej (od kliknięcia „Rozpocznij" do „Zakończ"). Po zakończeniu zmiany śledzenie jest WYŁĄCZONE. Weekend, prywatne wyjścia, dom — niewidoczne dla nikogo, w tym dla pracodawcy.' },
+        { q: 'Co jeśli stracę zasięg w tunelu, w górach albo w niemieckim Ruhr-Industrie?', a: 'BusiKM jest offline-first. Punkty GPS, paragony, zdjęcia są zapisywane lokalnie w bazie SQLite. Po powrocie zasięgu (4G/5G/Wi-Fi) wszystko synchronizuje się automatycznie do panelu firmy. Trasa nigdy nie pęka — nawet po 30 godzinach bez sieci.' },
+        { q: 'Niemiecka faktura, którą OCR czyta — jest pewna czy zgadnie?', a: 'OCR wyciąga dane z dokumentu i pokazuje Ci je do potwierdzenia. Jeśli coś jest niejasne (np. zamazany VAT) — zaznacza pole na żółto i prosi o ręczną korektę. Nigdy nie zapisuje danych bez Twojej akceptacji. Po Twoim kliknięciu „OK" faktura idzie do księgowej z polskim opisem.' },
+        { q: 'Aplikacja będzie zżerać baterię?', a: 'Adaptacyjny GPS dostosowuje częstotliwość pomiaru do prędkości. W ruchu (>20 km/h) — pomiar co 5–8 s. Na postoju — co 30–60 s. W praktyce oznacza to ~6–8% baterii na godzinę jazdy. Pełna trasa 9h = ok. 60–70% baterii. Powerbank w kabinie i jest spokój.' },
+        { q: 'A jeśli ITD/BAG/Polizia mnie zatrzyma — co pokazać?', a: 'Aplikacja generuje PDF z czasem pracy w danym dniu, tygodniu i 4 tygodniach. Zgodne ze standardem AETR i pakietem mobilności. Przy kontroli pokażesz oficerowi tachograf (jak zawsze), ale BusiKM jest pomocny do potwierdzenia, że wszystkie limity zostały zachowane.' },
+        { q: 'Kiedy aplikacja będzie gotowa do pobrania?', a: 'BusiKM jest na etapie pilotażu MVP. Pierwsze firmy transportowe testują aplikację w trasach DE/FR/IT/ES. Premiera publiczna iOS i Android — lipiec 2026. Pilotażowe firmy mają dożywotni gratis dostęp.' },
       ].map(faq => (
         <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[15px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
             {faq.q}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
@@ -247,25 +422,25 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 sm:py-28 bg-[#0A0A0B] px-5 overflow-hidden relative">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
   </div>
   <div class="relative reveal text-center max-w-[680px] mx-auto">
-    <h2 class="font-display text-[clamp(1.8rem,5vw,3rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-      Gotowy na automatyczną kilometrówkę?
+    <h2 class="font-display text-[clamp(1.8rem,5vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
+      Mniej papieru, mniej stresu,<br/>więcej czasu w drodze.
     </h2>
-    <p class="text-[16px] text-white/50 mb-10 leading-relaxed">
-      Pobierz aplikację, zaloguj się i zacznij rejestrować trasy automatycznie. Zero papieru, zero stresu.
+    <p class="text-[15px] text-white/60 mb-10 leading-relaxed">
+      Powiedz pracodawcy o BusiKM. To on wybiera narzędzia, ale to Ty — kierowca — zyskasz najwięcej.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
       <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
-        Poznaj wszystkie funkcje
+        Zobacz funkcje aplikacji
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
-        Zobacz cennik
+        Cennik (gratis dla pilotów)
       </a>
     </div>
   </div>
@@ -280,3 +455,25 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   );
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 </script>
+
+<style>
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible,
+  .reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+  details summary::-webkit-details-marker { display: none; }
+</style>
