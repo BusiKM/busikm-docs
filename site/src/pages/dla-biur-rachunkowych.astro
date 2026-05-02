@@ -54,62 +54,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ============ MARTA — PERSONA BR ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
-  <div class="max-w-[1000px] mx-auto">
-    <div class="reveal text-center mb-10 max-w-[720px] mx-auto">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Czy to o Tobie?</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Marta obsługuje 8 firm transportowych.<br/>Każda zżerała jej 3× więcej godzin niż handlowiec.
-      </h2>
-    </div>
-
-    <div class="reveal rounded-[24px] p-7 sm:p-10 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <div class="flex items-start gap-5 mb-7">
-        <div class="w-14 h-14 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center shrink-0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div>
-          <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-1">Marta, 44 lata. Właścicielka biura rachunkowego.</h3>
-          <p class="text-[13px] text-[#86868B]">25 klientów ogółem · 8 firm transportowych · specjalizacja: transport międzynarodowy busami.</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-7">
-        <div>
-          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-3">Co zżera Martę przy klientach transportowych</p>
-          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Klient przysyła paczkę: 200 PDF-ów paragonów, Excel z kilometrówką, skany faktur z DE/IT/FR. Wszystko bez systemu.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>„Mautstelle Dortmund-Hafen" — co to jest? Marta szuka w Google, sprawdza czy to opłata drogowa, czy stacja paliw.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Każda waluta wymaga ręcznego kursu NBP. Każda data — inny kurs. 50 faktur EUR = 50 razy klik na archive.nbp.pl.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>VAT-REFUND — klient pyta „ile mogę odzyskać z Niemiec?". Trzeba ręcznie wyfiltrować kwalifikujące faktury per kraj.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Korekta JPK_V7 raz na 3 miesiące przy klientach transportowych. Bo zawsze coś jest źle przypisane.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Klient transportowy = średnio 3,5× więcej godzin pracy niż klient handlowy o tym samym obrocie. Ale stawka nie 3,5×.</li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-3">Z BusiKM Marta robi tylko to, co naprawdę BR-skie</p>
-          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Klient ma księgową w firmie</strong>, która już skategoryzowała faktury, przeliczyła kursy i przypisała do zleceń. Marta dostaje gotowy plik.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Eksport jednym kliknięciem</strong> — EDI++ do Insert GT, XML do Comarch, TXT/AMS do Symfonia. Import w jej systemie też w jeden klik.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Polskie etykiety wszędzie</strong> — „Mautstelle" jest opisana jako „Opłata drogowa Niemcy". Bez Google.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Paczka VAT-REF</strong> dla każdego kraju zwrotu — gotowa do wniosku z polskiego US. Marta tylko podpisuje.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">JPK_V7 — bez korekty.</strong> Bo dane są spójne, NIP-y zweryfikowane przez VIES, kursy z NBP.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Czas na klienta — 1 godzina zamiast 3,5.</strong> Marta przyjmuje 3 nowe firmy transportowe bez zatrudniania nikogo.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-[#8B5CF6]/[0.04] border border-[#8B5CF6]/10">
-        <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
-          <strong>„Specjalizacja w transporcie międzynarodowym to dla mnie premia 30–40% od stawki standardowej.</strong> Ale tylko jeśli mogę faktycznie obsłużyć więcej klientów. Z BusiKM mogę — bo nie wpisuję już paragonów z Mediolanu, tylko robię to, co rzeczywiście potrafię."
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ DASHBOARD MULTI-TENANT ============ -->
 <section class="py-20 sm:py-28 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">

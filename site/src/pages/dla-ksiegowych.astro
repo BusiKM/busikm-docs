@@ -54,63 +54,6 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ============ JOANNA — PERSONA KSIĘGOWEJ ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
-  <div class="max-w-[1000px] mx-auto">
-    <div class="reveal text-center mb-10 max-w-[720px] mx-auto">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Czy to o Tobie?</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
-        Joanna ma 12 busów, 30 zleceń międzynarodowych i ostatni tydzień miesiąca.
-      </h2>
-    </div>
-
-    <div class="reveal rounded-[24px] p-7 sm:p-10 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-      <div class="flex items-start gap-5 mb-7">
-        <div class="w-14 h-14 rounded-full bg-[#FF9500]/10 flex items-center justify-center shrink-0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div>
-          <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-1">Joanna, 36 lat. Główna księgowa firmy transportowej.</h3>
-          <p class="text-[13px] text-[#86868B]">12 busów 2,5–3,5 t · 30 zleceń międzynarodowych miesięcznie · współpracuje z biurem rachunkowym.</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-7">
-        <div>
-          <p class="text-[12px] font-bold text-[#FF3B30] uppercase tracking-[0.04em] mb-3">Co Joanna robi przez 25 dni miesiąca</p>
-          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Wprowadza ręcznie faktury kosztowe: paliwo z DE/AT/IT, opłaty Maut, Telepass, Viatoll, hotele, posiłki. 200–300 dokumentów miesięcznie.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Tłumaczy faktury z 5 języków: niemiecki „Rechnung", włoski „Fattura", francuski „Facture", hiszpański „Factura", angielski „Invoice".</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Przelicza walutę po kursie NBP tabela A z dnia poprzedzającego — sprawdza w internecie, kopiuje do Excela.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Liczy diety zagraniczne według tabeli MRPiPS (49 € DE, 50 € FR, 48 € IT…) na podstawie odręcznych notatek kierowców.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Co kwartał składa wniosek VAT-REFUND za zwrot VAT z DE/FR/IT — ręcznie zbiera kwalifikujące się faktury.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Liczy rentowność per zlecenie w Excelu. Błąd w jednej formule = cała firma podejmuje decyzję na złym pliku.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#FF3B30] mt-1 shrink-0">—</span>Wysyła do biura rachunkowego paczkę plików: PDF-y, Excele, skany. BR wprowadza wszystko jeszcze raz.</li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="text-[12px] font-bold text-[#34C759] uppercase tracking-[0.04em] mb-3">Z BusiKM ten sam miesiąc trwa 2 dni</p>
-          <ul class="space-y-2.5 text-[13.5px] text-[#6E6E73] leading-relaxed">
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Faktury same trafiają do panelu</strong> — kierowcy fotografują w aplikacji, OCR czyta 6 języków, system przypisuje do zlecenia i pojazdu.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Kurs NBP automatycznie</strong> — tabela A z dnia poprzedzającego datę faktury, zgodnie z UPDOF/UPDOP. Bez kopiowania.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Diety liczone z GPS</strong> — wjazd i wyjazd z każdego kraju wykryty automatycznie. Stawki MRPiPS aktualne. Ryczałt 25% gdy brak rachunku noclegowego.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">VAT-REFUND paczka</strong> — faktury kwalifikujące się do zwrotu VAT z DE/FR/IT/AT/NL z dyrektywy 2008/9/WE są oznaczone, gotowe do wniosku.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Rentowność per zlecenie na żywo</strong> — nie ma już Excela. Marża aktualizuje się po każdym dodanym paragonie.</li>
-            <li class="flex items-start gap-2.5"><span class="text-[#34C759] mt-1 shrink-0">—</span><strong class="text-[#1D1D1F]">Biuro rachunkowe ma plik gotowy do importu</strong> — nie wpisuje już niczego, tylko sprawdza i robi JPK_V7 i CIT.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-[#FF9500]/[0.04] border border-[#FF9500]/10">
-        <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
-          <strong>„Nie chcę kolejnego programu, którego muszę się uczyć.</strong> Chcę żeby księgowość transportowa, która zżera mi 60–80 godzin miesięcznie, zaczęła zajmować 10–15. Reszta to czas na sprawozdania finansowe, ZUS, KSeF i rozmowę z CFO o rentowności floty — a nie nad listą paragonów."
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ MOCKUP — KOSZTY UE ============ -->
 <section class="py-20 sm:py-28 bg-white px-5">
   <div class="max-w-[1120px] mx-auto">
