@@ -24,9 +24,16 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       Każdy kilometr Twojej floty<br/>pod&nbsp;<span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">pełną kontrolą</span>.
     </h1>
 
-    <p class="hero-seq-3 text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[700px] mx-auto mb-10">
+    <p class="hero-seq-3 text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#6E6E73] max-w-[700px] mx-auto mb-8">
       Aplikacja dla polskich firm transportowych realizujących przewozy w&nbsp;Unii Europejskiej. Łączy GPS w&nbsp;czasie rzeczywistym, ewidencję pracy kierowców, dokumenty floty i&nbsp;rentowność zleceń liczoną z&nbsp;faktur z&nbsp;całej Europy &mdash; również tych, których nie obejmuje KSeF.
     </p>
+
+    <!-- G2V2 deadline alert — clickable, leads to /g2v2-przygotowanie -->
+    <a href="/g2v2-przygotowanie" class="hero-seq-3 group inline-flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2.5 rounded-full bg-[#FF9500]/[0.08] border border-[#FF9500]/25 hover:bg-[#FF9500]/[0.14] hover:border-[#FF9500]/40 transition-all duration-200 mb-10">
+      <span class="inline-flex items-center justify-center min-w-[26px] h-[26px] rounded-full bg-[#FF9500] text-white font-mono font-bold text-[12.5px] tabular-nums px-2" id="hero-countdown-days">—</span>
+      <span class="text-[12.5px] sm:text-[13px] font-medium text-[#1D1D1F]">dni do obowiązku tachografu G2V2 dla busów 2,5–3,5 t</span>
+      <svg class="w-3 h-3 text-[#FF9500] transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
@@ -315,6 +322,20 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </style>
 
   <script is:inline>
+    // G2V2 deadline countdown — days only, target 2 July 2026 00:00 (Warsaw)
+    (function() {
+      var el = document.getElementById('hero-countdown-days');
+      if (!el) return;
+      var target = new Date('2026-07-02T00:00:00+02:00').getTime();
+      function tick() {
+        var diff = target - Date.now();
+        if (diff <= 0) { el.textContent = '0'; return; }
+        el.textContent = Math.ceil(diff / 86400000);
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+
     function initHeroMap() {
       if (typeof L === 'undefined') { setTimeout(initHeroMap, 100); return; }
       var el = document.getElementById('hero-map');

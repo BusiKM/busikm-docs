@@ -114,6 +114,19 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
         >
           Roadmapa
         </a>
+
+        <a
+          href="/g2v2-przygotowanie"
+          class:list={[
+            'nav-link inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+            currentPath.startsWith('/g2v2-przygotowanie')
+              ? 'text-[#FF9500] bg-[#FF9500]/10'
+              : 'text-[#1D1D1F]/70 hover:text-[#FF9500] hover:bg-[#FF9500]/[0.06]',
+          ]}
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
+          G2V2
+        </a>
       </nav>
 
       <!-- CTA + hamburger -->
@@ -190,13 +203,27 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
       <a
         href="/roadmapa"
         class:list={[
-          'block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-4',
+          'block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-1',
           currentPath.startsWith('/roadmapa')
             ? 'text-[#005CE8] bg-[#005CE8]/8'
             : 'text-[#1D1D1F] hover:bg-black/5',
         ]}
       >
         Roadmapa
+      </a>
+
+      <a
+        href="/g2v2-przygotowanie"
+        class:list={[
+          'flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-4',
+          currentPath.startsWith('/g2v2-przygotowanie')
+            ? 'text-[#FF9500] bg-[#FF9500]/10'
+            : 'text-[#1D1D1F] hover:bg-[#FF9500]/[0.06] hover:text-[#FF9500]',
+        ]}
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
+        G2V2
+        <span class="text-[12px] text-[#86868B] ml-auto">2 lipca 2026</span>
       </a>
 
       <a
