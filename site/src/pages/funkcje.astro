@@ -3,87 +3,107 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 const featureGroups = [
   {
-    title: 'Automatyczne zbieranie danych',
-    subtitle: 'Kierowca jedzie — BusiKM zapisuje. Jedyne pole ręczne: cel wyjazdu.',
+    title: 'Aplikacja kierowcy',
+    subtitle: 'GPS w tle, paragony zdjęciem, alerty czasu pracy. Działa bez zasięgu, w sześciu językach.',
     color: '#005CE8',
-    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>',
     features: [
-      'GPS background tracking (iOS + Android)',
-      'Automatyczne obliczanie dystansu z GPS',
-      'Klasyfikacja tras: służbowa / prywatna',
-      'Zdjęcia licznika (start / stop)',
-      'Tryb offline — sync po powrocie online',
-      'Dane pojazdu: nr rej., VIN, stan licznika',
-      'Alert VAT-26 przy dodawaniu pojazdu',
-      'Alerty dokumentów (OC, przegląd, prawo jazdy)',
+      { name: 'Lokalizacja GPS w tle (iOS + Android) — bez ręcznego startu', tag: 'MVP' },
+      { name: 'Tryb offline — pełna praca bez zasięgu, sync po powrocie', tag: 'MVP' },
+      { name: 'OCR paragonów — PL, EN, DE, IT, FR, ES', tag: 'MVP' },
+      { name: 'Klasyfikacja kosztów: paliwo, Maut, hotel, posiłek, opłaty drogowe', tag: 'MVP' },
+      { name: 'Zdjęcia liczników, dokumentów, CMR i protokołów', tag: 'MVP' },
+      { name: 'Alerty czasu pracy AETR — przed naruszeniem (4,5h / 9h / 11h)', tag: 'MVP' },
+      { name: 'Powiadomienia push + e-mail dla kierowcy i właściciela', tag: 'MVP' },
+      { name: 'Sześć języków interfejsu — kierowca z UA, RO, BY rozumie wszystko', tag: 'MVP' },
     ],
   },
   {
-    title: 'Raporty i ewidencja',
-    subtitle: 'PDF zgodny z art. 86a, kalkulacja VAT, stawki km — wszystko automatyczne.',
+    title: 'Panel właściciela floty',
+    subtitle: 'Pojazdy, kierowcy, zlecenia i koszty na jednym ekranie. Real-time mapa po MVP.',
     color: '#34C759',
-    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>',
     features: [
-      'Ewidencja przebiegu PDF zgodna z art. 86a ustawy o VAT',
-      'Kalkulacja VAT: 50% vs 100% wg statusu VAT-26',
-      'Stawki km wg Dz.U. 2023 poz. 5 — dobierane po dacie',
-      'Raport kosztów floty (PDF + CSV + Excel)',
-      'Podsumowanie miesięczne per pojazd',
-      'Elektroniczny podpis (login = podpis wg interpretacji MF)',
-      'Archiwizacja danych — 5 lat, serwery w UE',
+      { name: 'Dashboard floty — pojazdy, kierowcy, alerty, koszty miesiąca', tag: 'MVP' },
+      { name: 'Lista zleceń + przypisanie kierowca/pojazd', tag: 'MVP' },
+      { name: 'Raporty per pojazd / kierowca / okres', tag: 'MVP' },
+      { name: 'Plan indywidualny dla większych flot — rozliczenie hurtowe', tag: 'MVP' },
+      { name: 'Mapa floty w czasie rzeczywistym', tag: 'Po MVP' },
+      { name: 'ETA dostawy + udostępnianie linku klientowi', tag: 'Po MVP' },
+      { name: 'Strefy alertów — bus opuszcza wyznaczony obszar bez zlecenia', tag: 'Po MVP' },
+      { name: 'Marża per zlecenie — które kursy się opłacają', tag: 'Po MVP' },
     ],
   },
   {
-    title: 'Eksport do systemów FK',
-    subtitle: 'Jeden klik — dane w Insert GT, Comarch lub Symfonia. Zero przepisywania.',
+    title: 'Compliance i kontrola ITD',
+    subtitle: 'AETR, dokumenty kierowcy, tachograf G2V2 (deadline 2 lipca 2026). Kary do 10 000 zł — pod kontrolą.',
     color: '#FF9500',
-    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>',
     features: [
-      { name: 'Insert GT / Rewizor GT / nexo (EPP / EDI++)', tag: 'MVP' },
-      { name: 'Comarch ERP Optima (XML)', tag: 'MVP' },
-      { name: 'Symfonia FK (TXT + szablon AMS)', tag: 'MVP' },
-      { name: 'Eksport ewidencji przebiegu + faktur paliwowych', tag: null },
-      { name: 'Historia eksportów + statusy pobierania', tag: null },
-      { name: 'Automatyczne kodowanie Windows-1250 (Insert GT)', tag: null },
+      { name: 'Alerty czasu pracy AETR — 4,5h / 9h / 11h / dzień / tydzień / dwutydzień', tag: 'MVP' },
+      { name: 'Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe', tag: 'MVP' },
+      { name: 'Dokumenty kierowcy — prawo jazdy, ADR, świadectwo kierowcy', tag: 'MVP' },
+      { name: 'Dokumenty firmy — licencja transportowa, OCP, OC, przegląd', tag: 'MVP' },
+      { name: 'Alerty terminów — 30 / 14 / 7 dni przed wygaśnięciem', tag: 'MVP' },
+      { name: 'Tachograf G2V2 — monitoring legalizacji per pojazd', tag: 'Po MVP' },
+      { name: 'Dashboard pod kontrolę ITD — wszystko gotowe na żądanie', tag: 'Po MVP' },
+      { name: 'Ewidencja czasu pracy kierowcy — pełna historia + eksport', tag: 'Po MVP' },
     ],
   },
   {
-    title: 'Panel biura rachunkowego',
-    subtitle: 'Jeden dashboard dla wszystkich firm klientów. Pilotaż dożywotnio gratis.',
+    title: 'Księgowość transportu międzynarodowego',
+    subtitle: 'Każdy paragon, każdy kurs walut, każdy eksport. OCR w sześciu językach, NBP automatycznie.',
     color: '#8B5CF6',
-    featured: true,
-    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
     features: [
-      'Multi-tenant — zarządzanie wieloma firmami',
+      { name: 'OCR paragonów — 6 języków, 7 typów dokumentów (paliwo, Maut, hotel, posiłek, prom, parking, naprawa)', tag: 'MVP' },
+      { name: 'Kursy NBP automatyczne — przewalutowanie z dnia poprzedniego', tag: 'MVP' },
+      { name: 'Eksport do Insert GT / Rewizor / nexo', tag: 'MVP' },
+      { name: 'Eksport do Comarch ERP Optima', tag: 'MVP' },
+      { name: 'Eksport do Symfonia FK', tag: 'MVP' },
+      { name: 'Faktury zagraniczne — DE, FR, IT, AT i pozostałe kraje UE', tag: 'Po MVP' },
+      { name: 'VAT-REF — gotowy raport zwrotu VAT z UE', tag: 'Po MVP' },
+      { name: 'Rozliczenie kierowcy — diety, mandaty, wypłata w jednym', tag: 'Po MVP' },
+      { name: 'Eksport delegacji do FK + obowiązkowy e-system fakturowy', tag: 'Po MVP' },
+    ],
+  },
+  {
+    title: 'Biuro rachunkowe — multi-tenant',
+    subtitle: 'Jeden panel dla wszystkich klientów biura. Pilotaż dożywotnio gratis.',
+    color: '#1D1D1F',
+    featured: true,
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>',
+    features: [
+      'Multi-tenant — zarządzanie wszystkimi klientami z jednego konta',
       'Przełączanie kontekstu klienta jednym kliknięciem',
-      'Zbiorczy dashboard wszystkich flot',
-      'Dashboard oszczędności (godziny i złotówki)',
-      'RBAC — poziomy dostępu per klient',
-      'Zbiorczy eksport FK dla wszystkich firm',
-      'Alerty dokumentów dla wszystkich flot',
-      'Klienci biura korzystają z BusiKM gratis',
+      'Zbiorczy dashboard wszystkich flot pod opieką biura',
+      'Dashboard oszczędności — godziny i złotówki per klient',
+      'Poziomy dostępu (RBAC) — pełen / tylko podgląd / tylko eksport',
+      'Zbiorczy eksport FK dla wszystkich firm jednocześnie',
+      'Alerty dokumentów i terminów dla wszystkich flot razem',
+      'Wszyscy klienci biura korzystają z BusiKM gratis dożywotnio',
     ],
   },
   {
     title: 'Platforma i bezpieczeństwo',
-    subtitle: 'Web, iOS, Android. Szyfrowanie, RODO, monitoring 24/7.',
+    subtitle: 'Web + iOS + Android. Szyfrowanie, RODO, dane na serwerach w UE.',
     color: '#1D1D1F',
-    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
+    icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
     features: [
-      'Web dashboard (Next.js 16)',
-      'Aplikacja mobilna iOS + Android (React Native + Expo)',
-      'Mapa floty w czasie rzeczywistym (WebSocket)',
-      'Push notifications + alerty e-mail',
-      'Szyfrowanie AES-256 (transit + rest)',
-      'Zgodność z RODO, dane w UE',
-      'JWT z refresh rotation + secure storage',
-      'OTA updates (Expo)',
+      'Aplikacja webowa — działa w przeglądarce, bez instalacji',
+      'Aplikacja mobilna na iOS i Android — z trybem offline',
+      'Powiadomienia push + e-mail',
+      'Szyfrowanie danych w transmisji i w spoczynku',
+      'Zgodność z RODO — dane przechowywane wyłącznie w UE',
+      'Codzienny backup + monitoring 24/7',
+      'Aktualizacje aplikacji w tle, bez sklepu',
+      'Bezpieczne logowanie + automatyczne wylogowywanie po bezczynności',
     ],
   },
 ];
 ---
 
-<MarketingLayout title="Funkcje — BusiKM" description="GPS tracking, raporty wg MF, eksport do Insert GT / Comarch / Symfonia, panel multi-klient dla biur rachunkowych. Web + iOS + Android.">
+<MarketingLayout title="Funkcje — BusiKM" description="Wszystko dla firm transportowych z busami 2,5–3,5 t: GPS, OCR paragonów w 6 językach, alerty AETR, dokumenty kierowcy, eksport do Insert GT / Comarch / Symfonia, panel multi-klient dla biur rachunkowych.">
 
   <!-- HERO -->
   <section class="bg-white">
@@ -94,13 +114,18 @@ const featureGroups = [
       </div>
 
       <h1 class="text-[48px] sm:text-[56px] font-semibold tracking-tight leading-[1.07] text-[#1d1d1f]">
-        Jedna platforma.<br/>
-        <span class="text-[#6e6e73]">Od GPS po eksport do FK.</span>
+        Pełen system dla busów<br/>
+        <span class="text-[#6e6e73]">2,5–3,5 t w transporcie międzynarodowym.</span>
       </h1>
       <p class="mt-6 text-[19px] sm:text-[21px] leading-relaxed text-[#6e6e73] max-w-2xl mx-auto">
-        Kierowca jedzie z aplikacją — GPS rejestruje trasę. AI klasyfikuje cel.
-        Księgowa klika Eksportuj — dane trafiają do Insert GT, Comarch lub Symfonia.
+        Od GPS i paragonów w sześciu językach po dokumenty kierowcy, AETR, tachograf G2V2 i eksport do księgowej. Wszystko w jednej aplikacji — wszystko zgodne z prawem polskim i pakietem mobilności UE.
       </p>
+
+      <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 text-[12.5px] text-[#6E6E73]">
+        <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.08] text-[#005CE8] font-semibold">MVP — gotowe lub w wdrożeniu</span>
+        <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.08] text-[#FF9500] font-semibold">Po MVP — funkcje wkrótce</span>
+        <span>Funkcje bez tagu są stale dostępne.</span>
+      </div>
     </div>
   </section>
 
@@ -110,13 +135,13 @@ const featureGroups = [
       <div class="max-w-[980px] mx-auto px-6 py-20">
         <div class:list={[
           'reveal-on-scroll rounded-[20px] p-7 sm:p-9 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-300',
-          (group as any).featured ? 'bg-[#8B5CF6] text-white' : 'bg-white',
+          (group as any).featured ? 'bg-[#1D1D1F] text-white' : 'bg-white',
         ]}>
           <div class="flex items-start gap-3.5 mb-2">
             <div
               class:list={[
                 'w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0',
-                (group as any).featured ? 'bg-white/20' : '',
+                (group as any).featured ? 'bg-white/15' : '',
               ]}
               style={!(group as any).featured ? `background-color: ${group.color};` : undefined}
               set:html={group.icon}
@@ -129,7 +154,7 @@ const featureGroups = [
                 {group.title}
               </h2>
               <p class:list={[
-                'text-[14px] mt-1',
+                'text-[14px] mt-1 leading-relaxed',
                 (group as any).featured ? 'text-white/70' : 'text-[#86868B]',
               ]}>{group.subtitle}</p>
             </div>
@@ -142,21 +167,21 @@ const featureGroups = [
               const tag = isObj ? (feature as any).tag : null;
               const isFeatured = (group as any).featured;
               return (
-                <div class="flex items-center gap-2.5 py-1">
-                  <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
+                <div class="flex items-start gap-2.5 py-1">
+                  <svg class="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
                     <path d="M2 8l4 4 8-8" stroke={isFeatured ? 'white' : '#34C759'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                   <span class:list={[
-                    'text-[15px] leading-snug',
+                    'text-[14.5px] leading-snug flex-1',
                     isFeatured ? 'text-white/90' : 'text-[#1d1d1f]',
                   ]}>
                     {name}
                   </span>
                   {tag && (
-                    <span class={`px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap flex-shrink-0 ${
+                    <span class={`px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap flex-shrink-0 mt-0.5 ${
                       tag === 'MVP'
-                        ? (isFeatured ? 'bg-white/20 text-white' : 'bg-[#005CE8]/10 text-[#005CE8]')
-                        : (isFeatured ? 'bg-white/10 text-white/60' : 'bg-[#FF9500]/10 text-[#FF9500]')
+                        ? (isFeatured ? 'bg-white/20 text-white' : 'bg-[#005CE8]/[0.10] text-[#005CE8]')
+                        : (isFeatured ? 'bg-white/10 text-white/70' : 'bg-[#FF9500]/[0.12] text-[#FF9500]')
                     }`}>
                       {tag}
                     </span>
@@ -167,8 +192,8 @@ const featureGroups = [
           </div>
 
           {(group as any).featured && (
-            <div class="mt-6 pt-5 border-t border-white/20">
-              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#8B5CF6] text-[14px] font-bold hover:bg-white/90 transition-all">
+            <div class="mt-6 pt-5 border-t border-white/15">
+              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1D1D1F] text-[14px] font-bold hover:bg-white/90 transition-all">
                 Dołącz do pilotażu
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
