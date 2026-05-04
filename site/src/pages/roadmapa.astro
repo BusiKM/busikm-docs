@@ -2,21 +2,20 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // Realne dane sprintów z Jira (projekt BKM, board 34)
-// Sprinty 0-5b ukończone, sprinty 6a-22 zaplanowane
+// Sprinty 0-6a ukończone, sprinty 6b-22 zaplanowane
 
 const phases = [
   {
     id: 'backend',
     label: 'Faza 1 — Domknięcie funkcji systemowych',
-    period: '3 — 9 maja 2026',
+    period: '4 — 9 maja 2026',
     color: '#005CE8',
-    summary: 'Sześć obszarów funkcjonalnych dopracowywanych przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla właściciela floty, dyspozytora, kierowcy i księgowego.',
+    summary: 'Pięć obszarów funkcjonalnych dopracowywanych przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla właściciela floty, dyspozytora, kierowcy i księgowego.',
     sprints: [
-      { id: '6a', range: '3 maja', title: 'Program pilotażowy', desc: 'System zaproszeń dla pierwszych firm transportowych, panel administracyjny do zarządzania pilotami, automatyczne mailingi powitalne.', tickets: 8 },
-      { id: '6b', range: '4 maja', title: 'Dashboard zgodności dokumentów', desc: 'Zagregowany status dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy) &mdash; na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe.', tickets: 3 },
+      { id: '6b', range: '4 maja', title: 'Dashboard zgodności dokumentów', desc: 'Zagregowany status dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy) — na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe.', tickets: 3 },
       { id: '7a', range: '5 maja', title: 'Powiadomienia push', desc: 'Trzy kanały komunikacji: alerty wygasających dokumentów, potwierdzenia zakończonych tras dla właściciela, komunikaty produktowe od zespołu.', tickets: 10 },
       { id: '7b', range: '6 maja', title: 'Automatyzacja cyklu próbnego', desc: 'Sekwencja przypomnień przed wygaśnięciem trialu, automatyczne przedłużenie dla kont, które jeszcze nie zarejestrowały żadnej trasy.', tickets: 6 },
-      { id: '8', range: '7—8 maja', title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo dla właściciela floty i&nbsp;dyspozytora &mdash; bez konieczności odświeżania strony.', tickets: 12 },
+      { id: '8', range: '7—8 maja', title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo dla właściciela floty i dyspozytora — bez konieczności odświeżania strony.', tickets: 12 },
       { id: '9', range: '9 maja', title: 'Domknięcie zakresu MVP', desc: 'Walidacje danych firmowych przy tworzeniu klienta, bezpieczne odzyskiwanie usuniętych obiektów, rozszerzony monitoring stanu systemu.', tickets: 7 },
     ],
   },
@@ -25,7 +24,7 @@ const phases = [
     label: 'Faza 2 — Panel webowy',
     period: '10 — 19 maja 2026',
     color: '#34C759',
-    summary: 'Pełen panel webowy dla właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy &mdash; od dashboardu floty po zaawansowane raporty i eksport do systemów księgowych.',
+    summary: 'Pełen panel webowy dla właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy — od dashboardu floty po zaawansowane raporty i eksport do systemów księgowych.',
     sprints: [
       { id: '10a', range: '10 maja', title: 'Fundament panelu webowego', desc: 'Bezpieczna autoryzacja, spójny system designu, pełna responsywność — działa na komputerze, laptopie i tablecie.', tickets: 6 },
       { id: '10b', range: '11 maja', title: 'Główne widoki dla właściciela firmy', desc: 'Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur paliwowych z filtrowaniem i sortowaniem, szczegóły każdego obiektu z dokumentami i historią.', tickets: 7 },
@@ -65,7 +64,7 @@ const phases = [
       { id: '18', range: '29—30 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
       { id: '19', range: '31 maja — 1 czerwca', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
       { id: '20', range: '2—3 czerwca', title: 'Delegacje pracownicze i KSeF', desc: 'Eksport zwrotów kilometrowych pracowników (art. 21 ust. 1 pkt 23b) do trzech systemów księgowych. Integracja z Krajowym Systemem e-Faktur — faktury paliwowe powiązane z trasami pojazdu.', tickets: 5 },
-      { id: '21', range: '4—5 czerwca', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i&nbsp;per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty &mdash; dla właścicieli firm transportowych i&nbsp;biur rachunkowych prowadzących analizę.', tickets: 4 },
+      { id: '21', range: '4—5 czerwca', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
       { id: '22', range: '6 czerwca', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
     ],
   },
@@ -75,7 +74,7 @@ const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
 const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 7 sprintów ukończonych, 28 zaplanowanych. MVP LIVE 29-30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 8 sprintów ukończonych, 27 zaplanowanych. MVP LIVE 29-30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-white">
@@ -87,16 +86,16 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">Sprint 5b zakończony &mdash; rozliczenia per aktywny pojazd i plan indywidualny gotowe</span>
+        <span class="text-sm font-medium text-gray-700">Sprint 6a zakończony — system rejestracji pilotów (zaproszenia, hardening, audit) gotowy</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
         Plan rozwoju produktu.<br>
-        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Z myślą o&nbsp;firmach transportowych.</span>
+        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Z myślą o firmach transportowych.</span>
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Siedem sprintów za nami, dwadzieścia osiem przed nami. MVP LIVE 29&ndash;30&nbsp;maja 2026, finalizacja produktu w&nbsp;pierwszym tygodniu czerwca. Każda nowa funkcja BusiKM trafia najpierw do pilotów &mdash; właścicieli firm transportowych, dyspozytorów, księgowych i&nbsp;biur rachunkowych obsługujących firmy.
+        Osiem sprintów za nami, dwadzieścia siedem przed nami. MVP LIVE 29–30 maja 2026, finalizacja produktu w pierwszym tygodniu czerwca. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -111,16 +110,16 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <div class="hero-seq-5 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
         <div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-[#34C759] font-display">116</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-[#34C759] font-display">124</div>
           <div class="text-sm text-gray-400 mt-1">ukończonych ticketów</div>
         </div>
         <div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-[#005CE8] font-display">7/{ totalSprints + 7 }</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-[#005CE8] font-display">8/{ totalSprints + 8 }</div>
           <div class="text-sm text-gray-400 mt-1">sprintów gotowych</div>
         </div>
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display">{ totalTickets }</div>
-          <div class="text-sm text-gray-400 mt-1">ticketów w&nbsp;backlogu</div>
+          <div class="text-sm text-gray-400 mt-1">ticketów w backlogu</div>
         </div>
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display">29 maj</div>
@@ -136,8 +135,8 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <div class="text-center mb-12 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Co zostało zbudowane</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Siedem sprintów za nami. 116 ticketów ukończonych.</h2>
-        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, kompletna ewidencja przebiegu zgodna z art. 86a, eksport do trzech systemów księgowych, hurtowe rozliczanie aktywnych pojazdów i&nbsp;plan indywidualny dla większych flot.</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Osiem sprintów za nami. 124 tickety ukończone.</h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, kompletna ewidencja przebiegu zgodna z art. 86a, eksport do trzech systemów księgowych, hurtowe rozliczanie aktywnych pojazdów i plan indywidualny dla większych flot.</p>
       </div>
 
       <div class="space-y-3 reveal-stagger">
@@ -148,7 +147,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S0</span>
               <div>
                 <h3 class="font-bold text-gray-900">Środowisko produkcyjne i CI/CD</h3>
-                <p class="text-xs text-gray-400">14&ndash;18 kwietnia 2026 &middot; 13 ticketów</p>
+                <p class="text-xs text-gray-400">14–18 kwietnia 2026 · 13 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
@@ -162,12 +161,12 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S1</span>
               <div>
                 <h3 class="font-bold text-gray-900">Autoryzacja i system ról</h3>
-                <p class="text-xs text-gray-400">19&ndash;20 kwietnia 2026 &middot; 10 ticketów</p>
+                <p class="text-xs text-gray-400">19–20 kwietnia 2026 · 10 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-500">Logowanie z odświeżaniem tokenów, weryfikacja e-mail, cztery role z dedykowanymi uprawnieniami: kierowca, właściciel, księgowy, biuro rachunkowe.</p>
+          <p class="text-sm text-gray-500">Bezpieczne logowanie z automatycznym odświeżaniem sesji, weryfikacja adresu e-mail, cztery role z dedykowanymi uprawnieniami: kierowca, właściciel, księgowy, biuro rachunkowe.</p>
         </div>
 
         <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
@@ -176,12 +175,12 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S2</span>
               <div>
                 <h3 class="font-bold text-gray-900">Firmy, subskrypcje, izolacja danych</h3>
-                <p class="text-xs text-gray-400">21 kwietnia 2026 &middot; 16 ticketów</p>
+                <p class="text-xs text-gray-400">21 kwietnia 2026 · 16 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-500">Modele firmy i subskrypcji, fundament multi-tenant z pełną izolacją danych między firmami, mechanizm przełączania kontekstu dla biur rachunkowych.</p>
+          <p class="text-sm text-gray-500">Profil firmy, subskrypcja, fundament multi-tenant z pełną izolacją danych między firmami oraz mechanizm przełączania kontekstu dla biur rachunkowych obsługujących wielu klientów.</p>
         </div>
 
         <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
@@ -190,12 +189,12 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S3</span>
               <div>
                 <h3 class="font-bold text-gray-900">Pojazdy, kierowcy, dokumenty</h3>
-                <p class="text-xs text-gray-400">22&ndash;23 kwietnia 2026 &middot; 14 ticketów</p>
+                <p class="text-xs text-gray-400">22–23 kwietnia 2026 · 14 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-500">Pełne CRUD pojazdów i kierowców, upload dokumentów (OC, przegląd, tachograf, prawo jazdy), monitoring terminów ważności, zaproszenia kierowców.</p>
+          <p class="text-sm text-gray-500">Pełne zarządzanie flotą i kierowcami, upload dokumentów (OC, przegląd, tachograf, prawo jazdy), monitoring terminów ważności, zaproszenia nowych kierowców e-mailem.</p>
         </div>
 
         <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
@@ -204,12 +203,12 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S4</span>
               <div>
                 <h3 class="font-bold text-gray-900">Kilometrówka, eksport FK, dokumenty</h3>
-                <p class="text-xs text-gray-400">23&ndash;30 kwietnia 2026 &middot; 35 ticketów</p>
+                <p class="text-xs text-gray-400">23–30 kwietnia 2026 · 35 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-500">Pełna ewidencja przebiegu zgodna z art. 86a ust. 7 ustawy o VAT, dziennik audytowy zmian, generatory eksportu do trzech systemów księgowych: Insert GT (EDI++), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS). Stawki przebiegu wg Dz.U. 2023 poz. 5 z dynamicznym doborem po dacie trasy.</p>
+          <p class="text-sm text-gray-500">Pełna ewidencja przebiegu zgodna z art. 86a ust. 7 ustawy o VAT, dziennik audytowy zmian, eksport jednym kliknięciem do trzech systemów księgowych: Insert GT, Comarch ERP Optima oraz Symfonia FK. Stawki przebiegu zgodne z aktualnym rozporządzeniem, dobierane automatycznie po dacie trasy.</p>
         </div>
 
         <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
@@ -218,26 +217,40 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
               <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S5a</span>
               <div>
                 <h3 class="font-bold text-gray-900">Model rozliczeń per aktywny pojazd</h3>
-                <p class="text-xs text-gray-400">2 maja 2026 &middot; 14 ticketów</p>
+                <p class="text-xs text-gray-400">2 maja 2026 · 14 ticketów</p>
               </div>
             </div>
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-500">Hurtowe rozliczanie aktywnych pojazdów floty w jednym cyklu, automatyczne miesięczne podsumowanie. Obsługa firm transportowych z&nbsp;wieloma oddziałami oraz biur rachunkowych prowadzących wiele firm transportowych jednocześnie.</p>
+          <p class="text-sm text-gray-500">Hurtowe rozliczanie aktywnych pojazdów floty w jednym cyklu, automatyczne miesięczne podsumowanie. Obsługa firm transportowych z wieloma oddziałami oraz biur rachunkowych prowadzących wiele firm transportowych jednocześnie.</p>
+        </div>
+
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S5b</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Plan indywidualny dla większych flot</h3>
+                <p class="text-xs text-gray-400">2 maja 2026 · 7 ticketów</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Wsparcie dla firm transportowych, które nie mieszczą się w standardowym zakresie — indywidualne warunki cenowe per pojazd, panel administracyjny do zarządzania umowami i walidacje rozdzielające plan indywidualny od standardowego pilotażu.</p>
         </div>
 
         <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border-2 border-[#34C759]/20">
           <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
             <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S5b</span>
+              <span class="inline-flex items-center justify-center w-10 h-10 bg-[#34C759] text-white rounded-2xl text-sm font-bold">S6a</span>
               <div>
-                <h3 class="font-bold text-gray-900">Plan indywidualny dla większych flot &mdash; ukończony 2 maja</h3>
-                <p class="text-xs text-gray-400">2 maja 2026 &middot; 7 ticketów &middot; ostatni ukończony sprint</p>
+                <h3 class="font-bold text-gray-900">System rejestracji pilotów — ukończony 4 maja</h3>
+                <p class="text-xs text-gray-400">3–4 maja 2026 · 8 ticketów · ostatni ukończony sprint</p>
               </div>
             </div>
-            <div class="sm:ml-auto"><span class="text-xs font-bold text-[#34C759] bg-[#34C759]/[0.10] px-3 py-1 rounded-full">DONE &middot; ŚWIEŻO</span></div>
+            <div class="sm:ml-auto"><span class="text-xs font-bold text-[#34C759] bg-[#34C759]/[0.10] px-3 py-1 rounded-full">DONE · ŚWIEŻO</span></div>
           </div>
-          <p class="text-sm text-gray-600">Wsparcie dla firm transportowych, które nie mieszczą się w&nbsp;standardowym zakresie &mdash; flagi <code class="bg-black/[0.04] px-1.5 py-0.5 rounded text-[12px]">custom_rate_per_vehicle</code> i&nbsp;<code class="bg-black/[0.04] px-1.5 py-0.5 rounded text-[12px]">contract_notes</code> w&nbsp;modelu subskrypcji, dedykowany endpoint administracyjny do promocji do planu indywidualnego, walidacje wykluczające trial dla planu enterprise, panel admina z&nbsp;polami kontraktowymi.</p>
+          <p class="text-sm text-gray-600">Pełen system zaproszeń dla firm transportowych do programu pilotażowego: panel administracyjny do generowania jednorazowych linków rejestracji, automatyczne maile powitalne, zabezpieczenia przeciw nadużyciom oraz testy całego cyklu rejestracji nowego pilota.</p>
         </div>
 
       </div>
@@ -282,7 +295,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
                 {phaseIdx + 1}
               </div>
               <div class="pt-1">
-                <p class="text-[11.5px] font-semibold uppercase tracking-[0.08em] mb-1" style={`color: ${phase.color}`}>Faza {phaseIdx + 1} &middot; {phase.period}</p>
+                <p class="text-[11.5px] font-semibold uppercase tracking-[0.08em] mb-1" style={`color: ${phase.color}`}>Faza {phaseIdx + 1} · {phase.period}</p>
                 <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-3">{phase.label.replace(/^Faza \d+ — /, '')}</h3>
                 <p class="text-[15px] text-gray-600 leading-relaxed max-w-3xl">{phase.summary}</p>
                 <div class="flex flex-wrap gap-2 mt-3">
@@ -338,13 +351,13 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       <div class="bg-white rounded-[20px] p-7 sm:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <div class="flex items-center gap-3 mb-5">
           <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-          <h3 class="font-bold text-gray-900 text-lg">Trzy integracje FK &mdash; gotowe w MVP</h3>
+          <h3 class="font-bold text-gray-900 text-lg">Trzy integracje FK — gotowe w MVP</h3>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           {[
-            { name: 'Insert GT', desc: 'EDI++ (.epp)' },
-            { name: 'Comarch ERP Optima', desc: 'XML' },
-            { name: 'Symfonia FK', desc: 'TXT / AMS' },
+            { name: 'Insert GT', desc: 'eksport jednym kliknięciem' },
+            { name: 'Comarch ERP Optima', desc: 'eksport jednym kliknięciem' },
+            { name: 'Symfonia FK', desc: 'eksport jednym kliknięciem' },
           ].map(s => (
             <div class="flex items-center gap-3 bg-[#F5F5F7] rounded-xl px-4 py-3">
               <svg class="w-4 h-4 text-[#34C759] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -355,7 +368,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
             </div>
           ))}
         </div>
-        <p class="text-xs text-gray-500">Eksport delegacji pracowniczych (art. 21 ust. 1 pkt 23b) do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) &mdash; na początku czerwca 2026, w fazie post-MVP.</p>
+        <p class="text-xs text-gray-500">Eksport delegacji pracowniczych (art. 21 ust. 1 pkt 23b) do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na początku czerwca 2026, w fazie post-MVP.</p>
       </div>
     </div>
   </section>
@@ -370,7 +383,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           Każda nowa funkcja przechodzi przez firmy transportowe.
         </h2>
         <p class="text-lg text-gray-500 leading-relaxed">
-          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z firmami transportowymi pilotażowymi &mdash; właścicielami flot, dyspozytorami, kierowcami, księgowymi. To oni mówią, czy działa zgodnie z&nbsp;praktyką transportową, czy wymaga doprecyzowania &mdash; albo czy nie ma sensu w&nbsp;obecnej formie.
+          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z firmami transportowymi pilotażowymi — właścicielami flot, dyspozytorami, kierowcami, księgowymi. To oni mówią, czy działa zgodnie z praktyką transportową, czy wymaga doprecyzowania — albo czy nie ma sensu w obecnej formie.
         </p>
       </div>
 
@@ -380,7 +393,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
             <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <h3 class="font-display font-semibold text-[1rem] text-gray-900 mb-2">Wczesny dostęp</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci otrzymują nowe funkcje 4&ndash;8 tygodni przed publicznym wdrożeniem. Mają czas przetestować je w realnej pracy.</p>
+          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci otrzymują nowe funkcje 4–8 tygodni przed publicznym wdrożeniem. Mają czas przetestować je w realnej pracy.</p>
         </div>
         <div class="bg-[#F5F5F7] rounded-[20px] p-7">
           <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.08] flex items-center justify-center mb-4">
@@ -394,7 +407,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
             <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
           <h3 class="font-display font-semibold text-[1rem] text-gray-900 mb-2">Dożywotni dostęp</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci pozostają w programie pilotażowym bezterminowo &mdash; bez konwersji na płatny plan. To podziękowanie za czas, który nam dali.</p>
+          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci pozostają w programie pilotażowym bezterminowo — bez konwersji na płatny plan. To podziękowanie za czas, który nam dali.</p>
         </div>
       </div>
 
@@ -409,7 +422,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
         Współtwórz BusiKM od początku.
       </h2>
       <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
-        Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego &mdash; dożywotni dostęp gratis, w&nbsp;zamian za udział w&nbsp;walidacji nowych funkcji.
+        Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego — dożywotni dostęp gratis, w zamian za udział w walidacji nowych funkcji.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">
