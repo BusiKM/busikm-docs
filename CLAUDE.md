@@ -70,3 +70,15 @@ Uzywaj tokenow z `@theme` zamiast hardkodowanych wartosci kolorow.
 - Strona marketingowa (`site/`) w jezyku polskim, komponenty Astro + Tailwind CSS 4 utility classes
 - **Conventional Commits** — format: `<type>(<scope>): <opis>`
 - **Git flow** — feature/* -> develop -> staging -> main
+
+## Aktualizacja statystyk sprintów / ticketów
+
+Statystyki postępu są w **dwóch miejscach** i muszą być zsynchronizowane:
+
+1. **`site/src/pages/roadmapa.astro`** — sekcja `hero-seq-5` (hero stats: ukończone tickety, sprinty gotowe, tickety w backlogu, MVP LIVE) + tytuł "X sprintów za nami" w hero.
+2. **`site/src/pages/index.astro`** — sekcja `STATUS PRODUKTU` (ok. linia 860): tytuł "X sprintów za nami. MVP LIVE…" oraz 4 karty (`ukończonych ticketów`, `sprintów gotowych`, `integracje FK`, `MVP LIVE`).
+3. **`site/public/llms.txt`** — sekcja "Stan wdrożenia".
+
+**Przy każdej zmianie sprintów/ticketów (np. zamknięcie sprintu w Jirze) zaktualizuj WSZYSTKIE TRZY miejsca razem.** Pojedyncza zmiana tylko na roadmapie powoduje rozjazd narracji na stronie głównej.
+
+Źródłem prawdy są zamknięte sprinty w Jirze (BusiKM Cloud) — sprawdzaj przez `closedSprints()` JQL.
