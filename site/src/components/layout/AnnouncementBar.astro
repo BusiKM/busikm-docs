@@ -1,0 +1,50 @@
+---
+// Announcement bar — sits below the fixed header on all marketing pages.
+// Hidden automatically on /g2v2-przygotowanie (would link to itself).
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const hide = path === '/g2v2-przygotowanie';
+
+// Build-time fallback (gets refreshed client-side after hydration).
+const target = new Date('2026-07-02T00:00:00+02:00').getTime();
+const initialDays = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
+---
+
+{!hide && (
+  <a
+    href="/g2v2-przygotowanie"
+    class="announcement-bar group block bg-[#FFF8EE] hover:bg-[#FFF1DC] border-b border-[#FF9500]/15 transition-colors duration-200"
+    aria-label="Tachograf G2V2 dla busów 2,5–3,5 t — obowiązek od 2 lipca 2026"
+  >
+    <div class="max-w-[1200px] mx-auto px-5 py-2.5 flex items-center justify-center gap-2 sm:gap-3 text-center">
+      <span class="relative flex h-1.5 w-1.5 shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF9500] opacity-60"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#FF9500]"></span>
+      </span>
+      <span class="text-[12px] sm:text-[12.5px] font-medium text-[#1D1D1F] tracking-[0.005em]">
+        <span id="g2v2-bar-days" class="font-bold tabular-nums">{initialDays}</span>
+        <span class="hidden sm:inline"> dni do obowiązku tachografu G2V2 dla busów 2,5–3,5 t</span>
+        <span class="sm:hidden"> dni do tachografu G2V2</span>
+      </span>
+      <span class="text-[12px] sm:text-[12.5px] font-semibold text-[#FF9500] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform duration-200">
+        Sprawdź
+        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <script is:inline>
+    (function() {
+      var el = document.getElementById('g2v2-bar-days');
+      if (!el) return;
+      var target = new Date('2026-07-02T00:00:00+02:00').getTime();
+      function tick() {
+        var diff = target - Date.now();
+        if (diff <= 0) { el.textContent = '0'; return; }
+        el.textContent = Math.ceil(diff / 86400000);
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+  </script>
+)}
