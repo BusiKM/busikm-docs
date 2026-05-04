@@ -155,8 +155,8 @@ Jeśli odchylenie > 2 dni → zaktualizuj datę MVP wszędzie:
 Dla każdego sprintu który właśnie został zamknięty (jest w Jirze `closed`, ale w `roadmapa.astro` siedzi w sekcji fazowej):
 - Wytnij kartę z odpowiedniej fazy (zazwyczaj Faza 1).
 - Wstaw na koniec sekcji "Ukończone sprinty" (chronologicznie).
-- Zmień status: `DONE`, dodaj rzeczywistą datę zakończenia (`completeDate` z Jiry).
-- Karty zamkniętych sprintów mają zwykle border zielony / akcent success.
+- Zmień status: zwykły `DONE` badge (taki sam jak wszystkie pozostałe karty zamknięte). **NIE dodawaj badge "DONE · ŚWIEŻO" ani border-2 — to wygląda tandetnie.** Ostatni zamknięty sprint wygląda identycznie jak reszta.
+- W tytule i podtytule karty wpisuj tylko nazwę sprintu, datę i liczbę ticketów. Bez dopisków typu "ukończony 4 maja" czy "ostatni ukończony sprint".
 
 **5b. Renumeracja faz**
 

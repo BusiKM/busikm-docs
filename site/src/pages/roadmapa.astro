@@ -3,20 +3,19 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // Realne dane sprintów z Jira (projekt BKM, board 34)
 // Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 4 maja 2026.
-// Zamknięte sprinty 0-6b (9 sprintów, 120 ticketów Done). Zaplanowane: 7a-22.
+// Zamknięte sprinty 0-7a (10 sprintów, 130 ticketów Done). Zaplanowane: 7b-22.
 
-const closedSprints = 9;
-const closedTickets = 120;
+const closedSprints = 10;
+const closedTickets = 130;
 
 const phases = [
   {
     id: 'backend',
     label: 'Faza 1 — Domknięcie funkcji systemowych',
-    period: '5 — 9 maja 2026',
+    period: '6 — 9 maja 2026',
     color: '#005CE8',
-    summary: 'Cztery obszary funkcjonalne dopracowywane przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla właściciela floty, dyspozytora, kierowcy i księgowego.',
+    summary: 'Trzy obszary funkcjonalne dopracowywane przed publicznym wdrożeniem. Każdy z nich przekłada się na konkretną wartość widoczną dla właściciela floty, dyspozytora, kierowcy i księgowego.',
     sprints: [
-      { id: '7a', range: '5 maja', title: 'Powiadomienia push', desc: 'Trzy kanały komunikacji: alerty wygasających dokumentów, potwierdzenia zakończonych tras dla właściciela, komunikaty produktowe od zespołu.', tickets: 10 },
       { id: '7b', range: '6 maja', title: 'Automatyzacja cyklu próbnego', desc: 'Sekwencja przypomnień przed wygaśnięciem trialu, automatyczne przedłużenie dla kont, które jeszcze nie zarejestrowały żadnej trasy.', tickets: 6 },
       { id: '8', range: '7—8 maja', title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo dla właściciela floty i dyspozytora — bez konieczności odświeżania strony.', tickets: 12 },
       { id: '9', range: '9 maja', title: 'Domknięcie zakresu MVP', desc: 'Walidacje danych firmowych przy tworzeniu klienta, bezpieczne odzyskiwanie usuniętych obiektów, rozszerzony monitoring stanu systemu.', tickets: 7 },
@@ -77,7 +76,7 @@ const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
 const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 9 sprintów ukończonych, 26 zaplanowanych. MVP LIVE 29-30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 10 sprintów ukończonych, 25 zaplanowanych. MVP LIVE 29-30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-white">
@@ -89,7 +88,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">Sprint 6b zakończony — dashboard zgodności dokumentów floty gotowy</span>
+        <span class="text-sm font-medium text-gray-700">Sprint 7a zakończony — system powiadomień push w aplikacji gotowy</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
@@ -98,7 +97,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Dziewięć sprintów za nami, dwadzieścia sześć przed nami. MVP LIVE 29–30 maja 2026, finalizacja produktu w pierwszym tygodniu czerwca. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
+        Dziesięć sprintów za nami, dwadzieścia pięć przed nami. MVP LIVE 29–30 maja 2026, finalizacja produktu w pierwszym tygodniu czerwca. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -138,7 +137,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <div class="text-center mb-12 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Co zostało zbudowane</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Dziewięć sprintów za nami. 120 ticketów ukończonych.</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Dziesięć sprintów za nami. 130 ticketów ukończonych.</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, kompletna ewidencja przebiegu zgodna z art. 86a, eksport do trzech systemów księgowych, hurtowe rozliczanie aktywnych pojazdów i plan indywidualny dla większych flot.</p>
       </div>
 
@@ -256,18 +255,32 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <p class="text-sm text-gray-500">Pełen system zaproszeń dla firm transportowych do programu pilotażowego: panel administracyjny do generowania jednorazowych linków rejestracji, automatyczne maile powitalne, zabezpieczenia przeciw nadużyciom oraz testy całego cyklu rejestracji nowego pilota.</p>
         </div>
 
-        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border-2 border-[#34C759]/20">
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
           <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
             <div class="flex items-center gap-3">
               <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S6b</span>
               <div>
-                <h3 class="font-bold text-gray-900">Dashboard zgodności dokumentów — ukończony 4 maja</h3>
-                <p class="text-xs text-gray-400">4 maja 2026 · 3 tickety · ostatni ukończony sprint</p>
+                <h3 class="font-bold text-gray-900">Dashboard zgodności dokumentów</h3>
+                <p class="text-xs text-gray-400">4 maja 2026 · 3 tickety</p>
               </div>
             </div>
-            <div class="sm:ml-auto"><span class="text-xs font-bold text-[#34C759] bg-[#34C759]/[0.10] px-3 py-1 rounded-full">DONE · ŚWIEŻO</span></div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
-          <p class="text-sm text-gray-600">Zagregowany status dokumentów floty — OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy — na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe. Jeden ekran pokazuje, czego brakuje i co wygasa.</p>
+          <p class="text-sm text-gray-500">Zagregowany status dokumentów floty — OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy — na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe. Jeden ekran pokazuje, czego brakuje i co wygasa.</p>
+        </div>
+
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S7a</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Powiadomienia push w aplikacji</h3>
+                <p class="text-xs text-gray-400">4 maja 2026 · 10 ticketów</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Trzy kanały komunikacji w aplikacji: alerty wygasających dokumentów floty, potwierdzenia zakończonych tras dla właściciela, komunikaty produktowe od zespołu. Każdy kanał z osobnymi preferencjami subskrypcji per użytkownik.</p>
         </div>
 
       </div>
