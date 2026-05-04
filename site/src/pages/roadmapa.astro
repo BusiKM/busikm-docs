@@ -345,6 +345,107 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
     </div>
   </section>
 
+  <!-- ===================== PO MVP — KOLEJNE FUNKCJE ===================== -->
+  <section id="po-mvp" class="bg-white py-20 sm:py-28 border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Po MVP</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+          Roadmap nie kończy się 30 maja.
+        </h2>
+        <p class="text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
+          MVP to fundament. Po wdrożeniu produkcyjnym ruszają funkcje, które zmieniają BusiKM z ewidencji w pełen system zarządzania transportem międzynarodowym. Kolejność zależy od głosów pilotów.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
+
+        <!-- 1. G2V2 + ITD -->
+        <a href="/g2v2-przygotowanie" class="group bg-[#F5F5F7] rounded-[20px] p-7 hover:bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Lipiec 2026 · deadline ITD</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Tachograf G2V2 i kontrola ITD pod jednym dashboardem</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed mb-4 flex-1">Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Jeden ekran zamiast tabelki w Excelu — gotowy na każdą kontrolę. Uniknięcie kar do 10 000 zł per pojazd.</p>
+          <span class="text-[13px] font-semibold text-[#FF9500] group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1.5 mt-auto">
+            Sprawdź deadline G2V2
+            <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <!-- 2. Zlecenia + marża -->
+        <div class="bg-[#F5F5F7] rounded-[20px] p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Wkrótce po MVP</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Marża per zlecenie. Wiesz, które kursy się opłacają.</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, Maut, opłaty drogowe, hotele PL i UE. Realna marża na każdym kursie — koniec zgadywania, które zlecenia odrzucić.</p>
+        </div>
+
+        <!-- 3. Rozliczenie kierowcy -->
+        <div class="bg-[#F5F5F7] rounded-[20px] p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Wkrótce po MVP</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Rozliczenie kierowcy — diety, mandaty, wypłata w jednym</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie. Gotowe rozliczenie do księgowej — koniec Excela na 12 zakładek.</p>
+        </div>
+
+        <!-- 4. VAT-REF z UE -->
+        <div class="bg-[#F5F5F7] rounded-[20px] p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Wkrótce po MVP</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Odzyskaj VAT z paliwa, Mautu i promów w UE</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Rejestracja faktur z DE, FR, IT, AT i innych krajów UE, automatyczne przeliczenie na PLN po kursie z dnia wystawienia, gotowy raport do wniosku o zwrot VAT. Tysiące złotych rocznie odzyskanych zamiast w gubionych paragonach.</p>
+        </div>
+
+        <!-- 5. Mapa live + strefy -->
+        <div class="bg-[#F5F5F7] rounded-[20px] p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Druga połowa 2026</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Flota na żywo. ETA dla klienta. Strefy alertów.</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Pojazdy widoczne w czasie rzeczywistym z szacowanym czasem dojazdu, alert kiedy bus opuszcza wyznaczoną strefę bez aktywnego zlecenia. Klient nie dzwoni — sam widzi, kiedy dotrze towar.</p>
+        </div>
+
+        <!-- 6. Alerty anomalii -->
+        <div class="bg-[#F5F5F7] rounded-[20px] p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#8B5CF6]">Druga połowa 2026</span>
+          </div>
+          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Alerty anomalii. Wykryj kradzieże paliwa.</h3>
+          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Automatyczne raporty rentowności per pojazd i kierowca z alertami o nadmiernym spalaniu, deficytowych trasach, podejrzanych tankowaniach. Decyzje na bazie danych, nie intuicji — zanim pojawi się problem.</p>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <p class="text-[13px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          Kolejność funkcji ustalana z firmami pilotażowymi. <strong class="text-gray-900">Pilotaż = wpływ na priorytety</strong> i utrzymanie ceny pierwotnej dożywotnio dla całej floty.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== INTEGRACJE FK ===================== -->
   <section class="bg-[#F5F5F7] py-16 sm:py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
