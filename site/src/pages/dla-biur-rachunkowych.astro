@@ -37,16 +37,16 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         </a>
       </div>
 
-      <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
+      <div class="hero-seq-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-6 gap-y-7 sm:gap-8 md:gap-12 text-center sm:text-left">
         {[
           { num: '∞', label: 'klientów\u00A0bez\u00A0limitu' },
           { num: '1 panel', label: 'multi-tenant' },
           { num: 'Gotowe', label: 'JPK\u00A0/\u00A0VAT-REF\u00A0/\u00A0CIT' },
           { num: '0 zł', label: 'pilotaż dożywotnio' },
         ].map(s => (
-          <div>
-            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-0.5 max-w-[160px] leading-snug">{s.label}</div>
+          <div class="flex flex-col items-center sm:items-start">
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
       </div>
@@ -74,17 +74,17 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
       <div class="p-5 sm:p-7">
         <!-- Top stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 auto-rows-fr">
           {[
             { label: 'Aktywni klienci', value: '8', sub: '6 transport · 2 logistyka', color: '#8B5CF6' },
             { label: 'JPK_V7 do złożenia', value: '5', sub: 'termin: 25 maja', color: '#FF3B30' },
             { label: 'VAT-REF czeka', value: '14 200 €', sub: 'DE 8 100 / FR 4 200 / IT 1 900', color: '#34C759' },
             { label: 'Eksporty gotowe', value: '23', sub: 'do importu w FK', color: '#FF9500' },
           ].map(s => (
-            <div class="bg-white rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div class="bg-white rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col">
               <p class="text-[10.5px] text-[#86868B] mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
               <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] leading-tight">{s.value}</p>
-              <p class="text-[11px] mt-1 leading-tight" style={`color: ${s.color};`}>{s.sub}</p>
+              <p class="text-[11px] mt-1 leading-tight mt-auto pt-1" style={`color: ${s.color};`}>{s.sub}</p>
             </div>
           ))}
         </div>

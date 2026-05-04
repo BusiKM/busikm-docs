@@ -37,16 +37,16 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         </a>
       </div>
 
-      <div class="hero-seq-5 flex flex-wrap gap-8 sm:gap-12">
+      <div class="hero-seq-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-6 gap-y-7 sm:gap-8 md:gap-12 text-center sm:text-left">
         {[
           { num: 'OCR', label: 'paragon → koszty\u00A0w 3 sek.' },
           { num: 'AETR', label: 'alerty zanim zatrzyma\u00A0Cię BAG' },
           { num: 'Offline', label: 'działa bez zasięgu' },
           { num: '6 języków', label: 'PL/EN/DE/IT/FR/ES' },
         ].map(s => (
-          <div>
-            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F]">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-0.5 max-w-[140px] leading-snug">{s.label}</div>
+          <div class="flex flex-col items-center sm:items-start">
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-[#86868B] mt-2 max-w-[140px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
       </div>
