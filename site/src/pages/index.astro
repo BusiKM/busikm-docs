@@ -690,10 +690,10 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           {[
             { title: 'Faktury zagraniczne (DE, FR, IT, ES, AT…)', desc: 'Tankowania w UE, opłaty drogowe (Maut, Telepass, ASFINAG), promy, postoje. Powiązane z konkretnym zleceniem — w jednym miejscu.' },
             { title: 'Poza zasięgiem KSeF', desc: 'Krajowy System e-Faktur obsługuje tylko polskich wystawców. Faktury z zagranicznych stacji paliw, viaToll, dróg i hoteli wymagają osobnego procesu — BusiKM go automatyzuje.' },
-            { title: 'Koszt rzeczywisty zlecenia', desc: 'Przebieg z GPS × stawka km wg Dz.U. 2023 poz. 5 + faktury PL + faktury UE + czas pracy kierowcy. Pełny obraz kosztu trasy.' },
+            { title: 'Koszt rzeczywisty zlecenia', desc: 'Trasa GPS, paliwo, opłaty drogowe (Maut, Telepass, eMyto), Maut niemiecki, hotele kierowcy i czas pracy — pełny koszt na każdym kursie po przeliczeniu kursami NBP.' },
             { title: 'Raport rentowności per zlecenie', desc: 'CSV / PDF z marżą per trasa, per pojazd, per kierowca. Porównanie zleceń krajowych i międzynarodowych.' },
             { title: 'Zwrot VAT z UE (VAT-REF)', desc: 'Skompletowane faktury zagraniczne gotowe do procedury zwrotu VAT z innych państw członkowskich UE.' },
-            { title: 'Eksport delegacji pracowniczych', desc: 'Zwrot kilometrowy pracownika (art. 21 ust. 1 pkt 23b) — wyliczany automatycznie, gotowy do księgowania.' },
+            { title: 'Rozliczenie kierowcy', desc: 'Diety zagraniczne per kraj wyliczone z trasy GPS, mandaty, wydatki prywatne — gotowy dokument do przekazania księgowej.' },
           ].map(b => (
             <div class="p-4 rounded-xl bg-[#F8F8FA]">
               <p class="text-[13.5px] font-semibold text-[#1D1D1F] mb-1">{b.title}</p>
@@ -1004,8 +1004,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-tight mb-3">Dane firmy gotowe do FK.</h3>
         <ul class="space-y-1.5 text-[12.5px] text-[#6E6E73] mb-4">
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Eksport do Insert GT, Comarch, Symfonia</li>
-          <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Stawki km wg Dz.U. 2023 poz. 5</li>
-          <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>PDF zgodny z art. 86a ust. 7</li>
+          <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Faktury OCR + kursy NBP automatycznie</li>
+          <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Diety zagraniczne i VAT-REF z UE</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Tryb tylko do odczytu</li>
         </ul>
         <span class="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#FF9500] group-hover:gap-2 transition-all">Szczegóły <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
