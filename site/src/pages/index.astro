@@ -292,6 +292,21 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </style>
 
   <script is:inline>
+    // Countdown for the Tachograf section stat (G2V2 deadline 2 July 2026)
+    (function() {
+      var ids = ['tach-countdown-days', 'cta-countdown-days'];
+      var els = ids.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+      if (!els.length) return;
+      var target = new Date('2026-07-02T00:00:00+02:00').getTime();
+      function tick() {
+        var diff = target - Date.now();
+        var v = diff <= 0 ? '0' : String(Math.ceil(diff / 86400000));
+        els.forEach(function(el) { el.textContent = v; });
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+
     function initHeroMap() {
       if (typeof L === 'undefined') { setTimeout(initHeroMap, 100); return; }
       var el = document.getElementById('hero-map');
@@ -535,6 +550,22 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <p class="text-[16px] text-white/70 leading-relaxed mb-7 max-w-[600px]">
           Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t używane w transporcie międzynarodowym muszą być wyposażone w tachograf cyfrowy drugiej generacji wersji 2 (G2V2). Termin legalizacji, ewidencja czasu pracy i przechowywanie danych przez 56 dni — obowiązki, których brak grozi karą do 10 000 zł od Inspekcji Transportu Drogowego.
         </p>
+        <!-- Key stats row -->
+        <div class="grid grid-cols-3 gap-4 sm:gap-6 mb-8 max-w-[560px]">
+          <div>
+            <p class="font-display text-[1.6rem] sm:text-[1.9rem] font-bold tracking-[-0.03em] text-white leading-none">40 000</p>
+            <p class="text-[11px] sm:text-[12px] text-white/55 mt-2 leading-tight">busów 2,5–3,5 t<br/>w Polsce</p>
+          </div>
+          <div>
+            <p class="font-display text-[1.6rem] sm:text-[1.9rem] font-bold tracking-[-0.03em] text-[#FF9500] leading-none" id="tach-countdown-days">—</p>
+            <p class="text-[11px] sm:text-[12px] text-white/55 mt-2 leading-tight">dni do<br/>2 lipca 2026</p>
+          </div>
+          <div>
+            <p class="font-display text-[1.6rem] sm:text-[1.9rem] font-bold tracking-[-0.03em] text-[#FF3B30] leading-none">10 000 zł</p>
+            <p class="text-[11px] sm:text-[12px] text-white/55 mt-2 leading-tight">kara ITD<br/>per pojazd</p>
+          </div>
+        </div>
+
         <ul class="space-y-2.5 text-[14.5px] text-white/85">
           <li class="flex items-start gap-3">
             <svg class="w-5 h-5 text-[#34C759] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -1095,28 +1126,35 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
-<!-- ======================== FINAL CTA — PILOTAŻ ======================== -->
+<!-- ======================== FINAL CTA — PILOTAŻ + G2V2 URGENCY ======================== -->
 <section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
+    <div class="absolute top-0 right-0 w-[400px] h-[300px] rounded-full bg-[#FF9500]/10 blur-[120px]"></div>
   </div>
-  <div class="relative reveal text-center max-w-[720px] mx-auto">
-    <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-5">Program pilotażowy</p>
-    <h2 class="font-display text-[clamp(1.8rem,5vw,3.2rem)] font-bold tracking-[-0.03em] text-white leading-[1.15] mb-5">
-      Dołącz do pierwszych firm transportowych,<br/>które kształtują BusiKM.
+  <div class="relative reveal text-center max-w-[760px] mx-auto">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#FF9500]/30 bg-[#FF9500]/[0.08] mb-7">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
+      <span class="text-[12.5px] font-semibold text-[#FF9500] tracking-[0.04em] uppercase"><span id="cta-countdown-days">—</span> dni do tachografu G2V2</span>
+    </div>
+    <h2 class="font-display text-[clamp(1.9rem,5vw,3.4rem)] font-bold tracking-[-0.03em] text-white leading-[1.08] mb-5">
+      Twoja flota jest gotowa<br/>na 2 lipca 2026?
     </h2>
-    <p class="text-[16px] text-white/60 mb-10 leading-relaxed">
-      Pilotaż to dożywotni dostęp do wszystkich funkcji za 0 zł. W zamian prosimy o krótką rozmowę raz w miesiącu — co działa, co warto poprawić, jakich funkcji potrzebujecie. Po ogłoszeniu publicznego cennika piloci pozostają w programie bezterminowo.
+    <p class="text-[16px] text-white/60 mb-10 leading-relaxed max-w-[640px] mx-auto">
+      Pilotaż BusiKM to dożywotni dostęp do wszystkich funkcji za 0 zł — w zamian za krótką rozmowę raz w miesiącu. Compliance G2V2, rentowność zleceń, rozliczenie kierowców i kontrola ITD w jednej aplikacji. Zacznij dziś, zanim deadline zacznie kosztować.
     </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
       <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
         Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
-        Wszystkie funkcje
+      <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
+        Sprawdź gotowość G2V2
       </a>
     </div>
+    <p class="text-[12.5px] text-white/40 leading-relaxed">
+      40 000 busów 2,5–3,5 t w Polsce · transport międzynarodowy w 27 krajach UE · kara ITD do 10 000 zł per pojazd
+    </p>
   </div>
 </section>
 
