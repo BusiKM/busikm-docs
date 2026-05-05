@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title,
-  description = 'BusiKM — elektroniczna kilometrówka dla firm i flot. GPS tracking, raporty MF, eksport do systemów FK.',
+  description = 'BusiKM — aplikacja dla firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym. Tachograf G2V2, AETR, OCR paragonów w 6 językach, eksport do FK, panel multi-tenant dla biur rachunkowych.',
   ogImage = '/og-image.png',
   ogType = 'website',
   noindex = false,
@@ -74,7 +74,7 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
       "name": "BusiKM",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, iOS, Android",
-      "description": "Elektroniczna kilometrówka dla firm i flot. Automatyczna ewidencja przebiegu z GPS, raporty MF, eksport do systemów FK.",
+      "description": "Aplikacja SaaS dla polskich firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym. Tachograf G2V2, AETR, dokumenty kierowcy i firmy, OCR paragonów w 6 językach, eksport do FK, panel multi-tenant dla biur rachunkowych.",
       "url": siteUrl,
       "image": ogImageUrl,
       "author": {
@@ -91,14 +91,18 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
         "availability": "https://schema.org/LimitedAvailability"
       },
       "featureList": [
-        "GPS background tracking",
-        "Automatyczna klasyfikacja tras AI",
-        "Raport ewidencji przebiegu zgodny z art. 86a ustawy o VAT",
-        "Eksport Insert GT (EDI++)",
-        "Tryb offline",
-        "Panel multi-klient dla biur rachunkowych",
-        "Dashboard zarządzania flotą",
-        "Alerty dokumentów (OC, przegląd, tachograf)"
+        "GPS w tle dla aplikacji mobilnej kierowcy",
+        "Alerty czasu pracy AETR (4,5h / 9h / 11h / dzień / tydzień / dwa tygodnie)",
+        "Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe",
+        "Tachograf G2V2 — monitoring legalizacji i ewidencja czasu pracy",
+        "OCR paragonów w 6 językach (PL/EN/DE/IT/FR/ES) — 7 typów dokumentów",
+        "Kursy NBP — automatyczne przewalutowanie kosztów zagranicznych",
+        "Eksport faktur kosztowych do Insert GT, Comarch ERP Optima, Symfonia FK",
+        "Mapa floty w czasie rzeczywistym",
+        "Tryb offline w aplikacji kierowcy",
+        "Dokumenty kierowcy (prawo jazdy, kod 95, ADR) i firmy (licencja transportowa, OCP)",
+        "Panel multi-tenant dla biur rachunkowych obsługujących firmy transportowe",
+        "Alerty terminów dokumentów 90/30/14/7 dni"
       ]
     })} />
 
@@ -108,7 +112,7 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
       "@type": "WebSite",
       "name": "BusiKM",
       "url": siteUrl,
-      "description": "Elektroniczna kilometrówka dla firm i flot",
+      "description": "Aplikacja dla firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym",
       "inLanguage": "pl-PL"
     })} />
 
