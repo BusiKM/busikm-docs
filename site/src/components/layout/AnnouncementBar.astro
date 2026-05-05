@@ -16,7 +16,13 @@ const initialDays = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
     class="announcement-bar group block bg-[#FFF8EE] hover:bg-[#FFF1DC] border-b border-[#FF9500]/15 transition-colors duration-200"
     aria-label="Tachograf G2V2 dla busów 2,5–3,5 t — obowiązek od 2 lipca 2026"
   >
-    <div class="max-w-[1200px] mx-auto px-5 py-2.5 flex items-center justify-center gap-2 sm:gap-3 text-center">
+    <div class="max-w-[1200px] mx-auto px-5 py-2.5 flex items-center justify-center gap-2.5 sm:gap-3 text-center">
+      <!-- Tachograph dial icon -->
+      <svg class="w-3.5 h-3.5 text-[#FF9500] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <line x1="12" y1="6" x2="12" y2="12"/>
+        <line x1="12" y1="12" x2="15.5" y2="14.5"/>
+      </svg>
       <span class="relative flex h-1.5 w-1.5 shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF9500] opacity-60"></span>
         <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#FF9500]"></span>
