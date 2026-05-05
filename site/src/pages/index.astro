@@ -292,19 +292,27 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </style>
 
   <script is:inline>
-    // Countdown for the Tachograf section stat (G2V2 deadline 2 July 2026)
+    // Countdown for the G2V2 stats (Tachograf section + Final CTA badge)
     (function() {
-      var ids = ['tach-countdown-days', 'cta-countdown-days'];
-      var els = ids.map(function(id) { return document.getElementById(id); }).filter(Boolean);
-      if (!els.length) return;
       var target = new Date('2026-07-02T00:00:00+02:00').getTime();
       function tick() {
+        var ids = ['tach-countdown-days', 'cta-countdown-days'];
         var diff = target - Date.now();
         var v = diff <= 0 ? '0' : String(Math.ceil(diff / 86400000));
-        els.forEach(function(el) { el.textContent = v; });
+        ids.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = v;
+        });
       }
-      tick();
-      setInterval(tick, 60000);
+      function boot() {
+        tick();
+        setInterval(tick, 60000);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        boot();
+      }
     })();
 
     function initHeroMap() {
