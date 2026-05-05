@@ -2,107 +2,130 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Funkcje szczegółowo">
+<DocsLayout title="Funkcje szczegółowo" description="Pełna matryca funkcjonalności BusiKM dla firm transportowych z busami 2,5–3,5 t. Role, scope MVP, plan post-MVP, model pilotażowy.">
   <div class="prose">
-    <h1>Kompletna dokumentacja funkcjonalności</h1>
+    <h1>Funkcje szczegółowo</h1>
+
+    <p>Pełna matryca funkcjonalności BusiKM. Co robi każda rola, jakie funkcje są dostępne w MVP, co planujemy po MVP. Scope dotyczy targetu produktu — firm transportowych przewożących ładunki w UE busami o DMC 2,5–3,5 t.</p>
 
     <h2>1. Role użytkowników</h2>
     <table>
-      <thead><tr><th>Rola</th><th>Interfejs</th><th>Opis</th></tr></thead>
+      <thead><tr><th>Rola</th><th>Interfejs</th><th>Główne zadania</th></tr></thead>
       <tbody>
-        <tr><td>Kierowca</td><td>Aplikacja mobilna</td><td>Rejestracja tras, GPS, zdjęcia licznika</td></tr>
-        <tr><td>Właściciel</td><td>Panel webowy + Aplikacja mobilna</td><td>Zarządzanie flotą, raporty, alerty</td></tr>
-        <tr><td>Księgowy</td><td>Panel webowy</td><td>Raporty, eksport FK, tylko odczyt</td></tr>
-        <tr><td>Biuro rachunkowe</td><td>Panel webowy</td><td>Obsługa wielu firm, dashboard zagregowany</td></tr>
+        <tr><td><strong>Kierowca</strong></td><td>Aplikacja mobilna iOS / Android</td><td>Realizacja zleceń, GPS, paragony OCR, alerty AETR, dokumenty</td></tr>
+        <tr><td><strong>Właściciel firmy</strong></td><td>Panel webowy + aplikacja mobilna</td><td>Dashboard floty, zlecenia, dyspozytor, raporty, alerty dokumentów i compliance ITD</td></tr>
+        <tr><td><strong>Księgowy wewnętrzny</strong></td><td>Panel webowy</td><td>Raporty kosztów, eksport do FK, kontrola integralności danych — tylko odczyt na danych operacyjnych</td></tr>
+        <tr><td><strong>Biuro rachunkowe</strong></td><td>Panel webowy multi-tenant</td><td>Obsługa wielu firm transportowych, zbiorczy dashboard, eksport FK per klient</td></tr>
       </tbody>
     </table>
 
-    <h2>2. Plany subskrypcyjne</h2>
-    <p><strong>Status: pilotaż MVP.</strong> Cennik komercyjny ogłosimy po analizie informacji od użytkowników pilotażowych. Pierwsze firmy i biura rachunkowe biorą udział w pilotażu dożywotnio gratis. Poniżej — różnice funkcjonalne między planami.</p>
-    <table>
-      <thead><tr><th>Cecha</th><th>Free</th><th>Starter</th><th>Professional</th><th>Panel BR</th></tr></thead>
-      <tbody>
-        <tr><td>Pojazdy</td><td>1</td><td>do 10</td><td>do 50</td><td>bez limitu (aktywne)</td></tr>
-        <tr><td>Kierowcy</td><td>1</td><td>do 10</td><td>do 50</td><td>bez limitu</td></tr>
-        <tr><td>GPS tracking</td><td>Tak</td><td>Tak</td><td>Tak</td><td>Tak</td></tr>
-        <tr><td>Raporty</td><td>Nie</td><td>PDF</td><td>PDF + CSV</td><td>PDF + CSV + custom</td></tr>
-        <tr><td>Eksport FK</td><td>Nie</td><td>Nie</td><td>Tak (wszystkie)</td><td>Tak (wszystkie)</td></tr>
-        <tr><td>Mapa real-time</td><td>Nie</td><td>Nie</td><td>Tak</td><td>Tak</td></tr>
-        <tr><td>Obsługa wielu firm</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
-        <tr><td>API</td><td>Nie</td><td>Nie</td><td>Nie</td><td>Tak</td></tr>
-        <tr><td>Wsparcie</td><td>Brak</td><td>Email</td><td>Email + czat</td><td>Dedykowane</td></tr>
-      </tbody>
-    </table>
+    <h2>2. Model pilotażowy</h2>
+    <p><strong>Status: pilotaż MVP, dożywotnio gratis.</strong></p>
+    <ul>
+      <li>Pierwsze firmy transportowe i biura rachunkowe biorą udział w pilotażu — pełna funkcjonalność produktu, bez karty kredytowej, bez warunków minimalnych.</li>
+      <li>W zamian: udział w krótkiej rozmowie maksymalnie raz w miesiącu (co działa, co nie, czego brakuje).</li>
+      <li>Po ogłoszeniu cennika komercyjnego piloci pozostają w programie pilotażowym dożywotnio. Konwersja na płatny plan jest dobrowolna.</li>
+      <li>Plan indywidualny — dla większych flot (powyżej standardowego zakresu) ustalamy warunki cenowe per pojazd indywidualnie.</li>
+    </ul>
 
     <h2>3. Matryca funkcji per rola</h2>
 
-    <h3>Trasy</h3>
+    <h3>Zlecenia i trasy</h3>
     <table>
       <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Rozpoczęcie trasy</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
-        <tr><td>Śledzenie GPS</td><td>Tak</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
-        <tr><td>Obliczanie dystansu</td><td>Auto</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
-        <tr><td>Klasyfikacja trasy</td><td>Tak</td><td>Tak (edycja)</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
-        <tr><td>Zdjęcia licznika</td><td>Tak</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
-        <tr><td>Lista tras</td><td>Tylko własne</td><td>Wszystkie</td><td>Wszystkie (RO)</td><td>Per klient</td></tr>
-        <tr><td>Edycja trasy</td><td>Tylko własne</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
-        <tr><td>Usuwanie trasy</td><td>Nie</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Lista zleceń</td><td>Tylko własne</td><td>Wszystkie</td><td>Wszystkie (RO)</td><td>Per klient</td></tr>
+        <tr><td>Przypisanie kierowca / pojazd</td><td>Nie</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Rozpoczęcie trasy</td><td>Tak (jednym tapnięciem)</td><td>Nie</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>GPS w tle</td><td>Tak (auto)</td><td>Podgląd</td><td>Podgląd</td><td>Podgląd</td></tr>
+        <tr><td>Tryb offline</td><td>Tak</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Zatwierdzanie tras</td><td>Tylko własne</td><td>Tak (kontrola)</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>Edycja zlecenia</td><td>Nie</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
       </tbody>
     </table>
 
-    <h3>Dokumenty i raporty</h3>
+    <h3>Paragony i koszty (OCR)</h3>
     <table>
       <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Ewidencja przebiegu PDF (MF)</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Raporty kosztów floty</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Raporty delegacji</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Dashboard zgodności</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (zagregowany)</td></tr>
+        <tr><td>Zdjęcie paragonu</td><td>Tak (z aparatu)</td><td>Tak</td><td>Nie</td><td>Nie</td></tr>
+        <tr><td>OCR w 6 językach</td><td>Auto</td><td>Auto</td><td>Podgląd</td><td>Podgląd</td></tr>
+        <tr><td>Klasyfikacja typu (paliwo / Maut / hotel / posiłek / prom / parking / naprawa)</td><td>Auto + ręczna</td><td>Edycja</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
+        <tr><td>Przewalutowanie po kursie NBP</td><td>Auto</td><td>Auto</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
+        <tr><td>Powiązanie z zleceniem / pojazdem</td><td>Auto</td><td>Edycja</td><td>Tylko odczyt</td><td>Tylko odczyt</td></tr>
       </tbody>
     </table>
 
-    <h3>Eksport FK</h3>
+    <h3>Dokumenty i compliance</h3>
     <table>
       <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Insert GT EDI++</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>EDI++ delegacje</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Comarch ERP Optima</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
-        <tr><td>Symfonia</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Tak (per klient)</td></tr>
+        <tr><td>Dokumenty kierowcy (prawo jazdy, kod 95, ADR)</td><td>Tylko własne (RO)</td><td>Wszystkie</td><td>Tylko odczyt</td><td>Per klient</td></tr>
+        <tr><td>Dokumenty firmy (licencja, OCP, OC, przegląd)</td><td>Nie</td><td>Tak</td><td>Tylko odczyt</td><td>Per klient</td></tr>
+        <tr><td>Alerty terminów (90 / 30 / 14 / 7 dni)</td><td>Push własne</td><td>Push wszystkie</td><td>Email tygodniowy</td><td>Push zagregowany</td></tr>
+        <tr><td>Alerty AETR (czas pracy)</td><td>Push przed naruszeniem</td><td>Email po naruszeniu</td><td>—</td><td>—</td></tr>
+        <tr><td>Pakiet mobilności UE — przerwy 45h</td><td>Push</td><td>Podgląd</td><td>—</td><td>—</td></tr>
+        <tr><td>Dashboard zgodności dokumentów</td><td>—</td><td>Tak</td><td>Tylko odczyt</td><td>Zagregowany</td></tr>
       </tbody>
     </table>
 
-    <h2>4. Funkcje w MVP</h2>
-    <h3>MVP</h3>
+    <h3>Raporty i eksport FK</h3>
     <table>
-      <thead><tr><th>Grupa</th><th>Funkcje</th></tr></thead>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Konto</td><td>Rejestracja, logowanie, reset hasła, weryfikacja email</td></tr>
-        <tr><td>Firma</td><td>Tworzenie firmy, model subskrypcji, trial 14 dni</td></tr>
-        <tr><td>Flota</td><td>Zarządzanie pojazdami, dokumenty, alerty (OC, przegląd, tachograf)</td></tr>
-        <tr><td>Kierowcy</td><td>Zarządzanie kierowcami, zaproszenia, alerty prawa jazdy</td></tr>
-        <tr><td>Trasy</td><td>Start/stop, GPS w tle, obliczanie dystansu, klasyfikacja, zdjęcia licznika</td></tr>
-        <tr><td>Dokumenty</td><td>Ewidencja przebiegu PDF (szablon MF)</td></tr>
-        <tr><td>Eksport FK</td><td>Insert GT EDI++ (ewidencja)</td></tr>
-        <tr><td>Aplikacja mobilna</td><td>Logowanie, rejestracja trasy, GPS, aparat, lista tras, powiadomienia push</td></tr>
-        <tr><td>Panel webowy</td><td>Logowanie, dashboard, flota, trasy, raporty, użytkownicy, eksport</td></tr>
+        <tr><td>Raporty kosztów per pojazd / kierowca</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Per klient</td></tr>
+        <tr><td>Eksport do Insert GT</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Per klient</td></tr>
+        <tr><td>Eksport do Comarch ERP Optima</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Per klient</td></tr>
+        <tr><td>Eksport do Symfonia FK</td><td>Nie</td><td>Tak</td><td>Tak</td><td>Per klient</td></tr>
+        <tr><td>Zbiorczy eksport wszystkich klientów</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
       </tbody>
     </table>
 
-    <p>Wszystkie powyższe funkcje — w tym panel biura rachunkowego, mapa real-time, Comarch ERP Optima, Symfonia FK i tryb offline — wchodzą do MVP.</p>
-
-    <h2>5. Ograniczenia planu Free</h2>
+    <h3>Panel biura rachunkowego (multi-tenant)</h3>
     <table>
-      <thead><tr><th>Obszar</th><th>Ograniczenie</th><th>Komunikat</th></tr></thead>
+      <thead><tr><th>Funkcja</th><th>Kierowca</th><th>Właściciel</th><th>Księgowy</th><th>Biuro rach.</th></tr></thead>
       <tbody>
-        <tr><td>Pojazdy</td><td>Maks. 1</td><td>„Uaktualnij plan, aby dodać więcej pojazdów"</td></tr>
-        <tr><td>Kierowcy</td><td>Maks. 1</td><td>„Uaktualnij plan, aby zaprosić więcej kierowców"</td></tr>
-        <tr><td>Raporty</td><td>Brak</td><td>„Raporty dostępne od planu Starter"</td></tr>
-        <tr><td>Eksport FK</td><td>Zablokowany</td><td>„Eksport FK dostępny od planu Professional"</td></tr>
-        <tr><td>Mapa real-time</td><td>Zablokowana</td><td>„Mapa dostępna od planu Professional"</td></tr>
-        <tr><td>Zaproszenia</td><td>Wyłączone</td><td>„Zaproszenia dostępne od planu Starter"</td></tr>
+        <tr><td>Przełączanie kontekstu klienta</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
+        <tr><td>Zbiorczy dashboard wszystkich firm</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
+        <tr><td>Dashboard oszczędności (godziny / złotówki)</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
+        <tr><td>Zarządzanie zaproszeniami klientów</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
+        <tr><td>Poziomy dostępu (RBAC) per klient</td><td>—</td><td>—</td><td>—</td><td>Tak</td></tr>
       </tbody>
     </table>
+
+    <h2>4. Scope MVP</h2>
+    <table>
+      <thead><tr><th>Grupa funkcji</th><th>Co wchodzi do MVP</th></tr></thead>
+      <tbody>
+        <tr><td>Konto i firma</td><td>Rejestracja, logowanie, reset hasła, weryfikacja email, profil firmy, multi-tenant z izolacją danych</td></tr>
+        <tr><td>Flota</td><td>Zarządzanie pojazdami (numer rej., VIN, DMC, pojemność), dokumenty firmy (OC, AC, przegląd, licencja transportowa, OCP), alerty terminów</td></tr>
+        <tr><td>Kierowcy</td><td>Zarządzanie kierowcami, zaproszenia mailem, dokumenty (prawo jazdy, kod 95, ADR, badania), alerty terminów</td></tr>
+        <tr><td>Zlecenia i trasy</td><td>Lista zleceń, przypisanie kierowca/pojazd, GPS w tle, tryb offline, zatwierdzanie tras</td></tr>
+        <tr><td>Czas pracy AETR</td><td>Alerty 4,5h / 9h / 11h / dzień / tydzień / dwutydzień, pakiet mobilności UE — przerwy 45h, ewidencja czasu pracy per kierowca</td></tr>
+        <tr><td>Paragony i koszty</td><td>OCR w 6 językach (PL, EN, DE, IT, FR, ES), 7 typów dokumentów, automatyczne kursy NBP, klasyfikacja kosztów</td></tr>
+        <tr><td>Raporty i eksport</td><td>Raporty kosztów per pojazd / kierowca / okres, eksport do Insert GT / Comarch ERP Optima / Symfonia FK</td></tr>
+        <tr><td>Aplikacja mobilna</td><td>iOS + Android, GPS w tle, OCR z aparatu, push notifications, tryb offline z synchronizacją</td></tr>
+        <tr><td>Panel webowy</td><td>Dashboard floty, listy operacyjne, raporty, ustawienia, dziennik audytowy, dla biura rachunkowego — multi-tenant</td></tr>
+        <tr><td>Plan indywidualny</td><td>Dla większych flot (powyżej standardowego zakresu) — indywidualne warunki per pojazd, panel administracyjny umów</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Roadmap po MVP</h2>
+    <p>Po wdrożeniu produkcyjnym (29–30 maja 2026) ruszają funkcje rozszerzające zakres BusiKM o pełen system zarządzania transportem międzynarodowym. Kolejność ustalana z firmami pilotażowymi.</p>
+    <table>
+      <thead><tr><th>Obszar</th><th>Funkcjonalność</th><th>Wartość dla firmy</th></tr></thead>
+      <tbody>
+        <tr><td>Tachograf G2V2 i ITD</td><td>Monitoring legalizacji tachografów, dashboard pod kontrolę ITD, ewidencja czasu pracy z eksportem</td><td>Uniknięcie kar do 10 000 zł per pojazd, gotowość na deadline 2 lipca 2026</td></tr>
+        <tr><td>Marża per zlecenie</td><td>Powiązanie zlecenia z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami — realna marża na każdym kursie</td><td>Wiedza, które zlecenia są opłacalne, a które do odrzucenia</td></tr>
+        <tr><td>Mapa floty na żywo</td><td>Pojazdy w czasie rzeczywistym, ETA dla klienta, strefy alertów (geofencing)</td><td>Klient sam widzi czas dostawy, alert gdy bus opuszcza strefę bez zlecenia</td></tr>
+        <tr><td>Rozliczenie kierowcy</td><td>Diety zagraniczne, mandaty, wydatki prywatne, wypłata — wszystko w jednym dokumencie</td><td>Koniec Excela na 12 zakładek, oszczędność godzin księgowości miesięcznie</td></tr>
+        <tr><td>VAT-REF z UE</td><td>Roczna paczka faktur z UE gotowa do złożenia wniosku o zwrot VAT</td><td>Tysiące złotych zwrotu rocznie zamiast w gubionych paragonach</td></tr>
+        <tr><td>Eksport delegacji + KSeF</td><td>Diety pracownicze do FK, integracja z obowiązkowym e-systemem fakturowym</td><td>Księgowa nie przepisuje delegacji, zgodność z obowiązkowym KSeF</td></tr>
+        <tr><td>Alerty anomalii</td><td>Automatyczne raporty rentowności z alertami o nadmiernym spalaniu, deficytowych trasach, podejrzanych tankowaniach</td><td>Decyzje na bazie danych zamiast intuicji, wykrycie kradzieży paliwa</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. Pomoc i kontakt</h2>
+    <p>Mają Państwo pytanie o konkretną funkcję lub specyficzny scenariusz? Prosimy o kontakt na <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a> — odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>
