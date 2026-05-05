@@ -2,94 +2,105 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Aplikacja mobilna" description="Aplikacja mobilna BusiKM dla kierowców — automatyczna rejestracja trasy GPS, klasyfikacja, zdjęcie licznika, tryb offline.">
+<DocsLayout title="Aplikacja mobilna" description="Aplikacja mobilna BusiKM dla kierowców busów 2,5–3,5 t w transporcie międzynarodowym: GPS w tle, OCR paragonów w 6 językach, alerty AETR, dokumenty kierowcy, tryb offline.">
   <div class="prose">
     <h1>Aplikacja mobilna</h1>
 
-    <p>Aplikacja BusiKM dla kierowców jest projektowana z jednym założeniem: <strong>kierowca nie powinien wpisywać niczego ręcznie pod koniec miesiąca</strong>. Wszystko, co da się zarejestrować automatycznie &mdash; GPS, czas, przebieg &mdash; jest rejestrowane bez ingerencji użytkownika. Kierowca wybiera jedynie cel każdego wyjazdu.</p>
+    <p>Aplikacja BusiKM dla kierowców jest projektowana z jednym założeniem: <strong>kierowca w trasie nie powinien wpisywać niczego ręcznie</strong>. Wszystko, co da się zarejestrować automatycznie — GPS, czas pracy, paragony, kursy walut — jest rejestrowane bez ingerencji użytkownika. Kierowca robi zdjęcie paragonu, aplikacja rozpoznaje resztę.</p>
 
     <h2>1. Wymagania systemowe</h2>
+    <ul>
+      <li>iPhone z aktualnym systemem operacyjnym</li>
+      <li>Android — telefon z aktualnym systemem operacyjnym</li>
+    </ul>
+    <p>Aplikacja dostępna w App Store i Google Play. Aktualizacje dostarczane automatycznie, bez akcji kierowcy.</p>
+
+    <h2>2. Realizacja zlecenia</h2>
+    <p>Kierowca otrzymuje zlecenie od dyspozytora w aplikacji. Cykl pracy ograniczono do minimum, by nie obciążać kierowcy formalnościami w trakcie jazdy:</p>
+    <ul>
+      <li><strong>Lista zleceń</strong> — przypisane przez dyspozytora, ze szczegółami: załadunek, rozładunek, terminy, klient</li>
+      <li><strong>Start trasy jednym przyciskiem</strong> — aplikacja zaczyna nagrywać trasę GPS i czas pracy w tachograf-ach AETR</li>
+      <li><strong>Stop trasy</strong> — aplikacja kończy zapis, wylicza dystans i czas pracy</li>
+      <li><strong>Przerwa</strong> — kierowca jednym tapnięciem zmienia status na "przerwa" — czas się liczy do AETR jako odpoczynek</li>
+      <li><strong>Powrót po przerwie</strong> — kontynuacja zlecenia bez ponownej konfiguracji</li>
+      <li><strong>Zatwierdzenie po zakończeniu</strong> — kierowca jednym kliknięciem potwierdza zlecenie zakończone</li>
+    </ul>
+
+    <h2>3. Paragony — OCR w 6 językach</h2>
+    <p>Każdy paragon kierowca robi zdjęciem. Aplikacja rozpoznaje treść w sześciu językach (PL, EN, DE, IT, FR, ES) i rozdziela na siedem typów dokumentów:</p>
+    <ul>
+      <li><strong>Paliwo</strong> — stacja, kraj, ilość litrów, cena za litr, suma, NIP</li>
+      <li><strong>Maut</strong> — opłata drogowa (Toll Collect, GO-Box, PrePay/PostPay, eMyto)</li>
+      <li><strong>Hotel</strong> — nocleg kierowcy, ilość dób, suma</li>
+      <li><strong>Posiłek</strong> — koszt wyżywienia w trasie</li>
+      <li><strong>Prom</strong> — przeprawa pojazdu z ładunkiem</li>
+      <li><strong>Parking</strong> — postój pojazdu</li>
+      <li><strong>Naprawa</strong> — serwis poza bazą</li>
+    </ul>
+    <p>OCR wyciąga kwoty, daty, NIP, walutę. Kierowca tylko potwierdza lub poprawia. Każdy paragon automatycznie powiązany ze zleceniem, krajem i kierowcą.</p>
+
+    <h2>4. Alerty czasu pracy AETR</h2>
+    <p>Aplikacja monitoruje czas pracy kierowcy zgodnie z AETR i pakietem mobilności UE — alerty wysyłane <strong>przed</strong> przekroczeniem limitów, nie po:</p>
     <table>
-      <thead><tr><th>Platforma</th><th>Minimalna wersja</th></tr></thead>
+      <thead><tr><th>Limit</th><th>Pełna nazwa</th><th>Alert</th></tr></thead>
       <tbody>
-        <tr><td>iOS</td><td>15.0 lub nowszy</td></tr>
-        <tr><td>Android</td><td>10.0 (API 29) lub nowszy</td></tr>
+        <tr><td>4,5 h</td><td>Maksymalny czas jazdy ciągłej</td><td>15 min przed limitem</td></tr>
+        <tr><td>9 h</td><td>Maksymalny czas jazdy dziennej</td><td>30 min przed limitem</td></tr>
+        <tr><td>11 h</td><td>Wymagana przerwa dzienna</td><td>1 h przed końcem okna</td></tr>
+        <tr><td>56 h / tydzień</td><td>Tygodniowy limit jazdy</td><td>2 h przed limitem</td></tr>
+        <tr><td>90 h / dwa tygodnie</td><td>Limit dwutygodniowy</td><td>4 h przed limitem</td></tr>
+        <tr><td>45 h</td><td>Tygodniowy odpoczynek (pakiet mobilności)</td><td>Przypomnienie o powrocie do bazy</td></tr>
       </tbody>
     </table>
-    <p>Aplikacja będzie dostępna w App Store i Google Play. Aktualizacje są dostarczane automatycznie.</p>
+    <p>Każde naruszenie tachograf-icznych limitów dostaje BAG i ITD od ręki — alerty BusiKM mają temu zapobiec.</p>
 
-    <h2>2. Rejestracja trasy</h2>
-    <p>Cykl rejestracji trasy ograniczono do minimum, by nie obciążać kierowcy formalnościami w trakcie pracy:</p>
+    <h2>5. GPS w tle</h2>
+    <p>Aplikacja nagrywa pozycję GPS bez konieczności trzymania ekranu otwartego — kierowca może korzystać z nawigacji, słuchać muzyki, mieć ekran wyłączony. Adaptacyjny tryb dostosowuje dokładność do baterii telefonu.</p>
     <ul>
-      <li><strong>Start jednym przyciskiem</strong> &mdash; aplikacja zaczyna nagrywać trasę GPS</li>
-      <li><strong>Tło</strong> &mdash; nagrywanie trwa nawet gdy ekran jest wyłączony lub kierowca korzysta z innych aplikacji (np. nawigacja)</li>
-      <li><strong>Stop jednym przyciskiem</strong> &mdash; aplikacja kończy trasę, oblicza przebieg na podstawie zarejestrowanych punktów GPS</li>
-      <li><strong>Wybór celu wyjazdu</strong> &mdash; kierowca wybiera jedyne pole z listy zdefiniowanych celów (spotkanie z klientem, dostawa, serwis, prywatne itd.). Lista jest konfigurowalna przez właściciela firmy</li>
-      <li><strong>Klasyfikacja</strong> &mdash; aplikacja proponuje klasyfikację (służbowa / prywatna) na podstawie wybranego celu; kierowca może ją zmienić jednym tapnięciem</li>
-    </ul>
-    <p>Cała operacja po stronie kierowcy zajmuje kilka sekund &mdash; reszta jest automatyczna.</p>
-
-    <h2>3. Zdjęcie licznika (drogomierza)</h2>
-    <p>Zdjęcie stanu licznika dołączone do trasy stanowi dowód faktycznego przebiegu i jest pomocne przy rozliczeniach z biurem rachunkowym oraz w przypadku ewentualnej kontroli skarbowej.</p>
-    <ul>
-      <li>Zdjęcie wykonywane wbudowanym aparatem aplikacji</li>
-      <li>Automatycznie powiązane z konkretną trasą</li>
-      <li>Dostępne do podglądu w panelu webowym dla właściciela, księgowego i biura rachunkowego</li>
-      <li>Zdjęcie można zrobić na początku i na końcu trasy lub raz dziennie &mdash; konfigurowane przez właściciela</li>
+      <li>Powyżej 50% baterii — pełna dokładność, częste pomiary</li>
+      <li>20–50% — zrównoważony tryb, dokładność wystarczająca pod ITD</li>
+      <li>10–20% — oszczędzanie energii, większe odstępy między punktami</li>
+      <li>Poniżej 10% — tryb awaryjny, minimalna częstotliwość, ale nagrywanie nadal trwa</li>
     </ul>
 
-    <h2>4. Adaptacyjne śledzenie GPS</h2>
-    <p>Aplikacja automatycznie dostosowuje dokładność GPS do poziomu baterii telefonu. Cel: nie wyczerpać baterii kierowcy w trakcie pracy w terenie.</p>
-    <table>
-      <thead><tr><th>Poziom baterii</th><th>Tryb GPS</th><th>Wpływ na dokładność</th></tr></thead>
-      <tbody>
-        <tr><td>Powyżej 50%</td><td>Wysoka dokładność</td><td>Pełna precyzja, częste pomiary</td></tr>
-        <tr><td>20–50%</td><td>Zrównoważony</td><td>Lekka oszczędność energii, dokładność wystarczająca dla ewidencji</td></tr>
-        <tr><td>10–20%</td><td>Oszczędzanie energii</td><td>Rzadsze pomiary, większe odstępy między punktami trasy</td></tr>
-        <tr><td>Poniżej 10%</td><td>Minimalny</td><td>Tryb awaryjny &mdash; nagrywanie kontynuowane, ale z minimalną częstotliwością</td></tr>
-      </tbody>
-    </table>
-
-    <h2>5. Tryb offline</h2>
-    <p>Aplikacja jest zaprojektowana, by działać w warunkach, w których internet nie zawsze jest dostępny &mdash; tereny wiejskie, parkingi podziemne, trasy przygraniczne.</p>
+    <h2>6. Tryb offline</h2>
+    <p>Aplikacja zaprojektowana dla pracy bez stałego zasięgu — autostrady niemieckie, tunele alpejskie, terminale promowe, parkingi przygraniczne, strefy przygraniczne UE.</p>
     <ul>
-      <li>Trasy są rejestrowane lokalnie w pełni, niezależnie od stanu sieci</li>
-      <li>Dane GPS, zdjęcia licznika i klasyfikacja są zapisywane na urządzeniu</li>
-      <li>Po odzyskaniu połączenia aplikacja automatycznie synchronizuje wszystkie zaległe dane z serwerem</li>
-      <li>Synchronizacja jest deduplikowana &mdash; żadna trasa nie pojawi się dwa razy</li>
-      <li>Kierowca widzi w interfejsie status synchronizacji każdej trasy (zsynchronizowana / oczekuje)</li>
+      <li>GPS, paragony i alerty AETR zapisywane lokalnie na urządzeniu</li>
+      <li>Po odzyskaniu zasięgu — automatyczna synchronizacja, deduplikowana</li>
+      <li>Kierowca widzi status synchronizacji każdej operacji</li>
+      <li>Bez ryzyka utraty danych nawet przy całodniowej jeździe bez sieci</li>
     </ul>
 
-    <h2>6. Powiadomienia push</h2>
-    <p>Aplikacja wysyła trzy kategorie powiadomień. Każda jest niezależnie konfigurowalna przez użytkownika.</p>
+    <h2>7. Powiadomienia push</h2>
+    <p>Trzy kategorie, każda niezależnie konfigurowalna:</p>
+    <ul>
+      <li><strong>AETR i pakiet mobilności</strong> — alerty czasu pracy przed naruszeniem (sekcja 4)</li>
+      <li><strong>Dokumenty</strong> — terminy ważności prawa jazdy, kodu 95, ADR, badań kierowcy (90 / 30 / 14 / 7 dni przed)</li>
+      <li><strong>Zlecenia</strong> — nowe zlecenie od dyspozytora, zmiana terminów, anulowanie kursu, komunikaty od właściciela</li>
+    </ul>
 
-    <h3>6.1. Alerty dokumentów</h3>
-    <p>Powiadomienia o terminach wygaśnięcia dokumentów pojazdu i kierowcy &mdash; OC, przegląd techniczny, tachograf, prawo jazdy. Wysyłane na 30, 14 i 7 dni przed datą ważności do właściciela, księgowego (do wglądu) oraz kierowcy odpowiedzialnego za pojazd.</p>
+    <h2>8. Sześć języków interfejsu</h2>
+    <p>Aplikacja w pełni przetłumaczona na sześć języków: <strong>polski, angielski, niemiecki, włoski, francuski, hiszpański</strong>. Kierowca z UA, BY, RO, SK lub MD pracujący dla polskiej firmy transportowej dostaje interfejs w języku, którym mówi w domu — nie w pracy. To kluczowe dla bezbłędnej obsługi w stresie trasy.</p>
 
-    <h3>6.2. Potwierdzenia tras</h3>
-    <p>Po zakończeniu każdej trasy przez kierowcę właściciel firmy otrzymuje powiadomienie z podstawowymi informacjami (kierowca, pojazd, czas, przebieg). Pozwala to na bieżąco kontrolować pracę zespołu bez konieczności logowania do panelu.</p>
-
-    <h3>6.3. Komunikaty produktowe</h3>
-    <p>Informacje o nowych funkcjach, ważnych zmianach w przepisach, planowanych przerwach technicznych. Wysyłane przez zespół BusiKM bezpośrednio do użytkowników. Częstotliwość: zwykle nie częściej niż raz w miesiącu.</p>
-
-    <h2>7. Bezpieczeństwo i logowanie</h2>
+    <h2>9. Bezpieczeństwo i logowanie</h2>
     <ul>
       <li>Logowanie loginem i hasłem użytkownika</li>
-      <li>Hasło nie jest przechowywane na urządzeniu &mdash; po zalogowaniu aplikacja wymienia je na bezpieczny token sesji</li>
+      <li>Hasło nie jest przechowywane na urządzeniu — po zalogowaniu aplikacja używa bezpiecznego tokenu sesji z automatycznym odświeżaniem</li>
       <li>Automatyczne wylogowanie po długim okresie nieaktywności</li>
-      <li>Powiadomienie e-mail o zalogowaniu z nowego urządzenia</li>
-      <li>Dane na urządzeniu są szyfrowane przez system operacyjny telefonu (iOS / Android)</li>
+      <li>Powiadomienie email o zalogowaniu z nowego urządzenia</li>
+      <li>Dane na urządzeniu szyfrowane przez system operacyjny telefonu</li>
     </ul>
 
-    <h2>8. Role w aplikacji</h2>
+    <h2>10. Role w aplikacji</h2>
 
     <h3>Kierowca</h3>
-    <p>Najprostszy interfejs: lista przypisanych pojazdów, przycisk rozpoczęcia trasy, lista wcześniejszych tras, ustawienia konta. Kierowca widzi wyłącznie własne trasy &mdash; nie ma dostępu do tras innych kierowców ani do danych firmowych.</p>
+    <p>Główny użytkownik aplikacji mobilnej. Lista przypisanych zleceń, start/stop trasy, OCR paragonów, alerty AETR, własne dokumenty (prawo jazdy, kod 95, ADR), historia tras. Kierowca widzi wyłącznie własne dane — nie ma dostępu do tras innych kierowców ani danych firmowych.</p>
 
     <h3>Właściciel firmy</h3>
-    <p>Rozszerzony interfejs: dashboard floty, lista pojazdów z dokumentami, lista kierowców, wszystkie trasy w firmie z filtrami, raporty PDF zgodne z art. 86a ustawy o VAT, ustawienia firmy. Właściciel może zatwierdzać dokumenty, zarządzać kierowcami i konfigurować alerty.</p>
+    <p>Aplikacja w wersji rozszerzonej: dashboard floty, lista zleceń, kierowcy w trasie z aktualnym statusem AETR, alerty dokumentów floty, mapa floty na żywo (post-MVP). Pełen panel właściciela jest dostępny w panelu webowym — aplikacja mobilna daje szybki podgląd i powiadomienia.</p>
 
-    <h2>9. Wsparcie i pytania</h2>
-    <p>Pytania techniczne, problemy z aplikacją lub propozycje funkcji &mdash; <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Odpowiadamy w tym samym dniu roboczym.</p>
+    <h2>11. Wsparcie i pytania</h2>
+    <p>Pytania techniczne, problemy z aplikacją lub propozycje funkcji — <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a>. Odpowiadamy w tym samym dniu roboczym.</p>
   </div>
 </DocsLayout>
