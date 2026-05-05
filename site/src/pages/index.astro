@@ -812,9 +812,21 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       <h2 class="font-display text-[clamp(1.9rem,4.2vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.12] max-w-[860px] mx-auto mb-5">
         BusiKM nie jest standardową aplikacją do zarządzania flotą.
       </h2>
-      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[760px] mx-auto">
+      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[760px] mx-auto mb-10">
         Pięć autorskich komponentów badawczo-rozwojowych — od parsera binarnego formatu tachografu po model uczenia maszynowego z wyjaśnialnością decyzji w języku naturalnym. Większość z nich powstała dlatego, że gotowych rozwiązań na polskim rynku nie ma.
       </p>
+
+      <!-- Credibility strip — co już zbudowaliśmy -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-4 rounded-[16px] bg-white/[0.04] border border-white/[0.06]">
+        <div class="flex items-center gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
+          <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">11 sprintów ukończonych</p>
+        </div>
+        <div class="hidden sm:block w-px h-3 bg-white/15"></div>
+        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">130 ticketów Done</p>
+        <div class="hidden sm:block w-px h-3 bg-white/15"></div>
+        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">MVP LIVE 29–30 maja 2026</p>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
@@ -920,24 +932,47 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger mb-12">
       {[
-        { name: 'Insert GT / Rewizor / nexo', format: 'EDI++ (.epp)', color: '#FF9500' },
-        { name: 'Comarch ERP Optima', format: 'XML', color: '#005CE8' },
-        { name: 'Symfonia FK', format: 'TXT + AMS', color: '#34C759' },
+        { name: 'Insert GT / Rewizor / nexo', desc: 'Eksport faktur kosztowych, koszty per pojazd', color: '#FF9500' },
+        { name: 'Comarch ERP Optima', desc: 'Eksport z analityką per zlecenie i kierowca', color: '#005CE8' },
+        { name: 'Symfonia FK', desc: 'Eksport z procentem odliczenia VAT', color: '#34C759' },
       ].map(s => (
         <div class="p-6 rounded-[20px] bg-[#F5F5F7] border border-black/[0.04]">
           <div class="w-10 h-10 rounded-[12px] flex items-center justify-center mb-4" style={`background: ${s.color}15;`}>
             <svg class="w-5 h-5" fill="none" stroke={s.color} stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
           <p class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-1">{s.name}</p>
-          <p class="text-[12.5px] text-[#6E6E73] font-mono">{s.format}</p>
+          <p class="text-[12.5px] text-[#6E6E73] leading-snug">{s.desc}</p>
         </div>
       ))}
     </div>
 
-    <p class="text-center text-[13px] text-[#86868B] mt-8 max-w-[640px] mx-auto">
-      Eksport delegacji pracowniczych do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na początku czerwca 2026, w fazie post-MVP.
+    <!-- Brand wall — partnerzy, źródła danych, systemy zewnętrzne -->
+    <div class="reveal pt-10 border-t border-gray-100">
+      <p class="text-center text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#86868B] mb-7">Współpracujemy bezpośrednio z</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-[1000px] mx-auto">
+        {[
+          { name: 'Insert GT', tag: 'Eksport FK', color: '#FF9500', glyph: '<rect x="4" y="6" width="4" height="12" rx="0.5"/><rect x="10" y="6" width="4" height="12" rx="0.5"/><rect x="16" y="6" width="4" height="12" rx="0.5"/>' },
+          { name: 'Comarch Optima', tag: 'Eksport FK', color: '#005CE8', glyph: '<polygon points="12 4 20 9 20 18 12 22 4 18 4 9"/>' },
+          { name: 'Symfonia FK', tag: 'Eksport FK', color: '#34C759', glyph: '<path d="M5 12c0-3.5 3-7 7-7s7 3.5 7 7-3 7-7 7-7-3.5-7-7z"/><path d="M9 12h6"/><path d="M12 9v6"/>' },
+          { name: 'KSeF', tag: 'Faktury PL · MF', color: '#1D1D1F', glyph: '<path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9"/><line x1="9" y1="14" x2="15" y2="14"/>' },
+          { name: 'NBP API', tag: 'Kursy walut', color: '#8B5CF6', glyph: '<rect x="3" y="6" width="18" height="13" rx="1.5"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="8" y1="15" x2="14" y2="15"/>' },
+          { name: 'VDO · Stoneridge', tag: 'Tachograf G2V2', color: '#FF3B30', glyph: '<circle cx="12" cy="12" r="9"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14.5"/>' },
+        ].map(b => (
+          <div class="group flex flex-col items-center justify-center p-4 rounded-[14px] bg-[#F8F8FA] border border-gray-100 hover:bg-white hover:border-gray-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300">
+            <div class="w-9 h-9 rounded-[10px] flex items-center justify-center mb-2" style={`background: ${b.color}12;`}>
+              <svg class="w-[18px] h-[18px]" fill="none" stroke={b.color} stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" set:html={b.glyph}/>
+            </div>
+            <p class="text-[12.5px] font-display font-semibold text-[#1D1D1F] text-center leading-tight">{b.name}</p>
+            <p class="text-[10.5px] text-[#86868B] text-center mt-0.5 leading-tight">{b.tag}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="text-center text-[13px] text-[#86868B] mt-10 max-w-[640px] mx-auto">
+      Eksport delegacji pracowniczych do trzech systemów księgowych oraz integracja z Krajowym Systemem e-Faktur — w fazie post-MVP.
     </p>
   </div>
 </section>
