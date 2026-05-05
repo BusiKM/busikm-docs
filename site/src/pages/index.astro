@@ -841,6 +841,85 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
+<!-- ======================== PODSTAWA PRAWNA ======================== -->
+<section id="podstawa-prawna" class="bg-white py-20 sm:py-28 px-5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Podstawa prawna</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[820px] mx-auto mb-4">
+        Sześć regulacji, które BusiKM obsługuje za Ciebie.
+      </h2>
+      <p class="text-[15px] text-[#6E6E73] max-w-[700px] mx-auto leading-relaxed">
+        Transport międzynarodowy busami 2,5–3,5 t to gęsta siatka przepisów polskich i unijnych. Każde rozporządzenie wymienione poniżej ma w BusiKM konkretną funkcję — od parsera danych tachografu po silnik kalkulacji diet kierowcy.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-stagger">
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Rozporządzenie Komisji (UE) 2016/799</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Specyfikacja tachografów cyfrowych drugiej generacji (G2V2), format pliku DDD, protokół Bluetooth ITS.</p>
+        <p class="text-[12px] font-semibold text-[#005CE8]">→ Parser DDD, biblioteka BT ITS, raport 56 dni dla ITD</p>
+      </article>
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Pakiet mobilności UE (2020/1054, 2020/1055)</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Obowiązek tachografu G2V2 w pojazdach 2,5–3,5&nbsp;t w transporcie międzynarodowym od 2 lipca 2026, regularne powroty kierowcy do bazy, zakaz odpoczynku w kabinie.</p>
+        <p class="text-[12px] font-semibold text-[#FF9500]">→ Compliance dashboard, alerty terminów legalizacji, monitoring pakietu mobilności</p>
+      </article>
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Umowa AETR (czas pracy kierowcy)</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Maksymalny czas jazdy ciągłej 4,5 h, dziennej 9 h, tygodniowej 56 h, dwutygodniowej 90 h, przerwa dzienna 11 h, tygodniowy odpoczynek 45 h.</p>
+        <p class="text-[12px] font-semibold text-[#FF9500]">→ Alerty AETR przed naruszeniem limitów, ewidencja czasu pracy w aplikacji kierowcy</p>
+      </article>
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#8B5CF6]/[0.10] text-[#8B5CF6] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Rozp. MPiPS z 29.01.2013 (Dz.U. 2013 poz. 167)</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Należności pracownika z tytułu podróży służbowej. Załącznik nr 2 — stawki diet zagranicznych per kraj per dzień (np. Niemcy 49 EUR, Włochy 53 EUR, Francja 50 EUR).</p>
+        <p class="text-[12px] font-semibold text-[#8B5CF6]">→ Silnik kalkulacji diet zagranicznych z GPS, gotowe rozliczenie kierowcy</p>
+      </article>
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#34C759]/[0.10] text-[#34C759] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Dyrektywa 2008/9/WE (VAT-REF)</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Procedura zwrotu VAT od kosztów poniesionych w innych państwach członkowskich UE — paliwo, Maut, hotele, naprawy busa za granicą.</p>
+        <p class="text-[12px] font-semibold text-[#34C759]">→ VAT-REF — paczka roczna faktur z UE gotowa do wniosku o zwrot</p>
+      </article>
+
+      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+        <div class="flex items-start gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
+          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Krajowy System e-Faktur (KSeF)</h3>
+        </div>
+        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Obowiązkowy państwowy system e-faktur dla wszystkich podatników VAT. Zakres: tylko polscy wystawcy — faktury z DE, FR, IT, AT pozostają poza KSeF.</p>
+        <p class="text-[12px] font-semibold text-[#005CE8]">→ Auto-import faktur PL z KSeF, ścieżka osobna dla faktur UE (post-MVP)</p>
+      </article>
+
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <p class="text-[13.5px] text-[#6E6E73] max-w-[680px] mx-auto leading-relaxed">
+        BusiKM nie jest narzędziem ogólnym dostosowanym do transportu — został zaprojektowany od zera dla firm wykonujących przewozy międzynarodowe busami 2,5–3,5&nbsp;t i regulacji ich obejmujących.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ======================== DLA KOGO — SEGMENTY ======================== -->
 <section class="bg-[#F5F5F7] py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
