@@ -729,6 +729,76 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
+<!-- ======================== JAK TO DZIAŁA — 3 KROKI ======================== -->
+<section class="bg-white py-20 sm:py-28 px-5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jak to działa</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[820px] mx-auto mb-4">
+        Trzy kroki. Każdy z innym aktorem.
+      </h2>
+      <p class="text-[15px] text-[#6E6E73] max-w-[700px] mx-auto leading-relaxed">
+        Cały proces wdrożenia to godzina jednorazowo. Każdego dnia kierowca poświęca dziesięć sekund. Każdego miesiąca księgowa pięć minut.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger">
+
+      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="font-display text-[2rem] font-bold text-[#005CE8] leading-none tracking-[-0.04em]">01</span>
+          <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.10] text-[#005CE8] text-[10.5px] font-bold tracking-[0.06em] uppercase">Właściciel · 10 minut</span>
+        </div>
+        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Konfigurujesz flotę i zapraszasz kierowców</h3>
+        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Web panel: dodajesz pojazdy (numer rejestracyjny, VIN, DMC), zapraszasz kierowców mailem, ustawiasz alerty terminów dokumentów. Importujesz licencję transportową, OCP, OC. Jednorazowo.</p>
+        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Co dodajesz</p>
+          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Pojazdy + dokumenty (OC, przegląd, tachograf)</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Kierowcy + uprawnienia (kod 95, ADR)</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Licencja transportowa + wypisy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="font-display text-[2rem] font-bold text-[#34C759] leading-none tracking-[-0.04em]">02</span>
+          <span class="px-2.5 py-1 rounded-full bg-[#34C759]/[0.10] text-[#34C759] text-[10.5px] font-bold tracking-[0.06em] uppercase">Kierowca · 10 sekund</span>
+        </div>
+        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Kierowcy pracują z aplikacją w trasie</h3>
+        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Aplikacja iOS/Android. Start zlecenia jednym tapnięciem, GPS w tle, paragony zdjęciem (OCR w 6 językach), alerty AETR zanim przekroczy limit. Działa offline w terenie.</p>
+        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Każdego dnia</p>
+          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Start trasy → GPS auto-rejestruje</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Paragon → zdjęcie → OCR → kategoria</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Alert AETR przed naruszeniem</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="font-display text-[2rem] font-bold text-[#FF9500] leading-none tracking-[-0.04em]">03</span>
+          <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.10] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">Księgowa · 5 minut</span>
+        </div>
+        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Księgowa eksportuje do FK i rozlicza</h3>
+        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Koniec miesiąca: jeden klik generuje pliki do Insert GT, Comarch lub Symfonii. Diety zagraniczne policzone z GPS, paragony przewalutowane po NBP, faktury z UE oznaczone do VAT-REF. Bez Excela.</p>
+        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Raz w miesiącu</p>
+          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Eksport do FK jednym kliknięciem</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Rozliczenie kierowcy z dietami UE</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Paczka VAT-REF do zwrotu z UE</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ======================== POD MASKĄ — TECHNOLOGIA / B+R ======================== -->
 <section id="technologia" class="relative bg-[#0F1115] py-24 sm:py-32 px-5 overflow-hidden border-y border-white/5">
   <div class="absolute inset-0 pointer-events-none">
