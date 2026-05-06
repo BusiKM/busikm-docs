@@ -147,8 +147,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         },
         {
           title: 'Eksport per klient — wszystkie systemy FK',
-          desc: 'Każdy klient transportowy jednym kliknięciem eksportuje się do Insert GT (.epp EDI++), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS), CSV uniwersalnego. Bez ręcznego przepisywania.',
-          tech: 'EDI++ · XML · TXT/AMS · CSV · JPK ready',
+          desc: 'Każdy klient transportowy jednym kliknięciem eksportuje się do Insert GT, Comarch ERP Optima, Symfonia FK lub CSV uniwersalnego. Natywny format każdego systemu — bez ręcznego przepisywania, bez konwersji.',
+          tech: '4 systemy FK · jednym kliknięciem · JPK ready',
           color: '#0A84FF',
         },
         {
@@ -362,7 +362,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { q: 'Czy klient widzi że mam dostęp do jego danych?',  a: 'Tak — pełna transparentność. Klient w panelu widzi listę osób z dostępem (np. Marta Kowalska — biuro rachunkowe — pełen zarząd). Może w każdej chwili cofnąć dostęp. Wcześniej wygenerowane raporty i eksporty pozostają u Ciebie (zachowane jako PDF/CSV).' },
         { q: 'Co jeśli klient odejdzie do innego BR?', a: 'Klient eksportuje swoją historię (faktury, kursy, ewidencje, paczki VAT-REF) jako paczkę PDF + CSV i przekazuje nowemu BR. Twoja kopia w panelu zostaje (RODO + KSiR wymagają retencji 5 lat). Jeśli odchodzi „za porozumieniem" — możesz mu udostępnić ostateczny raport jednym kliknięciem.' },
         { q: 'Czy panel obsługuje klientów nie-transportowych?', a: 'Tak. BusiKM specjalizuje się w transporcie międzynarodowym, ale panel multi-tenant obsługuje wszystkich klientów BR. Dla klientów nie-transportowych po prostu nie używasz funkcji floty — zostają eksporty FK, JPK_V7, podgląd dokumentów. Bez dodatkowych kosztów.' },
-        { q: 'Jak działa import do mojego Insert GT / Comarch / Symfonia?', a: 'Po eksporcie z BusiKM otrzymujesz plik (.epp dla Insert GT, .xml dla Comarch, .txt/.ams dla Symfonia). W swoim systemie księgowym klikasz „Import EDI++" / „Import XML" / „Import danych" i wybierasz plik. Cały proces zajmuje 2–3 minuty per klient. Sumy kontrolne weryfikują się automatycznie.' },
+        { q: 'Jak działa import do mojego Insert GT / Comarch / Symfonia?', a: 'Po eksporcie z BusiKM otrzymujesz plik gotowy do natywnego importu w Twoim systemie księgowym. W Insert GT klikasz Operacje → Dodaj na podstawie, w Comarch ERP Optima Narzędzia → Importy, w Symfonii Księgowość → Import specjalny. Cały proces zajmuje 2–3 minuty per klient. Sumy kontrolne weryfikują się automatycznie.' },
         { q: 'Czy paczki VAT-REF są zgodne z 8 dyrektywą?', a: 'Tak. BusiKM identyfikuje faktury kwalifikujące się do zwrotu VAT z 8 krajów (DE, FR, IT, NL, AT, BE, ES, CZ — najczęstsze w transporcie międzynarodowym). Generuje paczkę z metadanymi (numer faktury, data, sprzedawca, NIP, kwota netto, VAT, kategoria) + załączniki PDF. Sam wniosek składasz przez polski US (e-Urząd Skarbowy → VAT-REF) — US przekazuje do administracji kraju zwrotu. Termin: do 30 września roku następnego po roku kalendarzowym poniesienia kosztów.' },
         { q: 'Ile zajmuje wdrożenie nowego klienta?', a: 'Klient otrzymuje od Ciebie zaproszenie z linkiem. Po jego rejestracji właściciel firmy konfiguruje pojazdy i zaprasza kierowców (10 minut). Pierwsza trasa GPS się rejestruje od razu. Pierwszy eksport do Twojego systemu BR — w ciągu 30 dni od pierwszych zleceń. Ty nie konfigurujesz technicznie nic.' },
         { q: 'Kiedy będzie white-label (mój branding na panelu)?', a: 'Q3 2026. Własne logo, kolory, domena (np. flota.twoje-bro.pl). Twoi klienci widzą Twoją markę zamiast BusiKM. Funkcja zaplanowana w roadmapie po publicznej premierze MVP.' },

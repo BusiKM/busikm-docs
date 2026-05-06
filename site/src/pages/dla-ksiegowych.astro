@@ -213,9 +213,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         },
         {
           title: 'Eksport do biura rachunkowego',
-          desc: 'Twoje BR dostaje gotowy plik do importu w swoim systemie — Insert GT (EDI++ .epp), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS), CSV uniwersalny. Bez wpisywania, bez korekt, bez „Pani Joanno, brakuje pojazdu w fakturze nr 12".',
+          desc: 'Biuro rachunkowe dostaje gotowy plik do importu w swoim systemie — Insert GT, Comarch ERP Optima, Symfonia FK lub CSV uniwersalny. Bez wpisywania, bez korekt, bez „Pani Joanno, brakuje pojazdu w fakturze nr 12".',
           color: '#0A84FF',
-          bullets: ['Insert GT EDI++ .epp', 'Comarch ERP Optima XML', 'Symfonia FK TXT/AMS', 'CSV uniwersalny + JPK_V7 ready'],
+          bullets: ['Insert GT — natywny import jednym kliknięciem', 'Comarch ERP Optima — z analityką per zlecenie', 'Symfonia FK — z procentem odliczenia VAT', 'CSV uniwersalny + JPK_V7 ready'],
         },
       ].map(f => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
@@ -304,9 +304,9 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
     <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-5">
       {[
-        { name: 'Insert GT / Rewizor GT / nexo', format: 'EDI++ (.epp)', desc: 'Plik kodowanie Windows-1250, sekcje NAGLOWEK, FIRMA, POJAZD, POZYCJA, PODSUMOWANIE. Importujesz w Insert GT: Narzędzia → Import EDI++.', color: '#34C759' },
+        { name: 'Insert GT / Rewizor GT / nexo', format: 'natywny import', desc: 'Eksport faktur kosztowych, paragonów i raportów floty bezpośrednio do Insert GT. Otwierasz program księgowy, klikasz Operacje → Dodaj na podstawie → wskazujesz plik. Bez konwersji, bez wpisywania.', color: '#34C759' },
         { name: 'Comarch ERP Optima', format: 'XML', desc: 'Synchronizacja przez REST API albo eksport XML zgodny ze schematem Optima FK. Faktury kosztowe, kursy, rejestry VAT, JPK_V7-ready.', color: '#FF9500' },
-        { name: 'Symfonia FK', format: 'TXT/AMS', desc: 'Eksport zgodny ze schematem Symfonia Finanse i Księgowość. TXT z separatorem albo natywny format AMS.', color: '#005CE8' },
+        { name: 'Symfonia FK', format: 'natywny import', desc: 'Eksport zgodny z importem specjalnym Symfonii. Konfigurujesz raz, przy kolejnych miesiącach wystarczy wskazać plik.', color: '#005CE8' },
         { name: 'CSV uniwersalny', format: 'CSV / Excel', desc: 'Dla biur, które nie mają dedykowanej integracji. CSV z kolumnami: data, sprzedawca, NIP, kwota netto, VAT, kategoria, pojazd, zlecenie, kurs, kwota PLN.', color: '#8B5CF6' },
       ].map(e => (
         <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
