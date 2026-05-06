@@ -3,60 +3,59 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // Realne dane sprintów z Jira (projekt BKM, board 34)
 // Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 6 maja 2026.
-// Zamknięte sprinty 0-10a (14 sprintów, 163 tickety Done). Zaplanowane: 10b-22.
-// Faza 1 (Domknięcie zakresu MVP) cała zamknięta — renumeracja faz: Web → Faza 1, Mobile → Faza 2, Launch → Faza 3.
-// MVP LIVE 26-27 maja 2026 (drift inkrementalny -1 dzień, |drift| < 2 → MVP zostaje).
+// Zamknięte sprinty 0-10b (15 sprintów, 170 ticketów Done). Zaplanowane: 11a-22.
+// User pracuje 7 dni przed planem (dziś 6 maja, w trakcie sprint planowany na 13 maja).
+// Drift cumulative -7 dni zaaplikowany do wszystkich pozostałych dat. MVP LIVE: 19-20 maja 2026.
 
-const closedSprints = 14;
-const closedTickets = 163;
+const closedSprints = 15;
+const closedTickets = 170;
 
 const phases = [
   {
     id: 'web',
     label: 'Faza 1 — Panel webowy',
-    period: '8 — 16 maja 2026',
+    period: '6 — 9 maja 2026',
     color: '#34C759',
     summary: 'Pełen panel webowy dla właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy — od dashboardu floty po zaawansowane raporty i eksport do systemów księgowych.',
     sprints: [
-      { id: '10b', range: '8 maja', title: 'Główne widoki dla właściciela firmy', desc: 'Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur paliwowych z filtrowaniem i sortowaniem, szczegóły każdego obiektu z dokumentami i historią.', tickets: 7 },
-      { id: '11a', range: '9 maja', title: 'Panel biura rachunkowego', desc: 'Przełączanie kontekstu między klientami jednym kliknięciem, zbiorczy dashboard wszystkich obsługiwanych firm, zarządzanie zaproszeniami klientów.', tickets: 5 },
-      { id: '11b', range: '10 maja', title: 'Raporty i eksport do systemów księgowych', desc: 'Interfejs generowania raportów kosztów floty oraz eksport faktur, paragonów i delegacji do Insert GT, Comarch ERP Optima i Symfonia FK jednym kliknięciem.', tickets: 6 },
-      { id: '12a', range: '11 maja', title: 'Mapa floty w panelu webowym', desc: 'Wizualizacja pozycji pojazdów na żywo, komunikaty informacyjne o stanie programu pilotażowego.', tickets: 5 },
-      { id: '12b', range: '12 maja', title: 'Onboarding pilota', desc: 'Bezpieczna ścieżka rejestracji z linku zaproszenia, ekrany powitalne dla nowych pilotów.', tickets: 1 },
-      { id: '12c', range: '13 maja', title: 'Konfiguracja konta i zespołu', desc: 'Ustawienia firmy, profil użytkownika, zaproszenia członków zespołu z odpowiednimi uprawnieniami.', tickets: 3 },
-      { id: '13a', range: '14—15 maja', title: 'Publiczna strona busikm.pl', desc: 'Pełna treść marketingowa, integracja z systemem zgłoszeń do pilotażu, optymalizacja pod wyszukiwarki.', tickets: 6 },
-      { id: '13b', range: '16 maja', title: 'Testy automatyczne panelu', desc: 'Pełne pokrycie testami kluczowych ścieżek użytkownika z regresją uruchamianą przy każdej zmianie.', tickets: 2 },
+      { id: '11a', range: '6 maja', title: 'Panel biura rachunkowego', desc: 'Przełączanie kontekstu między klientami jednym kliknięciem, zbiorczy dashboard wszystkich obsługiwanych firm, zarządzanie zaproszeniami klientów.', tickets: 5 },
+      { id: '11b', range: '6 maja', title: 'Raporty i eksport do systemów księgowych', desc: 'Interfejs generowania raportów kosztów floty oraz eksport faktur, paragonów i delegacji do Insert GT, Comarch ERP Optima i Symfonia FK jednym kliknięciem.', tickets: 6 },
+      { id: '12a', range: '7 maja', title: 'Mapa floty w panelu webowym', desc: 'Wizualizacja pozycji pojazdów na żywo, komunikaty informacyjne o stanie programu pilotażowego.', tickets: 5 },
+      { id: '12b', range: '7 maja', title: 'Onboarding pilota', desc: 'Bezpieczna ścieżka rejestracji z linku zaproszenia, ekrany powitalne dla nowych pilotów.', tickets: 1 },
+      { id: '12c', range: '7 maja', title: 'Konfiguracja konta i zespołu', desc: 'Ustawienia firmy, profil użytkownika, zaproszenia członków zespołu z odpowiednimi uprawnieniami.', tickets: 3 },
+      { id: '13a', range: '8 maja', title: 'Publiczna strona busikm.pl', desc: 'Pełna treść marketingowa, integracja z systemem zgłoszeń do pilotażu, optymalizacja pod wyszukiwarki.', tickets: 6 },
+      { id: '13b', range: '9 maja', title: 'Testy automatyczne panelu', desc: 'Pełne pokrycie testami kluczowych ścieżek użytkownika z regresją uruchamianą przy każdej zmianie.', tickets: 2 },
     ],
   },
   {
     id: 'mobile',
     label: 'Faza 2 — Aplikacja mobilna',
-    period: '17 — 25 maja 2026',
+    period: '10 — 18 maja 2026',
     color: '#FF9500',
     summary: 'Aplikacja na iOS i Android — narzędzie dla kierowcy w terenie i właściciela firmy w drodze. Kluczowa zasada: kierowca nie wpisuje niczego ręcznie.',
     sprints: [
-      { id: '14a', range: '17 maja', title: 'Fundament aplikacji mobilnej', desc: 'Architektura aplikacji, struktura nawigacji dostosowana do roli użytkownika.', tickets: 4 },
-      { id: '14b', range: '18 maja', title: 'Logowanie i pierwsze kroki', desc: 'Bezpieczna autoryzacja na urządzeniu, przewodnik dla nowego kierowcy, zarządzanie sesją.', tickets: 3 },
-      { id: '15', range: '19—20 maja', title: 'Pełen flow pracy kierowcy', desc: 'Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, klasyfikacja służbowa/prywatna, zatwierdzanie tras.', tickets: 8 },
-      { id: '16a', range: '21 maja', title: 'Widok właściciela na telefonie', desc: 'Dashboard floty na telefonie, alerty dokumentów, przegląd tras zespołu, szybkie akcje zarządcze.', tickets: 4 },
-      { id: '16b', range: '22 maja', title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
-      { id: '16c', range: '23 maja', title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
-      { id: '17a', range: '24 maja', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
-      { id: '17b', range: '25 maja', title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
+      { id: '14a', range: '10 maja', title: 'Fundament aplikacji mobilnej', desc: 'Architektura aplikacji, struktura nawigacji dostosowana do roli użytkownika.', tickets: 4 },
+      { id: '14b', range: '11 maja', title: 'Logowanie i pierwsze kroki', desc: 'Bezpieczna autoryzacja na urządzeniu, przewodnik dla nowego kierowcy, zarządzanie sesją.', tickets: 3 },
+      { id: '15', range: '12—13 maja', title: 'Pełen flow pracy kierowcy', desc: 'Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, klasyfikacja służbowa/prywatna, zatwierdzanie tras.', tickets: 8 },
+      { id: '16a', range: '14 maja', title: 'Widok właściciela na telefonie', desc: 'Dashboard floty na telefonie, alerty dokumentów, przegląd tras zespołu, szybkie akcje zarządcze.', tickets: 4 },
+      { id: '16b', range: '15 maja', title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
+      { id: '16c', range: '16 maja', title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
+      { id: '17a', range: '17 maja', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
+      { id: '17b', range: '18 maja', title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
     ],
   },
   {
     id: 'launch',
     label: 'Faza 3 — Launch i rozszerzenia',
-    period: '26 maja — 3 czerwca 2026',
+    period: '19 — 27 maja 2026',
     color: '#8B5CF6',
     summary: 'Wdrożenie produkcyjne, audyt bezpieczeństwa, testy z pierwszymi pilotami, a następnie funkcje rozszerzające zakres zgodności podatkowej i analityki.',
     sprints: [
-      { id: '18', range: '26—27 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
-      { id: '19', range: '28—29 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
-      { id: '20', range: '30—31 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur — faktury kosztowe z PL automatycznie pobierane i powiązane z trasami pojazdu.', tickets: 5 },
-      { id: '21', range: '1—2 czerwca', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
-      { id: '22', range: '3 czerwca', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
+      { id: '18', range: '19—20 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
+      { id: '19', range: '21—22 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
+      { id: '20', range: '23—24 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur — faktury kosztowe z PL automatycznie pobierane i powiązane z trasami pojazdu.', tickets: 5 },
+      { id: '21', range: '25—26 maja', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
+      { id: '22', range: '27 maja', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
     ],
   },
 ];
@@ -65,7 +64,7 @@ const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
 const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 14 sprintów ukończonych, 21 zaplanowanych. MVP LIVE 26-27 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 15 sprintów ukończonych, 20 zaplanowanych. MVP LIVE 19-20 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-white">
@@ -77,7 +76,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">Sprint 9 i 10a zakończone — Faza 1 zamknięta, ruszył panel webowy</span>
+        <span class="text-sm font-medium text-gray-700">Sprint 10b zakończony — główne widoki dla właściciela firmy gotowe</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
@@ -86,7 +85,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Czternaście sprintów za nami, dwadzieścia jeden przed nami. MVP LIVE 29–30 maja 2026, finalizacja produktu w pierwszym tygodniu czerwca. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
+        Piętnaście sprintów za nami, dwadzieścia przed nami. MVP LIVE 19–20 maja 2026, finalizacja produktu do końca maja. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -113,7 +112,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">ticketów w backlogu</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">26 maj</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">19 maj</div>
           <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE</div>
         </div>
       </div>
@@ -126,7 +125,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <div class="text-center mb-12 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Co zostało zbudowane</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Czternaście sprintów za nami. 163 tickety ukończone.</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Piętnaście sprintów za nami. 170 ticketów ukończonych.</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, ewidencja zleceń i tras GPS, OCR paragonów w sześciu językach, monitoring dokumentów floty, eksport do Insert GT / Comarch / Symfonia FK, plan indywidualny dla większych flot, mapa floty w czasie rzeczywistym.</p>
       </div>
 
@@ -328,6 +327,20 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <p class="text-sm text-gray-500">Bezpieczna autoryzacja, spójny system designu, pełna responsywność — działa na komputerze, laptopie i tablecie. Pierwszy sprint Fazy 1 (Panel webowy) zakończony jeszcze przed planowanym startem.</p>
         </div>
 
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S10b</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Główne widoki dla właściciela firmy</h3>
+                <p class="text-xs text-gray-400">6 maja 2026 · 7 ticketów</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur kosztowych z filtrowaniem i sortowaniem, szczegóły każdego obiektu z dokumentami i historią. Właściciel ma kompletną kontrolę nad flotą z poziomu jednego ekranu.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -426,7 +439,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       <div class="text-center mb-14 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Po MVP</p>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Roadmap nie kończy się 30 maja.
+          Roadmap nie kończy się 20 maja.
         </h2>
         <p class="text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
           MVP to fundament. Po wdrożeniu produkcyjnym ruszają funkcje, które zmieniają BusiKM z ewidencji w pełen system zarządzania transportem międzynarodowym. Kolejność zależy od głosów pilotów.
