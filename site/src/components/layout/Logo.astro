@@ -16,15 +16,21 @@ const icons: Record<string, string> = {
 const src = icons[color];
 ---
 
-<a href="/" class="inline-flex items-center shrink-0" aria-label="BusiKM — strona główna">
+<a href="/" class="inline-flex items-center gap-2 shrink-0" aria-label="BusiKM — strona główna">
   <img
     src={src}
-    alt="BusiKM"
+    alt=""
     height={iconH}
     width={iconH}
     style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
     loading="eager"
   />
+  <span class:list={[
+    'font-display text-xl font-bold tracking-[-0.01em]',
+    color === 'white' ? 'text-white' : 'text-[#005CE8]',
+  ]}>
+    BusiKM
+  </span>
 </a>
 
 <style>
