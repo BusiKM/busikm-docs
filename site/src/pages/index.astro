@@ -1,5 +1,35 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { APP_LOGIN_URL } from '../lib/app-url';
+
+// FAQ na home — kluczowe pytania o pilotaż MVP. Schema.org FAQPage
+// generowany na końcu sekcji (BKM-291 SEO).
+const homeFaq = [
+  {
+    q: 'Ile kosztuje BusiKM?',
+    a: 'Jesteśmy na etapie pilotażu MVP. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback i miesięczną rozmowę. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu — pilotażowi pozostaną na 0 zł na zawsze.',
+  },
+  {
+    q: 'Jak dołączyć do pilotażu?',
+    a: 'Kliknij "Wypróbuj demo" — zalogujesz się na konto demo żeby przetestować aplikację. Po decyzji o dołączeniu do pilotażu otrzymasz osobiste zaproszenie email z linkiem do rejestracji firmy lub biura rachunkowego.',
+  },
+  {
+    q: 'Czy moje dane są bezpieczne?',
+    a: 'Tak. Hosting w UE (Railway europe-west4), pełen GDPR compliance, JWT auth + httpOnly cookies, audit log każdej operacji. Multi-tenant izolacja danych — Twoja firma nie widzi danych innej.',
+  },
+  {
+    q: 'Czy aplikacja działa offline?',
+    a: 'Tak — aplikacja kierowcy (mobilna) ma pełen tryb offline. GPS, paragony, dokumenty zapisują się lokalnie i synchronizują automatycznie po powrocie zasięgu. Dla transportu międzynarodowego to kluczowe.',
+  },
+  {
+    q: 'Czy współpracujemy z moją księgową?',
+    a: 'Tak. BusiKM eksportuje faktury kosztowe do Insert GT, Comarch ERP Optima i Symfonia FK. Dla biur rachunkowych jest osobny panel multi-tenant — biuro obsługuje wielu klientów z jednego konta z osobnymi danymi i fakturowaniem za pojazd.',
+  },
+  {
+    q: 'Co z tachografem G2V2 i deadline 2 lipca 2026?',
+    a: 'BusiKM monitoruje legalizację tachografów G2V2 i ostrzega 14/30/90 dni przed wygaśnięciem. Aplikacja w pełni wspiera nowe regulacje UE (Mobility Package) — czasy pracy AETR, przerwy, powroty cotygodniowe.',
+  },
+];
 ---
 
 <MarketingLayout
@@ -29,8 +59,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
     </p>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
-        Dołącz do pilotażu
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
+        Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#F5F5F7] transition-all duration-200">
@@ -1239,6 +1269,45 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
   </div>
 </section>
 
+<!-- ======================== FAQ ======================== -->
+<section class="bg-white py-20 sm:py-28 px-5">
+  <div class="max-w-[820px] mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-[12.5px] font-semibold text-[#005CE8] tracking-[0.08em] uppercase mb-3">FAQ</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+        Najczęstsze pytania
+      </h2>
+    </div>
+    <div class="reveal-stagger flex flex-col gap-3">
+      {homeFaq.map((item, idx) => (
+        <details
+          class="group rounded-2xl border border-black/[0.08] bg-white px-6 py-4 hover:border-[#005CE8]/30 transition-colors duration-200"
+          name="home-faq"
+          open={idx === 0}
+        >
+          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none">
+            <h3 class="text-[15px] sm:text-[16px] font-semibold text-[#1D1D1F] tracking-[-0.01em]">{item.q}</h3>
+            <span class="shrink-0 w-7 h-7 rounded-full bg-[#F5F5F7] flex items-center justify-center text-[#005CE8] transition-transform duration-300 group-open:rotate-45">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <p class="mt-3 text-[14px] leading-relaxed text-[#424245]">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": homeFaq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+})} />
+
 <!-- ======================== FINAL CTA — PILOTAŻ + G2V2 URGENCY ======================== -->
 <section class="py-24 sm:py-36 bg-[#0A0A0B] px-5 overflow-hidden relative">
   <div class="absolute inset-0 pointer-events-none">
@@ -1257,8 +1326,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
       Pilotaż BusiKM to dożywotni dostęp do wszystkich funkcji za 0 zł — w zamian za krótką rozmowę raz w miesiącu. Compliance G2V2, rentowność zleceń, rozliczenie kierowców i kontrola ITD w jednej aplikacji. Zacznij dziś, zanim deadline zacznie kosztować.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
-        Dołącz do pilotażu
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
+        Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">

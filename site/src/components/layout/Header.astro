@@ -1,4 +1,5 @@
 ---
+import { APP_LOGIN_URL } from '../../lib/app-url';
 import Logo from './Logo.astro';
 
 const currentPath = Astro.url.pathname;
@@ -132,12 +133,10 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
       <!-- CTA + hamburger -->
       <div class="flex items-center gap-3">
         <a
-          href="https://calendly.com/busikm/30min"
-          target="_blank"
-          rel="noopener"
+          href={APP_LOGIN_URL}
           class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#005CE8] text-white text-[13px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]"
         >
-          Umów spotkanie
+          Wypróbuj demo
         </a>
 
         <!-- Mobile hamburger -->
@@ -227,10 +226,16 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
       </a>
 
       <a
+        href={APP_LOGIN_URL}
+        class="block text-center w-full py-3 rounded-2xl bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors mb-2"
+      >
+        Wypróbuj demo
+      </a>
+      <a
         href="https://calendly.com/busikm/30min"
         target="_blank"
         rel="noopener"
-        class="block text-center w-full py-3 rounded-2xl bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors"
+        class="block text-center w-full py-3 rounded-2xl border border-[#D2D2D7] text-[#1D1D1F] text-[14px] font-semibold hover:bg-[#F5F5F7] transition-colors"
       >
         Umów spotkanie
       </a>

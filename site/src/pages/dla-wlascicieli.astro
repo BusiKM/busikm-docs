@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { APP_LOGIN_URL } from '../lib/app-url';
 ---
 
 <MarketingLayout
@@ -32,8 +33,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 
       <!-- CTA -->
       <div class="flex flex-wrap gap-3 mb-12">
-        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
-          Dołącz do pilotażu (gratis dożywotnio)
+        <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
+          Wypróbuj demo
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
