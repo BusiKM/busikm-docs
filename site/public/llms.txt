@@ -52,11 +52,11 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Piloci są pierwszą linią walidacji każdego release'u — w zamian otrzymują dożywotni dostęp gratis do produktu.
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
-## Stan wdrożenia (6 maja 2026)
-- 15 sprintów ukończonych, 170 ticketów zrealizowanych
-- Sprinty 0-10b DONE: fundament + panel webowy częściowo (panel biura rachunkowego, raporty, mapa, onboarding pilota — w trakcie)
-- Sprinty 11a-22 zaplanowane: panel webowy (resztki Fazy 1), aplikacja mobilna (Faza 2), launch produkcyjny (Faza 3)
-- MVP LIVE: 19-20 maja 2026 (drift cumulative -7 dni — user pracuje 7 dni przed planem)
+## Stan wdrożenia (7 maja 2026)
+- 18 sprintów ukończonych, 186 ticketów zrealizowanych
+- Sprinty 0-12a DONE: fundament + panel webowy mocno do przodu (autoryzacja, dashboard, panel BR multi-tenant, raporty/eksport FK, mapa floty web)
+- Sprinty 12b-22 zaplanowane: onboarding pilota, konfiguracja konta, strona busikm.pl, testy panelu, aplikacja mobilna (Faza 2), launch produkcyjny (Faza 3)
+- MVP LIVE: 19-20 maja 2026 (drift inkrementalny 0 dni — sprinty zamykają się dokładnie wg planu po -7 driftcie)
 - Po MVP (31 maja - 6 czerwca 2026): Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
 
 ## Stack technologiczny (informacja techniczna)
