@@ -2,43 +2,39 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // Realne dane sprintów z Jira (projekt BKM, board 34)
-// Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 7 maja 2026.
-// Zamknięte sprinty 0-14a (23 sprinty, 203 tickety Done). Zaplanowane: 14b-22.
-// Faza 1 (Panel webowy) cała zamknięta — renumeracja: Mobile → Faza 1, Launch → Faza 2.
-// Drift inkrementalny -3 dni → wszystkie pozostałe daty cofnięte o 3 dni. MVP LIVE: 16-17 maja 2026.
+// Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 8 maja 2026.
+// Zamknięte sprinty 0-16a (26 sprintów, 218 ticketów Done). Zaplanowane: 16b-22.
+// Drift inkrementalny -3 dni (kolejna iteracja) → daty cofnięte o kolejne 3 dni. MVP LIVE: 13-14 maja 2026.
 
-const closedSprints = 23;
-const closedTickets = 203;
+const closedSprints = 26;
+const closedTickets = 218;
 
 const phases = [
   {
     id: 'mobile',
     label: 'Faza 1 — Aplikacja mobilna',
-    period: '8 — 15 maja 2026',
+    period: '9 — 12 maja 2026',
     color: '#FF9500',
     summary: 'Aplikacja na iOS i Android — narzędzie dla kierowcy w terenie i właściciela firmy w drodze. Kluczowa zasada: kierowca nie wpisuje niczego ręcznie.',
     sprints: [
-      { id: '14b', range: '8 maja', title: 'Logowanie i pierwsze kroki', desc: 'Bezpieczna autoryzacja na urządzeniu, przewodnik dla nowego kierowcy, zarządzanie sesją.', tickets: 3 },
-      { id: '15', range: '9—10 maja', title: 'Pełen flow pracy kierowcy', desc: 'Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, klasyfikacja służbowa/prywatna, zatwierdzanie tras.', tickets: 8 },
-      { id: '16a', range: '11 maja', title: 'Widok właściciela na telefonie', desc: 'Dashboard floty na telefonie, alerty dokumentów, przegląd tras zespołu, szybkie akcje zarządcze.', tickets: 4 },
-      { id: '16b', range: '12 maja', title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
-      { id: '16c', range: '13 maja', title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
-      { id: '17a', range: '14 maja', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
-      { id: '17b', range: '15 maja', title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
+      { id: '16b', range: '9 maja', title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
+      { id: '16c', range: '10 maja', title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
+      { id: '17a', range: '11 maja', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
+      { id: '17b', range: '12 maja', title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
     ],
   },
   {
     id: 'launch',
     label: 'Faza 2 — Launch i rozszerzenia',
-    period: '16 — 24 maja 2026',
+    period: '13 — 21 maja 2026',
     color: '#8B5CF6',
     summary: 'Wdrożenie produkcyjne, audyt bezpieczeństwa, testy z pierwszymi pilotami, a następnie funkcje rozszerzające zakres zgodności podatkowej i analityki.',
     sprints: [
-      { id: '18', range: '16—17 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
-      { id: '19', range: '18—19 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
-      { id: '20', range: '20—21 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur — faktury kosztowe z PL automatycznie pobierane i powiązane z trasami pojazdu.', tickets: 5 },
-      { id: '21', range: '22—23 maja', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
-      { id: '22', range: '24 maja', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
+      { id: '18', range: '13—14 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
+      { id: '19', range: '15—16 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
+      { id: '20', range: '17—18 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur — faktury kosztowe z PL automatycznie pobierane i powiązane z trasami pojazdu.', tickets: 5 },
+      { id: '21', range: '19—20 maja', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
+      { id: '22', range: '21 maja', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
     ],
   },
 ];
@@ -47,7 +43,7 @@ const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
 const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 23 sprinty ukończone, 12 zaplanowanych. MVP LIVE 16-17 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 26 sprintów ukończonych, 9 zaplanowanych. MVP LIVE 13-14 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-white">
@@ -59,7 +55,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">Faza 1 (Panel webowy) zamknięta + Sprint 14a — ruszyła aplikacja mobilna</span>
+        <span class="text-sm font-medium text-gray-700">Sprinty 14b/15/16a zakończone — flow kierowcy + widok właściciela mobile gotowe</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
@@ -68,7 +64,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Dwadzieścia trzy sprinty za nami, dwanaście przed nami. MVP LIVE 16–17 maja 2026, finalizacja produktu do 24 maja. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
+        Dwadzieścia sześć sprintów za nami, dziewięć przed nami. MVP LIVE 13–14 maja 2026, finalizacja produktu do 21 maja. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -95,7 +91,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">ticketów w backlogu</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">16 maj</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">13 maj</div>
           <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE</div>
         </div>
       </div>
@@ -108,7 +104,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
 
       <div class="text-center mb-12 reveal">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Co zostało zbudowane</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Dwadzieścia trzy sprinty za nami. 203 tickety ukończone.</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Dwadzieścia sześć sprintów za nami. 218 ticketów ukończonych.</h2>
         <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, ewidencja zleceń i tras GPS, OCR paragonów w sześciu językach, monitoring dokumentów floty, eksport do Insert GT / Comarch / Symfonia FK, plan indywidualny dla większych flot, mapa floty w czasie rzeczywistym.</p>
       </div>
 
@@ -434,6 +430,48 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
             <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
           </div>
           <p class="text-sm text-gray-500">Architektura aplikacji mobilnej iOS/Android, struktura nawigacji dostosowana do roli użytkownika (kierowca / właściciel). Pierwszy sprint Fazy „Aplikacja mobilna" zakończony.</p>
+        </div>
+
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S14b</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Logowanie i pierwsze kroki</h3>
+                <p class="text-xs text-gray-400">7 maja 2026 · 3 tickety</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Bezpieczna autoryzacja kierowcy na urządzeniu, przewodnik dla nowego kierowcy (jak rozpocząć pierwszą trasę, jak zrobić zdjęcie paragonu), zarządzanie sesją z automatycznym odnawianiem tokenu.</p>
+        </div>
+
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S15</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Pełen flow pracy kierowcy</h3>
+                <p class="text-xs text-gray-400">8 maja 2026 · 8 ticketów</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, OCR paragonów w sześciu językach, alerty AETR, zatwierdzanie tras. Pełna funkcjonalność dla kierowcy w trasie.</p>
+        </div>
+
+        <div class="group bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S16a</span>
+              <div>
+                <h3 class="font-bold text-gray-900">Widok właściciela na telefonie</h3>
+                <p class="text-xs text-gray-400">8 maja 2026 · 4 tickety</p>
+              </div>
+            </div>
+            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
+          </div>
+          <p class="text-sm text-gray-500">Dashboard floty na telefonie, alerty dokumentów na żywo, przegląd tras zespołu, szybkie akcje zarządcze (zatwierdzanie zlecenia, kontakt z kierowcą). Właściciel ma kontrolę nad flotą również w drodze.</p>
         </div>
 
       </div>
