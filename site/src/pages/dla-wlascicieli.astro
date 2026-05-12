@@ -72,9 +72,9 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       </p>
     </div>
 
-    <div class="theme-light reveal rounded-[20px] bg-[#F8F7F2] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] dark:bg-[#16161A] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_48px_rgba(0,0,0,0.30)]">
       <!-- Browser chrome -->
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-border-subtle">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] dark:bg-[#0F0F12] border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
@@ -105,11 +105,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 
         <!-- Order rows -->
         <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div class="px-4 py-3 bg-[#FAFAFA] border-b border-border-subtle flex items-center justify-between">
+          <div class="px-4 py-3 bg-[#FAFAFA] dark:bg-[#1F1F22] border-b border-border-subtle flex items-center justify-between">
             <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Aktywne zlecenia · rentowność na żywo</span>
             <span class="text-[11px] text-text-tertiary">stan na 14:23</span>
           </div>
-          <div class="divide-y divide-black/[0.04]">
+          <div class="divide-y divide-black/[0.04] dark:divide-white/[0.06]">
             {[
               {
                 id: 'BKM-2841',
@@ -164,7 +164,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
                 statusColor: '#FF3B30',
               },
             ].map(o => (
-              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] transition-colors">
+              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] dark:bg-[#1F1F22] transition-colors">
                 <div class="col-span-12 sm:col-span-3">
                   <div class="flex items-center gap-2 mb-0.5">
                     <span class="text-[10px] font-mono text-text-tertiary">{o.id}</span>
@@ -174,7 +174,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
                 </div>
                 <div class="col-span-12 sm:col-span-4">
                   <p class="text-[12px] text-text mb-1.5 font-medium">{o.route}</p>
-                  <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden">
+                  <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden">
                     <div class="h-full rounded-full" style={`width:${o.progress}%; background: ${o.statusColor}`}></div>
                   </div>
                   <p class="text-[10.5px] mt-1" style={`color: ${o.statusColor}`}>{o.status}</p>

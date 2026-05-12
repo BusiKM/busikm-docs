@@ -65,8 +65,8 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       </h2>
     </div>
 
-    <div class="theme-light reveal rounded-[20px] bg-[#F8F7F2] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-border-subtle">
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] dark:bg-[#16161A] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_48px_rgba(0,0,0,0.30)]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] dark:bg-[#0F0F12] border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
@@ -92,11 +92,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 
         <!-- Client list -->
         <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div class="px-4 py-3 bg-[#FAFAFA] border-b border-border-subtle flex items-center justify-between">
+          <div class="px-4 py-3 bg-[#FAFAFA] dark:bg-[#1F1F22] border-b border-border-subtle flex items-center justify-between">
             <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Klienci · status pracy</span>
             <span class="text-[11px] text-text-tertiary">filtr: maj 2026</span>
           </div>
-          <div class="divide-y divide-black/[0.04]">
+          <div class="divide-y divide-black/[0.04] dark:divide-white/[0.06]">
             {[
               { name: 'TransKowalski Sp. z o.o.', vehicles: 12, accountant: 'Joanna K. (księgowa)', status: 'Gotowe do JPK_V7', statusColor: '#34C759', vat: 'VAT-REF: 4 280 €' },
               { name: 'FlotaNowak', vehicles: 8, accountant: 'Marta L. (księgowa)', status: 'Czeka na 3 paragony', statusColor: '#FF9500', vat: 'VAT-REF: 2 100 €' },
@@ -104,7 +104,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
               { name: 'TransAlpina', vehicles: 6, accountant: 'Anna W. (księgowa)', status: 'Wymaga zatwierdzenia korekty', statusColor: '#FF3B30', vat: 'VAT-REF: 1 100 €' },
               { name: 'BusiPol Express', vehicles: 9, accountant: 'Piotr S. (księgowy)', status: 'Gotowe do JPK_V7', statusColor: '#34C759', vat: 'VAT-REF: 900 €' },
             ].map(c => (
-              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] transition-colors text-[12px]">
+              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] dark:bg-[#1F1F22] transition-colors text-[12px]">
                 <div class="col-span-12 sm:col-span-4">
                   <p class="font-semibold text-text leading-tight">{c.name}</p>
                   <p class="text-[11px] text-text-tertiary leading-tight">{c.vehicles} pojazdów · {c.accountant}</p>
@@ -118,7 +118,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
               </div>
             ))}
           </div>
-          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-border-subtle text-[11px] text-text-tertiary flex items-center justify-between">
+          <div class="px-4 py-3 bg-[#FAFAFA] dark:bg-[#1F1F22] border-t border-border-subtle text-[11px] text-text-tertiary flex items-center justify-between">
             <span>+ 3 inni klienci (handlowi, bez transportu)</span>
             <span class="text-text font-semibold">Łącznie 8 firm transportowych · 50 pojazdów</span>
           </div>
