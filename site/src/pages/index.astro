@@ -34,7 +34,7 @@ const homeFaq = [
 
 <MarketingLayout
   title="BusiKM — Europejski system R&D dla transportu 2,5–3,5 t"
-  description="Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 6 autorskich komponentów badawczo-rozwojowych. Tachograf G2V2, AETR, Mobility Package, eFTI. MVP LIVE 13 maja 2026."
+  description="Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 6 autorskich komponentów badawczo-rozwojowych. Tachograf G2V2, AETR, Mobility Package, eFTI. MVP LIVE 30 maja 2026."
 >
 
 <!-- ======================== HERO ======================== -->
@@ -60,7 +60,7 @@ const homeFaq = [
     </p>
 
     <p class="hero-seq-3 text-[12.5px] text-text-tertiary mb-10">
-      218 ticketów Done · 26 sprintów ukończonych · MVP LIVE 13 maja 2026
+      218 ticketów Done · 26 sprintów ukończonych · MVP LIVE 30 maja 2026
     </p>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -835,7 +835,7 @@ const homeFaq = [
             { title: 'Ewidencja czasu pracy', desc: 'Czas jazdy, pauzy, dyspozycyjność — z dokładnością do sekundy. Zgodnie z AETR i pakietem mobilności.' },
             { title: 'Zatwierdzanie tras przez właściciela', desc: 'Każde zakończone zlecenie czeka na zatwierdzenie. Pełna kontrola nad tym, co kierowca raportuje.' },
           ].map(b => (
-            <div class="p-4 rounded-xl bg-[#F8F8FA]">
+            <div class="p-4 rounded-xl bg-surface-2">
               <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
               <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
@@ -859,7 +859,7 @@ const homeFaq = [
             { title: 'Zwrot VAT z UE (VAT-REF)', desc: 'Skompletowane faktury zagraniczne gotowe do procedury zwrotu VAT z innych państw członkowskich UE.' },
             { title: 'Rozliczenie kierowcy', desc: 'Diety zagraniczne per kraj wyliczone z trasy GPS, mandaty, wydatki prywatne — gotowy dokument do przekazania księgowej.' },
           ].map(b => (
-            <div class="p-4 rounded-xl bg-[#F8F8FA]">
+            <div class="p-4 rounded-xl bg-surface-2">
               <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
               <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
@@ -881,7 +881,7 @@ const homeFaq = [
             { title: 'Licencja transportowa', desc: 'Wypisy z licencji per pojazd. Bez aktualnego wypisu — pojazd nie może wykonywać przewozów.' },
             { title: 'Dokumenty kierowcy', desc: 'Prawo jazdy, świadectwo kierowcy, ADR, badania psychotechniczne — alerty per kierowca.' },
           ].map(b => (
-            <div class="p-4 rounded-xl bg-[#F8F8FA]">
+            <div class="p-4 rounded-xl bg-surface-2">
               <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
               <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
@@ -990,7 +990,7 @@ const homeFaq = [
         <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
         <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">218 ticketów Done</p>
         <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
-        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">MVP LIVE 13–14 maja 2026</p>
+        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">MVP LIVE 30 maja 2026</p>
       </div>
     </div>
 
@@ -1224,7 +1224,7 @@ const homeFaq = [
           { name: 'NBP API', tag: 'Kursy walut', color: '#8B5CF6', glyph: '<rect x="3" y="6" width="18" height="13" rx="1.5"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="8" y1="15" x2="14" y2="15"/>' },
           { name: 'VDO · Stoneridge', tag: 'Tachograf G2V2', color: '#FF3B30', glyph: '<circle cx="12" cy="12" r="9"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14.5"/>' },
         ].map(b => (
-          <div class="group flex flex-col items-center justify-center p-4 rounded-[14px] bg-[#F8F8FA] border border-gray-100 hover:bg-surface hover:border-gray-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300">
+          <div class="group flex flex-col items-center justify-center p-4 rounded-[14px] bg-surface-2 border border-gray-100 hover:bg-surface hover:border-gray-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300">
             <div class="w-9 h-9 rounded-[10px] flex items-center justify-center mb-2" style={`background: ${b.color}12;`}>
               <svg class="w-[18px] h-[18px]" fill="none" stroke={b.color} stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" set:html={b.glyph}/>
             </div>
@@ -1400,7 +1400,7 @@ const homeFaq = [
 </section>
 
 <!-- ======================== POST-MVP TEASER ======================== -->
-<section class="bg-[#FAFAFA] py-20 sm:py-28 px-5 border-t border-gray-100">
+<section class="bg-surface-2 py-20 sm:py-28 px-5 border-t border-gray-100">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-12 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Roadmap nie kończy się na MVP</p>
@@ -1465,7 +1465,7 @@ const homeFaq = [
     <div class="text-center mb-12 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Stan produktu</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
-        Dwadzieścia sześć sprintów za nami. MVP LIVE 13–14 maja.
+        Dwadzieścia sześć sprintów za nami. MVP LIVE 30 maja.
       </h2>
       <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed">
         Fundament aplikacji jest gotowy: kierowca, pojazd, trasa GPS, dokumenty, eksport FK, alerty, hurtowe rozliczenia per aktywny pojazd, plan indywidualny dla większych flot. Trwają prace nad mapą real-time, panelem właściciela, aplikacją mobilną i wdrożeniem produkcyjnym.
@@ -1477,11 +1477,14 @@ const homeFaq = [
         { num: '218', label: 'ukończonych ticketów', color: '#34C759' },
         { num: '26/35', label: 'sprintów gotowych', color: '#005CE8' },
         { num: '3', label: 'integracje FK', color: '#FF9500' },
-        { num: '13 maj', label: 'MVP LIVE 2026', color: '#1D1D1F' },
+        { num: '30 maj', label: 'MVP LIVE 2026', color: '#3380FF', highlight: true },
       ].map(s => (
-        <div class="p-6 rounded-[20px] bg-surface-2 text-center">
+        <div class:list={[
+          'p-6 rounded-[20px] text-center',
+          s.highlight ? 'bg-brand/8 border border-brand/20' : 'bg-surface-2',
+        ]}>
           <p class="font-display font-bold text-[2rem] tracking-[-0.03em] mb-1" style={`color: ${s.color}`}>{s.num}</p>
-          <p class="text-[12.5px] text-text-secondary" set:html={s.label}></p>
+          <p class:list={['text-[12.5px]', s.highlight ? 'text-brand font-semibold' : 'text-text-secondary']} set:html={s.label}></p>
         </div>
       ))}
     </div>
@@ -1517,7 +1520,7 @@ const homeFaq = [
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             </span>
           </summary>
-          <p class="mt-3 text-[14px] leading-relaxed text-[#424245]">{item.a}</p>
+          <p class="mt-3 text-[14px] leading-relaxed text-gray-700 dark:text-gray-700">{item.a}</p>
         </details>
       ))}
     </div>
@@ -1552,11 +1555,11 @@ const homeFaq = [
       Pilotaż BusiKM to dożywotni dostęp do wszystkich funkcji za 0 zł — w zamian za krótką rozmowę raz w miesiącu. Compliance G2V2, rentowność zleceń, rozliczenie kierowców i kontrola ITD w jednej aplikacji. Zacznij dziś, zanim deadline zacznie kosztować.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface text-[#0A0A0B] text-[15px] font-semibold hover:bg-surface-2 transition-colors duration-200">
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-white/90 transition-colors duration-200">
         Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all duration-200">
+      <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
         Sprawdź gotowość G2V2
       </a>
     </div>

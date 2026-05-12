@@ -113,7 +113,7 @@ const featureGroups = [
         <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Web · iOS · Android</span>
       </div>
 
-      <h1 class="text-[48px] sm:text-[56px] font-semibold tracking-tight leading-[1.07] text-[#1d1d1f]">
+      <h1 class="text-[48px] sm:text-[56px] font-semibold tracking-tight leading-[1.07] text-text">
         Pełen system dla busów<br/>
         <span class="text-[#6e6e73]">2,5–3,5 t w transporcie międzynarodowym.</span>
       </h1>
@@ -149,7 +149,7 @@ const featureGroups = [
             <div>
               <h2 class:list={[
                 'text-[22px] font-semibold tracking-tight',
-                (group as any).featured ? 'text-white' : 'text-[#1d1d1f]',
+                (group as any).featured ? 'text-white' : 'text-text',
               ]}>
                 {group.title}
               </h2>
@@ -173,7 +173,7 @@ const featureGroups = [
                   </svg>
                   <span class:list={[
                     'text-[14.5px] leading-snug flex-1',
-                    isFeatured ? 'text-white/90' : 'text-[#1d1d1f]',
+                    isFeatured ? 'text-white/90' : 'text-text',
                   ]}>
                     {name}
                   </span>
@@ -193,7 +193,7 @@ const featureGroups = [
 
           {(group as any).featured && (
             <div class="mt-6 pt-5 border-t border-white/15">
-              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface text-text text-[14px] font-bold hover:bg-surface/90 transition-all">
+              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1D1D1F] text-[14px] font-bold hover:bg-white/90 transition-all">
                 Dołącz do pilotażu
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>

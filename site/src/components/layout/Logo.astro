@@ -1,36 +1,68 @@
 ---
+/**
+ * Logo — BKM-556.
+ * color prop:
+ *   'auto'  — default. Auto-swap: dark icon + brand text w light mode,
+ *             white icon + white text w dark mode. Parity z Footer w dark.
+ *   'dark'  — zawsze dark icon (legacy, na light bg)
+ *   'white' — zawsze white icon (Footer style, na dark bg)
+ */
 interface Props {
-  color?: 'dark' | 'white';
+  color?: 'auto' | 'dark' | 'white';
   size?: 'sm' | 'md' | 'lg';
 }
-const { color = 'dark', size = 'md' } = Astro.props;
+const { color = 'auto', size = 'md' } = Astro.props;
 
 const iconSizes = { sm: 24, md: 28, lg: 34 };
 const iconH = iconSizes[size];
 
-const icons: Record<string, string> = {
-  dark: '/logo/ios-icon-iOS-Default.png',
-  white: '/logo/ios-icon-iOS-ClearDark.png',
-};
-
-const src = icons[color];
+const ICON_DARK = '/logo/ios-icon-iOS-Default.png';
+const ICON_LIGHT = '/logo/ios-icon-iOS-ClearDark.png';
 ---
 
 <a href="/" class="inline-flex items-center gap-2 shrink-0" aria-label="BusiKM — strona główna">
-  <img
-    src={src}
-    alt=""
-    height={iconH}
-    width={iconH}
-    style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
-    loading="eager"
-  />
-  <span class:list={[
-    'font-display text-xl font-bold tracking-[-0.01em]',
-    color === 'white' ? 'text-white' : 'text-brand',
-  ]}>
-    BusiKM
-  </span>
+  {color === 'auto' ? (
+    <>
+      <img
+        src={ICON_DARK}
+        alt=""
+        height={iconH}
+        width={iconH}
+        style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
+        loading="eager"
+        class="block dark:hidden"
+      />
+      <img
+        src={ICON_LIGHT}
+        alt=""
+        height={iconH}
+        width={iconH}
+        style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
+        loading="eager"
+        class="hidden dark:block"
+      />
+      <span class="font-display text-xl font-bold tracking-[-0.01em] text-brand dark:text-white">
+        BusiKM
+      </span>
+    </>
+  ) : (
+    <>
+      <img
+        src={color === 'white' ? ICON_LIGHT : ICON_DARK}
+        alt=""
+        height={iconH}
+        width={iconH}
+        style={`height:${iconH}px;width:${iconH}px;border-radius:22%;`}
+        loading="eager"
+      />
+      <span class:list={[
+        'font-display text-xl font-bold tracking-[-0.01em]',
+        color === 'white' ? 'text-white' : 'text-brand',
+      ]}>
+        BusiKM
+      </span>
+    </>
+  )}
 </a>
 
 <style>

@@ -68,11 +68,11 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
-        <a href="/cennik" class="inline-flex items-center gap-2 bg-[#005CE8] hover:bg-[#003FAD] text-white font-semibold px-7 py-3.5 rounded-full transition-all hover:shadow-lg hover:-translate-y-0.5">
+        <a href="/cennik" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-7 py-3.5 rounded-full transition-all hover:shadow-lg hover:-translate-y-0.5">
           Dołącz do pilotażu
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
-        <a href="#fazy" class="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5">
+        <a href="#fazy" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface text-text border border-border font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5">
           Zobacz fazy projektu
         </a>
       </div>
@@ -541,7 +541,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
                     'rounded-[14px] p-4 sm:p-5 transition-all',
                     sprint.milestone
                       ? 'bg-surface border-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]'
-                      : 'bg-[#F8F8FA] border border-transparent hover:border-gray-200 hover:shadow-sm',
+                      : 'bg-surface-2 border border-transparent hover:border-gray-200 hover:shadow-sm',
                   ]} style={sprint.milestone ? `border-color: ${phase.color}` : ''}>
                     <div class="flex flex-wrap items-center gap-2 mb-2">
                       <span class="inline-flex items-center justify-center h-6 px-2 text-[10.5px] font-mono font-bold rounded-md" style={`background: ${phase.color}15; color: ${phase.color}`}>
@@ -737,22 +737,22 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
   </section>
 
   <!-- ===================== DARK CTA ===================== -->
-  <section class="bg-gray-900 py-20 sm:py-28">
+  <section class="bg-[#0F1115] py-20 sm:py-28">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center reveal">
 
       <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-6">
         Współtwórz BusiKM od początku.
       </h2>
-      <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
+      <p class="text-lg text-white/65 mb-10 max-w-xl mx-auto">
         Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego — dożywotni dostęp gratis, w zamian za udział w walidacji nowych funkcji.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/cennik" class="inline-flex items-center gap-2 bg-[#005CE8] hover:bg-[#3380FF] text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg hover:-translate-y-0.5">
+        <a href="/cennik" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-lg hover:-translate-y-0.5">
           Dołącz do pilotażu
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
-        <a href="/funkcje" class="inline-flex items-center gap-2 bg-surface/10 hover:bg-surface/15 text-white font-semibold px-8 py-4 rounded-full transition-all border border-white/15">
+        <a href="/funkcje" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all border border-white/20">
           Zobacz funkcje produktu
         </a>
       </div>
