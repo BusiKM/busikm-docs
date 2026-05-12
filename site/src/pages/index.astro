@@ -33,66 +33,71 @@ const homeFaq = [
 ---
 
 <MarketingLayout
-  title="BusiKM — Aplikacja dla firm transportowych w transporcie międzynarodowym"
-  description="Aplikacja dla polskich firm transportowych realizujących przewozy w UE. Rentowność zleceń z faktur z całej Europy (poza KSeF), tachograf G2V2 od 2 lipca 2026, ewidencja czasu pracy kierowców, dokumenty floty, eksport do FK."
+  title="BusiKM — Europejski system R&D dla transportu 2,5–3,5 t"
+  description="Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 6 autorskich komponentów badawczo-rozwojowych. Tachograf G2V2, AETR, Mobility Package, eFTI. MVP LIVE 13 maja 2026."
 >
 
 <!-- ======================== HERO ======================== -->
-<section class="relative flex flex-col items-center overflow-hidden bg-white px-5">
+<section class="relative flex flex-col items-center overflow-hidden bg-surface px-5">
   <div class="absolute inset-0 pointer-events-none">
     <div class="hero-glow absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-[#005CE8]/[0.04] blur-[140px]"></div>
     <div class="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[#34C759]/[0.03] blur-[100px]"></div>
   </div>
 
-  <div class="relative z-10 text-center max-w-[860px] mx-auto pt-20 sm:pt-28 pb-12">
+  <div class="relative z-10 text-center max-w-[920px] mx-auto pt-20 sm:pt-28 pb-12">
     <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-10">
-      <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
-      <span class="text-[12.5px] font-medium text-[#1D1D1F] tracking-[0.01em]">Transport międzynarodowy · busy 2,5–3,5 t</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-[#005CE8] animate-pulse"></span>
+      <span class="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#005CE8]">European deep-tech · transport 2,5–3,5 t × księgowość</span>
     </div>
 
-    <h1 class="hero-seq-2 font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.02] tracking-[-0.04em] text-[#1D1D1F] mb-6">
-      Cała flota.<br/><span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Jeden ekran.</span>
+    <h1 class="hero-seq-2 font-display text-[clamp(2.6rem,7vw,5.25rem)] font-bold leading-[1.02] tracking-[-0.03em] text-text mb-6">
+      <span class="block">Europejski system integrujący</span>
+      <span class="block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">transport i&nbsp;księgowość</span>
     </h1>
 
-    <p class="hero-seq-3 text-[clamp(1.05rem,2vw,1.35rem)] leading-relaxed text-[#6E6E73] max-w-[640px] mx-auto mb-10">
-      GPS, dokumenty kierowców, paragony w sześciu językach, eksport do księgowej. Działa offline.
+    <p class="hero-seq-3 text-[clamp(1.05rem,2vw,1.3rem)] leading-[1.55] text-text-secondary max-w-[720px] mx-auto mb-4">
+      Sześć autorskich komponentów badawczo-rozwojowych — od parsera binarnego pliku tachografu po model uczenia maszynowego z naturalnojęzykową wyjaśnialnością — dla międzynarodowych firm transportowych operujących busami 2,5–3,5 t w&nbsp;Unii Europejskiej.
+    </p>
+
+    <p class="hero-seq-3 text-[12.5px] text-text-tertiary mb-10">
+      218 ticketów Done · 26 sprintów ukończonych · MVP LIVE 13 maja 2026
     </p>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#005CE8] text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-all duration-200" style="box-shadow:0 1px 3px rgba(0,92,232,0.4)">
         Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold tracking-[-0.01em] hover:bg-[#F5F5F7] transition-all duration-200">
-        Zobacz funkcje
+      <a href="/technologia" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold tracking-[-0.01em] hover:bg-surface-2 transition-all duration-200">
+        Zobacz technologię
       </a>
     </div>
   </div>
 
   <!-- Hero — Owner dashboard mockup -->
   <div class="hero-seq-5 relative w-full max-w-[920px] mx-auto">
-    <div class="relative rounded-[20px] bg-[#F5F5F7] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+    <div class="relative rounded-[20px] bg-surface-2 border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
       <!-- Browser chrome -->
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-surface-2 border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B]">app.busikm.pl/dashboard</div>
+        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary">app.busikm.pl/dashboard</div>
       </div>
 
       <!-- Stat strip -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-5 bg-white border-b border-black/[0.04]">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-5 bg-surface border-b border-border-subtle">
         <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Aktywne trasy</p>
-          <p class="font-display text-[1.4rem] font-bold text-[#1D1D1F]">3 / 12</p>
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Aktywne trasy</p>
+          <p class="font-display text-[1.4rem] font-bold text-text">3 / 12</p>
         </div>
         <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Przebieg (dziś)</p>
-          <p class="font-display text-[1.4rem] font-bold text-[#1D1D1F]">1 247 km</p>
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Przebieg (dziś)</p>
+          <p class="font-display text-[1.4rem] font-bold text-text">1 247 km</p>
         </div>
         <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Koszty (mies.)</p>
-          <p class="font-display text-[1.4rem] font-bold text-[#1D1D1F]">42 380 zł</p>
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Koszty (mies.)</p>
+          <p class="font-display text-[1.4rem] font-bold text-text">42 380 zł</p>
         </div>
         <div>
           <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#FF3B30]">Alerty</p>
@@ -101,38 +106,38 @@ const homeFaq = [
       </div>
 
       <!-- Live fleet map — Leaflet + Carto Light tiles -->
-      <div class="bg-white border-y border-black/[0.04]">
-        <div class="flex items-center justify-between px-5 sm:px-6 py-3 border-b border-black/[0.04]">
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Mapa floty · transport międzynarodowy</p>
+      <div class="bg-surface border-y border-border-subtle">
+        <div class="flex items-center justify-between px-5 sm:px-6 py-3 border-b border-border-subtle">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Mapa floty · transport międzynarodowy</p>
           <span class="text-[10.5px] font-mono text-[#34C759]">● 3 busy w trasie</span>
         </div>
 
         <!-- Map container -->
-        <div id="hero-map" class="relative w-full h-[440px] sm:h-[500px] bg-[#F5F5F7]" aria-label="Mapa floty BusiKM — busy w trasie po Europie"></div>
+        <div id="hero-map" class="relative w-full h-[440px] sm:h-[500px] bg-surface-2" aria-label="Mapa floty BusiKM — busy w trasie po Europie"></div>
 
         <!-- Active orders strip below map -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-black/[0.04]">
-          <div class="bg-white px-4 py-3 flex items-center gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-surface-2">
+          <div class="bg-surface px-4 py-3 flex items-center gap-3">
             <span class="w-2 h-2 rounded-full bg-[#005CE8] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-[#1D1D1F] truncate">Sprinter <span class="font-mono">DK 12345</span> · BKM-2841</p>
-              <p class="text-[10.5px] text-[#86868B] truncate">Warszawa → Berlin · 412/670 km · 62%</p>
+              <p class="text-[11.5px] font-semibold text-text truncate">Sprinter <span class="font-mono">DK 12345</span> · BKM-2841</p>
+              <p class="text-[10.5px] text-text-tertiary truncate">Warszawa → Berlin · 412/670 km · 62%</p>
             </div>
             <span class="text-[10px] font-bold uppercase tracking-wider text-[#34C759] shrink-0">w trasie</span>
           </div>
-          <div class="bg-white px-4 py-3 flex items-center gap-3">
+          <div class="bg-surface px-4 py-3 flex items-center gap-3">
             <span class="w-2 h-2 rounded-full bg-[#34C759] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-[#1D1D1F] truncate">Crafter <span class="font-mono">KR 67890</span> · BKM-2842</p>
-              <p class="text-[10.5px] text-[#86868B] truncate">Kraków → Mediolan · 308/1100 km · 28%</p>
+              <p class="text-[11.5px] font-semibold text-text truncate">Crafter <span class="font-mono">KR 67890</span> · BKM-2842</p>
+              <p class="text-[10.5px] text-text-tertiary truncate">Kraków → Mediolan · 308/1100 km · 28%</p>
             </div>
             <span class="text-[10px] font-bold uppercase tracking-wider text-[#34C759] shrink-0">w trasie</span>
           </div>
-          <div class="bg-white px-4 py-3 flex items-center gap-3">
+          <div class="bg-surface px-4 py-3 flex items-center gap-3">
             <span class="w-2 h-2 rounded-full bg-[#FF9500] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-[#1D1D1F] truncate">Daily <span class="font-mono">WA 11223</span> · BKM-2843</p>
-              <p class="text-[10.5px] text-[#86868B] truncate">Wrocław → Paryż · 540/1200 km · postój 30/45 min</p>
+              <p class="text-[11.5px] font-semibold text-text truncate">Daily <span class="font-mono">WA 11223</span> · BKM-2843</p>
+              <p class="text-[10.5px] text-text-tertiary truncate">Wrocław → Paryż · 540/1200 km · postój 30/45 min</p>
             </div>
             <span class="text-[10px] font-bold uppercase tracking-wider text-[#FF9500] shrink-0">pauza</span>
           </div>
@@ -141,10 +146,10 @@ const homeFaq = [
     </div>
 
     <!-- Floating notification -->
-    <div class="absolute -top-3 -right-3 sm:top-6 sm:-right-6 z-[1000] bg-white rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-3.5 py-2.5 flex items-center gap-2.5 border border-black/[0.04] animate-pulse">
+    <div class="absolute -top-3 -right-3 sm:top-6 sm:-right-6 z-[1000] bg-surface rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-3.5 py-2.5 flex items-center gap-2.5 border border-border-subtle animate-pulse">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <div>
-        <p class="text-[10.5px] font-bold text-[#1D1D1F]">Tachograf Sprinter DK 12345</p>
+        <p class="text-[10.5px] font-bold text-text">Tachograf Sprinter DK 12345</p>
         <p class="text-[10px] text-[#FF3B30]">Legalizacja wygasa za 14 dni</p>
       </div>
     </div>
@@ -626,17 +631,17 @@ const homeFaq = [
 
       <!-- Side panel — Alert preview -->
       <div class="reveal w-full lg:w-[340px]">
-        <div class="rounded-[18px] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.20)]">
-          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-black/[0.06]">
+        <div class="rounded-[18px] bg-surface p-5 shadow-[0_8px_32px_rgba(0,0,0,0.20)]">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-subtle">
             <svg class="w-4 h-4 text-[#FF3B30]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <p class="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#FF3B30]">Alert krytyczny</p>
           </div>
-          <p class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-1.5">Tachograf G2V2 — Sprinter DK 12345</p>
-          <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-4">Świadectwo legalizacji tachografu wygasa za <strong>14 dni</strong>. Bez aktualnej legalizacji pojazd nie może wykonywać przewozów. Kara ITD: do <strong>10 000 zł</strong>.</p>
-          <div class="space-y-2 text-[12.5px] text-[#6E6E73]">
+          <p class="font-display font-bold text-[1.1rem] text-text mb-1.5">Tachograf G2V2 — Sprinter DK 12345</p>
+          <p class="text-[13px] text-text-secondary leading-relaxed mb-4">Świadectwo legalizacji tachografu wygasa za <strong>14 dni</strong>. Bez aktualnej legalizacji pojazd nie może wykonywać przewozów. Kara ITD: do <strong>10 000 zł</strong>.</p>
+          <div class="space-y-2 text-[12.5px] text-text-secondary">
             <div class="flex justify-between"><span>Wygaśnięcie</span><span class="font-mono text-[#FF3B30] font-semibold">16.05.2026</span></div>
-            <div class="flex justify-between"><span>Pojazd</span><span class="font-mono text-[#1D1D1F]">MB Sprinter 316 · DK 12345</span></div>
-            <div class="flex justify-between"><span>Kierowca</span><span class="font-mono text-[#1D1D1F]">Jan Kowalski</span></div>
+            <div class="flex justify-between"><span>Pojazd</span><span class="font-mono text-text">MB Sprinter 316 · DK 12345</span></div>
+            <div class="flex justify-between"><span>Kierowca</span><span class="font-mono text-text">Jan Kowalski</span></div>
           </div>
           <button class="w-full mt-4 py-2.5 rounded-lg bg-[#1D1D1F] text-white text-[13px] font-semibold">Umów wizytę w warsztacie</button>
         </div>
@@ -646,49 +651,49 @@ const homeFaq = [
 </section>
 
 <!-- ======================== PROBLEM — DLA WŁAŚCICIELA TRANSPORTU ======================== -->
-<section class="bg-white py-20 sm:py-28 px-5">
+<section class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Problem właścicieli firm transportowych</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[800px] mx-auto">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] max-w-[800px] mx-auto">
         Trzy pytania, na które dziś nie ma jednej odpowiedzi.
       </h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger">
-      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+      <div class="rounded-[20px] p-7 bg-surface-2">
         <div class="w-11 h-11 rounded-[14px] bg-[#FF3B30]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF3B30]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2.5 tracking-tight">Gdzie są moi kierowcy?</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">Właściciel dzwoni do kierowcy, żeby się dowiedzieć, gdzie jest. Pyta dyspozytora, sprawdza WhatsAppa, czeka na zdjęcie z trasy. W tym czasie 5 innych pojazdów też jeździ — nie wiadomo, jak długo, czy zgodnie z planem zlecenia.</p>
+        <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2.5 tracking-tight">Gdzie są moi kierowcy?</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed">Właściciel dzwoni do kierowcy, żeby się dowiedzieć, gdzie jest. Pyta dyspozytora, sprawdza WhatsAppa, czeka na zdjęcie z trasy. W tym czasie 5 innych pojazdów też jeździ — nie wiadomo, jak długo, czy zgodnie z planem zlecenia.</p>
       </div>
 
-      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+      <div class="rounded-[20px] p-7 bg-surface-2">
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         </div>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2.5 tracking-tight">Ile zarobiłem na zleceniu zagranicznym?</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">Tankowanie w Niemczech, Maut na autostradzie, opłata drogowa we Włoszech, hotel kierowcy w Czechach — faktury z czterech krajów, w trzech walutach, w różnych skrzynkach mailowych. <strong class="text-[#1D1D1F]">KSeF nie obsługuje faktur zagranicznych</strong>, więc rozliczenie marży przewozu robi się ręcznie, kilka tygodni po wykonaniu zlecenia.</p>
+        <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2.5 tracking-tight">Ile zarobiłem na zleceniu zagranicznym?</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed">Tankowanie w Niemczech, Maut na autostradzie, opłata drogowa we Włoszech, hotel kierowcy w Czechach — faktury z czterech krajów, w trzech walutach, w różnych skrzynkach mailowych. <strong class="text-text">KSeF nie obsługuje faktur zagranicznych</strong>, więc rozliczenie marży przewozu robi się ręcznie, kilka tygodni po wykonaniu zlecenia.</p>
       </div>
 
-      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+      <div class="rounded-[20px] p-7 bg-surface-2">
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2.5 tracking-tight">Co wygasa w przyszłym miesiącu?</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">OC pojazdów, przeglądy techniczne, legalizacje tachografów, wypisy z licencji, prawa jazdy kierowców, ADR — każdy z tych dokumentów ma własny termin. Kontrola ITD nie przyjmuje wymówek — bez ważnego dokumentu pojazd zatrzymany, kara naliczona.</p>
+        <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2.5 tracking-tight">Co wygasa w przyszłym miesiącu?</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed">OC pojazdów, przeglądy techniczne, legalizacje tachografów, wypisy z licencji, prawa jazdy kierowców, ADR — każdy z tych dokumentów ma własny termin. Kontrola ITD nie przyjmuje wymówek — bez ważnego dokumentu pojazd zatrzymany, kara naliczona.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ======================== ROZWIĄZANIE — TRZY OBSZARY ======================== -->
-<section class="bg-[#F5F5F7] py-20 sm:py-28 px-5">
+<section class="bg-surface-2 py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Co BusiKM rozwiązuje</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[800px] mx-auto">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] max-w-[800px] mx-auto">
         Jedno narzędzie. Trzy filary kontroli nad flotą.
       </h2>
     </div>
@@ -696,11 +701,11 @@ const homeFaq = [
     <div class="space-y-5 reveal-stagger">
 
       <!-- Filar 1: Kontrola pracy kierowcy -->
-      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <div>
           <p class="text-[11px] font-bold text-[#005CE8] uppercase tracking-[0.08em] mb-2">Filar 1</p>
-          <h3 class="font-display text-[1.4rem] font-bold text-[#1D1D1F] tracking-tight mb-2">Kontrola pracy kierowcy</h3>
-          <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">Wiesz w czasie rzeczywistym, gdzie jest każdy pojazd, kiedy zaczął zlecenie i czy mieści się w dziennym limicie pracy.</p>
+          <h3 class="font-display text-[1.4rem] font-bold text-text tracking-tight mb-2">Kontrola pracy kierowcy</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Wiesz w czasie rzeczywistym, gdzie jest każdy pojazd, kiedy zaczął zlecenie i czy mieści się w dziennym limicie pracy.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -710,19 +715,19 @@ const homeFaq = [
             { title: 'Zatwierdzanie tras przez właściciela', desc: 'Każde zakończone zlecenie czeka na zatwierdzenie. Pełna kontrola nad tym, co kierowca raportuje.' },
           ].map(b => (
             <div class="p-4 rounded-xl bg-[#F8F8FA]">
-              <p class="text-[13.5px] font-semibold text-[#1D1D1F] mb-1">{b.title}</p>
-              <p class="text-[12.5px] text-[#6E6E73] leading-relaxed">{b.desc}</p>
+              <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
+              <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       <!-- Filar 2: Rentowność zleceń międzynarodowych -->
-      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <div>
           <p class="text-[11px] font-bold text-[#34C759] uppercase tracking-[0.08em] mb-2">Filar 2</p>
-          <h3 class="font-display text-[1.4rem] font-bold text-[#1D1D1F] tracking-tight mb-2">Rentowność zleceń międzynarodowych</h3>
-          <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">Każdy kilometr i każda faktura kosztowa — również zagraniczna, której nie obejmuje KSeF — przypisana do konkretnego zlecenia. Wiesz, ile naprawdę zarobiłeś na każdej trasie po Europie.</p>
+          <h3 class="font-display text-[1.4rem] font-bold text-text tracking-tight mb-2">Rentowność zleceń międzynarodowych</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Każdy kilometr i każda faktura kosztowa — również zagraniczna, której nie obejmuje KSeF — przypisana do konkretnego zlecenia. Wiesz, ile naprawdę zarobiłeś na każdej trasie po Europie.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -734,19 +739,19 @@ const homeFaq = [
             { title: 'Rozliczenie kierowcy', desc: 'Diety zagraniczne per kraj wyliczone z trasy GPS, mandaty, wydatki prywatne — gotowy dokument do przekazania księgowej.' },
           ].map(b => (
             <div class="p-4 rounded-xl bg-[#F8F8FA]">
-              <p class="text-[13.5px] font-semibold text-[#1D1D1F] mb-1">{b.title}</p>
-              <p class="text-[12.5px] text-[#6E6E73] leading-relaxed">{b.desc}</p>
+              <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
+              <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       <!-- Filar 3: Zgodność i dokumenty -->
-      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 p-7 sm:p-9 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <div>
           <p class="text-[11px] font-bold text-[#FF9500] uppercase tracking-[0.08em] mb-2">Filar 3</p>
-          <h3 class="font-display text-[1.4rem] font-bold text-[#1D1D1F] tracking-tight mb-2">Dokumenty i zgodność</h3>
-          <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">Wszystkie dokumenty floty i kierowców w jednym miejscu. Alerty zanim coś wygaśnie. Gotowość pod kontrolę ITD.</p>
+          <h3 class="font-display text-[1.4rem] font-bold text-text tracking-tight mb-2">Dokumenty i zgodność</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Wszystkie dokumenty floty i kierowców w jednym miejscu. Alerty zanim coś wygaśnie. Gotowość pod kontrolę ITD.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -756,8 +761,8 @@ const homeFaq = [
             { title: 'Dokumenty kierowcy', desc: 'Prawo jazdy, świadectwo kierowcy, ADR, badania psychotechniczne — alerty per kierowca.' },
           ].map(b => (
             <div class="p-4 rounded-xl bg-[#F8F8FA]">
-              <p class="text-[13.5px] font-semibold text-[#1D1D1F] mb-1">{b.title}</p>
-              <p class="text-[12.5px] text-[#6E6E73] leading-relaxed">{b.desc}</p>
+              <p class="text-[13.5px] font-semibold text-text mb-1">{b.title}</p>
+              <p class="text-[12.5px] text-text-secondary leading-relaxed">{b.desc}</p>
             </div>
           ))}
         </div>
@@ -768,30 +773,30 @@ const homeFaq = [
 </section>
 
 <!-- ======================== JAK TO DZIAŁA — 3 KROKI ======================== -->
-<section class="bg-white py-20 sm:py-28 px-5">
+<section class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Jak to działa</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[820px] mx-auto mb-4">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] max-w-[820px] mx-auto mb-4">
         Trzy kroki. Każdy z innym aktorem.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[700px] mx-auto leading-relaxed">
+      <p class="text-[15px] text-text-secondary max-w-[700px] mx-auto leading-relaxed">
         Cały proces wdrożenia to godzina jednorazowo. Każdego dnia kierowca poświęca dziesięć sekund. Każdego miesiąca księgowa pięć minut.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger">
 
-      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+      <div class="relative bg-surface-2 rounded-[20px] p-7">
         <div class="flex items-center gap-3 mb-5">
           <span class="font-display text-[2rem] font-bold text-[#005CE8] leading-none tracking-[-0.04em]">01</span>
           <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.10] text-[#005CE8] text-[10.5px] font-bold tracking-[0.06em] uppercase">Właściciel · 10 minut</span>
         </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Konfigurujesz flotę i zapraszasz kierowców</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Web panel: dodajesz pojazdy (numer rejestracyjny, VIN, DMC), zapraszasz kierowców mailem, ustawiasz alerty terminów dokumentów. Importujesz licencję transportową, OCP, OC. Jednorazowo.</p>
-        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Co dodajesz</p>
-          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+        <h3 class="font-display font-bold text-[1.15rem] text-text mb-2.5 leading-tight">Konfigurujesz flotę i zapraszasz kierowców</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed mb-5">Web panel: dodajesz pojazdy (numer rejestracyjny, VIN, DMC), zapraszasz kierowców mailem, ustawiasz alerty terminów dokumentów. Importujesz licencję transportową, OCP, OC. Jednorazowo.</p>
+        <div class="bg-surface rounded-xl p-4 border border-border-subtle">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary mb-2">Co dodajesz</p>
+          <ul class="space-y-1.5 text-[12.5px] text-text">
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Pojazdy + dokumenty (OC, przegląd, tachograf)</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Kierowcy + uprawnienia (kod 95, ADR)</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Licencja transportowa + wypisy</li>
@@ -799,16 +804,16 @@ const homeFaq = [
         </div>
       </div>
 
-      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+      <div class="relative bg-surface-2 rounded-[20px] p-7">
         <div class="flex items-center gap-3 mb-5">
           <span class="font-display text-[2rem] font-bold text-[#34C759] leading-none tracking-[-0.04em]">02</span>
           <span class="px-2.5 py-1 rounded-full bg-[#34C759]/[0.10] text-[#34C759] text-[10.5px] font-bold tracking-[0.06em] uppercase">Kierowca · 10 sekund</span>
         </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Kierowcy pracują z aplikacją w trasie</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Aplikacja iOS/Android. Start zlecenia jednym tapnięciem, GPS w tle, paragony zdjęciem (OCR w 6 językach), alerty AETR zanim przekroczy limit. Działa offline w terenie.</p>
-        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Każdego dnia</p>
-          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+        <h3 class="font-display font-bold text-[1.15rem] text-text mb-2.5 leading-tight">Kierowcy pracują z aplikacją w trasie</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed mb-5">Aplikacja iOS/Android. Start zlecenia jednym tapnięciem, GPS w tle, paragony zdjęciem (OCR w 6 językach), alerty AETR zanim przekroczy limit. Działa offline w terenie.</p>
+        <div class="bg-surface rounded-xl p-4 border border-border-subtle">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary mb-2">Każdego dnia</p>
+          <ul class="space-y-1.5 text-[12.5px] text-text">
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Start trasy → GPS auto-rejestruje</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Paragon → zdjęcie → OCR → kategoria</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Alert AETR przed naruszeniem</li>
@@ -816,16 +821,16 @@ const homeFaq = [
         </div>
       </div>
 
-      <div class="relative bg-[#F5F5F7] rounded-[20px] p-7">
+      <div class="relative bg-surface-2 rounded-[20px] p-7">
         <div class="flex items-center gap-3 mb-5">
           <span class="font-display text-[2rem] font-bold text-[#FF9500] leading-none tracking-[-0.04em]">03</span>
           <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.10] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">Księgowa · 5 minut</span>
         </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-[#1D1D1F] mb-2.5 leading-tight">Księgowa eksportuje do FK i rozlicza</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-5">Koniec miesiąca: jeden klik generuje pliki do Insert GT, Comarch lub Symfonii. Diety zagraniczne policzone z GPS, paragony przewalutowane po NBP, faktury z UE oznaczone do VAT-REF. Bez Excela.</p>
-        <div class="bg-white rounded-xl p-4 border border-black/[0.04]">
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#86868B] mb-2">Raz w miesiącu</p>
-          <ul class="space-y-1.5 text-[12.5px] text-[#1D1D1F]">
+        <h3 class="font-display font-bold text-[1.15rem] text-text mb-2.5 leading-tight">Księgowa eksportuje do FK i rozlicza</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed mb-5">Koniec miesiąca: jeden klik generuje pliki do Insert GT, Comarch lub Symfonii. Diety zagraniczne policzone z GPS, paragony przewalutowane po NBP, faktury z UE oznaczone do VAT-REF. Bez Excela.</p>
+        <div class="bg-surface rounded-xl p-4 border border-border-subtle">
+          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary mb-2">Raz w miesiącu</p>
+          <ul class="space-y-1.5 text-[12.5px] text-text">
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Eksport do FK jednym kliknięciem</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Rozliczenie kierowcy z dietami UE</li>
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-[#34C759]"></span>Paczka VAT-REF do zwrotu z UE</li>
@@ -855,14 +860,14 @@ const homeFaq = [
       </p>
 
       <!-- Credibility strip — co już zbudowaliśmy -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-4 rounded-[16px] bg-white/[0.04] border border-white/[0.06]">
+      <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-4 rounded-[16px] bg-surface/[0.04] border border-white/[0.06]">
         <div class="flex items-center gap-2.5">
           <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
           <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">26 sprintów ukończonych</p>
         </div>
-        <div class="hidden sm:block w-px h-3 bg-white/15"></div>
+        <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
         <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">218 ticketów Done</p>
-        <div class="hidden sm:block w-px h-3 bg-white/15"></div>
+        <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
         <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">MVP LIVE 13–14 maja 2026</p>
       </div>
     </div>
@@ -937,9 +942,9 @@ const homeFaq = [
       <!-- 6. Multi-tenant izolacja -->
       <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-white/20 transition-colors duration-300 flex flex-col">
         <div class="flex items-center gap-2 mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-white/[0.06] text-white/80 text-[10.5px] font-bold tracking-[0.06em] uppercase">Architektura SaaS</span>
+          <span class="px-2.5 py-1 rounded-full bg-surface/[0.06] text-white/80 text-[10.5px] font-bold tracking-[0.06em] uppercase">Architektura SaaS</span>
         </div>
-        <div class="w-11 h-11 rounded-[14px] bg-white/[0.06] flex items-center justify-center mb-5">
+        <div class="w-11 h-11 rounded-[14px] bg-surface/[0.06] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
         <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Multi-tenant z pełną izolacją danych</h3>
@@ -958,14 +963,14 @@ const homeFaq = [
 </section>
 
 <!-- ======================== INTEGRACJE FK ======================== -->
-<section class="bg-white py-20 sm:py-28 px-5">
+<section class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[960px] mx-auto">
     <div class="text-center mb-12 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Eksport do systemów księgowych</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
         Trzy integracje. Jedno kliknięcie.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[640px] mx-auto leading-relaxed">
+      <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed">
         Ewidencja przebiegu i faktury paliwowe trafiają bezpośrednio do programu księgowego firmy — bez ręcznego przepisywania, bez konwersji formatów.
       </p>
     </div>
@@ -976,19 +981,19 @@ const homeFaq = [
         { name: 'Comarch ERP Optima', desc: 'Eksport z analityką per zlecenie i kierowca', color: '#005CE8' },
         { name: 'Symfonia FK', desc: 'Eksport z procentem odliczenia VAT', color: '#34C759' },
       ].map(s => (
-        <div class="p-6 rounded-[20px] bg-[#F5F5F7] border border-black/[0.04]">
+        <div class="p-6 rounded-[20px] bg-surface-2 border border-border-subtle">
           <div class="w-10 h-10 rounded-[12px] flex items-center justify-center mb-4" style={`background: ${s.color}15;`}>
             <svg class="w-5 h-5" fill="none" stroke={s.color} stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
-          <p class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-1">{s.name}</p>
-          <p class="text-[12.5px] text-[#6E6E73] leading-snug">{s.desc}</p>
+          <p class="font-display font-semibold text-[1.05rem] text-text mb-1">{s.name}</p>
+          <p class="text-[12.5px] text-text-secondary leading-snug">{s.desc}</p>
         </div>
       ))}
     </div>
 
     <!-- Brand wall — partnerzy, źródła danych, systemy zewnętrzne -->
     <div class="reveal pt-10 border-t border-gray-100">
-      <p class="text-center text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#86868B] mb-7">Współpracujemy bezpośrednio z</p>
+      <p class="text-center text-[10.5px] font-semibold uppercase tracking-[0.12em] text-text-tertiary mb-7">Współpracujemy bezpośrednio z</p>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-[1000px] mx-auto">
         {[
           { name: 'Insert GT', tag: 'Eksport FK', color: '#FF9500', glyph: '<rect x="4" y="6" width="4" height="12" rx="0.5"/><rect x="10" y="6" width="4" height="12" rx="0.5"/><rect x="16" y="6" width="4" height="12" rx="0.5"/>' },
@@ -998,96 +1003,96 @@ const homeFaq = [
           { name: 'NBP API', tag: 'Kursy walut', color: '#8B5CF6', glyph: '<rect x="3" y="6" width="18" height="13" rx="1.5"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="8" y1="15" x2="14" y2="15"/>' },
           { name: 'VDO · Stoneridge', tag: 'Tachograf G2V2', color: '#FF3B30', glyph: '<circle cx="12" cy="12" r="9"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14.5"/>' },
         ].map(b => (
-          <div class="group flex flex-col items-center justify-center p-4 rounded-[14px] bg-[#F8F8FA] border border-gray-100 hover:bg-white hover:border-gray-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300">
+          <div class="group flex flex-col items-center justify-center p-4 rounded-[14px] bg-[#F8F8FA] border border-gray-100 hover:bg-surface hover:border-gray-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300">
             <div class="w-9 h-9 rounded-[10px] flex items-center justify-center mb-2" style={`background: ${b.color}12;`}>
               <svg class="w-[18px] h-[18px]" fill="none" stroke={b.color} stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" set:html={b.glyph}/>
             </div>
-            <p class="text-[12.5px] font-display font-semibold text-[#1D1D1F] text-center leading-tight">{b.name}</p>
-            <p class="text-[10.5px] text-[#86868B] text-center mt-0.5 leading-tight">{b.tag}</p>
+            <p class="text-[12.5px] font-display font-semibold text-text text-center leading-tight">{b.name}</p>
+            <p class="text-[10.5px] text-text-tertiary text-center mt-0.5 leading-tight">{b.tag}</p>
           </div>
         ))}
       </div>
     </div>
 
-    <p class="text-center text-[13px] text-[#86868B] mt-10 max-w-[640px] mx-auto">
+    <p class="text-center text-[13px] text-text-tertiary mt-10 max-w-[640px] mx-auto">
       Eksport delegacji pracowniczych do trzech systemów księgowych oraz integracja z Krajowym Systemem e-Faktur — w fazie post-MVP.
     </p>
   </div>
 </section>
 
 <!-- ======================== PODSTAWA PRAWNA ======================== -->
-<section id="podstawa-prawna" class="bg-white py-20 sm:py-28 px-5">
+<section id="podstawa-prawna" class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Podstawa prawna</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] max-w-[820px] mx-auto mb-4">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] max-w-[820px] mx-auto mb-4">
         Sześć regulacji, które BusiKM obsługuje za Ciebie.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[700px] mx-auto leading-relaxed">
+      <p class="text-[15px] text-text-secondary max-w-[700px] mx-auto leading-relaxed">
         Transport międzynarodowy busami 2,5–3,5 t to gęsta siatka przepisów polskich i unijnych. Każde rozporządzenie wymienione poniżej ma w BusiKM konkretną funkcję — od parsera danych tachografu po silnik kalkulacji diet kierowcy.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-stagger">
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Rozporządzenie Komisji (UE) 2016/799</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Rozporządzenie Komisji (UE) 2016/799</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Specyfikacja tachografów cyfrowych drugiej generacji (G2V2), format pliku DDD, protokół Bluetooth ITS.</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Specyfikacja tachografów cyfrowych drugiej generacji (G2V2), format pliku DDD, protokół Bluetooth ITS.</p>
         <p class="text-[12px] font-semibold text-[#005CE8]">→ Parser DDD, biblioteka BT ITS, raport 56 dni dla ITD</p>
       </article>
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Pakiet mobilności UE (2020/1054, 2020/1055)</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Pakiet mobilności UE (2020/1054, 2020/1055)</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Obowiązek tachografu G2V2 w pojazdach 2,5–3,5&nbsp;t w transporcie międzynarodowym od 2 lipca 2026, regularne powroty kierowcy do bazy, zakaz odpoczynku w kabinie.</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Obowiązek tachografu G2V2 w pojazdach 2,5–3,5&nbsp;t w transporcie międzynarodowym od 2 lipca 2026, regularne powroty kierowcy do bazy, zakaz odpoczynku w kabinie.</p>
         <p class="text-[12px] font-semibold text-[#FF9500]">→ Compliance dashboard, alerty terminów legalizacji, monitoring pakietu mobilności</p>
       </article>
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Umowa AETR (czas pracy kierowcy)</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Umowa AETR (czas pracy kierowcy)</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Maksymalny czas jazdy ciągłej 4,5 h, dziennej 9 h, tygodniowej 56 h, dwutygodniowej 90 h, przerwa dzienna 11 h, tygodniowy odpoczynek 45 h.</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Maksymalny czas jazdy ciągłej 4,5 h, dziennej 9 h, tygodniowej 56 h, dwutygodniowej 90 h, przerwa dzienna 11 h, tygodniowy odpoczynek 45 h.</p>
         <p class="text-[12px] font-semibold text-[#FF9500]">→ Alerty AETR przed naruszeniem limitów, ewidencja czasu pracy w aplikacji kierowcy</p>
       </article>
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#8B5CF6]/[0.10] text-[#8B5CF6] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Rozp. MPiPS z 29.01.2013 (Dz.U. 2013 poz. 167)</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Rozp. MPiPS z 29.01.2013 (Dz.U. 2013 poz. 167)</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Należności pracownika z tytułu podróży służbowej. Załącznik nr 2 — stawki diet zagranicznych per kraj per dzień (np. Niemcy 49 EUR, Włochy 53 EUR, Francja 50 EUR).</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Należności pracownika z tytułu podróży służbowej. Załącznik nr 2 — stawki diet zagranicznych per kraj per dzień (np. Niemcy 49 EUR, Włochy 53 EUR, Francja 50 EUR).</p>
         <p class="text-[12px] font-semibold text-[#8B5CF6]">→ Silnik kalkulacji diet zagranicznych z GPS, gotowe rozliczenie kierowcy</p>
       </article>
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#34C759]/[0.10] text-[#34C759] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Dyrektywa 2008/9/WE (VAT-REF)</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Dyrektywa 2008/9/WE (VAT-REF)</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Procedura zwrotu VAT od kosztów poniesionych w innych państwach członkowskich UE — paliwo, Maut, hotele, naprawy busa za granicą.</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Procedura zwrotu VAT od kosztów poniesionych w innych państwach członkowskich UE — paliwo, Maut, hotele, naprawy busa za granicą.</p>
         <p class="text-[12px] font-semibold text-[#34C759]">→ VAT-REF — paczka roczna faktur z UE gotowa do wniosku o zwrot</p>
       </article>
 
-      <article class="bg-[#F5F5F7] rounded-[18px] p-6 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
         <div class="flex items-start gap-3 mb-3">
           <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
-          <h3 class="font-display font-bold text-[1rem] text-[#1D1D1F] leading-snug">Krajowy System e-Faktur (KSeF)</h3>
+          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Krajowy System e-Faktur (KSeF)</h3>
         </div>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-2">Obowiązkowy państwowy system e-faktur dla wszystkich podatników VAT. Zakres: tylko polscy wystawcy — faktury z DE, FR, IT, AT pozostają poza KSeF.</p>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Obowiązkowy państwowy system e-faktur dla wszystkich podatników VAT. Zakres: tylko polscy wystawcy — faktury z DE, FR, IT, AT pozostają poza KSeF.</p>
         <p class="text-[12px] font-semibold text-[#005CE8]">→ Auto-import faktur PL z KSeF, ścieżka osobna dla faktur UE (post-MVP)</p>
       </article>
 
     </div>
 
     <div class="text-center mt-12 reveal">
-      <p class="text-[13.5px] text-[#6E6E73] max-w-[680px] mx-auto leading-relaxed">
+      <p class="text-[13.5px] text-text-secondary max-w-[680px] mx-auto leading-relaxed">
         BusiKM nie jest narzędziem ogólnym dostosowanym do transportu — został zaprojektowany od zera dla firm wykonujących przewozy międzynarodowe busami 2,5–3,5&nbsp;t i regulacji ich obejmujących.
       </p>
     </div>
@@ -1095,27 +1100,27 @@ const homeFaq = [
 </section>
 
 <!-- ======================== DLA KOGO — SEGMENTY ======================== -->
-<section class="bg-[#F5F5F7] py-20 sm:py-28 px-5">
+<section class="bg-surface-2 py-20 sm:py-28 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Dla kogo BusiKM</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Cztery role. Jedna aplikacja.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[640px] mx-auto leading-relaxed mt-4">
+      <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed mt-4">
         Każda firma transportowa ma swój układ — właściciel, kierowcy, księgowy wewnętrzny lub zewnętrzne biuro rachunkowe rozliczające podatki. BusiKM obsługuje wszystkie cztery role z dedykowanymi uprawnieniami i ścieżkami pracy.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 reveal-stagger">
 
-      <a href="/dla-wlascicieli" class="group block p-6 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
+      <a href="/dla-wlascicieli" class="group block p-6 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-4">
           <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </div>
         <p class="text-[10.5px] font-bold text-[#005CE8] uppercase tracking-[0.06em] mb-1.5">Właściciel</p>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-tight mb-3">Cała flota. Jeden dashboard.</h3>
-        <ul class="space-y-1.5 text-[12.5px] text-[#6E6E73] mb-4">
+        <h3 class="font-display font-semibold text-[1.05rem] text-text tracking-tight mb-3">Cała flota. Jeden dashboard.</h3>
+        <ul class="space-y-1.5 text-[12.5px] text-text-secondary mb-4">
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Mapa floty w czasie rzeczywistym</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Status kierowcy: jazda / pauza / dyspozycyjność</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Alerty: tachograf, OC, licencja</li>
@@ -1124,13 +1129,13 @@ const homeFaq = [
         <span class="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#005CE8] group-hover:gap-2 transition-all">Szczegóły <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
-      <a href="/dla-kierowcow" class="group block p-6 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
+      <a href="/dla-kierowcow" class="group block p-6 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
         <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center mb-4">
           <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg>
         </div>
         <p class="text-[10.5px] font-bold text-[#34C759] uppercase tracking-[0.06em] mb-1.5">Kierowca</p>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-tight mb-3">Start trasy jednym tapnięciem.</h3>
-        <ul class="space-y-1.5 text-[12.5px] text-[#6E6E73] mb-4">
+        <h3 class="font-display font-semibold text-[1.05rem] text-text tracking-tight mb-3">Start trasy jednym tapnięciem.</h3>
+        <ul class="space-y-1.5 text-[12.5px] text-text-secondary mb-4">
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Aplikacja iOS i Android</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>GPS w tle — bez trzymania telefonu</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Tryb offline — działa bez zasięgu</li>
@@ -1139,13 +1144,13 @@ const homeFaq = [
         <span class="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#34C759] group-hover:gap-2 transition-all">Szczegóły <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
-      <a href="/dla-ksiegowych" class="group block p-6 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
+      <a href="/dla-ksiegowych" class="group block p-6 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-4">
           <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
         </div>
         <p class="text-[10.5px] font-bold text-[#FF9500] uppercase tracking-[0.06em] mb-1.5">Księgowy</p>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-tight mb-3">Dane firmy gotowe do FK.</h3>
-        <ul class="space-y-1.5 text-[12.5px] text-[#6E6E73] mb-4">
+        <h3 class="font-display font-semibold text-[1.05rem] text-text tracking-tight mb-3">Dane firmy gotowe do FK.</h3>
+        <ul class="space-y-1.5 text-[12.5px] text-text-secondary mb-4">
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Eksport do Insert GT, Comarch, Symfonia</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Faktury OCR + kursy NBP automatycznie</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Diety zagraniczne i VAT-REF z UE</li>
@@ -1154,13 +1159,13 @@ const homeFaq = [
         <span class="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#FF9500] group-hover:gap-2 transition-all">Szczegóły <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
-      <a href="/dla-biur-rachunkowych" class="group block p-6 rounded-[20px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
+      <a href="/dla-biur-rachunkowych" class="group block p-6 rounded-[20px] bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300">
         <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center mb-4">
           <svg class="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
         </div>
         <p class="text-[10.5px] font-bold text-[#8B5CF6] uppercase tracking-[0.06em] mb-1.5">Biuro rachunkowe</p>
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] tracking-tight mb-3">Wiele firm. Jeden panel.</h3>
-        <ul class="space-y-1.5 text-[12.5px] text-[#6E6E73] mb-4">
+        <h3 class="font-display font-semibold text-[1.05rem] text-text tracking-tight mb-3">Wiele firm. Jeden panel.</h3>
+        <ul class="space-y-1.5 text-[12.5px] text-text-secondary mb-4">
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Panel multi-tenant z przełączaniem klientów</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Zbiorczy dashboard wszystkich obsługiwanych firm</li>
           <li class="flex items-start gap-1.5"><span class="text-[#34C759] shrink-0">✓</span>Eksport FK per klient, jednym kliknięciem</li>
@@ -1178,10 +1183,10 @@ const homeFaq = [
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-12 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Roadmap nie kończy się na MVP</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
         Sześć funkcji, które zmieniają BusiKM w pełen system.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[680px] mx-auto leading-relaxed">
+      <p class="text-[15px] text-text-secondary max-w-[680px] mx-auto leading-relaxed">
         MVP to fundament. Po wdrożeniu produkcyjnym ruszają funkcje zmieniające BusiKM z ewidencji w pełen system zarządzania transportem międzynarodowym.
       </p>
     </div>
@@ -1189,13 +1194,13 @@ const homeFaq = [
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 reveal-stagger mb-10">
 
       <!-- G2V2 -->
-      <a href="/g2v2-przygotowanie" class="group bg-white rounded-[20px] p-7 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col border border-gray-100">
+      <a href="/g2v2-przygotowanie" class="group bg-surface rounded-[20px] p-7 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col border border-gray-100">
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Deadline 2 lipca 2026</p>
-        <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-2 leading-tight">Tachograf G2V2 i kontrola ITD</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed flex-1">Monitoring legalizacji tachografów, AETR, terminy uprawnień. Jeden ekran zamiast Excela. Uniknięcie kar do 10 000 zł.</p>
+        <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">Tachograf G2V2 i kontrola ITD</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Monitoring legalizacji tachografów, AETR, terminy uprawnień. Jeden ekran zamiast Excela. Uniknięcie kar do 10 000 zł.</p>
         <span class="text-[12.5px] font-semibold text-[#FF9500] group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1.5 mt-4">
           Sprawdź deadline G2V2
           <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1203,23 +1208,23 @@ const homeFaq = [
       </a>
 
       <!-- VAT-REF -->
-      <div class="bg-white rounded-[20px] p-7 flex flex-col border border-gray-100">
+      <div class="bg-surface rounded-[20px] p-7 flex flex-col border border-gray-100">
         <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         </div>
         <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759] mb-2">Wkrótce po MVP</p>
-        <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-2 leading-tight">VAT-REF z paliwa, Mautu, promów</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed flex-1">Faktury z DE, FR, IT, AT — automatyczne przeliczenie na PLN po kursie NBP, gotowy raport do zwrotu VAT z UE. Tysiące zł rocznie zamiast w gubionych paragonach.</p>
+        <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">VAT-REF z paliwa, Mautu, promów</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Faktury z DE, FR, IT, AT — automatyczne przeliczenie na PLN po kursie NBP, gotowy raport do zwrotu VAT z UE. Tysiące zł rocznie zamiast w gubionych paragonach.</p>
       </div>
 
       <!-- Marża per zlecenie -->
-      <div class="bg-white rounded-[20px] p-7 flex flex-col border border-gray-100">
+      <div class="bg-surface rounded-[20px] p-7 flex flex-col border border-gray-100">
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
         </div>
         <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8] mb-2">Wkrótce po MVP</p>
-        <h3 class="font-display font-bold text-[1.1rem] text-[#1D1D1F] mb-2 leading-tight">Marża per zlecenie</h3>
-        <p class="text-[13.5px] text-[#6E6E73] leading-relaxed flex-1">Zlecenie + pojazd + trasa GPS + wszystkie koszty (paliwo, Maut, hotele) = realna marża na każdym kursie. Wiesz, które zlecenia odrzucić.</p>
+        <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">Marża per zlecenie</h3>
+        <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Zlecenie + pojazd + trasa GPS + wszystkie koszty (paliwo, Maut, hotele) = realna marża na każdym kursie. Wiesz, które zlecenia odrzucić.</p>
       </div>
 
     </div>
@@ -1234,14 +1239,14 @@ const homeFaq = [
 </section>
 
 <!-- ======================== STATUS PRODUKTU ======================== -->
-<section class="bg-white py-20 sm:py-28 px-5">
+<section class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="text-center mb-12 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Stan produktu</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15] mb-4">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
         Dwadzieścia sześć sprintów za nami. MVP LIVE 13–14 maja.
       </h2>
-      <p class="text-[15px] text-[#6E6E73] max-w-[640px] mx-auto leading-relaxed">
+      <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed">
         Fundament aplikacji jest gotowy: kierowca, pojazd, trasa GPS, dokumenty, eksport FK, alerty, hurtowe rozliczenia per aktywny pojazd, plan indywidualny dla większych flot. Trwają prace nad mapą real-time, panelem właściciela, aplikacją mobilną i wdrożeniem produkcyjnym.
       </p>
     </div>
@@ -1253,15 +1258,15 @@ const homeFaq = [
         { num: '3', label: 'integracje FK', color: '#FF9500' },
         { num: '13 maj', label: 'MVP LIVE 2026', color: '#1D1D1F' },
       ].map(s => (
-        <div class="p-6 rounded-[20px] bg-[#F5F5F7] text-center">
+        <div class="p-6 rounded-[20px] bg-surface-2 text-center">
           <p class="font-display font-bold text-[2rem] tracking-[-0.03em] mb-1" style={`color: ${s.color}`}>{s.num}</p>
-          <p class="text-[12.5px] text-[#6E6E73]" set:html={s.label}></p>
+          <p class="text-[12.5px] text-text-secondary" set:html={s.label}></p>
         </div>
       ))}
     </div>
 
     <div class="text-center reveal">
-      <a href="/roadmapa" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[14px] font-semibold hover:bg-[#F5F5F7] transition-all">
+      <a href="/roadmapa" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-text text-[14px] font-semibold hover:bg-surface-2 transition-all">
         Zobacz pełny plan rozwoju
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -1270,24 +1275,24 @@ const homeFaq = [
 </section>
 
 <!-- ======================== FAQ ======================== -->
-<section class="bg-white py-20 sm:py-28 px-5">
+<section class="bg-surface py-20 sm:py-28 px-5">
   <div class="max-w-[820px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold text-[#005CE8] tracking-[0.08em] uppercase mb-3">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Najczęstsze pytania
       </h2>
     </div>
     <div class="reveal-stagger flex flex-col gap-3">
       {homeFaq.map((item, idx) => (
         <details
-          class="group rounded-2xl border border-black/[0.08] bg-white px-6 py-4 hover:border-[#005CE8]/30 transition-colors duration-200"
+          class="group rounded-2xl border border-border-subtle bg-surface px-6 py-4 hover:border-[#005CE8]/30 transition-colors duration-200"
           name="home-faq"
           open={idx === 0}
         >
           <summary class="flex items-center justify-between gap-3 cursor-pointer list-none">
-            <h3 class="text-[15px] sm:text-[16px] font-semibold text-[#1D1D1F] tracking-[-0.01em]">{item.q}</h3>
-            <span class="shrink-0 w-7 h-7 rounded-full bg-[#F5F5F7] flex items-center justify-center text-[#005CE8] transition-transform duration-300 group-open:rotate-45">
+            <h3 class="text-[15px] sm:text-[16px] font-semibold text-text tracking-[-0.01em]">{item.q}</h3>
+            <span class="shrink-0 w-7 h-7 rounded-full bg-surface-2 flex items-center justify-center text-[#005CE8] transition-transform duration-300 group-open:rotate-45">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             </span>
           </summary>
@@ -1326,11 +1331,11 @@ const homeFaq = [
       Pilotaż BusiKM to dożywotni dostęp do wszystkich funkcji za 0 zł — w zamian za krótką rozmowę raz w miesiącu. Compliance G2V2, rentowność zleceń, rozliczenie kierowców i kontrola ITD w jednej aplikacji. Zacznij dziś, zanim deadline zacznie kosztować.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors duration-200">
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface text-[#0A0A0B] text-[15px] font-semibold hover:bg-surface-2 transition-colors duration-200">
         Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all duration-200">
+      <a href="/g2v2-przygotowanie" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all duration-200">
         Sprawdź gotowość G2V2
       </a>
     </div>
