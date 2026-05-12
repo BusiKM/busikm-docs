@@ -4,7 +4,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 // Realne dane sprintów z Jira (projekt BKM, board 34)
 // Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 8 maja 2026.
 // Zamknięte sprinty 0-16a (26 sprintów, 218 ticketów Done). Zaplanowane: 16b-22.
-// Drift inkrementalny -3 dni (kolejna iteracja) → daty cofnięte o kolejne 3 dni. MVP LIVE: 13-14 maja 2026.
+// Drift inkrementalny -3 dni (kolejna iteracja) → daty cofnięte o kolejne 3 dni. MVP LIVE: 30 maja 2026.
 
 const closedSprints = 26;
 const closedTickets = 218;
@@ -43,28 +43,28 @@ const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
 const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 26 sprintów ukończonych, 9 zaplanowanych. MVP LIVE 13-14 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 26 sprintów ukończonych, 9 zaplanowanych. MVP LIVE 30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-surface">
     <div class="absolute inset-0" style="background:radial-gradient(ellipse at top,#EBF2FF 0%,transparent 70%)"></div>
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 sm:pt-32 sm:pb-28 text-center">
 
-      <div class="hero-seq-1 inline-flex items-center gap-2 bg-[#34C759]/[0.08] border border-[#34C759]/15 rounded-full px-4 py-1.5 mb-8">
+      <div class="hero-seq-1 inline-flex items-center gap-2 bg-[#005CE8]/[0.08] border border-[#005CE8]/15 rounded-full px-4 py-1.5 mb-8">
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#005CE8] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#005CE8]"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">Sprinty 14b/15/16a zakończone — flow kierowcy + widok właściciela mobile gotowe</span>
+        <span class="text-sm font-medium text-gray-700">3-letnia perspektywa R&amp;D · MVP 30 maja 2026 · granty UE 2027–2028</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
         Plan rozwoju produktu.<br>
-        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Z myślą o firmach transportowych.</span>
+        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Trzy lata europejskiego deep-tech.</span>
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        Dwadzieścia sześć sprintów za nami, dziewięć przed nami. MVP LIVE 13–14 maja 2026, finalizacja produktu do 21 maja. Każda nowa funkcja BusiKM trafia najpierw do pilotów — właścicieli firm transportowych, dyspozytorów, księgowych i biur rachunkowych obsługujących firmy.
+        <strong class="text-gray-900">2026: MVP fundament</strong> (30 maja) — auth, fleet, GPS w czasie rzeczywistym, FK export, multi-tenant. <strong class="text-gray-900">2027: R&D Phase 1</strong> z FENG SMART — Parser DDD (TRL 4→5), silnik diet AETR (TRL 4→6), detekcja granic UE (TRL 5→7). <strong class="text-gray-900">2028: R&D Phase 2</strong> z EIC Accelerator + Horizon Europe — Bluetooth ITS (TRL 3→5), XAI anomalia spalania (TRL 3→6), scale-out pan-EU (PL→CZ/SK→DE).
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -91,8 +91,8 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">ticketów w backlogu</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">13 maj</div>
-          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-[#3380FF] font-display leading-none">30 maj</div>
+          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE 2026</div>
         </div>
       </div>
     </div>
@@ -566,16 +566,19 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
     </div>
   </section>
 
-  <!-- ===================== PO MVP — KOLEJNE FUNKCJE ===================== -->
+  <!-- ===================== ROK 1 Q3-Q4 — POST-MVP 2026 ===================== -->
   <section id="po-mvp" class="bg-surface py-20 sm:py-28 border-t border-gray-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Po MVP</p>
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Rok 1 · Druga połowa 2026 (post-MVP)</p>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Roadmap nie kończy się 20 maja.
+          Q3–Q4 2026: Compliance + analityka + KSeF
         </h2>
         <p class="text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
-          MVP to fundament. Po wdrożeniu produkcyjnym ruszają funkcje, które zmieniają BusiKM z ewidencji w pełen system zarządzania transportem międzynarodowym. Kolejność zależy od głosów pilotów.
+          MVP (30 maja) to fundament SaaS. Druga połowa 2026 zamyka pełen feature-set produktowy:
+          KSeF e-invoicing, Stripe billing, mobile App Store/Google Play, push notifications, WatermelonDB offline,
+          Comarch/Symfonia full integration, oraz <strong class="text-gray-900">first R&D milestone</strong>:
+          point-in-polygon detekcja granic UE production (TRL 5→6).
         </p>
       </div>
 
@@ -663,6 +666,206 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
         <p class="text-[13px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
           Kolejność funkcji ustalana z firmami pilotażowymi. <strong class="text-gray-900">Pilotaż = wpływ na priorytety</strong> i utrzymanie ceny pierwotnej dożywotnio dla całej floty.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ROK 2 — R&D PHASE 1 (2027, FENG SMART) ===================== -->
+  <section id="rok-2027" class="bg-surface-2 py-20 sm:py-28 border-t border-border-subtle">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Rok 2 · 2027 — R&D Phase 1</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">
+          Cztery kwartały deep-tech finansowane z <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">FENG Ścieżka SMART</span>.
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
+          Aplikacja grantowa: <strong class="text-text">FENG Ścieżka SMART</strong> (NCBR Polska). Cel: rozwój 3 z 6 komponentów R&D
+          z prototypu (TRL 3-4) do walidacji systemowej (TRL 6-7). Walidacja na rozszerzonym pilotażu (50+ firm transportowych w UE).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-stagger mb-12">
+        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Q1 2027 · TRL 4→5</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Parser DDD — prototype validation</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Autorska biblioteka Python odczytu pliku DDD z tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Walidacja na próbach z certyfikowanych tachografów + 56-dniowy raport dla ITD.</p>
+        </article>
+
+        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#8B5CF6]">Q2 2027 · TRL 4→6</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Silnik diet AETR — production validation</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Deterministyczny rules engine mapujący Rozp. MPiPS Dz.U. 2013/167 na auto-rozliczenie kierowcy. Walidacja na realnych przypadkach + integracja Insert GT/Comarch/Symfonia.</p>
+        </article>
+
+        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Q3 2027 · TRL 6→7</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Public API v1 + i18n DE/CZ/SK</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Publiczne API z webhookami, sandbox env i certyfikatami integratora. Pełna lokalizacja DE/CZ/SK — przygotowanie pod scale-out poza Polskę.</p>
+        </article>
+
+        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Q4 2027 · TRL 3→4</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Multi-currency EUR + XAI training start</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Multi-currency (EUR primary, PLN/CZK/DKK secondary) z auto-konwersją na NBP/ECB. Start treningu modelu XAI anomalii spalania na danych z pilotażu.</p>
+        </article>
+      </div>
+
+      <!-- Grant program box: FENG SMART -->
+      <div class="rounded-[20px] p-7 sm:p-9 bg-[#005CE8] text-white reveal">
+        <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
+          <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2027</p>
+          <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">FENG · Ścieżka SMART</span>
+        </div>
+        <h3 class="font-display text-[1.5rem] font-bold mb-3">FENG Ścieżka SMART (NCBR Polska)</h3>
+        <p class="text-[15px] text-white/85 leading-relaxed mb-4">
+          Program operacyjny <strong>Fundusze Europejskie dla Nowoczesnej Gospodarki</strong> 2021–2027 (NCBR). Ścieżka SMART dla MŚP rozwijających deep-tech.
+          BusiKM aplikuje na rozwój 3 komponentów R&D: Parser DDD, silnik diet AETR, detekcja granic UE. Walidacja w rozszerzonym pilotażu (50+ firm).
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[13px]">
+          <div><p class="text-white/60 mb-0.5">Faza projektu</p><p class="font-semibold">TRL 5→8 (R&D + first market)</p></div>
+          <div><p class="text-white/60 mb-0.5">Lokalizacja</p><p class="font-semibold">Polska · konsorcjum krajowe</p></div>
+          <div><p class="text-white/60 mb-0.5">Złożenie wniosku</p><p class="font-semibold">Q4 2026 / Q1 2027</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ROK 3 — R&D PHASE 2 (2028, EIC + HORIZON) ===================== -->
+  <section id="rok-2028" class="bg-surface py-20 sm:py-28 border-t border-border-subtle">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Rok 3 · 2028 — R&D Phase 2</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">
+          Deep-tech europejski. <span class="bg-gradient-to-r from-[#005CE8] to-[#8B5CF6] bg-clip-text text-transparent">EIC Accelerator + Horizon Europe.</span>
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
+          Dwie aplikacje grantowe: <strong class="text-text">EIC Accelerator</strong> (European Innovation Council, blended finance — grant €2.5M + equity €15M)
+          oraz <strong class="text-text">Horizon Europe Cluster 5</strong> (Climate, Energy &amp; Mobility — work programme partnerstwo). Cel: market-ready (TRL 9), scale-out pan-EU.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-stagger mb-12">
+        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 7L7 17"/><path d="M12 2v8M12 14v8"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Q1–Q2 2028 · TRL 3→5</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Bluetooth ITS — hardware prototype</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">React Native library do zdalnej komunikacji z tachografem G2V2 przez Bluetooth ITS (Rozp. 2016/799). Pobranie DDD bez kabla do warsztatu — funkcjonalność której brakuje w istniejących aplikacjach europejskich. Walidacja na referencyjnym sprzęcie.</p>
+        </article>
+
+        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#FF3B30]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#FF6B5C]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF6B5C]">Q3 2028 · TRL 4→6</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">XAI anomalia spalania — production</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Model regresji wielowymiarowej + SHAP-based explainability (zgodne z EU AI Act). Detekcja kradzieży paliwa z naturalnojęzykowym wyjaśnieniem. Trenowany na 2-letnim zbiorze z pilotażu (target: precision ≥80%, recall ≥70%).</p>
+        </article>
+
+        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#3380FF]">Q3 2028 · TRL 8→9</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Multi-tenant scale-out PL→CZ/SK→DE</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Pełne wdrożenie pan-EU — Czechy i Słowacja (Q1), Niemcy (Q2). Lokalne FK integration (Pohoda, DATEV), lokalne VAT regime, multi-currency, e-invoicing per kraj (KSeF/Peppol/SDI/FacturaE).</p>
+        </article>
+
+        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Q4 2028 · Market Ready</p>
+              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Commercialization · TRL 9</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">Pełna komercjalizacja produktu w 4 krajach UE (PL, CZ, SK, DE). Konsorcjum: 1 uczelnia techniczna (TRL evaluation partner), 1 system FK europejski, 1 dostawca tachografów (VDO/Stoneridge). Target: 500+ klientów płacących.</p>
+        </article>
+      </div>
+
+      <!-- Grant program boxes: EIC + Horizon -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal">
+        <div class="rounded-[20px] p-7 sm:p-8 bg-[#005CE8] text-white">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+            <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2028 #1</p>
+            <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">EIC · Accelerator</span>
+          </div>
+          <h3 class="font-display text-[1.35rem] font-bold mb-3">EIC Accelerator</h3>
+          <p class="text-[14px] text-white/85 leading-relaxed mb-4">
+            <strong>European Innovation Council</strong> — blended finance dla deep-tech scale-ups. Grant €0.5–2.5M + equity €0.5–15M.
+            BusiKM aplikuje na komercjalizację 6 komponentów R&D + scale-out PL→CZ/SK→DE.
+          </p>
+          <div class="grid grid-cols-2 gap-3 text-[12.5px]">
+            <div><p class="text-white/60 mb-0.5">Faza</p><p class="font-semibold">TRL 6→9</p></div>
+            <div><p class="text-white/60 mb-0.5">Termin</p><p class="font-semibold">Q1 2028 (Step 1)</p></div>
+          </div>
+        </div>
+
+        <div class="rounded-[20px] p-7 sm:p-8 bg-[#8B5CF6] text-white">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+            <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2028 #2</p>
+            <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">Horizon · Cluster 5</span>
+          </div>
+          <h3 class="font-display text-[1.35rem] font-bold mb-3">Horizon Europe Cluster 5</h3>
+          <p class="text-[14px] text-white/85 leading-relaxed mb-4">
+            <strong>Climate, Energy &amp; Mobility</strong> work programme. Konsorcjum z 3+ partnerami (uczelnia + dostawca tachografów + flota pilotażowa).
+            Cel: standardy eFTI implementation + BT ITS protocol contribution + XAI transparency framework dla compliance.
+          </p>
+          <div class="grid grid-cols-2 gap-3 text-[12.5px]">
+            <div><p class="text-white/60 mb-0.5">Faza</p><p class="font-semibold">TRL 7→9</p></div>
+            <div><p class="text-white/60 mb-0.5">Termin</p><p class="font-semibold">Q2 2028 (call opening)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10 reveal">
+        <a href="/technologia" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-2 text-text border border-border text-[14px] font-semibold hover:bg-surface transition-all">
+          Czytaj szczegółową dokumentację R&D
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>

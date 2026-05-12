@@ -71,7 +71,7 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - 26 sprintów ukończonych, 218 ticketów zrealizowanych
 - Sprinty 0-16a DONE: cały panel webowy + aplikacja mobilna mocno do przodu (logowanie, GPS w tle, OCR paragonów, alerty AETR, dashboard floty na telefonie)
 - Sprinty 16b-22 zaplanowane: powiadomienia push, tryb offline, App Store/Google Play, testy mobile, launch produkcyjny
-- MVP LIVE: 13-14 maja 2026 (drift inkrementalny -3 dni)
+- MVP LIVE: 30 maja 2026 (drift inkrementalny -3 dni)
 - Po MVP (31 maja - 6 czerwca 2026): Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
 
 ## Stack technologiczny (informacja techniczna)
@@ -107,6 +107,6 @@ Current grant applications (in preparation): **FENG SMART** (Poland NCBR), **EIC
 
 Target market: ~6.1 million vans 2.5–3.5 t across the EU (Eurostat 2024). Zero dedicated compliance tools existed for this segment before BusiKM.
 
-MVP live: 13 May 2026. 218 tickets done across 26 sprints. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
+MVP live: 30 May 2026. 218 tickets done across 26 sprints. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
 
 EN landing: https://busikm.pl/en/ · Technology R&D detail: https://busikm.pl/en/technology
