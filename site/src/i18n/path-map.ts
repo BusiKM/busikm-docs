@@ -17,6 +17,10 @@ const PL_TO_EN: Record<string, string> = {
   '/funkcje': '/en/features',
   '/cennik': '/en/pricing',
   '/technologia': '/en/technology',
+  '/dla-kierowcow': '/en/for-drivers',
+  '/dla-wlascicieli': '/en/for-owners',
+  '/dla-ksiegowych': '/en/for-accountants',
+  '/dla-biur-rachunkowych': '/en/for-accounting-firms',
 };
 
 const EN_TO_PL: Record<string, string> = Object.fromEntries(

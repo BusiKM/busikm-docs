@@ -1,0 +1,204 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { APP_LOGIN_URL } from '../../lib/app-url';
+---
+
+<MarketingLayout
+  title="For fleet owners — BusiKM"
+  description="Real-time fleet visibility, per-trip profitability, OCR-driven cost capture from drivers in 6 languages, automatic per-diem calculation, FK accounting export. Built for transport companies running vans 2.5–3.5 t internationally."
+>
+
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden bg-surface px-5 py-24 sm:py-32">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.06] blur-[120px]"></div>
+  </div>
+  <div class="relative max-w-[1120px] mx-auto">
+    <div class="max-w-[760px]">
+      <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#005CE8] animate-pulse"></span>
+        <span class="text-[12.5px] font-semibold uppercase tracking-[0.06em] text-[#005CE8]">For fleet owners · transport 2.5–3.5 t</span>
+      </div>
+
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.12] tracking-[-0.035em] text-text mb-6">
+        Real-time fleet visibility.<br/>Margin per trip — visible the moment a receipt is added.
+      </h1>
+
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-text-secondary max-w-[660px] mb-9">
+        See where every van is, how each route is performing, which trip is making money and which one is losing it. Cost capture happens in the driver's pocket — you only see the numbers and the verdict.
+      </p>
+
+      <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
+        <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold hover:bg-brand-dark transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
+          Try the demo
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/en/pricing" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border bg-surface-2 text-text text-[15px] font-semibold hover:bg-surface transition-colors">
+          Pricing (free for pilots)
+        </a>
+      </div>
+
+      <div class="hero-seq-5 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-7 text-center sm:text-left">
+        {[
+          { num: 'Live', label: 'fleet map on web + mobile' },
+          { num: 'Per-trip', label: 'margin in real time' },
+          { num: 'OCR', label: 'costs from drivers in 6 langs' },
+          { num: 'FK export', label: 'Insert GT / Comarch / Symfonia' },
+        ].map(s => (
+          <div class="flex flex-col items-center sm:items-start">
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-text leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD MOCKUP ============ -->
+<section class="py-20 sm:py-28 bg-surface-2 px-5 border-t border-border-subtle">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">First screen after login</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
+        Live fleet view. Active orders. Real-time margin.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-text-secondary mt-4">
+        Revenue and costs update the moment a receipt is added from the driver's app. You don't wait until month-end to see the margin.
+      </p>
+    </div>
+
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] dark:bg-[#16161A] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_48px_rgba(0,0,0,0.30)]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] dark:bg-[#0F0F12] border-b border-border-subtle">
+        <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
+        <div class="ml-4 flex-1 max-w-[320px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary font-mono">app.busikm.pl/orders/active</div>
+        <div class="hidden sm:flex items-center gap-1.5 ml-auto">
+          <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+          <span class="text-[11px] text-[#34C759] font-semibold">live updates</span>
+        </div>
+      </div>
+
+      <div class="p-5 sm:p-7">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 auto-rows-fr">
+          {[
+            { label: 'Active orders', value: '7', sub: '4 PL → EU · 3 return', color: '#005CE8' },
+            { label: 'Monthly revenue', value: '€44 200', sub: '+12% vs previous month', color: '#34C759' },
+            { label: 'EU costs (to accountant)', value: '47 docs', sub: 'OCR · 6 currencies · ready', color: '#FF9500' },
+            { label: 'Net margin', value: '7.8%', sub: 'target: 8% · on track', color: '#8B5CF6' },
+          ].map(s => (
+            <div class="bg-surface rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col">
+              <p class="text-[10.5px] text-text-tertiary mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
+              <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-text leading-tight">{s.value}</p>
+              <p class="text-[11px] mt-1 leading-tight mt-auto pt-1" style={`color: ${s.color};`}>{s.sub}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div class="px-4 py-3 bg-[#FAFAFA] dark:bg-[#1F1F22] border-b border-border-subtle flex items-center justify-between">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Active orders · live profitability</span>
+            <span class="text-[11px] text-text-tertiary">14:23 local</span>
+          </div>
+          <div class="divide-y divide-black/[0.04] dark:divide-white/[0.06]">
+            {[
+              { id: 'BKM-2841', vehicle: 'Sprinter DK 12345', driver: 'Jan Kowalski', route: 'Warsaw → Berlin', progress: 62, revenue: '€1 850', costs: '€1 140', margin: '+38.4%', marginColor: '#34C759', status: 'En route · 412/670 km', statusColor: '#005CE8' },
+              { id: 'BKM-2842', vehicle: 'Crafter KR 67890', driver: 'Marek Nowak', route: 'Kraków → Milan', progress: 28, revenue: '€2 350', costs: '€1 290', margin: '+45.1%', marginColor: '#34C759', status: 'En route · 308/1100 km', statusColor: '#34C759' },
+              { id: 'BKM-2843', vehicle: 'Daily WA 11223', driver: 'Piotr Wiśniewski', route: 'Wrocław → Paris', progress: 45, revenue: '€1 980', costs: '€1 540', margin: '+22.2%', marginColor: '#FF9500', status: 'Mandatory break 45/45 min', statusColor: '#FF9500' },
+              { id: 'BKM-2844', vehicle: 'Transit GD 33445', driver: 'Adam Lewandowski', route: 'Gdańsk → Amsterdam', progress: 88, revenue: '€1 720', costs: '€1 850', margin: '−7.5%', marginColor: '#FF3B30', status: 'Breakdown · service Apeldoorn', statusColor: '#FF3B30' },
+            ].map(o => (
+              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] dark:bg-[#1F1F22] transition-colors">
+                <div class="col-span-12 sm:col-span-3">
+                  <span class="text-[10px] font-mono text-text-tertiary">{o.id}</span>
+                  <p class="text-[12.5px] font-semibold text-text tracking-[-0.005em] leading-tight">{o.vehicle}</p>
+                  <p class="text-[11px] text-text-tertiary leading-tight">{o.driver}</p>
+                </div>
+                <div class="col-span-12 sm:col-span-4">
+                  <p class="text-[12px] text-text mb-1.5 font-medium">{o.route}</p>
+                  <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden">
+                    <div class="h-full rounded-full" style={`width:${o.progress}%; background: ${o.statusColor}`}></div>
+                  </div>
+                  <p class="text-[10.5px] mt-1" style={`color: ${o.statusColor}`}>{o.status}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-2">
+                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">Revenue</p>
+                  <p class="text-[12.5px] font-mono font-semibold text-text">{o.revenue}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-2">
+                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">EU costs</p>
+                  <p class="text-[12.5px] font-mono font-semibold text-text-secondary">{o.costs}</p>
+                </div>
+                <div class="col-span-4 sm:col-span-1 text-right">
+                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">Margin</p>
+                  <p class="text-[13px] font-mono font-bold" style={`color: ${o.marginColor}`}>{o.margin}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p class="text-[11px] text-text-tertiary mt-4 italic">
+          Negative margin on BKM-2844: a breakdown in Apeldoorn added €320 in service costs. The owner sees it the moment the receipt is uploaded — not at month-end.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 PILLARS ============ -->
+<section class="py-20 sm:py-28 bg-surface px-5 border-t border-border-subtle">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[680px] mx-auto text-center mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">What an owner gets</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
+        Six things that change how you run a fleet.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        { title: 'Live fleet map', desc: 'WebSocket-driven, real-time positions of every van. ETA per order. No browser refresh.', color: '#005CE8' },
+        { title: 'Margin per trip', desc: 'Revenue, costs, per-diems and forex captured the moment they happen — margin is always current, not month-end.', color: '#34C759' },
+        { title: 'Per-vehicle profitability', desc: 'Which van earns its keep, which one bleeds money on maintenance, fuel and tolls. Decisions backed by numbers.', color: '#FF9500' },
+        { title: 'Per-driver performance', desc: 'Hours worked, AETR compliance score, average fuel economy, ratio of approved vs corrected routes.', color: '#8B5CF6' },
+        { title: 'Document compliance dashboard', desc: 'OC / inspection / G2V2 tachograph / transport license / driver licenses — one screen, expiry alerts 90/30/14/7 days ahead.', color: '#FF3B30' },
+        { title: 'FK export, one click', desc: 'Costs and per-diems flow into Insert GT, Comarch ERP Optima, Symfonia FK with the correct VAT categorisation. No manual rekeying.', color: '#3380FF' },
+      ].map(f => (
+        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="w-10 h-10 rounded-[12px] mb-4 flex items-center justify-center" style={`background: ${f.color}15`}>
+            <span class="w-3 h-3 rounded-full" style={`background: ${f.color}`}></span>
+          </div>
+          <h3 class="font-display font-bold text-[1.05rem] text-text mb-2">{f.title}</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">{f.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 sm:py-28 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.18] mb-5">
+      Run the fleet — don't chase paper.
+    </h2>
+    <p class="text-[15px] text-white/60 mb-10 leading-relaxed">
+      Free lifetime access for the first pilot transport companies. In exchange — a short conversation about the product once a month.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        Try the demo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/en/pricing" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/10 transition-all">
+        Pricing (free for pilots)
+      </a>
+    </div>
+  </div>
+</section>
+
+</MarketingLayout>

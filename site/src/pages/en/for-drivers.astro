@@ -1,0 +1,178 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { APP_LOGIN_URL } from '../../lib/app-url';
+---
+
+<MarketingLayout
+  title="For drivers — BusiKM"
+  description="Mobile app for international transport drivers. Background GPS tracking, OCR for receipts in 6 languages (PL/EN/DE/IT/FR/ES), AETR working-time alerts before BAG / ITD / Gendarmerie stops you, full offline mode. iOS 15+ / Android 10+."
+>
+
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden bg-surface px-5 py-24 sm:py-32">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.04] blur-[120px]"></div>
+  </div>
+  <div class="relative max-w-[1120px] mx-auto">
+    <div class="max-w-[720px]">
+      <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span class="text-[12.5px] font-medium text-[#005CE8]">Driver app · iOS 15+ · Android 10+</span>
+      </div>
+
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-[-0.035em] text-text mb-6">
+        Your route across Europe —<br/>without the stress of working time<br/>and paper receipts in a plastic bag.
+      </h1>
+
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-text-secondary max-w-[600px] mb-9">
+        BusiKM logs your GPS route in the background, OCRs receipts from DE/IT/FR/ES/AT/NL, warns you about mandatory breaks before BAG, ITD or Gendarmerie pulls you over, and works offline in tunnels and mountains.
+      </p>
+
+      <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
+        <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold hover:bg-brand-dark transition-colors shadow-[0_1px_3px_rgba(0,92,232,0.4)]">
+          Try the demo
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/en/pricing" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border bg-surface-2 text-text text-[15px] font-semibold hover:bg-surface transition-colors">
+          Pricing (free for pilots)
+        </a>
+      </div>
+
+      <div class="hero-seq-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-6 gap-y-7 sm:gap-8 md:gap-12 text-center sm:text-left">
+        {[
+          { num: 'OCR', label: 'receipt → cost in 3 sec' },
+          { num: 'AETR', label: 'alerts before BAG stops you' },
+          { num: 'Offline', label: 'works without signal' },
+          { num: '6 langs', label: 'PL/EN/DE/IT/FR/ES' },
+        ].map(s => (
+          <div class="flex flex-col items-center sm:items-start">
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-text leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[140px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AETR — DEEP DIVE ============ -->
+<section class="py-20 sm:py-28 bg-surface px-5 border-t border-border-subtle">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Most important feature</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-5">
+          AETR working-time alerts.<br/>Before BAG pulls you over.
+        </h2>
+        <p class="text-[14.5px] leading-relaxed text-text-secondary mb-5">
+          The EU Mobility Package and AETR have simple rules — but dozens of edge cases. BusiKM monitors every limit and warns you before you break the law:
+        </p>
+        <ul class="space-y-2 text-[13.5px] text-text-secondary">
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">4.5 h driving + 45 min break</strong> — break can be split into 15 + 30 min</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">9 h daily driving</strong>, max 10 h twice a week</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">11 h daily rest</strong>, reducible to 9 h max 3× a week</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">45 h weekly rest</strong>, reducible to 24 h on alternating weeks</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Return to base</strong> every 4 weeks</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Cabotage: 3 operations in 7 days</strong> after entering a country on an international job</span></li>
+        </ul>
+        <p class="text-[12.5px] text-text-tertiary mt-5 italic">
+          The rules sound simple. In practice a driver tracks 6 limits simultaneously, across 5 time zones, 3 currencies — after 12 hours of driving. BusiKM does it for you.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-[24px] bg-[#0A0A0B] p-1.5 mx-auto max-w-[360px] sm:max-w-[420px]">
+          <div class="rounded-[20px] bg-surface-2 overflow-hidden">
+            <div class="bg-surface px-4 py-2 flex items-center justify-between text-[10px] text-text-tertiary font-mono">
+              <span>14:23</span>
+              <div class="flex items-center gap-1"><span>●●●</span><span>4G</span><span>87%</span></div>
+            </div>
+            <div class="bg-[#FF9500] text-white p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                <span class="text-[10.5px] font-semibold uppercase tracking-[0.06em]">Mandatory break</span>
+              </div>
+              <p class="text-[20px] font-bold leading-tight mb-1">In 12 min you must stop</p>
+              <p class="text-[13px] opacity-90">You'll hit 4:30 h of driving at 14:35. Suggested rest stop: Aire de Beaune-Tailly, 18 km ahead.</p>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="flex items-center justify-between text-[12px]">
+                <span class="text-text-tertiary">Driving today</span>
+                <span class="font-mono font-semibold text-text">4 h 18 min / 9 h</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:48%"></div></div>
+              <div class="flex items-center justify-between text-[12px]">
+                <span class="text-text-tertiary">Weekly driving</span>
+                <span class="font-mono font-semibold text-text">38 h 12 min / 56 h</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:68%"></div></div>
+              <div class="flex items-center justify-between text-[12px]">
+                <span class="text-text-tertiary">Return to base in</span>
+                <span class="font-mono font-semibold text-text">9 days</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden"><div class="h-full bg-[#005CE8] rounded-full" style="width:32%"></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-[11px] text-text-tertiary mt-4">Real-time AETR limits on a driver's phone — based on actual GPS data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 PILLARS ============ -->
+<section class="py-20 sm:py-28 bg-surface-2 px-5 border-t border-border-subtle">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal max-w-[640px] mb-14">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">What you get</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
+        Six features that change a driver's everyday workflow.
+      </h2>
+    </div>
+
+    <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        { title: 'Background GPS tracking', desc: 'Start your route with one tap, app records the entire trip in the background. Battery-optimized — never drains the phone in 3 hours.', color: '#005CE8' },
+        { title: 'Receipt OCR in 6 languages', desc: 'Snap a photo of any receipt (PL/EN/DE/IT/FR/ES). The app extracts vendor, amount, VAT, currency and cost category automatically.', color: '#FF9500' },
+        { title: 'Live AETR alerts', desc: '4.5 h drive, 9 h daily, 56 h weekly, 90 h biweekly, return to base every 4 weeks. App warns ahead, not after.', color: '#FF3B30' },
+        { title: 'Full offline mode', desc: 'Tunnels, mountains, dead zones — the app keeps logging locally and syncs once you regain signal. No data loss, ever.', color: '#34C759' },
+        { title: 'Tachograph & docs in your pocket', desc: 'G2V2 calibration dates, license, code 95, ADR, psychotech — all reminders 90/30/14/7 days ahead.', color: '#8B5CF6' },
+        { title: 'Per-diem auto-calculation', desc: 'Per-country, per-day allowances per the Polish Ministry regulation, automatically split based on your GPS border crossings. No spreadsheets.', color: '#3380FF' },
+      ].map(f => (
+        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
+          <div class="w-10 h-10 rounded-[12px] mb-4 flex items-center justify-center" style={`background: ${f.color}15`}>
+            <span class="w-3 h-3 rounded-full" style={`background: ${f.color}`}></span>
+          </div>
+          <h3 class="font-display font-bold text-[1.05rem] text-text mb-2">{f.title}</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">{f.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 sm:py-28 bg-[#0A0A0B] px-5 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-[#005CE8]/15 blur-[150px]"></div>
+  </div>
+  <div class="relative reveal text-center max-w-[680px] mx-auto">
+    <h2 class="font-display text-[clamp(1.8rem,5vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.18] mb-5">
+      Less paper, less stress,<br/>more time on the road.
+    </h2>
+    <p class="text-[15px] text-white/60 mb-10 leading-relaxed">
+      Tell your employer about BusiKM. They pick the tools — but you, the driver, get the most out of it.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/en/features" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        See app features
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/en/pricing" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/10 transition-all">
+        Pricing (free for pilots)
+      </a>
+    </div>
+  </div>
+</section>
+
+</MarketingLayout>
