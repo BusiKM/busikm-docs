@@ -963,7 +963,7 @@ const homeFaq = [
   </div>
 </section>
 
-<!-- ======================== POD MASKĄ — TECHNOLOGIA / B+R ======================== -->
+<!-- ======================== POD MASKĄ — TECHNOLOGIA / B+R (BKM-550 deep TRL) ======================== -->
 <section id="pod-maska" class="relative bg-[#0F1115] py-24 sm:py-32 px-5 overflow-hidden border-y border-white/5">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-15%] left-1/4 w-[700px] h-[500px] rounded-full bg-[#005CE8]/[0.08] blur-[160px]"></div>
@@ -971,13 +971,14 @@ const homeFaq = [
   </div>
 
   <div class="relative max-w-[1180px] mx-auto">
-    <div class="text-center mb-16 reveal">
+    <div class="text-center mb-14 reveal">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#3380FF] mb-4">Pod maską · prace badawczo-rozwojowe</p>
       <h2 class="font-display text-[clamp(1.9rem,4.2vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.12] max-w-[860px] mx-auto mb-5">
         BusiKM nie jest standardową aplikacją do zarządzania flotą.
       </h2>
-      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[760px] mx-auto mb-10">
-        Pięć autorskich komponentów badawczo-rozwojowych — od parsera binarnego formatu tachografu po model uczenia maszynowego z wyjaśnialnością decyzji w języku naturalnym. Większość z nich powstała dlatego, że gotowych rozwiązań na polskim rynku nie ma.
+      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[820px] mx-auto mb-10">
+        Sześć autorskich komponentów badawczo-rozwojowych — od parsera binarnego formatu tachografu po model uczenia maszynowego z naturalnojęzykową wyjaśnialnością decyzji.
+        Każdy komponent ma określony <strong class="text-white/85">Technology Readiness Level (TRL)</strong> według skali Komisji Europejskiej i&nbsp;jasno rozdziela <strong class="text-white/85">co już mamy w&nbsp;MVP</strong> od <strong class="text-white/85">co aktualnie badamy / prototypujemy</strong>.
       </p>
 
       <!-- Credibility strip — co już zbudowaliśmy -->
@@ -993,92 +994,191 @@ const homeFaq = [
       </div>
     </div>
 
+    <!-- TRL legend strip -->
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10 text-[11px] font-semibold tracking-[0.04em] uppercase text-white/55">
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#FF3B30]"></span>TRL 3 — badania</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#FF9500]"></span>TRL 4–5 — prototyp / walidacja</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#3380FF]"></span>TRL 6–7 — integracja</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#34C759]"></span>TRL 8–9 — produkcja</span>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
 
-      <!-- 1. Parser DDD -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#005CE8]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
+      <!-- 1. Parser DDD — TRL 4 -->
+      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
           <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.15] text-[#3380FF] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja krajowa</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 4
+          </span>
         </div>
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Parser binarny pliku DDD</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Autorska implementacja w Pythonie odczytująca surowy plik DDD pobrany z tachografu G2V2 — zgodna ze specyfikacją zawartą w <strong class="text-white/85">Rozporządzeniu Komisji (UE) 2016/799 Annex&nbsp;I</strong>. Na polskim rynku nie istnieje gotowa biblioteka odczytu DDD w Pythonie — zbudowaliśmy ją od zera, by przekształcić bajty z pamięci tachografu w czytelny raport 56 dni dla ITD.</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla właściciela: raport 56 dni dla ITD jednym kliknięciem.</p>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Autorska implementacja w&nbsp;Pythonie odczytująca surowy plik DDD z&nbsp;tachografu G2V2 — zgodna z&nbsp;<strong class="text-white/85">Rozporządzeniem Komisji (UE) 2016/799 Annex&nbsp;I</strong>. Na rynku UE nie istnieje gotowa biblioteka odczytu DDD w&nbsp;Pythonie pod kątem busów 2,5–3,5&nbsp;t.
+        </p>
+        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
+          <p class="text-white/45"><span class="text-[#34C759]">●</span> Co badamy: parsowanie zdarzeń bloku, walidacja sygnatur certyfikatów</p>
+          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: raport 56 dni dla ITD jednym kliknięciem</p>
+        </div>
       </article>
 
-      <!-- 2. Bluetooth ITS G2V2 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#34C759]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
+      <!-- 2. Bluetooth ITS G2V2 — TRL 3 -->
+      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF3B30]/30 transition-colors duration-300 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
           <span class="px-2.5 py-1 rounded-full bg-[#34C759]/[0.15] text-[#34C759] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja europejska</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF3B30]/[0.12] text-[#FF6B5C] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF3B30]"></span>TRL 3
+          </span>
         </div>
         <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 7L7 17"/><path d="M12 2v8M12 14v8"/></svg>
         </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Bluetooth ITS — komunikacja z tachografem</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Autorska biblioteka React Native nawiązująca połączenie z tachografem G2V2 przez interfejs <strong class="text-white/85">Bluetooth ITS (Intelligent Transport System)</strong>, opisany w aneksach do Rozporządzenia 2016/799. Obsługuje protokół wymiany danych certyfikacyjnych i pobieranie pliku DDD bez konieczności podłączania pojazdu kablem do warsztatu — funkcjonalność, której brakuje w istniejących aplikacjach na rynku europejskim.</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla właściciela: pobranie danych tachografu z każdego busa zdalnie, w 30 sekund.</p>
+        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Bluetooth ITS — komunikacja z&nbsp;tachografem</h3>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Biblioteka React Native łącząca się z&nbsp;tachografem G2V2 przez interfejs <strong class="text-white/85">Bluetooth ITS (Intelligent Transport System)</strong> opisany w&nbsp;Rozporządzeniu 2016/799. Funkcjonalność, której brakuje w&nbsp;istniejących aplikacjach na rynku europejskim — pobranie pliku DDD bez kabla i&nbsp;wizyty w&nbsp;warsztacie.
+        </p>
+        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
+          <p class="text-white/45"><span class="text-[#FF3B30]">●</span> Co badamy: protokół wymiany certyfikatów + handshake</p>
+          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: pobranie danych tachografu zdalnie w&nbsp;30 sekund</p>
+        </div>
       </article>
 
-      <!-- 3. Detekcja granic GPS -->
+      <!-- 3. Detekcja granic GPS — TRL 5 -->
       <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
+        <div class="flex items-center justify-between mb-5">
           <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.15] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">Algorytm geoprzestrzenny</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 5
+          </span>
         </div>
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Detekcja przekroczenia granic UE</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Algorytm <em>point-in-polygon</em> operujący na warstwie GeoJSON granic państw Unii Europejskiej z biblioteką Shapely. Każdy odczyt GPS busa jest klasyfikowany do konkretnego kraju w czasie rzeczywistym — <strong class="text-white/85">bez zewnętrznego API</strong>, bez zależności od sieci komórkowej w terenie. Klasyfikacja stanowi wejście dla silnika kalkulacji diet zagranicznych.</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla właściciela: dni pobytu kierowcy w każdym kraju liczone automatycznie.</p>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Algorytm <em>point-in-polygon</em> operujący na warstwie GeoJSON granic 27 państw UE (Shapely). Klasyfikuje każdy odczyt GPS busa do konkretnego kraju w&nbsp;czasie rzeczywistym — <strong class="text-white/85">bez zewnętrznego API</strong>, bez zależności od sieci komórkowej. Wejście dla silnika diet.
+        </p>
+        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
+          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Walidacja w&nbsp;laboratorium: trasy referencyjne PL→DE/IT/FR</p>
+          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: dni pobytu kierowcy per kraj — auto-rozliczane</p>
+        </div>
       </article>
 
-      <!-- 4. Silnik kalkulacji diet -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#8B5CF6]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
+      <!-- 4. Silnik kalkulacji diet — TRL 4 -->
+      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
           <span class="px-2.5 py-1 rounded-full bg-[#8B5CF6]/[0.15] text-[#A78BFA] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja procesowa</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 4
+          </span>
         </div>
         <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#A78BFA]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
         </div>
         <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Silnik kalkulacji diet zagranicznych</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Reguły z <strong class="text-white/85">Rozporządzenia MPiPS z 29 stycznia 2013 r. w sprawie należności z tytułu podróży służbowej (Dz.U. 2013 poz. 167, Załącznik nr 2)</strong> przełożone na deterministyczny silnik produkcyjny. Łączy wynik <em>point-in-polygon</em> z tabelą stawek per kraj per dzień, generuje gotowe rozliczenie kierowcy do eksportu do Insert GT, Comarch lub Symfonii. Pierwsza tego typu integracja GPS↔diety dostępna w segmencie busów 2,5–3,5&nbsp;t.</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla księgowej: rozliczenie kierowcy w 5 minut zamiast w pół dnia.</p>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Reguły z&nbsp;<strong class="text-white/85">Rozporządzenia MPiPS z&nbsp;29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr&nbsp;2)</strong> przełożone na deterministyczny silnik produkcyjny. Łączy wynik point-in-polygon z&nbsp;tabelą stawek per kraj per dzień. Pierwsza integracja GPS↔diety w&nbsp;segmencie busów 2,5–3,5&nbsp;t.
+        </p>
+        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
+          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Co badamy: edge cases podziału doby między 2 krajami</p>
+          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: rozliczenie kierowcy w&nbsp;5&nbsp;min zamiast pół dnia</p>
+        </div>
       </article>
 
-      <!-- 5. Model ML anomalii spalania -->
+      <!-- 5. Model ML anomalii spalania — TRL 3 -->
       <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF3B30]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
+        <div class="flex items-center justify-between mb-5">
           <span class="px-2.5 py-1 rounded-full bg-[#FF3B30]/[0.15] text-[#FF6B5C] text-[10.5px] font-bold tracking-[0.06em] uppercase">Uczenie maszynowe · XAI</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF3B30]/[0.12] text-[#FF6B5C] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#FF3B30]"></span>TRL 3
+          </span>
         </div>
         <div class="w-11 h-11 rounded-[14px] bg-[#FF3B30]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF6B5C]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
         </div>
         <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Detekcja anomalii spalania paliwa</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Model regresji wielowymiarowej trenowany na cechach: dystans, ukształtowanie terenu, ładunek, prędkość średnia, kierowca, pora roku. Anomalia powyżej <strong class="text-white/85">progu 15%</strong> względem prognozy generuje alert push do właściciela. Element <strong class="text-white/85">XAI (eXplainable AI)</strong> tłumaczy każdą detekcję w języku naturalnym — np. „spalanie 13,8 l/100&nbsp;km na trasie Wrocław–Drezno przekracza średnią o 18%; możliwe przyczyny: wyciek, jazda agresywna, kradzież paliwa".</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla właściciela: wykrycie kradzieży paliwa w pierwszym tygodniu od wystąpienia.</p>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Model regresji wielowymiarowej trenowany na cechach: dystans, ukształtowanie terenu, ładunek, prędkość średnia, kierowca, pora roku. Element <strong class="text-white/85">XAI (eXplainable AI)</strong> generuje naturalnojęzykowe wyjaśnienie każdej detekcji — np. „spalanie 13,8&nbsp;l/100&nbsp;km przekracza średnią o&nbsp;18% — możliwe przyczyny: wyciek, jazda agresywna, kradzież paliwa".
+        </p>
+        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
+          <p class="text-white/45"><span class="text-[#FF3B30]">●</span> Co badamy: feature engineering + threshold tuning &gt;15%</p>
+          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: wykrycie kradzieży paliwa w&nbsp;pierwszym tygodniu</p>
+        </div>
       </article>
 
-      <!-- 6. Multi-tenant izolacja -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-white/20 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-surface/[0.06] text-white/80 text-[10.5px] font-bold tracking-[0.06em] uppercase">Architektura SaaS</span>
+      <!-- 6. Multi-tenant izolacja — TRL 8 (jedyny w produkcji) -->
+      <article class="bg-[#16191F] rounded-[20px] p-7 border border-[#34C759]/20 hover:border-[#34C759]/40 transition-colors duration-300 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="px-2.5 py-1 rounded-full bg-surface/[0.08] text-white/80 text-[10.5px] font-bold tracking-[0.06em] uppercase">Architektura SaaS</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#34C759]/[0.15] text-[#34C759] text-[10.5px] font-bold tracking-[0.06em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>TRL 8 · MVP
+          </span>
         </div>
-        <div class="w-11 h-11 rounded-[14px] bg-surface/[0.06] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <div class="w-11 h-11 rounded-[14px] bg-surface/[0.08] flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-white/85" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Multi-tenant z pełną izolacją danych</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">Architektura wielodzierżawna umożliwiająca biuru rachunkowemu obsługę wielu firm transportowych z jednego konta — z ścisłą izolacją danych każdej firmy klienta na poziomie zapytań do bazy. Mechanizm przełączania kontekstu klienta z pełnym logowaniem audytowym — zgodnie z wymogami art.&nbsp;28 RODO o powierzaniu przetwarzania danych.</p>
-        <p class="text-[12px] font-semibold text-white/50 tracking-tight">Rezultat dla biura: jeden panel zamiast logowania do dziesięciu kont klientów.</p>
+        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Multi-tenant z&nbsp;pełną izolacją danych</h3>
+        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
+          Architektura wielodzierżawna (`CompanyScopedMixin` + `TenantContextMiddleware` w&nbsp;Django) — biuro rachunkowe obsługuje wielu klientów transportowych z&nbsp;jednego konta. Ścisła izolacja na poziomie zapytań do PostgreSQL. Zgodnie z&nbsp;art.&nbsp;28 RODO + pełen audit log każdej operacji.
+        </p>
+        <div class="mt-auto pt-4 border-t border-[#34C759]/[0.15] space-y-1.5 text-[11.5px]">
+          <p class="text-white/55"><span class="text-[#34C759]">✓</span> Mamy w&nbsp;MVP: izolacja produkcyjna, audit log, context switching</p>
+          <p class="text-white/55"><span class="text-[#3380FF]">●</span> Wynik: jeden panel zamiast logowania do 10 kont klientów</p>
+        </div>
       </article>
 
     </div>
 
-    <div class="text-center mt-14 reveal">
-      <p class="text-[13.5px] text-white/50 max-w-[680px] mx-auto leading-relaxed">
-        Komponenty badawczo-rozwojowe BusiKM zostały opracowane w ramach prac własnych zespołu i nie są dostępne jako gotowe produkty na rynku polskim. Stanowią podstawę zgłoszenia projektu do programu <strong class="text-white/75">FENG Ścieżka SMART</strong>.
+    <!-- ============ METODOLOGIA R&D (5 kroków) ============ -->
+    <div class="mt-20 reveal">
+      <div class="text-center mb-10">
+        <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#3380FF] mb-3">Metodologia R&D</p>
+        <h3 class="font-display text-[24px] sm:text-[30px] font-bold tracking-[-0.02em] text-white leading-tight max-w-[680px] mx-auto">
+          Pięć kroków: od hipotezy do produkcji
+        </h3>
+      </div>
+
+      <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 reveal-stagger">
+        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
+          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#3380FF]/40 leading-none">01</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#3380FF] mb-2">Hipoteza</p>
+          <p class="text-[12.5px] leading-[1.55] text-white/65">Definiowanie problemu, celu badawczego i&nbsp;mierzalnych KPI sukcesu.</p>
+        </li>
+        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
+          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#FF9500]/40 leading-none">02</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Prototyp</p>
+          <p class="text-[12.5px] leading-[1.55] text-white/65">Minimalna implementacja walidująca koncept — przejście TRL 3 → 4.</p>
+        </li>
+        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
+          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#FF9500]/40 leading-none">03</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Walidacja</p>
+          <p class="text-[12.5px] leading-[1.55] text-white/65">Testy na realnych danych w&nbsp;sprintach pilotażowych — TRL 5.</p>
+        </li>
+        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
+          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#3380FF]/40 leading-none">04</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#3380FF] mb-2">Integracja</p>
+          <p class="text-[12.5px] leading-[1.55] text-white/65">Embed komponentu w&nbsp;produktową architekturę — TRL 6–7.</p>
+        </li>
+        <li class="relative p-5 rounded-2xl bg-[#34C759]/[0.04] border border-[#34C759]/15">
+          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#34C759]/50 leading-none">05</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#34C759] mb-2">Produkcja</p>
+          <p class="text-[12.5px] leading-[1.55] text-white/65">Release jako część MVP, monitoring na realnym ruchu — TRL 8–9.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Footer disclaimer + 3 programy grantowe -->
+    <div class="text-center mt-16 reveal">
+      <p class="text-[13.5px] text-white/55 max-w-[840px] mx-auto leading-relaxed">
+        Komponenty badawczo-rozwojowe BusiKM zostały opracowane w&nbsp;ramach prac własnych zespołu i&nbsp;nie są dostępne jako gotowe produkty na rynku UE. Stanowią podstawę aplikacji o&nbsp;granty: <strong class="text-white/80">FENG Ścieżka SMART</strong> (NCBR), <strong class="text-white/80">EIC Accelerator</strong> (European Innovation Council), <strong class="text-white/80">Horizon Europe</strong> (Climate, Energy &amp; Mobility).
       </p>
+      <a href="/technologia" class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-surface/[0.06] hover:bg-surface/[0.10] border border-white/10 text-white/85 text-[13px] font-semibold transition-colors">
+        Czytaj szczegółową dokumentację R&D
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
