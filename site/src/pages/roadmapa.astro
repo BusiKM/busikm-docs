@@ -1,70 +1,197 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 
-// Realne dane sprintów z Jira (projekt BKM, board 34)
-// Synchronizowane komendą UPDATE ROADMAP. Ostatnia synchronizacja: 8 maja 2026.
-// Zamknięte sprinty 0-16a (26 sprintów, 218 ticketów Done). Zaplanowane: 16b-22.
-// Drift inkrementalny -3 dni (kolejna iteracja) → daty cofnięte o kolejne 3 dni. MVP LIVE: 30 maja 2026.
-
-const closedSprints = 26;
-const closedTickets = 218;
+// === Roadmapa BusiKM — 7-fazowy timeline europejskiego deep-tech ===
+// Faza 1-2: DONE (architektura, web app). Faza 3: in-progress (mobile). Faza 4: upcoming (MVP launch).
+// Faza 5: post-MVP H2 2026. Faza 6: 2027 R&D FENG SMART. Faza 7: 2028 EIC + Horizon.
+// Synchronizowane z Jirą komendą UPDATE ROADMAP. Last sync: 8 maja 2026.
 
 const phases = [
+  // ============================ FAZA 1 — ARCHITEKTURA (DONE) ============================
   {
-    id: 'mobile',
-    label: 'Faza 1 — Aplikacja mobilna',
-    period: '9 — 12 maja 2026',
-    color: '#FF9500',
-    summary: 'Aplikacja na iOS i Android — narzędzie dla kierowcy w terenie i właściciela firmy w drodze. Kluczowa zasada: kierowca nie wpisuje niczego ręcznie.',
+    num: 1,
+    id: 'architektura',
+    label: 'Architektura',
+    period: '14 kwietnia — 5 maja 2026',
+    color: '#34C759',
+    status: 'done',
+    summary: 'Fundament backendu: CI/CD, autoryzacja, multi-tenant z izolacją RODO, ewidencja zleceń i tras, eksport do trzech systemów księgowych, model rozliczeń per pojazd, real-time mapa floty.',
     sprints: [
-      { id: '16b', range: '9 maja', title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
-      { id: '16c', range: '10 maja', title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
-      { id: '17a', range: '11 maja', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
-      { id: '17b', range: '12 maja', title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
+      { id: 'S0',  range: '14–18 kwietnia', title: 'Środowisko produkcyjne i CI/CD', desc: 'Środowisko produkcyjne, automatyzacja wdrożeń, monitoring infrastruktury i błędów aplikacji, dokumentacja architektury wewnętrznej.', tickets: 13 },
+      { id: 'S1',  range: '19–20 kwietnia', title: 'Autoryzacja i system ról', desc: 'Bezpieczne logowanie z automatycznym odświeżaniem sesji, weryfikacja e-mail, cztery role: kierowca, właściciel, księgowy, biuro rachunkowe.', tickets: 10 },
+      { id: 'S2',  range: '21 kwietnia',    title: 'Firmy, subskrypcje, izolacja danych', desc: 'Profil firmy, subskrypcja, multi-tenant z izolacją RODO między firmami oraz przełączanie kontekstu dla biur rachunkowych obsługujących wielu klientów.', tickets: 16 },
+      { id: 'S3',  range: '22–23 kwietnia', title: 'Pojazdy, kierowcy, dokumenty', desc: 'Pełne zarządzanie flotą i kierowcami, upload dokumentów (OC, przegląd, tachograf, prawo jazdy), monitoring terminów ważności.', tickets: 14 },
+      { id: 'S4',  range: '23–30 kwietnia', title: 'Ewidencja zleceń, eksport FK, dokumenty', desc: 'Pełna ewidencja zleceń i tras pojazdów, dziennik audytowy, eksport faktur kosztowych i raportów do Insert GT, Comarch ERP Optima oraz Symfonia FK. Kursy walut NBP automatycznie.', tickets: 35 },
+      { id: 'S5a', range: '2 maja',         title: 'Model rozliczeń per aktywny pojazd', desc: 'Hurtowe rozliczanie aktywnych pojazdów floty w jednym cyklu, automatyczne miesięczne podsumowanie dla firm z wieloma oddziałami i biur rachunkowych.', tickets: 14 },
+      { id: 'S5b', range: '2 maja',         title: 'Plan indywidualny dla większych flot', desc: 'Indywidualne warunki cenowe per pojazd, panel administracyjny do zarządzania umowami i walidacje rozdzielające plan indywidualny od standardowego pilotażu.', tickets: 7 },
+      { id: 'S6a', range: '3–4 maja',       title: 'System rejestracji pilotów', desc: 'Panel administracyjny generowania jednorazowych linków, automatyczne maile powitalne, zabezpieczenia przeciw nadużyciom, testy cyklu rejestracji nowego pilota.', tickets: 8 },
+      { id: 'S6b', range: '4 maja',         title: 'Dashboard zgodności dokumentów', desc: 'Zagregowany status dokumentów floty — OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy — na poziomie firmy lub portfela biura rachunkowego.', tickets: 3 },
+      { id: 'S7a', range: '4 maja',         title: 'Powiadomienia w aplikacji (backend)', desc: 'Trzy kanały komunikacji w aplikacji: alerty wygasających dokumentów, potwierdzenia tras dla właściciela, komunikaty produktowe. Preferencje per kanał per użytkownik.', tickets: 10 },
+      { id: 'S7b', range: '5 maja',         title: 'Automatyzacja cyklu próbnego', desc: 'Sekwencja przypomnień przed wygaśnięciem trialu, automatyczne przedłużenie dla kont, które jeszcze nie zarejestrowały żadnej trasy.', tickets: 6 },
+      { id: 'S8',  range: '5 maja',         title: 'Mapa floty w czasie rzeczywistym', desc: 'Pozycje pojazdów aktualizowane na żywo bez konieczności odświeżania strony. Mapa Europy z busami w trasie, ETA dla zlecenia, fundament pod geofencing.', tickets: 12 },
+      { id: 'S9',  range: '5 maja',         title: 'Domknięcie zakresu backendowego', desc: 'Walidacje danych firmowych przy tworzeniu klienta, bezpieczne odzyskiwanie usuniętych obiektów, rozszerzony monitoring stanu systemu.', tickets: 9 },
     ],
   },
+
+  // ============================ FAZA 2 — WEB APP (DONE) ============================
   {
-    id: 'launch',
-    label: 'Faza 2 — Launch i rozszerzenia',
-    period: '13 — 21 maja 2026',
-    color: '#8B5CF6',
-    summary: 'Wdrożenie produkcyjne, audyt bezpieczeństwa, testy z pierwszymi pilotami, a następnie funkcje rozszerzające zakres zgodności podatkowej i analityki.',
+    num: 2,
+    id: 'web-app',
+    label: 'Web App',
+    period: '6–7 maja 2026',
+    color: '#34C759',
+    status: 'done',
+    summary: 'Panel webowy dla właściciela firmy i biura rachunkowego — multi-tenant context switching, dashboard floty, raporty, eksport FK jednym kliknięciem, mapa floty w czasie rzeczywistym, onboarding pilota.',
     sprints: [
-      { id: '18', range: '13—14 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe na docelowych obciążeniach, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
-      { id: '19', range: '15—16 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
-      { id: '20', range: '17—18 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur — faktury kosztowe z PL automatycznie pobierane i powiązane z trasami pojazdu.', tickets: 5 },
-      { id: '21', range: '19—20 maja', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty — dla właścicieli firm transportowych i biur rachunkowych prowadzących analizę.', tickets: 4 },
-      { id: '22', range: '21 maja', title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
+      { id: 'S10a', range: '6 maja', title: 'Fundament panelu webowego', desc: 'Bezpieczna autoryzacja, spójny system designu, pełna responsywność — działa na komputerze, laptopie i tablecie.', tickets: 6 },
+      { id: 'S10b', range: '6 maja', title: 'Główne widoki dla właściciela firmy', desc: 'Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur kosztowych, szczegóły każdego obiektu z dokumentami i historią.', tickets: 7 },
+      { id: 'S11a', range: '6 maja', title: 'Panel biura rachunkowego', desc: 'Multi-tenantowe przełączanie kontekstu między klientami, zbiorczy dashboard wszystkich obsługiwanych firm, zarządzanie zaproszeniami. Każde przełączenie w dzienniku audytowym.', tickets: 5 },
+      { id: 'S11b', range: '6 maja', title: 'Raporty i eksport do systemów księgowych', desc: 'Interfejs generowania raportów kosztów floty oraz eksport faktur, paragonów i delegacji do Insert GT, Comarch ERP Optima i Symfonia FK jednym kliknięciem.', tickets: 6 },
+      { id: 'S12a', range: '7 maja', title: 'Mapa floty w panelu webowym', desc: 'Wizualizacja pozycji pojazdów na żywo na mapie Europy w panelu webowym, komunikaty informacyjne o stanie programu pilotażowego.', tickets: 5 },
+      { id: 'S12b', range: '7 maja', title: 'Onboarding pilota', desc: 'Bezpieczna ścieżka rejestracji nowego pilota z linku zaproszenia, ekrany powitalne dopasowane do roli (właściciel firmy / biuro rachunkowe).', tickets: 1 },
+      { id: 'S12c', range: '7 maja', title: 'Konfiguracja konta i zespołu', desc: 'Ustawienia firmy, profil użytkownika, zaproszenia członków zespołu z odpowiednimi uprawnieniami.', tickets: 4 },
+      { id: 'S13a', range: '7 maja', title: 'Publiczna strona busikm.pl', desc: 'Pełna treść marketingowa, integracja z systemem zgłoszeń do pilotażu, optymalizacja pod wyszukiwarki, sekcja FENG / Ścieżka SMART z opisem komponentów R&D.', tickets: 6 },
+      { id: 'S13b', range: '7 maja', title: 'Testy automatyczne panelu', desc: 'Pokrycie testami kluczowych ścieżek użytkownika z regresją uruchamianą przy każdej zmianie.', tickets: 2 },
+    ],
+  },
+
+  // ============================ FAZA 3 — MOBILE APP (in-progress) ============================
+  {
+    num: 3,
+    id: 'mobile-app',
+    label: 'Mobile App',
+    period: '7—12 maja 2026',
+    color: '#FF9500',
+    status: 'in-progress',
+    summary: 'Aplikacja iOS/Android dla kierowcy i właściciela: śledzenie GPS w tle, start/stop trasy jednym przyciskiem, OCR paragonów w sześciu językach, alerty AETR, push notifications, pełny tryb offline.',
+    sprints: [
+      { id: 'S14a', range: '7 maja',   title: 'Fundament aplikacji mobilnej', desc: 'Architektura aplikacji iOS/Android, struktura nawigacji dostosowana do roli użytkownika (kierowca / właściciel).', tickets: 4, done: true },
+      { id: 'S14b', range: '7 maja',   title: 'Logowanie i pierwsze kroki', desc: 'Bezpieczna autoryzacja kierowcy na urządzeniu, przewodnik dla nowego kierowcy, zarządzanie sesją z automatycznym odnawianiem tokenu.', tickets: 3, done: true },
+      { id: 'S15',  range: '8 maja',   title: 'Pełen flow pracy kierowcy', desc: 'Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, OCR paragonów w sześciu językach, alerty AETR, zatwierdzanie tras.', tickets: 8, done: true },
+      { id: 'S16a', range: '8 maja',   title: 'Widok właściciela na telefonie', desc: 'Dashboard floty na telefonie, alerty dokumentów na żywo, przegląd tras zespołu, szybkie akcje zarządcze (zatwierdzanie zlecenia, kontakt z kierowcą).', tickets: 4, done: true },
+      { id: 'S16b', range: '9 maja',   title: 'Powiadomienia push w aplikacji', desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał.', tickets: 5 },
+      { id: 'S16c', range: '10 maja',  title: 'Pełny tryb offline', desc: 'Aplikacja działa bez internetu — trasy nagrywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.', tickets: 4 },
+      { id: 'S17a', range: '11 maja',  title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.', tickets: 4 },
+      { id: 'S17b', range: '12 maja',  title: 'Testy aplikacji mobilnej', desc: 'Pokrycie testami jednostkowymi i scenariuszowymi przed pierwszym wydaniem.', tickets: 2 },
+    ],
+  },
+
+  // ============================ FAZA 4 — LAUNCH I ROZSZERZENIA ============================
+  {
+    num: 4,
+    id: 'launch',
+    label: 'Launch i rozszerzenia',
+    period: '13—21 maja 2026',
+    color: '#8B5CF6',
+    status: 'upcoming',
+    summary: 'MVP LIVE 30 maja 2026: audyt bezpieczeństwa, automatyczne fakturowanie samoobsługowe, diety zagraniczne + KSeF, zaawansowana analityka rentowności, finalizacja dokumentacji.',
+    sprints: [
+      { id: 'S18', range: '13—14 maja', title: 'MVP LIVE — wdrożenie produkcyjne', desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna, UAT z pierwszymi pilotami.', tickets: 12, milestone: true },
+      { id: 'S19', range: '15—16 maja', title: 'Automatyczne fakturowanie', desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.', tickets: 7 },
+      { id: 'S20', range: '17—18 maja', title: 'Diety pracownicze i KSeF', desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur.', tickets: 5 },
+      { id: 'S21', range: '19—20 maja', title: 'Zaawansowana analityka rentowności', desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty.', tickets: 4 },
+      { id: 'S22', range: '21 maja',    title: 'Finalizacja dokumentacji produktu', desc: 'Spójność dokumentacji z wdrożonymi funkcjami, materiały dla nowych pilotów i biur rachunkowych.', tickets: 16 },
+    ],
+  },
+
+  // ============================ FAZA 5 — H2 2026 POST-MVP ============================
+  {
+    num: 5,
+    id: 'post-mvp-h2',
+    label: 'Compliance + analityka + KSeF',
+    period: 'Q3–Q4 2026 (post-MVP)',
+    color: '#FF9500',
+    status: 'future',
+    summary: 'Druga połowa 2026: G2V2 + ITD dashboard (deadline 1 lipca), marża per zlecenie, rozliczenia kierowcy, VAT-REF UE, mapa live + strefy alertów, alerty anomalii spalania, first R&D milestone (point-in-polygon TRL 5→6).',
+    sprints: [
+      { id: 'Q3.1', range: 'Q3 2026', title: 'Tachograf G2V2 i kontrola ITD pod jednym dashboardem', desc: 'Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Uniknięcie kar do 10 000 zł per pojazd.', tickets: '~20' },
+      { id: 'Q3.2', range: 'Q3 2026', title: 'Marża per zlecenie — realna rentowność', desc: 'Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, Maut, opłaty drogowe, hotele PL i UE.', tickets: '~15' },
+      { id: 'Q3.3', range: 'Q3 2026', title: 'Rozliczenie kierowcy — diety, mandaty, wypłata', desc: 'Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie.', tickets: '~12' },
+      { id: 'Q4.1', range: 'Q4 2026', title: 'VAT-REF z UE — odzyskaj VAT z paliwa, Mautu i promów', desc: 'Rejestracja faktur z DE, FR, IT, AT, automatyczne przeliczenie na PLN po kursie z dnia wystawienia, gotowy raport do wniosku o zwrot VAT.', tickets: '~14' },
+      { id: 'Q4.2', range: 'Q4 2026', title: 'Mapa live + strefy alertów (geofencing)', desc: 'Pojazdy widoczne w czasie rzeczywistym z ETA, alert kiedy bus opuszcza strefę bez aktywnego zlecenia. Klient sam widzi kiedy dotrze towar.', tickets: '~10' },
+      { id: 'Q4.3', range: 'Q4 2026', title: 'Alerty anomalii spalania (prototyp XAI)', desc: 'Automatyczne raporty rentowności per pojazd i kierowca z alertami o nadmiernym spalaniu, deficytowych trasach, podejrzanych tankowaniach. Detekcja granic UE TRL 5→6.', tickets: '~16' },
+    ],
+  },
+
+  // ============================ FAZA 6 — 2027 FENG SMART ============================
+  {
+    num: 6,
+    id: 'feng-smart-2027',
+    label: 'R&D Phase 1 — FENG Ścieżka SMART',
+    period: '2027 (4 kwartały)',
+    color: '#005CE8',
+    status: 'future',
+    grant: { name: 'FENG · Ścieżka SMART', funder: 'NCBR Polska', trl: 'TRL 5→8', deadline: 'Q4 2026 / Q1 2027' },
+    summary: 'Cztery kwartały deep-tech finansowane z FENG Ścieżka SMART (NCBR). Rozwój 3 z 6 komponentów R&D z prototypu (TRL 3-4) do walidacji systemowej (TRL 6-7). Walidacja na rozszerzonym pilotażu — 50+ firm transportowych w UE.',
+    sprints: [
+      { id: 'Q1.27', range: 'Q1 2027 · TRL 4→5', title: 'Parser DDD — prototype validation',                desc: 'Autorska biblioteka Python odczytu pliku DDD z tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Walidacja na próbach z certyfikowanych tachografów + 56-dniowy raport dla ITD.', tickets: 'R&D' },
+      { id: 'Q2.27', range: 'Q2 2027 · TRL 4→6', title: 'Silnik diet AETR — production validation',         desc: 'Deterministyczny rules engine mapujący Rozp. MPiPS Dz.U. 2013/167 na auto-rozliczenie kierowcy. Walidacja na realnych przypadkach + integracja Insert GT/Comarch/Symfonia.', tickets: 'R&D' },
+      { id: 'Q3.27', range: 'Q3 2027 · TRL 6→7', title: 'Public API v1 + i18n DE/CZ/SK',                     desc: 'Publiczne API z webhookami, sandbox env i certyfikatami integratora. Pełna lokalizacja DE/CZ/SK — przygotowanie pod scale-out poza Polskę.', tickets: 'R&D' },
+      { id: 'Q4.27', range: 'Q4 2027 · TRL 3→4', title: 'Multi-currency EUR + XAI training start',           desc: 'Multi-currency (EUR primary, PLN/CZK/DKK secondary) z auto-konwersją NBP/ECB. Start treningu modelu XAI anomalii spalania na danych z pilotażu.', tickets: 'R&D' },
+    ],
+  },
+
+  // ============================ FAZA 7 — 2028 EIC + HORIZON ============================
+  {
+    num: 7,
+    id: 'eic-horizon-2028',
+    label: 'R&D Phase 2 — EIC Accelerator + Horizon Europe',
+    period: '2028 (cały rok)',
+    color: '#8B5CF6',
+    status: 'future',
+    grant: { name: 'EIC · Accelerator + Horizon · Cluster 5', funder: 'European Innovation Council + European Commission', trl: 'TRL 6→9', deadline: 'Q1 2028 (EIC Step 1) · Q2 2028 (Horizon call)' },
+    summary: 'Dwie aplikacje grantowe: EIC Accelerator (blended finance — grant €2,5M + equity €15M) oraz Horizon Europe Cluster 5 (Climate, Energy & Mobility — work programme partnerstwo). Cel: market-ready (TRL 9), scale-out pan-EU (PL→CZ/SK→DE).',
+    sprints: [
+      { id: 'Q1.28', range: 'Q1–Q2 2028 · TRL 3→5',  title: 'Bluetooth ITS — hardware prototype',           desc: 'React Native library do zdalnej komunikacji z tachografem G2V2 przez Bluetooth ITS (Rozp. 2016/799). Pobranie DDD bez kabla do warsztatu. Walidacja na referencyjnym sprzęcie.', tickets: 'R&D' },
+      { id: 'Q3.28', range: 'Q3 2028 · TRL 4→6',     title: 'XAI anomalia spalania — production',           desc: 'Model regresji wielowymiarowej + SHAP-based explainability (zgodne z EU AI Act). Detekcja kradzieży paliwa z naturalnojęzykowym wyjaśnieniem. Target: precision ≥80%, recall ≥70%.', tickets: 'R&D' },
+      { id: 'Q3.28b', range: 'Q3 2028 · TRL 8→9',    title: 'Multi-tenant scale-out PL→CZ/SK→DE',           desc: 'Pełne wdrożenie pan-EU — Czechy i Słowacja (Q1), Niemcy (Q2). Lokalne FK integration (Pohoda, DATEV), lokalne VAT regime, e-invoicing per kraj (KSeF/Peppol/SDI/FacturaE).', tickets: 'R&D' },
+      { id: 'Q4.28', range: 'Q4 2028 · Market Ready',title: 'Commercialization · TRL 9',                    desc: 'Pełna komercjalizacja w 4 krajach UE (PL, CZ, SK, DE). Konsorcjum: 1 uczelnia techniczna, 1 system FK europejski, 1 dostawca tachografów (VDO/Stoneridge). Target: 500+ klientów płacących.', tickets: 'R&D' },
     ],
   },
 ];
 
-const totalSprints = phases.reduce((acc, p) => acc + p.sprints.length, 0);
-const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => a + s.tickets, 0), 0);
+// === Statystyki agregowane ===
+const closedSprintsCount = 26;
+const closedTicketsCount = 218;
+const upcomingSprintsCount = phases
+  .flatMap((p) => p.sprints)
+  .filter((s) => !s.done && typeof s.tickets === 'number').length;
+const upcomingTicketsCount = phases
+  .flatMap((p) => p.sprints)
+  .filter((s) => !s.done && typeof s.tickets === 'number')
+  .reduce((a, s) => a + (typeof s.tickets === 'number' ? s.tickets : 0), 0);
+
+const numberWord = (n: number): string => {
+  if (n === 1) return 'sprint';
+  if (n < 5) return 'sprinty';
+  return 'sprintów';
+};
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM. 26 sprintów ukończonych, 9 zaplanowanych. MVP LIVE 30 maja 2026. Pełna roadmapa zsynchronizowana z tablicą Jira.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM — 3-letnia perspektywa europejskiego deep-tech. 26 sprintów ukończonych, 218 ticketów Done. MVP LIVE 30 maja 2026. Granty UE 2027 (FENG SMART) i 2028 (EIC + Horizon Europe).">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-surface">
-    <div class="absolute inset-0" style="background:radial-gradient(ellipse at top,#EBF2FF 0%,transparent 70%)"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at top, var(--brand-subtle) 0%, transparent 70%)"></div>
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 sm:pt-32 sm:pb-28 text-center">
 
-      <div class="hero-seq-1 inline-flex items-center gap-2 bg-[#005CE8]/[0.08] border border-[#005CE8]/15 rounded-full px-4 py-1.5 mb-8">
+      <div class="hero-seq-1 inline-flex items-center gap-2 bg-brand/[0.08] border border-brand/15 rounded-full px-4 py-1.5 mb-8">
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#005CE8] opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#005CE8]"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
         </span>
-        <span class="text-sm font-medium text-gray-700">3-letnia perspektywa R&amp;D · MVP 30 maja 2026 · granty UE 2027–2028</span>
+        <span class="text-sm font-medium text-text">3-letnia perspektywa R&amp;D · MVP 30 maja 2026 · granty UE 2027–2028</span>
       </div>
 
-      <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 leading-[1.1] tracking-tight mb-6">
+      <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-text leading-[1.18] tracking-tight mb-6">
         Plan rozwoju produktu.<br>
-        <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">Trzy lata europejskiego deep-tech.</span>
+        <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">Trzy lata europejskiego deep-tech.</span>
       </h1>
 
-      <p class="hero-seq-3 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        <strong class="text-gray-900">2026: MVP fundament</strong> (30 maja) — auth, fleet, GPS w czasie rzeczywistym, FK export, multi-tenant. <strong class="text-gray-900">2027: R&D Phase 1</strong> z FENG SMART — Parser DDD (TRL 4→5), silnik diet AETR (TRL 4→6), detekcja granic UE (TRL 5→7). <strong class="text-gray-900">2028: R&D Phase 2</strong> z EIC Accelerator + Horizon Europe — Bluetooth ITS (TRL 3→5), XAI anomalia spalania (TRL 3→6), scale-out pan-EU (PL→CZ/SK→DE).
+      <p class="hero-seq-3 text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
+        <strong class="text-text">2026: MVP fundament</strong> (30 maja) — auth, fleet, GPS w czasie rzeczywistym, FK export, multi-tenant.
+        <strong class="text-text">2027: R&amp;D Phase 1</strong> z FENG SMART — Parser DDD (TRL 4→5), silnik diet AETR (TRL 4→6), detekcja granic UE (TRL 5→7).
+        <strong class="text-text">2028: R&amp;D Phase 2</strong> z EIC Accelerator + Horizon Europe — Bluetooth ITS (TRL 3→5), XAI anomalia spalania (TRL 3→6), scale-out pan-EU (PL→CZ/SK→DE).
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -72,811 +199,251 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           Dołącz do pilotażu
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
-        <a href="#fazy" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface text-text border border-border font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5">
-          Zobacz fazy projektu
+        <a href="#timeline" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface text-text border border-border font-semibold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5">
+          Zobacz timeline →
         </a>
       </div>
 
       <div class="hero-seq-5 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto text-center">
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-[#34C759] font-display leading-none">{ closedTickets }</div>
-          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">ukończonych ticketów</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-[#34C759] font-display leading-none">{closedTicketsCount}</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">ukończonych ticketów</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-[#005CE8] font-display leading-none">{ closedSprints }/{ totalSprints + closedSprints }</div>
-          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">sprintów gotowych</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-brand font-display leading-none">{closedSprintsCount}/{closedSprintsCount + upcomingSprintsCount}</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">sprintów gotowych</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-display leading-none">{ totalTickets }</div>
-          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">ticketów w backlogu</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-text font-display leading-none">{upcomingTicketsCount}</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">ticketów w backlogu</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-[#3380FF] font-display leading-none">30 maj</div>
-          <div class="text-sm text-gray-400 mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE 2026</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-brand-light font-display leading-none">30 maj</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE 2026</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== UKOŃCZONE SPRINTY ===================== -->
-  <section class="bg-surface-2 py-20 sm:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+  <!-- ===================== LEGENDA + NAWIGACJA FAZ ===================== -->
+  <section id="timeline" class="bg-surface-2 py-16 sm:py-20 border-t border-border-subtle">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-      <div class="text-center mb-12 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Co zostało zbudowane</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Dwadzieścia sześć sprintów za nami. 218 ticketów ukończonych.</h2>
-        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Fundament aplikacji jest gotowy: autoryzacja, role, izolacja danych, ewidencja zleceń i tras GPS, OCR paragonów w sześciu językach, monitoring dokumentów floty, eksport do Insert GT / Comarch / Symfonia FK, plan indywidualny dla większych flot, mapa floty w czasie rzeczywistym.</p>
+      <div class="text-center mb-10 reveal">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-brand mb-4">Wszystkie fazy projektu</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">Siedem faz. Trzy lata. Jedna timeline.</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          Od architektury backendu (kwiecień 2026) do market-ready scale-out pan-EU (Q4 2028). Każda faza ma jasny cel biznesowy i przekłada się na konkretną wartość dla firm transportowych.
+        </p>
       </div>
 
-      <div class="space-y-3 reveal-stagger">
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S0</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Środowisko produkcyjne i CI/CD</h3>
-                <p class="text-xs text-gray-400">14–18 kwietnia 2026 · 13 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Środowisko produkcyjne, automatyzacja wdrożeń, monitoring infrastruktury i błędów aplikacji, dokumentacja architektury wewnętrznej.</p>
+      <!-- Legenda statusów -->
+      <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 mb-10 reveal">
+        <div class="inline-flex items-center gap-2 text-[12.5px] text-text-secondary">
+          <span class="w-3 h-3 rounded-full bg-[#34C759]"></span>
+          <span><strong class="text-text">Zrobione</strong> — solidna linia, pełne karty</span>
         </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S1</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Autoryzacja i system ról</h3>
-                <p class="text-xs text-gray-400">19–20 kwietnia 2026 · 10 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Bezpieczne logowanie z automatycznym odświeżaniem sesji, weryfikacja adresu e-mail, cztery role z dedykowanymi uprawnieniami: kierowca, właściciel, księgowy, biuro rachunkowe.</p>
+        <div class="inline-flex items-center gap-2 text-[12.5px] text-text-secondary">
+          <span class="w-3 h-3 rounded-full bg-[#FF9500]"></span>
+          <span><strong class="text-text">W toku</strong> — sprinty mieszane done + upcoming</span>
         </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S2</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Firmy, subskrypcje, izolacja danych</h3>
-                <p class="text-xs text-gray-400">21 kwietnia 2026 · 16 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Profil firmy, subskrypcja, fundament multi-tenant z pełną izolacją danych między firmami oraz mechanizm przełączania kontekstu dla biur rachunkowych obsługujących wielu klientów.</p>
+        <div class="inline-flex items-center gap-2 text-[12.5px] text-text-secondary">
+          <span class="w-3 h-3 rounded-full border-2 border-dashed border-[#8B5CF6]"></span>
+          <span><strong class="text-text">Planowane</strong> — linia przerywana, karty z mniejszą wagą</span>
         </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S3</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Pojazdy, kierowcy, dokumenty</h3>
-                <p class="text-xs text-gray-400">22–23 kwietnia 2026 · 14 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pełne zarządzanie flotą i kierowcami, upload dokumentów (OC, przegląd, tachograf, prawo jazdy), monitoring terminów ważności, zaproszenia nowych kierowców e-mailem.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S4</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Ewidencja zleceń, eksport FK, dokumenty</h3>
-                <p class="text-xs text-gray-400">23–30 kwietnia 2026 · 35 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pełna ewidencja zleceń i tras pojazdów, dziennik audytowy zmian operacyjnych, eksport jednym kliknięciem faktur kosztowych i raportów do trzech systemów księgowych: Insert GT, Comarch ERP Optima oraz Symfonia FK. Kursy walut z NBP pobierane automatycznie do przewalutowania kosztów zagranicznych.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S5a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Model rozliczeń per aktywny pojazd</h3>
-                <p class="text-xs text-gray-400">2 maja 2026 · 14 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Hurtowe rozliczanie aktywnych pojazdów floty w jednym cyklu, automatyczne miesięczne podsumowanie. Obsługa firm transportowych z wieloma oddziałami oraz biur rachunkowych prowadzących wiele firm transportowych jednocześnie.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S5b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Plan indywidualny dla większych flot</h3>
-                <p class="text-xs text-gray-400">2 maja 2026 · 7 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Wsparcie dla firm transportowych, które nie mieszczą się w standardowym zakresie — indywidualne warunki cenowe per pojazd, panel administracyjny do zarządzania umowami i walidacje rozdzielające plan indywidualny od standardowego pilotażu.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S6a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">System rejestracji pilotów</h3>
-                <p class="text-xs text-gray-400">3–4 maja 2026 · 8 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pełen system zaproszeń dla firm transportowych do programu pilotażowego: panel administracyjny do generowania jednorazowych linków rejestracji, automatyczne maile powitalne, zabezpieczenia przeciw nadużyciom oraz testy całego cyklu rejestracji nowego pilota.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S6b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Dashboard zgodności dokumentów</h3>
-                <p class="text-xs text-gray-400">4 maja 2026 · 3 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Zagregowany status dokumentów floty — OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy — na poziomie pojedynczej firmy lub portfela firm obsługiwanych przez biuro rachunkowe. Jeden ekran pokazuje, czego brakuje i co wygasa.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S7a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Powiadomienia push w aplikacji</h3>
-                <p class="text-xs text-gray-400">4 maja 2026 · 10 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Trzy kanały komunikacji w aplikacji: alerty wygasających dokumentów floty, potwierdzenia zakończonych tras dla właściciela, komunikaty produktowe od zespołu. Każdy kanał z osobnymi preferencjami subskrypcji per użytkownik.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S7b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Automatyzacja cyklu próbnego</h3>
-                <p class="text-xs text-gray-400">5 maja 2026 · 6 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Sekwencja przypomnień przed wygaśnięciem trialu, automatyczne przedłużenie dla kont, które jeszcze nie zarejestrowały żadnej trasy — żeby pierwsi piloci nie tracili dostępu z powodu zwykłego opóźnienia w starcie.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S8</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Mapa floty w czasie rzeczywistym</h3>
-                <p class="text-xs text-gray-400">5 maja 2026 · 12 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pozycje pojazdów aktualizowane na żywo dla właściciela floty i dyspozytora — bez konieczności odświeżania strony. Mapa Europy z busami w trasie, ETA dla zlecenia, fundament pod strefy alertów (geofencing).</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S9</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Domknięcie zakresu MVP</h3>
-                <p class="text-xs text-gray-400">5 maja 2026 · 9 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Walidacje danych firmowych przy tworzeniu klienta, bezpieczne odzyskiwanie usuniętych obiektów, rozszerzony monitoring stanu systemu — domknięcie wszystkich zakresów funkcjonalnych przed startem panelu webowego.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S10a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Fundament panelu webowego</h3>
-                <p class="text-xs text-gray-400">6 maja 2026 · 6 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Bezpieczna autoryzacja, spójny system designu, pełna responsywność — działa na komputerze, laptopie i tablecie. Pierwszy sprint Fazy 1 (Panel webowy) zakończony jeszcze przed planowanym startem.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S10b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Główne widoki dla właściciela firmy</h3>
-                <p class="text-xs text-gray-400">6 maja 2026 · 7 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Dashboard floty ze statystykami, listy pojazdów, kierowców, tras i faktur kosztowych z filtrowaniem i sortowaniem, szczegóły każdego obiektu z dokumentami i historią. Właściciel ma kompletną kontrolę nad flotą z poziomu jednego ekranu.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S11a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Panel biura rachunkowego</h3>
-                <p class="text-xs text-gray-400">6 maja 2026 · 5 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Multi-tenantowe przełączanie kontekstu między klientami jednym kliknięciem, zbiorczy dashboard wszystkich obsługiwanych firm, zarządzanie zaproszeniami klientów. Każde przełączenie zapisywane w dzienniku audytowym.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S11b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Raporty i eksport do systemów księgowych</h3>
-                <p class="text-xs text-gray-400">6 maja 2026 · 6 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Interfejs generowania raportów kosztów floty oraz eksport faktur, paragonów i delegacji do Insert GT, Comarch ERP Optima i Symfonia FK jednym kliknięciem. Bez wpisywania ręcznego.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S12a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Mapa floty w panelu webowym</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 5 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Wizualizacja pozycji pojazdów na żywo na mapie Europy w panelu webowym, komunikaty informacyjne o stanie programu pilotażowego. UI dla mapy floty real-time, której backend był gotowy w Sprint 8.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S12b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Onboarding pilota</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 1 ticket</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Bezpieczna ścieżka rejestracji nowego pilota z linku zaproszenia, ekrany powitalne dopasowane do roli (właściciel firmy / biuro rachunkowe).</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S12c</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Konfiguracja konta i zespołu</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 4 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Ustawienia firmy, profil użytkownika, zaproszenia członków zespołu z odpowiednimi uprawnieniami. Pełna kontrola nad zespołem z poziomu jednego ekranu.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S13a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Publiczna strona busikm.pl</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 6 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pełna treść marketingowa, integracja z systemem zgłoszeń do pilotażu, optymalizacja pod wyszukiwarki, sekcja FENG / Ścieżka SMART z opisem komponentów badawczo-rozwojowych.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S13b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Testy automatyczne panelu</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 2 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Pokrycie testami kluczowych ścieżek użytkownika z regresją uruchamianą przy każdej zmianie. Domknięcie Fazy „Panel webowy" — gotowe pod aplikację mobilną.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S14a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Fundament aplikacji mobilnej</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 4 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Architektura aplikacji mobilnej iOS/Android, struktura nawigacji dostosowana do roli użytkownika (kierowca / właściciel). Pierwszy sprint Fazy „Aplikacja mobilna" zakończony.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S14b</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Logowanie i pierwsze kroki</h3>
-                <p class="text-xs text-gray-400">7 maja 2026 · 3 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Bezpieczna autoryzacja kierowcy na urządzeniu, przewodnik dla nowego kierowcy (jak rozpocząć pierwszą trasę, jak zrobić zdjęcie paragonu), zarządzanie sesją z automatycznym odnawianiem tokenu.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S15</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Pełen flow pracy kierowcy</h3>
-                <p class="text-xs text-gray-400">8 maja 2026 · 8 ticketów</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Śledzenie GPS w tle, start/stop trasy jednym przyciskiem, zdjęcia drogomierza, OCR paragonów w sześciu językach, alerty AETR, zatwierdzanie tras. Pełna funkcjonalność dla kierowcy w trasie.</p>
-        </div>
-
-        <div class="group bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] opacity-90 hover:opacity-100 transition-opacity">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center justify-center w-11 h-11 bg-[#34C759] text-white rounded-2xl text-[12.5px] font-bold tracking-tight shrink-0">S16a</span>
-              <div>
-                <h3 class="font-bold text-gray-900">Widok właściciela na telefonie</h3>
-                <p class="text-xs text-gray-400">8 maja 2026 · 4 tickety</p>
-              </div>
-            </div>
-            <div class="sm:ml-auto"><span class="text-xs font-semibold text-[#34C759] bg-[#34C759]/[0.08] px-3 py-1 rounded-full">DONE</span></div>
-          </div>
-          <p class="text-sm text-gray-500">Dashboard floty na telefonie, alerty dokumentów na żywo, przegląd tras zespołu, szybkie akcje zarządcze (zatwierdzanie zlecenia, kontakt z kierowcą). Właściciel ma kontrolę nad flotą również w drodze.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAZY — TIMELINE CHRONOLOGICZNY ===================== -->
-  <section id="fazy" class="bg-surface py-20 sm:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
-      <div class="text-center mb-16">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Co przed nami</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">{ totalSprints } sprintów do MVP. Cztery fazy.</h2>
-        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Każda faza ma jasny cel biznesowy i przekłada się na konkretną wartość dla właściciela firmy transportowej, dyspozytora, księgowego i kierowcy.</p>
       </div>
 
-      <!-- Phases overview — color legend -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-16 max-w-4xl mx-auto auto-rows-fr">
-        {phases.map((phase, idx) => (
-          <a href={`#faza-${phase.id}`} class="block p-4 rounded-2xl bg-surface border border-gray-200 hover:shadow-md transition-shadow flex flex-col">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-2.5 h-2.5 rounded-full" style={`background: ${phase.color}`}></span>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.06em]" style={`color: ${phase.color}`}>Faza {idx + 1}</p>
+      <!-- Nawigacja: skok do fazy -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 max-w-5xl mx-auto reveal-stagger">
+        {phases.map((phase) => (
+          <a href={`#faza-${phase.id}`} class="block p-3 rounded-2xl bg-surface border border-border-subtle hover:border-border hover:shadow-sm transition-all text-left">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[10.5px] font-bold text-white shrink-0 ${phase.status === 'done' ? '' : phase.status === 'future' ? 'opacity-90' : ''}`} style={`background: ${phase.color}`}>
+                {phase.num}
+              </span>
+              {phase.status === 'done' && (
+                <svg class="w-3.5 h-3.5 text-[#34C759] ml-auto shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              )}
+              {phase.status === 'in-progress' && (
+                <span class="ml-auto text-[9px] font-bold uppercase tracking-wider text-[#FF9500] bg-[#FF9500]/[0.12] px-1.5 py-0.5 rounded">W toku</span>
+              )}
             </div>
-            <p class="font-semibold text-[14px] text-gray-900 leading-tight mb-1">{phase.label.replace(/^Faza \d+ — /, '')}</p>
-            <p class="text-[11.5px] text-gray-500">{phase.period}</p>
+            <p class="font-semibold text-[12.5px] text-text leading-tight mb-1">{phase.label}</p>
+            <p class="text-[10.5px] text-text-tertiary leading-tight">{phase.period}</p>
           </a>
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Vertical timeline -->
+  <!-- ===================== TIMELINE 7 FAZ ===================== -->
+  <section class="bg-surface py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+
       <div class="relative">
-        <!-- Continuous vertical line -->
-        <div class="absolute left-[19px] sm:left-[31px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#005CE8] via-[#34C759] via-[#FF9500] to-[#8B5CF6]"></div>
 
-        {phases.map((phase, phaseIdx) => (
-          <div id={`faza-${phase.id}`} class="relative mb-16 last:mb-0">
+        {phases.map((phase, phaseIdx) => {
+          const isLast = phaseIdx === phases.length - 1;
+          const doneTickets = phase.sprints.filter((s) => typeof s.tickets === 'number' && (phase.status === 'done' || s.done)).reduce((a, s) => a + (typeof s.tickets === 'number' ? s.tickets : 0), 0);
+          const totalTickets = phase.sprints.filter((s) => typeof s.tickets === 'number').reduce((a, s) => a + (typeof s.tickets === 'number' ? s.tickets : 0), 0);
+          return (
+            <div id={`faza-${phase.id}`} class={`relative ${isLast ? '' : 'mb-14 sm:mb-20'}`}>
 
-            <!-- Phase header — large dot + title block -->
-            <div class="relative pl-14 sm:pl-20 mb-8">
-              <div class="absolute left-0 sm:left-3 top-0 w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg ring-4 ring-white" style={`background: ${phase.color}`}>
-                {phaseIdx + 1}
-              </div>
-              <div class="pt-1">
-                <p class="text-[11.5px] font-semibold uppercase tracking-[0.08em] mb-1" style={`color: ${phase.color}`}>Faza {phaseIdx + 1} · {phase.period}</p>
-                <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-3">{phase.label.replace(/^Faza \d+ — /, '')}</h3>
-                <p class="text-[15px] text-gray-600 leading-relaxed max-w-3xl">{phase.summary}</p>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <span class="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-                    {phase.sprints.length} {phase.sprints.length === 1 ? 'sprint' : phase.sprints.length < 5 ? 'sprinty' : 'sprintów'}
-                  </span>
-                  <span class="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-                    {phase.sprints.reduce((a, s) => a + s.tickets, 0)} ticketów
-                  </span>
+              <!-- Vertical line — between phase header dot i ostatni sprint, kolorowana per status -->
+              <div
+                class="absolute left-[19px] sm:left-[27px] w-[2px]"
+                style={`
+                  top: 56px;
+                  bottom: -56px;
+                  background: ${phase.status === 'future'
+                    ? `repeating-linear-gradient(to bottom, ${phase.color} 0 6px, transparent 6px 12px)`
+                    : phase.color
+                  };
+                  ${isLast ? 'bottom: 0;' : ''}
+                `}
+              ></div>
+
+              <!-- ====== Phase header ====== -->
+              <div class="relative pl-16 sm:pl-20 mb-6">
+                <!-- Phase number badge — kolor + obwódka theme-aware -->
+                <div
+                  class="absolute left-0 sm:left-2 top-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-extrabold text-[15px] sm:text-[17px] font-display shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
+                  style={`background: ${phase.color}; box-shadow: 0 0 0 4px var(--surface), 0 4px 14px rgba(0,0,0,0.2);`}
+                >
+                  {phase.num}
                 </div>
-              </div>
-            </div>
 
-            <!-- Sprint items along the timeline -->
-            <div class="space-y-3">
-              {phase.sprints.map(sprint => (
-                <div class="relative pl-14 sm:pl-20">
-                  <!-- Small dot on timeline -->
-                  <div class="absolute left-[14px] sm:left-[26px] top-5 w-3 h-3 rounded-full border-2 border-white shadow" style={`background: ${phase.color}`}></div>
-
-                  <div class:list={[
-                    'rounded-[14px] p-4 sm:p-5 transition-all',
-                    sprint.milestone
-                      ? 'bg-surface border-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]'
-                      : 'bg-surface-2 border border-transparent hover:border-gray-200 hover:shadow-sm',
-                  ]} style={sprint.milestone ? `border-color: ${phase.color}` : ''}>
-                    <div class="flex flex-wrap items-center gap-2 mb-2">
-                      <span class="inline-flex items-center justify-center h-6 px-2 text-[10.5px] font-mono font-bold rounded-md" style={`background: ${phase.color}15; color: ${phase.color}`}>
-                        S{sprint.id}
+                <div class="pt-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <p class="text-[11px] font-bold uppercase tracking-[0.1em]" style={`color: ${phase.color}`}>
+                      Faza {phase.num} · {phase.period}
+                    </p>
+                    {phase.status === 'done' && (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#34C759] bg-[#34C759]/[0.10] px-2 py-0.5 rounded-full">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Done
                       </span>
-                      <p class="text-[11.5px] text-gray-500 font-medium">{sprint.range}</p>
-                      <span class="ml-auto text-[11px] font-mono text-gray-400">{sprint.tickets} {sprint.tickets === 1 ? 'ticket' : 'ticketów'}</span>
-                    </div>
-                    <h4 class="font-semibold text-[15px] text-gray-900 mb-1 leading-tight">
-                      {sprint.title}
-                      {sprint.milestone && <span class="ml-2 text-[10px] font-bold uppercase tracking-wider align-middle px-2 py-0.5 rounded" style={`background: ${phase.color}; color: white`}>MVP LIVE</span>}
-                    </h4>
-                    <p class="text-[13.5px] text-gray-600 leading-relaxed">{sprint.desc}</p>
+                    )}
+                    {phase.status === 'in-progress' && (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#FF9500] bg-[#FF9500]/[0.12] px-2 py-0.5 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
+                        W toku
+                      </span>
+                    )}
+                    {phase.status === 'upcoming' && (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#8B5CF6] bg-[#8B5CF6]/[0.12] px-2 py-0.5 rounded-full">
+                        Planowane
+                      </span>
+                    )}
+                    {phase.status === 'future' && (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-text-tertiary bg-surface-2 border border-border-subtle px-2 py-0.5 rounded-full">
+                        Roadmap R&amp;D
+                      </span>
+                    )}
+                  </div>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-text tracking-tight mb-3">{phase.label}</h3>
+                  <p class="text-[15px] text-text-secondary leading-relaxed max-w-3xl mb-3">{phase.summary}</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-text-secondary bg-surface-2 border border-border-subtle px-2.5 py-1 rounded-full">
+                      {phase.sprints.length} {numberWord(phase.sprints.length)}
+                    </span>
+                    {totalTickets > 0 && (
+                      <span class="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-text-secondary bg-surface-2 border border-border-subtle px-2.5 py-1 rounded-full">
+                        {totalTickets} ticketów{phase.status === 'in-progress' ? ` (${doneTickets} Done · ${totalTickets - doneTickets} w toku)` : ''}
+                      </span>
+                    )}
+                    {phase.grant && (
+                      <span class="inline-flex items-center gap-1.5 text-[11.5px] font-bold text-white px-2.5 py-1 rounded-full" style={`background: ${phase.color}`}>
+                        {phase.grant.name}
+                      </span>
+                    )}
                   </div>
                 </div>
-              ))}
+              </div>
+
+              <!-- ====== Grant program box (jeżeli grant) ====== -->
+              {phase.grant && (
+                <div class="relative pl-16 sm:pl-20 mb-6">
+                  <div class="rounded-[18px] p-5 sm:p-6" style={`background: ${phase.color}; color: white;`}>
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
+                      <p class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy</p>
+                      <span class="text-[10.5px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">{phase.grant.name}</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[12.5px] mt-2">
+                      <div><p class="text-white/65 mb-0.5">Fundator</p><p class="font-semibold">{phase.grant.funder}</p></div>
+                      <div><p class="text-white/65 mb-0.5">Faza projektu</p><p class="font-semibold">{phase.grant.trl}</p></div>
+                      <div><p class="text-white/65 mb-0.5">Termin wniosku</p><p class="font-semibold">{phase.grant.deadline}</p></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <!-- ====== Sprints — timeline items ====== -->
+              <div class="space-y-3">
+                {phase.sprints.map((sprint) => {
+                  const isDone = phase.status === 'done' || sprint.done;
+                  const isMilestone = sprint.milestone;
+                  return (
+                    <div class="relative pl-16 sm:pl-20">
+                      <!-- Sprint timeline dot — done = solid pełna, upcoming = outline -->
+                      {isDone ? (
+                        <div class="absolute left-[14px] sm:left-[22px] top-5 w-3.5 h-3.5 rounded-full shadow" style={`background: ${phase.color}; box-shadow: 0 0 0 3px var(--surface);`}></div>
+                      ) : (
+                        <div class="absolute left-[14px] sm:left-[22px] top-5 w-3.5 h-3.5 rounded-full" style={`background: var(--surface); border: 2px solid ${phase.color}; box-shadow: 0 0 0 3px var(--surface);`}></div>
+                      )}
+
+                      <div
+                        class:list={[
+                          'rounded-[14px] p-4 sm:p-5 transition-all',
+                          isMilestone
+                            ? 'bg-surface border-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]'
+                            : isDone
+                              ? 'bg-surface border border-border-subtle'
+                              : 'bg-surface-2 border border-border-subtle hover:border-border hover:shadow-sm'
+                        ]}
+                        style={isMilestone ? `border-color: ${phase.color}` : ''}
+                      >
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                          <span class="inline-flex items-center justify-center h-6 px-2 text-[10.5px] font-mono font-bold rounded-md" style={`background: ${phase.color}1A; color: ${phase.color}`}>
+                            {sprint.id}
+                          </span>
+                          <p class="text-[11.5px] text-text-secondary font-medium">{sprint.range}</p>
+                          {isDone && !isMilestone && (
+                            <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#34C759] bg-[#34C759]/[0.10] px-1.5 py-0.5 rounded">
+                              <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              Done
+                            </span>
+                          )}
+                          <span class="ml-auto text-[11px] font-mono text-text-tertiary">
+                            {typeof sprint.tickets === 'number' ? `${sprint.tickets} ${sprint.tickets === 1 ? 'ticket' : 'ticketów'}` : sprint.tickets}
+                          </span>
+                        </div>
+                        <h4 class="font-semibold text-[15px] text-text mb-1 leading-tight">
+                          {sprint.title}
+                          {isMilestone && <span class="ml-2 text-[10px] font-bold uppercase tracking-wider align-middle px-2 py-0.5 rounded text-white" style={`background: ${phase.color}`}>MVP LIVE</span>}
+                        </h4>
+                        <p class="text-[13.5px] text-text-secondary leading-relaxed">{sprint.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-    </div>
-  </section>
-
-  <!-- ===================== ROK 1 Q3-Q4 — POST-MVP 2026 ===================== -->
-  <section id="po-mvp" class="bg-surface py-20 sm:py-28 border-t border-gray-100">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Rok 1 · Druga połowa 2026 (post-MVP)</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Q3–Q4 2026: Compliance + analityka + KSeF
-        </h2>
-        <p class="text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
-          MVP (30 maja) to fundament SaaS. Druga połowa 2026 zamyka pełen feature-set produktowy:
-          KSeF e-invoicing, Stripe billing, mobile App Store/Google Play, push notifications, WatermelonDB offline,
-          Comarch/Symfonia full integration, oraz <strong class="text-gray-900">first R&D milestone</strong>:
-          point-in-polygon detekcja granic UE production (TRL 5→6).
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
-
-        <!-- 1. G2V2 + ITD -->
-        <a href="/g2v2-przygotowanie" class="group bg-surface-2 rounded-[20px] p-7 hover:bg-surface hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Lipiec 2026 · deadline ITD</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Tachograf G2V2 i kontrola ITD pod jednym dashboardem</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed mb-4 flex-1">Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Jeden ekran zamiast tabelki w Excelu — gotowy na każdą kontrolę. Uniknięcie kar do 10 000 zł per pojazd.</p>
-          <span class="text-[13px] font-semibold text-[#FF9500] group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1.5 mt-auto">
-            Sprawdź deadline G2V2
-            <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-
-        <!-- 2. Zlecenia + marża -->
-        <div class="bg-surface-2 rounded-[20px] p-7 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Wkrótce po MVP</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Marża per zlecenie. Wiesz, które kursy się opłacają.</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, Maut, opłaty drogowe, hotele PL i UE. Realna marża na każdym kursie — koniec zgadywania, które zlecenia odrzucić.</p>
-        </div>
-
-        <!-- 3. Rozliczenie kierowcy -->
-        <div class="bg-surface-2 rounded-[20px] p-7 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Wkrótce po MVP</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Rozliczenie kierowcy — diety, mandaty, wypłata w jednym</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie. Gotowe rozliczenie do księgowej — koniec Excela na 12 zakładek.</p>
-        </div>
-
-        <!-- 4. VAT-REF z UE -->
-        <div class="bg-surface-2 rounded-[20px] p-7 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Wkrótce po MVP</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Odzyskaj VAT z paliwa, Mautu i promów w UE</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Rejestracja faktur z DE, FR, IT, AT i innych krajów UE, automatyczne przeliczenie na PLN po kursie z dnia wystawienia, gotowy raport do wniosku o zwrot VAT. Tysiące złotych rocznie odzyskanych zamiast w gubionych paragonach.</p>
-        </div>
-
-        <!-- 5. Mapa live + strefy -->
-        <div class="bg-surface-2 rounded-[20px] p-7 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Druga połowa 2026</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Flota na żywo. ETA dla klienta. Strefy alertów.</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Pojazdy widoczne w czasie rzeczywistym z szacowanym czasem dojazdu, alert kiedy bus opuszcza wyznaczoną strefę bez aktywnego zlecenia. Klient nie dzwoni — sam widzi, kiedy dotrze towar.</p>
-        </div>
-
-        <!-- 6. Alerty anomalii -->
-        <div class="bg-surface-2 rounded-[20px] p-7 flex flex-col">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <span class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#8B5CF6]">Druga połowa 2026</span>
-          </div>
-          <h3 class="font-display font-bold text-[1.15rem] text-gray-900 mb-2 leading-tight">Alerty anomalii. Wykryj kradzieże paliwa.</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed flex-1">Automatyczne raporty rentowności per pojazd i kierowca z alertami o nadmiernym spalaniu, deficytowych trasach, podejrzanych tankowaniach. Decyzje na bazie danych, nie intuicji — zanim pojawi się problem.</p>
-        </div>
-
-      </div>
-
-      <div class="text-center mt-12 reveal">
-        <p class="text-[13px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
-          Kolejność funkcji ustalana z firmami pilotażowymi. <strong class="text-gray-900">Pilotaż = wpływ na priorytety</strong> i utrzymanie ceny pierwotnej dożywotnio dla całej floty.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== ROK 2 — R&D PHASE 1 (2027, FENG SMART) ===================== -->
-  <section id="rok-2027" class="bg-surface-2 py-20 sm:py-28 border-t border-border-subtle">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Rok 2 · 2027 — R&D Phase 1</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">
-          Cztery kwartały deep-tech finansowane z <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">FENG Ścieżka SMART</span>.
-        </h2>
-        <p class="text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
-          Aplikacja grantowa: <strong class="text-text">FENG Ścieżka SMART</strong> (NCBR Polska). Cel: rozwój 3 z 6 komponentów R&D
-          z prototypu (TRL 3-4) do walidacji systemowej (TRL 6-7). Walidacja na rozszerzonym pilotażu (50+ firm transportowych w UE).
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-stagger mb-12">
-        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Q1 2027 · TRL 4→5</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Parser DDD — prototype validation</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Autorska biblioteka Python odczytu pliku DDD z tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Walidacja na próbach z certyfikowanych tachografów + 56-dniowy raport dla ITD.</p>
-        </article>
-
-        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#8B5CF6]">Q2 2027 · TRL 4→6</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Silnik diet AETR — production validation</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Deterministyczny rules engine mapujący Rozp. MPiPS Dz.U. 2013/167 na auto-rozliczenie kierowcy. Walidacja na realnych przypadkach + integracja Insert GT/Comarch/Symfonia.</p>
-        </article>
-
-        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Q3 2027 · TRL 6→7</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Public API v1 + i18n DE/CZ/SK</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Publiczne API z webhookami, sandbox env i certyfikatami integratora. Pełna lokalizacja DE/CZ/SK — przygotowanie pod scale-out poza Polskę.</p>
-        </article>
-
-        <article class="bg-surface rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Q4 2027 · TRL 3→4</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Multi-currency EUR + XAI training start</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Multi-currency (EUR primary, PLN/CZK/DKK secondary) z auto-konwersją na NBP/ECB. Start treningu modelu XAI anomalii spalania na danych z pilotażu.</p>
-        </article>
-      </div>
-
-      <!-- Grant program box: FENG SMART -->
-      <div class="rounded-[20px] p-7 sm:p-9 bg-[#005CE8] text-white reveal">
-        <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
-          <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2027</p>
-          <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">FENG · Ścieżka SMART</span>
-        </div>
-        <h3 class="font-display text-[1.5rem] font-bold mb-3">FENG Ścieżka SMART (NCBR Polska)</h3>
-        <p class="text-[15px] text-white/85 leading-relaxed mb-4">
-          Program operacyjny <strong>Fundusze Europejskie dla Nowoczesnej Gospodarki</strong> 2021–2027 (NCBR). Ścieżka SMART dla MŚP rozwijających deep-tech.
-          BusiKM aplikuje na rozwój 3 komponentów R&D: Parser DDD, silnik diet AETR, detekcja granic UE. Walidacja w rozszerzonym pilotażu (50+ firm).
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[13px]">
-          <div><p class="text-white/60 mb-0.5">Faza projektu</p><p class="font-semibold">TRL 5→8 (R&D + first market)</p></div>
-          <div><p class="text-white/60 mb-0.5">Lokalizacja</p><p class="font-semibold">Polska · konsorcjum krajowe</p></div>
-          <div><p class="text-white/60 mb-0.5">Złożenie wniosku</p><p class="font-semibold">Q4 2026 / Q1 2027</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== ROK 3 — R&D PHASE 2 (2028, EIC + HORIZON) ===================== -->
-  <section id="rok-2028" class="bg-surface py-20 sm:py-28 border-t border-border-subtle">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Rok 3 · 2028 — R&D Phase 2</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">
-          Deep-tech europejski. <span class="bg-gradient-to-r from-[#005CE8] to-[#8B5CF6] bg-clip-text text-transparent">EIC Accelerator + Horizon Europe.</span>
-        </h2>
-        <p class="text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
-          Dwie aplikacje grantowe: <strong class="text-text">EIC Accelerator</strong> (European Innovation Council, blended finance — grant €2.5M + equity €15M)
-          oraz <strong class="text-text">Horizon Europe Cluster 5</strong> (Climate, Energy &amp; Mobility — work programme partnerstwo). Cel: market-ready (TRL 9), scale-out pan-EU.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-stagger mb-12">
-        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 7L7 17"/><path d="M12 2v8M12 14v8"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">Q1–Q2 2028 · TRL 3→5</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Bluetooth ITS — hardware prototype</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">React Native library do zdalnej komunikacji z tachografem G2V2 przez Bluetooth ITS (Rozp. 2016/799). Pobranie DDD bez kabla do warsztatu — funkcjonalność której brakuje w istniejących aplikacjach europejskich. Walidacja na referencyjnym sprzęcie.</p>
-        </article>
-
-        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#FF3B30]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#FF6B5C]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF6B5C]">Q3 2028 · TRL 4→6</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">XAI anomalia spalania — production</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Model regresji wielowymiarowej + SHAP-based explainability (zgodne z EU AI Act). Detekcja kradzieży paliwa z naturalnojęzykowym wyjaśnieniem. Trenowany na 2-letnim zbiorze z pilotażu (target: precision ≥80%, recall ≥70%).</p>
-        </article>
-
-        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#3380FF]">Q3 2028 · TRL 8→9</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Multi-tenant scale-out PL→CZ/SK→DE</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Pełne wdrożenie pan-EU — Czechy i Słowacja (Q1), Niemcy (Q2). Lokalne FK integration (Pohoda, DATEV), lokalne VAT regime, multi-currency, e-invoicing per kraj (KSeF/Peppol/SDI/FacturaE).</p>
-        </article>
-
-        <article class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Q4 2028 · Market Ready</p>
-              <p class="font-display font-bold text-[1.05rem] text-text leading-tight">Commercialization · TRL 9</p>
-            </div>
-          </div>
-          <p class="text-[13.5px] text-text-secondary leading-relaxed">Pełna komercjalizacja produktu w 4 krajach UE (PL, CZ, SK, DE). Konsorcjum: 1 uczelnia techniczna (TRL evaluation partner), 1 system FK europejski, 1 dostawca tachografów (VDO/Stoneridge). Target: 500+ klientów płacących.</p>
-        </article>
-      </div>
-
-      <!-- Grant program boxes: EIC + Horizon -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal">
-        <div class="rounded-[20px] p-7 sm:p-8 bg-[#005CE8] text-white">
-          <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
-            <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2028 #1</p>
-            <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">EIC · Accelerator</span>
-          </div>
-          <h3 class="font-display text-[1.35rem] font-bold mb-3">EIC Accelerator</h3>
-          <p class="text-[14px] text-white/85 leading-relaxed mb-4">
-            <strong>European Innovation Council</strong> — blended finance dla deep-tech scale-ups. Grant €0.5–2.5M + equity €0.5–15M.
-            BusiKM aplikuje na komercjalizację 6 komponentów R&D + scale-out PL→CZ/SK→DE.
-          </p>
-          <div class="grid grid-cols-2 gap-3 text-[12.5px]">
-            <div><p class="text-white/60 mb-0.5">Faza</p><p class="font-semibold">TRL 6→9</p></div>
-            <div><p class="text-white/60 mb-0.5">Termin</p><p class="font-semibold">Q1 2028 (Step 1)</p></div>
-          </div>
-        </div>
-
-        <div class="rounded-[20px] p-7 sm:p-8 bg-[#8B5CF6] text-white">
-          <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
-            <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-white/70">Program grantowy 2028 #2</p>
-            <span class="text-[11px] font-mono font-bold bg-white/15 text-white px-2.5 py-1 rounded">Horizon · Cluster 5</span>
-          </div>
-          <h3 class="font-display text-[1.35rem] font-bold mb-3">Horizon Europe Cluster 5</h3>
-          <p class="text-[14px] text-white/85 leading-relaxed mb-4">
-            <strong>Climate, Energy &amp; Mobility</strong> work programme. Konsorcjum z 3+ partnerami (uczelnia + dostawca tachografów + flota pilotażowa).
-            Cel: standardy eFTI implementation + BT ITS protocol contribution + XAI transparency framework dla compliance.
-          </p>
-          <div class="grid grid-cols-2 gap-3 text-[12.5px]">
-            <div><p class="text-white/60 mb-0.5">Faza</p><p class="font-semibold">TRL 7→9</p></div>
-            <div><p class="text-white/60 mb-0.5">Termin</p><p class="font-semibold">Q2 2028 (call opening)</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-10 reveal">
-        <a href="/technologia" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-2 text-text border border-border text-[14px] font-semibold hover:bg-surface transition-all">
-          Czytaj szczegółową dokumentację R&D
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- ===================== INTEGRACJE FK ===================== -->
-  <section class="bg-surface-2 py-16 sm:py-20">
+  <section class="bg-surface-2 py-16 sm:py-20 border-t border-border-subtle">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="bg-surface rounded-[20px] p-7 sm:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+      <div class="bg-surface rounded-[20px] p-7 sm:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-border-subtle">
         <div class="flex items-center gap-3 mb-5">
-          <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-          <h3 class="font-bold text-gray-900 text-lg">Trzy integracje FK — gotowe w MVP</h3>
+          <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          <h3 class="font-bold text-text text-lg">Trzy integracje FK — gotowe w MVP</h3>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           {[
@@ -887,52 +454,52 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
             <div class="flex items-center gap-3 bg-surface-2 rounded-xl px-4 py-3">
               <svg class="w-4 h-4 text-[#34C759] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               <div>
-                <p class="text-sm font-semibold text-gray-900 leading-tight">{s.name}</p>
-                <p class="text-xs text-gray-500">{s.desc}</p>
+                <p class="text-sm font-semibold text-text leading-tight">{s.name}</p>
+                <p class="text-xs text-text-tertiary">{s.desc}</p>
               </div>
             </div>
           ))}
         </div>
-        <p class="text-xs text-gray-500">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na przełomie maja i czerwca 2026, w fazie post-MVP.</p>
+        <p class="text-xs text-text-tertiary">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na przełomie maja i czerwca 2026, w fazie post-MVP.</p>
       </div>
     </div>
   </section>
 
   <!-- ===================== ROLA PILOTÓW ===================== -->
-  <section class="bg-surface py-20 sm:py-28">
+  <section class="bg-surface py-20 sm:py-28 border-t border-border-subtle">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
 
       <div class="text-center mb-12 reveal">
-        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Rola pilotów</p>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+        <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-brand mb-4">Rola pilotów</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight mb-4">
           Każda nowa funkcja przechodzi przez firmy transportowe.
         </h2>
-        <p class="text-lg text-gray-500 leading-relaxed">
-          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z firmami transportowymi pilotażowymi — właścicielami flot, dyspozytorami, kierowcami, księgowymi. To oni mówią, czy działa zgodnie z praktyką transportową, czy wymaga doprecyzowania — albo czy nie ma sensu w obecnej formie.
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Zanim funkcja trafi do publicznej wersji produktu, jest walidowana z firmami transportowymi pilotażowymi — właścicielami flot, dyspozytorami, kierowcami, księgowymi. To oni mówią, czy działa zgodnie z praktyką transportową, czy wymaga doprecyzowania — albo czy nie ma sensu w obecnej formie.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 reveal-stagger">
-        <div class="bg-surface-2 rounded-[20px] p-7">
-          <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.08] flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
+          <div class="w-11 h-11 rounded-[14px] bg-brand/[0.08] flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-gray-900 mb-2">Wczesny dostęp</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci otrzymują nowe funkcje 4–8 tygodni przed publicznym wdrożeniem. Mają czas przetestować je w realnej pracy.</p>
+          <h3 class="font-display font-semibold text-[1rem] text-text mb-2">Wczesny dostęp</h3>
+          <p class="text-[14px] text-text-secondary leading-relaxed">Piloci otrzymują nowe funkcje 4–8 tygodni przed publicznym wdrożeniem. Mają czas przetestować je w realnej pracy.</p>
         </div>
-        <div class="bg-surface-2 rounded-[20px] p-7">
+        <div class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
           <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.08] flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-gray-900 mb-2">Realny wpływ</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed">Krótka rozmowa raz w miesiącu: co działa, co nie, co warto poprawić. Decyzje produktowe podejmujemy na podstawie tych odpowiedzi.</p>
+          <h3 class="font-display font-semibold text-[1rem] text-text mb-2">Realny wpływ</h3>
+          <p class="text-[14px] text-text-secondary leading-relaxed">Krótka rozmowa raz w miesiącu: co działa, co nie, co warto poprawić. Decyzje produktowe podejmujemy na podstawie tych odpowiedzi.</p>
         </div>
-        <div class="bg-surface-2 rounded-[20px] p-7">
+        <div class="bg-surface-2 rounded-[20px] p-7 border border-border-subtle">
           <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.08] flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-gray-900 mb-2">Dożywotni dostęp</h3>
-          <p class="text-[14px] text-gray-600 leading-relaxed">Piloci pozostają w programie pilotażowym bezterminowo — bez konwersji na płatny plan. To podziękowanie za czas, który nam dali.</p>
+          <h3 class="font-display font-semibold text-[1rem] text-text mb-2">Dożywotni dostęp</h3>
+          <p class="text-[14px] text-text-secondary leading-relaxed">Piloci pozostają w programie pilotażowym bezterminowo — bez konwersji na płatny plan. To podziękowanie za czas, który nam dali.</p>
         </div>
       </div>
 
@@ -947,7 +514,7 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
         Współtwórz BusiKM od początku.
       </h2>
       <p class="text-lg text-white/65 mb-10 max-w-xl mx-auto">
-        Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego — dożywotni dostęp gratis, w zamian za udział w walidacji nowych funkcji.
+        Zapraszamy ograniczoną liczbę firm transportowych do programu pilotażowego — dożywotni dostęp gratis, w zamian za udział w walidacji nowych funkcji.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">
@@ -955,26 +522,11 @@ const totalTickets = phases.reduce((acc, p) => acc + p.sprints.reduce((a, s) => 
           Dołącz do pilotażu
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
-        <a href="/funkcje" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all border border-white/20">
-          Zobacz funkcje produktu
+        <a href="/technologia" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all border border-white/20">
+          Czytaj dokumentację R&amp;D
         </a>
       </div>
     </div>
   </section>
 
 </MarketingLayout>
-
-<script>
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-  );
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
-</script>
