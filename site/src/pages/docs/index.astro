@@ -29,15 +29,15 @@ const infoDocs = [
       {productDocs.map((doc) => (
         <a
           href={doc.href}
-          class="group block p-5 rounded-[16px] border border-[#E8E8ED] bg-white hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
+          class="group block p-5 rounded-[16px] border border-border-subtle bg-surface hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
         >
           <div class="w-10 h-10 rounded-[12px] mb-3 flex items-center justify-center" style={`background: ${doc.color}12;`}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={doc.color} stroke-linecap="round" stroke-linejoin="round" set:html={doc.icon}/>
           </div>
-          <h3 class="font-display font-semibold text-[#1D1D1F] group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
+          <h3 class="font-display font-semibold text-text group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
             {doc.title}
           </h3>
-          <p class="text-[13px] text-[#6E6E73] leading-relaxed">
+          <p class="text-[13px] text-text-secondary leading-relaxed">
             {doc.description}
           </p>
         </a>
@@ -49,15 +49,15 @@ const infoDocs = [
       {infoDocs.map((doc) => (
         <a
           href={doc.href}
-          class="group block p-5 rounded-[16px] border border-[#E8E8ED] bg-white hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
+          class="group block p-5 rounded-[16px] border border-border-subtle bg-surface hover:border-[#005CE8]/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300"
         >
           <div class="w-10 h-10 rounded-[12px] mb-3 flex items-center justify-center" style={`background: ${doc.color}12;`}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={doc.color} stroke-linecap="round" stroke-linejoin="round" set:html={doc.icon}/>
           </div>
-          <h3 class="font-display font-semibold text-[#1D1D1F] group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
+          <h3 class="font-display font-semibold text-text group-hover:text-[#005CE8] transition-colors mb-1 text-[0.95rem]">
             {doc.title}
           </h3>
-          <p class="text-[13px] text-[#6E6E73] leading-relaxed">
+          <p class="text-[13px] text-text-secondary leading-relaxed">
             {doc.description}
           </p>
         </a>

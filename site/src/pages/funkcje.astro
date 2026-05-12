@@ -106,7 +106,7 @@ const featureGroups = [
 <MarketingLayout title="Funkcje — BusiKM" description="Wszystko dla firm transportowych z busami 2,5–3,5 t: GPS, OCR paragonów w 6 językach, alerty AETR, dokumenty kierowcy, eksport do Insert GT / Comarch / Symfonia, panel multi-klient dla biur rachunkowych.">
 
   <!-- HERO -->
-  <section class="bg-white">
+  <section class="bg-surface">
     <div class="max-w-[980px] mx-auto px-6 pt-24 pb-20 text-center">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-8">
         <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
@@ -121,7 +121,7 @@ const featureGroups = [
         Od GPS i paragonów w sześciu językach po dokumenty kierowcy, AETR, tachograf G2V2 i eksport do księgowej. Wszystko w jednej aplikacji — wszystko zgodne z prawem polskim i pakietem mobilności UE.
       </p>
 
-      <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 text-[12.5px] text-[#6E6E73]">
+      <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 text-[12.5px] text-text-secondary">
         <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.08] text-[#005CE8] font-semibold">MVP — gotowe lub w wdrożeniu</span>
         <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.08] text-[#FF9500] font-semibold">Po MVP — funkcje wkrótce</span>
         <span>Funkcje bez tagu są stale dostępne.</span>
@@ -131,17 +131,17 @@ const featureGroups = [
 
   <!-- FEATURE GROUPS -->
   {featureGroups.map((group, groupIndex) => (
-    <section class={groupIndex % 2 === 0 ? 'bg-[#F5F5F7]' : 'bg-white'}>
+    <section class={groupIndex % 2 === 0 ? 'bg-surface-2' : 'bg-surface'}>
       <div class="max-w-[980px] mx-auto px-6 py-20">
         <div class:list={[
           'reveal-on-scroll rounded-[20px] p-7 sm:p-9 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-300',
-          (group as any).featured ? 'bg-[#1D1D1F] text-white' : 'bg-white',
+          (group as any).featured ? 'bg-[#1D1D1F] text-white' : 'bg-surface',
         ]}>
           <div class="flex items-start gap-3.5 mb-2">
             <div
               class:list={[
                 'w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0',
-                (group as any).featured ? 'bg-white/15' : '',
+                (group as any).featured ? 'bg-surface/15' : '',
               ]}
               style={!(group as any).featured ? `background-color: ${group.color};` : undefined}
               set:html={group.icon}
@@ -155,7 +155,7 @@ const featureGroups = [
               </h2>
               <p class:list={[
                 'text-[14px] mt-1 leading-relaxed',
-                (group as any).featured ? 'text-white/70' : 'text-[#86868B]',
+                (group as any).featured ? 'text-white/70' : 'text-text-tertiary',
               ]}>{group.subtitle}</p>
             </div>
           </div>
@@ -180,8 +180,8 @@ const featureGroups = [
                   {tag && (
                     <span class={`px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap flex-shrink-0 mt-0.5 ${
                       tag === 'MVP'
-                        ? (isFeatured ? 'bg-white/20 text-white' : 'bg-[#005CE8]/[0.10] text-[#005CE8]')
-                        : (isFeatured ? 'bg-white/10 text-white/70' : 'bg-[#FF9500]/[0.12] text-[#FF9500]')
+                        ? (isFeatured ? 'bg-surface/20 text-white' : 'bg-[#005CE8]/[0.10] text-[#005CE8]')
+                        : (isFeatured ? 'bg-surface/10 text-white/70' : 'bg-[#FF9500]/[0.12] text-[#FF9500]')
                     }`}>
                       {tag}
                     </span>
@@ -193,7 +193,7 @@ const featureGroups = [
 
           {(group as any).featured && (
             <div class="mt-6 pt-5 border-t border-white/15">
-              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1D1D1F] text-[14px] font-bold hover:bg-white/90 transition-all">
+              <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface text-text text-[14px] font-bold hover:bg-surface/90 transition-all">
                 Dołącz do pilotażu
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>

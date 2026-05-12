@@ -9,7 +9,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 >
 
 <!-- ============ HERO ============ -->
-<section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
+<section class="relative overflow-hidden bg-surface px-5 py-24 sm:py-32">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#FF9500]/[0.04] blur-[120px]"></div>
   </div>
@@ -20,11 +20,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         <span class="text-[12.5px] font-medium text-[#FF9500]">Dla księgowych w firmach transportowych</span>
       </div>
 
-      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-text mb-6">
         Koniec z reklamówką paragonów<br/>z całej Europy.
       </h1>
 
-      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[620px] mb-9">
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-text-secondary max-w-[620px] mb-9">
         BusiKM przyjmuje faktury kosztowe z DE/IT/FR/ES/NL przez OCR, przelicza walutę po kursie NBP, liczy diety per kraj na podstawie GPS i przygotowuje paczkę VAT-REFUND. Twoje biuro rachunkowe dostaje gotowy import do Insert GT, Comarch albo Symfonia.
       </p>
 
@@ -33,7 +33,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           Wypróbuj demo
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold hover:bg-surface-2 transition-colors">
           Cennik (gratis dla pilotów)
         </a>
       </div>
@@ -46,8 +46,8 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           { num: '−60h/mies.', label: 'mniej ręcznej roboty' },
         ].map(s => (
           <div class="flex flex-col items-center sm:items-start">
-            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-none">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-text leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
       </div>
@@ -56,24 +56,24 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ MOCKUP — KOSZTY UE ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Twój pierwszy ekran</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Skrzynka kosztowa UE.<br/>Wszystko już przeliczone.
       </h2>
-      <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4">
+      <p class="text-[15px] leading-relaxed text-text-secondary mt-4">
         Każda faktura ma walutę oryginalną, kurs NBP, kwotę PLN, status (do zatwierdzenia / zaksięgowana / VAT-REF), pojazd i zlecenie. Filtrujesz, eksportujesz, gotowe.
       </p>
     </div>
 
-    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[340px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B] font-mono">app.busikm.pl/ksiegowosc/koszty-ue</div>
+        <div class="ml-4 flex-1 max-w-[340px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary font-mono">app.busikm.pl/ksiegowosc/koszty-ue</div>
       </div>
 
       <div class="p-5 sm:p-7">
@@ -89,13 +89,13 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             { label: 'Maj 2026', count: 47 },
           ].map(f => (
             <span class:list={['px-3 py-1.5 rounded-xl text-[11.5px] font-semibold transition-colors',
-              f.active ? 'bg-[#1D1D1F] text-white' : 'bg-white text-[#6E6E73] hover:bg-[#FF9500]/10']}>{f.label} <span class="opacity-60">({f.count})</span></span>
+              f.active ? 'bg-[#1D1D1F] text-white' : 'bg-surface text-text-secondary hover:bg-[#FF9500]/10']}>{f.label} <span class="opacity-60">({f.count})</span></span>
           ))}
         </div>
 
         <!-- Table — desktop / Cards — mobile -->
-        <div class="bg-white rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div class="hidden sm:grid grid-cols-12 gap-3 px-4 py-3 bg-[#FAFAFA] border-b border-black/[0.04] text-[10px] uppercase tracking-[0.06em] text-[#86868B] font-semibold">
+        <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div class="hidden sm:grid grid-cols-12 gap-3 px-4 py-3 bg-[#FAFAFA] border-b border-border-subtle text-[10px] uppercase tracking-[0.06em] text-text-tertiary font-semibold">
             <div class="col-span-3">Faktura · Sprzedawca</div>
             <div class="col-span-2">Kategoria · Pojazd</div>
             <div class="col-span-2">Kwota oryg.</div>
@@ -119,39 +119,39 @@ import { APP_LOGIN_URL } from '../lib/app-url';
                   <div class="flex items-start justify-between gap-2">
                     <div class="min-w-0 flex-1">
                       <div class="flex items-center gap-1.5 mb-0.5">
-                        <span class="font-mono text-[10px] text-[#86868B]">{r.num}</span>
-                        <span class="text-[9px] font-mono font-semibold text-[#86868B] bg-black/[0.04] px-1.5 py-0.5 rounded">{r.flag}</span>
+                        <span class="font-mono text-[10px] text-text-tertiary">{r.num}</span>
+                        <span class="text-[9px] font-mono font-semibold text-text-tertiary bg-surface-2 px-1.5 py-0.5 rounded">{r.flag}</span>
                       </div>
-                      <p class="text-[13px] font-semibold text-[#1D1D1F] leading-tight">{r.vendor}</p>
+                      <p class="text-[13px] font-semibold text-text leading-tight">{r.vendor}</p>
                     </div>
                     <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-semibold whitespace-nowrap shrink-0" style={`background: ${r.statusColor}15; color: ${r.statusColor}`}>{r.status}</span>
                   </div>
-                  <p class="text-[11px] text-[#86868B] leading-snug">{r.cat} · {r.date}</p>
-                  <div class="flex items-baseline gap-1.5 text-[12px] font-mono pt-1.5 border-t border-black/[0.04]">
-                    <span class="text-[#86868B]">{r.orig}</span>
-                    <span class="text-[#86868B] text-[10px]">×</span>
-                    <span class="text-[#86868B]">{r.rate}</span>
-                    <span class="text-[#86868B] text-[10px]">=</span>
-                    <span class="font-bold text-[#1D1D1F] ml-auto">{r.pln}</span>
+                  <p class="text-[11px] text-text-tertiary leading-snug">{r.cat} · {r.date}</p>
+                  <div class="flex items-baseline gap-1.5 text-[12px] font-mono pt-1.5 border-t border-border-subtle">
+                    <span class="text-text-tertiary">{r.orig}</span>
+                    <span class="text-text-tertiary text-[10px]">×</span>
+                    <span class="text-text-tertiary">{r.rate}</span>
+                    <span class="text-text-tertiary text-[10px]">=</span>
+                    <span class="font-bold text-text ml-auto">{r.pln}</span>
                   </div>
                 </div>
 
                 {/* Desktop row */}
                 <div class="hidden sm:grid grid-cols-12 gap-3 items-center text-[11.5px]">
                   <div class="col-span-3 min-w-0">
-                    <p class="font-mono text-[10.5px] text-[#86868B]">{r.num}</p>
-                    <p class="font-medium text-[#1D1D1F] truncate">{r.vendor}</p>
-                    <p class="text-[10px] text-[#86868B]">{r.date}</p>
+                    <p class="font-mono text-[10.5px] text-text-tertiary">{r.num}</p>
+                    <p class="font-medium text-text truncate">{r.vendor}</p>
+                    <p class="text-[10px] text-text-tertiary">{r.date}</p>
                   </div>
                   <div class="col-span-2 min-w-0">
-                    <p class="text-[#1D1D1F] truncate">{r.cat}</p>
+                    <p class="text-text truncate">{r.cat}</p>
                   </div>
                   <div class="col-span-2 font-mono">
-                    <span class="inline-block w-6 text-[9px] text-[#86868B] mr-1">{r.flag}</span>
-                    <span class="font-semibold text-[#1D1D1F]">{r.orig}</span>
+                    <span class="inline-block w-6 text-[9px] text-text-tertiary mr-1">{r.flag}</span>
+                    <span class="font-semibold text-text">{r.orig}</span>
                   </div>
-                  <div class="col-span-1 font-mono text-[#86868B]">{r.rate}</div>
-                  <div class="col-span-2 font-mono font-semibold text-[#1D1D1F]">{r.pln}</div>
+                  <div class="col-span-1 font-mono text-text-tertiary">{r.rate}</div>
+                  <div class="col-span-2 font-mono font-semibold text-text">{r.pln}</div>
                   <div class="col-span-2">
                     <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-semibold" style={`background: ${r.statusColor}15; color: ${r.statusColor}`}>{r.status}</span>
                   </div>
@@ -160,9 +160,9 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             ))}
           </div>
 
-          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-black/[0.04] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-[11px]">
-            <span class="text-[#86868B]">Pokazano 6 z 47 dokumentów · maj 2026</span>
-            <span class="text-[#1D1D1F] font-semibold">Suma PLN: 47 380,12 zł · VAT-REF: 24 dok. (3 920 €)</span>
+          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-border-subtle flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-[11px]">
+            <span class="text-text-tertiary">Pokazano 6 z 47 dokumentów · maj 2026</span>
+            <span class="text-text font-semibold">Suma PLN: 47 380,12 zł · VAT-REF: 24 dok. (3 920 €)</span>
           </div>
         </div>
       </div>
@@ -171,11 +171,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ FUNKCJE GŁÓWNE ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal max-w-[620px] mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Funkcje dla księgowej</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Sześć rzeczy, które robisz miesięcznie<br/>— teraz dzieją się same.
       </h2>
     </div>
@@ -219,15 +219,15 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           bullets: ['Insert GT — natywny import jednym kliknięciem', 'Comarch ERP Optima — z analityką per zlecenie', 'Symfonia FK — z procentem odliczenia VAT', 'CSV uniwersalny + JPK_V7 ready'],
         },
       ].map(f => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+        <div class="bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-border-subtle hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-4">{f.desc}</p>
+          <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-text-secondary mb-4">{f.desc}</p>
           <ul class="flex flex-col gap-2">
             {f.bullets.map(b => (
-              <li class="flex items-start gap-2.5 text-[12.5px] text-[#6E6E73]">
+              <li class="flex items-start gap-2.5 text-[12.5px] text-text-secondary">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
               </li>
@@ -240,23 +240,23 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ DIETY ZAGRANICZNE TABELA ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center mb-10 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Diety zagraniczne</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         BusiKM zna stawki dla wszystkich krajów,<br/>do których jadą Twoje busy.
       </h2>
-      <p class="text-[14px] leading-relaxed text-[#6E6E73] mt-4">
+      <p class="text-[14px] leading-relaxed text-text-secondary mt-4">
         Stawki wg rozporządzenia MRPiPS w sprawie należności z tytułu podróży służbowych. Aktualizowane przy każdej zmianie. Ryczałt noclegowy = 25% diety gdy brak rachunku.
       </p>
     </div>
 
-    <div class="reveal rounded-[20px] bg-[#F5F5F7] p-6 sm:p-8">
+    <div class="reveal rounded-[20px] bg-surface-2 p-6 sm:p-8">
       <div class="overflow-x-auto">
         <table class="w-full text-[13.5px]">
           <thead>
-            <tr class="border-b border-black/[0.08] text-[11px] uppercase tracking-[0.06em] text-[#86868B]">
+            <tr class="border-b border-border-subtle text-[11px] uppercase tracking-[0.06em] text-text-tertiary">
               <th class="text-left py-3 pr-4 font-semibold">Kraj</th>
               <th class="text-right py-3 pl-4 font-semibold">Dieta dzienna</th>
               <th class="text-right py-3 pl-4 font-semibold">Limit hotelu</th>
@@ -275,18 +275,18 @@ import { APP_LOGIN_URL } from '../lib/app-url';
               { country: 'Austria', diet: '52 €', hotel: '130 €', stay: '13,00 €', comm: '5,20 €' },
               { country: 'Czechy', diet: '41 €', hotel: '120 €', stay: '10,25 €', comm: '4,10 €' },
             ].map(d => (
-              <tr class="border-b border-black/[0.04]">
-                <td class="py-2.5 pr-4 font-semibold text-[#1D1D1F]">{d.country}</td>
+              <tr class="border-b border-border-subtle">
+                <td class="py-2.5 pr-4 font-semibold text-text">{d.country}</td>
                 <td class="text-right py-2.5 pl-4 font-mono text-[#34C759] font-semibold">{d.diet}</td>
-                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.hotel}</td>
-                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.stay}</td>
-                <td class="text-right py-2.5 pl-4 font-mono text-[#6E6E73]">{d.comm}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-text-secondary">{d.hotel}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-text-secondary">{d.stay}</td>
+                <td class="text-right py-2.5 pl-4 font-mono text-text-secondary">{d.comm}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p class="text-[11.5px] text-[#86868B] mt-4 italic">
+      <p class="text-[11.5px] text-text-tertiary mt-4 italic">
         BusiKM dobiera stawkę obowiązującą w dniu wyjazdu i przelicza pełną dietę / 50% / 33% w zależności od liczby godzin w danym kraju (>12h, 8–12h, 0–8h). Aktualizacje przy każdej zmianie rozporządzenia.
       </p>
     </div>
@@ -294,11 +294,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ EKSPORT DO BR ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#0A84FF] mb-4">Eksport do biura rachunkowego</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Twoje BR dostaje plik gotowy do importu.<br/>Nie listę PDF-ów do przepisania.
       </h2>
     </div>
@@ -310,23 +310,23 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         { name: 'Symfonia FK', format: 'natywny import', desc: 'Eksport zgodny z importem specjalnym Symfonii. Konfigurujesz raz, przy kolejnych miesiącach wystarczy wskazać plik.', color: '#005CE8' },
         { name: 'CSV uniwersalny', format: 'CSV / Excel', desc: 'Dla biur, które nie mają dedykowanej integracji. CSV z kolumnami: data, sprzedawca, NIP, kwota netto, VAT, kategoria, pojazd, zlecenie, kurs, kwota PLN.', color: '#8B5CF6' },
       ].map(e => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <div class="bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style={`background: ${e.color}12`}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={e.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
             <div>
-              <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] tracking-[-0.01em]">{e.name}</h3>
-              <p class="text-[11px] font-mono text-[#86868B]">{e.format}</p>
+              <h3 class="font-display font-semibold text-[1rem] text-text tracking-[-0.01em]">{e.name}</h3>
+              <p class="text-[11px] font-mono text-text-tertiary">{e.format}</p>
             </div>
           </div>
-          <p class="text-[13px] text-[#6E6E73] leading-relaxed">{e.desc}</p>
+          <p class="text-[13px] text-text-secondary leading-relaxed">{e.desc}</p>
         </div>
       ))}
     </div>
 
     <div class="reveal mt-8 p-5 rounded-2xl bg-[#005CE8]/[0.04] border border-[#005CE8]/15 text-center max-w-[680px] mx-auto">
-      <p class="text-[14px] text-[#1D1D1F] leading-relaxed">
+      <p class="text-[14px] text-text leading-relaxed">
         <strong>Współpraca z BR po polsku.</strong> Wszystkie eksporty mają polskie etykiety, NIP-y polskie i unijne (VIES), kursy NBP, opisy kategorii zgodne z planem kont. Twoje BR nie pyta „a co to jest Mautstelle?".
       </p>
     </div>
@@ -334,11 +334,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Najczęstsze pytania księgowych
       </h2>
     </div>
@@ -353,12 +353,12 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         { q: 'Czy mogę ograniczyć dostęp dla biura rachunkowego?', a: 'Tak. BR ma rolę „biuro rachunkowe" — read-only do wszystkich raportów i eksportów, brak dostępu do operacji floty (tras, alertów, zarządzania kierowcami). Możesz dodatkowo ograniczyć do wybranych pojazdów albo okresów.' },
         { q: 'Jak BusiKM różni się od KSeF?', a: 'KSeF obsługuje wyłącznie polskie faktury sprzedażowe i kosztowe. Twoja firma ma 60% kosztów poza Polską (paliwo DE, opłaty IT, hotele FR) — KSeF tych dokumentów nie zobaczy nigdy. BusiKM wypełnia tę lukę: OCR, kursy, diety, VAT-REF dla zagranicznych dokumentów + integruje się z KSeF dla polskich. Razem dają pełen obraz.' },
       ].map(faq => (
-        <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#FF9500] transition-colors">
+        <details class="group bg-surface-2 rounded-2xl border border-transparent hover:border-border-subtle transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-text hover:text-[#FF9500] transition-colors">
             {faq.q}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-text-tertiary group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
-          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-text-secondary">{faq.a}</div>
         </details>
       ))}
     </div>
@@ -382,7 +382,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all">
         Zobacz wszystkie funkcje
       </a>
     </div>

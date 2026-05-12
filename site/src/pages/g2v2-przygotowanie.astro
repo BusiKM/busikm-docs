@@ -8,7 +8,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 >
 
 <!-- ============ HERO + COUNTDOWN ============ -->
-<section class="relative overflow-hidden bg-white">
+<section class="relative overflow-hidden bg-surface">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-[#FF9500]/[0.06] blur-[140px]"></div>
   </div>
@@ -20,12 +20,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         <span class="text-[12.5px] font-semibold text-[#FF9500] tracking-[0.04em] uppercase">Pakiet mobilności UE · 2 lipca 2026</span>
       </div>
 
-      <h1 class="font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+      <h1 class="font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-bold leading-[1.08] tracking-[-0.035em] text-text mb-6">
         Twoja flota busów 2,5–3,5 t<br/>
         <span class="text-[#FF9500]">wchodzi w obowiązek tachografu G2V2.</span>
       </h1>
 
-      <p class="text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-[#6E6E73] max-w-[680px] mx-auto mb-10">
+      <p class="text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-text-secondary max-w-[680px] mx-auto mb-10">
         Dotychczas tachograf był obowiązkowy dla pojazdów powyżej 3,5 t. Od 2 lipca 2026 obejmuje również busy 2,5–3,5 t używane w transporcie międzynarodowym. Karty kierowców, świadectwa kierowcy, ewidencja czasu pracy AETR, kabotaż 3/7, powrót do bazy co 4 tygodnie — wszystko to staje się Twoim obowiązkiem.
       </p>
 
@@ -44,14 +44,14 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         ))}
       </div>
 
-      <p class="text-[12.5px] text-[#86868B] mb-10">do wejścia w życie obowiązku tachografu G2V2 dla busów 2,5–3,5 t</p>
+      <p class="text-[12.5px] text-text-tertiary mb-10">do wejścia w życie obowiązku tachografu G2V2 dla busów 2,5–3,5 t</p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="#checklist" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FF9500] text-white text-[15px] font-semibold hover:bg-[#E08600] transition-colors shadow-[0_1px_3px_rgba(255,149,0,0.4)]">
           Przejdź do checklisty
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#kalkulator" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        <a href="#kalkulator" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold hover:bg-surface-2 transition-colors">
           Policz koszt wymiany
         </a>
       </div>
@@ -60,14 +60,14 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 <!-- ============ CO SIĘ ZMIENIA ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center max-w-[680px] mx-auto mb-12">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Co się zmienia 2 lipca 2026</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Sześć obowiązków, których wcześniej<br/>nie miałeś.
       </h2>
-      <p class="text-[15px] leading-relaxed text-[#6E6E73] mt-4">
+      <p class="text-[15px] leading-relaxed text-text-secondary mt-4">
         Pakiet mobilności UE i regulacja AETR rozszerzają zakres regulacji TIR-ów na busy 2,5–3,5 t w przewozach międzynarodowych. Brak każdego z poniższych = mandat lub zatrzymanie pojazdu.
       </p>
     </div>
@@ -111,14 +111,14 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           icon: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="1.6"/><path d="M14 2v6h6M9 13l2 2 4-4" stroke-width="1.6"/>`,
         },
       ].map(item => (
-        <div class="bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-border-subtle hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-[14px] flex items-center justify-center shrink-0" style="background:#FF950012;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9500" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}/>
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
-              <p class="text-[13.5px] text-[#6E6E73] leading-relaxed mb-3">{item.desc}</p>
+              <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2 tracking-[-0.01em]">{item.title}</h3>
+              <p class="text-[13.5px] text-text-secondary leading-relaxed mb-3">{item.desc}</p>
               <p class="text-[11.5px] font-semibold text-[#FF3B30] flex items-center gap-1.5">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 {item.penalty}
@@ -132,11 +132,11 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 <!-- ============ 5-KROKOWA CHECKLISTA ============ -->
-<section id="checklist" class="py-20 sm:py-28 bg-white px-5">
+<section id="checklist" class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center max-w-[680px] mx-auto mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Plan przygotowania</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Pięć kroków do wejścia w obowiązek<br/>bez paniki i mandatów.
       </h2>
     </div>
@@ -179,18 +179,18 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           time: '1 dzień konfiguracji',
         },
       ].map(item => (
-        <li class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-[#005CE8]/20 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <li class="bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-[#005CE8]/20 hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
           <div class="flex items-start gap-5">
             <span class="font-display text-[2.2rem] font-bold tracking-tight text-[#005CE8] shrink-0 leading-none">{item.step}</span>
             <div class="flex-1 min-w-0">
-              <h3 class="font-display font-semibold text-[1.1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{item.title}</h3>
-              <p class="text-[14px] text-[#6E6E73] leading-relaxed mb-4">{item.desc}</p>
+              <h3 class="font-display font-semibold text-[1.1rem] text-text mb-2 tracking-[-0.01em]">{item.title}</h3>
+              <p class="text-[14px] text-text-secondary leading-relaxed mb-4">{item.desc}</p>
               <div class="flex flex-wrap gap-3 text-[11.5px]">
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#34C759]/[0.08] text-[#34C759] font-semibold">
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   {item.deliverable}
                 </span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F5F5F7] text-[#86868B] font-medium">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-2 text-text-tertiary font-medium">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                   {item.time}
                 </span>
@@ -204,43 +204,43 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 <!-- ============ KALKULATOR KOSZTÓW ============ -->
-<section id="kalkulator" class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section id="kalkulator" class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center max-w-[680px] mx-auto mb-12">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Kalkulator</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Ile kosztuje przygotowanie<br/>Twojej floty?
       </h2>
-      <p class="text-[14.5px] leading-relaxed text-[#6E6E73] mt-4">
+      <p class="text-[14.5px] leading-relaxed text-text-secondary mt-4">
         Realne stawki rynkowe w Polsce, maj 2026. Kalkulator dla orientacji — finalne kwoty zależą od warsztatu i regionu.
       </p>
     </div>
 
     <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-5 max-w-[920px] mx-auto">
       <!-- Inputs -->
-      <div class="lg:col-span-5 bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-        <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-5 tracking-[-0.01em]">Twoja flota</h3>
+      <div class="lg:col-span-5 bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <h3 class="font-display font-semibold text-[1.05rem] text-text mb-5 tracking-[-0.01em]">Twoja flota</h3>
 
         <div class="space-y-5">
           <div>
-            <label for="calc-vehicles" class="block text-[12.5px] font-semibold text-[#1D1D1F] mb-2">Liczba pojazdów 2,5–3,5 t</label>
-            <input type="number" id="calc-vehicles" min="0" max="200" value="5" class="w-full px-4 py-3 rounded-xl border border-[#D2D2D7] bg-white text-[15px] font-mono font-semibold text-[#1D1D1F] focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
+            <label for="calc-vehicles" class="block text-[12.5px] font-semibold text-text mb-2">Liczba pojazdów 2,5–3,5 t</label>
+            <input type="number" id="calc-vehicles" min="0" max="200" value="5" class="w-full px-4 py-3 rounded-xl border border-border bg-surface text-[15px] font-mono font-semibold text-text focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
           </div>
 
           <div>
-            <label for="calc-drivers" class="block text-[12.5px] font-semibold text-[#1D1D1F] mb-2">Liczba kierowców</label>
-            <input type="number" id="calc-drivers" min="0" max="200" value="6" class="w-full px-4 py-3 rounded-xl border border-[#D2D2D7] bg-white text-[15px] font-mono font-semibold text-[#1D1D1F] focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
+            <label for="calc-drivers" class="block text-[12.5px] font-semibold text-text mb-2">Liczba kierowców</label>
+            <input type="number" id="calc-drivers" min="0" max="200" value="6" class="w-full px-4 py-3 rounded-xl border border-border bg-surface text-[15px] font-mono font-semibold text-text focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
           </div>
 
           <div>
-            <label for="calc-non-eu" class="block text-[12.5px] font-semibold text-[#1D1D1F] mb-2">Kierowcy spoza UE (UA / BY / MD)</label>
-            <input type="number" id="calc-non-eu" min="0" max="200" value="2" class="w-full px-4 py-3 rounded-xl border border-[#D2D2D7] bg-white text-[15px] font-mono font-semibold text-[#1D1D1F] focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
+            <label for="calc-non-eu" class="block text-[12.5px] font-semibold text-text mb-2">Kierowcy spoza UE (UA / BY / MD)</label>
+            <input type="number" id="calc-non-eu" min="0" max="200" value="2" class="w-full px-4 py-3 rounded-xl border border-border bg-surface text-[15px] font-mono font-semibold text-text focus:outline-none focus:border-[#FF9500] focus:ring-2 focus:ring-[#FF9500]/20 transition-all"/>
           </div>
 
           <div>
             <label class="flex items-center gap-2.5 cursor-pointer">
-              <input type="checkbox" id="calc-kod95" class="w-4 h-4 rounded border-[#D2D2D7] text-[#FF9500] focus:ring-[#FF9500]/20"/>
-              <span class="text-[12.5px] text-[#6E6E73] leading-snug">Kierowcy potrzebują szkolenia okresowego Kod 95</span>
+              <input type="checkbox" id="calc-kod95" class="w-4 h-4 rounded border-border text-[#FF9500] focus:ring-[#FF9500]/20"/>
+              <span class="text-[12.5px] text-text-secondary leading-snug">Kierowcy potrzebują szkolenia okresowego Kod 95</span>
             </label>
           </div>
         </div>
@@ -302,11 +302,11 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 <!-- ============ CO BUSIKM ZAŁATWIA ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center max-w-[680px] mx-auto mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Co BusiKM robi za Ciebie</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Sprzęt kupujesz w warsztacie.<br/>Resztą zajmujesz się tutaj.
       </h2>
     </div>
@@ -344,12 +344,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
           color: '#0A84FF',
         },
       ].map(f => (
-        <div class="bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
+        <div class="bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-border-subtle hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300">
           <div class="w-10 h-10 rounded-[12px] flex items-center justify-center mb-4" style={`background:${f.color}12`}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[13.5px] text-[#6E6E73] leading-relaxed">{f.desc}</p>
+          <h3 class="font-display font-semibold text-[1rem] text-text mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[13.5px] text-text-secondary leading-relaxed">{f.desc}</p>
         </div>
       ))}
     </div>
@@ -357,11 +357,11 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Najczęstsze pytania o przygotowanie do G2V2
       </h2>
     </div>
@@ -376,12 +376,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         { q: 'Czy moi kierowcy z C+E muszą robić Kod 95?', a: 'Jeśli mają aktualną kwalifikację wstępną i Kod 95 (kursy okresowe co 5 lat) — wystarczą. Jeśli ostatnie szkolenie było ponad 5 lat temu, muszą przejść 35-godzinne szkolenie okresowe (~1 100 zł). Sprawdź daty na świadectwach kwalifikacji.' },
         { q: 'Co BusiKM kosztuje w pilotażu?', a: 'BusiKM jest na etapie pilotażu MVP — pierwsze firmy transportowe biorą udział dożywotnio gratis. Bez karty kredytowej, bez warunków minimalnych. W zamian: krótka rozmowa raz w miesiącu o feedbacku. Cennik komercyjny ogłosimy po analizie pilotów.' },
       ].map(faq => (
-        <details class="group bg-white rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#FF9500] transition-colors">
+        <details class="group bg-surface rounded-2xl border border-transparent hover:border-border-subtle transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-text hover:text-[#FF9500] transition-colors">
             {faq.q}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-text-tertiary group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
-          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-text-secondary">{faq.a}</div>
         </details>
       ))}
     </div>
@@ -405,7 +405,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
         Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all">
         Zobacz wszystkie funkcje
       </a>
     </div>

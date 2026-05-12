@@ -9,7 +9,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 >
 
 <!-- ============ HERO ============ -->
-<section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
+<section class="relative overflow-hidden bg-surface px-5 py-24 sm:py-32">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#005CE8]/[0.04] blur-[120px]"></div>
   </div>
@@ -20,11 +20,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         <span class="text-[12.5px] font-medium text-[#005CE8]">Aplikacja dla kierowców · iOS 15+ · Android 10+</span>
       </div>
 
-      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-text mb-6">
         Twoja trasa po Europie —<br/>bez stresu z czasem pracy<br/>i papierem w reklamówce.
       </h1>
 
-      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[600px] mb-9">
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-text-secondary max-w-[600px] mb-9">
         Aplikacja BusiKM rejestruje trasę GPS w tle, robi OCR paragonów w DE/IT/FR/ES, alarmuje przed obowiązkową przerwą zanim wpadniesz na kontrolę BAG, ITD czy Gendarmerie, i działa bez sieci w tunelach i górach.
       </p>
 
@@ -33,7 +33,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           Wypróbuj demo
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold hover:bg-surface-2 transition-colors">
           Cennik (gratis dla pilotów)
         </a>
       </div>
@@ -46,8 +46,8 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           { num: '6 języków', label: 'PL/EN/DE/IT/FR/ES' },
         ].map(s => (
           <div class="flex flex-col items-center sm:items-start">
-            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-none">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-2 max-w-[140px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-text leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[140px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
       </div>
@@ -56,35 +56,35 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ AETR ALERT — DEEP DIVE ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-5">
         <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Najważniejsza funkcja</p>
-        <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.12] mb-5">
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.12] mb-5">
           Alerty czasu pracy AETR.<br/>Zanim zatrzyma Cię BAG.
         </h2>
-        <p class="text-[14.5px] leading-relaxed text-[#6E6E73] mb-5">
+        <p class="text-[14.5px] leading-relaxed text-text-secondary mb-5">
           Pakiet mobilności UE i regulacja AETR mają proste reguły, ale dziesiątki przypadków granicznych. BusiKM monitoruje wszystkie limity i ostrzega zanim zaczniesz naruszać:
         </p>
-        <ul class="space-y-2 text-[13.5px] text-[#6E6E73]">
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">4,5 h jazdy + 45 min przerwy</strong> — przerwa może być rozbita 15 + 30 min</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">Dzienne 9 h jazdy</strong>, max 10 h dwa razy w tygodniu</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">Dzienny odpoczynek 11 h</strong>, skrócony do 9 h max 3× w tygodniu</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">Tygodniowy odpoczynek 45 h</strong>, skrócony do 24 h naprzemiennie</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">Powrót do bazy</strong> co 4 tygodnie</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-[#1D1D1F]">Kabotaż 3 operacje w 7 dni</strong> od wjazdu po zleceniu międzynarodowym</span></li>
+        <ul class="space-y-2 text-[13.5px] text-text-secondary">
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">4,5 h jazdy + 45 min przerwy</strong> — przerwa może być rozbita 15 + 30 min</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Dzienne 9 h jazdy</strong>, max 10 h dwa razy w tygodniu</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Dzienny odpoczynek 11 h</strong>, skrócony do 9 h max 3× w tygodniu</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Tygodniowy odpoczynek 45 h</strong>, skrócony do 24 h naprzemiennie</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Powrót do bazy</strong> co 4 tygodnie</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-[#FF9500] mt-[7px] shrink-0 leading-none">●</span><span class="leading-relaxed"><strong class="text-text">Kabotaż 3 operacje w 7 dni</strong> od wjazdu po zleceniu międzynarodowym</span></li>
         </ul>
-        <p class="text-[12.5px] text-[#86868B] mt-5 italic">
+        <p class="text-[12.5px] text-text-tertiary mt-5 italic">
           Pierwsza zasada brzmi prosto. W praktyce kierowca pilnuje 6 limitów jednocześnie, w 5 strefach czasowych, w 3 walutach — po 12 godzinach jazdy. BusiKM robi to za Ciebie.
         </p>
       </div>
 
       <div class="lg:col-span-7">
         <div class="rounded-[24px] bg-[#0A0A0B] p-1.5 mx-auto max-w-[360px] sm:max-w-[420px]">
-          <div class="rounded-[20px] bg-[#F5F5F7] overflow-hidden">
+          <div class="rounded-[20px] bg-surface-2 overflow-hidden">
             <!-- Phone status bar -->
-            <div class="bg-white px-4 py-2 flex items-center justify-between text-[10px] text-[#86868B] font-mono">
+            <div class="bg-surface px-4 py-2 flex items-center justify-between text-[10px] text-text-tertiary font-mono">
               <span>14:23</span>
               <div class="flex items-center gap-1">
                 <span>●●●</span>
@@ -101,7 +101,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
               </div>
               <p class="font-display text-[1.6rem] font-bold leading-tight mb-1">30 min do limitu</p>
               <p class="text-[12.5px] text-white/85 leading-snug mb-3">Po 4 h 30 min jazdy musisz zatrzymać się na min. 45 min.</p>
-              <div class="bg-white/15 rounded-xl p-3">
+              <div class="bg-surface/15 rounded-xl p-3">
                 <p class="text-[10px] uppercase tracking-[0.06em] text-white/70 mb-1">Najbliższy parking AETR</p>
                 <p class="text-[13px] font-semibold leading-snug">A4 Auchy-lès-Hesdin</p>
                 <p class="text-[11px] text-white/80">12 km · ~9 min · darmowy · WC, restauracja</p>
@@ -112,29 +112,29 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             <div class="px-4 py-4 space-y-3">
               <div>
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
-                  <span class="text-[#86868B]">Jazda dzisiaj</span>
-                  <span class="font-mono font-semibold text-[#1D1D1F]">7 h 12 min / 9 h</span>
+                  <span class="text-text-tertiary">Jazda dzisiaj</span>
+                  <span class="font-mono font-semibold text-text">7 h 12 min / 9 h</span>
                 </div>
                 <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:80%"></div></div>
               </div>
               <div>
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
-                  <span class="text-[#86868B]">Jazda w tym tygodniu</span>
-                  <span class="font-mono font-semibold text-[#1D1D1F]">38 h 40 min / 56 h</span>
+                  <span class="text-text-tertiary">Jazda w tym tygodniu</span>
+                  <span class="font-mono font-semibold text-text">38 h 40 min / 56 h</span>
                 </div>
                 <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#34C759] rounded-full" style="width:69%"></div></div>
               </div>
               <div>
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
-                  <span class="text-[#86868B]">Dni do powrotu do bazy</span>
-                  <span class="font-mono font-semibold text-[#1D1D1F]">9 dni / 28 dni</span>
+                  <span class="text-text-tertiary">Dni do powrotu do bazy</span>
+                  <span class="font-mono font-semibold text-text">9 dni / 28 dni</span>
                 </div>
                 <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#005CE8] rounded-full" style="width:32%"></div></div>
               </div>
               <div>
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
-                  <span class="text-[#86868B]">Operacje kabotażowe (od 12 maja)</span>
-                  <span class="font-mono font-semibold text-[#1D1D1F]">2 z 3 w 7 dni</span>
+                  <span class="text-text-tertiary">Operacje kabotażowe (od 12 maja)</span>
+                  <span class="font-mono font-semibold text-text">2 z 3 w 7 dni</span>
                 </div>
                 <div class="h-1.5 rounded-full bg-black/[0.06] overflow-hidden"><div class="h-full bg-[#FF9500] rounded-full" style="width:67%"></div></div>
               </div>
@@ -147,11 +147,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ PARAGON OCR ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">Koniec reklamówki z paragonami</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Pstryk telefonem.<br/>Aplikacja resztę zrobi sama.
       </h2>
     </div>
@@ -198,20 +198,20 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           ],
         },
       ].map(s => (
-        <div class="bg-white rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+        <div class="bg-surface rounded-[20px] p-6 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
           <div class="flex items-center justify-between mb-4">
             <span class="font-display text-[1.6rem] font-bold tracking-tight text-[#005CE8]/[0.15] leading-none">{s.step}</span>
-            <span class="text-[10.5px] font-mono text-[#86868B] bg-[#F5F5F7] px-2 py-0.5 rounded">{s.country}</span>
+            <span class="text-[10.5px] font-mono text-text-tertiary bg-surface-2 px-2 py-0.5 rounded">{s.country}</span>
           </div>
-          <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{s.title}</h3>
-          <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-4">{s.desc}</p>
-          <div class="bg-[#F5F5F7] rounded-2xl p-3.5">
-            <p class="text-[10px] uppercase tracking-[0.06em] text-[#86868B] mb-2">Wyciągnięte z OCR</p>
+          <h3 class="font-display font-semibold text-[1rem] text-text mb-2 tracking-[-0.01em]">{s.title}</h3>
+          <p class="text-[13px] text-text-secondary leading-relaxed mb-4">{s.desc}</p>
+          <div class="bg-surface-2 rounded-2xl p-3.5">
+            <p class="text-[10px] uppercase tracking-[0.06em] text-text-tertiary mb-2">Wyciągnięte z OCR</p>
             <div class="space-y-1.5">
               {s.extracted.map(e => (
                 <div class="flex items-center justify-between text-[11.5px]">
-                  <span class="text-[#86868B]">{e.label}</span>
-                  <span class="font-mono font-semibold text-[#1D1D1F]">{e.value}</span>
+                  <span class="text-text-tertiary">{e.label}</span>
+                  <span class="font-mono font-semibold text-text">{e.value}</span>
                 </div>
               ))}
             </div>
@@ -223,11 +223,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ FUNKCJE GŁÓWNE ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal max-w-[620px] mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Funkcje aplikacji</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Wszystko w jednej aplikacji.<br/>Po polsku. Z prostym interfejsem.
       </h2>
     </div>
@@ -277,15 +277,15 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           icon: `<rect x="3" y="6" width="18" height="13" rx="2" stroke-width="1.6"/><path d="M3 10h18M8 6V4m8 2V4" stroke-width="1.6"/>`,
         },
       ].map(f => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+        <div class="bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-border-subtle hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
           </div>
-          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[14px] leading-relaxed text-[#6E6E73] mb-4">{f.desc}</p>
+          <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[14px] leading-relaxed text-text-secondary mb-4">{f.desc}</p>
           <ul class="flex flex-col gap-2">
             {f.bullets.map(b => (
-              <li class="flex items-start gap-2.5 text-[12.5px] text-[#6E6E73]">
+              <li class="flex items-start gap-2.5 text-[12.5px] text-text-secondary">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5"><path d="M2 8l4 4 8-8" stroke={f.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {b}
               </li>
@@ -298,11 +298,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ DOKUMENTY KIEROWCY ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[900px] mx-auto">
     <div class="reveal text-center mb-12">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Twoje dokumenty</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Dokumenty, o które ITD pyta na każdej kontroli.<br/>Wszystkie w jednym miejscu.
       </h2>
     </div>
@@ -316,31 +316,31 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         { name: 'Badania lekarskie i psycho-techniczne', cat: 'wymagane do prowadzenia C+E', alert: 'Alert 30 dni przed', color: '#FF3B30' },
         { name: 'Świadectwo ADR', cat: 'jeśli wozisz materiały niebezpieczne', alert: 'Alert 90 dni przed', color: '#0A84FF' },
       ].map(d => (
-        <div class="bg-white rounded-2xl p-5 flex items-center gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <div class="bg-surface rounded-2xl p-5 flex items-center gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={`background: ${d.color}12`}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={d.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-[13.5px] font-semibold text-[#1D1D1F] leading-tight">{d.name}</p>
-            <p class="text-[11.5px] text-[#86868B] leading-tight">{d.cat}</p>
+            <p class="text-[13.5px] font-semibold text-text leading-tight">{d.name}</p>
+            <p class="text-[11.5px] text-text-tertiary leading-tight">{d.cat}</p>
           </div>
           <span class="text-[11px] font-medium shrink-0" style={`color: ${d.color}`}>{d.alert}</span>
         </div>
       ))}
     </div>
 
-    <p class="reveal text-[13px] text-[#86868B] text-center mt-7 max-w-[640px] mx-auto leading-relaxed">
+    <p class="reveal text-[13px] text-text-tertiary text-center mt-7 max-w-[640px] mx-auto leading-relaxed">
       Aplikacja wysyła alerty push i e-mail przed wygaśnięciem każdego dokumentu. Twój pracodawca też je dostaje — dzięki czemu nikt nigdy nie zapomina.
     </p>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Najczęstsze pytania kierowców
       </h2>
     </div>
@@ -355,12 +355,12 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         { q: 'A jeśli ITD/BAG/Polizia mnie zatrzyma — co pokazać?', a: 'Aplikacja generuje PDF z czasem pracy w danym dniu, tygodniu i 4 tygodniach. Zgodne ze standardem AETR i pakietem mobilności. Przy kontroli pokażesz oficerowi tachograf (jak zawsze), ale BusiKM jest pomocny do potwierdzenia, że wszystkie limity zostały zachowane.' },
         { q: 'Kiedy aplikacja będzie gotowa do pobrania?', a: 'BusiKM jest na etapie pilotażu MVP. Pierwsze firmy transportowe testują aplikację w trasach DE/FR/IT/ES. Premiera publiczna iOS i Android — lipiec 2026. Pilotażowe firmy mają dożywotni gratis dostęp.' },
       ].map(faq => (
-        <details class="group bg-[#F5F5F7] rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#005CE8] transition-colors">
+        <details class="group bg-surface-2 rounded-2xl border border-transparent hover:border-border-subtle transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-text hover:text-[#005CE8] transition-colors">
             {faq.q}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-text-tertiary group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
-          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-text-secondary">{faq.a}</div>
         </details>
       ))}
     </div>
@@ -380,11 +380,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       Powiedz pracodawcy o BusiKM. To on wybiera narzędzia, ale to Ty — kierowca — zyskasz najwięcej.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0A0A0B] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface text-[#0A0A0B] text-[15px] font-semibold hover:bg-surface-2 transition-colors">
         Zobacz funkcje aplikacji
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+      <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all">
         Cennik (gratis dla pilotów)
       </a>
     </div>

@@ -1,21 +1,45 @@
 ---
 import { APP_LOGIN_URL } from '../../lib/app-url';
 import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { detectLocale, t, getAlternateUrl } from '../../i18n';
 
 const currentPath = Astro.url.pathname;
+const locale = Astro.currentLocale ?? detectLocale(currentPath);
+const tr = t(locale);
+const isEn = locale === 'en';
 
-const navLinks = [
-  { href: '/funkcje', label: 'Funkcje' },
-  { href: '/cennik', label: 'Cennik' },
-  { href: '/docs', label: 'Docs' },
-];
+// Nav routing per locale
+const navLinks = isEn
+  ? [
+      { href: '/en/features', label: tr.nav.features },
+      { href: '/en/pricing', label: tr.nav.pricing },
+      { href: '/en/technology', label: tr.nav.technology },
+    ]
+  : [
+      { href: '/funkcje', label: tr.nav.features },
+      { href: '/cennik', label: tr.nav.pricing },
+      { href: '/technologia', label: tr.nav.technology },
+      { href: '/docs', label: tr.nav.docs },
+    ];
 
-const dlaKogo = [
-  { href: '/dla-biur-rachunkowych', label: 'Dla Biur Rachunkowych', desc: 'Panel multi-klient · 3 mies. gratis' },
-  { href: '/dla-wlascicieli', label: 'Dla Właścicieli Firm', desc: 'Dashboard floty · raporty MF' },
-  { href: '/dla-ksiegowych', label: 'Dla Księgowych', desc: 'Eksport FK · Insert GT · Comarch' },
-  { href: '/dla-kierowcow', label: 'Dla Kierowców', desc: 'Aplikacja mobilna · GPS w tle' },
-];
+const dlaKogo = isEn
+  ? [
+      { href: getAlternateUrl('/dla-biur-rachunkowych', 'en'), ...tr.forWhom.accountingFirms },
+      { href: getAlternateUrl('/dla-wlascicieli', 'en'), ...tr.forWhom.owners },
+      { href: getAlternateUrl('/dla-ksiegowych', 'en'), ...tr.forWhom.accountants },
+      { href: getAlternateUrl('/dla-kierowcow', 'en'), ...tr.forWhom.drivers },
+    ]
+  : [
+      { href: '/dla-biur-rachunkowych', ...tr.forWhom.accountingFirms },
+      { href: '/dla-wlascicieli', ...tr.forWhom.owners },
+      { href: '/dla-ksiegowych', ...tr.forWhom.accountants },
+      { href: '/dla-kierowcow', ...tr.forWhom.drivers },
+    ];
+
+const roadmapHref = isEn ? '/en/' : '/roadmapa';
+const g2v2Href = isEn ? '/en/' : '/g2v2-przygotowanie';
 
 const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.startsWith(l.href));
 ---
@@ -25,10 +49,10 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
   style="transform: translateZ(0); backface-visibility: hidden;"
 >
-  <!-- Frosted glass backdrop — revealed on scroll -->
+  <!-- Frosted glass backdrop — revealed on scroll (dark/light aware) -->
   <div
     id="header-backdrop"
-    class="absolute inset-0 bg-white/80 backdrop-blur-xl border-b border-black/[0.06] opacity-0 transition-opacity duration-300"
+    class="absolute inset-0 bg-surface/80 backdrop-blur-xl border-b border-border-subtle opacity-0 transition-opacity duration-300"
   ></div>
 
   <div class="relative max-w-[1120px] mx-auto px-5 sm:px-8">
@@ -47,8 +71,8 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
               class:list={[
                 'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
                 isActive
-                  ? 'text-[#005CE8] bg-[#005CE8]/8'
-                  : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
+                  ? 'text-brand bg-brand/8'
+                  : 'text-text/70 hover:text-text hover:bg-surface-2',
               ]}
             >
               {link.label}
@@ -63,13 +87,13 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
             class:list={[
               'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200 flex items-center gap-1.5 cursor-pointer',
               isDlaKogoActive
-                ? 'text-[#005CE8] bg-[#005CE8]/8'
-                : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
+                ? 'text-brand bg-brand/8'
+                : 'text-text/70 hover:text-text hover:bg-surface-2',
             ]}
             aria-expanded="false"
             aria-haspopup="true"
           >
-            Dla kogo
+            {tr.nav.forWhom}
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="transition-transform duration-200" id="dropdown-chevron">
               <path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -79,7 +103,7 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
             id="dropdown-menu"
             class="absolute top-full left-1/2 -translate-x-1/2 w-[280px] opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top"
           >
-            <div class="bg-white/95 backdrop-blur-xl rounded-2xl border border-black/[0.08] shadow-[0_12px_48px_rgba(0,0,0,0.12)] p-2">
+            <div class="bg-surface/95 backdrop-blur-xl rounded-2xl border border-border-subtle shadow-[0_12px_48px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_48px_rgba(0,0,0,0.7)] p-2">
               {dlaKogo.map(item => {
                 const active = currentPath === item.href || currentPath.startsWith(item.href);
                 return (
@@ -88,15 +112,15 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
                     class:list={[
                       'flex flex-col px-4 py-3 rounded-xl transition-colors duration-150',
                       active
-                        ? 'bg-[#005CE8]/8'
-                        : 'hover:bg-black/[0.04]',
+                        ? 'bg-brand/8'
+                        : 'hover:bg-surface-2',
                     ]}
                   >
                     <span class:list={[
                       'text-[13.5px] font-semibold tracking-[-0.01em]',
-                      active ? 'text-[#005CE8]' : 'text-[#1D1D1F]',
+                      active ? 'text-brand' : 'text-text',
                     ]}>{item.label}</span>
-                    <span class="text-[11.5px] text-[#86868B] mt-0.5">{item.desc}</span>
+                    <span class="text-[11.5px] text-text-tertiary mt-0.5">{item.desc}</span>
                   </a>
                 );
               })}
@@ -104,51 +128,63 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
           </div>
         </div>
 
-        <a
-          href="/roadmapa"
-          class:list={[
-            'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
-            currentPath.startsWith('/roadmapa')
-              ? 'text-[#005CE8] bg-[#005CE8]/8'
-              : 'text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04]',
-          ]}
-        >
-          Roadmapa
-        </a>
+        {!isEn && (
+          <a
+            href={roadmapHref}
+            class:list={[
+              'nav-link px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+              currentPath.startsWith('/roadmapa')
+                ? 'text-brand bg-brand/8'
+                : 'text-text/70 hover:text-text hover:bg-surface-2',
+            ]}
+          >
+            {tr.nav.roadmap}
+          </a>
+        )}
 
-        <a
-          href="/g2v2-przygotowanie"
-          class:list={[
-            'nav-link inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
-            currentPath.startsWith('/g2v2-przygotowanie')
-              ? 'text-[#FF9500] bg-[#FF9500]/10'
-              : 'text-[#1D1D1F]/70 hover:text-[#FF9500] hover:bg-[#FF9500]/[0.06]',
-          ]}
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
-          G2V2
-        </a>
+        {!isEn && (
+          <a
+            href={g2v2Href}
+            class:list={[
+              'nav-link inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+              currentPath.startsWith('/g2v2-przygotowanie')
+                ? 'text-warning bg-warning/10'
+                : 'text-text/70 hover:text-warning hover:bg-warning/[0.06]',
+            ]}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-warning animate-pulse"></span>
+            {tr.nav.g2v2}
+          </a>
+        )}
       </nav>
 
-      <!-- CTA + hamburger -->
-      <div class="flex items-center gap-3">
+      <!-- CTA + utilities -->
+      <div class="flex items-center gap-2">
+        <!-- Lang switcher — desktop only (mobile w drawer) -->
+        <div class="hidden sm:block">
+          <LangSwitcher />
+        </div>
+
+        <!-- Theme toggle -->
+        <ThemeToggle />
+
         <a
           href={APP_LOGIN_URL}
-          class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#005CE8] text-white text-[13px] font-semibold tracking-[-0.01em] hover:bg-[#003FAD] transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]"
+          class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-brand text-white text-[13px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]"
         >
-          Wypróbuj demo
+          {tr.nav.tryDemo}
         </a>
 
         <!-- Mobile hamburger -->
         <button
           id="mobile-menu-toggle"
-          class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-full hover:bg-black/5 transition-colors"
+          class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-full hover:bg-surface-2 transition-colors"
           aria-label="Menu"
           aria-expanded="false"
         >
-          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
-          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
-          <span class="hamburger-line w-5 h-[1.5px] bg-[#1D1D1F] rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line w-5 h-[1.5px] bg-text rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line w-5 h-[1.5px] bg-text rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line w-5 h-[1.5px] bg-text rounded-full transition-all duration-300 origin-center"></span>
         </button>
       </div>
     </div>
@@ -159,7 +195,7 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
     id="mobile-menu"
     class="lg:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-in-out"
   >
-    <div class="relative bg-white/95 backdrop-blur-xl border-t border-black/[0.06] px-5 pb-6 pt-4">
+    <div class="relative bg-surface/95 backdrop-blur-xl border-t border-border-subtle px-5 pb-6 pt-4">
       <nav class="flex flex-col gap-0.5 mb-4">
         {navLinks.map((link) => {
           const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
@@ -169,8 +205,8 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
               class:list={[
                 'px-4 py-3 rounded-xl text-[15px] font-medium transition-colors',
                 isActive
-                  ? 'text-[#005CE8] bg-[#005CE8]/8'
-                  : 'text-[#1D1D1F] hover:bg-black/5',
+                  ? 'text-brand bg-brand/8'
+                  : 'text-text hover:bg-surface-2',
               ]}
             >
               {link.label}
@@ -180,7 +216,7 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
       </nav>
 
       <!-- Dla kogo — expanded in mobile -->
-      <p class="px-4 mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#86868B]">Dla kogo</p>
+      <p class="px-4 mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-tertiary">{tr.nav.forWhom}</p>
       <nav class="flex flex-col gap-0.5 mb-4">
         {dlaKogo.map(item => {
           const active = currentPath === item.href || currentPath.startsWith(item.href);
@@ -189,55 +225,65 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
               href={item.href}
               class:list={[
                 'px-4 py-3 rounded-xl transition-colors',
-                active ? 'text-[#005CE8] bg-[#005CE8]/8' : 'text-[#1D1D1F] hover:bg-black/5',
+                active ? 'text-brand bg-brand/8' : 'text-text hover:bg-surface-2',
               ]}
             >
               <span class="text-[15px] font-medium">{item.label}</span>
-              <span class="block text-[12px] text-[#86868B] mt-0.5">{item.desc}</span>
+              <span class="block text-[12px] text-text-tertiary mt-0.5">{item.desc}</span>
             </a>
           );
         })}
       </nav>
 
-      <a
-        href="/roadmapa"
-        class:list={[
-          'block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-1',
-          currentPath.startsWith('/roadmapa')
-            ? 'text-[#005CE8] bg-[#005CE8]/8'
-            : 'text-[#1D1D1F] hover:bg-black/5',
-        ]}
-      >
-        Roadmapa
-      </a>
+      {!isEn && (
+        <a
+          href={roadmapHref}
+          class:list={[
+            'block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-1',
+            currentPath.startsWith('/roadmapa')
+              ? 'text-brand bg-brand/8'
+              : 'text-text hover:bg-surface-2',
+          ]}
+        >
+          {tr.nav.roadmap}
+        </a>
+      )}
 
-      <a
-        href="/g2v2-przygotowanie"
-        class:list={[
-          'flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-4',
-          currentPath.startsWith('/g2v2-przygotowanie')
-            ? 'text-[#FF9500] bg-[#FF9500]/10'
-            : 'text-[#1D1D1F] hover:bg-[#FF9500]/[0.06] hover:text-[#FF9500]',
-        ]}
-      >
-        <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500] animate-pulse"></span>
-        G2V2
-        <span class="text-[12px] text-[#86868B] ml-auto">2 lipca 2026</span>
-      </a>
+      {!isEn && (
+        <a
+          href={g2v2Href}
+          class:list={[
+            'flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-4',
+            currentPath.startsWith('/g2v2-przygotowanie')
+              ? 'text-warning bg-warning/10'
+              : 'text-text hover:bg-warning/[0.06] hover:text-warning',
+          ]}
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-warning animate-pulse"></span>
+          {tr.nav.g2v2}
+          <span class="text-[12px] text-text-tertiary ml-auto">2 lipca 2026</span>
+        </a>
+      )}
+
+      <!-- Language + theme switchers w mobile drawer -->
+      <div class="flex items-center justify-between px-4 py-3 mb-2 border-t border-border-subtle pt-4">
+        <LangSwitcher />
+        <ThemeToggle />
+      </div>
 
       <a
         href={APP_LOGIN_URL}
-        class="block text-center w-full py-3 rounded-2xl bg-[#005CE8] text-white text-[15px] font-semibold hover:bg-[#003FAD] transition-colors mb-2"
+        class="block text-center w-full py-3 rounded-2xl bg-brand text-white text-[15px] font-semibold hover:bg-brand-dark transition-colors mb-2"
       >
-        Wypróbuj demo
+        {tr.nav.tryDemo}
       </a>
       <a
         href="https://calendly.com/busikm/30min"
         target="_blank"
         rel="noopener"
-        class="block text-center w-full py-3 rounded-2xl border border-[#D2D2D7] text-[#1D1D1F] text-[14px] font-semibold hover:bg-[#F5F5F7] transition-colors"
+        class="block text-center w-full py-3 rounded-2xl border border-border text-text text-[14px] font-semibold hover:bg-surface-2 transition-colors"
       >
-        Umów spotkanie
+        {tr.nav.bookMeeting}
       </a>
     </div>
   </div>

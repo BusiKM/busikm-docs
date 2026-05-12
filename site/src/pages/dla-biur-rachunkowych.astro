@@ -9,7 +9,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 >
 
 <!-- ============ HERO ============ -->
-<section class="relative overflow-hidden bg-white px-5 py-24 sm:py-32">
+<section class="relative overflow-hidden bg-surface px-5 py-24 sm:py-32">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#8B5CF6]/[0.04] blur-[120px]"></div>
   </div>
@@ -20,11 +20,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         <span class="text-[12.5px] font-medium text-[#8B5CF6] tracking-[0.01em]">Panel multi-tenant · Specjalizacja: transport międzynarodowy</span>
       </div>
 
-      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] mb-6">
+      <h1 class="hero-seq-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-text mb-6">
         Klient transportowy<br/>w 30 minut, nie w 3 dni.
       </h1>
 
-      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-[#6E6E73] max-w-[620px] mb-9">
+      <p class="hero-seq-3 text-[clamp(1rem,2vw,1.15rem)] leading-relaxed text-text-secondary max-w-[620px] mb-9">
         Twoi klienci transportu międzynarodowego mają w BusiKM wewnętrzne księgowe, które już przerobiły faktury z DE/IT/FR/ES, przeliczyły kursy NBP i policzyły diety. Ty otwierasz panel, klikasz „Eksport" i importujesz gotowe dane do swojego Insert GT, Comarch lub Symfonia.
       </p>
 
@@ -33,7 +33,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           Wypróbuj demo
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-[15px] font-semibold hover:bg-[#F5F5F7] transition-colors">
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold hover:bg-surface-2 transition-colors">
           Zobacz funkcje
         </a>
       </div>
@@ -46,8 +46,8 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           { num: '0 zł', label: 'pilotaż dożywotnio' },
         ].map(s => (
           <div class="flex flex-col items-center sm:items-start">
-            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-none">{s.num}</div>
-            <div class="text-[12.5px] text-[#86868B] mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
+            <div class="font-display text-[1.5rem] font-bold tracking-[-0.03em] text-text leading-none">{s.num}</div>
+            <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[160px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
       </div>
@@ -56,21 +56,21 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ DASHBOARD MULTI-TENANT ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Pierwszy ekran po zalogowaniu</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Wszyscy klienci.<br/>Wszystkie zaległe rzeczy. Jeden ekran.
       </h2>
     </div>
 
-    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-black/[0.06] overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-black/[0.06]">
+    <div class="reveal rounded-[20px] bg-[#F8F7F2] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[340px] rounded-md bg-white/70 px-3 py-1 text-[11px] text-[#86868B] font-mono">app.busikm.pl/biuro/dashboard</div>
+        <div class="ml-4 flex-1 max-w-[340px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary font-mono">app.busikm.pl/biuro/dashboard</div>
       </div>
 
       <div class="p-5 sm:p-7">
@@ -82,19 +82,19 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             { label: 'VAT-REF czeka', value: '14 200 €', sub: 'DE 8 100 / FR 4 200 / IT 1 900', color: '#34C759' },
             { label: 'Eksporty gotowe', value: '23', sub: 'do importu w FK', color: '#FF9500' },
           ].map(s => (
-            <div class="bg-white rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col">
-              <p class="text-[10.5px] text-[#86868B] mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
-              <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] leading-tight">{s.value}</p>
+            <div class="bg-surface rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col">
+              <p class="text-[10.5px] text-text-tertiary mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
+              <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-text leading-tight">{s.value}</p>
               <p class="text-[11px] mt-1 leading-tight mt-auto pt-1" style={`color: ${s.color};`}>{s.sub}</p>
             </div>
           ))}
         </div>
 
         <!-- Client list -->
-        <div class="bg-white rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div class="px-4 py-3 bg-[#FAFAFA] border-b border-black/[0.04] flex items-center justify-between">
-            <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#86868B]">Klienci · status pracy</span>
-            <span class="text-[11px] text-[#86868B]">filtr: maj 2026</span>
+        <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div class="px-4 py-3 bg-[#FAFAFA] border-b border-border-subtle flex items-center justify-between">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Klienci · status pracy</span>
+            <span class="text-[11px] text-text-tertiary">filtr: maj 2026</span>
           </div>
           <div class="divide-y divide-black/[0.04]">
             {[
@@ -106,8 +106,8 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             ].map(c => (
               <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] transition-colors text-[12px]">
                 <div class="col-span-12 sm:col-span-4">
-                  <p class="font-semibold text-[#1D1D1F] leading-tight">{c.name}</p>
-                  <p class="text-[11px] text-[#86868B] leading-tight">{c.vehicles} pojazdów · {c.accountant}</p>
+                  <p class="font-semibold text-text leading-tight">{c.name}</p>
+                  <p class="text-[11px] text-text-tertiary leading-tight">{c.vehicles} pojazdów · {c.accountant}</p>
                 </div>
                 <div class="col-span-12 sm:col-span-5">
                   <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold" style={`background: ${c.statusColor}15; color: ${c.statusColor}`}>{c.status}</span>
@@ -118,9 +118,9 @@ import { APP_LOGIN_URL } from '../lib/app-url';
               </div>
             ))}
           </div>
-          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-black/[0.04] text-[11px] text-[#86868B] flex items-center justify-between">
+          <div class="px-4 py-3 bg-[#FAFAFA] border-t border-border-subtle text-[11px] text-text-tertiary flex items-center justify-between">
             <span>+ 3 inni klienci (handlowi, bez transportu)</span>
-            <span class="text-[#1D1D1F] font-semibold">Łącznie 8 firm transportowych · 50 pojazdów</span>
+            <span class="text-text font-semibold">Łącznie 8 firm transportowych · 50 pojazdów</span>
           </div>
         </div>
       </div>
@@ -129,11 +129,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ FUNKCJE BR ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal max-w-[620px] mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Funkcje multi-tenant</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Sześć narzędzi, które robią z transportu<br/>najbardziej dochodową branżę BR.
       </h2>
     </div>
@@ -177,13 +177,13 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           color: '#005CE8',
         },
       ].map(f => (
-        <div class="bg-white rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/[0.08] hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
+        <div class="bg-surface rounded-[20px] p-7 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-transparent hover:border-border-subtle hover:shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-all duration-300 group">
           <div class="w-11 h-11 rounded-[14px] mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={`background: ${f.color}12;`}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.color} stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1.05rem] text-[#1D1D1F] mb-2 tracking-[-0.01em]">{f.title}</h3>
-          <p class="text-[13.5px] leading-relaxed text-[#6E6E73] mb-3">{f.desc}</p>
-          <p class="text-[11px] font-mono text-[#86868B]">{f.tech}</p>
+          <h3 class="font-display font-semibold text-[1.05rem] text-text mb-2 tracking-[-0.01em]">{f.title}</h3>
+          <p class="text-[13.5px] leading-relaxed text-text-secondary mb-3">{f.desc}</p>
+          <p class="text-[11px] font-mono text-text-tertiary">{f.tech}</p>
         </div>
       ))}
     </div>
@@ -191,36 +191,36 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ JAK WYGLĄDA WSPÓŁPRACA ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[1000px] mx-auto">
     <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Trójkąt współpracy</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Klient ma księgową. Ty robisz JPK i CIT.<br/>BusiKM łączy was bez papieru.
       </h2>
     </div>
 
     <div class="reveal grid grid-cols-1 lg:grid-cols-3 gap-5">
-      <div class="rounded-[20px] p-7 bg-[#F5F5F7]">
+      <div class="rounded-[20px] p-7 bg-surface-2">
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/10 flex items-center justify-center mb-4">
           <span class="font-mono text-[14px] font-bold text-[#005CE8]">01</span>
         </div>
-        <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Firma transportowa</h3>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-3">Właściciel + dyspozytor + kierowcy. Aplikacja mobilna na telefon (GPS, paragony OCR), panel webowy do zarządzania flotą i zleceniami.</p>
-        <p class="text-[11px] font-mono text-[#86868B]">Co generuje: trasy GPS, paragony, faktury sprzedaży, dokumenty floty.</p>
+        <h3 class="font-display font-semibold text-[1rem] text-text mb-2">Firma transportowa</h3>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-3">Właściciel + dyspozytor + kierowcy. Aplikacja mobilna na telefon (GPS, paragony OCR), panel webowy do zarządzania flotą i zleceniami.</p>
+        <p class="text-[11px] font-mono text-text-tertiary">Co generuje: trasy GPS, paragony, faktury sprzedaży, dokumenty floty.</p>
       </div>
 
       <div class="rounded-[20px] p-7 bg-[#FF9500]/[0.06] border border-[#FF9500]/10">
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/10 flex items-center justify-center mb-4">
           <span class="font-mono text-[14px] font-bold text-[#FF9500]">02</span>
         </div>
-        <h3 class="font-display font-semibold text-[1rem] text-[#1D1D1F] mb-2">Wewnętrzna księgowa firmy</h3>
-        <p class="text-[13px] text-[#6E6E73] leading-relaxed mb-3">Pracuje w panelu BusiKM. Sprawdza i zatwierdza faktury z OCR, kategoryzuje koszty, weryfikuje kursy, liczy diety i rentowność per zlecenie.</p>
-        <p class="text-[11px] font-mono text-[#86868B]">Co przekazuje do BR: gotowe rejestry VAT, kategoryzacja, kursy NBP.</p>
+        <h3 class="font-display font-semibold text-[1rem] text-text mb-2">Wewnętrzna księgowa firmy</h3>
+        <p class="text-[13px] text-text-secondary leading-relaxed mb-3">Pracuje w panelu BusiKM. Sprawdza i zatwierdza faktury z OCR, kategoryzuje koszty, weryfikuje kursy, liczy diety i rentowność per zlecenie.</p>
+        <p class="text-[11px] font-mono text-text-tertiary">Co przekazuje do BR: gotowe rejestry VAT, kategoryzacja, kursy NBP.</p>
       </div>
 
       <div class="rounded-[20px] p-7 bg-[#8B5CF6] text-white shadow-[0_4px_20px_rgba(139,92,246,0.20)]">
-        <div class="w-11 h-11 rounded-[14px] bg-white/15 flex items-center justify-center mb-4">
+        <div class="w-11 h-11 rounded-[14px] bg-surface/15 flex items-center justify-center mb-4">
           <span class="font-mono text-[14px] font-bold text-white">03</span>
         </div>
         <h3 class="font-display font-semibold text-[1rem] mb-2">Twoje biuro rachunkowe</h3>
@@ -229,18 +229,18 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       </div>
     </div>
 
-    <p class="reveal text-[14px] text-[#86868B] text-center mt-7 max-w-[640px] mx-auto leading-relaxed italic">
+    <p class="reveal text-[14px] text-text-tertiary text-center mt-7 max-w-[640px] mx-auto leading-relaxed italic">
       Niektóre małe firmy transportowe nie mają wewnętrznej księgowej — wtedy Ty pełnisz obie role. BusiKM dostosowuje panel: jeśli jesteś jedyną osobą obsługującą fakturę, widzisz pełen workflow OCR + zatwierdzania + eksportu.
     </p>
   </div>
 </section>
 
 <!-- ============ 3 POZIOMY DOSTĘPU ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center mb-12">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">Poziomy dostępu</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.4rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Dopasuj zakres do umowy z klientem.
       </h2>
     </div>
@@ -273,14 +273,14 @@ import { APP_LOGIN_URL } from '../lib/app-url';
           'rounded-[20px] p-7 transition-all duration-300',
           item.featured
             ? 'bg-[#8B5CF6] text-white border border-[#8B5CF6] shadow-[0_8px_40px_rgba(139,92,246,0.30)]'
-            : 'bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]',
+            : 'bg-surface shadow-[0_1px_4px_rgba(0,0,0,0.06)]',
         ]}>
           <p class:list={['text-[10.5px] font-bold uppercase tracking-[0.1em] mb-3', item.featured ? 'text-white/60' : 'text-[#8B5CF6]']}>{item.level}</p>
-          <h3 class:list={['font-display font-semibold text-[1.15rem] mb-2 tracking-[-0.01em]', item.featured ? 'text-white' : 'text-[#1D1D1F]']}>{item.title}</h3>
-          <p class:list={['text-[13.5px] leading-relaxed mb-5', item.featured ? 'text-white/80' : 'text-[#6E6E73]']}>{item.desc}</p>
+          <h3 class:list={['font-display font-semibold text-[1.15rem] mb-2 tracking-[-0.01em]', item.featured ? 'text-white' : 'text-text']}>{item.title}</h3>
+          <p class:list={['text-[13.5px] leading-relaxed mb-5', item.featured ? 'text-white/80' : 'text-text-secondary']}>{item.desc}</p>
           <ul class="flex flex-col gap-2.5">
             {item.bullets.map(b => (
-              <li class:list={['flex items-start gap-2.5 text-[13px]', item.featured ? 'text-white/90' : 'text-[#6E6E73]']}>
+              <li class:list={['flex items-start gap-2.5 text-[13px]', item.featured ? 'text-white/90' : 'text-text-secondary']}>
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5">
                   <path d="M2 8l4 4 8-8" stroke={item.featured ? 'white' : '#8B5CF6'} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -295,11 +295,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ PILOTAŻ ============ -->
-<section class="py-20 sm:py-28 bg-white px-5">
+<section class="py-20 sm:py-28 bg-surface px-5">
   <div class="max-w-[900px] mx-auto">
     <div class="reveal rounded-[24px] bg-[#8B5CF6] p-8 sm:p-12 text-white shadow-[0_8px_40px_rgba(139,92,246,0.30)]">
       <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
-        <div class="w-14 h-14 bg-white/15 rounded-[18px] flex items-center justify-center flex-shrink-0">
+        <div class="w-14 h-14 bg-surface/15 rounded-[18px] flex items-center justify-center flex-shrink-0">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         </div>
         <div>
@@ -310,7 +310,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        <div class="bg-white/10 rounded-[16px] p-6">
+        <div class="bg-surface/10 rounded-[16px] p-6">
           <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/60 mb-2">Twoje biuro</p>
           <p class="font-display text-[1.8rem] font-bold mb-2">0 zł</p>
           <ul class="flex flex-col gap-2 text-[12.5px] text-white/85">
@@ -321,7 +321,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             <li>Bezterminowo, bez konwersji wymuszonej</li>
           </ul>
         </div>
-        <div class="bg-white/15 rounded-[16px] p-6 border border-white/20">
+        <div class="bg-surface/15 rounded-[16px] p-6 border border-white/20">
           <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/60 mb-2">Każda firma Twoich klientów</p>
           <p class="font-display text-[1.8rem] font-bold mb-2">0 zł</p>
           <ul class="flex flex-col gap-2 text-[12.5px] text-white/85">
@@ -335,11 +335,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#8B5CF6] text-[15px] font-semibold hover:bg-white/90 transition-colors">
+        <a href="/cennik" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface text-[#8B5CF6] text-[15px] font-semibold hover:bg-surface/90 transition-colors">
           Dołącz do pilotażu
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white text-[15px] font-semibold hover:bg-white/5 transition-colors">
+        <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/25 text-white text-[15px] font-semibold hover:bg-surface/5 transition-colors">
           Zobacz wszystkie funkcje
         </a>
       </div>
@@ -348,11 +348,11 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="py-20 sm:py-28 bg-[#F5F5F7] px-5">
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
   <div class="max-w-[760px] mx-auto">
     <div class="reveal text-center mb-14">
       <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#8B5CF6] mb-4">FAQ</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-[#1D1D1F] leading-[1.15]">
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
         Najczęstsze pytania biur rachunkowych
       </h2>
     </div>
@@ -368,12 +368,12 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         { q: 'Ile zajmuje wdrożenie nowego klienta?', a: 'Klient otrzymuje od Ciebie zaproszenie z linkiem. Po jego rejestracji właściciel firmy konfiguruje pojazdy i zaprasza kierowców (10 minut). Pierwsza trasa GPS się rejestruje od razu. Pierwszy eksport do Twojego systemu BR — w ciągu 30 dni od pierwszych zleceń. Ty nie konfigurujesz technicznie nic.' },
         { q: 'Kiedy będzie white-label (mój branding na panelu)?', a: 'Q3 2026. Własne logo, kolory, domena (np. flota.twoje-bro.pl). Twoi klienci widzą Twoją markę zamiast BusiKM. Funkcja zaplanowana w roadmapie po publicznej premierze MVP.' },
       ].map(faq => (
-        <details class="group bg-white rounded-2xl border border-transparent hover:border-black/[0.06] transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-[#1D1D1F] hover:text-[#8B5CF6] transition-colors">
+        <details class="group bg-surface rounded-2xl border border-transparent hover:border-border-subtle transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-text hover:text-[#8B5CF6] transition-colors">
             {faq.q}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-[#86868B] group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 ml-4 text-text-tertiary group-open:rotate-180 transition-transform duration-200"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
-          <div class="px-5 pb-5 text-[14px] leading-relaxed text-[#6E6E73]">{faq.a}</div>
+          <div class="px-5 pb-5 text-[14px] leading-relaxed text-text-secondary">{faq.a}</div>
         </details>
       ))}
     </div>
@@ -397,7 +397,7 @@ import { APP_LOGIN_URL } from '../lib/app-url';
         Dołącz do pilotażu
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-white/5 transition-all">
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white text-[15px] font-semibold hover:border-white/30 hover:bg-surface/5 transition-all">
         Zobacz wszystkie funkcje
       </a>
     </div>
