@@ -1,4 +1,19 @@
-# BusiKM — Kontrola pracy kierowców i rentowność zleceń
+# BusiKM — Europejski system R&D dla transportu 2,5–3,5 t
+
+## European positioning (EU Grant Readiness)
+
+BusiKM rozwija **europejski system R&D integrujący transport drogowy 2,5–3,5 t z księgowością** przez sześć autorskich komponentów badawczo-rozwojowych:
+
+1. **Parser binarny pliku DDD** (TRL 4) — autorska biblioteka Python odczytu tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Pierwsza tego typu implementacja na rynku PL/UE dla busów 2,5–3,5 t.
+2. **Bluetooth ITS** (TRL 3) — React Native library do zdalnej komunikacji z tachografem przez protokół z 2016/799 — pobranie DDD bez kabla do warsztatu.
+3. **Detekcja granic UE** (TRL 5) — algorytm point-in-polygon na lokalnej warstwie GeoJSON 27 państw UE (Shapely) — klasyfikacja GPS bez API, bez internetu.
+4. **Silnik diet AETR** (TRL 4) — deterministyczny rules engine mapujący Rozp. MPiPS 29.01.2013 Dz.U. 167 na auto-rozliczenie kierowcy. Pierwsza integracja GPS↔diety dla busów 2,5–3,5 t.
+5. **XAI anomalia spalania** (TRL 3) — model regresji wielowymiarowej z naturalnojęzykową wyjaśnialnością (SHAP). Detekcja kradzieży paliwa z explainable AI.
+6. **Multi-tenant z izolacją RODO** (TRL 8 — produkcja MVP) — Django CompanyScopedMixin + TenantContextMiddleware, zgodne z art. 28 GDPR.
+
+Aktualne aplikacje grantowe (w przygotowaniu): **FENG Ścieżka SMART** (NCBR PL, TRL 5→8), **EIC Accelerator** (European Innovation Council, TRL 6→9), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Standardy zgodności: ISO 18013-5, eIDAS, eFTI (UE 2020/1056), EU AI Act (transparency dla XAI).
+
+Target: ~6,1 mln busów 2,5–3,5 t w UE (Eurostat 2024). Zero dedykowanych narzędzi compliance na rynku przed BusiKM.
 
 ## O produkcie
 BusiKM to platforma SaaS dla firm transportowych krajowych i międzynarodowych. Łączy GPS w czasie rzeczywistym, ewidencję czasu pracy kierowcy, monitoring dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy), rozliczanie kosztów zleceń i eksport do polskich systemów księgowych (Insert GT EDI++, Comarch ERP Optima, Symfonia FK).
@@ -67,7 +82,31 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 
 ## Strona
 - URL: https://busikm.pl
+- Technologia (R&D): https://busikm.pl/technologia
 - Dokumentacja: https://busikm.pl/docs
 - Cennik: https://busikm.pl/cennik
 - Funkcje: https://busikm.pl/funkcje
 - Roadmapa: https://busikm.pl/roadmapa
+- Strona EN: https://busikm.pl/en/
+- Technology EN (R&D landing): https://busikm.pl/en/technology
+
+---
+
+## English summary
+
+BusiKM is developing a **European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting** through six in-house research components:
+
+1. **Binary DDD parser** (TRL 4) — Python library for G2V2 tachograph compliant with EU 2016/799 Annex I.
+2. **Bluetooth ITS** (TRL 3) — React Native library for remote tachograph data download.
+3. **EU border detection** (TRL 5) — point-in-polygon on local GeoJSON, no API, no internet dependency.
+4. **AETR per-diem engine** (TRL 4) — deterministic rules engine mapping PL MoLPS regulation to auto-settlement.
+5. **XAI fuel anomaly** (TRL 3) — multivariate regression with SHAP-based natural-language explainability.
+6. **Multi-tenant data isolation** (TRL 8 — production in MVP) — Django architecture, GDPR art. 28 compliant.
+
+Current grant applications (in preparation): **FENG SMART** (Poland NCBR), **EIC Accelerator** (European Innovation Council), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Compliance standards: ISO 18013-5, eIDAS, eFTI (EU 2020/1056), EU AI Act.
+
+Target market: ~6.1 million vans 2.5–3.5 t across the EU (Eurostat 2024). Zero dedicated compliance tools existed for this segment before BusiKM.
+
+MVP live: 13 May 2026. 218 tickets done across 26 sprints. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
+
+EN landing: https://busikm.pl/en/ · Technology R&D detail: https://busikm.pl/en/technology
