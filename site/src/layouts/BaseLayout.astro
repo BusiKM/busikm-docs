@@ -1,4 +1,6 @@
 ---
+import { t, detectLocale, getHreflangAlternates } from '../i18n';
+
 interface Props {
   title: string;
   description?: string;
@@ -7,22 +9,73 @@ interface Props {
   noindex?: boolean;
 }
 
+const siteUrl = 'https://busikm.pl';
+const locale = Astro.currentLocale ?? detectLocale(Astro.url.pathname);
+const tr = t(locale);
+
 const {
   title,
-  description = 'BusiKM — aplikacja dla firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym. Tachograf G2V2, AETR, OCR paragonów w 6 językach, eksport do FK, panel multi-tenant dla biur rachunkowych.',
+  description = tr.meta.siteDescription,
   ogImage = '/og-image.png',
   ogType = 'website',
   noindex = false,
 } = Astro.props;
 
-const siteUrl = 'https://busikm.pl';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
+const htmlLang = locale === 'en' ? 'en' : 'pl';
+const ogLocale = locale === 'en' ? 'en_US' : 'pl_PL';
+const ogLocaleAlternate = locale === 'en' ? 'pl_PL' : 'en_US';
+const inLanguage = locale === 'en' ? 'en-US' : 'pl-PL';
+const hreflangs = getHreflangAlternates(Astro.url.pathname, siteUrl);
+
+const ldDescription = locale === 'en'
+  ? 'European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting. Six in-house research components: binary DDD parser for G2V2 tachographs, Bluetooth ITS communication, EU border point-in-polygon detection, AETR foreign per-diem engine, XAI fuel anomaly detection, multi-tenant data isolation.'
+  : 'Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 6 autorskich komponentów badawczo-rozwojowych: parser binarny DDD dla tachografu G2V2, Bluetooth ITS, geoprzestrzenna detekcja granic UE, silnik diet AETR, XAI detekcja anomalii spalania, multi-tenant.';
+
+const featureList = locale === 'en' ? [
+  'Background GPS for driver mobile app',
+  'AETR working time alerts (4.5h / 9h / 11h / day / week / two weeks)',
+  'EU Mobility Package — 45h breaks, weekly returns',
+  'G2V2 tachograph — calibration monitoring and working-time records',
+  'Receipt OCR in 6 languages (PL/EN/DE/IT/FR/ES) — 7 document types',
+  'NBP exchange rates — automatic conversion of foreign costs',
+  'Cost invoice export to Insert GT, Comarch ERP Optima, Symfonia FK',
+  'Real-time fleet map',
+  'Offline mode in driver app',
+  'Driver documents (license, code 95, ADR) and company documents (transport license, OCP)',
+  'Multi-tenant panel for accounting firms serving transport companies',
+  'Document expiry alerts 90/30/14/7 days',
+] : [
+  'GPS w tle dla aplikacji mobilnej kierowcy',
+  'Alerty czasu pracy AETR (4,5h / 9h / 11h / dzień / tydzień / dwa tygodnie)',
+  'Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe',
+  'Tachograf G2V2 — monitoring legalizacji i ewidencja czasu pracy',
+  'OCR paragonów w 6 językach (PL/EN/DE/IT/FR/ES) — 7 typów dokumentów',
+  'Kursy NBP — automatyczne przewalutowanie kosztów zagranicznych',
+  'Eksport faktur kosztowych do Insert GT, Comarch ERP Optima, Symfonia FK',
+  'Mapa floty w czasie rzeczywistym',
+  'Tryb offline w aplikacji kierowcy',
+  'Dokumenty kierowcy (prawo jazdy, kod 95, ADR) i firmy (licencja transportowa, OCP)',
+  'Panel multi-tenant dla biur rachunkowych obsługujących firmy transportowe',
+  'Alerty terminów dokumentów 90/30/14/7 dni',
+];
+
+const offerName = locale === 'en'
+  ? 'MVP pilot — lifetime free'
+  : 'Pilotaż MVP — dożywotnio gratis';
+const offerDescription = locale === 'en'
+  ? 'BusiKM is in MVP pilot phase. First transport companies and accounting firms join lifetime-free in exchange for feedback. Commercial pricing will be announced after pilot ends.'
+  : 'BusiKM jest na etapie pilotażu MVP. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu.';
+
+const websiteDescription = locale === 'en'
+  ? 'European deep-tech platform for road transport (vans 2.5–3.5 t) and accounting integration'
+  : 'Europejski system R&D dla transportu drogowego busami 2,5–3,5 t i integracji z księgowością';
 ---
 
 <!doctype html>
-<html lang="pl">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,6 +85,11 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Hreflang alternates — BKM-552 -->
+    {hreflangs.map(({ hreflang, href }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -48,7 +106,8 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
     <meta property="og:image:type" content="image/png" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="BusiKM" />
-    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -67,16 +126,17 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
 
-    <!-- Structured Data: Organization -->
+    <!-- Structured Data: SoftwareApplication -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "BusiKM",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, iOS, Android",
-      "description": "Aplikacja SaaS dla polskich firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym. Tachograf G2V2, AETR, dokumenty kierowcy i firmy, OCR paragonów w 6 językach, eksport do FK, panel multi-tenant dla biur rachunkowych.",
+      "description": ldDescription,
       "url": siteUrl,
       "image": ogImageUrl,
+      "inLanguage": inLanguage,
       "author": {
         "@type": "Organization",
         "name": "BusiKM",
@@ -84,26 +144,13 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
       },
       "offers": {
         "@type": "Offer",
-        "name": "Pilotaż MVP — dożywotnio gratis",
+        "name": offerName,
         "price": "0",
         "priceCurrency": "PLN",
-        "description": "BusiKM jest na etapie pilotażu MVP. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu.",
+        "description": offerDescription,
         "availability": "https://schema.org/LimitedAvailability"
       },
-      "featureList": [
-        "GPS w tle dla aplikacji mobilnej kierowcy",
-        "Alerty czasu pracy AETR (4,5h / 9h / 11h / dzień / tydzień / dwa tygodnie)",
-        "Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe",
-        "Tachograf G2V2 — monitoring legalizacji i ewidencja czasu pracy",
-        "OCR paragonów w 6 językach (PL/EN/DE/IT/FR/ES) — 7 typów dokumentów",
-        "Kursy NBP — automatyczne przewalutowanie kosztów zagranicznych",
-        "Eksport faktur kosztowych do Insert GT, Comarch ERP Optima, Symfonia FK",
-        "Mapa floty w czasie rzeczywistym",
-        "Tryb offline w aplikacji kierowcy",
-        "Dokumenty kierowcy (prawo jazdy, kod 95, ADR) i firmy (licencja transportowa, OCP)",
-        "Panel multi-tenant dla biur rachunkowych obsługujących firmy transportowe",
-        "Alerty terminów dokumentów 90/30/14/7 dni"
-      ]
+      "featureList": featureList,
     })} />
 
     <!-- Structured Data: WebSite (for sitelinks search) -->
@@ -112,8 +159,8 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
       "@type": "WebSite",
       "name": "BusiKM",
       "url": siteUrl,
-      "description": "Aplikacja dla firm transportowych z busami 2,5–3,5 t w transporcie międzynarodowym",
-      "inLanguage": "pl-PL"
+      "description": websiteDescription,
+      "inLanguage": inLanguage,
     })} />
 
     <!-- Google Analytics -->

@@ -1,0 +1,101 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { APP_LOGIN_URL } from '../../lib/app-url';
+
+/**
+ * EN home — BKM-552 placeholder. Hero pełny content writes T3 (BKM-549).
+ * Ta strona jest valid i poruszanie się działa, ale R&D narrative
+ * pojawi się w pełnej formie po T3.
+ */
+---
+
+<MarketingLayout
+  title="BusiKM — European deep-tech for transport 2.5–3.5 t"
+  description="European R&D platform unifying road transport (vans 2.5–3.5 t) with accounting. Six in-house research components. MVP live 13 May 2026."
+>
+  <!-- HERO (placeholder — full rebrand w T3 / BKM-549) -->
+  <section class="relative pt-24 pb-20 px-5 sm:px-8 max-w-[1120px] mx-auto">
+    <div class="text-center max-w-[820px] mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/8 border border-brand-border text-[11.5px] font-semibold tracking-[0.06em] uppercase text-brand mb-6 hero-seq-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
+        European deep-tech · transport 2.5–3.5 t × accounting
+      </div>
+
+      <h1 class="font-display font-bold tracking-[-0.02em] leading-[1.05] text-[44px] sm:text-[60px] lg:text-[72px] text-text mb-6 hero-seq-2">
+        <span class="block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">
+          European platform unifying
+        </span>
+        <span class="block">transport and accounting</span>
+      </h1>
+
+      <p class="text-[18px] sm:text-[20px] leading-[1.5] text-text-secondary max-w-[680px] mx-auto mb-3 hero-seq-3">
+        Six in-house R&D components — from a binary tachograph parser to a machine-learning model with natural-language explainability — for international road transport companies operating vans 2.5–3.5 t across the EU.
+      </p>
+
+      <p class="text-[13px] text-text-tertiary mb-10 hero-seq-3">
+        218 tickets done · 26 sprints completed · MVP live 13 May 2026
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center hero-seq-4">
+        <a
+          href={APP_LOGIN_URL}
+          class="inline-flex items-center justify-center gap-1.5 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)] hover:shadow-[0_6px_28px_rgba(0,92,232,0.5)]"
+        >
+          Try demo
+        </a>
+        <a
+          href="/en/technology"
+          class="inline-flex items-center justify-center gap-1.5 px-7 py-3.5 rounded-full bg-surface text-text border border-border text-[15px] font-semibold tracking-[-0.01em] hover:bg-surface-2 transition-colors duration-200"
+        >
+          Explore technology →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick navigation links to PL detail pages where EN isn't ready -->
+  <section class="px-5 sm:px-8 max-w-[1120px] mx-auto py-12 reveal">
+    <div class="text-center mb-10">
+      <p class="text-[11.5px] font-semibold tracking-[0.08em] uppercase text-brand mb-3">More information</p>
+      <h2 class="font-display font-bold text-[28px] sm:text-[36px] tracking-[-0.02em] text-text mb-3">
+        Explore the platform
+      </h2>
+      <p class="text-text-secondary max-w-[560px] mx-auto">
+        Detailed feature lists, pricing for the MVP pilot, and roadmap are available in English on the dedicated pages below.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-4 reveal-stagger">
+      <a href="/en/features" class="group block p-6 rounded-2xl bg-surface-2 border border-border-subtle hover:border-brand-border transition-colors">
+        <p class="text-[11px] font-semibold tracking-[0.08em] uppercase text-brand mb-2">Features</p>
+        <h3 class="text-[17px] font-semibold text-text mb-1.5">What is included in the MVP</h3>
+        <p class="text-[13px] text-text-secondary">GPS, AETR alerts, OCR, FK export, multi-tenant.</p>
+      </a>
+      <a href="/en/pricing" class="group block p-6 rounded-2xl bg-surface-2 border border-border-subtle hover:border-brand-border transition-colors">
+        <p class="text-[11px] font-semibold tracking-[0.08em] uppercase text-brand mb-2">Pricing</p>
+        <h3 class="text-[17px] font-semibold text-text mb-1.5">MVP pilot — free</h3>
+        <p class="text-[13px] text-text-secondary">First pilot companies join lifetime-free in exchange for feedback.</p>
+      </a>
+      <a href="/en/technology" class="group block p-6 rounded-2xl bg-surface-2 border border-border-subtle hover:border-brand-border transition-colors">
+        <p class="text-[11px] font-semibold tracking-[0.08em] uppercase text-brand mb-2">Technology</p>
+        <h3 class="text-[17px] font-semibold text-text mb-1.5">R&D components &amp; TRL roadmap</h3>
+        <p class="text-[13px] text-text-secondary">Six in-house research components in detail.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-5 sm:px-8 max-w-[820px] mx-auto py-20 text-center reveal">
+    <h2 class="font-display font-bold text-[32px] sm:text-[44px] tracking-[-0.02em] text-text mb-4">
+      Ready to join the pilot?
+    </h2>
+    <p class="text-text-secondary mb-8">
+      Transport companies and accounting firms working with international vans 2.5–3.5 t are welcome to apply.
+    </p>
+    <a
+      href={APP_LOGIN_URL}
+      class="inline-flex items-center justify-center gap-1.5 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200"
+    >
+      Try demo
+    </a>
+  </section>
+</MarketingLayout>
