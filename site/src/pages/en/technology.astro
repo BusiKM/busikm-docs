@@ -1,0 +1,422 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+
+/**
+ * /en/technology — EN R&D landing for grant evaluators (BKM-554).
+ * Mirror struktury /technologia z tłumaczeniem.
+ */
+
+const components = [
+  {
+    id: 'ddd-parser',
+    name: 'Binary DDD file parser',
+    trl: 4,
+    label: 'National innovation',
+    labelColor: '#3380FF',
+    problem: 'The DDD file pulled from a G2V2 tachograph is a raw binary memory dump. No existing Python library provides reading compliant with EU 2016/799 Annex I for the PL/EU vans market.',
+    hypothesis: 'A Python library can be built that parses the DDD data block, validates digital certificate signatures per 2016/799 annexes, and generates a readable 56-day report meeting ITD audit requirements.',
+    method: 'Reverse-engineering the binary specification (2016/799 Annex I), struct-based parser implementation, validation on DDD samples from certified tachographs (lab test stand).',
+    foundation: 'EU 2016/799 — Annex I (DDD structure), Annex IC (certificates)',
+    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
+    metrics: 'Generate a 56-day report from DDD in <2s; certificate validation <100ms; 100% ITD acceptance in pilot',
+    status: 'R&D prototype — TRL 4; targeting TRL 5 in Q4 2026 post-pilot',
+  },
+  {
+    id: 'bluetooth-its',
+    name: 'Bluetooth ITS tachograph communication',
+    trl: 3,
+    label: 'European innovation',
+    labelColor: '#34C759',
+    problem: 'Downloading a DDD file currently requires a cable hookup at a workshop or specialist CITROEN hardware. Inaccessible for small transport companies operating vans 2.5–3.5 t.',
+    hypothesis: 'It is possible to build a React Native library that pulls DDD via the Bluetooth ITS (Intelligent Transport System) interface described in 2016/799 annexes — without specialist hardware, directly from the driver mobile app.',
+    method: 'Implement the Bluetooth ITS handshake protocol (pairing, certificate, session), certified data exchange. Validation on reference hardware (G2V2 tachograph + Android/iOS smartphone).',
+    foundation: 'EU 2016/799 — Annexes (Bluetooth ITS protocol)',
+    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
+    metrics: 'DDD download via BT ITS in <30s; compatibility with 100% certified G2V2 tachographs; zero false-negative handshakes',
+    status: 'Proof of concept — TRL 3; targeting TRL 4 (prototype) Q1 2027',
+  },
+  {
+    id: 'border-detection',
+    name: 'EU border-crossing detection',
+    trl: 5,
+    label: 'Geospatial algorithm',
+    labelColor: '#FF9500',
+    problem: 'Foreign per-diem calculation (Polish MoLPS regulation) requires knowing the country at every GPS timestamp. Commercial geospatial APIs (Google, Mapbox) are expensive and require internet — unfit for offline-first fleet.',
+    hypothesis: 'A point-in-polygon algorithm on a local GeoJSON layer of 27 EU country borders can classify GPS in real-time with accuracy sufficient for per-diem (country-level, not street-level) — without API and without connectivity.',
+    method: 'Shapely (Python) + simplified GeoJSON of EU borders (Eurostat NUTS-0). Validation on reference routes PL→DE/IT/FR/ES — results compared against Mapbox Geocoding API.',
+    foundation: 'OGC Simple Features Access; Eurostat NUTS-0 administrative boundaries',
+    eurLex: 'https://ec.europa.eu/eurostat/web/nuts/background',
+    metrics: 'Classification accuracy ≥99.5% vs Mapbox baseline; latency <10ms per point; GeoJSON size <2 MB',
+    status: 'Lab validation (TRL 5) — reference routes PL→DE/IT/FR confirmed; targeting TRL 6 (system integration) Q3 2026',
+  },
+  {
+    id: 'diet-engine',
+    name: 'AETR foreign per-diem engine',
+    trl: 4,
+    label: 'Process innovation',
+    labelColor: '#A78BFA',
+    problem: 'Rules from MoLPS Regulation of 29 Jan 2013 (Journal of Laws 2013 item 167, Annex 2) contain per-country per-day per-diem rates plus day-split conditions. Manual settlement of an international driver = half a day of accountant work.',
+    hypothesis: 'It is possible to build a deterministic production engine mapping MoLPS regulation onto an automatic per-diem calculator, combining point-in-polygon output with the rate table and edge cases (day split, return home, posting).',
+    method: 'Implementation as Django app with table-driven rules engine. Validation on real pilot driver cases. Export to Insert GT, Comarch, Symfonia.',
+    foundation: 'PL MoLPS Regulation 29.01.2013 (J. Laws 2013 item 167, Annex 2); EU 1057/2020 (Mobility Package — posting, per-diem)',
+    eurLex: 'https://eur-lex.europa.eu/eli/reg/2020/1057/oj',
+    metrics: 'Driver settlement in <5 min (vs ~4h manual), 100% MoLPS audit conformity, 0 day-split errors in pilot',
+    status: 'Prototype (TRL 4) — engine ready; validation on real data in pilot Q2-Q3 2026',
+  },
+  {
+    id: 'xai-fuel-anomaly',
+    name: 'XAI fuel-consumption anomaly detection',
+    trl: 3,
+    label: 'Machine learning · XAI',
+    labelColor: '#FF6B5C',
+    problem: 'Driver fuel theft and technical leaks account for ~3-5% of fleet costs. Detection requires manual report analysis — inaccessible for small fleets (2-5 vehicles).',
+    hypothesis: 'A multivariate regression model trained on route features (distance, terrain, load, average speed, driver, season) can detect consumption anomalies with accuracy sufficient for alerting. An XAI component generates a natural-language explanation for each detection — critical for user trust in ML.',
+    method: 'Baseline: gradient boosting regressor (XGBoost / LightGBM). XAI: SHAP values + template-driven natural language explanation. Detection threshold: ≥15% deviation from prediction.',
+    foundation: 'Lundberg & Lee 2017 (SHAP); EU AI Act (transparency obligations)',
+    eurLex: 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj',
+    metrics: 'Precision ≥80% (false positives <20%), recall ≥70% on pilot datasets. Explanation generated <1s per alert.',
+    status: 'Research (TRL 3) — proof of concept; training dataset collected during MVP pilot. Targeting TRL 4 (prototype) Q2 2027',
+  },
+  {
+    id: 'multi-tenant',
+    name: 'Multi-tenant data isolation',
+    trl: 8,
+    label: 'SaaS architecture',
+    labelColor: '#34C759',
+    problem: 'Accounting firms serving transport need a multi-tenant panel with data isolation compliant with GDPR art. 28. Existing SaaS solutions are designed for a single company, not for agencies serving N clients.',
+    hypothesis: 'An architecture is feasible where the accounting firm logs in once and switches between clients with a guarantee that other clients\' data is invisible — with full audit log compliant with GDPR.',
+    method: 'Django CompanyScopedMixin + TenantContextMiddleware. Every SQL query automatically filters by company_id from the X-Company-Context header. AES-encrypted PII (PESEL, NIP). AuditLog per operation.',
+    foundation: 'GDPR art. 28 (data processor); ISO/IEC 27001 (information security)',
+    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/679/oj',
+    metrics: 'Zero cross-tenant data leaks in penetration tests; audit log 100% operations; context switching <100ms',
+    status: 'Production in MVP (TRL 8) — operational from day one of pilot (13 May 2026). Targeting TRL 9 (commercial scale) Q4 2026 post-commercialization.',
+  },
+];
+---
+
+<MarketingLayout
+  title="Technology — BusiKM R&D"
+  description="Six in-house R&D components for European van transport 2.5–3.5 t. TRL roadmap, R&D methodology, IP strategy, partners. Foundation for FENG SMART, EIC Accelerator, Horizon Europe applications."
+>
+
+<!-- HERO -->
+<section class="relative bg-surface py-24 sm:py-32 px-5 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-brand/[0.05] blur-[160px]"></div>
+  </div>
+  <div class="relative max-w-[960px] mx-auto text-center">
+    <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/8 text-brand text-[11px] font-bold uppercase tracking-[0.1em] mb-6">
+      <span class="w-1 h-1 rounded-full bg-brand"></span>
+      Research &amp; Development
+    </p>
+    <h1 class="font-display text-[clamp(2.2rem,6vw,4rem)] font-bold tracking-[-0.03em] leading-[1.05] text-text mb-6">
+      Six R&D components for European transport <span class="bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent">2.5–3.5&nbsp;t</span>
+    </h1>
+    <p class="text-[18px] sm:text-[19px] leading-[1.65] text-text-secondary max-w-[760px] mx-auto mb-10">
+      Page intended for grant evaluators, investors and technology partners. Each component has a defined <strong class="text-text">Technology Readiness Level</strong> (TRL 1–9, European Commission scale), documented research method, regulatory foundation and measurable KPIs.
+    </p>
+    <div class="inline-flex flex-wrap items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-surface-2 border border-border-subtle">
+      <span class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mr-2">TRL status:</span>
+      {components.map(c => (
+        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-surface text-[11px] font-mono font-semibold text-text" title={c.name}>
+          <span class:list={[
+            'w-1.5 h-1.5 rounded-full',
+            c.trl <= 3 ? 'bg-danger' : c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
+          ]}></span>
+          T{c.trl}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- TRL ROADMAP -->
+<section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">TRL Roadmap</p>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
+        From research (TRL 3) to market-ready (TRL 9) in three years
+      </h2>
+      <p class="text-text-secondary max-w-[600px] mx-auto">
+        MVP pilot (13 May 2026) validates 5 of 6 components on real data — TRL 5→6 transition.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="font-display text-[36px] font-bold text-warning mb-2 leading-none">2026</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-3">MVP Pilot</p>
+        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
+          5 components at TRL 3–5 (R&D). One component (multi-tenant) at TRL 8 — production from day one.
+        </p>
+      </article>
+      <article class="p-6 rounded-2xl bg-surface border border-brand-border">
+        <p class="font-display text-[36px] font-bold text-brand mb-2 leading-none">2027</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-3">System Integration</p>
+        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
+          Target: all components at TRL 6–7. Validation on extended pilot (50+ EU transport companies).
+        </p>
+      </article>
+      <article class="p-6 rounded-2xl bg-surface border border-success/20">
+        <p class="font-display text-[36px] font-bold text-success mb-2 leading-none">2028</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-success mb-3">Market Ready (TRL 9)</p>
+        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
+          All components in production. Commercialization, scale-out beyond Poland, consortium partnerships.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SIX COMPONENTS -->
+<section class="bg-surface py-24 px-5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Six R&D components</p>
+      <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
+        Detailed description of research &amp; development work
+      </h2>
+      <p class="text-text-secondary max-w-[680px] mx-auto">
+        Per component: research problem, hypothesis, method, regulatory foundation, KPIs, TRL status.
+      </p>
+    </div>
+
+    <div class="space-y-6 reveal-stagger">
+      {components.map((c, i) => (
+        <article id={c.id} class="rounded-3xl bg-surface-2 border border-border-subtle p-7 sm:p-9">
+          <header class="flex flex-wrap items-start gap-4 mb-5">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-display text-[14px] font-bold text-text-tertiary tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <span class="px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase" style={`background:${c.labelColor}26;color:${c.labelColor}`}>{c.label}</span>
+              <span class:list={[
+                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase',
+                c.trl <= 3 ? 'bg-danger/15 text-danger' : c.trl <= 5 ? 'bg-warning/15 text-warning' : c.trl <= 7 ? 'bg-brand/15 text-brand' : 'bg-success/15 text-success',
+              ]}>
+                <span class:list={[
+                  'w-1.5 h-1.5 rounded-full',
+                  c.trl <= 3 ? 'bg-danger' : c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
+                ]}></span>
+                TRL {c.trl}
+              </span>
+            </div>
+          </header>
+          <h3 class="font-display text-[22px] sm:text-[26px] font-bold tracking-[-0.015em] text-text mb-5">{c.name}</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 mb-5">
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Research problem</p>
+              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.problem}</p>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Hypothesis / goal</p>
+              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.hypothesis}</p>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Method</p>
+              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.method}</p>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Success metrics (KPI)</p>
+              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.metrics}</p>
+            </div>
+          </div>
+
+          <div class="pt-5 border-t border-border-subtle grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Regulatory / scientific foundation</p>
+              <p class="text-[13px] text-text-secondary">{c.foundation}</p>
+              <a href={c.eurLex} target="_blank" rel="noopener" class="text-[12px] text-brand hover:underline mt-1 inline-block">EUR-Lex / source →</a>
+            </div>
+            <div>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Status</p>
+              <p class="text-[13px] text-text-secondary">{c.status}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">R&D methodology</p>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
+        Sprint-based research validated on real data
+      </h2>
+      <p class="text-text-secondary max-w-[680px] mx-auto">
+        Each component is developed in 2-week sprints (Jira BKM-*). Validation in MVP pilot from 13 May 2026 — real EU transport traffic.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Process</p>
+        <ol class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand/10 text-brand text-[11px] font-bold flex items-center justify-center">1</span>
+            <div><p class="text-[14px] font-semibold text-text">Research hypothesis</p>
+            <p class="text-[12.5px] text-text-secondary">Define problem, goal, measurable KPIs. Documented in Jira as epic.</p></div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-warning/10 text-warning text-[11px] font-bold flex items-center justify-center">2</span>
+            <div><p class="text-[14px] font-semibold text-text">Prototype (TRL 3→4)</p>
+            <p class="text-[12.5px] text-text-secondary">Minimal viable implementation validating concept. Code review + unit tests gate.</p></div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-warning/10 text-warning text-[11px] font-bold flex items-center justify-center">3</span>
+            <div><p class="text-[14px] font-semibold text-text">Validation (TRL 4→5)</p>
+            <p class="text-[12.5px] text-text-secondary">Tests on real pilot data, comparison with baseline (where exists).</p></div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand/10 text-brand text-[11px] font-bold flex items-center justify-center">4</span>
+            <div><p class="text-[14px] font-semibold text-text">Integration (TRL 5→7)</p>
+            <p class="text-[12.5px] text-text-secondary">Embed in product; integration tests + observability (Sentry, Prometheus).</p></div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-success/10 text-success text-[11px] font-bold flex items-center justify-center">5</span>
+            <div><p class="text-[14px] font-semibold text-text">Production (TRL 8→9)</p>
+            <p class="text-[12.5px] text-text-secondary">Release as part of MVP. 24/7 KPI monitoring, A/B test gate-keep.</p></div>
+          </li>
+        </ol>
+      </article>
+
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Standards &amp; tooling</p>
+        <ul class="space-y-3 text-[13.5px] text-text-secondary leading-[1.6]">
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">eFTI (EU 2020/1056)</strong> — transport data schema compatibility for 2027+ scale-out</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">OpenAPI 3.1</strong> — schema-first API design, TS client auto-generated</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">JSON Schema</strong> — payload validation on all system boundaries</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">ISO/IEC 27001</strong> — security framework for compliance audits</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">SHAP (Lundberg &amp; Lee 2017)</strong> — XAI for fuel anomaly model</span></li>
+          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">Conventional Commits + Jira BKM-*</strong> — full traceability commit ↔ ticket ↔ epic ↔ requirement</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- IP STRATEGY -->
+<section class="bg-surface py-20 px-5">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">IP Strategy</p>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
+        Open source for standards. Proprietary for value.
+      </h2>
+      <p class="text-text-secondary max-w-[640px] mx-auto">
+        Components aligned with regulatory standards we open source — it builds the ecosystem. Components with proprietary IP (XAI model, multi-tenant orchestration) remain closed.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
+      <article class="p-7 rounded-2xl bg-surface-2 border border-success/15">
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-success mb-3">Open source planned</p>
+        <ul class="space-y-2.5 text-[13.5px] text-text-secondary">
+          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">Python DDD parser</strong> — G2V2 tachograph reader compliant with 2016/799</span></li>
+          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">GeoJSON EU NUTS-0</strong> — simplified 27-country border layer (Eurostat-derived)</span></li>
+          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">FK export EPP schema</strong> — Insert GT EDI++ 1.05 format interpretation</span></li>
+        </ul>
+        <p class="text-[12px] text-text-tertiary mt-4 italic">License: MIT or Apache 2.0 — decision post-pilot.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-surface-2 border border-brand-border">
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Proprietary (closed)</p>
+        <ul class="space-y-2.5 text-[13.5px] text-text-secondary">
+          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">XAI fuel anomaly model</strong> — trained on proprietary dataset; SHAP-based explainability</span></li>
+          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Multi-tenant orchestration</strong> — Django CompanyScopedMixin + AES PII encryption layer</span></li>
+          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">AETR per-diem engine</strong> — table-driven rules engine with proprietary edge case logic</span></li>
+          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Bluetooth ITS handshake</strong> — certificate exchange protocol (proprietary timing &amp; retry strategy)</span></li>
+        </ul>
+      </article>
+    </div>
+    <div class="mt-8 p-5 rounded-2xl bg-surface-2 border border-border-subtle">
+      <p class="text-[12.5px] text-text-secondary leading-[1.65]">
+        <strong class="text-text">Compliance standards:</strong> ISO 18013-5 (mobile drivers license), eIDAS Regulation (electronic identification), eFTI (EU 2020/1056), GDPR art. 28 (data processing entrustment), EU AI Act (transparency for XAI components).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
+  <div class="max-w-[1000px] mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Partner R&D pipeline</p>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
+        Science-industry consortium pipeline
+      </h2>
+      <p class="text-text-secondary max-w-[640px] mx-auto">
+        Currently bootstrap. Planned consortium for grant applications: technical university + fleet company + accounting system.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger">
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Academic partner</p>
+        <h3 class="font-display text-[17px] font-bold text-text mb-2">Technical university</h3>
+        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
+          Target: Warsaw University of Technology (Faculty of Transport) or Wrocław Tech (Faculty of Mechanical Engineering). Collaboration: border detection algorithm validation + XAI model.
+        </p>
+        <p class="text-[11.5px] text-text-tertiary">Status: in preparation (Q3-Q4 2026)</p>
+      </article>
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Industry partner</p>
+        <h3 class="font-display text-[17px] font-bold text-text mb-2">Pilot fleet company</h3>
+        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
+          5–10 pilot transport companies with vans 2.5–3.5&nbsp;t in international EU transport — validation on real operational data.
+        </p>
+        <p class="text-[11.5px] text-text-tertiary">Status: open recruitment (MVP pilot from 13 May 2026)</p>
+      </article>
+      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Technology partner</p>
+        <h3 class="font-display text-[17px] font-bold text-text mb-2">FK / e-invoicing system</h3>
+        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
+          Insert GT, Comarch ERP Optima or Symfonia — API-level integration. KSeF (PL) and Peppol (EU) — certification gateway.
+        </p>
+        <p class="text-[11.5px] text-text-tertiary">Status: EPP / XML / TXT integrations live; REST API planned Q4 2026</p>
+      </article>
+    </div>
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 1</p>
+        <p class="font-display text-[15px] font-bold text-text mb-1">FENG SMART Path</p>
+        <p class="text-[11.5px] text-text-tertiary">NCBR · Poland · TRL 5→8</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 2</p>
+        <p class="font-display text-[15px] font-bold text-text mb-1">EIC Accelerator</p>
+        <p class="text-[11.5px] text-text-tertiary">European Innovation Council · TRL 6→9</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 3</p>
+        <p class="font-display text-[15px] font-bold text-text mb-1">Horizon Europe</p>
+        <p class="text-[11.5px] text-text-tertiary">Cluster 5: Climate, Energy &amp; Mobility</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-surface py-24 px-5">
+  <div class="max-w-[820px] mx-auto text-center">
+    <h2 class="font-display text-[32px] sm:text-[44px] font-bold tracking-[-0.02em] text-text mb-5 leading-[1.1]">
+      Contact the R&D team
+    </h2>
+    <p class="text-text-secondary mb-8 max-w-[560px] mx-auto leading-[1.65]">
+      For grant evaluators, scientific partners, consortium companies — technical data, documentation, access to pilot repository.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="mailto:kontakt@busikm.pl?subject=R%26D%20—%20technology%20inquiry" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200">
+        kontakt@busikm.pl
+      </a>
+      <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-surface text-text border border-border text-[15px] font-semibold hover:bg-surface-2 transition-colors duration-200">
+        Book a 30-min call →
+      </a>
+    </div>
+    <p class="mt-8 text-[12px] text-text-tertiary">
+      Full R&D documentation (one-pager + technical deep-dive) available on request after NDA.
+    </p>
+  </div>
+</section>
+
+</MarketingLayout>
