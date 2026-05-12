@@ -1,48 +1,50 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   /* === BusiKM Brand System 2.0 === */
 
-  /* Brand: Confidence Blue */
+  /* Brand: Confidence Blue — invariant w obu motywach */
   --color-brand: #005CE8;
   --color-brand-light: #3380FF;
   --color-brand-dark: #003FAD;
-  --color-brand-subtle: #EBF2FF;
+  --color-brand-subtle: var(--brand-subtle);
   --color-brand-border: rgba(0, 92, 232, 0.15);
 
-  /* Apple-Neutral Grayscale */
-  --color-gray-950: #0A0A0B;
-  --color-gray-900: #1D1D1F;
-  --color-gray-800: #2D2D2F;
-  --color-gray-700: #424245;
-  --color-gray-600: #535358;
-  --color-gray-500: #6E6E73;
-  --color-gray-400: #86868B;
-  --color-gray-300: #AEAEB2;
-  --color-gray-200: #C7C7CC;
-  --color-gray-100: #D1D1D6;
-  --color-gray-50: #F5F5F7;
+  /* Apple-Neutral Grayscale — pointed to raw vars so .dark override flipsie */
+  --color-gray-950: var(--gray-950);
+  --color-gray-900: var(--gray-900);
+  --color-gray-800: var(--gray-800);
+  --color-gray-700: var(--gray-700);
+  --color-gray-600: var(--gray-600);
+  --color-gray-500: var(--gray-500);
+  --color-gray-400: var(--gray-400);
+  --color-gray-300: var(--gray-300);
+  --color-gray-200: var(--gray-200);
+  --color-gray-100: var(--gray-100);
+  --color-gray-50: var(--gray-50);
   --color-white: #FFFFFF;
 
-  /* Semantic */
+  /* Semantic — invariant (intentionally readable w obu motywach) */
   --color-success: #34C759;
   --color-warning: #FF9500;
   --color-danger: #FF3B30;
 
-  /* Docs sidebar */
+  /* Docs sidebar — branded dark, invariant */
   --color-sidebar: #111113;
   --color-sidebar-text: #D1D1D6;
   --color-sidebar-text-muted: #6E6E73;
   --color-sidebar-active: #3380FF;
 
-  /* UI Tokens */
-  --color-surface: #F5F5F7;
-  --color-surface-2: #EBEBED;
-  --color-border: #D2D2D7;
-  --color-border-subtle: #E8E8ED;
-  --color-text: #1D1D1F;
-  --color-text-secondary: #6E6E73;
-  --color-text-tertiary: #86868B;
+  /* UI Surface — via raw vars dla dark mode override */
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--ui-border);
+  --color-border-subtle: var(--ui-border-subtle);
+  --color-text: var(--ui-text);
+  --color-text-secondary: var(--ui-text-secondary);
+  --color-text-tertiary: var(--ui-text-tertiary);
 
   /* Legacy aliases (backward compat for docs) */
   --color-navy: #005CE8;
@@ -51,12 +53,64 @@
   --color-amber: #FF9500;
   --color-amber-light: #FFAC30;
   --color-amber-dark: #CC7800;
-  --color-amber-dark: #CC7800;
 
   /* Typography */
   --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ==================== Light mode raw values (default) ==================== */
+:root {
+  /* BusiKM raw light-mode palette — `@theme` references via var() */
+  --brand-subtle: #EBF2FF;
+
+  --gray-950: #0A0A0B;
+  --gray-900: #1D1D1F;
+  --gray-800: #2D2D2F;
+  --gray-700: #424245;
+  --gray-600: #535358;
+  --gray-500: #6E6E73;
+  --gray-400: #86868B;
+  --gray-300: #AEAEB2;
+  --gray-200: #C7C7CC;
+  --gray-100: #D1D1D6;
+  --gray-50: #F5F5F7;
+
+  --surface: #FFFFFF;
+  --surface-2: #F5F5F7;
+  --ui-border: #D2D2D7;
+  --ui-border-subtle: #E8E8ED;
+  --ui-text: #1D1D1F;
+  --ui-text-secondary: #6E6E73;
+  --ui-text-tertiary: #86868B;
+}
+
+/* ==================== Dark mode raw values (BKM-547) ==================== */
+.dark {
+  /* Apple-inspired dark palette. Grayscale flipped: gray-900 = light text na
+     dark bg; gray-50 = elevated surface near-black. Parity z busikm-web. */
+  --brand-subtle: #0A2A52;
+
+  --gray-950: #FFFFFF;
+  --gray-900: #F5F5F7;
+  --gray-800: #E8E8ED;
+  --gray-700: #D2D2D7;
+  --gray-600: #AEAEB2;
+  --gray-500: #98989F;
+  --gray-400: #6E6E73;
+  --gray-300: #535358;
+  --gray-200: #38383A;
+  --gray-100: #2C2C2E;
+  --gray-50: #1C1C1E;
+
+  --surface: #0A0A0B;
+  --surface-2: #1C1C1E;
+  --ui-border: #38383A;
+  --ui-border-subtle: #2C2C2E;
+  --ui-text: #F5F5F7;
+  --ui-text-secondary: #98989F;
+  --ui-text-tertiary: #6E6E73;
 }
 
 /* ==================== Base ==================== */
@@ -68,7 +122,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-text);
-  background: #fff;
+  background: var(--color-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -164,7 +218,7 @@ img, svg, video, canvas,
 .prose code {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  background: var(--color-surface);
+  background: var(--color-surface-2);
   padding: 0.15em 0.45em;
   border-radius: 5px;
   border: 1px solid var(--color-border);
@@ -186,7 +240,7 @@ img, svg, video, canvas,
 }
 .prose th {
   background: var(--color-gray-900);
-  color: white;
+  color: var(--color-surface);
   font-weight: 600;
   text-align: left;
   padding: 0.75rem 1rem;
@@ -202,7 +256,7 @@ img, svg, video, canvas,
   vertical-align: top;
 }
 .prose tr:last-child td { border-bottom: none; }
-.prose tr:nth-child(even) td { background: var(--color-surface); }
+.prose tr:nth-child(even) td { background: var(--color-surface-2); }
 .prose tr:hover td { background: var(--color-brand-subtle); }
 
 /* ==================== Scrollbar ==================== */

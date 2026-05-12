@@ -139,8 +139,22 @@ const fullTitle = title.includes('BusiKM') ? title : `${title} | BusiKM`;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Anti-flicker theme init (BKM-547): apply `.dark` class na html PRZED first paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || 'system';
+          var isDark = theme === 'dark' || (theme === 'system' && prefersDark);
+          if (isDark) document.documentElement.classList.add('dark');
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-white">
+  <body class="min-h-screen bg-surface text-text">
     <slot />
   </body>
 </html>
