@@ -45,17 +45,18 @@ const html = `<!DOCTYPE html>
     display: grid;
     grid-template-columns: 1fr 360px;
     gap: 56px;
-    align-items: start;
+    align-items: center;
     height: 100%;
-    padding: 36px 70px 60px;
+    padding: 24px 70px;
   }
 
-  /* === Left column — logo + headline, anchored top === */
+  /* === Left column — logo + headline, vertically centered (slight upward bias) === */
   .left {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 24px;
+    margin-top: -100px;
   }
   .logo-row { display: flex; align-items: center; gap: 10px; }
   .logo-mark {
@@ -135,10 +136,10 @@ const html = `<!DOCTYPE html>
     flex: 1 1 0;
     min-height: 0;
     overflow: hidden;
-    padding: 14px 16px 12px;
+    padding: 12px 16px 10px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
 
   .dh-hero {
@@ -219,6 +220,43 @@ const html = `<!DOCTYPE html>
     font-weight: 500;
     color: #111827;
     text-align: center;
+  }
+  .dh-recent { display: flex; flex-direction: column; gap: 6px; }
+  .dh-recent-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dh-recent-link {
+    font-size: 11px;
+    font-weight: 500;
+    color: #2563eb;
+  }
+  .dh-recent-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .dh-recent-route {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #111827;
+  }
+  .dh-recent-meta {
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 1px;
+  }
+  .dh-recent-km {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #2563eb;
   }
   .nav {
     background: white;
@@ -317,6 +355,34 @@ const html = `<!DOCTYPE html>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span>Historia tras</span>
               </div>
+            </div>
+          </div>
+
+          <div class="dh-recent">
+            <div class="dh-recent-head">
+              <p class="dh-section" style="margin-bottom:0">Ostatnie trasy</p>
+              <span class="dh-recent-link">Wszystkie</span>
+            </div>
+            <div class="dh-recent-card">
+              <div>
+                <p class="dh-recent-route">Warszawa → Berlin</p>
+                <p class="dh-recent-meta">14 maja · 8h 12min</p>
+              </div>
+              <span class="dh-recent-km">570 km</span>
+            </div>
+            <div class="dh-recent-card">
+              <div>
+                <p class="dh-recent-route">Kraków → Wiedeń</p>
+                <p class="dh-recent-meta">13 maja · 6h 30min</p>
+              </div>
+              <span class="dh-recent-km">464 km</span>
+            </div>
+            <div class="dh-recent-card">
+              <div>
+                <p class="dh-recent-route">Wrocław → Praga</p>
+                <p class="dh-recent-meta">11 maja · 4h 30min</p>
+              </div>
+              <span class="dh-recent-km">280 km</span>
             </div>
           </div>
         </div>
