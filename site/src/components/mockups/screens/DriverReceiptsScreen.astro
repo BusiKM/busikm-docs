@@ -1,0 +1,272 @@
+---
+// Pixel replica of busikm-mobile-prototype/src/app/components/DriverReceipts.tsx.
+// Mock data sourced from busikm-mobile-prototype/src/app/data/mockData.ts (mockReceipts).
+const receipts = [
+  { id: '1', type: 'Paliwo', amount: '287.50', currency: 'EUR', date: '13 maja', location: 'Berlin, DE', status: 'approved' },
+  { id: '2', type: 'Parking', amount: '15.00', currency: 'EUR', date: '12 maja', location: 'Hamburg, DE', status: 'pending' },
+];
+// Weekly totals for the stat tiles (more representative than just the
+// visible 2 most recent receipts on this preview screen).
+const approvedCount = 18;
+const pendingCount = 3;
+---
+<div class="rc-screen">
+  <div class="rc-pad">
+    {/* Header */}
+    <div>
+      <h2 class="rc-h1">Paragony</h2>
+      <p class="rc-sub">Zarządzaj dokumentami kosztowymi</p>
+    </div>
+
+    {/* Scan CTA */}
+    <button type="button" class="rc-scan">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7h-3.586l-2-2H10.586l-2 2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <span>Zeskanuj paragon</span>
+    </button>
+
+    {/* Stats grid */}
+    <div class="rc-grid">
+      <div class="rc-stat rc-stat-ok">
+        <p class="rc-stat-lbl">Zatwierdzone</p>
+        <p class="rc-stat-val">{approvedCount}</p>
+      </div>
+      <div class="rc-stat rc-stat-pending">
+        <p class="rc-stat-lbl">Oczekujące</p>
+        <p class="rc-stat-val">{pendingCount}</p>
+      </div>
+    </div>
+
+    {/* Search */}
+    <div class="rc-search">
+      <svg class="rc-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span class="rc-search-text">Szukaj paragonów...</span>
+    </div>
+
+    {/* List */}
+    <div class="rc-list">
+      <h3 class="rc-section-title">Historia paragonów</h3>
+      {receipts.map((r) => (
+        <div class="rc-item">
+          <div class={`rc-item-icon ${r.status === 'approved' ? 'rc-item-icon-ok' : 'rc-item-icon-pending'}`}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="rc-item-body">
+            <div class="rc-item-row1">
+              <div>
+                <p class="rc-item-type">{r.type}</p>
+                <p class="rc-item-loc">{r.location}</p>
+              </div>
+              <span class={`rc-badge ${r.status === 'approved' ? 'rc-badge-ok' : 'rc-badge-pending'}`}>
+                {r.status === 'approved' ? 'Zatwierdzony' : 'Oczekujący'}
+              </span>
+            </div>
+            <div class="rc-item-row2">
+              <span class="rc-item-date">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                {r.date}
+              </span>
+              <span class="rc-item-amount">
+                <span class="rc-amount-val">{r.amount}</span>
+                <span class="rc-amount-cur">{r.currency}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .rc-screen {
+    background: #F5F5F7;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    color: #111827;
+  }
+  .rc-pad {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px 12px;
+  }
+  .rc-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: #111827;
+    letter-spacing: -0.012em;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .rc-sub {
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .rc-scan {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    color: white;
+    border: 0;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 18px rgba(59,130,246,0.28);
+    cursor: default;
+  }
+  .rc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .rc-stat {
+    border-radius: 12px;
+    padding: 10px 12px;
+    border: 1px solid;
+  }
+  .rc-stat-ok {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  .rc-stat-pending {
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+  .rc-stat-lbl {
+    font-size: 10.5px;
+    margin-bottom: 2px;
+  }
+  .rc-stat-ok .rc-stat-lbl { color: #047857; }
+  .rc-stat-pending .rc-stat-lbl { color: #b45309; }
+  .rc-stat-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.05;
+  }
+  .rc-stat-ok .rc-stat-val { color: #064e3b; }
+  .rc-stat-pending .rc-stat-val { color: #78350f; }
+  .rc-search {
+    background: #F3F4F6;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 8px 10px 8px 32px;
+    position: relative;
+    font-size: 11.5px;
+    color: #9ca3af;
+  }
+  .rc-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .rc-search-text {
+    display: block;
+  }
+  .rc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rc-section-title {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .rc-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .rc-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .rc-item-icon-ok {
+    background: #d1fae5;
+    color: #047857;
+  }
+  .rc-item-icon-pending {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  .rc-item-body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .rc-item-row1 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    gap: 6px;
+  }
+  .rc-item-type {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #111827;
+  }
+  .rc-item-loc {
+    font-size: 10.5px;
+    color: #6b7280;
+  }
+  .rc-badge {
+    font-size: 9.5px;
+    font-weight: 500;
+    padding: 3px 7px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .rc-badge-ok {
+    background: #d1fae5;
+    color: #047857;
+  }
+  .rc-badge-pending {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  .rc-item-row2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rc-item-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    color: #6b7280;
+  }
+  .rc-item-amount {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .rc-amount-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: #111827;
+  }
+  .rc-amount-cur {
+    font-size: 10px;
+    color: #6b7280;
+  }
+</style>

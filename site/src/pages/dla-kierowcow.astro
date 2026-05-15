@@ -1,6 +1,11 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../lib/app-url';
+import PhoneFrame from '../components/mockups/PhoneFrame.astro';
+import BottomNavDriver from '../components/mockups/BottomNavDriver.astro';
+import DriverHomeScreen from '../components/mockups/screens/DriverHomeScreen.astro';
+import DriverRouteScreen from '../components/mockups/screens/DriverRouteScreen.astro';
+import DriverReceiptsScreen from '../components/mockups/screens/DriverReceiptsScreen.astro';
 ---
 
 <MarketingLayout
@@ -50,6 +55,56 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             <div class="text-[12.5px] text-text-tertiary mt-2 max-w-[140px] leading-snug min-h-[2.4rem] flex items-start">{s.label}</div>
           </div>
         ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP PREVIEW — 3 EKRANY ============ -->
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="text-center max-w-[680px] mx-auto mb-12 sm:mb-16">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border-subtle text-[11px] font-semibold uppercase tracking-[0.08em] text-text-tertiary mb-5">Aplikacja kierowcy</span>
+      <h2 class="font-display text-[clamp(1.75rem,3.5vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+        Trzy ekrany. Cała praca w trasie.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-text-secondary">
+        Start trasy z OCR drogomierza, mapa z licznikiem czasu pracy AETR, paragony w jednym zdjęciu. Wszystko w iOS i Android, działa offline.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12 justify-items-center items-end">
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Ekran startowy kierowcy w aplikacji BusiKM" width={280}>
+          <DriverHomeScreen />
+          <BottomNavDriver slot="nav" active="home" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Start trasy w 5 sek.</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Aparat skanuje drogomierz, OCR wypełnia stan. Czas pracy licznika AETR widoczny od pierwszego ekranu.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Aktywna trasa z GPS i licznikiem czasu pracy" width={280}>
+          <DriverRouteScreen />
+          <BottomNavDriver slot="nav" active="route" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Trasa z GPS w tle</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Aplikacja loguje pozycję co kilka sekund, działa offline w tunelach i górach. Bez ręcznego rozliczania.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Paragony z OCR — historia kosztów trasy" width={280}>
+          <DriverReceiptsScreen />
+          <BottomNavDriver slot="nav" active="receipts" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Paragon → koszty</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Zdjęcie paragonu z DE/IT/FR/ES. OCR czyta kwotę, walutę, datę i lokalizację. Status zatwierdzenia w czasie rzeczywistym.</p>
+        </div>
       </div>
     </div>
   </div>

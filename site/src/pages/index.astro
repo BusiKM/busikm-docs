@@ -1,6 +1,11 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../lib/app-url';
+import PhoneFrame from '../components/mockups/PhoneFrame.astro';
+import BottomNavDriver from '../components/mockups/BottomNavDriver.astro';
+import BottomNavOwner from '../components/mockups/BottomNavOwner.astro';
+import DriverHomeScreen from '../components/mockups/screens/DriverHomeScreen.astro';
+import OwnerHomeScreen from '../components/mockups/screens/OwnerHomeScreen.astro';
 
 // FAQ na home — kluczowe pytania o pilotaż MVP. Schema.org FAQPage
 // generowany na końcu sekcji (BKM-291 SEO).
@@ -573,6 +578,55 @@ const homeFaq = [
       initHeroMap();
     }
   </script>
+</section>
+
+<!-- ======================== APP PREVIEW — DWIE APLIKACJE ======================== -->
+<section class="bg-surface-2 py-20 sm:py-28 px-5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="reveal text-center max-w-[720px] mx-auto mb-14 sm:mb-16">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border-subtle text-[11px] font-semibold uppercase tracking-[0.08em] text-text-tertiary mb-5">Aplikacja mobilna · iOS + Android</span>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+        Ten sam system. Dwie aplikacje.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-text-secondary">
+        Kierowca rejestruje trasę i paragony w 5 sekund. Właściciel widzi to natychmiast w swojej aplikacji. Bez papierów, bez Excela, bez maili.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-14 justify-items-center items-start max-w-[860px] mx-auto">
+      <div class="flex flex-col items-center gap-5 max-w-[340px]">
+        <PhoneFrame label="Aplikacja kierowcy — start trasy" width={280}>
+          <DriverHomeScreen />
+          <BottomNavDriver slot="nav" active="home" />
+        </PhoneFrame>
+        <div class="text-center">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#005CE8] mb-2">Aplikacja kierowcy</p>
+          <h3 class="font-display text-[1.15rem] font-bold tracking-[-0.01em] text-text mb-2">Trasa, paragony, AETR</h3>
+          <p class="text-[13.5px] leading-relaxed text-text-secondary mb-3">Start trasy z OCR drogomierza, mapa z licznikiem czasu pracy, paragony z DE/IT/FR/ES jednym zdjęciem. Działa offline.</p>
+          <a href="/dla-kierowcow" class="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-brand hover:text-brand-dark">
+            Wszystkie ekrany kierowcy
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 max-w-[340px]">
+        <PhoneFrame label="Aplikacja właściciela — przegląd floty" width={280}>
+          <OwnerHomeScreen />
+          <BottomNavOwner slot="nav" active="home" />
+        </PhoneFrame>
+        <div class="text-center">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#005CE8] mb-2">Aplikacja właściciela</p>
+          <h3 class="font-display text-[1.15rem] font-bold tracking-[-0.01em] text-text mb-2">Flota w kieszeni</h3>
+          <p class="text-[13.5px] leading-relaxed text-text-secondary mb-3">Live przegląd kierowców i pojazdów, statystyki tygodniowe, mapa floty. Te same dane co panel web — pod ręką w trasie.</p>
+          <a href="/dla-wlascicieli" class="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-brand hover:text-brand-dark">
+            Wszystkie ekrany właściciela
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ======================== PROBLEM NA POZIOMIE EUROPEJSKIM (BKM-551) ======================== -->

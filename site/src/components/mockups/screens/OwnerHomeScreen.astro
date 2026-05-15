@@ -1,0 +1,249 @@
+---
+// Pixel replica of busikm-mobile-prototype/src/app/components/OwnerHome.tsx.
+const drivers = [
+  { id: 1, name: 'Jan Kowalski', status: 'driving', location: 'Berlin, DE', vehicle: 'WX 12345', time: '2h 15min' },
+  { id: 2, name: 'Anna Nowak', status: 'break', location: 'Hamburg, DE', vehicle: 'WX 67890', time: '15min' },
+];
+---
+<div class="oh-screen">
+  <div class="oh-pad">
+    {/* Header */}
+    <div class="oh-header">
+      <h2 class="oh-h1">Przegląd floty</h2>
+      <span class="oh-live">LIVE</span>
+    </div>
+
+    {/* Stats */}
+    <div class="oh-stats">
+      <div class="oh-stat oh-stat-blue">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+        <p class="oh-stat-val">2</p>
+        <p class="oh-stat-lbl">Aktywne trasy</p>
+      </div>
+      <div class="oh-stat oh-stat-green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p class="oh-stat-val">1</p>
+        <p class="oh-stat-lbl">Gotowe</p>
+      </div>
+      <div class="oh-stat oh-stat-amber">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p class="oh-stat-val">1</p>
+        <p class="oh-stat-lbl">Alerty</p>
+      </div>
+    </div>
+
+    {/* Drivers section */}
+    <div class="oh-section">
+      <div class="oh-section-header">
+        <h3 class="oh-section-title">Kierowcy</h3>
+        <span class="oh-link">Zobacz wszystkich</span>
+      </div>
+      <div class="oh-drivers">
+        {drivers.map((d) => (
+          <div class="oh-driver">
+            <div class="oh-driver-row">
+              <div>
+                <h4 class="oh-driver-name">{d.name}</h4>
+                <p class="oh-driver-vehicle">{d.vehicle}</p>
+              </div>
+              <span class={`oh-status oh-status-${d.status}`}>
+                {d.status === 'driving' ? 'W trasie' : d.status === 'break' ? 'Przerwa' : 'Gotowy'}
+              </span>
+            </div>
+            <div class="oh-driver-meta">
+              <span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                {d.location}
+              </span>
+              {d.time !== '—' && (
+                <span>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {d.time}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Today gradient card */}
+    <div class="oh-today">
+      <div class="oh-today-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        <span>Dzisiaj</span>
+      </div>
+      <div class="oh-today-grid">
+        <div>
+          <p class="oh-today-val">1 247</p>
+          <p class="oh-today-lbl">km przejechane</p>
+        </div>
+        <div>
+          <p class="oh-today-val">8</p>
+          <p class="oh-today-lbl">zleceń aktywnych</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .oh-screen {
+    background: #F5F5F7;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    color: #111827;
+  }
+  .oh-pad {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px 14px 12px;
+  }
+  .oh-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .oh-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: #111827;
+    letter-spacing: -0.012em;
+    line-height: 1.1;
+  }
+  .oh-live {
+    background: #d1fae5;
+    color: #047857;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+  }
+  .oh-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .oh-stat {
+    border-radius: 12px;
+    padding: 8px 9px;
+  }
+  .oh-stat-blue { background: #eff6ff; color: #2563eb; }
+  .oh-stat-green { background: #ecfdf5; color: #047857; }
+  .oh-stat-amber { background: #fffbeb; color: #b45309; }
+  .oh-stat-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: #111827;
+    line-height: 1.05;
+    margin-top: 4px;
+  }
+  .oh-stat-lbl {
+    font-size: 9.5px;
+    color: #4b5563;
+    margin-top: 1px;
+  }
+  .oh-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .oh-section-title {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .oh-link {
+    font-size: 10px;
+    font-weight: 500;
+    color: #2563eb;
+  }
+  .oh-drivers {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .oh-driver {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 9px 10px;
+  }
+  .oh-driver-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    gap: 6px;
+  }
+  .oh-driver-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.2;
+  }
+  .oh-driver-vehicle {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 1px;
+  }
+  .oh-status {
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .oh-status-driving { background: #d1fae5; color: #047857; }
+  .oh-status-break { background: #fef3c7; color: #b45309; }
+  .oh-status-ready { background: #f3f4f6; color: #4b5563; }
+  .oh-driver-meta {
+    display: flex;
+    gap: 14px;
+    font-size: 10px;
+    color: #6b7280;
+  }
+  .oh-driver-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .oh-today {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    border-radius: 16px;
+    padding: 14px;
+    color: white;
+    box-shadow: 0 8px 18px rgba(59,130,246,0.28);
+  }
+  .oh-today-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .oh-today-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .oh-today-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.05;
+  }
+  .oh-today-lbl {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.85);
+    margin-top: 2px;
+  }
+</style>
