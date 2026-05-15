@@ -1,6 +1,11 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../lib/app-url';
+import PhoneFrame from '../components/mockups/PhoneFrame.astro';
+import BottomNavOwner from '../components/mockups/BottomNavOwner.astro';
+import OwnerHomeScreen from '../components/mockups/screens/OwnerHomeScreen.astro';
+import OwnerStatsScreen from '../components/mockups/screens/OwnerStatsScreen.astro';
+import OwnerFleetScreen from '../components/mockups/screens/OwnerFleetScreen.astro';
 ---
 
 <MarketingLayout
@@ -54,6 +59,56 @@ import { APP_LOGIN_URL } from '../lib/app-url';
             <div class="text-[12.5px] text-text-tertiary mt-1 leading-snug">{s.label}</div>
           </div>
         ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP PREVIEW — 3 EKRANY MOBILE ============ -->
+<section class="py-20 sm:py-28 bg-surface-2 px-5">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="reveal text-center max-w-[680px] mx-auto mb-12 sm:mb-16">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border-subtle text-[11px] font-semibold uppercase tracking-[0.08em] text-text-tertiary mb-5">Aplikacja właściciela</span>
+      <h2 class="font-display text-[clamp(1.75rem,3.5vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+        Cała flota w kieszeni. Bez logowania do laptopa.
+      </h2>
+      <p class="text-[15px] leading-relaxed text-text-secondary">
+        Przegląd kierowców w trasie, statystyki tygodniowe i mapa floty na żywo. Dokładnie te same dane co panel webowy — tylko że pod ręką w dowolnym momencie.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12 justify-items-center items-end">
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Przegląd floty — aplikacja właściciela" width={280}>
+          <OwnerHomeScreen />
+          <BottomNavOwner slot="nav" active="home" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Kto, gdzie, jak długo</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Lista kierowców z aktualnym statusem AETR, lokalizacją i czasem jazdy. LIVE — odświeża się przy każdym update z aplikacji w kabinie.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Statystyki tygodniowe floty" width={280}>
+          <OwnerStatsScreen />
+          <BottomNavOwner slot="nav" active="stats" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Statystyki tygodniowe</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Przychód, koszty, dystans i trend kosztów per dzień. Dane z każdego zlecenia, paragonu i tankowania — bez ręcznego zbierania.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 max-w-[300px]">
+        <PhoneFrame label="Mapa floty z live tracking pojazdów" width={280}>
+          <OwnerFleetScreen />
+          <BottomNavOwner slot="nav" active="fleet" />
+        </PhoneFrame>
+        <div class="text-center">
+          <h3 class="font-display text-[1.05rem] font-bold tracking-[-0.01em] text-text mb-1.5">Mapa floty na żywo</h3>
+          <p class="text-[13px] leading-snug text-text-secondary">Każdy bus z prędkością i statusem na żywo. Klient pyta „gdzie jest paleta?" — odpowiadasz w 5 sekund, bez telefonu.</p>
+        </div>
       </div>
     </div>
   </div>
