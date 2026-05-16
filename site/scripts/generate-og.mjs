@@ -419,11 +419,16 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage({
     viewport: { width: 1200, height: 630 },
-    deviceScaleFactor: 2,
+    // deviceScaleFactor MUST be 1 — WhatsApp validates og:image:width/height
+    // against the actual file dimensions and enforces a <600 KB filesize limit.
+    // Rendering @2x produced 2400×1260 / ~670 KB which WhatsApp rejected,
+    // falling back to apple-touch-icon.
+    deviceScaleFactor: 1,
   });
   await page.setContent(html, { waitUntil: 'networkidle' });
   await page.screenshot({ path: outputPath, type: 'png' });
-  console.log(`OG image saved to ${outputPath}`);
+  const sizeKb = Math.round(fs.statSync(outputPath).size / 1024);
+  console.log(`OG image saved to ${outputPath} (${sizeKb} KB, 1200×630)`);
 } finally {
   await browser.close();
 }
