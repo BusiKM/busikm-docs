@@ -2,14 +2,13 @@
 
 ## European positioning (EU Grant Readiness)
 
-BusiKM rozwija **europejski system R&D integrujący transport drogowy 2,5–3,5 t z księgowością** przez sześć autorskich komponentów badawczo-rozwojowych:
+BusiKM rozwija **europejski system R&D integrujący transport drogowy 2,5–3,5 t z księgowością** przez pięć autorskich komponentów badawczo-rozwojowych:
 
-1. **Parser binarny pliku DDD** (TRL 4) — autorska biblioteka Python odczytu tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Pierwsza tego typu implementacja na rynku PL/UE dla busów 2,5–3,5 t.
-2. **Bluetooth ITS** (TRL 3) — React Native library do zdalnej komunikacji z tachografem przez protokół z 2016/799 — pobranie DDD bez kabla do warsztatu.
-3. **Detekcja granic UE** (TRL 5) — algorytm point-in-polygon na lokalnej warstwie GeoJSON 27 państw UE (Shapely) — klasyfikacja GPS bez API, bez internetu.
-4. **Silnik diet AETR** (TRL 4) — deterministyczny rules engine mapujący Rozp. MPiPS 29.01.2013 Dz.U. 167 na auto-rozliczenie kierowcy. Pierwsza integracja GPS↔diety dla busów 2,5–3,5 t.
-5. **XAI anomalia spalania** (TRL 3) — model regresji wielowymiarowej z naturalnojęzykową wyjaśnialnością (SHAP). Detekcja kradzieży paliwa z explainable AI.
-6. **Multi-tenant z izolacją RODO** (TRL 8 — produkcja MVP) — Django CompanyScopedMixin + TenantContextMiddleware, zgodne z art. 28 GDPR.
+1. **Parser binarny pliku DDD** (TRL 1) — autorska biblioteka Python odczytu tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Pierwsza tego typu implementacja na rynku PL/UE dla busów 2,5–3,5 t.
+2. **Bluetooth ITS** (TRL 1) — React Native library do zdalnej komunikacji z tachografem przez protokół z 2016/799 — pobranie DDD bez kabla do warsztatu.
+3. **Detekcja granic UE** (TRL 2) — algorytm point-in-polygon na lokalnej warstwie GeoJSON 27 państw UE (Shapely) — klasyfikacja GPS bez API, bez internetu.
+4. **Silnik diet AETR** (TRL 2) — deterministyczny rules engine mapujący Rozp. MPiPS 29.01.2013 Dz.U. 167 na auto-rozliczenie kierowcy. Pierwsza integracja GPS↔diety dla busów 2,5–3,5 t.
+5. **XAI anomalia spalania** (TRL 1) — model regresji wielowymiarowej z naturalnojęzykową wyjaśnialnością (SHAP). Detekcja kradzieży paliwa z explainable AI.
 
 Aktualne aplikacje grantowe (w przygotowaniu): **FENG Ścieżka SMART** (NCBR PL, TRL 5→8), **EIC Accelerator** (European Innovation Council, TRL 6→9), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Standardy zgodności: ISO 18013-5, eIDAS, eFTI (UE 2020/1056), EU AI Act (transparency dla XAI).
 
@@ -94,14 +93,13 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 
 ## English summary
 
-BusiKM is developing a **European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting** through six in-house research components:
+BusiKM is developing a **European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting** through five in-house research components:
 
-1. **Binary DDD parser** (TRL 4) — Python library for G2V2 tachograph compliant with EU 2016/799 Annex I.
-2. **Bluetooth ITS** (TRL 3) — React Native library for remote tachograph data download.
-3. **EU border detection** (TRL 5) — point-in-polygon on local GeoJSON, no API, no internet dependency.
-4. **AETR per-diem engine** (TRL 4) — deterministic rules engine mapping PL MoLPS regulation to auto-settlement.
-5. **XAI fuel anomaly** (TRL 3) — multivariate regression with SHAP-based natural-language explainability.
-6. **Multi-tenant data isolation** (TRL 8 — production in MVP) — Django architecture, GDPR art. 28 compliant.
+1. **Binary DDD parser** (TRL 1) — Python library for G2V2 tachograph compliant with EU 2016/799 Annex I.
+2. **Bluetooth ITS** (TRL 1) — React Native library for remote tachograph data download.
+3. **EU border detection** (TRL 2) — point-in-polygon on local GeoJSON, no API, no internet dependency.
+4. **AETR per-diem engine** (TRL 2) — deterministic rules engine mapping PL MoLPS regulation to auto-settlement.
+5. **XAI fuel anomaly** (TRL 1) — multivariate regression with SHAP-based natural-language explainability.
 
 Current grant applications (in preparation): **FENG SMART** (Poland NCBR), **EIC Accelerator** (European Innovation Council), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Compliance standards: ISO 18013-5, eIDAS, eFTI (EU 2020/1056), EU AI Act.
 

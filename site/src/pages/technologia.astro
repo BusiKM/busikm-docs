@@ -4,14 +4,14 @@ import { APP_LOGIN_URL } from '../lib/app-url';
 
 /**
  * /technologia — dedykowana strona R&D pod granty/inwestorów (BKM-554).
- * 7 sekcji: hero, TRL roadmap, 6 komponentów, metodologia, IP, partnerzy, CTA.
+ * 7 sekcji: hero, TRL roadmap, 5 komponentów, metodologia, IP, partnerzy, CTA.
  */
 
 const components = [
   {
     id: 'parser-ddd',
     name: 'Parser binarny pliku DDD',
-    trl: 4,
+    trl: 1,
     label: 'Innowacja krajowa',
     labelColor: '#3380FF',
     problem: 'Plik DDD pobierany z tachografu G2V2 to surowy binarny zrzut pamięci urządzenia. Brak istniejącej biblioteki Python umożliwiającej odczyt zgodny z Rozp. (UE) 2016/799 Annex I dla rynku PL/UE.',
@@ -20,12 +20,12 @@ const components = [
     foundation: 'Rozp. (UE) 2016/799 — Annex I (struktura DDD), Annex IC (certyfikaty)',
     eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
     metrics: 'Generacja raportu 56 dni z DDD w czasie <2s, walidacja certyfikatu w <100ms, 100% akceptacja przez ITD w pilotażu',
-    status: 'Prototyp R&D — TRL 4, planowane TRL 5 w Q4 2026 po pilotażu',
+    status: 'Koncepcja — TRL 1. Mamy analizę rynku (potwierdzony brak biblioteki Python pod LCV 2,5–3,5 t) i specyfikację techniczną. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
   },
   {
     id: 'bluetooth-its',
     name: 'Bluetooth ITS — komunikacja z tachografem',
-    trl: 3,
+    trl: 1,
     label: 'Innowacja europejska',
     labelColor: '#34C759',
     problem: 'Pobranie pliku DDD wymaga obecnie podłączenia tachografu kablem do warsztatu lub specjalistycznego sprzętu CITROEN. Niedostępne dla małych firm transportowych operujących busami 2,5–3,5 t.',
@@ -34,12 +34,12 @@ const components = [
     foundation: 'Rozp. (UE) 2016/799 — Annexes (Bluetooth ITS protocol)',
     eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
     metrics: 'Pobranie DDD przez BT ITS w <30s, kompatybilność z 100% certyfikowanych tachografów G2V2, zero false-negative handshakes',
-    status: 'Badania (proof of concept) — TRL 3, planowane TRL 4 (prototyp) Q1 2027',
+    status: 'Koncepcja — TRL 1. Potwierdzony brak aplikacji mobilnej z natywnym protokołem ITS BT z G2V2 bez zewnętrznego dongla. Prototyp (TRL 4) planowany w 2028 z EIC Accelerator.',
   },
   {
     id: 'border-detection',
     name: 'Detekcja przekroczenia granic UE',
-    trl: 5,
+    trl: 2,
     label: 'Algorytm geoprzestrzenny',
     labelColor: '#FF9500',
     problem: 'Kalkulacja diet zagranicznych (Rozp. MPiPS) wymaga znania kraju kierowcy na każdy timestamp GPS. Komercyjne API geoprzestrzenne (Google, Mapbox) są drogie i wymagają internetu — bez ograniczeń dla floty offline-first.',
@@ -48,12 +48,12 @@ const components = [
     foundation: 'OGC Simple Features Access; Eurostat NUTS-0 administrative boundaries',
     eurLex: 'https://ec.europa.eu/eurostat/web/nuts/background',
     metrics: 'Dokładność klasyfikacji ≥99,5% vs Mapbox baseline; latency <10ms per point; rozmiar GeoJSON <2 MB',
-    status: 'Walidacja w laboratorium (TRL 5) — trasy referencyjne PL→DE/IT/FR potwierdzone; planowane TRL 6 (system integration) Q3 2026',
+    status: 'Sformułowana koncepcja — TRL 2. Wiemy jak zrealizować (point-in-polygon + Shapely + GeoJSON); analiza rynku potwierdza brak offline implementacji pod mobile fleet management. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
   },
   {
     id: 'diet-engine',
     name: 'Silnik kalkulacji diet zagranicznych (AETR)',
-    trl: 4,
+    trl: 2,
     label: 'Innowacja procesowa',
     labelColor: '#A78BFA',
     problem: 'Reguły z Rozp. MPiPS z 29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr 2) zawierają stawki dietowe per kraj per dzień + warunki podziału doby. Manualne rozliczenie kierowcy międzynarodowego = pół dnia pracy księgowej.',
@@ -62,12 +62,12 @@ const components = [
     foundation: 'Rozp. MPiPS z 29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr 2); EU 1057/2020 (Mobility Package — posting, diety)',
     eurLex: 'https://eur-lex.europa.eu/eli/reg/2020/1057/oj',
     metrics: 'Rozliczenie kierowcy w <5 min (vs ~4h manualnie), 100% zgodność z audytem MPiPS, 0 błędów w podziale doby na pilotażu',
-    status: 'Prototyp (TRL 4) — silnik gotowy, walidacja na realnych danych w pilotażu Q2-Q3 2026',
+    status: 'Sformułowana koncepcja — TRL 2. Pełna specyfikacja prawna (Rozp. MPiPS Dz.U. 2013 poz. 167), koncepcja algorytmu, potwierdzony brak odpowiednika na rynku światowym. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
   },
   {
     id: 'xai-fuel-anomaly',
     name: 'Detekcja anomalii spalania (XAI)',
-    trl: 3,
+    trl: 1,
     label: 'Uczenie maszynowe · XAI',
     labelColor: '#FF6B5C',
     problem: 'Kradzieże paliwa kierowców i wycieki techniczne to ~3-5% kosztów flotowych. Wykrycie wymaga manualnej analizy raportów — niedostępne dla małej floty (2-5 pojazdów).',
@@ -76,28 +76,14 @@ const components = [
     foundation: 'Lundberg & Lee 2017 (SHAP); EU AI Act (transparency obligations)',
     eurLex: 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj',
     metrics: 'Precision ≥80% (false positives <20%), recall ≥70% na zbiorach pilotażowych. Wyjaśnienie generowane w <1s per alert.',
-    status: 'Badania (TRL 3) — proof of concept, treningowy dataset zbierany w pilotażu MVP. Planowane TRL 4 (prototyp) Q2 2027',
-  },
-  {
-    id: 'multi-tenant',
-    name: 'Multi-tenant z izolacją danych',
-    trl: 8,
-    label: 'Architektura SaaS',
-    labelColor: '#34C759',
-    problem: 'Biura rachunkowe obsługujące transport potrzebują panelu wielodzierżawnego z izolacją danych zgodną z art. 28 RODO. Istniejące rozwiązania SaaS są zaprojektowane dla pojedynczej firmy, nie dla agencji obsługujących N klientów.',
-    hypothesis: 'Da się zbudować architekturę gdzie biuro rachunkowe loguje się raz i przełącza między klientami z gwarancją niewidoczności danych innych klientów — przy pełnym audit logu zgodnym z RODO.',
-    method: 'Django CompanyScopedMixin + TenantContextMiddleware. Każde query SQL automatycznie filtruje po company_id z headera X-Company-Context. AES-encrypted PII (PESEL, NIP). AuditLog per operation.',
-    foundation: 'Art. 28 RODO (powierzanie przetwarzania); ISO/IEC 27001 (information security)',
-    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/679/oj',
-    metrics: 'Zero cross-tenant data leaks w testach penetracyjnych; audit log 100% operacji; context switching <100ms',
-    status: 'Produkcja w MVP (TRL 8) — działa od pierwszego dnia pilotażu (30 maja 2026). Planowane TRL 9 (commercial scale) Q4 2026 po komercjalizacji.',
+    status: 'Koncepcja — TRL 1. Istnieje tylko research naukowy i enterprise dla dużych flot — brak SaaS XAI dla małych flot. Prototyp (TRL 4) planowany w 2028 z EIC Accelerator.',
   },
 ];
 ---
 
 <MarketingLayout
   title="Technologia — prace badawczo-rozwojowe BusiKM"
-  description="Sześć autorskich komponentów badawczo-rozwojowych BusiKM pod europejski transport 2,5–3,5 t. TRL roadmap, metodologia R&D, IP strategy, partnerzy. Podstawa aplikacji do FENG SMART, EIC Accelerator, Horizon Europe."
+  description="Pięć autorskich komponentów badawczo-rozwojowych BusiKM pod europejski transport 2,5–3,5 t. TRL roadmap, metodologia R&D, IP strategy, partnerzy. Podstawa aplikacji do FENG SMART, EIC Accelerator, Horizon Europe."
 >
 
 <!-- ====================== HERO ====================== -->
@@ -111,20 +97,20 @@ const components = [
       Prace badawczo-rozwojowe
     </p>
     <h1 class="font-display text-[clamp(2.2rem,6vw,4rem)] font-bold tracking-[-0.03em] leading-[1.15] text-text mb-6">
-      Sześć komponentów badawczo-rozwojowych pod europejski transport <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-1">2,5–3,5&nbsp;t</span>
+      Pięć komponentów badawczo-rozwojowych pod europejski transport <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-1">2,5–3,5&nbsp;t</span>
     </h1>
     <p class="text-[18px] sm:text-[19px] leading-[1.65] text-text-secondary max-w-[760px] mx-auto mb-10">
       Strona dla ewaluatorów grantów, inwestorów i partnerów technologicznych. Każdy komponent ma określony <strong class="text-text">Technology Readiness Level</strong> (TRL 1–9, skala Komisji Europejskiej), opisaną metodę badawczą, fundament regulacyjny i mierzalne KPI.
     </p>
 
-    <!-- TRL mini-preview: 6 komponentów -->
+    <!-- TRL mini-preview: 5 komponentów -->
     <div class="inline-flex flex-wrap items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-surface-2 border border-border-subtle">
       <span class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mr-2">Status TRL:</span>
       {components.map(c => (
         <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-surface text-[11px] font-mono font-semibold text-text" title={c.name}>
           <span class:list={[
             'w-1.5 h-1.5 rounded-full',
-            c.trl <= 3 ? 'bg-danger' : c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
+            c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
           ]}></span>
           T{c.trl}
         </span>
@@ -139,10 +125,10 @@ const components = [
     <div class="text-center mb-12 reveal">
       <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">TRL Roadmap</p>
       <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
-        Od badań (TRL 3) do market-ready (TRL 9) w trzy lata
+        Od koncepcji (TRL 1–2) do market-ready (TRL 9) w trzy lata
       </h2>
       <p class="text-text-secondary max-w-[600px] mx-auto">
-        Pilotaż MVP (30 maja 2026) walida 5 z 6 komponentów na realnych danych — transition TRL 5→6.
+        Pilotaż MVP (30 maja 2026) — walidacja warstwy produktowej. R&D komponentów (TRL 1–2 → TRL 4–6) ruszają w 2027 z FENG SMART.
       </p>
     </div>
 
@@ -151,15 +137,14 @@ const components = [
         <p class="font-display text-[36px] font-bold text-warning mb-2 leading-none">2026</p>
         <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-3">Pilotaż MVP</p>
         <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
-          5 komponentów na TRL 3–5 (R&D). Jeden komponent (multi-tenant) na TRL 8 — produkcja od pierwszego dnia.
+          5 komponentów na TRL 1–2 (koncepcja / sformułowana koncepcja). Walidacja warstwy produktowej w pilotażu MVP.
         </p>
         <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Parser DDD — prototyp R&D</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-danger"></span>Bluetooth ITS — proof of concept</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Border detection — walidacja lab</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Diet engine — prototyp</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-danger"></span>XAI anomaly — badania</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Multi-tenant — produkcja</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Parser DDD — koncepcja (TRL 1)</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Bluetooth ITS — koncepcja (TRL 1)</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Border detection — koncepcja (TRL 2)</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Diet engine — koncepcja (TRL 2)</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>XAI anomaly — koncepcja (TRL 1)</li>
         </ul>
       </article>
 
@@ -170,7 +155,7 @@ const components = [
           Cel: wszystkie komponenty na TRL 6–7. Walidacja na rozszerzonym pilotażu (50+ firm transportowych w UE).
         </p>
         <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Wszystkie 6 komponentów TRL 6–7</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Wszystkie 5 komponentów TRL 6–7</li>
           <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Walidacja pan-EU (CZ/SK/DE pilotaż)</li>
           <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Aplikacja FENG SMART / EIC złożona</li>
         </ul>
@@ -183,7 +168,7 @@ const components = [
           Wszystkie komponenty w produkcji. Komercjalizacja, scale-out poza Polskę, partnerstwa konsorcyjne.
         </p>
         <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Wszystkie 6 komponentów TRL 8–9</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Wszystkie 5 komponentów TRL 8–9</li>
           <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Komercjalizacja w 3+ krajach UE</li>
           <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Partnerstwo z 1 uczelnią + 1 system FK</li>
         </ul>
@@ -192,11 +177,11 @@ const components = [
   </div>
 </section>
 
-<!-- ====================== SZEŚĆ KOMPONENTÓW (detailed) ====================== -->
+<!-- ====================== PIĘĆ KOMPONENTÓW (detailed) ====================== -->
 <section class="bg-surface py-24 px-5">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Sześć komponentów R&D</p>
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Pięć komponentów R&D</p>
       <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
         Szczegółowy opis prac badawczo-rozwojowych
       </h2>
@@ -214,11 +199,11 @@ const components = [
               <span class="px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase" style={`background:${c.labelColor}26;color:${c.labelColor}`}>{c.label}</span>
               <span class:list={[
                 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase',
-                c.trl <= 3 ? 'bg-danger/15 text-danger' : c.trl <= 5 ? 'bg-warning/15 text-warning' : c.trl <= 7 ? 'bg-brand/15 text-brand' : 'bg-success/15 text-success',
+                c.trl <= 5 ? 'bg-warning/15 text-warning' : c.trl <= 7 ? 'bg-brand/15 text-brand' : 'bg-success/15 text-success',
               ]}>
                 <span class:list={[
                   'w-1.5 h-1.5 rounded-full',
-                  c.trl <= 3 ? 'bg-danger' : c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
+                  c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
                 ]}></span>
                 TRL {c.trl}
               </span>
@@ -341,7 +326,7 @@ const components = [
         Open source dla standardów. Proprietary dla wartości.
       </h2>
       <p class="text-text-secondary max-w-[640px] mx-auto">
-        Komponenty zgodne z standardem regulacyjnym publikujemy open source — buduje to ekosystem. Komponenty z proprietarnym IP (model XAI, multi-tenant orchestration) zostają zamknięte.
+        Komponenty zgodne z standardem regulacyjnym publikujemy open source — buduje to ekosystem. Komponenty z proprietarnym IP (model XAI, silnik diet AETR) zostają zamknięte.
       </p>
     </div>
 
@@ -360,7 +345,6 @@ const components = [
         <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Proprietary (closed)</p>
         <ul class="space-y-2.5 text-[13.5px] text-text-secondary">
           <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Model XAI anomalii spalania</strong> — trenowany na proprietary dataset; SHAP-based explainability</span></li>
-          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Multi-tenant orchestration</strong> — Django CompanyScopedMixin + AES PII encryption layer</span></li>
           <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Silnik diet AETR</strong> — table-driven rules engine z proprietary edge case logic</span></li>
           <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Bluetooth ITS handshake</strong> — protokół wymiany certyfikatów (proprietary timing &amp; retry strategy)</span></li>
         </ul>

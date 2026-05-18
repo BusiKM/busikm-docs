@@ -122,12 +122,12 @@ const phases = [
     color: '#005CE8',
     status: 'future',
     grant: { name: 'FENG · Ścieżka SMART', funder: 'NCBR Polska', trl: 'TRL 5→8', deadline: 'Q4 2026 / Q1 2027' },
-    summary: 'Cztery kwartały deep-tech finansowane z FENG Ścieżka SMART (NCBR). Rozwój 3 z 6 komponentów R&D z prototypu (TRL 3-4) do walidacji systemowej (TRL 6-7). Walidacja na rozszerzonym pilotażu — 50+ firm transportowych w UE.',
+    summary: 'Cztery kwartały deep-tech finansowane z FENG Ścieżka SMART (NCBR). Rozwój 3 z 5 komponentów R&D z koncepcji (TRL 1-2) do walidacji systemowej (TRL 6-7). Walidacja na rozszerzonym pilotażu — 50+ firm transportowych w UE.',
     sprints: [
-      { id: 'Q1.27', range: 'Q1 2027 · TRL 4→5', title: 'Parser DDD — prototype validation',                desc: 'Autorska biblioteka Python odczytu pliku DDD z tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Walidacja na próbach z certyfikowanych tachografów + 56-dniowy raport dla ITD.', tickets: 'R&D' },
-      { id: 'Q2.27', range: 'Q2 2027 · TRL 4→6', title: 'Silnik diet AETR — production validation',         desc: 'Deterministyczny rules engine mapujący Rozp. MPiPS Dz.U. 2013/167 na auto-rozliczenie kierowcy. Walidacja na realnych przypadkach + integracja Insert GT/Comarch/Symfonia.', tickets: 'R&D' },
+      { id: 'Q1.27', range: 'Q1 2027 · TRL 1→5', title: 'Parser DDD — prototype validation',                desc: 'Autorska biblioteka Python odczytu pliku DDD z tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Walidacja na próbach z certyfikowanych tachografów + 56-dniowy raport dla ITD.', tickets: 'R&D' },
+      { id: 'Q2.27', range: 'Q2 2027 · TRL 2→6', title: 'Silnik diet AETR — production validation',         desc: 'Deterministyczny rules engine mapujący Rozp. MPiPS Dz.U. 2013/167 na auto-rozliczenie kierowcy. Walidacja na realnych przypadkach + integracja Insert GT/Comarch/Symfonia.', tickets: 'R&D' },
       { id: 'Q3.27', range: 'Q3 2027 · TRL 6→7', title: 'Public API v1 + i18n DE/CZ/SK',                     desc: 'Publiczne API z webhookami, sandbox env i certyfikatami integratora. Pełna lokalizacja DE/CZ/SK — przygotowanie pod scale-out poza Polskę.', tickets: 'R&D' },
-      { id: 'Q4.27', range: 'Q4 2027 · TRL 3→4', title: 'Multi-currency EUR + XAI training start',           desc: 'Multi-currency (EUR primary, PLN/CZK/DKK secondary) z auto-konwersją NBP/ECB. Start treningu modelu XAI anomalii spalania na danych z pilotażu.', tickets: 'R&D' },
+      { id: 'Q4.27', range: 'Q4 2027 · TRL 1→4', title: 'Multi-currency EUR + XAI training start',           desc: 'Multi-currency (EUR primary, PLN/CZK/DKK secondary) z auto-konwersją NBP/ECB. Start treningu modelu XAI anomalii spalania na danych z pilotażu.', tickets: 'R&D' },
     ],
   },
 
@@ -142,9 +142,9 @@ const phases = [
     grant: { name: 'EIC · Accelerator + Horizon · Cluster 5', funder: 'European Innovation Council + European Commission', trl: 'TRL 6→9', deadline: 'Q1 2028 (EIC Step 1) · Q2 2028 (Horizon call)' },
     summary: 'Dwie aplikacje grantowe: EIC Accelerator (blended finance — grant €2,5M + equity €15M) oraz Horizon Europe Cluster 5 (Climate, Energy & Mobility — work programme partnerstwo). Cel: market-ready (TRL 9), scale-out pan-EU (PL→CZ/SK→DE).',
     sprints: [
-      { id: 'Q1.28', range: 'Q1–Q2 2028 · TRL 3→5',  title: 'Bluetooth ITS — hardware prototype',           desc: 'React Native library do zdalnej komunikacji z tachografem G2V2 przez Bluetooth ITS (Rozp. 2016/799). Pobranie DDD bez kabla do warsztatu. Walidacja na referencyjnym sprzęcie.', tickets: 'R&D' },
-      { id: 'Q3.28', range: 'Q3 2028 · TRL 4→6',     title: 'XAI anomalia spalania — production',           desc: 'Model regresji wielowymiarowej + SHAP-based explainability (zgodne z EU AI Act). Detekcja kradzieży paliwa z naturalnojęzykowym wyjaśnieniem. Target: precision ≥80%, recall ≥70%.', tickets: 'R&D' },
-      { id: 'Q3.28b', range: 'Q3 2028 · TRL 8→9',    title: 'Multi-tenant scale-out PL→CZ/SK→DE',           desc: 'Pełne wdrożenie pan-EU — Czechy i Słowacja (Q1), Niemcy (Q2). Lokalne FK integration (Pohoda, DATEV), lokalne VAT regime, e-invoicing per kraj (KSeF/Peppol/SDI/FacturaE).', tickets: 'R&D' },
+      { id: 'Q1.28', range: 'Q1–Q2 2028 · TRL 1→5',  title: 'Bluetooth ITS — hardware prototype',           desc: 'React Native library do zdalnej komunikacji z tachografem G2V2 przez Bluetooth ITS (Rozp. 2016/799). Pobranie DDD bez kabla do warsztatu. Walidacja na referencyjnym sprzęcie.', tickets: 'R&D' },
+      { id: 'Q3.28', range: 'Q3 2028 · TRL 1→6',     title: 'XAI anomalia spalania — production',           desc: 'Model regresji wielowymiarowej + SHAP-based explainability (zgodne z EU AI Act). Detekcja kradzieży paliwa z naturalnojęzykowym wyjaśnieniem. Target: precision ≥80%, recall ≥70%.', tickets: 'R&D' },
+      { id: 'Q3.28b', range: 'Q3 2028',              title: 'Scale-out PL→CZ/SK→DE',                        desc: 'Pełne wdrożenie pan-EU — Czechy i Słowacja (Q1), Niemcy (Q2). Lokalne FK integration (Pohoda, DATEV), lokalne VAT regime, e-invoicing per kraj (KSeF/Peppol/SDI/FacturaE).', tickets: 'R&D' },
       { id: 'Q4.28', range: 'Q4 2028 · Market Ready',title: 'Commercialization · TRL 9',                    desc: 'Pełna komercjalizacja w 4 krajach UE (PL, CZ, SK, DE). Konsorcjum: 1 uczelnia techniczna, 1 system FK europejski, 1 dostawca tachografów (VDO/Stoneridge). Target: 500+ klientów płacących.', tickets: 'R&D' },
     ],
   },
@@ -190,8 +190,8 @@ const numberWord = (n: number): string => {
 
       <p class="hero-seq-3 text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
         <strong class="text-text">2026: MVP fundament</strong> (30 maja) — auth, fleet, GPS w czasie rzeczywistym, FK export, multi-tenant.
-        <strong class="text-text">2027: R&amp;D Phase 1</strong> z FENG SMART — Parser DDD (TRL 4→5), silnik diet AETR (TRL 4→6), detekcja granic UE (TRL 5→7).
-        <strong class="text-text">2028: R&amp;D Phase 2</strong> z EIC Accelerator + Horizon Europe — Bluetooth ITS (TRL 3→5), XAI anomalia spalania (TRL 3→6), scale-out pan-EU (PL→CZ/SK→DE).
+        <strong class="text-text">2027: R&amp;D Phase 1</strong> z FENG SMART — Parser DDD (TRL 1→5), silnik diet AETR (TRL 2→6), detekcja granic UE (TRL 2→7).
+        <strong class="text-text">2028: R&amp;D Phase 2</strong> z EIC Accelerator + Horizon Europe — Bluetooth ITS (TRL 1→5), XAI anomalia spalania (TRL 1→6), scale-out pan-EU (PL→CZ/SK→DE).
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
