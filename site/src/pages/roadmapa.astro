@@ -102,8 +102,9 @@ const phases = [
     period: 'Q3–Q4 2026 (post-MVP)',
     color: '#FF9500',
     status: 'future',
-    summary: 'Druga połowa 2026: G2V2 + ITD dashboard (deadline 1 lipca), marża per zlecenie, rozliczenia kierowcy, VAT-REF UE, mapa live + strefy alertów, alerty anomalii spalania, first R&D milestone (point-in-polygon TRL 5→6).',
+    summary: 'Druga połowa 2026: DriverActivity Engine (filar AETR compliance), G2V2 + ITD dashboard (deadline 1 lipca), marża per zlecenie, rozliczenia kierowcy, VAT-REF UE, mapa live + strefy alertów, alerty anomalii spalania, first R&D milestone (point-in-polygon TRL 5→6).',
     sprints: [
+      { id: 'Q3.0', range: 'Q3 2026', title: 'DriverActivity Engine — Filar AETR compliance', desc: '8 typów aktywności (DRIVING, LOADING, BREAK, REST, ...) mapowanych na 4 symbole tachografu, auto-detection z GPS (Celery 1 min), AETRComplianceEngine zgodny z rozp. (WE) 561/2006 + Pakiet Mobilności, alerty 3-poziomowe (INFO/WARNING/VIOLATION) z FCM push, raporty PDF dla kontroli ITD/BAG. Bulk import z tachografu G2V2 (DDD). Pełna strona: /aetr.', tickets: '~15' },
       { id: 'Q3.1', range: 'Q3 2026', title: 'Tachograf G2V2 i kontrola ITD pod jednym dashboardem', desc: 'Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Uniknięcie kar do 10 000 zł per pojazd.', tickets: '~20' },
       { id: 'Q3.2', range: 'Q3 2026', title: 'Marża per zlecenie — realna rentowność', desc: 'Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, Maut, opłaty drogowe, hotele PL i UE.', tickets: '~15' },
       { id: 'Q3.3', range: 'Q3 2026', title: 'Rozliczenie kierowcy — diety, mandaty, wypłata', desc: 'Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie.', tickets: '~12' },

@@ -43,6 +43,19 @@ Hook: pełna kontrola nad pracą kierowców i rentownością zleceń. Gotowość
 ## Tachograf G2V2 i pakiet mobilności UE
 Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t używane w transporcie międzynarodowym muszą być wyposażone w tachograf cyfrowy drugiej generacji wersja 2 (G2V2). BusiKM monitoruje terminy legalizacji tachografów i wysyła alerty 90/30/14 dni przed wygaśnięciem. Brak aktualnej legalizacji = kara ITD do 10 000 zł i zatrzymanie pojazdu.
 
+## Filar AETR — DriverActivity Engine
+BusiKM wdraża (Q3 2026) dedykowany silnik compliance czasu pracy kierowcy zgodny z **rozporządzeniem (WE) nr 561/2006** oraz **Pakietem Mobilności UE** (UE 1054/2020, 1055/2020). Poza UE — konwencja AETR (zbliżone reguły, automatyczne przełączenie trybu po wykryciu przekroczenia granicy UE).
+
+DriverActivity Engine — 4 warstwy:
+1. **Rejestracja aktywności** — 8 typów (DRIVING, BASE_RETURN, LOADING, UNLOADING, OTHER_WORK, AVAILABILITY, BREAK, REST) mapowane na 4 symbole tachografu (JAZDA, INNA PRACA, GOTOWOŚĆ, PRZERWA/ODPOCZYNEK). Manual tap w aplikacji kierowcy lub auto-detection z GPS (prędkość > 5 km/h → DRIVING; postój przy adresie zlecenia → sugestia LOADING/UNLOADING).
+2. **AETRComplianceEngine** — metody calculate_driving_time, validate_breaks, validate_rest_periods, get_compliance_status. Pilnuje: dziennego (9h, max 10h 2× w tyg.), tygodniowego (56h) i dwutygodniowego (90h) czasu jazdy; przerwy po 4,5h (45 min ciągłej lub 15+30 w tej kolejności); odpoczynku dziennego (11h regularny, 9h skrócony max 3×, 3h+9h dzielony, załoga 2-os. 9h w 30h); tygodniowego (45h regularny, 24h skrócony 1×/2tyg. z rekompensatą en bloc do końca 3. tyg.); Pakietu Mobilności (powrót do bazy max co 4 tyg., zakaz odpoczynku 45h w kabinie, wyjątki +1h/+2h dla dotarcia do bazy).
+3. **Alerty 3-poziomowe** — INFO (30 min do limitu), WARNING (15 min), VIOLATION (przekroczono). FCM push do kierowcy + powiadomienie właściciela. Celery task co 5 min dla wszystkich aktywnych sesji DRIVING.
+4. **Raporty compliance** — dzienny, tygodniowy, dwutygodniowy raport zgodny z 561/2006, eksport PDF dla kontroli ITD/BAG/Gendarmerie/Polizia Stradale. Bulk import aktywności z odczytu tachografu G2V2 (plik DDD) — wsteczna walidacja 56 dni historii.
+
+Działa offline w aplikacji mobilnej (liczniki na urządzeniu), sync po zasięgu. Dashboard real-time u właściciela: tabela kierowców z OK/WARNING/VIOLATION + timeline aktywności + alert panel.
+
+Pełna strona pillar: https://busikm.pl/aetr
+
 Dodatkowo BusiKM wspiera:
 - Ewidencję czasu pracy kierowcy zgodnie z AETR i pakietem mobilności
 - Monitoring wypisów z licencji transportowej

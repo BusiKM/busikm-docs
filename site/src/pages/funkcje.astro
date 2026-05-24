@@ -39,6 +39,7 @@ const featureGroups = [
     subtitle: 'AETR, dokumenty kierowcy, tachograf G2V2 (deadline 2 lipca 2026). Kary do 10 000 zł — pod kontrolą.',
     color: '#FF9500',
     icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>',
+    deepLink: { href: '/aetr', label: 'Pełny silnik AETR — DriverActivity Engine' },
     features: [
       { name: 'Alerty czasu pracy AETR — 4,5h / 9h / 11h / dzień / tydzień / dwutydzień', tag: 'MVP' },
       { name: 'Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe', tag: 'MVP' },
@@ -196,6 +197,15 @@ const featureGroups = [
               <a href="/cennik" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1D1D1F] text-[14px] font-bold hover:bg-white/90 transition-all">
                 Dołącz do pilotażu
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          )}
+
+          {(group as any).deepLink && !(group as any).featured && (
+            <div class="mt-6 pt-5 border-t border-border-subtle">
+              <a href={(group as any).deepLink.href} class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand/8 hover:bg-brand/15 border border-brand/20 text-brand text-[13.5px] font-semibold transition-colors">
+                {(group as any).deepLink.label}
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
           )}

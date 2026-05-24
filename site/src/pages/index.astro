@@ -664,16 +664,23 @@ const homeFaq = [
             Obowiązkowy dla pojazdów &gt;2,5&nbsp;t od 1&nbsp;lipca 2026. Wprowadza zdalną komunikację ITS, podpis cyfrowy, kartę kierowcy 2. generacji.
           </p>
         </article>
-        <article class="p-6 rounded-2xl bg-surface-2 border border-border-subtle">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-warning"></span>
-            <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-warning">AETR · UNECE</p>
+        <a href="/aetr" class="block p-6 rounded-2xl bg-surface-2 border border-border-subtle hover:border-warning/40 transition-colors group">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-warning"></span>
+              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-warning">AETR · UNECE</p>
+            </div>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand/10 text-brand text-[9.5px] font-bold tracking-[0.06em] uppercase">Filar</span>
           </div>
-          <h3 class="font-display font-semibold text-[15px] text-text mb-2">Czas pracy kierowcy</h3>
-          <p class="text-[13px] leading-[1.55] text-text-secondary">
+          <h3 class="font-display font-semibold text-[15px] text-text mb-2 group-hover:text-warning transition-colors">Czas pracy kierowcy</h3>
+          <p class="text-[13px] leading-[1.55] text-text-secondary mb-3">
             Międzynarodowy standard: 4,5&nbsp;h jazdy / 45&nbsp;min przerwa, 9&nbsp;h dziennie, 56&nbsp;h tygodniowo, 90&nbsp;h dwutygodniowo.
           </p>
-        </article>
+          <span class="inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand">
+            Pełny silnik AETR
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
         <article class="p-6 rounded-2xl bg-surface-2 border border-border-subtle">
           <div class="flex items-center gap-2 mb-3">
             <span class="w-1.5 h-1.5 rounded-full bg-success"></span>
