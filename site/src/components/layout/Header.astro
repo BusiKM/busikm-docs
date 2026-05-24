@@ -40,6 +40,7 @@ const dlaKogo = isEn
 
 const roadmapHref = isEn ? '/en/' : '/roadmapa';
 const g2v2Href = isEn ? '/en/' : '/g2v2-przygotowanie';
+const aetrHref = isEn ? '/en/' : '/aetr';
 
 const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.startsWith(l.href));
 ---
@@ -55,7 +56,7 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
     class="absolute inset-0 bg-surface/80 backdrop-blur-xl border-b border-border-subtle opacity-0 transition-opacity duration-300"
   ></div>
 
-  <div class="relative max-w-[1120px] mx-auto px-5 sm:px-8">
+  <div class="relative w-full px-5 sm:px-8 lg:px-12">
     <div class="flex items-center justify-between h-[60px]">
 
       <!-- Logo -->
@@ -139,6 +140,21 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
             ]}
           >
             {tr.nav.roadmap}
+          </a>
+        )}
+
+        {!isEn && (
+          <a
+            href={aetrHref}
+            class:list={[
+              'nav-link inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[13.5px] font-medium tracking-[-0.01em] transition-all duration-200',
+              currentPath.startsWith('/aetr')
+                ? 'text-brand bg-brand/10'
+                : 'text-text/70 hover:text-brand hover:bg-brand/[0.06]',
+            ]}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
+            AETR
           </a>
         )}
 
@@ -246,6 +262,22 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
           ]}
         >
           {tr.nav.roadmap}
+        </a>
+      )}
+
+      {!isEn && (
+        <a
+          href={aetrHref}
+          class:list={[
+            'flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors mb-1',
+            currentPath.startsWith('/aetr')
+              ? 'text-brand bg-brand/10'
+              : 'text-text hover:bg-brand/[0.06] hover:text-brand',
+          ]}
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
+          AETR
+          <span class="text-[12px] text-text-tertiary ml-auto">Filar compliance</span>
         </a>
       )}
 

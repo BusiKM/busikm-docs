@@ -14,7 +14,7 @@ const monitoredAreas = [
     label: 'Czas jazdy',
     title: 'Dzienny, tygodniowy, dwutygodniowy',
     limits: ['9h dziennie (10h max 2× w tyg.)', '56h w tygodniu', '90h przez 2 kolejne tygodnie'],
-    engine: 'continuous_driving + daily_driving + weekly_driving + biweekly_driving — wszystkie liczniki w czasie rzeczywistym',
+    engine: 'Cztery niezależne liczniki w czasie rzeczywistym: ciągły (od ostatniej przerwy), dzienny, tygodniowy i dwutygodniowy.',
     color: '#005CE8',
     icon: `<circle cx="12" cy="12" r="9" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke-width="1.6" stroke-linecap="round"/>`,
   },
@@ -22,7 +22,7 @@ const monitoredAreas = [
     label: 'Przerwy w jeździe',
     title: 'Po 4,5h — 45 min',
     limits: ['Przerwa 45 min ciągła', 'Alternatywnie 15 + 30 min', 'Inna praca nie liczy się jako przerwa'],
-    engine: 'validate_breaks() — śledzi 270 min ciągłej jazdy; rozpoznaje rozbicie 15 + 30 w tej kolejności',
+    engine: 'Śledzi 4,5h (270 min) ciągłej jazdy; poprawnie rozpoznaje rozbicie przerwy na 15 + 30 min w wymaganej kolejności.',
     color: '#FF9500',
     icon: `<path d="M6 2v4M10 2v4M14 2v4M18 2v4M4 7h16v13a2 2 0 01-2 2H6a2 2 0 01-2-2V7z" stroke-width="1.6"/>`,
   },
@@ -30,7 +30,7 @@ const monitoredAreas = [
     label: 'Odpoczynek dzienny',
     title: '11h regularnie · 9h skrócony',
     limits: ['11h ciągłego (regularny)', '9h skrócony max 3× między tygodn.', '3h + 9h dzielony — w tej kolejności'],
-    engine: 'validate_rest_periods() — wykrywa odpoczynek regularny, skrócony, dzielony i załogę 2-osobową (30h okno)',
+    engine: 'Rozpoznaje wszystkie warianty odpoczynku: regularny 11h, skrócony 9h, dzielony 3h+9h oraz załogę 2-osobową w oknie 30h.',
     color: '#34C759',
     icon: `<path d="M3 18a9 9 0 1118 0" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v3M5.6 5.6l2.1 2.1M18.4 5.6l-2.1 2.1" stroke-width="1.6" stroke-linecap="round"/>`,
   },
@@ -38,7 +38,7 @@ const monitoredAreas = [
     label: 'Odpoczynek tygodniowy',
     title: '45h regularny · 24h skrócony',
     limits: ['45h regularnie co 2 tygodnie', '24h skrócony max 1× na 2 tyg.', 'Rekompensata en bloc przed końcem 3. tyg.'],
-    engine: 'Pilnuje 6-dniowego okna od ostatniego odpoczynku tyg.; wylicza dług en bloc do rekompensaty',
+    engine: 'Pilnuje 6-dniowego okna od ostatniego odpoczynku tygodniowego; wylicza dług en bloc do rekompensaty do końca 3. tygodnia.',
     color: '#A78BFA',
     icon: `<rect x="3" y="6" width="18" height="14" rx="2" stroke-width="1.6"/><path d="M3 11h18M8 6V4M16 6V4" stroke-width="1.6"/>`,
   },
@@ -46,7 +46,7 @@ const monitoredAreas = [
     label: 'Pakiet Mobilności',
     title: 'Powrót do bazy · zakaz odpoczynku w kabinie',
     limits: ['Regularny 45h poza pojazdem (hotel/dom)', 'Powrót do bazy max co 4 tyg.', 'Skrócony 24h dopuszczalny w kabinie'],
-    engine: 'Liczy 4-tygodniowe okno powrotu do bazy (BASE_RETURN); flaguje regularny 45h spędzony w pojeździe',
+    engine: 'Liczy 4-tygodniowe okno powrotu do bazy; flaguje regularny odpoczynek 45h spędzony w pojeździe wbrew zakazowi.',
     color: '#FF6B5C',
     icon: `<path d="M3 12l9-9 9 9M5 10v10a2 2 0 002 2h10a2 2 0 002-2V10" stroke-width="1.6"/><path d="M10 22v-6h4v6" stroke-width="1.6"/>`,
   },
@@ -54,7 +54,7 @@ const monitoredAreas = [
     label: 'Wyjątki — przedłużenie jazdy',
     title: '+1h lub +2h dla dotarcia do bazy',
     limits: ['+1h: skrócenie odpoczynku 11→10h', '+2h: wymaga 30 min przerwy wcześniej', 'Powrót na odpoczynek 45h obowiązkowy'],
-    engine: 'daily_extensions_used — śledzi wykorzystanie wyjątków i wymusza compliance rekompensaty',
+    engine: 'Śledzi liczbę użyć wyjątku przedłużenia jazdy w tygodniu (max 2× po 10h) oraz pilnuje obowiązkowej rekompensaty.',
     color: '#3380FF',
     icon: `<path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
   },
@@ -110,7 +110,7 @@ const faq = [
   },
   {
     q: 'Jak dokładne jest auto-detection aktywności z GPS?',
-    a: 'Auto-detection działa co 1 minutę (Celery task) na podstawie prędkości GPS i lokalizacji. Prędkość > 5 km/h → automatycznie DRIVING. Postój > 5 min przy adresie załadunku ze zlecenia → sugestia LOADING. Postój przy adresie rozładunku → sugestia UNLOADING. Postój w innym miejscu → sugestia BREAK lub AVAILABILITY (kierowca potwierdza w aplikacji). Dla aktywności wymagających deklaracji (PRZERWA vs GOTOWOŚĆ) decyzja zawsze należy do kierowcy — auto-detection sugeruje, kierowca potwierdza tapnięciem.',
+    a: 'Auto-detection działa co 1 minutę na podstawie prędkości GPS i lokalizacji. Prędkość powyżej 5 km/h → automatycznie JAZDA. Postój ponad 5 min przy adresie załadunku ze zlecenia → sugestia ZAŁADUNEK. Postój przy adresie rozładunku → sugestia ROZŁADUNEK. Postój w innym miejscu → sugestia PRZERWA lub GOTOWOŚĆ (kierowca potwierdza w aplikacji). Dla aktywności wymagających deklaracji (PRZERWA vs GOTOWOŚĆ) decyzja zawsze należy do kierowcy — auto-detection sugeruje, kierowca potwierdza tapnięciem.',
   },
   {
     q: 'Czy aplikacja działa bez zasięgu (góry, tunele, granice)?',
@@ -118,7 +118,7 @@ const faq = [
   },
   {
     q: 'Czy mogę zaimportować historyczne aktywności z tachografu?',
-    a: 'Tak. Bulk endpoint /api/v1/activities/bulk/ przyjmuje wsadowy import aktywności z odczytu tachografu (plik DDD G2V2). Pozwala załadować pełne 56 dni historii każdego kierowcy do BusiKM — silnik AETRComplianceEngine wylicza wstecznie compliance, generuje raporty i wykrywa naruszenia z przeszłości. Przydatne przed audytem ITD lub przy onboardingu nowej floty.',
+    a: 'Tak. BusiKM przyjmuje wsadowy import aktywności z odczytu tachografu G2V2 (plik DDD). Pozwala załadować pełne 56 dni historii każdego kierowcy — silnik wylicza wstecznie compliance, generuje raporty i wykrywa naruszenia z przeszłości. Przydatne przed audytem ITD lub przy onboardingu nowej floty do BusiKM.',
   },
   {
     q: 'Jakie są poziomy alertów i kiedy się pojawiają?',
@@ -470,7 +470,7 @@ const launchShort = `${launchDate.getDate()} ${monthLabels[launchDate.getMonth()
         Jak to działa pod maską.
       </h2>
       <p class="text-[15.5px] text-white/65 leading-relaxed">
-        Cztery warstwy: rejestracja aktywności (mobile + GPS auto-detection), silnik walidacji AETR (Celery, działa co 5 min), system alertów 3-poziomowych, raporty compliance z eksportem PDF dla kontroli.
+        Cztery warstwy: rejestracja aktywności (manual tap w aplikacji lub auto-detection z GPS), silnik walidacji AETR (sprawdza wszystkie limity 561/2006 w tle co 5 min), system alertów 3-poziomowych z push do kierowcy i właściciela, raporty compliance z eksportem PDF dla kontroli.
       </p>
     </div>
 
@@ -480,37 +480,32 @@ const launchShort = `${launchDate.getDate()} ${monthLabels[launchDate.getMonth()
         {
           step: '01',
           title: 'Rejestracja aktywności',
-          desc: 'Kierowca tapnie przycisk w aplikacji (JAZDA / PRZERWA / ZAŁADUNEK / ...) lub GPS auto-wykrywa aktywność (prędkość > 5 km/h → DRIVING).',
-          tech: 'POST /api/v1/activities/',
+          desc: 'Kierowca tapnie przycisk w aplikacji (JAZDA / PRZERWA / ZAŁADUNEK / GOTOWOŚĆ / ROZŁADUNEK / POWRÓT) — albo GPS auto-wykrywa aktywność z prędkości i lokalizacji w stosunku do adresów zlecenia.',
           color: '#3380FF',
         },
         {
           step: '02',
           title: 'Silnik walidacji',
-          desc: 'AETRComplianceEngine — calculate_driving_time, validate_breaks, validate_rest_periods, get_compliance_status. Wszystkie metody zgodne z 561/2006.',
-          tech: 'services/aetr.py',
+          desc: 'Sprawdza wszystkie limity 561/2006 jednocześnie — dzienne, tygodniowe i dwutygodniowe czasy jazdy, przerwy, odpoczynek dzienny i tygodniowy, Pakiet Mobilności, wyjątki przedłużenia jazdy.',
           color: '#005CE8',
         },
         {
           step: '03',
           title: 'Alerty 3-poziomowe',
-          desc: 'INFO (30 min do limitu), WARNING (15 min do limitu), VIOLATION (przekroczono). FCM push do kierowcy + powiadomienie właściciela.',
-          tech: 'check_compliance_alerts (Celery, co 5 min)',
+          desc: 'INFO (30 min do limitu), WARNING (15 min do limitu), VIOLATION (przekroczono). Push do aplikacji kierowcy + powiadomienie dispatchera i właściciela. Działa offline.',
           color: '#FF9500',
         },
         {
           step: '04',
           title: 'Raporty compliance',
-          desc: 'Dzienny i tygodniowy raport zgodny ze standardem 561/2006 — eksport PDF, podpis cyfrowy. Pomocny przy kontroli ITD/BAG/Gendarmerie.',
-          tech: 'GET /api/v1/drivers/{id}/compliance/',
+          desc: 'Dzienny, tygodniowy i dwutygodniowy raport zgodny ze standardem 561/2006 — eksport PDF jednym kliknięciem. Pomocny przy kontroli ITD, BAG, Gendarmerie, Polizia Stradale.',
           color: '#34C759',
         },
       ].map(s => (
         <article class="bg-[#16191F] rounded-2xl p-6 border border-white/5 flex flex-col">
           <span class="font-display text-[32px] font-bold leading-none mb-4" style={`color:${s.color}`}>{s.step}</span>
           <h3 class="font-display font-bold text-[16px] text-white mb-3 leading-tight">{s.title}</h3>
-          <p class="text-[12.5px] text-white/65 leading-[1.6] flex-1 mb-4">{s.desc}</p>
-          <p class="text-[10.5px] font-mono text-white/45 pt-3 border-t border-white/[0.06] break-all">{s.tech}</p>
+          <p class="text-[12.5px] text-white/65 leading-[1.6] flex-1">{s.desc}</p>
         </article>
       ))}
     </div>
