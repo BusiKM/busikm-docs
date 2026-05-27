@@ -6,11 +6,85 @@ import BottomNavOwner from '../components/mockups/BottomNavOwner.astro';
 import OwnerHomeScreen from '../components/mockups/screens/OwnerHomeScreen.astro';
 import OwnerStatsScreen from '../components/mockups/screens/OwnerStatsScreen.astro';
 import OwnerFleetScreen from '../components/mockups/screens/OwnerFleetScreen.astro';
+
+// Real screenshots panelu webowego — DRY array dla 5 stacked sekcji.
+const webScreens = [
+  {
+    img: '/screens/owner-dashboard-web.png',
+    alt: 'Dashboard webowy właściciela — zysk, przychód, koszty, aktywne zlecenia w czasie rzeczywistym',
+    url: 'app.busikm.pl/dashboard',
+    pre: 'Pierwszy ekran po zalogowaniu',
+    title: 'Cała firma na jednym ekranie',
+    desc: 'Zysk, przychód, koszty i aktywne zlecenia w jednym widoku. Wykres trójwarstwowy aktualizowany na żywo — przychód minus koszty to realna marża, bez czekania do końca miesiąca.',
+    features: [
+      'Cztery KPI z porównaniem do poprzedniego okresu',
+      'Alert bar dokumentów wygasłych i zbliżających się do terminu',
+      'Trend dzienny przychodu, kosztów i zysku dla wybranego miesiąca',
+    ],
+    reverse: false,
+  },
+  {
+    img: '/screens/owner-fleet-map-web.png',
+    alt: 'Mapa floty BusiKM — pozycje busów na żywo na mapie Europy',
+    url: 'app.busikm.pl/mapa',
+    pre: 'Mapa floty',
+    title: 'Każdy bus widoczny na mapie Europy',
+    desc: 'Pozycje aktualizowane na żywo, popup z numerem rejestracyjnym, kierowcą, statusem czasu pracy i czasem dojazdu. Bez dzwonienia do kierowcy — wszystko na ekranie.',
+    features: [
+      'Mapa 27 państw UE + EOG (Norwegia, Szwajcaria, Islandia, Liechtenstein)',
+      'Status AETR kierowcy widoczny przy każdym pojeździe',
+      'Trasy historyczne i aktywne zlecenia w jednym podglądzie',
+    ],
+    reverse: true,
+  },
+  {
+    img: '/screens/owner-margin-per-order.png',
+    alt: 'Marża per zlecenie — tabela rentowności w panelu webowym BusiKM',
+    url: 'app.busikm.pl/zlecenia',
+    pre: 'Rentowność zleceń',
+    title: 'Marża na każdym zleceniu — bez Excela',
+    desc: 'Pełna tabela zleceń z przychodem, kosztami i marżą procentową. Sortowanie po marży, filtry per kierowca, klient lub okres. Wiesz, które zlecenia naprawdę zarabiają.',
+    features: [
+      'Koszt rzeczywisty: paliwo, opłaty drogowe, hotele, diety kierowcy',
+      'Przewalutowanie kosztów zagranicznych kursami NBP automatycznie',
+      'Eksport listy do CSV i PDF dla księgowej lub biura rachunkowego',
+    ],
+    reverse: false,
+  },
+  {
+    img: '/screens/owner-aetr-status-web.png',
+    alt: 'AETR DriverActivity Engine — status czasu pracy kierowców',
+    url: 'app.busikm.pl/aetr',
+    pre: 'AETR · czas pracy kierowcy',
+    title: 'Status każdego kierowcy — na bieżąco',
+    desc: 'Jazda, przerwa, odpoczynek, dyspozycyjność — auto-detekcja z GPS. Alerty trzystopniowe (informacja, ostrzeżenie, naruszenie) zanim ITD wystawi mandat.',
+    features: [
+      'Walidacja zgodności z rozp. (WE) 561/2006 i Pakietem Mobilności UE',
+      'Raporty PDF gotowe pod kontrolę ITD, BAG, Gendarmerie, Polizia Stradale',
+      'Automatyczne przełączenie na konwencję AETR po przekroczeniu granicy UE',
+    ],
+    reverse: true,
+  },
+  {
+    img: '/screens/owner-documents-web.png',
+    alt: 'Centrum alertów dokumentów — terminy ważności OC, tachografu, licencji',
+    url: 'app.busikm.pl/dokumenty',
+    pre: 'Centrum alertów dokumentów',
+    title: 'Co wygasa w przyszłym miesiącu — wiesz dzisiaj',
+    desc: 'Wszystkie dokumenty floty i kierowców w jednym miejscu, posortowane po dniach do wygaśnięcia. Alerty 90 / 30 / 14 dni przed terminem — w mailu, push i w panelu.',
+    features: [
+      'Tachograf G2V2, OC, AC, przegląd techniczny, licencja transportowa',
+      'Świadectwa kierowcy: ADR, kod 95, prawo jazdy, badania psychotechniczne',
+      'Eksport listy dokumentów do PDF dla biura rachunkowego',
+    ],
+    reverse: false,
+  },
+];
 ---
 
 <MarketingLayout
-  title="Dla właścicieli firm transportowych — BusiKM"
-  description="Pełna kontrola nad flotą busów w transporcie międzynarodowym. Mapa floty na żywo, rentowność per zlecenie, koszty z całej UE w jednym miejscu, alerty G2V2 i pakiet mobilności."
+  title="Dla właścicieli firm transportowych — BusiKM e-TMS"
+  description="e-TMS dla firm operujących busami 2,5–3,5 t w transporcie międzynarodowym. Pełna kontrola nad flotą — mapa floty na żywo, rentowność per zlecenie, koszty z całej UE w jednym miejscu, alerty G2V2 i Pakiet Mobilności."
 >
 
 <!-- ============ HERO ============ -->
@@ -22,7 +96,7 @@ import OwnerFleetScreen from '../components/mockups/screens/OwnerFleetScreen.ast
       <!-- pill badge -->
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-6">
         <span class="w-1.5 h-1.5 rounded-full bg-[#005CE8] animate-pulse"></span>
-        <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">Dla właścicieli firm transportowych · Transport międzynarodowy busami</span>
+        <span class="text-[12.5px] font-medium text-[#005CE8] tracking-[0.01em]">e-TMS dla właścicieli · transport międzynarodowy busami 2,5–3,5 t</span>
       </div>
 
       <!-- headline -->
@@ -64,8 +138,61 @@ import OwnerFleetScreen from '../components/mockups/screens/OwnerFleetScreen.ast
   </div>
 </section>
 
+<!-- ============ PANEL WEBOWY — 5 REAL SCREENS ============ -->
+<section class="py-16 sm:py-20 bg-surface-2 px-5 border-t border-border-subtle">
+  <div class="max-w-[820px] mx-auto text-center reveal">
+    <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Panel webowy</p>
+    <h2 class="font-display text-[clamp(1.85rem,4vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+      Tak wygląda BusiKM u właściciela busiarskiej firmy.
+    </h2>
+    <p class="text-[15px] leading-relaxed text-text-secondary">
+      Pięć ekranów, które oglądasz codziennie — od dashboardu po centrum alertów dokumentów. Wszystko w jednym panelu, dostępne z każdego komputera i tabletu.
+    </p>
+  </div>
+</section>
+
+{webScreens.map((s, idx) => (
+  <section class:list={['py-16 sm:py-20 px-5', idx % 2 === 0 ? 'bg-surface' : 'bg-surface-2']}>
+    <div class="max-w-[1180px] mx-auto">
+      <div class:list={['grid lg:grid-cols-[1fr_1.4fr] gap-8 sm:gap-12 items-center reveal', s.reverse ? 'lg:grid-flow-col-dense' : '']}>
+
+        <!-- Text -->
+        <div class:list={['lg:pr-4', s.reverse ? 'lg:col-start-2' : '']}>
+          <p class="text-[11.5px] font-bold uppercase tracking-[0.1em] text-[#005CE8] mb-3">{s.pre}</p>
+          <h3 class="font-display text-[clamp(1.45rem,2.8vw,2.05rem)] font-bold tracking-[-0.02em] text-text leading-[1.15] mb-4">
+            {s.title}
+          </h3>
+          <p class="text-[15px] leading-relaxed text-text-secondary mb-5">{s.desc}</p>
+          <ul class="space-y-2.5">
+            {s.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-[13.5px] text-text leading-snug">
+                <svg class="w-4 h-4 text-[#34C759] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Screenshot with browser chrome -->
+        <div class:list={[s.reverse ? 'lg:col-start-1 lg:row-start-1' : '']}>
+          <div class="rounded-[14px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.10)] border border-border-subtle">
+            <div class="flex items-center gap-2 px-4 py-2.5 bg-[#F5F5F7] dark:bg-[#16161A] border-b border-border-subtle">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+              <span class="ml-3 text-[10.5px] text-text-tertiary font-mono">{s.url}</span>
+            </div>
+            <img src={s.img} alt={s.alt} class="w-full h-auto block" loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+))}
+
 <!-- ============ APP PREVIEW — 3 EKRANY MOBILE ============ -->
-<section class="py-20 sm:py-28 bg-surface-2 px-5">
+<section class="py-20 sm:py-28 bg-surface px-5 border-t border-border-subtle">
   <div class="max-w-[1120px] mx-auto">
     <div class="reveal text-center max-w-[680px] mx-auto mb-12 sm:mb-16">
       <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border-subtle text-[11px] font-semibold uppercase tracking-[0.08em] text-text-tertiary mb-5">Aplikacja właściciela</span>
@@ -114,150 +241,6 @@ import OwnerFleetScreen from '../components/mockups/screens/OwnerFleetScreen.ast
   </div>
 </section>
 
-<!-- ============ DASHBOARD MOCKUP — RENTOWNOŚĆ ============ -->
-<section class="py-20 sm:py-28 bg-surface px-5">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="reveal text-center mb-12 max-w-[680px] mx-auto">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Pierwszy ekran po zalogowaniu</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15]">
-        Każde aktywne zlecenie. Z rentownością na żywo.
-      </h2>
-      <p class="text-[15px] leading-relaxed text-text-secondary mt-4">
-        Przychód i koszty aktualizują się od razu po dodaniu paragonu z aplikacji kierowcy. Nie musisz czekać do końca miesiąca, żeby sprawdzić, ile wyniosła marża.
-      </p>
-    </div>
-
-    <div class="reveal rounded-[20px] bg-[#F8F7F2] dark:bg-[#16161A] border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_48px_rgba(0,0,0,0.30)]">
-      <!-- Browser chrome -->
-      <div class="flex items-center gap-2 px-5 py-3 bg-[#EBEBED] dark:bg-[#0F0F12] border-b border-border-subtle">
-        <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
-        <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
-        <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[320px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary font-mono">app.busikm.pl/zlecenia/aktywne</div>
-        <div class="hidden sm:flex items-center gap-1.5 ml-auto">
-          <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
-          <span class="text-[11px] text-[#34C759] font-semibold">odświeżane na żywo</span>
-        </div>
-      </div>
-
-      <!-- Body -->
-      <div class="p-5 sm:p-7">
-        <!-- Top stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 auto-rows-fr">
-          {[
-            { label: 'Aktywne zlecenia', value: '7', sub: '4 PL → UE · 3 powrotne', color: '#005CE8' },
-            { label: 'Przychód miesiąca', value: '186 420 zł', sub: '+12% vs poprzedni mies.', color: '#34C759' },
-            { label: 'Koszty z UE (do księgowej)', value: '47 doku\u00ADmentów', sub: 'OCR · 6 walut · gotowe', color: '#FF9500' },
-            { label: 'Marża netto', value: '7,8%', sub: 'cel: 8% · pilnujemy', color: '#8B5CF6' },
-          ].map(s => (
-            <div class="bg-surface rounded-2xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col">
-              <p class="text-[10.5px] text-text-tertiary mb-1.5 uppercase tracking-[0.04em]">{s.label}</p>
-              <p class="font-display text-[clamp(1.05rem,2vw,1.4rem)] font-bold tracking-[-0.02em] text-text leading-tight">{s.value}</p>
-              <p class="text-[11px] mt-1 leading-tight mt-auto pt-1" style={`color: ${s.color};`}>{s.sub}</p>
-            </div>
-          ))}
-        </div>
-
-        <!-- Order rows -->
-        <div class="bg-surface rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div class="px-4 py-3 bg-[#FAFAFA] dark:bg-[#1F1F22] border-b border-border-subtle flex items-center justify-between">
-            <span class="text-[11px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Aktywne zlecenia · rentowność na żywo</span>
-            <span class="text-[11px] text-text-tertiary">stan na 14:23</span>
-          </div>
-          <div class="divide-y divide-black/[0.04] dark:divide-white/[0.06]">
-            {[
-              {
-                id: 'BKM-2841',
-                vehicle: 'Sprinter DK 12345',
-                driver: 'Jan Kowalski',
-                route: 'Warszawa → Berlin',
-                progress: 62,
-                revenue: '1 850 €',
-                costs: '1 140 €',
-                margin: '+38,4%',
-                marginColor: '#34C759',
-                status: 'W ruchu · 412/670 km',
-                statusColor: '#005CE8',
-              },
-              {
-                id: 'BKM-2842',
-                vehicle: 'Crafter KR 67890',
-                driver: 'Marek Nowak',
-                route: 'Kraków → Mediolan',
-                progress: 28,
-                revenue: '2 350 €',
-                costs: '1 290 €',
-                margin: '+45,1%',
-                marginColor: '#34C759',
-                status: 'W ruchu · 308/1100 km',
-                statusColor: '#34C759',
-              },
-              {
-                id: 'BKM-2843',
-                vehicle: 'Daily WA 11223',
-                driver: 'Piotr Wiśniewski',
-                route: 'Wrocław → Paryż',
-                progress: 45,
-                revenue: '1 980 €',
-                costs: '1 540 €',
-                margin: '+22,2%',
-                marginColor: '#FF9500',
-                status: 'Postój 45/45 min',
-                statusColor: '#FF9500',
-              },
-              {
-                id: 'BKM-2844',
-                vehicle: 'Transit GD 33445',
-                driver: 'Adam Lewandowski',
-                route: 'Gdańsk → Amsterdam',
-                progress: 88,
-                revenue: '1 720 €',
-                costs: '1 850 €',
-                margin: '−7,5%',
-                marginColor: '#FF3B30',
-                status: 'Awaria · serwis Apeldoorn',
-                statusColor: '#FF3B30',
-              },
-            ].map(o => (
-              <div class="grid grid-cols-12 gap-3 items-center px-4 py-3.5 hover:bg-[#FAFAFA] dark:bg-[#1F1F22] transition-colors">
-                <div class="col-span-12 sm:col-span-3">
-                  <div class="flex items-center gap-2 mb-0.5">
-                    <span class="text-[10px] font-mono text-text-tertiary">{o.id}</span>
-                  </div>
-                  <p class="text-[12.5px] font-semibold text-text tracking-[-0.005em] leading-tight">{o.vehicle}</p>
-                  <p class="text-[11px] text-text-tertiary leading-tight">{o.driver}</p>
-                </div>
-                <div class="col-span-12 sm:col-span-4">
-                  <p class="text-[12px] text-text mb-1.5 font-medium">{o.route}</p>
-                  <div class="h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.08] overflow-hidden">
-                    <div class="h-full rounded-full" style={`width:${o.progress}%; background: ${o.statusColor}`}></div>
-                  </div>
-                  <p class="text-[10.5px] mt-1" style={`color: ${o.statusColor}`}>{o.status}</p>
-                </div>
-                <div class="col-span-4 sm:col-span-2">
-                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">Przychód</p>
-                  <p class="text-[12.5px] font-mono font-semibold text-text">{o.revenue}</p>
-                </div>
-                <div class="col-span-4 sm:col-span-2">
-                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">Koszty UE</p>
-                  <p class="text-[12.5px] font-mono font-semibold text-text-secondary">{o.costs}</p>
-                </div>
-                <div class="col-span-4 sm:col-span-1 text-right">
-                  <p class="text-[10px] text-text-tertiary uppercase tracking-[0.04em]">Marża</p>
-                  <p class="text-[13px] font-mono font-bold" style={`color: ${o.marginColor}`}>{o.margin}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p class="text-[11px] text-text-tertiary mt-4 italic">
-          Ujemna marża zlecenia BKM-2844: awaria w Apeldoorn doliczyła 320 € do kosztów. Krzysztof wie o tym w chwili dodania faktury serwisowej, nie po zamknięciu miesiąca.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 6 FILARÓW WARTOŚCI ============ -->
 <section class="py-20 sm:py-28 bg-surface-2 px-5">

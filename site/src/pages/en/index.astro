@@ -3,37 +3,35 @@ import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../../lib/app-url';
 
 /**
- * EN home — BKM-552 placeholder. Hero pełny content writes T3 (BKM-549).
- * Ta strona jest valid i poruszanie się działa, ale R&D narrative
- * pojawi się w pełnej formie po T3.
+ * EN home — short narrative for the international visitor.
  */
 ---
 
 <MarketingLayout
-  title="BusiKM — European deep-tech for transport 2.5–3.5 t"
-  description="European R&D platform unifying road transport (vans 2.5–3.5 t) with accounting. Five in-house research components. MVP live 30 May 2026."
+  title="BusiKM — System for transport 2.5–3.5 t and accounting firms"
+  description="System for international transport companies operating vans 2.5–3.5 t and their accounting firms. Real-time GPS, AETR working time, G2V2 tachograph, foreign per-diem, FK export. MVP live 30 May 2026."
 >
   <!-- HERO (placeholder — full rebrand w T3 / BKM-549) -->
   <section class="relative pt-24 pb-20 px-5 sm:px-8 max-w-[1120px] mx-auto">
     <div class="text-center max-w-[820px] mx-auto">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/8 border border-brand-border text-[11.5px] font-semibold tracking-[0.06em] uppercase text-brand mb-6 hero-seq-1">
         <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
-        European deep-tech · transport 2.5–3.5 t × accounting
+        Transport 2.5–3.5 t × accounting
       </div>
 
       <h1 class="font-display font-bold tracking-[-0.02em] leading-[1.15] text-[44px] sm:text-[60px] lg:text-[72px] text-text mb-6 hero-seq-2">
         <span class="block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">
-          European platform unifying
+          One platform unifying
         </span>
         <span class="block">transport and accounting</span>
       </h1>
 
       <p class="text-[18px] sm:text-[20px] leading-[1.5] text-text-secondary max-w-[680px] mx-auto mb-3 hero-seq-3">
-        Five in-house R&D components — from a binary tachograph parser to a machine-learning model with natural-language explainability — for international road transport companies operating vans 2.5–3.5 t across the EU.
+        For international road transport companies operating vans 2.5–3.5 t across the EU and their accounting firms. Real-time GPS, AETR working time, G2V2 tachograph, foreign per-diem, one-click export to three accounting systems.
       </p>
 
       <p class="text-[13px] text-text-tertiary mb-10 hero-seq-3">
-        218 tickets done · 26 sprints completed · MVP live 30 May 2026
+        MVP live 30 May 2026 · pilot lifetime-free · 100% GDPR
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center hero-seq-4">
@@ -155,8 +153,8 @@ import { APP_LOGIN_URL } from '../../lib/app-url';
       </a>
       <a href="/en/technology" class="group block p-6 rounded-2xl bg-surface-2 border border-border-subtle hover:border-brand-border transition-colors">
         <p class="text-[11px] font-semibold tracking-[0.08em] uppercase text-brand mb-2">Technology</p>
-        <h3 class="text-[17px] font-semibold text-text mb-1.5">R&D components &amp; TRL roadmap</h3>
-        <p class="text-[13px] text-text-secondary">Five in-house research components in detail.</p>
+        <h3 class="text-[17px] font-semibold text-text mb-1.5">Stack and compliance standards</h3>
+        <p class="text-[13px] text-text-secondary">Technology stack and R&D programme funded by EU grants.</p>
       </a>
     </div>
   </section>

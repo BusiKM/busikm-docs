@@ -106,7 +106,7 @@ const faq = [
   },
   {
     q: 'Co jeśli kierowca wyjeżdża poza UE (Ukraina, Białoruś, Mołdawia, Turcja)?',
-    a: 'BusiKM rozpoznaje przekroczenie granicy UE (algorytm point-in-polygon — jeden z naszych komponentów R&D) i przełącza tryb walidacji na konwencję AETR. Reguły AETR są zbliżone do 561/2006, ale różnią się w szczegółach (przerwy, dokumentacja). Jeśli trasa przebiega częściowo przez kraje AETR (np. PL → DE → UA), cała operacja podlega AETR — BusiKM stosuje wtedy AETR przez cały okres.',
+    a: 'BusiKM rozpoznaje przekroczenie granicy UE i automatycznie przełącza tryb walidacji na konwencję AETR. Reguły AETR są zbliżone do 561/2006, ale różnią się w szczegółach (przerwy, dokumentacja). Jeśli trasa przebiega częściowo przez kraje AETR (np. PL → DE → UA), cała operacja podlega AETR — BusiKM stosuje wtedy AETR przez cały okres.',
   },
   {
     q: 'Jak dokładne jest auto-detection aktywności z GPS?',
@@ -450,7 +450,7 @@ const launchShort = `${launchDate.getDate()} ${monthLabels[launchDate.getMonth()
           Transport <strong class="text-text">wyłącznie w UE</strong> — obowiązuje rozporządzenie 561/2006. Trasa <strong class="text-text">częściowo przez kraje AETR</strong> (np. PL → DE → UA) — cała operacja transportowa musi być zgodna z konwencją AETR.
         </p>
         <p class="text-[13px] text-text-tertiary leading-[1.6]">
-          Kraje AETR poza UE: <span class="text-text-secondary">Ukraina, Białoruś, Mołdawia, Turcja, Kazachstan, Rosja</span> i inne. BusiKM wykrywa przekroczenie granicy UE algorytmem point-in-polygon (jeden z autorskich komponentów R&D — szczegóły na <a href="/technologia#border-detection" class="text-brand hover:underline">/technologia</a>) i przełącza tryb walidacji na AETR automatycznie.
+          Kraje AETR poza UE: <span class="text-text-secondary">Ukraina, Białoruś, Mołdawia, Turcja, Kazachstan, Rosja</span> i inne. BusiKM wykrywa przekroczenie granicy UE automatycznie i przełącza tryb walidacji na AETR.
         </p>
       </div>
     </div>

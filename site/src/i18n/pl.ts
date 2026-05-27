@@ -8,7 +8,7 @@
 export const pl = {
   meta: {
     siteDescription:
-      'BusiKM — europejski system R&D integrujący transport drogowy 2,5–3,5 t z księgowością. 6 autorskich komponentów badawczo-rozwojowych. Tachograf G2V2, AETR, OCR paragonów w 6 językach, eksport do FK.',
+      'BusiKM — pierwszy w Polsce e-TMS (Transport Management System) zaprojektowany od zera pod transport międzynarodowy busami 2,5–3,5 t i obsługujące je biura rachunkowe. Tachograf G2V2, AETR, GPS w czasie rzeczywistym, OCR paragonów w 6 językach, eksport do Insert GT, Comarch ERP Optima i Symfonia FK, KSeF, diety zagraniczne.',
   },
   nav: {
     features: 'Funkcje',

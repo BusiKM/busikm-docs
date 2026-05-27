@@ -1,89 +1,67 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-import { APP_LOGIN_URL } from '../lib/app-url';
 
 /**
- * /technologia — dedykowana strona R&D pod granty/inwestorów (BKM-554).
- * 7 sekcji: hero, TRL roadmap, 5 komponentów, metodologia, IP, partnerzy, CTA.
+ * /technologia — publiczna strona dla inwestorów, partnerów, ewaluatorów.
+ * Pokazuje stack, standardy zgodności i ogólny przekaz o pracach badawczo-rozwojowych.
+ * Szczegóły techniczne projektów R&D są objęte tajemnicą przedsiębiorstwa i nie publikujemy ich tutaj.
  */
 
-const components = [
+const stackGroups = [
   {
-    id: 'parser-ddd',
-    name: 'Parser binarny pliku DDD',
-    trl: 1,
-    label: 'Innowacja krajowa',
-    labelColor: '#3380FF',
-    problem: 'Plik DDD pobierany z tachografu G2V2 to surowy binarny zrzut pamięci urządzenia. Brak istniejącej biblioteki Python umożliwiającej odczyt zgodny z Rozp. (UE) 2016/799 Annex I dla rynku PL/UE.',
-    hypothesis: 'Da się zbudować bibliotekę Python parsującą blok danych DDD, walidującą sygnatury certyfikatów cyfrowych zgodnie z aneksami 2016/799, generującą czytelny raport 56-dniowy zgodny z wymogiem ITD.',
-    method: 'Reverse-engineering specyfikacji binarnej (2016/799 Annex I), implementacja struct-based parsera, walidacja na próbach plików DDD z certyfikowanych tachografów (testowy stand walidacyjny).',
-    foundation: 'Rozp. (UE) 2016/799 — Annex I (struktura DDD), Annex IC (certyfikaty)',
-    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
-    metrics: 'Generacja raportu 56 dni z DDD w czasie <2s, walidacja certyfikatu w <100ms, 100% akceptacja przez ITD w pilotażu',
-    status: 'Koncepcja — TRL 1. Mamy analizę rynku (potwierdzony brak biblioteki Python pod LCV 2,5–3,5 t) i specyfikację techniczną. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
+    label: 'Backend',
+    color: '#005CE8',
+    items: [
+      { name: 'Django 5 + DRF', desc: 'API platformy, autoryzacja, model danych floty, integracje FK.' },
+      { name: 'Celery + Redis',  desc: 'Zadania w tle: auto-detekcja aktywności, push, eksporty FK.' },
+      { name: 'Daphne (ASGI)',   desc: 'WebSocket w czasie rzeczywistym — mapa floty i alerty na żywo.' },
+      { name: 'OpenAPI 3.1',     desc: 'Schema-first API — klient TypeScript generowany automatycznie.' },
+    ],
   },
   {
-    id: 'bluetooth-its',
-    name: 'Bluetooth ITS — komunikacja z tachografem',
-    trl: 1,
-    label: 'Innowacja europejska',
-    labelColor: '#34C759',
-    problem: 'Pobranie pliku DDD wymaga obecnie podłączenia tachografu kablem do warsztatu lub specjalistycznego sprzętu CITROEN. Niedostępne dla małych firm transportowych operujących busami 2,5–3,5 t.',
-    hypothesis: 'Możliwe jest zbudowanie biblioteki React Native pobierającej DDD przez interfejs Bluetooth ITS (Intelligent Transport System) opisany w aneksach 2016/799 — bez specjalistycznego sprzętu, bezpośrednio z aplikacji mobilnej kierowcy.',
-    method: 'Implementacja protokołu Bluetooth ITS handshake (pairing, certyfikat, sesja), wymiana danych certyfikacyjnych. Walidacja na sprzęcie referencyjnym (tachograf G2V2 + smartfon Android/iOS).',
-    foundation: 'Rozp. (UE) 2016/799 — Annexes (Bluetooth ITS protocol)',
-    eurLex: 'https://eur-lex.europa.eu/eli/reg/2016/799/oj',
-    metrics: 'Pobranie DDD przez BT ITS w <30s, kompatybilność z 100% certyfikowanych tachografów G2V2, zero false-negative handshakes',
-    status: 'Koncepcja — TRL 1. Potwierdzony brak aplikacji mobilnej z natywnym protokołem ITS BT z G2V2 bez zewnętrznego dongla. Prototyp (TRL 4) planowany w 2028 z EIC Accelerator.',
+    label: 'Frontend',
+    color: '#34C759',
+    items: [
+      { name: 'Next.js 16 + Tailwind 4', desc: 'Panel webowy dla właściciela i biura rachunkowego.' },
+      { name: 'React Native + Expo SDK 52', desc: 'Aplikacja mobilna kierowcy i właściciela — iOS i Android.' },
+      { name: 'SWR + Zustand',   desc: 'Cache i stan aplikacji — szybkie odświeżanie, tryb offline.' },
+      { name: 'Mapbox + Recharts', desc: 'Mapa floty, geofencing, wykresy rentowności i kosztów.' },
+    ],
   },
   {
-    id: 'border-detection',
-    name: 'Detekcja przekroczenia granic UE',
-    trl: 2,
-    label: 'Algorytm geoprzestrzenny',
-    labelColor: '#FF9500',
-    problem: 'Kalkulacja diet zagranicznych (Rozp. MPiPS) wymaga znania kraju kierowcy na każdy timestamp GPS. Komercyjne API geoprzestrzenne (Google, Mapbox) są drogie i wymagają internetu — bez ograniczeń dla floty offline-first.',
-    hypothesis: 'Algorytm point-in-polygon na lokalnej warstwie GeoJSON granic 27 państw UE może klasyfikować GPS w czasie rzeczywistym z dokładnością wystarczającą do diet (poziom kraju, nie ulicy) — bez API i bez połączenia.',
-    method: 'Shapely (Python) + uproszczona warstwa GeoJSON granic UE (Eurostat NUTS-0). Walidacja na trasach referencyjnych PL→DE/IT/FR/ES — porównanie wyników z Mapbox Geocoding API.',
-    foundation: 'OGC Simple Features Access; Eurostat NUTS-0 administrative boundaries',
-    eurLex: 'https://ec.europa.eu/eurostat/web/nuts/background',
-    metrics: 'Dokładność klasyfikacji ≥99,5% vs Mapbox baseline; latency <10ms per point; rozmiar GeoJSON <2 MB',
-    status: 'Sformułowana koncepcja — TRL 2. Wiemy jak zrealizować (point-in-polygon + Shapely + GeoJSON); analiza rynku potwierdza brak offline implementacji pod mobile fleet management. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
+    label: 'Bazy danych',
+    color: '#FF9500',
+    items: [
+      { name: 'PostgreSQL 16',   desc: 'Główna baza relacyjna — flota, kierowcy, zlecenia, rozliczenia.' },
+      { name: 'MongoDB 7',       desc: 'Telemetria GPS, historia tras, dziennik aktywności.' },
+      { name: 'Redis 7',         desc: 'Cache, kolejka zadań, sesje, pub/sub dla WebSocket.' },
+    ],
   },
   {
-    id: 'diet-engine',
-    name: 'Silnik kalkulacji diet zagranicznych (AETR)',
-    trl: 2,
-    label: 'Innowacja procesowa',
-    labelColor: '#A78BFA',
-    problem: 'Reguły z Rozp. MPiPS z 29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr 2) zawierają stawki dietowe per kraj per dzień + warunki podziału doby. Manualne rozliczenie kierowcy międzynarodowego = pół dnia pracy księgowej.',
-    hypothesis: 'Możliwe jest zbudowanie deterministycznego silnika produkcyjnego mapującego regulacje MPiPS na automatyczny kalkulator diet, łączącego wynik point-in-polygon z tabelą stawek i edge cases (podział doby, powrót do kraju, posting).',
-    method: 'Implementacja jako Django app z table-driven rules engine. Walidacja na realnych przypadkach kierowców pilotażowych. Eksport do Insert GT, Comarch, Symfonia.',
-    foundation: 'Rozp. MPiPS z 29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr 2); EU 1057/2020 (Mobility Package — posting, diety)',
-    eurLex: 'https://eur-lex.europa.eu/eli/reg/2020/1057/oj',
-    metrics: 'Rozliczenie kierowcy w <5 min (vs ~4h manualnie), 100% zgodność z audytem MPiPS, 0 błędów w podziale doby na pilotażu',
-    status: 'Sformułowana koncepcja — TRL 2. Pełna specyfikacja prawna (Rozp. MPiPS Dz.U. 2013 poz. 167), koncepcja algorytmu, potwierdzony brak odpowiednika na rynku światowym. Prototyp (TRL 4) planowany w 2027 z FENG SMART.',
+    label: 'Infrastruktura',
+    color: '#8B5CF6',
+    items: [
+      { name: 'GitHub Actions',  desc: 'CI/CD, testy automatyczne, regresja przy każdej zmianie.' },
+      { name: 'EAS Build',       desc: 'Buildy aplikacji mobilnej, dystrybucja w App Store i Google Play.' },
+      { name: 'Vercel',          desc: 'Hosting strony marketingowej i panelu webowego, edge cache.' },
+      { name: 'Monitoring',      desc: 'Sentry, Prometheus, dashboard zdrowia systemu 24/7.' },
+    ],
   },
-  {
-    id: 'xai-fuel-anomaly',
-    name: 'Detekcja anomalii spalania (XAI)',
-    trl: 1,
-    label: 'Uczenie maszynowe · XAI',
-    labelColor: '#FF6B5C',
-    problem: 'Kradzieże paliwa kierowców i wycieki techniczne to ~3-5% kosztów flotowych. Wykrycie wymaga manualnej analizy raportów — niedostępne dla małej floty (2-5 pojazdów).',
-    hypothesis: 'Model regresji wielowymiarowej trenowany na cechach trasy (dystans, ukształtowanie, ładunek, prędkość, kierowca, pora roku) może wykrywać anomalie spalania z dokładnością wystarczającą do alertowania. Element XAI generuje naturalnojęzykowe wyjaśnienie każdej detekcji — kluczowe dla zaufania użytkownika nieosiagającego z ML.',
-    method: 'Baseline: gradient boosting regressor (XGBoost / LightGBM). XAI: SHAP values + template-driven natural language explanation. Próg detekcji: ≥15% odchylenie od prognozy.',
-    foundation: 'Lundberg & Lee 2017 (SHAP); EU AI Act (transparency obligations)',
-    eurLex: 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj',
-    metrics: 'Precision ≥80% (false positives <20%), recall ≥70% na zbiorach pilotażowych. Wyjaśnienie generowane w <1s per alert.',
-    status: 'Koncepcja — TRL 1. Istnieje tylko research naukowy i enterprise dla dużych flot — brak SaaS XAI dla małych flot. Prototyp (TRL 4) planowany w 2028 z EIC Accelerator.',
-  },
+];
+
+const compliance = [
+  { code: 'RODO',          name: 'Rozp. (UE) 2016/679',  desc: 'Pełne wymogi RODO — minimalizacja danych, prawo do bycia zapomnianym, eksport danych osobowych w formacie przenośnym.' },
+  { code: 'ISO/IEC 27001', name: 'Norma bezpieczeństwa', desc: 'Framework zarządzania bezpieczeństwem informacji — przygotowanie pod audyt certyfikacyjny w 2027.' },
+  { code: 'EU AI Act',     name: 'Rozp. (UE) 2024/1689', desc: 'Zgodność z wymogami transparency i human-in-the-loop dla komponentów uczenia maszynowego.' },
+  { code: 'eIDAS',         name: 'Rozp. (UE) 910/2014',  desc: 'Identyfikacja elektroniczna i usługi zaufania — kontekst integracji z KSeF i polskimi e-podpisami.' },
+  { code: 'eFTI',          name: 'Rozp. (UE) 2020/1056', desc: 'Schema kompatybilność danych transportowych — przygotowanie pod scale-out poza Polskę.' },
+  { code: 'Rozp. 561/2006',name: 'Czas pracy kierowców', desc: 'Pełna zgodność wyliczeń czasu pracy AETR + Pakiet Mobilności 2020. Raporty PDF dla kontroli ITD i BAG.' },
 ];
 ---
 
 <MarketingLayout
-  title="Technologia — prace badawczo-rozwojowe BusiKM"
-  description="Pięć autorskich komponentów badawczo-rozwojowych BusiKM pod europejski transport 2,5–3,5 t. TRL roadmap, metodologia R&D, IP strategy, partnerzy. Podstawa aplikacji do FENG SMART, EIC Accelerator, Horizon Europe."
+  title="Technologia — stack i prace badawczo-rozwojowe BusiKM"
+  description="Stack technologiczny BusiKM (Django, React Native, PostgreSQL, MongoDB, Redis) oraz informacja o prowadzonych pracach badawczo-rozwojowych finansowanych ze środków UE."
 >
 
 <!-- ====================== HERO ====================== -->
@@ -94,351 +72,189 @@ const components = [
   <div class="relative max-w-[960px] mx-auto text-center">
     <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/8 text-brand text-[11px] font-bold uppercase tracking-[0.1em] mb-6">
       <span class="w-1 h-1 rounded-full bg-brand"></span>
-      Prace badawczo-rozwojowe
+      Technologia · e-TMS dla busów 2,5–3,5 t
     </p>
     <h1 class="font-display text-[clamp(2.2rem,6vw,4rem)] font-bold tracking-[-0.03em] leading-[1.15] text-text mb-6">
-      Pięć komponentów badawczo-rozwojowych pod europejski transport <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-1">2,5–3,5&nbsp;t</span>
+      Stack, standardy i <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-1">prace badawczo-rozwojowe</span>
     </h1>
-    <p class="text-[18px] sm:text-[19px] leading-[1.65] text-text-secondary max-w-[760px] mx-auto mb-10">
-      Strona dla ewaluatorów grantów, inwestorów i partnerów technologicznych. Każdy komponent ma określony <strong class="text-text">Technology Readiness Level</strong> (TRL 1–9, skala Komisji Europejskiej), opisaną metodę badawczą, fundament regulacyjny i mierzalne KPI.
+    <p class="text-[18px] sm:text-[19px] leading-[1.65] text-text-secondary max-w-[760px] mx-auto">
+      Strona dla partnerów technologicznych, inwestorów i firm rozważających pilotaż. Pokazujemy stack platformy zaprojektowanej pod transport międzynarodowy busami klasy 2,5–3,5&nbsp;t, standardy zgodności oraz informację o prowadzonych pracach badawczo-rozwojowych finansowanych ze środków UE.
     </p>
-
-    <!-- TRL mini-preview: 5 komponentów -->
-    <div class="inline-flex flex-wrap items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-surface-2 border border-border-subtle">
-      <span class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mr-2">Status TRL:</span>
-      {components.map(c => (
-        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-surface text-[11px] font-mono font-semibold text-text" title={c.name}>
-          <span class:list={[
-            'w-1.5 h-1.5 rounded-full',
-            c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
-          ]}></span>
-          T{c.trl}
-        </span>
-      ))}
-    </div>
   </div>
 </section>
 
-<!-- ====================== TRL ROADMAP ====================== -->
+<!-- ====================== STACK TECHNOLOGICZNY ====================== -->
 <section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
-  <div class="max-w-[1000px] mx-auto">
-    <div class="text-center mb-12 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">TRL Roadmap</p>
-      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
-        Od koncepcji (TRL 1–2) do market-ready (TRL 9) w trzy lata
-      </h2>
-      <p class="text-text-secondary max-w-[600px] mx-auto">
-        Pilotaż MVP (30 maja 2026) — walidacja warstwy produktowej. R&D komponentów (TRL 1–2 → TRL 4–6) ruszają w 2027 z FENG SMART.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
-        <p class="font-display text-[36px] font-bold text-warning mb-2 leading-none">2026</p>
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-3">Pilotaż MVP</p>
-        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
-          5 komponentów na TRL 1–2 (koncepcja / sformułowana koncepcja). Walidacja warstwy produktowej w pilotażu MVP.
-        </p>
-        <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Parser DDD — koncepcja (TRL 1)</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Bluetooth ITS — koncepcja (TRL 1)</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Border detection — koncepcja (TRL 2)</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>Diet engine — koncepcja (TRL 2)</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-warning"></span>XAI anomaly — koncepcja (TRL 1)</li>
-        </ul>
-      </article>
-
-      <article class="p-6 rounded-2xl bg-surface border border-brand-border">
-        <p class="font-display text-[36px] font-bold text-brand mb-2 leading-none">2027</p>
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-3">System Integration</p>
-        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
-          Cel: wszystkie komponenty na TRL 6–7. Walidacja na rozszerzonym pilotażu (50+ firm transportowych w UE).
-        </p>
-        <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Wszystkie 5 komponentów TRL 6–7</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Walidacja pan-EU (CZ/SK/DE pilotaż)</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand"></span>Aplikacja FENG SMART / EIC złożona</li>
-        </ul>
-      </article>
-
-      <article class="p-6 rounded-2xl bg-surface border border-success/20">
-        <p class="font-display text-[36px] font-bold text-success mb-2 leading-none">2028</p>
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-success mb-3">Market Ready (TRL 9)</p>
-        <p class="text-[13.5px] text-text-secondary leading-[1.6] mb-4">
-          Wszystkie komponenty w produkcji. Komercjalizacja, scale-out poza Polskę, partnerstwa konsorcyjne.
-        </p>
-        <ul class="space-y-1.5 text-[12px] text-text-tertiary">
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Wszystkie 5 komponentów TRL 8–9</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Komercjalizacja w 3+ krajach UE</li>
-          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-success"></span>Partnerstwo z 1 uczelnią + 1 system FK</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== PIĘĆ KOMPONENTÓW (detailed) ====================== -->
-<section class="bg-surface py-24 px-5">
   <div class="max-w-[1100px] mx-auto">
-    <div class="text-center mb-14 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Pięć komponentów R&D</p>
+
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Stack technologiczny</p>
       <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
-        Szczegółowy opis prac badawczo-rozwojowych
+        Cztery warstwy. Wszystko produkcyjnie sprawdzone.
       </h2>
       <p class="text-text-secondary max-w-[680px] mx-auto">
-        Per komponent: problem badawczy, hipoteza, metoda, fundament regulacyjny, KPI, status TRL.
+        Wybraliśmy stack, który ma za sobą dziesięć lat dojrzałości i ekosystem narzędzi pod każdą warstwę aplikacji.
       </p>
     </div>
 
-    <div class="space-y-6 reveal-stagger">
-      {components.map((c, i) => (
-        <article id={c.id} class="rounded-3xl bg-surface-2 border border-border-subtle p-7 sm:p-9">
-          <header class="flex flex-wrap items-start gap-4 mb-5">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="font-display text-[14px] font-bold text-text-tertiary tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-              <span class="px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase" style={`background:${c.labelColor}26;color:${c.labelColor}`}>{c.label}</span>
-              <span class:list={[
-                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-[0.06em] uppercase',
-                c.trl <= 5 ? 'bg-warning/15 text-warning' : c.trl <= 7 ? 'bg-brand/15 text-brand' : 'bg-success/15 text-success',
-              ]}>
-                <span class:list={[
-                  'w-1.5 h-1.5 rounded-full',
-                  c.trl <= 5 ? 'bg-warning' : c.trl <= 7 ? 'bg-brand' : 'bg-success',
-                ]}></span>
-                TRL {c.trl}
-              </span>
-            </div>
-          </header>
-          <h3 class="font-display text-[22px] sm:text-[26px] font-bold tracking-[-0.015em] text-text mb-5">{c.name}</h3>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 mb-5">
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Problem badawczy</p>
-              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.problem}</p>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Hipoteza / cel</p>
-              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.hypothesis}</p>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Metoda</p>
-              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.method}</p>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Metryki sukcesu (KPI)</p>
-              <p class="text-[14px] leading-[1.65] text-text-secondary">{c.metrics}</p>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-stagger">
+      {stackGroups.map((group) => (
+        <article class="p-6 sm:p-7 rounded-3xl bg-surface border border-border-subtle">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl text-white font-bold text-[13px]" style={`background: ${group.color}`}>
+              {group.label.charAt(0)}
+            </span>
+            <h3 class="font-display text-[18px] font-bold text-text">{group.label}</h3>
           </div>
-
-          <div class="pt-5 border-t border-border-subtle grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Fundament regulacyjny / naukowy</p>
-              <p class="text-[13px] text-text-secondary">{c.foundation}</p>
-              <a href={c.eurLex} target="_blank" rel="noopener" class="text-[12px] text-brand hover:underline mt-1 inline-block">EUR-Lex / źródło →</a>
-            </div>
-            <div>
-              <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-text-tertiary mb-1.5">Status</p>
-              <p class="text-[13px] text-text-secondary">{c.status}</p>
-            </div>
-          </div>
+          <ul class="space-y-3">
+            {group.items.map((item) => (
+              <li>
+                <p class="font-semibold text-[14px] text-text mb-0.5">{item.name}</p>
+                <p class="text-[13px] text-text-secondary leading-[1.55]">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
         </article>
       ))}
     </div>
+
   </div>
 </section>
 
-<!-- ====================== METODOLOGIA R&D ====================== -->
-<section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
-  <div class="max-w-[1100px] mx-auto">
-    <div class="text-center mb-12 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Metodologia R&D</p>
-      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
-        Sprint-based research z walidacją na realnych danych
-      </h2>
-      <p class="text-text-secondary max-w-[680px] mx-auto">
-        Każdy komponent rozwijamy w 2-tygodniowych sprintach (Jira BKM-*). Walidacja w pilotażu MVP od 30 maja 2026 — realny ruch transportowy w UE.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Proces</p>
-        <ol class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand/10 text-brand text-[11px] font-bold flex items-center justify-center">1</span>
-            <div>
-              <p class="text-[14px] font-semibold text-text">Hipoteza badawcza</p>
-              <p class="text-[12.5px] text-text-secondary">Definiowanie problemu, celu i mierzalnych KPI. Dokumentacja w Jira jako epic.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-warning/10 text-warning text-[11px] font-bold flex items-center justify-center">2</span>
-            <div>
-              <p class="text-[14px] font-semibold text-text">Prototyp (TRL 3→4)</p>
-              <p class="text-[12.5px] text-text-secondary">Minimal viable implementation walidująca koncept. Code review + unit tests gate.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-warning/10 text-warning text-[11px] font-bold flex items-center justify-center">3</span>
-            <div>
-              <p class="text-[14px] font-semibold text-text">Walidacja (TRL 4→5)</p>
-              <p class="text-[12.5px] text-text-secondary">Testy na realnych danych pilotażowych, porównanie z baseline (gdy istnieje).</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand/10 text-brand text-[11px] font-bold flex items-center justify-center">4</span>
-            <div>
-              <p class="text-[14px] font-semibold text-text">Integracja (TRL 5→7)</p>
-              <p class="text-[12.5px] text-text-secondary">Embed w produkt; integration tests + observability (Sentry, Prometheus).</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-success/10 text-success text-[11px] font-bold flex items-center justify-center">5</span>
-            <div>
-              <p class="text-[14px] font-semibold text-text">Produkcja (TRL 8→9)</p>
-              <p class="text-[12.5px] text-text-secondary">Release jako część MVP. Monitoring KPI 24/7, A/B test gate-keep.</p>
-            </div>
-          </li>
-        </ol>
-      </article>
-
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Standardy &amp; tooling</p>
-        <ul class="space-y-3 text-[13.5px] text-text-secondary leading-[1.6]">
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">eFTI (UE 2020/1056)</strong> — schema kompatybilność danych transportowych dla scale-out 2027+</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">OpenAPI 3.1</strong> — schema-first API design, klient TS generowany automatycznie</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">JSON Schema</strong> — walidacja payloadów na wszystkich granicach systemu</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">ISO/IEC 27001</strong> — security framework dla compliance audytów</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">SHAP (Lundberg &amp; Lee 2017)</strong> — XAI dla modelu anomalii spalania</span></li>
-          <li class="flex items-start gap-2.5"><span class="text-brand mt-1">●</span><span><strong class="text-text">Conventional Commits + Jira BKM-*</strong> — pełna traceability commit ↔ ticket ↔ epic ↔ wymaganie</span></li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== IP STRATEGY ====================== -->
+<!-- ====================== STANDARDY ZGODNOŚCI ====================== -->
 <section class="bg-surface py-20 px-5">
   <div class="max-w-[1000px] mx-auto">
+
     <div class="text-center mb-12 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">IP Strategy</p>
-      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
-        Open source dla standardów. Proprietary dla wartości.
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Standardy zgodności</p>
+      <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
+        Sześć obowiązkowych regulacji — wszystkie wdrożone od początku
       </h2>
-      <p class="text-text-secondary max-w-[640px] mx-auto">
-        Komponenty zgodne z standardem regulacyjnym publikujemy open source — buduje to ekosystem. Komponenty z proprietarnym IP (model XAI, silnik diet AETR) zostają zamknięte.
+      <p class="text-text-secondary max-w-[680px] mx-auto">
+        Nie traktujemy regulacji jako kosztu. Traktujemy je jako fundament zaufania klienta i urzędu skarbowego.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
-      <article class="p-7 rounded-2xl bg-surface-2 border border-success/15">
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-success mb-3">Open source planowany</p>
-        <ul class="space-y-2.5 text-[13.5px] text-text-secondary">
-          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">Python DDD parser</strong> — biblioteka odczytu tachografu G2V2 zgodna z 2016/799</span></li>
-          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">GeoJSON UE NUTS-0</strong> — uproszczona warstwa granic 27 państw (Eurostat-derived)</span></li>
-          <li class="flex items-start gap-2"><span class="text-success mt-1">✓</span><span><strong class="text-text">FK export EPP schema</strong> — interpretacja formatu Insert GT EDI++ 1.05</span></li>
-        </ul>
-        <p class="text-[12px] text-text-tertiary mt-4 italic">Licencja: MIT lub Apache 2.0 — decyzja po pilotażu.</p>
-      </article>
-
-      <article class="p-7 rounded-2xl bg-surface-2 border border-brand-border">
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-brand mb-3">Proprietary (closed)</p>
-        <ul class="space-y-2.5 text-[13.5px] text-text-secondary">
-          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Model XAI anomalii spalania</strong> — trenowany na proprietary dataset; SHAP-based explainability</span></li>
-          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Silnik diet AETR</strong> — table-driven rules engine z proprietary edge case logic</span></li>
-          <li class="flex items-start gap-2"><span class="text-brand mt-1">●</span><span><strong class="text-text">Bluetooth ITS handshake</strong> — protokół wymiany certyfikatów (proprietary timing &amp; retry strategy)</span></li>
-        </ul>
-      </article>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-stagger">
+      {compliance.map((c) => (
+        <article class="p-5 sm:p-6 rounded-2xl bg-surface-2 border border-border-subtle">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <h3 class="font-display text-[16px] font-bold text-text">{c.code}</h3>
+            <span class="text-[11px] font-mono text-text-tertiary shrink-0">{c.name}</span>
+          </div>
+          <p class="text-[13.5px] text-text-secondary leading-[1.6]">{c.desc}</p>
+        </article>
+      ))}
     </div>
 
-    <div class="mt-8 p-5 rounded-2xl bg-surface-2 border border-border-subtle">
-      <p class="text-[12.5px] text-text-secondary leading-[1.65]">
-        <strong class="text-text">Standardy zgodności:</strong> ISO 18013-5 (mobile drivers license), eIDAS Regulation (electronic identification), eFTI (UE 2020/1056), RODO art. 28 (powierzanie przetwarzania), EU AI Act (transparency dla XAI komponentów).
-      </p>
-    </div>
   </div>
 </section>
 
-<!-- ====================== PARTNER R&D PIPELINE ====================== -->
+<!-- ====================== PRACE BADAWCZO-ROZWOJOWE ====================== -->
 <section class="bg-surface-2 py-20 px-5 border-y border-border-subtle">
   <div class="max-w-[1000px] mx-auto">
+
     <div class="text-center mb-12 reveal">
-      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Partner R&D Pipeline</p>
-      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] text-text mb-3">
-        Pipeline konsorcjum naukowo-przemysłowego
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Prace badawczo-rozwojowe</p>
+      <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
+        Pięć projektów badawczo-rozwojowych finansowanych ze środków UE
+      </h2>
+      <p class="text-text-secondary max-w-[680px] mx-auto leading-[1.65]">
+        W latach 2027–2028 prowadzimy pięć projektów badawczo-rozwojowych w obszarze technologii transportu drogowego, finansowanych z funduszy europejskich. Cel: rozszerzenie platformy o autorskie technologie umożliwiające pełne pokrycie europejskiego transportu klasy 2,5–3,5 t i scale-out na rynki Czech, Słowacji oraz Niemiec.
+      </p>
+    </div>
+
+    <div class="rounded-3xl bg-surface border border-brand-border p-7 sm:p-10 reveal">
+      <div class="flex items-start gap-4 mb-6">
+        <svg class="w-6 h-6 text-brand mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-1">Informacja poufna</p>
+          <p class="text-[15px] text-text-secondary leading-[1.65]">
+            Szczegółowy zakres prac badawczo-rozwojowych objęty jest tajemnicą przedsiębiorstwa do momentu zakończenia projektów i akceptacji raportów końcowych przez instytucje finansujące. Dokumentacja techniczna, harmonogramy i wskaźniki rezultatu udostępniane są wyłącznie po podpisaniu umowy o zachowaniu poufności.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-border-subtle">
+        <div>
+          <p class="font-display text-[26px] font-bold text-brand mb-1 leading-none">5</p>
+          <p class="text-[12px] text-text-tertiary">projektów badawczo-rozwojowych</p>
+        </div>
+        <div>
+          <p class="font-display text-[26px] font-bold text-text mb-1 leading-none">2027–2028</p>
+          <p class="text-[12px] text-text-tertiary">okres realizacji</p>
+        </div>
+        <div>
+          <p class="font-display text-[26px] font-bold text-text mb-1 leading-none">PL + UE</p>
+          <p class="text-[12px] text-text-tertiary">finansowanie krajowe i europejskie</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================== PIPELINE KONSORCJUM ====================== -->
+<section class="bg-surface py-20 px-5">
+  <div class="max-w-[1000px] mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-brand mb-3">Konsorcjum</p>
+      <h2 class="font-display text-[28px] sm:text-[40px] font-bold tracking-[-0.025em] text-text mb-4">
+        Trzy filary konsorcjum naukowo-przemysłowego
       </h2>
       <p class="text-text-secondary max-w-[640px] mx-auto">
-        Obecnie bootstrap. Planowane konsorcjum pod aplikacje grantowe: uczelnia techniczna + firma flotowa + system FK.
+        Współpraca z uczelnią techniczną, firmami transportowymi pilotażowymi oraz dostawcą systemu finansowo-księgowego.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger">
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+      <article class="p-6 rounded-2xl bg-surface-2 border border-border-subtle">
         <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Partner akademicki</p>
         <h3 class="font-display text-[17px] font-bold text-text mb-2">Uczelnia techniczna</h3>
-        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
-          Target: Politechnika Warszawska (Wydz. Transportu) lub Wrocławska (Wydz. Mechaniczny). Współpraca: walidacja algorytmu detekcji granic + model XAI.
+        <p class="text-[13px] text-text-secondary leading-[1.6]">
+          Polska uczelnia z wydziałem transportu lub inżynierii — walidacja naukowa, publikacje peer-reviewed, dostęp do laboratoriów badawczych.
         </p>
-        <p class="text-[11.5px] text-text-tertiary">Status: w przygotowaniu (Q3-Q4 2026)</p>
       </article>
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+      <article class="p-6 rounded-2xl bg-surface-2 border border-border-subtle">
         <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Partner przemysłowy</p>
-        <h3 class="font-display text-[17px] font-bold text-text mb-2">Firma flotowa pilotażowa</h3>
-        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
-          5–10 pilotażowych firm transportowych z busami 2,5–3,5&nbsp;t w transporcie międzynarodowym UE — walidacja na realnych danych operacyjnych.
+        <h3 class="font-display text-[17px] font-bold text-text mb-2">Firmy transportowe</h3>
+        <p class="text-[13px] text-text-secondary leading-[1.6]">
+          50+ firm pilotażowych z busami 2,5–3,5 t w transporcie międzynarodowym UE — walidacja na realnych danych operacyjnych.
         </p>
-        <p class="text-[11.5px] text-text-tertiary">Status: rekrutacja open (pilotaż MVP od 30 maja 2026)</p>
       </article>
-      <article class="p-6 rounded-2xl bg-surface border border-border-subtle">
+      <article class="p-6 rounded-2xl bg-surface-2 border border-border-subtle">
         <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Partner technologiczny</p>
-        <h3 class="font-display text-[17px] font-bold text-text mb-2">System FK / e-invoicing</h3>
-        <p class="text-[13px] text-text-secondary leading-[1.6] mb-3">
-          Insert GT, Comarch ERP Optima lub Symfonia — integracja na poziomie API. KSeF (PL) i Peppol (EU) — gateway certyfikacyjny.
+        <h3 class="font-display text-[17px] font-bold text-text mb-2">System FK</h3>
+        <p class="text-[13px] text-text-secondary leading-[1.6]">
+          Insert GT, Comarch ERP Optima, Symfonia FK — integracja na poziomie eksportu i KSeF. Plus partner FK dla rynków poza Polską.
         </p>
-        <p class="text-[11.5px] text-text-tertiary">Status: integracje EPP / XML / TXT live, REST API planowany Q4 2026</p>
       </article>
     </div>
 
-    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3">
-      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 1</p>
-        <p class="font-display text-[15px] font-bold text-text mb-1">FENG Ścieżka SMART</p>
-        <p class="text-[11.5px] text-text-tertiary">NCBR · Polska · TRL 5→8</p>
-      </div>
-      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 2</p>
-        <p class="font-display text-[15px] font-bold text-text mb-1">EIC Accelerator</p>
-        <p class="text-[11.5px] text-text-tertiary">European Innovation Council · TRL 6→9</p>
-      </div>
-      <div class="p-5 rounded-2xl bg-surface border border-brand-border text-center">
-        <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-brand mb-2">Program 3</p>
-        <p class="font-display text-[15px] font-bold text-text mb-1">Horizon Europe</p>
-        <p class="text-[11.5px] text-text-tertiary">Cluster 5: Climate, Energy &amp; Mobility</p>
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- ====================== CTA ====================== -->
-<section class="bg-surface py-24 px-5">
-  <div class="max-w-[820px] mx-auto text-center">
+<section class="bg-surface-2 py-24 px-5 border-t border-border-subtle">
+  <div class="max-w-[820px] mx-auto text-center reveal">
     <h2 class="font-display text-[32px] sm:text-[44px] font-bold tracking-[-0.02em] text-text mb-5 leading-[1.1]">
-      Skontaktuj się z zespołem R&D
+      Pełna dokumentacja dostępna po NDA
     </h2>
     <p class="text-text-secondary mb-8 max-w-[560px] mx-auto leading-[1.65]">
-      Dla ewaluatorów grantów, partnerów naukowych, firm konsorcyjnych — dane techniczne, dokumentacja, dostęp do repozytorium pilotażowego.
+      Dla partnerów naukowych, firm konsorcyjnych, inwestorów i ewaluatorów grantów — dokumentacja techniczna, harmonogramy projektów badawczo-rozwojowych, wskaźniki rezultatu — udostępniamy po podpisaniu umowy o zachowaniu poufności.
     </p>
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="mailto:kontakt@busikm.pl?subject=R%26D%20—%20zapytanie%20o%20technologię" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200">
+      <a href="mailto:kontakt@busikm.pl?subject=Technologia%20—%20zapytanie" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-[15px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200">
         kontakt@busikm.pl
       </a>
       <a href="https://calendly.com/busikm/30min" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-surface text-text border border-border text-[15px] font-semibold hover:bg-surface-2 transition-colors duration-200">
         Umów spotkanie 30 min →
       </a>
     </div>
-    <p class="mt-8 text-[12px] text-text-tertiary">
-      Pełna dokumentacja R&D (one-pager + technical deep-dive) dostępna na żądanie po podpisaniu NDA.
-    </p>
   </div>
 </section>
 

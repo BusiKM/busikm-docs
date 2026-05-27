@@ -1,11 +1,42 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../lib/app-url';
+
+const webScreens = [
+  {
+    img: '/screens/firm-multi-tenant.png',
+    alt: 'Dashboard biura rachunkowego — lista obsługiwanych firm transportowych w jednym panelu',
+    url: 'app.busikm.pl/biuro/dashboard',
+    pre: 'Panel multi-tenant',
+    title: 'Wszyscy klienci w jednym dashboardzie',
+    desc: 'Lista wszystkich obsługiwanych firm transportowych z aktualnym statusem compliance, liczbą pojazdów, łącznym przychodem miesięcznym i alertami wymagającymi uwagi. Bez logowania do każdej firmy osobno.',
+    features: [
+      'Status compliance per firma — zielony / żółty / czerwony',
+      'Agregaty miesięczne dla całego portfela — przychód, pojazdy, alerty',
+      'Filtry per status, region, typ klienta — szybka segmentacja portfela',
+    ],
+    reverse: false,
+  },
+  {
+    img: '/screens/firm-context-switcher.png',
+    alt: 'Przełącznik kontekstu firmy w panelu biura rachunkowego BusiKM',
+    url: 'app.busikm.pl/biuro/dashboard',
+    pre: 'Przełączanie kontekstu',
+    title: 'Jeden klik — jesteś w panelu konkretnego klienta',
+    desc: 'Dropdown z listą obsługiwanych firm w nagłówku. Każde przełączenie zapisywane w dzienniku audytowym — pełna ścieżka kto i kiedy oglądał dane której firmy. RODO art. 28 i GDPR-aware.',
+    features: [
+      'Dropdown w nagłówku z listą wszystkich klientów + breadcrumb',
+      'Dziennik audytowy — log każdego przełączenia kontekstu',
+      'Izolacja danych RODO między firmami — żadnych pomyłek przy eksporcie',
+    ],
+    reverse: true,
+  },
+];
 ---
 
 <MarketingLayout
-  title="Dla biur rachunkowych obsługujących transport — BusiKM"
-  description="Twoi klienci transportowi mają księgowe, które przerabiają faktury z UE w BusiKM. Ty dostajesz gotowy import — bez wpisywania paragonów z Niemiec i Włoch. Multi-tenant, dożywotnio gratis dla pilotów."
+  title="Dla biur rachunkowych obsługujących transport — BusiKM e-TMS"
+  description="e-TMS dla biura rachunkowego obsługującego firmy transportowe busami 2,5–3,5 t. Multi-tenant panel z przełączaniem kontekstu, eksport zbiorczy do Insert GT / Comarch / Symfonia, dziennik audytowy. Dożywotnio gratis dla pilotów."
 >
 
 <!-- ============ HERO ============ -->
@@ -54,6 +85,57 @@ import { APP_LOGIN_URL } from '../lib/app-url';
     </div>
   </div>
 </section>
+
+<!-- ============ PANEL WEBOWY — 2 REAL SCREENS ============ -->
+<section class="py-16 sm:py-20 bg-surface-2 px-5 border-t border-border-subtle">
+  <div class="max-w-[820px] mx-auto text-center reveal">
+    <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Panel webowy</p>
+    <h2 class="font-display text-[clamp(1.85rem,4vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+      Tak wygląda BusiKM u biura rachunkowego obsługującego transport.
+    </h2>
+    <p class="text-[15px] leading-relaxed text-text-secondary">
+      Dwa kluczowe ekrany Twojej codziennej pracy — zbiorczy dashboard portfela klientów i przełącznik kontekstu z dziennikiem audytowym.
+    </p>
+  </div>
+</section>
+
+{webScreens.map((s, idx) => (
+  <section class:list={['py-16 sm:py-20 px-5', idx % 2 === 0 ? 'bg-surface' : 'bg-surface-2']}>
+    <div class="max-w-[1180px] mx-auto">
+      <div class:list={['grid lg:grid-cols-[1fr_1.4fr] gap-8 sm:gap-12 items-center reveal', s.reverse ? 'lg:grid-flow-col-dense' : '']}>
+
+        <div class:list={['lg:pr-4', s.reverse ? 'lg:col-start-2' : '']}>
+          <p class="text-[11.5px] font-bold uppercase tracking-[0.1em] text-[#005CE8] mb-3">{s.pre}</p>
+          <h3 class="font-display text-[clamp(1.45rem,2.8vw,2.05rem)] font-bold tracking-[-0.02em] text-text leading-[1.15] mb-4">
+            {s.title}
+          </h3>
+          <p class="text-[15px] leading-relaxed text-text-secondary mb-5">{s.desc}</p>
+          <ul class="space-y-2.5">
+            {s.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-[13.5px] text-text leading-snug">
+                <svg class="w-4 h-4 text-[#34C759] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class:list={[s.reverse ? 'lg:col-start-1 lg:row-start-1' : '']}>
+          <div class="rounded-[14px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.10)] border border-border-subtle">
+            <div class="flex items-center gap-2 px-4 py-2.5 bg-[#F5F5F7] dark:bg-[#16161A] border-b border-border-subtle">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+              <span class="ml-3 text-[10.5px] text-text-tertiary font-mono">{s.url}</span>
+            </div>
+            <img src={s.img} alt={s.alt} class="w-full h-auto block" loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+))}
 
 <!-- ============ DASHBOARD MULTI-TENANT ============ -->
 <section class="py-20 sm:py-28 bg-surface px-5">

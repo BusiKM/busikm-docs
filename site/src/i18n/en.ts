@@ -8,7 +8,7 @@ import type { Translations } from './pl';
 export const en: Translations = {
   meta: {
     siteDescription:
-      'BusiKM — European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting. 6 in-house research components: tachograph parser, Bluetooth ITS, EU border detection, AETR diet engine, XAI fuel anomaly, multi-tenant.',
+      'BusiKM — Poland\'s first e-TMS (Transport Management System) designed from the ground up for international transport with vans 2.5–3.5 t and accounting firms serving them. G2V2 tachograph, AETR working time, real-time GPS, receipt OCR in 6 languages, export to Insert GT, Comarch ERP Optima and Symfonia FK, KSeF e-invoicing, foreign per-diem.',
   },
   nav: {
     features: 'Features',

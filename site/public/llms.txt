@@ -1,38 +1,29 @@
-# BusiKM — Europejski system R&D dla transportu 2,5–3,5 t
-
-## European positioning (EU Grant Readiness)
-
-BusiKM rozwija **europejski system R&D integrujący transport drogowy 2,5–3,5 t z księgowością** przez pięć autorskich komponentów badawczo-rozwojowych:
-
-1. **Parser binarny pliku DDD** (TRL 1) — autorska biblioteka Python odczytu tachografu G2V2, zgodna z Rozp. (UE) 2016/799 Annex I. Pierwsza tego typu implementacja na rynku PL/UE dla busów 2,5–3,5 t.
-2. **Bluetooth ITS** (TRL 1) — React Native library do zdalnej komunikacji z tachografem przez protokół z 2016/799 — pobranie DDD bez kabla do warsztatu.
-3. **Detekcja granic UE** (TRL 2) — algorytm point-in-polygon na lokalnej warstwie GeoJSON 27 państw UE (Shapely) — klasyfikacja GPS bez API, bez internetu.
-4. **Silnik diet AETR** (TRL 2) — deterministyczny rules engine mapujący Rozp. MPiPS 29.01.2013 Dz.U. 167 na auto-rozliczenie kierowcy. Pierwsza integracja GPS↔diety dla busów 2,5–3,5 t.
-5. **XAI anomalia spalania** (TRL 1) — model regresji wielowymiarowej z naturalnojęzykową wyjaśnialnością (SHAP). Detekcja kradzieży paliwa z explainable AI.
-
-Aktualne aplikacje grantowe (w przygotowaniu): **FENG Ścieżka SMART** (NCBR PL, TRL 5→8), **EIC Accelerator** (European Innovation Council, TRL 6→9), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Standardy zgodności: ISO 18013-5, eIDAS, eFTI (UE 2020/1056), EU AI Act (transparency dla XAI).
-
-Target: ~6,1 mln busów 2,5–3,5 t w UE (Eurostat 2024). Zero dedykowanych narzędzi compliance na rynku przed BusiKM.
+# BusiKM — e-TMS dla busów 2,5–3,5 t
 
 ## O produkcie
-BusiKM to platforma SaaS dla firm transportowych krajowych i międzynarodowych. Łączy GPS w czasie rzeczywistym, ewidencję czasu pracy kierowcy, monitoring dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy), rozliczanie kosztów zleceń i eksport do polskich systemów księgowych (Insert GT EDI++, Comarch ERP Optima, Symfonia FK).
+BusiKM to **pierwszy w Polsce e-TMS (Transport Management System) zaprojektowany od zera pod transport międzynarodowy busami klasy 2,5–3,5 t** oraz obsługujące je biura rachunkowe. Nie konkurujemy z TMS-ami dla flot TIR-owych — busy 2,5–3,5 t to osobny segment z własnymi regułami (Pakiet Mobilności UE 2026, tachograf G2V2 obowiązkowy od 2 lipca 2026, brak dedykowanego oprogramowania na rynku).
+
+Łączy w jednym systemie: GPS w czasie rzeczywistym, ewidencję czasu pracy kierowcy zgodną z AETR i Pakietem Mobilności, monitoring dokumentów floty (OC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy), rozliczanie kosztów zleceń, marżę per zlecenie, VAT-REF z UE, diety zagraniczne, oraz eksport do polskich systemów księgowych (Insert GT EDI++, Comarch ERP Optima, Symfonia FK) i KSeF.
 
 Wsparcie dla zgodności z prawem podatkowym: 100% odliczenia VAT (art. 86a + druk VAT-26), 100% kosztów pojazdu w PIT/CIT (art. 23 ust. 7), zwrot km dla pracowników bez PIT (art. 21 ust. 1 pkt 23b). Stawki przebiegu wg Dz.U. 2023 poz. 5.
 
-Hook: pełna kontrola nad pracą kierowców i rentownością zleceń. Gotowość pod nowy obowiązek tachografu G2V2 od 2 lipca 2026 (pakiet mobilności UE).
+Hook: pełna kontrola nad pracą kierowców i rentownością zleceń. Gotowość pod nowy obowiązek tachografu G2V2 od 2 lipca 2026 (Pakiet Mobilności UE).
 
 ## Kluczowe funkcje
 - Mapa floty w czasie rzeczywistym (pozycje pojazdów na żywo)
 - GPS background tracking w aplikacji mobilnej (iOS/Android)
-- Ewidencja czasu pracy kierowcy (jazda / pauza / dyspozycyjność, zgodność z AETR i pakietem mobilności)
+- Ewidencja czasu pracy kierowcy (jazda / pauza / dyspozycyjność, zgodność z AETR i Pakietem Mobilności)
 - Zatwierdzanie tras przez właściciela (kontrola pracy zespołu)
 - Raporty kosztów floty per zlecenie / per pojazd / per kierowca (CSV, PDF)
 - Alerty dokumentów: OC, AC, przegląd, tachograf G2V2, licencja transportowa, prawo jazdy, ADR (90/30/14 dni przed wygaśnięciem)
 - Compliance dashboard — zagregowany status dokumentów floty
 - Tryb offline w aplikacji mobilnej
 - Eksport ewidencji przebiegu do Insert GT (EDI++), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS)
+- Integracja z Krajowym Systemem e-Faktur (KSeF)
 - Raport PDF zgodny z art. 86a ust. 7 ustawy o VAT
 - Zdjęcia drogomierza i dokumentów wprost z aparatu telefonu
+- OCR paragonów w 6 językach (PL/EN/DE/IT/FR/ES)
+- Kursy walut NBP — automatyczne przewalutowanie kosztów zagranicznych
 
 ## Cztery role w aplikacji
 1. **Właściciel firmy transportowej** — pełen dashboard floty, mapa real-time, status kierowców, alerty dokumentów, zatwierdzanie tras, raporty kosztów.
@@ -40,26 +31,26 @@ Hook: pełna kontrola nad pracą kierowców i rentownością zleceń. Gotowość
 3. **Księgowy wewnętrzny firmy** — dostęp tylko do odczytu, raporty PDF, eksport do FK, kontrola integralności danych.
 4. **Biuro rachunkowe obsługujące firmę transportową** — panel multi-tenant z przełączaniem kontekstu między klientami, zbiorczy dashboard, eksport per klient.
 
-## Tachograf G2V2 i pakiet mobilności UE
+## Tachograf G2V2 i Pakiet Mobilności UE
 Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t używane w transporcie międzynarodowym muszą być wyposażone w tachograf cyfrowy drugiej generacji wersja 2 (G2V2). BusiKM monitoruje terminy legalizacji tachografów i wysyła alerty 90/30/14 dni przed wygaśnięciem. Brak aktualnej legalizacji = kara ITD do 10 000 zł i zatrzymanie pojazdu.
 
 ## Filar AETR — DriverActivity Engine
 BusiKM wdraża (Q3 2026) dedykowany silnik compliance czasu pracy kierowcy zgodny z **rozporządzeniem (WE) nr 561/2006** oraz **Pakietem Mobilności UE** (UE 1054/2020, 1055/2020). Poza UE — konwencja AETR (zbliżone reguły, automatyczne przełączenie trybu po wykryciu przekroczenia granicy UE).
 
 DriverActivity Engine — 4 warstwy:
-1. **Rejestracja aktywności** — 8 typów (DRIVING, BASE_RETURN, LOADING, UNLOADING, OTHER_WORK, AVAILABILITY, BREAK, REST) mapowane na 4 symbole tachografu (JAZDA, INNA PRACA, GOTOWOŚĆ, PRZERWA/ODPOCZYNEK). Manual tap w aplikacji kierowcy lub auto-detection z GPS (prędkość > 5 km/h → DRIVING; postój przy adresie zlecenia → sugestia LOADING/UNLOADING).
-2. **AETRComplianceEngine** — metody calculate_driving_time, validate_breaks, validate_rest_periods, get_compliance_status. Pilnuje: dziennego (9h, max 10h 2× w tyg.), tygodniowego (56h) i dwutygodniowego (90h) czasu jazdy; przerwy po 4,5h (45 min ciągłej lub 15+30 w tej kolejności); odpoczynku dziennego (11h regularny, 9h skrócony max 3×, 3h+9h dzielony, załoga 2-os. 9h w 30h); tygodniowego (45h regularny, 24h skrócony 1×/2tyg. z rekompensatą en bloc do końca 3. tyg.); Pakietu Mobilności (powrót do bazy max co 4 tyg., zakaz odpoczynku 45h w kabinie, wyjątki +1h/+2h dla dotarcia do bazy).
-3. **Alerty 3-poziomowe** — INFO (30 min do limitu), WARNING (15 min), VIOLATION (przekroczono). FCM push do kierowcy + powiadomienie właściciela. Celery task co 5 min dla wszystkich aktywnych sesji DRIVING.
-4. **Raporty compliance** — dzienny, tygodniowy, dwutygodniowy raport zgodny z 561/2006, eksport PDF dla kontroli ITD/BAG/Gendarmerie/Polizia Stradale.
+1. **Rejestracja aktywności** — 8 typów (jazda, powrót do bazy, załadunek, rozładunek, inna praca, gotowość, przerwa, odpoczynek) mapowanych na 4 symbole tachografu. Manual tap w aplikacji kierowcy lub auto-detection z GPS.
+2. **Silnik zgodności AETR** — pilnuje dziennego (9h, max 10h 2× w tyg.), tygodniowego (56h) i dwutygodniowego (90h) czasu jazdy; przerwy po 4,5h; odpoczynku dziennego (11h regularny, 9h skrócony); tygodniowego (45h regularny, 24h skrócony); Pakietu Mobilności (powrót do bazy max co 4 tyg., zakaz odpoczynku 45h w kabinie).
+3. **Alerty 3-poziomowe** — informacja (30 min do limitu), ostrzeżenie (15 min), naruszenie (przekroczono). Push do kierowcy + powiadomienie właściciela.
+4. **Raporty zgodności** — dzienny, tygodniowy, dwutygodniowy raport zgodny z 561/2006, eksport PDF dla kontroli ITD/BAG/Gendarmerie/Polizia Stradale.
 
-Funkcja planowana na drugą iterację filaru (post Q3 2026): bulk import aktywności z odczytu tachografu G2V2 (plik DDD) — wsteczna walidacja 56 dni historii kierowcy. W pierwszej wersji filaru aktywności rejestrowane są od momentu uruchomienia BusiKM (manual tap + auto-detection z GPS).
+Bulk import aktywności z tachografu G2V2 (plik DDD) — wsteczna walidacja 56 dni historii kierowcy (funkcja planowana na drugą iterację filaru). W pierwszej wersji aktywności rejestrowane są od momentu uruchomienia BusiKM (manual tap + auto-detection z GPS).
 
-Działa offline w aplikacji mobilnej (liczniki na urządzeniu), sync po zasięgu. Dashboard real-time u właściciela: tabela kierowców z OK/WARNING/VIOLATION + timeline aktywności + alert panel.
+Działa offline w aplikacji mobilnej (liczniki na urządzeniu), sync po zasięgu. Dashboard real-time u właściciela: tabela kierowców ze statusem + timeline aktywności + alert panel.
 
 Pełna strona pillar: https://busikm.pl/aetr
 
 Dodatkowo BusiKM wspiera:
-- Ewidencję czasu pracy kierowcy zgodnie z AETR i pakietem mobilności
+- Ewidencję czasu pracy kierowcy zgodnie z AETR i Pakietem Mobilności
 - Monitoring wypisów z licencji transportowej
 - Świadectwa kierowców (ADR, kategorie prawa jazdy, badania psychotechniczne)
 
@@ -68,7 +59,7 @@ BusiKM jest na etapie pilotażu MVP. Cennik komercyjny zostanie ogłoszony po an
 
 ## Program pilotażowy — dożywotnio gratis
 - Dla firm transportowych krajowych (1–50 pojazdów): pełna funkcjonalność produktu — dożywotnio gratis.
-- Dla firm transportowych międzynarodowych (transport poza Polską, tachograf G2V2, AETR, pakiet mobilności): pełen pakiet zgodności + monitoring tachografów i licencji.
+- Dla firm transportowych międzynarodowych (transport poza Polską, tachograf G2V2, AETR, Pakiet Mobilności): pełen pakiet zgodności + monitoring tachografów i licencji.
 - Dla biur rachunkowych obsługujących firmy transportowe: panel multi-tenant + obsługa wielu firm jednocześnie.
 - Bez karty kredytowej, bez warunków minimalnych, bez konwersji wymuszonej.
 - W zamian prosimy o udział w krótkiej rozmowie maksymalnie raz w miesiącu (co działa, co nie, czego brakuje).
@@ -81,45 +72,52 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Piloci są pierwszą linią walidacji każdego release'u — w zamian otrzymują dożywotni dostęp gratis do produktu.
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
-## Stan wdrożenia (8 maja 2026)
-- 26 sprintów ukończonych, 218 ticketów zrealizowanych
-- Sprinty 0-16a DONE: cały panel webowy + aplikacja mobilna mocno do przodu (logowanie, GPS w tle, OCR paragonów, alerty AETR, dashboard floty na telefonie)
-- Sprinty 16b-22 zaplanowane: powiadomienia push, tryb offline, App Store/Google Play, testy mobile, launch produkcyjny
-- MVP LIVE: 30 maja 2026 (drift inkrementalny -3 dni)
-- Po MVP (31 maja - 6 czerwca 2026): Stripe billing, eksport delegacji + KSeF, zaawansowana analityka
+## Stan wdrożenia
+- Pięć z siedmiu faz wdrożenia gotowych — architektura backendu, panel webowy, aplikacja mobilna (w toku), wydanie produkcyjne (zaplanowane), funkcje post-MVP H2 2026.
+- Trzy integracje z systemami księgowymi gotowe od pierwszego dnia — Insert GT, Comarch ERP Optima, Symfonia FK. Integracja z KSeF zaplanowana w fazie wydania produkcyjnego.
+- Cztery platformy: backend Django, panel webowy Next.js, aplikacja mobilna iOS, aplikacja mobilna Android.
+- MVP LIVE: 30 maja 2026.
+- Post-MVP H2 2026: filar AETR (DriverActivity Engine), tachograf G2V2 i kontrola ITD pod jednym dashboardem, marża per zlecenie, rozliczenie kierowcy (diety, mandaty, wypłata), VAT-REF z UE, mapa live ze strefami alertów (geofencing).
+
+## Program badawczo-rozwojowy 2027–2028
+W latach 2027–2028 prowadzimy pięć projektów badawczo-rozwojowych w obszarze technologii transportu drogowego, finansowanych ze środków UE. Cel: rozszerzenie platformy o autorskie technologie oraz scale-out na rynki Czech, Słowacji i Niemiec. Szczegóły techniczne projektów objęte są tajemnicą przedsiębiorstwa do zakończenia projektów i akceptacji raportów końcowych przez instytucje finansujące. Dokumentacja techniczna dostępna po podpisaniu umowy o zachowaniu poufności (NDA).
+
+Standardy zgodności wdrożone od początku: RODO (Rozp. UE 2016/679), ISO/IEC 27001 (przygotowanie do certyfikacji 2027), EU AI Act (Rozp. UE 2024/1689), eIDAS (Rozp. UE 910/2014), eFTI (Rozp. UE 2020/1056), Rozp. (WE) 561/2006 + Pakiet Mobilności (czas pracy kierowców).
+
+Konsorcjum: polska uczelnia techniczna z wydziałem transportu, 50+ firm transportowych pilotażowych w UE, dostawca systemu finansowo-księgowego.
 
 ## Stack technologiczny (informacja techniczna)
 - Backend: Django + DRF + Celery + PostgreSQL + MongoDB + Redis
 - Mobile: React Native + Expo (iOS 15+, Android 10+)
 - Web: Next.js 16 + Tailwind + SWR
-- API: OpenAPI 3.0
+- API: OpenAPI 3.1
+- Infrastruktura: GitHub Actions, EAS Build, Vercel, Sentry, Prometheus
 
 ## Strona
 - URL: https://busikm.pl
-- Technologia (R&D): https://busikm.pl/technologia
+- Technologia: https://busikm.pl/technologia
 - Dokumentacja: https://busikm.pl/docs
 - Cennik: https://busikm.pl/cennik
 - Funkcje: https://busikm.pl/funkcje
 - Roadmapa: https://busikm.pl/roadmapa
+- AETR (pillar): https://busikm.pl/aetr
 - Strona EN: https://busikm.pl/en/
-- Technology EN (R&D landing): https://busikm.pl/en/technology
+- Technology EN: https://busikm.pl/en/technology
 
 ---
 
 ## English summary
 
-BusiKM is developing a **European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting** through five in-house research components:
+BusiKM is **Poland's first e-TMS (Transport Management System) designed from the ground up for international transport with vans 2.5–3.5 t** and the accounting firms that serve them. We don't compete with TMS systems built for heavy-truck fleets — vans 2.5–3.5 t are a separate market segment with their own regulatory regime (EU Mobility Package, G2V2 tachograph mandatory from 2 July 2026, no dedicated software available before BusiKM). It combines real-time GPS, AETR working time tracking, fleet document monitoring (insurance, inspection, G2V2 tachograph, transport licence, driver licence), order cost settlement and export to Polish accounting systems (Insert GT, Comarch ERP Optima, Symfonia FK) plus KSeF e-invoicing.
 
-1. **Binary DDD parser** (TRL 1) — Python library for G2V2 tachograph compliant with EU 2016/799 Annex I.
-2. **Bluetooth ITS** (TRL 1) — React Native library for remote tachograph data download.
-3. **EU border detection** (TRL 2) — point-in-polygon on local GeoJSON, no API, no internet dependency.
-4. **AETR per-diem engine** (TRL 2) — deterministic rules engine mapping PL MoLPS regulation to auto-settlement.
-5. **XAI fuel anomaly** (TRL 1) — multivariate regression with SHAP-based natural-language explainability.
+Hook: full control over driver work and order profitability. Ready for the new G2V2 tachograph obligation from 2 July 2026 (EU Mobility Package).
 
-Current grant applications (in preparation): **FENG SMART** (Poland NCBR), **EIC Accelerator** (European Innovation Council), **Horizon Europe** (Cluster 5: Climate, Energy & Mobility). Compliance standards: ISO 18013-5, eIDAS, eFTI (EU 2020/1056), EU AI Act.
+Status: 5 of 7 implementation phases complete. MVP live 30 May 2026. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
 
-Target market: ~6.1 million vans 2.5–3.5 t across the EU (Eurostat 2024). Zero dedicated compliance tools existed for this segment before BusiKM.
+Post-MVP H2 2026: AETR DriverActivity Engine, G2V2 + ITD compliance dashboard, per-order margin analysis, driver settlement (per-diem, fines, payroll), EU VAT-REF, live map with geofencing alerts.
 
-MVP live: 30 May 2026. 218 tickets done across 26 sprints. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
+R&D programme 2027–2028: five research and development projects in road transport technology, funded by EU grants. Detailed scope protected as trade secret until project completion. Compliance standards from day one: GDPR, ISO/IEC 27001 (audit prep), EU AI Act, eIDAS, eFTI, Reg. (EC) 561/2006 + Mobility Package.
 
-EN landing: https://busikm.pl/en/ · Technology R&D detail: https://busikm.pl/en/technology
+Target market: ~6.1 million vans 2.5–3.5 t across the EU (Eurostat 2024) — about 90% of the EU TSL market.
+
+EN landing: https://busikm.pl/en/ · Technology: https://busikm.pl/en/technology

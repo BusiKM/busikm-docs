@@ -1,11 +1,56 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { APP_LOGIN_URL } from '../lib/app-url';
+
+const webScreens = [
+  {
+    img: '/screens/accountant-fk-export.png',
+    alt: 'Modal eksportu BusiKM do Insert GT, Comarch ERP Optima, Symfonia FK i KSeF',
+    url: 'app.busikm.pl/ksiegowosc/eksport',
+    pre: 'Eksport jednym kliknięciem',
+    title: 'Trzy systemy księgowe + KSeF, jedna paczka',
+    desc: 'Zaznaczasz zakres dat, wybierasz docelowe systemy, klikasz „Generuj paczkę". Pliki w formatach Insert GT (EDI++), Comarch ERP Optima (XML), Symfonia FK (TXT/AMS) i KSeF — wszystko w jednym ZIP-ie, bez ręcznej konwersji.',
+    features: [
+      'Insert GT EDI++ 1.05, Comarch ERP Optima XML, Symfonia FK TXT/AMS — natywne formaty',
+      'KSeF dla faktur polskich, osobny strumień dla faktur z UE (DE, FR, IT, AT)',
+      'Walidacja kompletności przed eksportem — żadnych braków po stronie księgowej',
+    ],
+    reverse: false,
+  },
+  {
+    img: '/screens/accountant-perdiem.png',
+    alt: 'Diety zagraniczne kierowcy — tabela per kraj per dzień zgodnie z Dz.U. 2013 poz. 167',
+    url: 'app.busikm.pl/ksiegowosc/diety',
+    pre: 'Diety zagraniczne',
+    title: 'Rozliczenie kierowcy w 5 minut zamiast w pół dnia',
+    desc: 'Stawki dzienne per kraj zgodnie z Rozp. MPiPS Dz.U. 2013 poz. 167. Wykrywanie dni pobytu z trasy GPS — bez przepisywania z odręcznych notatek kierowcy.',
+    features: [
+      'Tabela: kraj · liczba dni · stawka EUR · suma EUR · suma PLN po kursie NBP',
+      'Automatyczne wyliczenie dni pobytu na podstawie przekroczeń granic',
+      'Eksport gotowego rozliczenia do Insert GT, Comarch ERP Optima i Symfonia FK',
+    ],
+    reverse: true,
+  },
+  {
+    img: '/screens/accountant-cost-payrollpro.png',
+    alt: 'Lista faktur kosztowych z OCR — paragony w 6 językach przetworzone automatycznie',
+    url: 'app.busikm.pl/ksiegowosc/koszty',
+    pre: 'Faktury kosztowe',
+    title: 'Paragony z DE, FR, IT, AT czytane automatycznie',
+    desc: 'OCR rozpoznaje paragony w sześciu językach (PL, EN, DE, IT, FR, ES). Kwoty przeliczone na PLN po kursie NBP z dnia wystawienia, kategoryzacja per typ kosztu, podpięcie pod konkretne zlecenie.',
+    features: [
+      'OCR w 6 językach — paliwo, opłaty drogowe, hotele, naprawy, postoje, autostrady',
+      'Kursy NBP automatycznie pobierane na dzień operacji',
+      'Powiązanie z kierowcą, pojazdem i zleceniem — pełna ścieżka audytowa',
+    ],
+    reverse: false,
+  },
+];
 ---
 
 <MarketingLayout
-  title="Dla księgowych w firmach transportowych — BusiKM"
-  description="Faktury z DE/IT/FR/ES czytane automatycznie. Kursy NBP, diety zagraniczne, VAT-REFUND, rentowność per zlecenie i eksport do biura rachunkowego — bez Excela."
+  title="Dla księgowych w firmach transportowych — BusiKM e-TMS"
+  description="e-TMS dla księgowej w firmie operującej busami 2,5–3,5 t. Faktury z DE/IT/FR/ES czytane automatycznie. Kursy NBP, diety zagraniczne, VAT-REF z UE, rentowność per zlecenie i eksport do Insert GT / Comarch / Symfonia — bez Excela."
 >
 
 <!-- ============ HERO ============ -->
@@ -54,6 +99,57 @@ import { APP_LOGIN_URL } from '../lib/app-url';
     </div>
   </div>
 </section>
+
+<!-- ============ PANEL WEBOWY — 3 REAL SCREENS ============ -->
+<section class="py-16 sm:py-20 bg-surface-2 px-5 border-t border-border-subtle">
+  <div class="max-w-[820px] mx-auto text-center reveal">
+    <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Panel webowy</p>
+    <h2 class="font-display text-[clamp(1.85rem,4vw,2.6rem)] font-bold tracking-[-0.025em] leading-[1.1] text-text mb-4">
+      Tak wygląda BusiKM u księgowej obsługującej firmę transportową.
+    </h2>
+    <p class="text-[15px] leading-relaxed text-text-secondary">
+      Trzy ekrany, na których spędzasz najwięcej czasu — eksport do FK, rozliczenie diet zagranicznych, lista faktur kosztowych z OCR. Wszystko gotowe do importu w Twoim systemie księgowym.
+    </p>
+  </div>
+</section>
+
+{webScreens.map((s, idx) => (
+  <section class:list={['py-16 sm:py-20 px-5', idx % 2 === 0 ? 'bg-surface' : 'bg-surface-2']}>
+    <div class="max-w-[1180px] mx-auto">
+      <div class:list={['grid lg:grid-cols-[1fr_1.4fr] gap-8 sm:gap-12 items-center reveal', s.reverse ? 'lg:grid-flow-col-dense' : '']}>
+
+        <div class:list={['lg:pr-4', s.reverse ? 'lg:col-start-2' : '']}>
+          <p class="text-[11.5px] font-bold uppercase tracking-[0.1em] text-[#005CE8] mb-3">{s.pre}</p>
+          <h3 class="font-display text-[clamp(1.45rem,2.8vw,2.05rem)] font-bold tracking-[-0.02em] text-text leading-[1.15] mb-4">
+            {s.title}
+          </h3>
+          <p class="text-[15px] leading-relaxed text-text-secondary mb-5">{s.desc}</p>
+          <ul class="space-y-2.5">
+            {s.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-[13.5px] text-text leading-snug">
+                <svg class="w-4 h-4 text-[#34C759] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class:list={[s.reverse ? 'lg:col-start-1 lg:row-start-1' : '']}>
+          <div class="rounded-[14px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.10)] border border-border-subtle">
+            <div class="flex items-center gap-2 px-4 py-2.5 bg-[#F5F5F7] dark:bg-[#16161A] border-b border-border-subtle">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+              <span class="ml-3 text-[10.5px] text-text-tertiary font-mono">{s.url}</span>
+            </div>
+            <img src={s.img} alt={s.alt} class="w-full h-auto block" loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+))}
 
 <!-- ============ MOCKUP — KOSZTY UE ============ -->
 <section class="py-20 sm:py-28 bg-surface px-5">

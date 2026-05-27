@@ -6,3 +6,9 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Wewnętrzny dokument do wniosku FENG — NIE publikować
+BR-MODULES-FENG.md
+
+# Artefakt z debugowania TCC
+.fs_probe

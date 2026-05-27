@@ -31,8 +31,8 @@ const inLanguage = locale === 'en' ? 'en-US' : 'pl-PL';
 const hreflangs = getHreflangAlternates(Astro.url.pathname, siteUrl);
 
 const ldDescription = locale === 'en'
-  ? 'European deep-tech R&D platform unifying road transport (vans 2.5–3.5 t) with accounting. Six in-house research components: binary DDD parser for G2V2 tachographs, Bluetooth ITS communication, EU border point-in-polygon detection, AETR foreign per-diem engine, XAI fuel anomaly detection, multi-tenant data isolation.'
-  : 'Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 6 autorskich komponentów badawczo-rozwojowych: parser binarny DDD dla tachografu G2V2, Bluetooth ITS, geoprzestrzenna detekcja granic UE, silnik diet AETR, XAI detekcja anomalii spalania, multi-tenant.';
+  ? 'Poland\'s first e-TMS (Transport Management System) designed specifically for international transport with vans 2.5–3.5 t. Real-time fleet tracking, AETR working time compliance, G2V2 tachograph monitoring, foreign per-diem calculations, KSeF e-invoicing integration, multi-tenant data isolation for accounting firms. R&D programme funded by EU grants (2027–2028).'
+  : 'Pierwszy w Polsce e-TMS (Transport Management System) zaprojektowany pod transport międzynarodowy busami 2,5–3,5 t. Mapa floty w czasie rzeczywistym, zgodność czasu pracy AETR, monitoring tachografu G2V2, diety zagraniczne kierowców, integracja KSeF, multi-tenant dla biur rachunkowych. Prace badawczo-rozwojowe finansowane ze środków UE (2027–2028).';
 
 const featureList = locale === 'en' ? [
   'Background GPS for driver mobile app',
@@ -70,8 +70,8 @@ const offerDescription = locale === 'en'
   : 'BusiKM jest na etapie pilotażu MVP. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu.';
 
 const websiteDescription = locale === 'en'
-  ? 'European deep-tech platform for road transport (vans 2.5–3.5 t) and accounting integration'
-  : 'Europejski system R&D dla transportu drogowego busami 2,5–3,5 t i integracji z księgowością';
+  ? 'e-TMS (Transport Management System) for vans 2.5–3.5 t and accounting integration'
+  : 'e-TMS (Transport Management System) dla busów 2,5–3,5 t i integracji z księgowością';
 ---
 
 <!doctype html>

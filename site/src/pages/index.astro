@@ -16,7 +16,7 @@ const homeFaq = [
   },
   {
     q: 'Jak dołączyć do pilotażu?',
-    a: 'Kliknij "Wypróbuj demo" — zalogujesz się na konto demo żeby przetestować aplikację. Po decyzji o dołączeniu do pilotażu otrzymasz osobiste zaproszenie email z linkiem do rejestracji firmy lub biura rachunkowego.',
+    a: 'Umów się z nami na spotkanie 30 min — pokażemy aplikację, odpowiemy na pytania, sprawdzimy czy Twój przypadek pasuje do programu. Po pozytywnej weryfikacji firmy przygotowujemy komplet dokumentów i umów między naszymi firmami, a następnie wysyłamy Ci zaproszenie do programu pilotażowego z linkiem do rejestracji firmy lub biura rachunkowego.',
   },
   {
     q: 'Czy moje dane są bezpieczne?',
@@ -38,8 +38,8 @@ const homeFaq = [
 ---
 
 <MarketingLayout
-  title="BusiKM — Europejski system R&D dla transportu 2,5–3,5 t"
-  description="Europejski deep-tech system R&D integrujący transport drogowy busami 2,5–3,5 t z księgowością przez 5 autorskich komponentów badawczo-rozwojowych. Tachograf G2V2, AETR, Mobility Package, eFTI. MVP LIVE 30 maja 2026."
+  title="BusiKM — e-TMS dla busów 2,5–3,5 t"
+  description="Pierwszy w Polsce e-TMS (Transport Management System) zaprojektowany od zera pod transport międzynarodowy busami klasy 2,5–3,5 t i biura rachunkowe ich obsługujące. GPS w czasie rzeczywistym, AETR, tachograf G2V2, eksport do Insert/Comarch/Symfonia, KSeF, diety zagraniczne. MVP LIVE 30 maja 2026."
 >
 
 <!-- ======================== HERO ======================== -->
@@ -52,20 +52,20 @@ const homeFaq = [
   <div class="relative z-10 text-center max-w-[920px] mx-auto pt-20 sm:pt-28 pb-12">
     <div class="hero-seq-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#005CE8]/15 bg-[#005CE8]/[0.04] mb-10">
       <span class="w-1.5 h-1.5 rounded-full bg-[#005CE8] animate-pulse"></span>
-      <span class="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#005CE8]">European deep-tech · transport 2,5–3,5 t × księgowość</span>
+      <span class="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#005CE8]">Pierwszy e-TMS dla busów 2,5–3,5 t · nie dla TIRów</span>
     </div>
 
     <h1 class="hero-seq-2 font-display text-[clamp(2.6rem,7vw,5.25rem)] font-bold leading-[1.12] tracking-[-0.03em] text-text mb-6">
-      <span class="block">Europejski system integrujący</span>
-      <span class="block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">transport i&nbsp;księgowość</span>
+      <span class="block">e-TMS dla firm</span>
+      <span class="block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">operujących busami 2,5–3,5&nbsp;t</span>
     </h1>
 
     <p class="hero-seq-3 text-[clamp(1.05rem,2vw,1.3rem)] leading-[1.55] text-text-secondary max-w-[720px] mx-auto mb-4">
-      Pięć autorskich komponentów badawczo-rozwojowych — od parsera binarnego pliku tachografu po model uczenia maszynowego z naturalnojęzykową wyjaśnialnością — dla międzynarodowych firm transportowych operujących busami 2,5–3,5 t w&nbsp;Unii Europejskiej.
+      BusiKM to <strong class="text-text">e-TMS</strong> — Transport Management System nowej generacji — zaprojektowany od zera pod transport międzynarodowy busami klasy 2,5–3,5&nbsp;t. Segment, dla którego nie ma na rynku dedykowanego oprogramowania. <strong class="text-text">Nie konkurujemy z TMS-ami dla flot TIR-owych</strong> — mamy własny segment, własne reguły, własną stawkę. Łączymy zarządzanie flotą, zleceniami, czasem pracy kierowców (AETR), tachografem G2V2 i&nbsp;eksportem do polskich systemów księgowych w jednym narzędziu.
     </p>
 
     <p class="hero-seq-3 text-[12.5px] text-text-tertiary mb-10">
-      218 ticketów Done · 26 sprintów ukończonych · MVP LIVE 30 maja 2026
+      MVP LIVE 30 maja 2026 · pilotaż dożywotnio gratis · 100% RODO
     </p>
 
     <div class="hero-seq-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -73,511 +73,177 @@ const homeFaq = [
         Wypróbuj demo
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="/technologia" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold tracking-[-0.01em] hover:bg-surface-2 transition-all duration-200">
-        Zobacz technologię
+      <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold tracking-[-0.01em] hover:bg-surface-2 transition-all duration-200">
+        Co umie BusiKM
       </a>
+    </div>
+
+    <!-- WOW pasek — konkretne value-prop trafiające w bóle właściciela -->
+    <div class="hero-seq-5 mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-[1000px] mx-auto">
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-2 border border-border-subtle text-left">
+        <div class="flex items-center gap-2 mb-2">
+          <svg class="w-4 h-4 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Tachograf G2V2</p>
+        </div>
+        <p class="text-[13.5px] font-semibold text-text leading-snug mb-1">Gotowi na deadline 2 lipca 2026</p>
+        <p class="text-[11.5px] text-text-tertiary leading-snug">Monitoring legalizacji, alerty 90/30/14 dni, kara ITD do 10 000 zł odsunięta.</p>
+      </div>
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-2 border border-border-subtle text-left">
+        <div class="flex items-center gap-2 mb-2">
+          <svg class="w-4 h-4 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="9" y2="20"/><line x1="15" y1="14" x2="15" y2="20"/></svg>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8]">Diety zagraniczne</p>
+        </div>
+        <p class="text-[13.5px] font-semibold text-text leading-snug mb-1">Rozliczenie kierowcy w 5 minut</p>
+        <p class="text-[11.5px] text-text-tertiary leading-snug">Stawki MPiPS Dz.U. 2013 poz. 167, per kraj per dzień, automat z trasy GPS.</p>
+      </div>
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-2 border border-border-subtle text-left">
+        <div class="flex items-center gap-2 mb-2">
+          <svg class="w-4 h-4 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759]">VAT-REF z UE</p>
+        </div>
+        <p class="text-[13.5px] font-semibold text-text leading-snug mb-1">Odzyskaj VAT z paliwa, Mautu, promów</p>
+        <p class="text-[11.5px] text-text-tertiary leading-snug">DE, FR, IT, AT — paczka roczna gotowa do wniosku. Tysiące zł rocznie.</p>
+      </div>
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-2 border border-border-subtle text-left">
+        <div class="flex items-center gap-2 mb-2">
+          <svg class="w-4 h-4 text-[#8B5CF6]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#8B5CF6]">Eksport FK</p>
+        </div>
+        <p class="text-[13.5px] font-semibold text-text leading-snug mb-1">Insert GT · Comarch · Symfonia · KSeF</p>
+        <p class="text-[11.5px] text-text-tertiary leading-snug">Trzy największe polskie systemy księgowe, eksport jednym kliknięciem.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Hero — Owner dashboard mockup -->
-  <div class="hero-seq-5 relative w-full max-w-[920px] mx-auto">
-    <div class="relative rounded-[20px] bg-surface-2 border border-border-subtle overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+  <!-- Hero — real dashboard screenshot -->
+  <div class="relative w-full max-w-[1100px] mx-auto px-5 pb-20 sm:pb-28">
+    <div class="relative rounded-[16px] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.12)] border border-border-subtle bg-surface">
       <!-- Browser chrome -->
-      <div class="flex items-center gap-2 px-5 py-3 bg-surface-2 border-b border-border-subtle">
+      <div class="flex items-center gap-2 px-5 py-3 bg-[#F5F5F7] dark:bg-[#16161A] border-b border-border-subtle">
         <span class="w-3 h-3 rounded-full bg-[#FF5F57]"></span>
         <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
-        <div class="ml-4 flex-1 max-w-[260px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary">app.busikm.pl/dashboard</div>
-      </div>
-
-      <!-- Stat strip -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-5 bg-surface border-b border-border-subtle">
-        <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Aktywne trasy</p>
-          <p class="font-display text-[1.4rem] font-bold text-text">3 / 12</p>
-        </div>
-        <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Przebieg (dziś)</p>
-          <p class="font-display text-[1.4rem] font-bold text-text">1 247 km</p>
-        </div>
-        <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Koszty (mies.)</p>
-          <p class="font-display text-[1.4rem] font-bold text-text">42 380 zł</p>
-        </div>
-        <div>
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-[#FF3B30]">Alerty</p>
-          <p class="font-display text-[1.4rem] font-bold text-[#FF3B30]">3</p>
+        <div class="ml-4 flex-1 max-w-[300px] rounded-md bg-surface/70 px-3 py-1 text-[11px] text-text-tertiary font-mono">app.busikm.pl/dashboard</div>
+        <div class="hidden sm:flex items-center gap-1.5 ml-auto">
+          <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+          <span class="text-[11px] text-[#34C759] font-semibold">odświeżane na żywo</span>
         </div>
       </div>
-
-      <!-- Live fleet map — Leaflet + Carto Light tiles -->
-      <div class="bg-surface border-y border-border-subtle">
-        <div class="flex items-center justify-between px-5 sm:px-6 py-3 border-b border-border-subtle">
-          <p class="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-text-tertiary">Mapa floty · transport międzynarodowy</p>
-          <span class="text-[10.5px] font-mono text-[#34C759]">● 3 busy w trasie</span>
-        </div>
-
-        <!-- Map container -->
-        <div id="hero-map" class="relative w-full h-[440px] sm:h-[500px] bg-surface-2" aria-label="Mapa floty BusiKM — busy w trasie po Europie"></div>
-
-        <!-- Active orders strip below map -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-surface-2">
-          <div class="bg-surface px-4 py-3 flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#005CE8] shrink-0"></span>
-            <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-text truncate">Sprinter <span class="font-mono">DK 12345</span> · BKM-2841</p>
-              <p class="text-[10.5px] text-text-tertiary truncate">Warszawa → Berlin · 412/670 km · 62%</p>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-[#34C759] shrink-0">w trasie</span>
-          </div>
-          <div class="bg-surface px-4 py-3 flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#34C759] shrink-0"></span>
-            <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-text truncate">Crafter <span class="font-mono">KR 67890</span> · BKM-2842</p>
-              <p class="text-[10.5px] text-text-tertiary truncate">Kraków → Mediolan · 308/1100 km · 28%</p>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-[#34C759] shrink-0">w trasie</span>
-          </div>
-          <div class="bg-surface px-4 py-3 flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#FF9500] shrink-0"></span>
-            <div class="flex-1 min-w-0">
-              <p class="text-[11.5px] font-semibold text-text truncate">Daily <span class="font-mono">WA 11223</span> · BKM-2843</p>
-              <p class="text-[10.5px] text-text-tertiary truncate">Wrocław → Paryż · 540/1200 km · postój 30/45 min</p>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-[#FF9500] shrink-0">pauza</span>
-          </div>
-        </div>
-      </div>
+      <img src="/screens/owner-dashboard-web.png" alt="Dashboard BusiKM — pełen przegląd firmy transportowej: zysk, przychód, koszty, aktywne zlecenia w czasie rzeczywistym" class="w-full h-auto block" loading="eager" decoding="async" />
     </div>
 
-    <!-- Floating notification -->
-    <div class="absolute -top-3 -right-3 sm:top-6 sm:-right-6 z-[1000] bg-surface rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-3.5 py-2.5 flex items-center gap-2.5 border border-border-subtle animate-pulse">
+    <!-- Floating alert — Tachograf -->
+    <div class="hidden md:flex absolute -top-3 -right-3 lg:top-8 lg:-right-6 z-10 bg-surface rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.16)] px-3.5 py-2.5 items-center gap-2.5 border border-border-subtle">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <div>
         <p class="text-[10.5px] font-bold text-text">Tachograf Sprinter DK 12345</p>
         <p class="text-[10px] text-[#FF3B30]">Legalizacja wygasa za 14 dni</p>
       </div>
     </div>
+
+    <!-- Floating success — marża -->
+    <div class="hidden md:flex absolute -bottom-3 -left-3 lg:bottom-8 lg:-left-6 z-10 bg-surface rounded-[14px] shadow-[0_8px_32px_rgba(0,0,0,0.16)] px-3.5 py-2.5 items-center gap-2.5 border border-border-subtle">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+      <div>
+        <p class="text-[10.5px] font-bold text-text">Marża maj 2026</p>
+        <p class="text-[10px] text-[#34C759]">35% · cel 32% osiągnięty</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Leaflet CSS + JS via CDN — free, no token required -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</section>
 
-  <style is:global>
-    /* Hero map styling — minimal, Apple-like */
-    #hero-map {
-      font-family: var(--font-sans);
-    }
-    #hero-map .leaflet-container {
-      background: #F5F5F7;
-      font-family: var(--font-sans);
-    }
-    #hero-map .leaflet-control-attribution {
-      font-size: 9px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(4px);
-      padding: 2px 6px;
-      border-radius: 6px 0 0 0;
-      color: #86868B;
-    }
-    #hero-map .leaflet-control-attribution a { color: #86868B; }
-    #hero-map .leaflet-tile-pane { filter: saturate(0.85); }
-    /* ===== Route endpoints — anchored dots ===== */
-    .route-endpoint {
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-    }
-    .route-endpoint-origin {
-      box-shadow:
-        0 0 0 3px white,
-        0 0 0 4px rgba(0,0,0,0.06),
-        0 2px 6px rgba(0,0,0,0.18);
-    }
-    .route-endpoint-dest {
-      width: 18px;
-      height: 18px;
-      background: white;
-      border: 3px solid;
-      box-shadow:
-        0 0 0 3px white,
-        0 0 0 4px rgba(0,0,0,0.06),
-        0 2px 6px rgba(0,0,0,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .route-endpoint-dest > span {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      display: block;
-    }
+<!-- ======================== TRYBY WYŚWIETLANIA — DARK / LIGHT ======================== -->
+<section class="bg-surface py-20 sm:py-28 px-5">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-brand mb-4">Tryby wyświetlania</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
+        Dwa tryby. Dbamy o Twój wzrok.
+      </h2>
+      <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed">
+        Spędzasz przed laptopem długie godziny — od porannego rozliczania zleceń po wieczorne odbieranie potwierdzeń od kierowców na trasie. BusiKM ma tryb jasny i ciemny — przełączasz jednym kliknięciem, system zapamiętuje wybór per użytkownik.
+      </p>
+    </div>
 
-    /* ===== Bus icon — sits on the route ===== */
-    .bus-icon-wrap {
-      position: relative;
-      width: 28px;
-      height: 28px;
-    }
-    .bus-icon {
-      position: absolute;
-      inset: 0;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow:
-        0 0 0 2.5px white,
-        0 4px 12px rgba(0,0,0,0.22),
-        0 1px 2px rgba(0,0,0,0.10);
-      z-index: 2;
-    }
-    .bus-icon-pulse {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      animation: bus-pulse 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-    @keyframes bus-pulse {
-      0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.45; }
-      80%  { opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
-    }
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 reveal-stagger">
 
-    /* ===== Driver pill — order ID + plate, offset away from route ===== */
-    .bus-pill {
-      position: absolute;
-      background: white;
-      border-radius: 10px;
-      padding: 5px 9px 5px 7px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow:
-        0 4px 14px rgba(0,0,0,0.14),
-        0 1px 3px rgba(0,0,0,0.08);
-      font-family: var(--font-sans);
-      white-space: nowrap;
-      border: 1.5px solid;
-      letter-spacing: -0.01em;
-      pointer-events: none;
-    }
-    .bus-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      flex-shrink: 0;
-    }
-    .bus-pill-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-    .bus-pill-order {
-      font-size: 8.5px;
-      font-weight: 600;
-      color: #86868B;
-      font-family: var(--font-mono, monospace);
-      letter-spacing: 0;
-    }
-    .bus-pill-plate {
-      font-size: 11px;
-      font-weight: 600;
-      color: #1D1D1F;
-    }
-    /* Mobile — hide pills entirely (plate info is in the strip below the map).
-       Keep only polylines, city labels, endpoints and bus icons. */
-    @media (max-width: 500px) {
-      .bus-pill { display: none !important; }
-      .city-label {
-        font-size: 9.5px;
-        padding: 2px 5px;
-        font-weight: 600;
-      }
-      .bus-icon { width: 22px; height: 22px; border-radius: 7px; }
-      .bus-icon-wrap { width: 22px; height: 22px; }
-      .bus-icon-pulse { width: 22px; height: 22px; }
-      .route-endpoint { width: 11px; height: 11px; }
-      .route-endpoint-dest { width: 13px; height: 13px; }
-    }
+      <!-- LIGHT MODE -->
+      <article class="rounded-[20px] bg-[#F8FAFC] border border-[#E2E8F0] p-7 sm:p-9">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-[12px] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+              <svg class="w-4.5 h-4.5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </span>
+            <p class="text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500]">Tryb jasny</p>
+          </div>
+          <span class="text-[10.5px] font-mono text-[#94A3B8]">domyślny w dzień</span>
+        </div>
+        <h3 class="font-display text-[1.15rem] font-bold text-[#0F172A] mb-2 leading-snug">Praca w dzień, jasne biuro</h3>
+        <p class="text-[13.5px] leading-relaxed text-[#475569] mb-5">
+          Białe tło, ciepłe akcenty kolorów, kontrast tekstu zgodny z WCAG AA. Najlepszy w sztucznym świetle biurowym i przy oknie w słoneczny dzień.
+        </p>
+        <!-- Mini mock — light -->
+        <div class="rounded-xl bg-white border border-[#E2E8F0] p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5F57]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#FFBD2E]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#28C840]"></span>
+            <span class="ml-2 text-[10px] text-[#94A3B8] font-mono">app.busikm.pl/dashboard</span>
+          </div>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.06em] text-[#94A3B8] mb-1">Zysk · maj 2026</p>
+          <p class="font-display text-[1.5rem] font-bold text-[#0F172A] mb-2 leading-none">6 226 zł</p>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#34C759]/15 text-[#34C759]">marża 35%</span>
+            <span class="text-[10.5px] text-[#94A3B8]">cel 55 000 zł</span>
+          </div>
+          <div class="h-1 rounded-full bg-[#E2E8F0] overflow-hidden">
+            <div class="h-full w-[11%] bg-[#34C759] rounded-full"></div>
+          </div>
+        </div>
+      </article>
 
-    /* ===== City labels — placed away from route ===== */
-    .city-label {
-      position: absolute;
-      font-family: var(--font-sans);
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #1D1D1F;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(6px);
-      padding: 3px 7px;
-      border-radius: 5px;
-      white-space: nowrap;
-      box-shadow:
-        0 1px 4px rgba(0,0,0,0.12),
-        0 0 0 1px rgba(0,0,0,0.04);
-      letter-spacing: -0.01em;
-      pointer-events: none;
-    }
-  </style>
+      <!-- DARK MODE -->
+      <article class="rounded-[20px] bg-[#0F1115] border border-white/8 p-7 sm:p-9">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-[12px] bg-white/5 border border-white/10">
+              <svg class="w-4.5 h-4.5 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </span>
+            <p class="text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#3380FF]">Tryb ciemny</p>
+          </div>
+          <span class="text-[10.5px] font-mono text-white/40">domyślny wieczorem</span>
+        </div>
+        <h3 class="font-display text-[1.15rem] font-bold text-white mb-2 leading-snug">Wieczorne planowanie tras</h3>
+        <p class="text-[13.5px] leading-relaxed text-white/65 mb-5">
+          Czarne tło, ograniczona luminancja, mniejsze zmęczenie oczu po godzinie 21:00. Akcenty kolorystyczne dopasowane do trybu ciemnego — bez krzykliwości.
+        </p>
+        <!-- Mini mock — dark -->
+        <div class="rounded-xl bg-[#16191F] border border-white/8 p-3.5">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5F57]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#FFBD2E]"></span>
+            <span class="w-2 h-2 rounded-full bg-[#28C840]"></span>
+            <span class="ml-2 text-[10px] text-white/40 font-mono">app.busikm.pl/dashboard</span>
+          </div>
+          <p class="text-[10.5px] font-bold uppercase tracking-[0.06em] text-white/40 mb-1">Zysk · maj 2026</p>
+          <p class="font-display text-[1.5rem] font-bold text-white mb-2 leading-none">6 226 zł</p>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#34C759]/20 text-[#34C759]">marża 35%</span>
+            <span class="text-[10.5px] text-white/40">cel 55 000 zł</span>
+          </div>
+          <div class="h-1 rounded-full bg-white/8 overflow-hidden">
+            <div class="h-full w-[11%] bg-[#34C759] rounded-full"></div>
+          </div>
+        </div>
+      </article>
 
-  <script is:inline>
-    // Countdown for the G2V2 stats (Tachograf section + Final CTA badge)
-    (function() {
-      var target = new Date('2026-07-02T00:00:00+02:00').getTime();
-      function tick() {
-        var ids = ['tach-countdown-days', 'cta-countdown-days'];
-        var diff = target - Date.now();
-        var v = diff <= 0 ? '0' : String(Math.ceil(diff / 86400000));
-        ids.forEach(function(id) {
-          var el = document.getElementById(id);
-          if (el) el.textContent = v;
-        });
-      }
-      function boot() {
-        tick();
-        setInterval(tick, 60000);
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
-      } else {
-        boot();
-      }
-    })();
+    </div>
 
-    function initHeroMap() {
-      if (typeof L === 'undefined') { setTimeout(initHeroMap, 100); return; }
-      var el = document.getElementById('hero-map');
-      if (!el || el.dataset.initialized) return;
-      el.dataset.initialized = '1';
-
-      var map = L.map('hero-map', {
-        zoomControl: false,
-        attributionControl: true,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        touchZoom: false,
-        keyboard: false,
-        dragging: false,
-        boxZoom: false,
-        tap: false,
-      }).setView([50.2, 12.5], 5);
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap · © CARTO',
-        subdomains: 'abcd',
-        maxZoom: 19,
-      }).addTo(map);
-
-      // Real driving routes from OSRM (Open Source Routing Machine).
-      // Each `coords` array is the simplified GPS polyline of an actual highway route.
-      var routes = [
-        {
-          color: '#005CE8', plate: 'Sprinter · DK 12345', orderId: 'BKM-2841',
-          fromLabel: 'Warszawa', toLabel: 'Berlin',
-          progress: 0.62, distKm: 571,
-          coords: [[52.2297,21.0122],[52.2295,21.0098],[52.2279,21.0019],[52.2274,20.9997],[52.2251,20.9889],[52.2222,20.9791],[52.2199,20.971],[52.2167,20.9612],[52.2119,20.9521],[52.2004,20.9348],[52.1909,20.9205],[52.1793,20.9144],[52.1754,20.9115],[52.1764,20.8998],[52.181,20.8831],[52.1925,20.8574],[52.1998,20.8461],[52.1994,20.8355],[52.1923,20.8024],[52.1886,20.7796],[52.18,20.7708],[52.1711,20.7528],[52.1631,20.7274],[52.1531,20.6728],[52.1465,20.6189],[52.1376,20.5745],[52.1285,20.5385],[52.118,20.5017],[52.1103,20.4616],[52.0987,20.4102],[52.0902,20.366],[52.0787,20.3364],[52.0728,20.2988],[52.0752,20.2463],[52.0744,20.2195],[52.0688,20.1868],[52.0558,20.1327],[52.0496,20.0917],[52.0462,20.0621],[52.0383,20.0285],[52.027,20.0013],[52.0173,19.974],[52.0071,19.9529],[51.9929,19.9089],[51.9727,19.8721],[51.9601,19.85],[51.9453,19.831],[51.9294,19.7939],[51.9184,19.7617],[51.9065,19.7352],[51.8987,19.705],[51.8955,19.6636],[51.8914,19.631],[51.8893,19.6016],[51.8894,19.5778],[51.892,19.5625],[51.8969,19.5348],[51.8983,19.5047],[51.8987,19.4775],[51.9029,19.4574],[51.9119,19.4344],[51.9201,19.4023],[51.9215,19.3618],[51.9259,19.3282],[51.9298,19.2927],[51.9357,19.2636],[51.9398,19.2299],[51.9412,19.1933],[51.9489,19.1658],[51.9567,19.1343],[51.9675,19.1044],[51.9782,19.0765],[51.9928,19.0469],[51.9992,19.0106],[52.0084,18.9766],[52.0179,18.941],[52.0282,18.9068],[52.0356,18.8761],[52.0538,18.8435],[52.0707,18.8154],[52.0851,18.7932],[52.0949,18.778],[52.1046,18.7547],[52.1151,18.7313],[52.1193,18.7103],[52.1231,18.6843],[52.1291,18.6624],[52.136,18.6313],[52.1411,18.6049],[52.1417,18.5546],[52.1444,18.5164],[52.1516,18.4832],[52.1525,18.4588],[52.1478,18.4298],[52.1433,18.4048],[52.1407,18.3646],[52.141,18.3413],[52.1458,18.3174],[52.1497,18.2901],[52.1553,18.2691],[52.1598,18.2476],[52.1632,18.2052],[52.1683,18.1744],[52.1782,18.1308],[52.1827,18.104],[52.1888,18.0803],[52.193,18.0651],[52.1972,18.0455],[52.2041,18.0251],[52.2088,18.0044],[52.2151,17.9758],[52.2218,17.952],[52.227,17.9297],[52.2304,17.9121],[52.2381,17.886],[52.2446,17.8632],[52.2527,17.8268],[52.2584,17.7974],[52.2611,17.782],[52.2633,17.7639],[52.2663,17.7392],[52.2731,17.7127],[52.2837,17.6857],[52.2903,17.6679],[52.2944,17.6528],[52.3069,17.5984],[52.3101,17.5674],[52.3126,17.548],[52.3175,17.5182],[52.3184,17.4892],[52.3191,17.4361],[52.3147,17.3981],[52.3105,17.3668],[52.3101,17.3058],[52.3103,17.2278],[52.3077,17.191],[52.3079,17.1665],[52.3126,17.1449],[52.3286,17.0927],[52.3412,17.0337],[52.3457,17.0032],[52.3507,16.942],[52.3547,16.8849],[52.3505,16.8406],[52.3506,16.7523],[52.3504,16.7277],[52.3486,16.6723],[52.3553,16.6274],[52.3714,16.582],[52.3841,16.5406],[52.3875,16.5168],[52.3867,16.4813],[52.3899,16.4543],[52.3886,16.4185],[52.382,16.3563],[52.3763,16.2446],[52.3681,16.1959],[52.3636,16.1269],[52.3562,16.0856],[52.3462,16.0175],[52.3332,15.9562],[52.3296,15.9145],[52.3286,15.8468],[52.322,15.8117],[52.3025,15.7478],[52.2967,15.7061],[52.3001,15.6522],[52.3175,15.585],[52.3241,15.5373],[52.318,15.4823],[52.3172,15.4347],[52.3189,15.3962],[52.3093,15.3511],[52.2961,15.2979],[52.2947,15.2882],[52.2952,15.2724],[52.2998,15.2602],[52.3071,15.2495],[52.3108,15.2251],[52.3189,15.1934],[52.3255,15.1657],[52.326,15.1179],[52.3247,15.0638],[52.3318,15.0248],[52.3332,14.9823],[52.3349,14.9277],[52.3342,14.9119],[52.335,14.9026],[52.3341,14.8813],[52.3294,14.8516],[52.3287,14.842],[52.3301,14.8309],[52.3353,14.8017],[52.3353,14.756],[52.3321,14.7283],[52.3269,14.6883],[52.3241,14.6633],[52.3255,14.6446],[52.3264,14.6326],[52.3257,14.625],[52.3231,14.6147],[52.3173,14.5932],[52.3173,14.5899],[52.3165,14.5855],[52.3147,14.5538],[52.3162,14.5306],[52.3202,14.4974],[52.3211,14.3803],[52.3277,14.2739],[52.3361,14.2418],[52.3418,14.1944],[52.3385,14.1561],[52.3349,14.0839],[52.33,14.042],[52.3143,13.9822],[52.3119,13.9446],[52.316,13.8914],[52.3104,13.8257],[52.3213,13.7728],[52.3238,13.7482],[52.3244,13.7277],[52.3147,13.6719],[52.3103,13.6294],[52.313,13.6023],[52.3195,13.5667],[52.3215,13.5555],[52.3439,13.5554],[52.3565,13.5501],[52.3681,13.5486],[52.3811,13.5399],[52.3926,13.5236],[52.4011,13.5204],[52.4136,13.5238],[52.4268,13.5198],[52.4291,13.5087],[52.4512,13.4635],[52.4634,13.4552],[52.4693,13.4598],[52.4797,13.4605],[52.4872,13.4586],[52.4917,13.4581],[52.4942,13.4546],[52.4965,13.4501],[52.4977,13.4481],[52.499,13.446],[52.5004,13.4433],[52.5022,13.4398],[52.5035,13.4372],[52.5051,13.4334],[52.5067,13.4297],[52.5087,13.4288],[52.5135,13.4241],[52.5157,13.4176],[52.5161,13.4105],[52.5173,13.4087],[52.5199,13.4052],[52.52,13.405]],
-        },
-        {
-          color: '#34C759', plate: 'Crafter · KR 67890', orderId: 'BKM-2842',
-          fromLabel: 'Kraków', toLabel: 'Mediolan',
-          progress: 0.28, distKm: 1316,
-          coords: [[50.0647,19.945],[50.0744,19.9463],[50.0883,19.947],[50.0957,19.9284],[50.1139,19.9122],[50.1179,19.9],[50.1098,19.843],[50.0873,19.8058],[50.0787,19.7441],[50.0822,19.704],[50.0926,19.6309],[50.0913,19.5781],[50.1095,19.5129],[50.1498,19.4211],[50.1531,19.355],[50.1501,19.2697],[50.1792,19.1996],[50.2045,19.1771],[50.2207,19.1001],[50.2401,19.0565],[50.2477,19.0053],[50.256,18.9624],[50.2498,18.8869],[50.2631,18.7858],[50.2644,18.7338],[50.2388,18.708],[50.1858,18.707],[50.1369,18.6929],[50.0805,18.6632],[50.0557,18.6471],[50.0424,18.6151],[50.0156,18.5922],[49.9826,18.5601],[49.9601,18.5277],[49.9544,18.4762],[49.9514,18.4409],[49.9229,18.3783],[49.9083,18.3139],[49.8754,18.3002],[49.8522,18.2443],[49.8237,18.2132],[49.8001,18.1436],[49.7635,18.0959],[49.7391,18.0447],[49.6983,17.9772],[49.6665,17.9164],[49.6277,17.8309],[49.5912,17.7805],[49.5762,17.7224],[49.5708,17.6472],[49.5474,17.5918],[49.5208,17.5168],[49.4779,17.4436],[49.4428,17.4206],[49.4032,17.4465],[49.3615,17.468],[49.3326,17.4672],[49.3125,17.3999],[49.3152,17.3369],[49.3203,17.2662],[49.318,17.1691],[49.2947,17.1039],[49.2733,17.0425],[49.2444,16.9494],[49.1883,16.8728],[49.1812,16.8018],[49.185,16.7227],[49.1634,16.6757],[49.1602,16.5982],[49.1137,16.6049],[49.0873,16.5833],[49.04,16.5432],[48.978,16.5367],[48.9472,16.5257],[48.9058,16.5756],[48.8598,16.6085],[48.8018,16.6284],[48.7862,16.6384],[48.7639,16.637],[48.7354,16.6508],[48.7091,16.6535],[48.6834,16.6577],[48.6582,16.6891],[48.6266,16.6761],[48.6051,16.6603],[48.5867,16.6275],[48.5586,16.6347],[48.52,16.6235],[48.4917,16.5916],[48.4602,16.5528],[48.408,16.5355],[48.3873,16.4955],[48.357,16.4834],[48.3473,16.4899],[48.3049,16.5102],[48.2699,16.5053],[48.2621,16.4752],[48.2332,16.4542],[48.2039,16.4322],[48.18,16.4013],[48.1648,16.3861],[48.1518,16.3741],[48.1504,16.3444],[48.0832,16.3331],[48.0149,16.322],[47.9519,16.2183],[47.8771,16.2011],[47.8214,16.1885],[47.7631,16.2023],[47.701,16.1299],[47.645,16.1238],[47.6026,16.1278],[47.58,16.1104],[47.5548,16.1299],[47.5403,16.1123],[47.5156,16.0996],[47.4926,16.097],[47.4661,16.0965],[47.4362,16.1001],[47.4131,16.0793],[47.3673,16.0869],[47.3043,16.0677],[47.2734,16.0335],[47.246,15.998],[47.1865,15.9971],[47.1351,15.9868],[47.0835,15.9678],[47.0833,15.8794],[47.0999,15.7947],[47.0925,15.7267],[47.0878,15.6607],[47.0628,15.6029],[47.0614,15.5562],[47.0357,15.5089],[47.0135,15.4534],[46.9888,15.399],[46.9611,15.348],[46.9786,15.2701],[46.9606,15.2405],[46.9618,15.2188],[46.9749,15.1961],[46.9799,15.1628],[46.9894,15.1274],[46.9673,15.1101],[46.9641,15.0616],[46.969,15.0282],[46.9597,14.9667],[46.9568,14.9056],[46.9414,14.8707],[46.929,14.8425],[46.8822,14.8298],[46.8483,14.8351],[46.8096,14.8229],[46.7513,14.8153],[46.7194,14.7934],[46.701,14.768],[46.6978,14.7247],[46.6853,14.6556],[46.6734,14.5879],[46.6453,14.5562],[46.6501,14.513],[46.6382,14.4468],[46.6441,14.3984],[46.6458,14.3368],[46.6566,14.2793],[46.6328,14.2422],[46.6317,14.2056],[46.6398,14.1513],[46.633,14.1014],[46.6226,14.0461],[46.6176,13.9919],[46.623,13.9325],[46.6018,13.8867],[46.5711,13.826],[46.558,13.7516],[46.5677,13.6904],[46.5401,13.6702],[46.5355,13.6423],[46.5209,13.6206],[46.5097,13.5759],[46.5036,13.5304],[46.5069,13.4818],[46.5037,13.4451],[46.4979,13.3993],[46.5057,13.3627],[46.5127,13.3302],[46.4861,13.2946],[46.4278,13.3165],[46.401,13.2801],[46.3951,13.2214],[46.3987,13.1704],[46.3796,13.1169],[46.3618,13.0731],[46.3254,13.0614],[46.2807,13.0667],[46.2227,13.0933],[46.1801,13.1336],[46.1421,13.1744],[46.1153,13.2052],[46.0603,13.1984],[46.0242,13.2122],[45.9382,13.2655],[45.8726,13.2337],[45.8302,13.0933],[45.8085,12.9533],[45.7918,12.8239],[45.7453,12.7065],[45.6672,12.5218],[45.5751,12.3466],[45.5908,12.2517],[45.5604,12.1499],[45.5061,12.1394],[45.4712,12.1068],[45.4267,11.9792],[45.4314,11.9142],[45.4557,11.7949],[45.5103,11.6063],[45.518,11.5075],[45.4907,11.4423],[45.4535,11.3908],[45.4138,11.2916],[45.4164,11.1871],[45.4091,11.0839],[45.3974,10.9713],[45.4171,10.8485],[45.4273,10.7508],[45.4361,10.5901],[45.4632,10.4307],[45.4985,10.2633],[45.5287,10.1583],[45.5411,10.102],[45.5237,9.9802],[45.4957,9.8213],[45.4917,9.733],[45.51,9.628],[45.5088,9.5509],[45.5058,9.49],[45.5123,9.4407],[45.5097,9.4109],[45.5021,9.3404],[45.5005,9.3373],[45.4986,9.3246],[45.4989,9.3092],[45.4963,9.2891],[45.4909,9.2647],[45.4869,9.2482],[45.4861,9.2302],[45.4867,9.2171],[45.4815,9.2121],[45.4718,9.2024],[45.4694,9.192],[45.4649,9.1893]],
-        },
-        {
-          color: '#FF9500', plate: 'Daily · WA 11223', orderId: 'BKM-2843',
-          fromLabel: 'Wrocław', toLabel: 'Paryż',
-          progress: 0.45, distKm: 1290,
-          coords: [[51.1079,17.0385],[51.108,17.0299],[51.1116,17.027],[51.1084,17.0218],[51.1054,17.014],[51.0998,17.0138],[51.0921,17.0158],[51.0867,17.0122],[51.0792,17.0077],[51.0677,17.0039],[51.0597,16.9903],[51.0506,16.9739],[51.0492,16.9526],[51.0351,16.8293],[51.0234,16.7785],[51.0284,16.659],[51.0568,16.5345],[51.087,16.4175],[51.1283,16.3402],[51.1556,16.2167],[51.1758,16.0563],[51.2078,15.9942],[51.2295,15.9331],[51.2532,15.8499],[51.2861,15.7741],[51.3209,15.6598],[51.3244,15.6187],[51.3115,15.5502],[51.2852,15.477],[51.2708,15.3979],[51.2547,15.3547],[51.2174,15.262],[51.1994,15.1329],[51.1748,15.0231],[51.1881,14.9858],[51.2221,14.9161],[51.2189,14.854],[51.2034,14.7586],[51.2059,14.6734],[51.2084,14.5922],[51.2064,14.5233],[51.1958,14.4656],[51.1925,14.4175],[51.1888,14.3731],[51.2035,14.3083],[51.1998,14.2365],[51.1833,14.1675],[51.1734,14.1253],[51.1692,14.0636],[51.1543,13.9901],[51.1631,13.9247],[51.1712,13.8351],[51.1563,13.7847],[51.1138,13.7427],[51.0915,13.694],[51.0705,13.6387],[51.0607,13.526],[51.0603,13.4483],[51.0586,13.3956],[51.0464,13.3386],[51.033,13.2768],[51.0013,13.2003],[50.9914,13.1151],[50.9536,13.0686],[50.9177,13.0282],[50.9073,12.9714],[50.8818,12.9242],[50.8549,12.8593],[50.8413,12.7982],[50.8199,12.7511],[50.8132,12.6856],[50.8286,12.6081],[50.8415,12.524],[50.827,12.4729],[50.8328,12.4106],[50.8582,12.3126],[50.8712,12.2355],[50.8817,12.1564],[50.912,12.0913],[50.9053,12.0152],[50.889,11.9418],[50.8822,11.8594],[50.8695,11.7803],[50.8723,11.7307],[50.8761,11.6551],[50.8732,11.596],[50.8774,11.5251],[50.892,11.4569],[50.9188,11.4078],[50.9376,11.3522],[50.946,11.2867],[50.9483,11.1902],[50.9271,11.14],[50.9095,11.0529],[50.8944,10.9547],[50.8928,10.8955],[50.8767,10.8382],[50.8908,10.7622],[50.9021,10.687],[50.9062,10.6091],[50.9197,10.5634],[50.9417,10.4905],[50.9801,10.4825],[50.9992,10.4112],[51.017,10.356],[51.0065,10.2758],[51.0111,10.2224],[51.0078,10.1787],[51.015,10.1133],[50.9879,10.0788],[50.9578,10.0373],[50.9567,9.9993],[50.9451,9.9558],[50.9303,9.9177],[50.9134,9.8916],[50.8893,9.8442],[50.8715,9.7864],[50.8573,9.7593],[50.8534,9.7164],[50.8461,9.6648],[50.8472,9.6313],[50.8399,9.5994],[50.8368,9.5781],[50.8184,9.5612],[50.8077,9.5276],[50.7991,9.495],[50.7903,9.4639],[50.7867,9.4332],[50.7634,9.3717],[50.7567,9.3194],[50.743,9.2818],[50.7308,9.2309],[50.7118,9.1829],[50.7153,9.1316],[50.7135,9.071],[50.6848,9.0368],[50.6463,8.9982],[50.633,8.926],[50.6122,8.8363],[50.5828,8.8063],[50.5219,8.7577],[50.4628,8.7206],[50.4393,8.6948],[50.3702,8.7045],[50.3302,8.6948],[50.2796,8.6676],[50.2194,8.6632],[50.1853,8.6193],[50.1325,8.5901],[50.1062,8.6044],[50.0753,8.6152],[50.0538,8.5903],[50.0418,8.5316],[50.0186,8.4968],[49.9811,8.4646],[49.9749,8.418],[49.9816,8.3451],[49.9702,8.3087],[49.9679,8.2557],[49.9606,8.2344],[49.9254,8.1974],[49.8703,8.1628],[49.8066,8.1442],[49.7676,8.097],[49.7087,8.0654],[49.6573,8.0264],[49.6084,8.0057],[49.5815,7.9319],[49.5578,7.8871],[49.5316,7.8467],[49.4838,7.8392],[49.4619,7.8151],[49.4587,7.7724],[49.4463,7.6965],[49.4239,7.6104],[49.4194,7.5381],[49.3797,7.4174],[49.3666,7.3495],[49.3292,7.2778],[49.2918,7.2049],[49.2726,7.161],[49.2662,7.1187],[49.2457,7.0893],[49.2185,7.0727],[49.2063,7.0367],[49.2118,7.0059],[49.2111,6.9743],[49.2023,6.9498],[49.1768,6.9081],[49.1604,6.8549],[49.1346,6.7832],[49.1359,6.7253],[49.1372,6.6393],[49.1334,6.5487],[49.1405,6.4595],[49.1392,6.3838],[49.1271,6.2713],[49.1616,6.2528],[49.1993,6.2011],[49.1978,6.146],[49.1977,6.098],[49.1792,6.0434],[49.1982,5.9815],[49.1992,5.927],[49.1923,5.8531],[49.1767,5.7706],[49.1299,5.6658],[49.1212,5.5903],[49.1192,5.5412],[49.1205,5.4673],[49.1117,5.4078],[49.1123,5.3692],[49.0987,5.3049],[49.0919,5.228],[49.091,5.149],[49.0965,5.07],[49.0912,5.0084],[49.0765,4.9183],[49.0755,4.8371],[49.0693,4.743],[49.0371,4.6241],[49.0269,4.5118],[49.0352,4.4129],[49.0417,4.3272],[49.0868,4.2603],[49.1338,4.2218],[49.1969,4.1199],[49.2086,4.0378],[49.2239,3.9728],[49.2478,3.9414],[49.2344,3.8606],[49.2081,3.7766],[49.1569,3.7191],[49.1399,3.6218],[49.1253,3.5315],[49.1005,3.4493],[49.0778,3.3709],[49.0525,3.3148],[49.0402,3.2404],[49.0314,3.1735],[49.0056,3.1375],[48.9718,3.0645],[48.9446,3.037],[48.9139,2.9746],[48.8975,2.9145],[48.8673,2.8532],[48.8337,2.797],[48.8323,2.654],[48.8351,2.578],[48.8267,2.5161],[48.822,2.4623],[48.8184,2.4101],[48.8443,2.3693],[48.8515,2.362],[48.8572,2.3523]],
-        },
-      ];
-
-      var allBounds = L.latLngBounds([]);
-
-      // Pills placed touching the bus icon (icon is 28×28 → ±14 from center).
-      // Each in a unique direction so they never overlap on a zoomed-out map.
-      var pillPlacements = [
-        { dx:  14, dy: -42 },  // Warszawa→Berlin: up-right corner (away from Berlin label on the west)
-        { dx:  14, dy:  14 },  // Kraków→Mediolan: down-right corner, touching icon bottom
-        { dx: -14, dy:  14 },  // Wrocław→Paryż: down-left corner, touching icon bottom
-      ];
-      // City labels close to dots, all three PL origins on the RIGHT side
-      // (vertically separated by latitude — Warszawa highest, Wrocław middle, Kraków lowest).
-      var cityPlacements = [
-        // Warszawa (origin): right. Berlin (dest): up-left (above route, Sprinter pill now placed on the east side of the bus).
-        { from: { dx: 10, dy: -3 }, to: { dx: -10, dy: -20 } },
-        // Kraków (origin): right. Mediolan (dest): down, touching the dot.
-        { from: { dx: 10, dy: -3 }, to: { dx: -10, dy: 6 } },
-        // Wrocław (origin): right (same side as Warszawa/Kraków). Paryż (dest): left (west, into Atlantic empty space).
-        { from: { dx: 10, dy: -3 }, to: { dx: -10, dy: -3 } },
-      ];
-
-      routes.forEach(function(r, idx) {
-        var n = r.coords.length;
-        var driverIdx = Math.max(1, Math.min(n - 2, Math.floor(n * r.progress)));
-        var fromCoord = r.coords[0];
-        var toCoord = r.coords[n - 1];
-        var driverCoord = r.coords[driverIdx];
-
-        // 1) Soft halo behind the route — adds depth, stronger than before
-        L.polyline(r.coords, {
-          color: r.color, weight: 11, opacity: 0.12, lineCap: 'round', lineJoin: 'round',
-        }).addTo(map);
-
-        // 2) Completed segment — bold and saturated, easy to follow
-        L.polyline(r.coords.slice(0, driverIdx + 1), {
-          color: r.color, weight: 4, opacity: 1, lineCap: 'round', lineJoin: 'round',
-        }).addTo(map);
-
-        // 3) Remaining segment — dashed, dimmed but clearly visible
-        L.polyline(r.coords.slice(driverIdx), {
-          color: r.color, weight: 3, opacity: 0.55, dashArray: '6 7', lineCap: 'round', lineJoin: 'round',
-        }).addTo(map);
-
-        // 4) Origin endpoint — large filled dot with double white ring
-        L.marker(fromCoord, {
-          icon: L.divIcon({
-            className: '',
-            html: '<div class="route-endpoint route-endpoint-origin" style="background:' + r.color + ';"></div>',
-            iconSize: [16, 16], iconAnchor: [8, 8],
-          }),
-          interactive: false,
-          zIndexOffset: 500,
-        }).addTo(map);
-
-        // 5) Destination endpoint — checkered/ring marker, colored
-        L.marker(toCoord, {
-          icon: L.divIcon({
-            className: '',
-            html:
-              '<div class="route-endpoint route-endpoint-dest" style="border-color:' + r.color + ';">' +
-                '<span style="background:' + r.color + ';"></span>' +
-              '</div>',
-            iconSize: [18, 18], iconAnchor: [9, 9],
-          }),
-          interactive: false,
-          zIndexOffset: 500,
-        }).addTo(map);
-
-        // 6) City labels — placed AWAY from route line so they never cover it
-        var fromPlace = cityPlacements[idx].from;
-        var toPlace = cityPlacements[idx].to;
-
-        L.marker(fromCoord, {
-          icon: L.divIcon({
-            className: '',
-            html: '<div class="city-label" style="transform: translate(' +
-              (fromPlace.dx >= 0 ? fromPlace.dx + 'px' : 'calc(-100% + ' + fromPlace.dx + 'px)') +
-              ', ' + fromPlace.dy + 'px);">' + r.fromLabel + '</div>',
-            iconSize: [0, 0], iconAnchor: [0, 0],
-          }),
-          interactive: false,
-          zIndexOffset: 600,
-        }).addTo(map);
-
-        L.marker(toCoord, {
-          icon: L.divIcon({
-            className: '',
-            html: '<div class="city-label" style="transform: translate(' +
-              (toPlace.dx >= 0 ? toPlace.dx + 'px' : 'calc(-100% + ' + toPlace.dx + 'px)') +
-              ', ' + toPlace.dy + 'px);">' + r.toLabel + '</div>',
-            iconSize: [0, 0], iconAnchor: [0, 0],
-          }),
-          interactive: false,
-          zIndexOffset: 600,
-        }).addTo(map);
-
-        // 7) Driver — bus icon directly on route + pill (plate) offset to the side
-        var busIconHtml =
-          '<div class="bus-icon-wrap">' +
-            '<span class="bus-icon-pulse" style="background:' + r.color + ';"></span>' +
-            '<div class="bus-icon" style="background:' + r.color + ';">' +
-              '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-                '<path d="M3 6h15a3 3 0 013 3v8h-2"/>' +
-                '<path d="M3 6v11h2"/>' +
-                '<path d="M9 17h6"/>' +
-                '<circle cx="7" cy="17.5" r="2"/>' +
-                '<circle cx="17" cy="17.5" r="2"/>' +
-                '<path d="M3 12h15"/>' +
-                '<path d="M7 6V4"/>' +
-              '</svg>' +
-            '</div>' +
-          '</div>';
-
-        L.marker(driverCoord, {
-          icon: L.divIcon({
-            className: '',
-            html: busIconHtml,
-            iconSize: [28, 28], iconAnchor: [14, 14],
-          }),
-          interactive: false,
-          zIndexOffset: 1000,
-        }).addTo(map);
-
-        // 8) Plate pill — separate marker, offset away from route
-        var pillPlace = pillPlacements[idx];
-        var pillHtml =
-          '<div class="bus-pill" style="border-color:' + r.color + '; transform: translate(' +
-          (pillPlace.dx >= 0 ? pillPlace.dx + 'px' : 'calc(-100% + ' + pillPlace.dx + 'px)') +
-          ', ' + pillPlace.dy + 'px);">' +
-            '<span class="bus-pill-dot" style="background:' + r.color + ';"></span>' +
-            '<span class="bus-pill-text">' +
-              '<span class="bus-pill-order">' + r.orderId + '</span>' +
-              '<span class="bus-pill-plate">' + r.plate + '</span>' +
-            '</span>' +
-          '</div>';
-
-        L.marker(driverCoord, {
-          icon: L.divIcon({
-            className: '',
-            html: pillHtml,
-            iconSize: [0, 0], iconAnchor: [0, 0],
-          }),
-          interactive: false,
-          zIndexOffset: 1100,
-        }).addTo(map);
-
-        r.coords.forEach(function(c) { allBounds.extend(c); });
-      });
-
-      // Fit map to all routes — responsive padding so labels never get clipped.
-      function refit() {
-        var w = el.clientWidth || 600;
-        var padTop    = w < 500 ? 35 : 90;
-        var padBottom = w < 500 ? 35 : 70;
-        var padSide   = w < 500 ? 60 : 110;
-        map.invalidateSize();
-        map.fitBounds(allBounds, {
-          paddingTopLeft: [padSide, padTop],
-          paddingBottomRight: [padSide, padBottom],
-          maxZoom: w < 500 ? 5 : 6,
-          animate: false,
-        });
-      }
-      refit();
-      var resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(refit, 150);
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroMap);
-    } else {
-      initHeroMap();
-    }
-  </script>
+    <p class="text-center mt-8 text-[13px] text-text-tertiary reveal">
+      Przełącznik trybu w nagłówku każdej strony — wybór zapisywany lokalnie. Automatycznie szanuje preferencję systemową urządzenia.
+    </p>
+  </div>
 </section>
 
 <!-- ======================== APP PREVIEW — DWIE APLIKACJE ======================== -->
@@ -744,14 +410,14 @@ const homeFaq = [
       </div>
     </div>
 
-    <!-- CTA scroll to Pod maską -->
+    <!-- CTA scroll to Status produktu -->
     <div class="text-center reveal">
-      <a href="#pod-maska" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand text-white text-[14px] font-semibold tracking-[-0.005em] hover:bg-brand-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]">
-        Zobacz jak adresujemy te 4 problemy
+      <a href="#status-produktu" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand text-white text-[14px] font-semibold tracking-[-0.005em] hover:bg-brand-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]">
+        Zobacz jak adresujemy te cztery problemy
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <p class="mt-4 text-[12px] text-text-tertiary">
-        Pięć autorskich komponentów badawczo-rozwojowych pod regulacje UE
+        Jedna platforma dla transportu, księgowości i biur rachunkowych
       </p>
     </div>
   </div>
@@ -1024,201 +690,66 @@ const homeFaq = [
   </div>
 </section>
 
-<!-- ======================== POD MASKĄ — TECHNOLOGIA / B+R (BKM-550 deep TRL) ======================== -->
-<section id="pod-maska" class="relative bg-[#0F1115] py-24 sm:py-32 px-5 overflow-hidden border-y border-white/5">
+<!-- ======================== STATUS PRODUKTU + PROGRAM B+R ======================== -->
+<section id="status-produktu" class="relative bg-[#0F1115] py-24 sm:py-32 px-5 overflow-hidden border-y border-white/5">
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-[-15%] left-1/4 w-[700px] h-[500px] rounded-full bg-[#005CE8]/[0.08] blur-[160px]"></div>
     <div class="absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-[#34C759]/[0.05] blur-[140px]"></div>
   </div>
 
-  <div class="relative max-w-[1180px] mx-auto">
+  <div class="relative max-w-[1100px] mx-auto">
     <div class="text-center mb-14 reveal">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#3380FF] mb-4">Pod maską · prace badawczo-rozwojowe</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#3380FF] mb-4">Status produktu</p>
       <h2 class="font-display text-[clamp(1.9rem,4.2vw,2.8rem)] font-bold tracking-[-0.03em] text-white leading-[1.12] max-w-[860px] mx-auto mb-5">
-        BusiKM nie jest standardową aplikacją do zarządzania flotą.
+        Pięć faz wdrożenia za nami. MVP LIVE 30 maja 2026.
       </h2>
-      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[820px] mx-auto mb-10">
-        Pięć autorskich komponentów badawczo-rozwojowych — od parsera binarnego formatu tachografu po model uczenia maszynowego z naturalnojęzykową wyjaśnialnością decyzji.
-        Każdy komponent ma określony <strong class="text-white/85">Technology Readiness Level (TRL)</strong> według skali Komisji Europejskiej i&nbsp;jasno rozdziela <strong class="text-white/85">co już mamy w&nbsp;MVP</strong> od <strong class="text-white/85">co aktualnie badamy / prototypujemy</strong>.
+      <p class="text-[15.5px] text-white/65 leading-relaxed max-w-[820px] mx-auto">
+        Pełny produkt na trzy platformy: backend, panel webowy, aplikacja mobilna iOS i Android. Trzy integracje z systemami księgowymi gotowe od pierwszego dnia. Pełna zgodność z czasem pracy AETR, Pakietem Mobilności i tachografem G2V2.
       </p>
+    </div>
 
-      <!-- Credibility strip — co już zbudowaliśmy -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-4 rounded-[16px] bg-surface/[0.04] border border-white/[0.06]">
-        <div class="flex items-center gap-2.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse"></span>
-          <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">26 sprintów ukończonych</p>
+    <!-- Stats wall -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 mb-16 reveal-stagger">
+      <article class="bg-[#16191F] rounded-[20px] p-6 border border-white/5 text-center">
+        <p class="font-display text-[36px] sm:text-[42px] font-bold text-white leading-none mb-2">5/7</p>
+        <p class="text-[12px] text-white/65 leading-snug">faz wdrożenia gotowych — fundament, panel webowy, aplikacja mobilna, wydanie produkcyjne, post-MVP H2 2026</p>
+      </article>
+      <article class="bg-[#16191F] rounded-[20px] p-6 border border-white/5 text-center">
+        <p class="font-display text-[36px] sm:text-[42px] font-bold text-[#3380FF] leading-none mb-2">3</p>
+        <p class="text-[12px] text-white/65 leading-snug">integracje z systemami księgowymi — Insert GT, Comarch ERP Optima, Symfonia FK + KSeF</p>
+      </article>
+      <article class="bg-[#16191F] rounded-[20px] p-6 border border-white/5 text-center">
+        <p class="font-display text-[36px] sm:text-[42px] font-bold text-[#34C759] leading-none mb-2">30 maj</p>
+        <p class="text-[12px] text-white/65 leading-snug">MVP LIVE 2026 — produkcja, monitoring 24/7, audyt bezpieczeństwa, pilotaż dożywotnio gratis</p>
+      </article>
+      <article class="bg-[#16191F] rounded-[20px] p-6 border border-white/5 text-center">
+        <p class="font-display text-[36px] sm:text-[42px] font-bold text-[#FF9500] leading-none mb-2">100%</p>
+        <p class="text-[12px] text-white/65 leading-snug">RODO + ISO 27001 ready — multi-tenant izolacja danych, dziennik audytowy, hosting w UE</p>
+      </article>
+    </div>
+
+    <!-- Program B+R — krótka informacja -->
+    <div class="reveal">
+      <div class="rounded-[24px] bg-[#16191F] border border-white/5 p-7 sm:p-10">
+        <div class="flex flex-col sm:flex-row items-start gap-6">
+          <div class="w-12 h-12 rounded-[14px] bg-[#005CE8]/[0.15] flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-[11px] font-bold uppercase tracking-[0.12em] text-[#3380FF] mb-2">Program badawczo-rozwojowy 2027–2028</p>
+            <h3 class="font-display text-[1.5rem] sm:text-[1.75rem] font-bold text-white tracking-[-0.02em] leading-tight mb-3">
+              Pięć projektów badawczo-rozwojowych finansowanych ze środków UE
+            </h3>
+            <p class="text-[14.5px] text-white/65 leading-relaxed mb-5">
+              Po wdrożeniu MVP w 2026 rozpoczynamy dwuletni program prac badawczo-rozwojowych w obszarze technologii transportu drogowego, finansowany z funduszy europejskich. Cel: rozszerzenie platformy o autorskie technologie i scale-out na rynki Czech, Słowacji i Niemiec. Szczegóły techniczne objęte tajemnicą przedsiębiorstwa do zakończenia projektów.
+            </p>
+            <a href="/technologia" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface/[0.06] hover:bg-surface/[0.10] border border-white/10 text-white/85 text-[13px] font-semibold transition-colors">
+              Stack technologiczny i standardy zgodności
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
-        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">218 ticketów Done</p>
-        <div class="hidden sm:block w-px h-3 bg-surface/15"></div>
-        <p class="text-[12.5px] font-medium text-white/80 tracking-[0.01em]">MVP LIVE 30 maja 2026</p>
       </div>
-    </div>
-
-    <!-- TRL legend strip -->
-    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10 text-[11px] font-semibold tracking-[0.04em] uppercase text-white/55">
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#FF9500]"></span>TRL 1–2 — koncepcja / w&nbsp;planach</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#FF9500]"></span>TRL 3–5 — prototyp / walidacja</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#3380FF]"></span>TRL 6–7 — integracja</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#34C759]"></span>TRL 8–9 — produkcja</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger">
-
-      <!-- 1. Parser DDD — TRL 1 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center justify-between mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.15] text-[#3380FF] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja krajowa</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 1
-          </span>
-        </div>
-        <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#3380FF]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Parser binarny pliku DDD</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
-          Autorska implementacja w&nbsp;Pythonie odczytująca surowy plik DDD z&nbsp;tachografu G2V2 — zgodna z&nbsp;<strong class="text-white/85">Rozporządzeniem Komisji (UE) 2016/799 Annex&nbsp;I</strong>. Na rynku UE nie istnieje gotowa biblioteka odczytu DDD w&nbsp;Pythonie pod kątem busów 2,5–3,5&nbsp;t.
-        </p>
-        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
-          <p class="text-white/45"><span class="text-[#34C759]">●</span> Co badamy: parsowanie zdarzeń bloku, walidacja sygnatur certyfikatów</p>
-          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: raport 56 dni dla ITD jednym kliknięciem</p>
-        </div>
-      </article>
-
-      <!-- 2. Bluetooth ITS G2V2 — TRL 1 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center justify-between mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-[#34C759]/[0.15] text-[#34C759] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja europejska</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 1
-          </span>
-        </div>
-        <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 7L7 17"/><path d="M12 2v8M12 14v8"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Bluetooth ITS — komunikacja z&nbsp;tachografem</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
-          Biblioteka React Native łącząca się z&nbsp;tachografem G2V2 przez interfejs <strong class="text-white/85">Bluetooth ITS (Intelligent Transport System)</strong> opisany w&nbsp;Rozporządzeniu 2016/799. Funkcjonalność, której brakuje w&nbsp;istniejących aplikacjach na rynku europejskim — pobranie pliku DDD bez kabla i&nbsp;wizyty w&nbsp;warsztacie.
-        </p>
-        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
-          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Co badamy: protokół wymiany certyfikatów + handshake</p>
-          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: pobranie danych tachografu zdalnie w&nbsp;30 sekund</p>
-        </div>
-      </article>
-
-      <!-- 3. Detekcja granic GPS — TRL 2 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center justify-between mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.15] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">Algorytm geoprzestrzenny</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 2
-          </span>
-        </div>
-        <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Detekcja przekroczenia granic UE</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
-          Algorytm <em>point-in-polygon</em> operujący na warstwie GeoJSON granic 27 państw UE (Shapely). Klasyfikuje każdy odczyt GPS busa do konkretnego kraju w&nbsp;czasie rzeczywistym — <strong class="text-white/85">bez zewnętrznego API</strong>, bez zależności od sieci komórkowej. Wejście dla silnika diet.
-        </p>
-        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
-          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Walidacja w&nbsp;laboratorium: trasy referencyjne PL→DE/IT/FR</p>
-          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: dni pobytu kierowcy per kraj — auto-rozliczane</p>
-        </div>
-      </article>
-
-      <!-- 4. Silnik kalkulacji diet — TRL 2 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center justify-between mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-[#8B5CF6]/[0.15] text-[#A78BFA] text-[10.5px] font-bold tracking-[0.06em] uppercase">Innowacja procesowa</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 2
-          </span>
-        </div>
-        <div class="w-11 h-11 rounded-[14px] bg-[#8B5CF6]/[0.10] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#A78BFA]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Silnik kalkulacji diet zagranicznych</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
-          Reguły z&nbsp;<strong class="text-white/85">Rozporządzenia MPiPS z&nbsp;29.01.2013 r. (Dz.U. 2013 poz. 167, Załącznik nr&nbsp;2)</strong> przełożone na deterministyczny silnik produkcyjny. Łączy wynik point-in-polygon z&nbsp;tabelą stawek per kraj per dzień. Pierwsza integracja GPS↔diety w&nbsp;segmencie busów 2,5–3,5&nbsp;t.
-        </p>
-        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
-          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Co badamy: edge cases podziału doby między 2 krajami</p>
-          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: rozliczenie kierowcy w&nbsp;5&nbsp;min zamiast pół dnia</p>
-        </div>
-      </article>
-
-      <!-- 5. Model ML anomalii spalania — TRL 1 -->
-      <article class="bg-[#16191F] rounded-[20px] p-7 border border-white/5 hover:border-[#FF9500]/30 transition-colors duration-300 flex flex-col">
-        <div class="flex items-center justify-between mb-5">
-          <span class="px-2.5 py-1 rounded-full bg-[#FF3B30]/[0.15] text-[#FF6B5C] text-[10.5px] font-bold tracking-[0.06em] uppercase">Uczenie maszynowe · XAI</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF9500]/[0.12] text-[#FF9500] text-[10.5px] font-bold tracking-[0.06em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FF9500]"></span>TRL 1
-          </span>
-        </div>
-        <div class="w-11 h-11 rounded-[14px] bg-[#FF3B30]/[0.10] flex items-center justify-center mb-5">
-          <svg class="w-5 h-5 text-[#FF6B5C]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
-        </div>
-        <h3 class="font-display font-bold text-[1.15rem] text-white mb-2 leading-tight">Detekcja anomalii spalania paliwa</h3>
-        <p class="text-[13.5px] text-white/65 leading-relaxed mb-4 flex-1">
-          Model regresji wielowymiarowej trenowany na cechach: dystans, ukształtowanie terenu, ładunek, prędkość średnia, kierowca, pora roku. Element <strong class="text-white/85">XAI (eXplainable AI)</strong> generuje naturalnojęzykowe wyjaśnienie każdej detekcji — np. „spalanie 13,8&nbsp;l/100&nbsp;km przekracza średnią o&nbsp;18% — możliwe przyczyny: wyciek, jazda agresywna, kradzież paliwa".
-        </p>
-        <div class="mt-auto pt-4 border-t border-white/[0.06] space-y-1.5 text-[11.5px]">
-          <p class="text-white/45"><span class="text-[#FF9500]">●</span> Co badamy: feature engineering + threshold tuning &gt;15%</p>
-          <p class="text-white/45"><span class="text-[#3380FF]">●</span> Cel KPI: wykrycie kradzieży paliwa w&nbsp;pierwszym tygodniu</p>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- ============ METODOLOGIA R&D (5 kroków) ============ -->
-    <div class="mt-20 reveal">
-      <div class="text-center mb-10">
-        <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#3380FF] mb-3">Metodologia R&D</p>
-        <h3 class="font-display text-[24px] sm:text-[30px] font-bold tracking-[-0.02em] text-white leading-tight max-w-[680px] mx-auto">
-          Pięć kroków: od hipotezy do produkcji
-        </h3>
-      </div>
-
-      <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 reveal-stagger">
-        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
-          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#3380FF]/40 leading-none">01</span>
-          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#3380FF] mb-2">Hipoteza</p>
-          <p class="text-[12.5px] leading-[1.55] text-white/65">Definiowanie problemu, celu badawczego i&nbsp;mierzalnych KPI sukcesu.</p>
-        </li>
-        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
-          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#FF9500]/40 leading-none">02</span>
-          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Prototyp</p>
-          <p class="text-[12.5px] leading-[1.55] text-white/65">Minimalna implementacja walidująca koncept — przejście TRL 3 → 4.</p>
-        </li>
-        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
-          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#FF9500]/40 leading-none">03</span>
-          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Walidacja</p>
-          <p class="text-[12.5px] leading-[1.55] text-white/65">Testy na realnych danych w&nbsp;sprintach pilotażowych — TRL 5.</p>
-        </li>
-        <li class="relative p-5 rounded-2xl bg-surface/[0.03] border border-white/[0.06]">
-          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#3380FF]/40 leading-none">04</span>
-          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#3380FF] mb-2">Integracja</p>
-          <p class="text-[12.5px] leading-[1.55] text-white/65">Embed komponentu w&nbsp;produktową architekturę — TRL 6–7.</p>
-        </li>
-        <li class="relative p-5 rounded-2xl bg-[#34C759]/[0.04] border border-[#34C759]/15">
-          <span class="absolute top-3 right-3 font-display text-[18px] font-bold text-[#34C759]/50 leading-none">05</span>
-          <p class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#34C759] mb-2">Produkcja</p>
-          <p class="text-[12.5px] leading-[1.55] text-white/65">Release jako część MVP, monitoring na realnym ruchu — TRL 8–9.</p>
-        </li>
-      </ol>
-    </div>
-
-    <!-- Footer disclaimer + 3 programy grantowe -->
-    <div class="text-center mt-16 reveal">
-      <p class="text-[13.5px] text-white/55 max-w-[840px] mx-auto leading-relaxed">
-        Komponenty badawczo-rozwojowe BusiKM zostały opracowane w&nbsp;ramach prac własnych zespołu i&nbsp;nie są dostępne jako gotowe produkty na rynku UE. Stanowią podstawę aplikacji o&nbsp;granty: <strong class="text-white/80">FENG Ścieżka SMART</strong> (NCBR), <strong class="text-white/80">EIC Accelerator</strong> (European Innovation Council), <strong class="text-white/80">Horizon Europe</strong> (Climate, Energy &amp; Mobility).
-      </p>
-      <a href="/technologia" class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-surface/[0.06] hover:bg-surface/[0.10] border border-white/10 text-white/85 text-[13px] font-semibold transition-colors">
-        Czytaj szczegółową dokumentację R&D
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
     </div>
   </div>
 </section>
@@ -1278,85 +809,6 @@ const homeFaq = [
     <p class="text-center text-[13px] text-text-tertiary mt-10 max-w-[640px] mx-auto">
       Eksport delegacji pracowniczych do trzech systemów księgowych oraz integracja z Krajowym Systemem e-Faktur — w fazie post-MVP.
     </p>
-  </div>
-</section>
-
-<!-- ======================== PODSTAWA PRAWNA ======================== -->
-<section id="podstawa-prawna" class="bg-surface py-20 sm:py-28 px-5">
-  <div class="max-w-[1100px] mx-auto">
-    <div class="text-center mb-14 reveal">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Podstawa prawna</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] max-w-[820px] mx-auto mb-4">
-        Sześć regulacji, które BusiKM obsługuje za Ciebie.
-      </h2>
-      <p class="text-[15px] text-text-secondary max-w-[700px] mx-auto leading-relaxed">
-        Transport międzynarodowy busami 2,5–3,5 t to gęsta siatka przepisów polskich i unijnych. Każde rozporządzenie wymienione poniżej ma w BusiKM konkretną funkcję — od parsera danych tachografu po silnik kalkulacji diet kierowcy.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-stagger">
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Rozporządzenie Komisji (UE) 2016/799</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Specyfikacja tachografów cyfrowych drugiej generacji (G2V2), format pliku DDD, protokół Bluetooth ITS.</p>
-        <p class="text-[12px] font-semibold text-[#005CE8]">→ Parser DDD, biblioteka BT ITS, raport 56 dni dla ITD</p>
-      </article>
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Pakiet mobilności UE (2020/1054, 2020/1055)</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Obowiązek tachografu G2V2 w pojazdach 2,5–3,5&nbsp;t w transporcie międzynarodowym od 2 lipca 2026, regularne powroty kierowcy do bazy, zakaz odpoczynku w kabinie.</p>
-        <p class="text-[12px] font-semibold text-[#FF9500]">→ Compliance dashboard, alerty terminów legalizacji, monitoring pakietu mobilności</p>
-      </article>
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#FF9500]/[0.10] text-[#FF9500] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Umowa AETR (czas pracy kierowcy)</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Maksymalny czas jazdy ciągłej 4,5 h, dziennej 9 h, tygodniowej 56 h, dwutygodniowej 90 h, przerwa dzienna 11 h, tygodniowy odpoczynek 45 h.</p>
-        <p class="text-[12px] font-semibold text-[#FF9500]">→ Alerty AETR przed naruszeniem limitów, ewidencja czasu pracy w aplikacji kierowcy</p>
-      </article>
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#8B5CF6]/[0.10] text-[#8B5CF6] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Rozp. MPiPS z 29.01.2013 (Dz.U. 2013 poz. 167)</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Należności pracownika z tytułu podróży służbowej. Załącznik nr 2 — stawki diet zagranicznych per kraj per dzień (np. Niemcy 49 EUR, Włochy 53 EUR, Francja 50 EUR).</p>
-        <p class="text-[12px] font-semibold text-[#8B5CF6]">→ Silnik kalkulacji diet zagranicznych z GPS, gotowe rozliczenie kierowcy</p>
-      </article>
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#34C759]/[0.10] text-[#34C759] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">UE</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Dyrektywa 2008/9/WE (VAT-REF)</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Procedura zwrotu VAT od kosztów poniesionych w innych państwach członkowskich UE — paliwo, Maut, hotele, naprawy busa za granicą.</p>
-        <p class="text-[12px] font-semibold text-[#34C759]">→ VAT-REF — paczka roczna faktur z UE gotowa do wniosku o zwrot</p>
-      </article>
-
-      <article class="bg-surface-2 rounded-[18px] p-6 hover:bg-surface hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-        <div class="flex items-start gap-3 mb-3">
-          <span class="px-2 py-0.5 rounded-md bg-[#005CE8]/[0.10] text-[#005CE8] text-[10px] font-bold tracking-[0.06em] uppercase shrink-0 mt-0.5">PL</span>
-          <h3 class="font-display font-bold text-[1rem] text-text leading-snug">Krajowy System e-Faktur (KSeF)</h3>
-        </div>
-        <p class="text-[13px] text-text-secondary leading-relaxed mb-2">Obowiązkowy państwowy system e-faktur dla wszystkich podatników VAT. Zakres: tylko polscy wystawcy — faktury z DE, FR, IT, AT pozostają poza KSeF.</p>
-        <p class="text-[12px] font-semibold text-[#005CE8]">→ Auto-import faktur PL z KSeF, ścieżka osobna dla faktur UE (post-MVP)</p>
-      </article>
-
-    </div>
-
-    <div class="text-center mt-12 reveal">
-      <p class="text-[13.5px] text-text-secondary max-w-[680px] mx-auto leading-relaxed">
-        BusiKM nie jest narzędziem ogólnym dostosowanym do transportu — został zaprojektowany od zera dla firm wykonujących przewozy międzynarodowe busami 2,5–3,5&nbsp;t i regulacji ich obejmujących.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -1439,16 +891,16 @@ const homeFaq = [
   </div>
 </section>
 
-<!-- ======================== POST-MVP TEASER ======================== -->
+<!-- ======================== TRZY FILARY MVP ======================== -->
 <section class="bg-surface-2 py-20 sm:py-28 px-5 border-t border-gray-100">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-12 reveal">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#FF9500] mb-4">Roadmap nie kończy się na MVP</p>
+      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#34C759] mb-4">W MVP — od pierwszego dnia</p>
       <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
-        Sześć funkcji, które zmieniają BusiKM w pełen system.
+        Trzy funkcje, które robią największą różnicę.
       </h2>
       <p class="text-[15px] text-text-secondary max-w-[680px] mx-auto leading-relaxed">
-        MVP to fundament. Po wdrożeniu produkcyjnym ruszają funkcje zmieniające BusiKM z ewidencji w pełen system zarządzania transportem międzynarodowym.
+        Wszystkie trzy są częścią MVP — gotowe od 30 maja 2026. Tachograf G2V2 spełnia wymóg Pakietu Mobilności (deadline 2 lipca 2026), VAT-REF odzyskuje pieniądze z UE, marża per zlecenie pokazuje, które kursy faktycznie zarabiają.
       </p>
     </div>
 
@@ -1459,7 +911,7 @@ const homeFaq = [
         <div class="w-11 h-11 rounded-[14px] bg-[#FF9500]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#FF9500]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">Deadline 2 lipca 2026</p>
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#FF9500] mb-2">W MVP · deadline 2 lipca 2026</p>
         <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">Tachograf G2V2 i kontrola ITD</h3>
         <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Monitoring legalizacji tachografów, AETR, terminy uprawnień. Jeden ekran zamiast Excela. Uniknięcie kar do 10 000 zł.</p>
         <span class="text-[12.5px] font-semibold text-[#FF9500] group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1.5 mt-4">
@@ -1473,7 +925,7 @@ const homeFaq = [
         <div class="w-11 h-11 rounded-[14px] bg-[#34C759]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#34C759]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         </div>
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759] mb-2">Wkrótce po MVP</p>
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#34C759] mb-2">W MVP</p>
         <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">VAT-REF z paliwa, Mautu, promów</h3>
         <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Faktury z DE, FR, IT, AT — automatyczne przeliczenie na PLN po kursie NBP, gotowy raport do zwrotu VAT z UE. Tysiące zł rocznie zamiast w gubionych paragonach.</p>
       </div>
@@ -1483,7 +935,7 @@ const homeFaq = [
         <div class="w-11 h-11 rounded-[14px] bg-[#005CE8]/[0.10] flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-[#005CE8]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
         </div>
-        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8] mb-2">Wkrótce po MVP</p>
+        <p class="text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#005CE8] mb-2">W MVP</p>
         <h3 class="font-display font-bold text-[1.1rem] text-text mb-2 leading-tight">Marża per zlecenie</h3>
         <p class="text-[13.5px] text-text-secondary leading-relaxed flex-1">Zlecenie + pojazd + trasa GPS + wszystkie koszty (paliwo, Maut, hotele) = realna marża na każdym kursie. Wiesz, które zlecenia odrzucić.</p>
       </div>
@@ -1491,46 +943,7 @@ const homeFaq = [
     </div>
 
     <div class="text-center reveal">
-      <a href="/roadmapa#po-mvp" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D1D1F] text-white text-[14px] font-semibold hover:bg-[#005CE8] transition-all">
-        Zobacz wszystkie 6 funkcji po MVP
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== STATUS PRODUKTU ======================== -->
-<section class="bg-surface py-20 sm:py-28 px-5">
-  <div class="max-w-[1000px] mx-auto">
-    <div class="text-center mb-12 reveal">
-      <p class="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#005CE8] mb-4">Stan produktu</p>
-      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold tracking-[-0.03em] text-text leading-[1.15] mb-4">
-        Dwadzieścia sześć sprintów za nami. MVP LIVE 30 maja.
-      </h2>
-      <p class="text-[15px] text-text-secondary max-w-[640px] mx-auto leading-relaxed">
-        Fundament aplikacji jest gotowy: kierowca, pojazd, trasa GPS, dokumenty, eksport FK, alerty, hurtowe rozliczenia per aktywny pojazd, plan indywidualny dla większych flot. Trwają prace nad mapą real-time, panelem właściciela, aplikacją mobilną i wdrożeniem produkcyjnym.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 reveal-stagger">
-      {[
-        { num: '218', label: 'ukończonych ticketów', color: '#34C759' },
-        { num: '26/35', label: 'sprintów gotowych', color: '#005CE8' },
-        { num: '3', label: 'integracje FK', color: '#FF9500' },
-        { num: '30 maj', label: 'MVP LIVE 2026', color: '#3380FF', highlight: true },
-      ].map(s => (
-        <div class:list={[
-          'p-6 rounded-[20px] text-center',
-          s.highlight ? 'bg-brand/8 border border-brand/20' : 'bg-surface-2',
-        ]}>
-          <p class="font-display font-bold text-[2rem] tracking-[-0.03em] mb-1" style={`color: ${s.color}`}>{s.num}</p>
-          <p class:list={['text-[12.5px]', s.highlight ? 'text-brand font-semibold' : 'text-text-secondary']} set:html={s.label}></p>
-        </div>
-      ))}
-    </div>
-
-    <div class="text-center reveal">
-      <a href="/roadmapa" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-text text-[14px] font-semibold hover:bg-surface-2 transition-all">
+      <a href="/roadmapa" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D1D1F] text-white text-[14px] font-semibold hover:bg-[#005CE8] transition-all">
         Zobacz pełny plan rozwoju
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
