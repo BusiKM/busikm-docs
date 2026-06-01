@@ -8,30 +8,30 @@ const featureGroups = [
     color: '#005CE8',
     icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>',
     features: [
-      { name: 'Lokalizacja GPS w tle (iOS + Android) — bez ręcznego startu', tag: 'MVP' },
-      { name: 'Tryb offline — pełna praca bez zasięgu, sync po powrocie', tag: 'MVP' },
-      { name: 'OCR paragonów — PL, EN, DE, IT, FR, ES', tag: 'MVP' },
-      { name: 'Klasyfikacja kosztów: paliwo, Maut, hotel, posiłek, opłaty drogowe', tag: 'MVP' },
-      { name: 'Zdjęcia liczników, dokumentów, CMR i protokołów', tag: 'MVP' },
-      { name: 'Alerty czasu pracy AETR — przed naruszeniem (4,5h / 9h / 11h)', tag: 'MVP' },
-      { name: 'Powiadomienia push + e-mail dla kierowcy i właściciela', tag: 'MVP' },
-      { name: 'Sześć języków interfejsu — kierowca z UA, RO, BY rozumie wszystko', tag: 'MVP' },
+      { name: 'Lokalizacja GPS w tle (iOS + Android) — bez ręcznego startu', tag: 'Od startu' },
+      { name: 'Tryb offline — pełna praca bez zasięgu, sync po powrocie', tag: 'Od startu' },
+      { name: 'OCR paragonów — PL, EN, DE, IT, FR, ES', tag: 'Od startu' },
+      { name: 'Klasyfikacja kosztów: paliwo, Maut, hotel, posiłek, opłaty drogowe', tag: 'Od startu' },
+      { name: 'Zdjęcia liczników, dokumentów, CMR i protokołów', tag: 'Od startu' },
+      { name: 'Alerty czasu pracy AETR — przed naruszeniem (4,5h / 9h / 11h)', tag: 'Od startu' },
+      { name: 'Powiadomienia push + e-mail dla kierowcy i właściciela', tag: 'Od startu' },
+      { name: 'Sześć języków interfejsu — kierowca z UA, RO, BY rozumie wszystko', tag: 'Od startu' },
     ],
   },
   {
     title: 'Panel właściciela floty',
-    subtitle: 'Pojazdy, kierowcy, zlecenia i koszty na jednym ekranie. Real-time mapa po MVP.',
+    subtitle: 'Pojazdy, kierowcy, zlecenia i koszty na jednym ekranie. Mapa floty w czasie rzeczywistym w kolejnej fali rozwoju.',
     color: '#34C759',
     icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>',
     features: [
-      { name: 'Dashboard floty — pojazdy, kierowcy, alerty, koszty miesiąca', tag: 'MVP' },
-      { name: 'Lista zleceń + przypisanie kierowca/pojazd', tag: 'MVP' },
-      { name: 'Raporty per pojazd / kierowca / okres', tag: 'MVP' },
-      { name: 'Plan indywidualny dla większych flot — rozliczenie hurtowe', tag: 'MVP' },
-      { name: 'Mapa floty w czasie rzeczywistym', tag: 'MVP' },
-      { name: 'ETA dostawy + udostępnianie linku klientowi', tag: 'Po MVP' },
-      { name: 'Strefy alertów — bus opuszcza wyznaczony obszar bez zlecenia', tag: 'Po MVP' },
-      { name: 'Marża per zlecenie — które kursy się opłacają', tag: 'Po MVP' },
+      { name: 'Dashboard floty — pojazdy, kierowcy, alerty, koszty miesiąca', tag: 'Od startu' },
+      { name: 'Lista zleceń + przypisanie kierowca/pojazd', tag: 'Od startu' },
+      { name: 'Raporty per pojazd / kierowca / okres', tag: 'Od startu' },
+      { name: 'Plan indywidualny dla większych flot — rozliczenie hurtowe', tag: 'Od startu' },
+      { name: 'Mapa floty w czasie rzeczywistym', tag: 'Od startu' },
+      { name: 'ETA dostawy + udostępnianie linku klientowi', tag: 'Wkrótce' },
+      { name: 'Strefy alertów — bus opuszcza wyznaczony obszar bez zlecenia', tag: 'Wkrótce' },
+      { name: 'Marża per zlecenie — które kursy się opłacają', tag: 'Wkrótce' },
     ],
   },
   {
@@ -41,14 +41,14 @@ const featureGroups = [
     icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>',
     deepLink: { href: '/aetr', label: 'Pełny silnik AETR — DriverActivity Engine' },
     features: [
-      { name: 'Alerty czasu pracy AETR — 4,5h / 9h / 11h / dzień / tydzień / dwutydzień', tag: 'MVP' },
-      { name: 'Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe', tag: 'MVP' },
-      { name: 'Dokumenty kierowcy — prawo jazdy, ADR, świadectwo kierowcy', tag: 'MVP' },
-      { name: 'Dokumenty firmy — licencja transportowa, OCP, OC, przegląd', tag: 'MVP' },
-      { name: 'Alerty terminów — 30 / 14 / 7 dni przed wygaśnięciem', tag: 'MVP' },
-      { name: 'Tachograf G2V2 — monitoring legalizacji per pojazd', tag: 'Po MVP' },
-      { name: 'Dashboard pod kontrolę ITD — wszystko gotowe na żądanie', tag: 'Po MVP' },
-      { name: 'Ewidencja czasu pracy kierowcy — pełna historia + eksport', tag: 'Po MVP' },
+      { name: 'Alerty czasu pracy AETR — 4,5h / 9h / 11h / dzień / tydzień / dwutydzień', tag: 'Od startu' },
+      { name: 'Pakiet mobilności UE — przerwy 45h, powroty cotygodniowe', tag: 'Od startu' },
+      { name: 'Dokumenty kierowcy — prawo jazdy, ADR, świadectwo kierowcy', tag: 'Od startu' },
+      { name: 'Dokumenty firmy — licencja transportowa, OCP, OC, przegląd', tag: 'Od startu' },
+      { name: 'Alerty terminów — 30 / 14 / 7 dni przed wygaśnięciem', tag: 'Od startu' },
+      { name: 'Tachograf G2V2 — monitoring legalizacji per pojazd', tag: 'Wkrótce' },
+      { name: 'Dashboard pod kontrolę ITD — wszystko gotowe na żądanie', tag: 'Wkrótce' },
+      { name: 'Ewidencja czasu pracy kierowcy — pełna historia + eksport', tag: 'Wkrótce' },
     ],
   },
   {
@@ -57,15 +57,15 @@ const featureGroups = [
     color: '#8B5CF6',
     icon: '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
     features: [
-      { name: 'OCR paragonów — 6 języków, 7 typów dokumentów (paliwo, Maut, hotel, posiłek, prom, parking, naprawa)', tag: 'MVP' },
-      { name: 'Kursy NBP automatyczne — przewalutowanie z dnia poprzedniego', tag: 'MVP' },
-      { name: 'Eksport do Insert GT / Rewizor / nexo', tag: 'MVP' },
-      { name: 'Eksport do Comarch ERP Optima', tag: 'MVP' },
-      { name: 'Eksport do Symfonia FK', tag: 'MVP' },
-      { name: 'Faktury zagraniczne — DE, FR, IT, AT i pozostałe kraje UE', tag: 'Po MVP' },
-      { name: 'VAT-REF — gotowy raport zwrotu VAT z UE', tag: 'Po MVP' },
-      { name: 'Rozliczenie kierowcy — diety, mandaty, wypłata w jednym', tag: 'Po MVP' },
-      { name: 'Eksport delegacji do FK + obowiązkowy e-system fakturowy', tag: 'Po MVP' },
+      { name: 'OCR paragonów — 6 języków, 7 typów dokumentów (paliwo, Maut, hotel, posiłek, prom, parking, naprawa)', tag: 'Od startu' },
+      { name: 'Kursy NBP automatyczne — przewalutowanie z dnia poprzedniego', tag: 'Od startu' },
+      { name: 'Eksport do Insert GT / Rewizor / nexo', tag: 'Od startu' },
+      { name: 'Eksport do Comarch ERP Optima', tag: 'Od startu' },
+      { name: 'Eksport do Symfonia FK', tag: 'Od startu' },
+      { name: 'Faktury zagraniczne — DE, FR, IT, AT i pozostałe kraje UE', tag: 'Wkrótce' },
+      { name: 'VAT-REF — gotowy raport zwrotu VAT z UE', tag: 'Wkrótce' },
+      { name: 'Rozliczenie kierowcy — diety, mandaty, wypłata w jednym', tag: 'Wkrótce' },
+      { name: 'Eksport delegacji do FK + obowiązkowy e-system fakturowy', tag: 'Wkrótce' },
     ],
   },
   {
@@ -123,8 +123,8 @@ const featureGroups = [
       </p>
 
       <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 text-[12.5px] text-text-secondary">
-        <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.08] text-[#005CE8] font-semibold">MVP — gotowe lub w wdrożeniu</span>
-        <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.08] text-[#FF9500] font-semibold">Po MVP — funkcje wkrótce</span>
+        <span class="px-2.5 py-1 rounded-full bg-[#005CE8]/[0.08] text-[#005CE8] font-semibold">Od startu — gotowe lub w wdrożeniu</span>
+        <span class="px-2.5 py-1 rounded-full bg-[#FF9500]/[0.08] text-[#FF9500] font-semibold">Wkrótce — funkcje w kolejnych falach</span>
         <span>Funkcje bez tagu są stale dostępne.</span>
       </div>
     </div>
@@ -180,7 +180,7 @@ const featureGroups = [
                   </span>
                   {tag && (
                     <span class={`px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap flex-shrink-0 mt-0.5 ${
-                      tag === 'MVP'
+                      tag === 'Od startu'
                         ? (isFeatured ? 'bg-surface/20 text-white' : 'bg-[#005CE8]/[0.10] text-[#005CE8]')
                         : (isFeatured ? 'bg-surface/10 text-white/70' : 'bg-[#FF9500]/[0.12] text-[#FF9500]')
                     }`}>

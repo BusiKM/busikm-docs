@@ -2,16 +2,16 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // === Roadmapa BusiKM — narracja kamieni milowych ===
-// Pięć faz wdrożeniowych (architektura, panel webowy, mobile, launch, post-MVP) + dwa lata badań i rozwoju (2027, 2028).
-// Wewnętrzny język techniczny zastąpiony narracją produktową — żadnych "sprintów" ani "ticketów" w UI.
+// Siedem etapów rozwoju (fundament, panel webowy, mobile, start produktu, pilotaż, druga generacja, R&D) — dwa lata badań i rozwoju w 2027–2028.
+// Język produktowy, bez dev-żargonu (sprinty/tickety/MVP/wersje N.0.0) — opisy dla nietechnicznego czytelnika.
 // Synchronizowane z planem produktu komendą UPDATE ROADMAP.
 
 const phases = [
-  // ============================ FAZA 1 — ARCHITEKTURA (DONE) ============================
+  // ============================ FAZA 1 — FUNDAMENT (DONE) ============================
   {
     num: 1,
-    id: 'architektura',
-    label: 'Architektura platformy',
+    id: 'fundament',
+    label: 'Fundament systemu',
     period: '14 kwietnia — 5 maja 2026',
     color: '#34C759',
     status: 'done',
@@ -60,71 +60,72 @@ const phases = [
     num: 3,
     id: 'mobile-app',
     label: 'Aplikacja mobilna',
-    period: '7—29 maja 2026',
+    period: '7 maja — 19 czerwca 2026',
     color: '#FF9500',
     status: 'in-progress',
-    summary: 'Aplikacja iOS/Android dla wszystkich czterech ról — kierowcy, właściciela, księgowego i biura rachunkowego. Główny fokus na kierowcę: nawigacja, zlecenia, statusy, AETR, podpisywanie zleceń, OCR paragonów i dokumentów, odczyt licznika ODO.',
+    summary: 'Aplikacja iOS/Android dla wszystkich czterech ról — kierowcy, właściciela, księgowego i biura rachunkowego. Architektura mobilna gotowa (Expo SDK 52+, navigation, auth, GPS w tle, push, offline storage). Do końca fazy: dokończenie widoków księgowego i biura rachunkowego, pełna integracja z backendem oraz panelem webowym i wydanie do App Store oraz Google Play.',
     milestones: [
       { range: '7 maja',  title: 'Fundament aplikacji mobilnej',         desc: 'Architektura aplikacji iOS/Android, struktura nawigacji dostosowana do roli użytkownika (kierowca / właściciel / księgowy / biuro rachunkowe).', done: true },
       { range: '7 maja',  title: 'Logowanie i pierwsze kroki',           desc: 'Bezpieczna autoryzacja na urządzeniu, przewodnik dla nowego użytkownika, zarządzanie sesją z automatycznym odnawianiem tokenu.', done: true },
       { range: '8 maja',  title: 'Pełen flow pracy kierowcy',            desc: 'Nawigacja, GPS w tle, start/stop trasy jednym przyciskiem, statusy zlecenia (załadunek, w drodze, rozładunek), alerty czasu pracy AETR, podpisywanie zleceń, OCR paragonów w sześciu językach, OCR dokumentów kosztowych, odczyt licznika ODO ze zdjęcia.', done: true },
       { range: '8 maja',  title: 'Widok właściciela na telefonie',       desc: 'Dashboard floty, mapa w czasie rzeczywistym, alerty dokumentów, przegląd tras zespołu, szybkie akcje zarządcze (zatwierdzanie zlecenia, kontakt z kierowcą).', done: true },
       { range: '9 maja',  title: 'Powiadomienia push w aplikacji',       desc: 'Trzy kanały (alerty dokumentów, potwierdzenia tras, komunikaty produktowe), ustawienia preferencji per kanał per użytkownik.', done: true },
-      { range: '27—28 maja', title: 'Widok księgowego na telefonie',     desc: 'Mobilny dostęp do raportów PDF, eksportów FK, listy faktur kosztowych z OCR, kursów NBP — w trybie tylko do odczytu. Spójny z panelem webowym.' },
-      { range: '27—28 maja', title: 'Widok biura rachunkowego na telefonie', desc: 'Przełączanie kontekstu między klientami, zbiorczy dashboard obsługiwanych firm, eksport per klient, zarządzanie zaproszeniami — wszystko z telefonu.' },
-      { range: '28 maja', title: 'Pełny tryb offline',                   desc: 'Aplikacja działa bez internetu — trasy, paragony, dokumenty zapisywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.' },
-      { range: '29 maja', title: 'Wydanie do App Store i Google Play',   desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.' },
-      { range: '29 maja', title: 'Testy aplikacji mobilnej',             desc: 'Pokrycie testami jednostkowymi i scenariuszowymi czterech ról, regresja na każdą zmianę.' },
+      { range: '1—5 czerwca', title: 'Widok księgowego na telefonie',    desc: 'Mobilny dostęp do raportów PDF, eksportów FK, listy faktur kosztowych z OCR, kursów NBP — w trybie tylko do odczytu. Spójny z panelem webowym.' },
+      { range: '1—5 czerwca', title: 'Widok biura rachunkowego na telefonie', desc: 'Przełączanie kontekstu między klientami, zbiorczy dashboard obsługiwanych firm, eksport per klient, zarządzanie zaproszeniami — wszystko z telefonu.' },
+      { range: '6—10 czerwca', title: 'Pełny tryb offline',              desc: 'Aplikacja działa bez internetu — trasy, paragony, dokumenty zapisywane lokalnie, automatyczna synchronizacja po odzyskaniu połączenia, bez ryzyka utraty danych.' },
+      { range: '11—15 czerwca', title: 'Integracja z backendem i panelem webowym', desc: 'End-to-end połączenie wszystkich widoków mobilnych z backendem oraz panelem webowym: spójny stan danych między platformami, real-time aktualizacje przez WebSockety, ujednolicony dziennik audytowy, pełna walidacja przepływów dla wszystkich czterech ról.' },
+      { range: '16—18 czerwca', title: 'Wydanie do App Store i Google Play', desc: 'Aplikacja gotowa do publicznej dystrybucji w sklepach Apple i Google, automatyczne aktualizacje dla użytkowników.' },
+      { range: '19 czerwca', title: 'Testy aplikacji mobilnej',          desc: 'Pokrycie testami jednostkowymi i scenariuszowymi czterech ról, regresja na każdą zmianę, finalne testy akceptacyjne z pilotami przed publicznym startem produktu.' },
     ],
   },
 
-  // ============================ FAZA 4 — WYDANIE MVP (WERSJA BETA) ============================
+  // ============================ FAZA 4 — PIERWSZE URUCHOMIENIE (WERSJA BETA) ============================
   {
     num: 4,
-    id: 'mvp-beta',
-    label: 'Wydanie MVP — wersja beta dla pilotów',
-    period: '30 maja 2026',
+    id: 'pierwsze-uruchomienie',
+    label: 'Pierwsze uruchomienie — wersja beta dla firm pilotażowych',
+    period: '19 czerwca 2026',
     color: '#8B5CF6',
     status: 'upcoming',
-    summary: 'MVP LIVE 30 maja 2026 jako wersja beta dla pierwszych firm pilotażowych. Pełen pakiet funkcji od pierwszego dnia: audyt bezpieczeństwa, fakturowanie, diety + KSeF, analityka rentowności, tachograf G2V2 i kontrola ITD, marża per zlecenie, VAT-REF, mapa live z geofencingiem, Dispatcher Hub, e-CMR, AETR DriverActivity Engine.',
+    summary: 'Start produktu 19 czerwca 2026 jako wersja beta dla pierwszych firm pilotażowych. Pełen pakiet funkcji od pierwszego dnia: audyt bezpieczeństwa, fakturowanie, diety + KSeF, analityka rentowności, tachograf G2V2 i kontrola ITD, marża per zlecenie, VAT-REF, mapa live z geofencingiem, Dispatcher Hub, e-CMR, AETR DriverActivity Engine.',
     milestones: [
-      { range: '30 maja',  title: 'MVP LIVE — wersja beta dla pilotów',         desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna. Pierwsze firmy pilotażowe dostają środowisko beta z dożywotnim dostępem gratis.', milestone: true },
-      { range: '30 maja',  title: 'Automatyczne fakturowanie',                  desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.' },
-      { range: '30 maja',  title: 'Diety pracownicze i KSeF',                   desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur.' },
-      { range: '30 maja',  title: 'Zaawansowana analityka rentowności',         desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty.' },
-      { range: '30 maja',  title: 'Tachograf G2V2 i kontrola ITD',              desc: 'Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Uniknięcie kar do 10 000 zł na pojazd.' },
-      { range: '30 maja',  title: 'AETR DriverActivity Engine',                 desc: 'Osiem typów aktywności kierowcy mapowanych na cztery symbole tachografu, auto-detekcja z GPS, alerty trzystopniowe (informacja / ostrzeżenie / naruszenie), raporty PDF dla kontroli ITD/BAG. Pełna strona: /aetr.' },
-      { range: '30 maja',  title: 'Marża per zlecenie — realna rentowność',     desc: 'Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, opłaty drogowe, hotele w Polsce i UE.' },
-      { range: '30 maja',  title: 'Rozliczenie kierowcy — diety, mandaty, wypłata', desc: 'Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie kursami NBP.' },
-      { range: '30 maja',  title: 'VAT-REF z UE — odzyskaj VAT z paliwa i opłat drogowych', desc: 'Rejestracja faktur z DE, FR, IT, AT, automatyczne przeliczenie na PLN po kursie z dnia wystawienia, gotowy raport do wniosku o zwrot VAT.' },
-      { range: '30 maja',  title: 'Mapa live + strefy alertów (geofencing)',    desc: 'Pojazdy widoczne w czasie rzeczywistym z czasem dojazdu, alert kiedy bus opuszcza strefę bez aktywnego zlecenia. Klient sam widzi, kiedy dotrze towar.' },
-      { range: '30 maja',  title: 'Dispatcher Hub — komunikator dyspozytor ↔ kierowca', desc: 'Wbudowany w aplikację mobilną i panel webowy chat między dyspozytorem a kierowcą, powiązany z konkretnym zleceniem. Historia rozmów w dzienniku audytowym, możliwość zatwierdzania zleceń przez chat.' },
-      { range: '30 maja',  title: 'e-CMR — cyfrowy list przewozowy',            desc: 'Pełna obsługa cyfrowego listu przewozowego (Konwencja CMR + e-CMR Additional Protocol 2008). Generowanie, podpis elektroniczny kierowcy i odbiorcy, archiwizacja, eksport do FK.' },
+      { range: '19 czerwca',  title: 'Start produktu — wersja beta dla pilotów',   desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna. Pierwsze firmy pilotażowe dostają środowisko beta z dożywotnim dostępem gratis.', milestone: true },
+      { range: '19 czerwca',  title: 'Automatyczne fakturowanie',                  desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.' },
+      { range: '19 czerwca',  title: 'Diety pracownicze i KSeF',                   desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur.' },
+      { range: '19 czerwca',  title: 'Zaawansowana analityka rentowności',         desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty.' },
+      { range: '19 czerwca',  title: 'Tachograf G2V2 i kontrola ITD',              desc: 'Monitoring legalizacji tachografów, ewidencja czasu pracy AETR, terminy uprawnień kierowców i licencji firmy. Uniknięcie kar do 10 000 zł na pojazd.' },
+      { range: '19 czerwca',  title: 'AETR DriverActivity Engine',                 desc: 'Osiem typów aktywności kierowcy mapowanych na cztery symbole tachografu, auto-detekcja z GPS, alerty trzystopniowe (informacja / ostrzeżenie / naruszenie), raporty PDF dla kontroli ITD/BAG. Pełna strona: /aetr.' },
+      { range: '19 czerwca',  title: 'Marża per zlecenie — realna rentowność',     desc: 'Zlecenie powiązane z pojazdem, kierowcą, trasą GPS i wszystkimi kosztami: paliwo, opłaty drogowe, hotele w Polsce i UE.' },
+      { range: '19 czerwca',  title: 'Rozliczenie kierowcy — diety, mandaty, wypłata', desc: 'Diety zagraniczne według stawek z rozporządzenia, mandaty z winy kierowcy lub firmy, wydatki prywatne, przewalutowanie kursami NBP.' },
+      { range: '19 czerwca',  title: 'VAT-REF z UE — odzyskaj VAT z paliwa i opłat drogowych', desc: 'Rejestracja faktur z DE, FR, IT, AT, automatyczne przeliczenie na PLN po kursie z dnia wystawienia, gotowy raport do wniosku o zwrot VAT.' },
+      { range: '19 czerwca',  title: 'Mapa live + strefy alertów (geofencing)',    desc: 'Pojazdy widoczne w czasie rzeczywistym z czasem dojazdu, alert kiedy bus opuszcza strefę bez aktywnego zlecenia. Klient sam widzi, kiedy dotrze towar.' },
+      { range: '19 czerwca',  title: 'Dispatcher Hub — komunikator dyspozytor ↔ kierowca', desc: 'Wbudowany w aplikację mobilną i panel webowy chat między dyspozytorem a kierowcą, powiązany z konkretnym zleceniem. Historia rozmów w dzienniku audytowym, możliwość zatwierdzania zleceń przez chat.' },
+      { range: '19 czerwca',  title: 'e-CMR — cyfrowy list przewozowy',            desc: 'Pełna obsługa cyfrowego listu przewozowego (Konwencja CMR + e-CMR Additional Protocol 2008). Generowanie, podpis elektroniczny kierowcy i odbiorcy, archiwizacja, eksport do FK.' },
     ],
   },
 
-  // ============================ FAZA 5 — PILOTAŻ + WERSJA 1.0.0 ALFA ============================
+  // ============================ FAZA 5 — PILOTAŻ + PIERWSZE PUBLICZNE WYDANIE ============================
   {
     num: 5,
-    id: 'pilot-1-0',
-    label: 'Pilotaż i wersja 1.0.0 alfa',
-    period: '1 czerwca — 31 lipca 2026',
+    id: 'pilotaz-publiczne',
+    label: 'Pilotaż i pierwsze publiczne wydanie',
+    period: '22 czerwca — 22 sierpnia 2026',
     color: '#FF9500',
     status: 'future',
-    summary: 'Dwumiesięczny pilotaż wersji beta u pierwszych firm transportowych. Na podstawie danych z realnego użycia dopasowujemy plany subskrypcji do wielkości flot i klientów, wdrażamy poprawki, fixy i dodatki zgłaszane przez pilotów. Koniec lipca — formalne wyjście z bety: wersja 1.0.0 alfa dostępna dla wszystkich.',
+    summary: 'Dwumiesięczny pilotaż wersji beta u pierwszych firm transportowych. Na podstawie danych z realnego użycia dopasowujemy plany subskrypcji do wielkości flot i klientów, wdrażamy poprawki, fixy i dodatki zgłaszane przez pilotów. Koniec sierpnia — formalne wyjście z bety: pierwsze publiczne wydanie dostępne dla wszystkich.',
     milestones: [
-      { range: '1—14 czerwca',  title: 'Onboarding pierwszych firm pilotażowych',          desc: 'Indywidualne spotkania 30 min z każdą firmą pilotażową, konfiguracja konta, import danych floty, szkolenie kierowców i właścicieli.' },
-      { range: '15—30 czerwca', title: 'Dane z pilotażu i dopasowanie planów subskrypcji', desc: 'Analiza realnego użycia produktu — liczba aktywnych pojazdów, częstotliwość eksportów FK, użycie OCR, alerty AETR. Dopasowanie planów subskrypcji do wielkości flot i typów klientów (firma transportowa, biuro rachunkowe).' },
-      { range: '1—31 lipca',    title: 'Poprawki, fixy i dodatki z feedbacku pilotażu',    desc: 'Iteracyjne wdrażanie poprawek i drobnych dodatków zgłaszanych przez pierwsze firmy. Każda zmiana walidowana z konkretnym pilotem przed publicznym wdrożeniem.' },
-      { range: '31 lipca',      title: 'Wersja 1.0.0 alfa — wydanie publiczne',            desc: 'Formalne wyjście z fazy beta. Wersja 1.0.0 alfa dostępna dla wszystkich firm transportowych i biur rachunkowych — z planami subskrypcji dopasowanymi do realnych danych z pilotażu. Piloci kontynuują w programie pilotażowym dożywotnio.', milestone: true },
+      { range: '22 czerwca — 5 lipca', title: 'Onboarding pierwszych firm pilotażowych',          desc: 'Indywidualne spotkania 30 min z każdą firmą pilotażową, konfiguracja konta, import danych floty, szkolenie kierowców i właścicieli.' },
+      { range: '6—26 lipca',          title: 'Dane z pilotażu i dopasowanie planów subskrypcji', desc: 'Analiza realnego użycia produktu — liczba aktywnych pojazdów, częstotliwość eksportów FK, użycie OCR, alerty AETR. Dopasowanie planów subskrypcji do wielkości flot i typów klientów (firma transportowa, biuro rachunkowe).' },
+      { range: '27 lipca — 22 sierpnia', title: 'Poprawki, fixy i dodatki z feedbacku pilotażu', desc: 'Iteracyjne wdrażanie poprawek i drobnych dodatków zgłaszanych przez pierwsze firmy. Każda zmiana walidowana z konkretnym pilotem przed publicznym wdrożeniem.' },
+      { range: '22 sierpnia',          title: 'Pierwsze publiczne wydanie',                       desc: 'Formalne wyjście z fazy beta. Pierwsze publiczne wydanie dostępne dla wszystkich firm transportowych i biur rachunkowych — z planami subskrypcji dopasowanymi do realnych danych z pilotażu. Piloci kontynuują w programie pilotażowym dożywotnio.', milestone: true },
     ],
   },
 
-  // ============================ FAZA 6 — WERSJA 2.0.0 ============================
+  // ============================ FAZA 6 — DRUGA GENERACJA PRODUKTU ============================
   {
     num: 6,
-    id: 'version-2-0',
-    label: 'Wersja 2.0.0',
+    id: 'druga-generacja',
+    label: 'Druga generacja produktu',
     period: 'sierpień — grudzień 2026',
     color: '#005CE8',
     status: 'future',
@@ -134,15 +135,15 @@ const phases = [
       { range: 'wrzesień 2026', title: 'Scoring kierowców 0–100',              desc: 'Indywidualna ocena każdego kierowcy w skali 0–100 na podstawie danych GPS — hamowania, przyspieszenia, prędkość, jazda nocna. Ranking kierowców w firmie, raport kosztowy per kierowca.' },
       { range: 'październik 2026', title: 'Planowanie tras z przerwami AETR',  desc: 'Inteligentne planowanie tras uwzględniające limity czasu pracy kierowcy (4,5h jazdy, 9h dziennie, przerwy 45 min), optymalizacja wielozleceń, integracja z mapami drogowymi i punktami odpoczynku.' },
       { range: 'listopad 2026', title: 'Integrator opłat drogowych multi-kraj', desc: 'Automatyczne pobieranie i rozliczanie opłat drogowych z wielu krajów UE (Toll Collect, Telepass, Mýto CZ, eMyto SK, ASFINAG, Eurovignette). Integracja z dostawcami typu DKV i UTA.' },
-      { range: 'grudzień 2026', title: 'Wersja 2.0.0 LIVE',                    desc: 'Pełne wydanie wersji 2.0.0 dla wszystkich użytkowników, integracja wszystkich nowych funkcji z istniejącym produktem.', milestone: true },
+      { range: 'grudzień 2026', title: 'Druga generacja — pełne wydanie',      desc: 'Pełne wydanie drugiej generacji produktu dla wszystkich użytkowników, integracja wszystkich nowych funkcji z istniejącym produktem.', milestone: true },
     ],
   },
 
-  // ============================ FAZA 7 — WERSJA 3.0.0 (R&D 2027–2028, POUFNE) ============================
+  // ============================ FAZA 7 — TRZECIA GENERACJA (R&D 2027–2028, POUFNE) ============================
   {
     num: 7,
-    id: 'version-3-0',
-    label: 'Wersja 3.0.0 — badania i rozwój',
+    id: 'trzecia-generacja',
+    label: 'Trzecia generacja — badania i rozwój',
     period: '2027 — 2028',
     color: '#8B5CF6',
     status: 'future',
@@ -173,7 +174,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
 };
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM — 3-letnia perspektywa. Pięć faz wdrożeniowych, MVP LIVE 30 maja 2026, dwa lata badań i rozwoju w 2027–2028 finansowanych ze środków UE.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM — 3-letnia perspektywa. Siedem etapów rozwoju, start produktu 19 czerwca 2026, dwa lata badań i rozwoju w 2027–2028 finansowanych ze środków UE.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-surface">
@@ -185,19 +186,19 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
         </span>
-        <span class="text-sm font-medium text-text">e-TMS dla busów 2,5–3,5 t · MVP 30 maja 2026</span>
+        <span class="text-sm font-medium text-text">e-TMS dla busów 2,5–3,5 t · start produktu 19 czerwca 2026</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-text leading-[1.18] tracking-tight mb-6">
         Plan rozwoju produktu.<br>
-        <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">Wersja beta, 1.0.0, 2.0.0, 3.0.0.</span>
+        <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">Cztery kamienie milowe przed nami.</span>
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
-        <strong class="text-text">30 maja 2026 — MVP wersja beta</strong> dla pierwszych firm pilotażowych operujących busami 2,5–3,5&nbsp;t.
-        <strong class="text-text">31 lipca 2026 — wersja 1.0.0 alfa</strong> wydana publicznie, po dwumiesięcznym pilotażu i dopasowaniu planów subskrypcji.
-        <strong class="text-text">Grudzień 2026 — wersja 2.0.0</strong> ze scoringiem kierowców, planowaniem tras z przerwami AETR i integratorem opłat drogowych.
-        <strong class="text-text">2027–2028 — wersja 3.0.0</strong> z funkcjami z programu badawczo-rozwojowego finansowanego ze środków UE (szczegóły poufne).
+        <strong class="text-text">19 czerwca 2026 — start produktu</strong> w wersji beta dla pierwszych firm pilotażowych operujących busami 2,5–3,5&nbsp;t.
+        <strong class="text-text">22 sierpnia 2026 — pierwsze publiczne wydanie</strong>, po dwumiesięcznym pilotażu i dopasowaniu planów subskrypcji.
+        <strong class="text-text">Grudzień 2026 — druga generacja produktu</strong> ze scoringiem kierowców, planowaniem tras z przerwami AETR i integratorem opłat drogowych.
+        <strong class="text-text">2027–2028 — trzecia generacja</strong> z funkcjami z programu badawczo-rozwojowego finansowanego ze środków UE (szczegóły poufne).
       </p>
 
       <div class="hero-seq-4 flex flex-wrap justify-center gap-4 mb-16">
@@ -224,8 +225,8 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
           <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">kamieni milowych w planie</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-brand-light font-display leading-none">30 maj</div>
-          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">MVP LIVE 2026</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-brand-light font-display leading-none">19 cze</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">Start produktu 2026</div>
         </div>
       </div>
     </div>
@@ -413,7 +414,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
                         </div>
                         <h4 class="font-semibold text-[15px] text-text mb-1 leading-tight">
                           {m.title}
-                          {isMilestone && <span class="ml-2 text-[10px] font-bold uppercase tracking-wider align-middle px-2 py-0.5 rounded text-white" style={`background: ${phase.color}`}>MVP LIVE</span>}
+                          {isMilestone && <span class="ml-2 text-[10px] font-bold uppercase tracking-wider align-middle px-2 py-0.5 rounded text-white" style={`background: ${phase.color}`}>Kamień milowy</span>}
                         </h4>
                         <p class="text-[13.5px] text-text-secondary leading-relaxed">{m.desc}</p>
                       </div>
@@ -436,7 +437,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
       <div class="bg-surface rounded-[20px] p-7 sm:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.06)] border border-border-subtle">
         <div class="flex items-center gap-3 mb-5">
           <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-          <h3 class="font-bold text-text text-lg">Trzy integracje FK — gotowe w MVP</h3>
+          <h3 class="font-bold text-text text-lg">Trzy integracje FK — gotowe od pierwszego dnia</h3>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           {[
@@ -453,7 +454,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
             </div>
           ))}
         </div>
-        <p class="text-xs text-text-tertiary">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na przełomie maja i czerwca 2026, w fazie post-MVP.</p>
+        <p class="text-xs text-text-tertiary">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na przełomie maja i czerwca 2026, w kolejnej fali rozwoju po starcie produktu.</p>
       </div>
     </div>
   </section>

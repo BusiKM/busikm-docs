@@ -55,7 +55,7 @@ Dodatkowo BusiKM wspiera:
 - Świadectwa kierowców (ADR, kategorie prawa jazdy, badania psychotechniczne)
 
 ## Status produktu i cennik
-BusiKM jest na etapie pilotażu MVP. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi firmami transportowymi i realnych danych z używania produktu.
+BusiKM jest w fazie programu pilotażowego. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi firmami transportowymi i realnych danych z używania produktu.
 
 ## Program pilotażowy — dożywotnio gratis
 - Dla firm transportowych krajowych (1–50 pojazdów): pełna funkcjonalność produktu — dożywotnio gratis.
@@ -73,11 +73,11 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
 ## Stan wdrożenia
-- Pięć z siedmiu faz wdrożenia gotowych — architektura backendu, panel webowy, aplikacja mobilna (w toku), wydanie produkcyjne (zaplanowane), funkcje post-MVP H2 2026.
+- Pięć z siedmiu etapów rozwoju gotowych lub zaplanowanych — fundament backendu, panel webowy, aplikacja mobilna (w toku), start produktu (zaplanowany), kolejne fale rozwoju w drugiej połowie 2026.
 - Trzy integracje z systemami księgowymi gotowe od pierwszego dnia — Insert GT, Comarch ERP Optima, Symfonia FK. Integracja z KSeF zaplanowana w fazie wydania produkcyjnego.
 - Cztery platformy: backend Django, panel webowy Next.js, aplikacja mobilna iOS, aplikacja mobilna Android.
-- MVP LIVE: 30 maja 2026.
-- Post-MVP H2 2026: filar AETR (DriverActivity Engine), tachograf G2V2 i kontrola ITD pod jednym dashboardem, marża per zlecenie, rozliczenie kierowcy (diety, mandaty, wypłata), VAT-REF z UE, mapa live ze strefami alertów (geofencing).
+- Start produktu: 19 czerwca 2026.
+- W kolejnych falach rozwoju (druga połowa 2026): filar AETR (DriverActivity Engine), tachograf G2V2 i kontrola ITD pod jednym dashboardem, marża per zlecenie, rozliczenie kierowcy (diety, mandaty, wypłata), VAT-REF z UE, mapa live ze strefami alertów (geofencing).
 
 ## Program badawczo-rozwojowy 2027–2028
 W latach 2027–2028 prowadzimy pięć projektów badawczo-rozwojowych w obszarze technologii transportu drogowego, finansowanych ze środków UE. Cel: rozszerzenie platformy o autorskie technologie oraz scale-out na rynki Czech, Słowacji i Niemiec. Szczegóły techniczne projektów objęte są tajemnicą przedsiębiorstwa do zakończenia projektów i akceptacji raportów końcowych przez instytucje finansujące. Dokumentacja techniczna dostępna po podpisaniu umowy o zachowaniu poufności (NDA).
@@ -112,9 +112,9 @@ BusiKM is **Poland's first e-TMS (Transport Management System) designed from the
 
 Hook: full control over driver work and order profitability. Ready for the new G2V2 tachograph obligation from 2 July 2026 (EU Mobility Package).
 
-Status: 5 of 7 implementation phases complete. MVP live 30 May 2026. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
+Status: backend and web panel complete; mobile app in finishing phase. Product launch 19 June 2026. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
 
-Post-MVP H2 2026: AETR DriverActivity Engine, G2V2 + ITD compliance dashboard, per-order margin analysis, driver settlement (per-diem, fines, payroll), EU VAT-REF, live map with geofencing alerts.
+Later development waves (H2 2026): AETR DriverActivity Engine, G2V2 + ITD compliance dashboard, per-order margin analysis, driver settlement (per-diem, fines, payroll), EU VAT-REF, live map with geofencing alerts.
 
 R&D programme 2027–2028: five research and development projects in road transport technology, funded by EU grants. Detailed scope protected as trade secret until project completion. Compliance standards from day one: GDPR, ISO/IEC 27001 (audit prep), EU AI Act, eIDAS, eFTI, Reg. (EC) 561/2006 + Mobility Package.
 
