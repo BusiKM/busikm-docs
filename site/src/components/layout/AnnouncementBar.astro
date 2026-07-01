@@ -7,7 +7,30 @@ const hide = path === '/g2v2-przygotowanie';
 
 // Build-time fallback (gets refreshed client-side after hydration).
 const target = new Date('2026-07-02T00:00:00+02:00').getTime();
-const initialDays = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
+const now = Date.now();
+const diff = target - now;
+const dayWord = (n: number): string => (n === 1 ? 'dzień' : 'dni');
+
+// Trzy stany:
+//  - przed 2 lipca:  "X dni do obowiązku ..."
+//  - 2 lipca (dzień wejścia obowiązku): "Od dzisiaj obowiązuje ..."
+//  - po 2 lipca:     "X dni od obowiązku ..."
+let initialLg: string;
+let initialSm: string;
+if (diff > 0) {
+  const d = Math.ceil(diff / 86400000);
+  initialLg = `<strong class="font-bold">${d}</strong> ${dayWord(d)} do obowiązku tachografu G2V2 dla busów 2,5–3,5 t`;
+  initialSm = `<strong class="font-bold">${d}</strong> ${dayWord(d)} do tachografu G2V2`;
+} else {
+  const since = Math.floor((now - target) / 86400000);
+  if (since === 0) {
+    initialLg = 'Od dzisiaj obowiązuje tachograf G2V2 dla busów 2,5–3,5 t';
+    initialSm = 'Od dzisiaj: tachograf G2V2';
+  } else {
+    initialLg = `<strong class="font-bold">${since}</strong> ${dayWord(since)} od obowiązku tachografu G2V2 dla busów 2,5–3,5 t`;
+    initialSm = `<strong class="font-bold">${since}</strong> ${dayWord(since)} od tachografu G2V2`;
+  }
+}
 ---
 
 {!hide && (
@@ -28,9 +51,8 @@ const initialDays = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
         <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-warning"></span>
       </span>
       <span class="text-[12px] sm:text-[12.5px] font-medium text-text tracking-[0.005em]">
-        <span id="g2v2-bar-days" class="font-bold tabular-nums">{initialDays}</span>
-        <span class="hidden sm:inline"> dni do obowiązku tachografu G2V2 dla busów 2,5–3,5 t</span>
-        <span class="sm:hidden"> dni do tachografu G2V2</span>
+        <span id="g2v2-bar-lg" class="hidden sm:inline tabular-nums" set:html={initialLg} />
+        <span id="g2v2-bar-sm" class="sm:hidden tabular-nums" set:html={initialSm} />
       </span>
       <span class="text-[12px] sm:text-[12.5px] font-semibold text-warning inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform duration-200">
         Sprawdź
@@ -41,13 +63,30 @@ const initialDays = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
 
   <script is:inline>
     (function() {
-      var el = document.getElementById('g2v2-bar-days');
-      if (!el) return;
+      var lg = document.getElementById('g2v2-bar-lg');
+      var sm = document.getElementById('g2v2-bar-sm');
+      if (!lg || !sm) return;
       var target = new Date('2026-07-02T00:00:00+02:00').getTime();
+      var DAY = 86400000;
+      function word(n) { return n === 1 ? 'dzień' : 'dni'; }
+      function num(n) { return '<strong class="font-bold">' + n + '</strong>'; }
       function tick() {
-        var diff = target - Date.now();
-        if (diff <= 0) { el.textContent = '0'; return; }
-        el.textContent = Math.ceil(diff / 86400000);
+        var now = Date.now();
+        var diff = target - now;
+        if (diff > 0) {
+          var d = Math.ceil(diff / DAY);
+          lg.innerHTML = num(d) + ' ' + word(d) + ' do obowiązku tachografu G2V2 dla busów 2,5–3,5 t';
+          sm.innerHTML = num(d) + ' ' + word(d) + ' do tachografu G2V2';
+        } else {
+          var since = Math.floor((now - target) / DAY);
+          if (since === 0) {
+            lg.innerHTML = 'Od dzisiaj obowiązuje tachograf G2V2 dla busów 2,5–3,5 t';
+            sm.innerHTML = 'Od dzisiaj: tachograf G2V2';
+          } else {
+            lg.innerHTML = num(since) + ' ' + word(since) + ' od obowiązku tachografu G2V2 dla busów 2,5–3,5 t';
+            sm.innerHTML = num(since) + ' ' + word(since) + ' od tachografu G2V2';
+          }
+        }
       }
       tick();
       setInterval(tick, 60000);

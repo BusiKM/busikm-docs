@@ -18,7 +18,7 @@ export const en: Translations = {
     roadmap: 'Roadmap',
     technology: 'Technology',
     g2v2: 'G2V2',
-    tryDemo: 'Try demo',
+    tryDemo: 'Log in',
     bookMeeting: 'Book a meeting',
   },
   forWhom: {

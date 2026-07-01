@@ -60,7 +60,7 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
     <div class="flex items-center justify-between h-[60px]">
 
       <!-- Logo -->
-      <Logo size="md" />
+      <Logo size="md" variant="wordmark" />
 
       <!-- Desktop nav -->
       <nav class="hidden lg:flex items-center gap-1" aria-label="Główna nawigacja">
@@ -186,8 +186,10 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
 
         <a
           href={APP_LOGIN_URL}
+          data-app-login
           class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-brand text-white text-[13px] font-semibold tracking-[-0.01em] hover:bg-brand-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,92,232,0.3)]"
         >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
           {tr.nav.tryDemo}
         </a>
 
@@ -305,8 +307,10 @@ const isDlaKogoActive = dlaKogo.some(l => currentPath === l.href || currentPath.
 
       <a
         href={APP_LOGIN_URL}
-        class="block text-center w-full py-3 rounded-2xl bg-brand text-white text-[15px] font-semibold hover:bg-brand-dark transition-colors mb-2"
+        data-app-login
+        class="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-brand text-white text-[15px] font-semibold hover:bg-brand-dark transition-colors mb-2"
       >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
         {tr.nav.tryDemo}
       </a>
       <a

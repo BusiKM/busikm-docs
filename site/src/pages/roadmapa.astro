@@ -2,7 +2,7 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 
 // === Roadmapa BusiKM — narracja kamieni milowych ===
-// Siedem etapów rozwoju (fundament, panel webowy, mobile, start produktu, pilotaż, druga generacja, R&D) — dwa lata badań i rozwoju w 2027–2028.
+// Siedem etapów rozwoju (fundament, panel webowy, mobile, MVP live, pilotaż, druga generacja, R&D) — MVP dostępne od 19 czerwca 2026, pilotaż do 22 sierpnia, dwa lata badań i rozwoju w 2027–2028.
 // Język produktowy, bez dev-żargonu (sprinty/tickety/MVP/wersje N.0.0) — opisy dla nietechnicznego czytelnika.
 // Synchronizowane z planem produktu komendą UPDATE ROADMAP.
 
@@ -55,15 +55,15 @@ const phases = [
     ],
   },
 
-  // ============================ FAZA 3 — APLIKACJA MOBILNA (in-progress) ============================
+  // ============================ FAZA 3 — APLIKACJA MOBILNA (DONE) ============================
   {
     num: 3,
     id: 'mobile-app',
     label: 'Aplikacja mobilna',
     period: '7 maja — 19 czerwca 2026',
-    color: '#FF9500',
-    status: 'in-progress',
-    summary: 'Aplikacja iOS/Android dla wszystkich czterech ról — kierowcy, właściciela, księgowego i biura rachunkowego. Architektura mobilna gotowa (Expo SDK 52+, navigation, auth, GPS w tle, push, offline storage). Do końca fazy: dokończenie widoków księgowego i biura rachunkowego, pełna integracja z backendem oraz panelem webowym i wydanie do App Store oraz Google Play.',
+    color: '#34C759',
+    status: 'done',
+    summary: 'Aplikacja iOS/Android dla wszystkich czterech ról — kierowcy, właściciela, księgowego i biura rachunkowego. Pełna architektura mobilna (Expo SDK 52+, navigation, auth, GPS w tle, push, offline storage), komplet widoków księgowego i biura rachunkowego, integracja z backendem oraz panelem webowym, wydanie do App Store i Google Play.',
     milestones: [
       { range: '7 maja',  title: 'Fundament aplikacji mobilnej',         desc: 'Architektura aplikacji iOS/Android, struktura nawigacji dostosowana do roli użytkownika (kierowca / właściciel / księgowy / biuro rachunkowe).', done: true },
       { range: '7 maja',  title: 'Logowanie i pierwsze kroki',           desc: 'Bezpieczna autoryzacja na urządzeniu, przewodnik dla nowego użytkownika, zarządzanie sesją z automatycznym odnawianiem tokenu.', done: true },
@@ -79,17 +79,17 @@ const phases = [
     ],
   },
 
-  // ============================ FAZA 4 — PIERWSZE URUCHOMIENIE (WERSJA BETA) ============================
+  // ============================ FAZA 4 — PIERWSZE URUCHOMIENIE (WERSJA BETA · DONE) ============================
   {
     num: 4,
     id: 'pierwsze-uruchomienie',
     label: 'Pierwsze uruchomienie — wersja beta dla firm pilotażowych',
     period: '19 czerwca 2026',
-    color: '#8B5CF6',
-    status: 'upcoming',
-    summary: 'Start produktu 19 czerwca 2026 jako wersja beta dla pierwszych firm pilotażowych. Pełen pakiet funkcji od pierwszego dnia: audyt bezpieczeństwa, fakturowanie, diety + KSeF, analityka rentowności, tachograf G2V2 i kontrola ITD, marża per zlecenie, VAT-REF, mapa live z geofencingiem, Dispatcher Hub, e-CMR, AETR DriverActivity Engine.',
+    color: '#34C759',
+    status: 'done',
+    summary: 'MVP uruchomione 19 czerwca 2026 jako wersja beta dla pierwszych firm pilotażowych. Pełen pakiet funkcji od pierwszego dnia: audyt bezpieczeństwa, fakturowanie, diety + KSeF, analityka rentowności, tachograf G2V2 i kontrola ITD, marża per zlecenie, VAT-REF, mapa live z geofencingiem, Dispatcher Hub, e-CMR, AETR DriverActivity Engine.',
     milestones: [
-      { range: '19 czerwca',  title: 'Start produktu — wersja beta dla pilotów',   desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna. Pierwsze firmy pilotażowe dostają środowisko beta z dożywotnim dostępem gratis.', milestone: true },
+      { range: '19 czerwca',  title: 'MVP live — wersja beta dla pilotów',   desc: 'Pełen audyt bezpieczeństwa, testy wydajnościowe, wdrożenie środowiska produkcyjnego, monitoring 24/7, dokumentacja operacyjna. Pierwsze firmy pilotażowe dostają środowisko beta z dożywotnim dostępem gratis.', milestone: true },
       { range: '19 czerwca',  title: 'Automatyczne fakturowanie',                  desc: 'Samodzielna rejestracja firm bez biura rachunkowego, automatyczne faktury VAT, samoobsługowe zarządzanie subskrypcją.' },
       { range: '19 czerwca',  title: 'Diety pracownicze i KSeF',                   desc: 'Eksport diet zagranicznych kierowców per kraj per dzień do Insert GT, Comarch ERP Optima i Symfonia FK. Integracja z Krajowym Systemem e-Faktur.' },
       { range: '19 czerwca',  title: 'Zaawansowana analityka rentowności',         desc: 'Raporty kosztów per zlecenie, per pojazd i per kierowca, porównania międzymiesięczne, wykrywanie trendów wykorzystania floty.' },
@@ -111,8 +111,8 @@ const phases = [
     label: 'Pilotaż i pierwsze publiczne wydanie',
     period: '22 czerwca — 22 sierpnia 2026',
     color: '#FF9500',
-    status: 'future',
-    summary: 'Dwumiesięczny pilotaż wersji beta u pierwszych firm transportowych. Na podstawie danych z realnego użycia dopasowujemy plany subskrypcji do wielkości flot i klientów, wdrażamy poprawki, fixy i dodatki zgłaszane przez pilotów. Koniec sierpnia — formalne wyjście z bety: pierwsze publiczne wydanie dostępne dla wszystkich.',
+    status: 'in-progress',
+    summary: 'Trwa dwumiesięczny pilotaż wersji beta u pierwszych firm transportowych — właśnie szukamy kolejnych firm do testów na realnych trasach. Na podstawie danych z realnego użycia dopasowujemy plany subskrypcji do wielkości flot i klientów, wdrażamy poprawki, fixy i dodatki zgłaszane przez pilotów. 22 sierpnia — formalne wyjście z bety: pierwsze publiczne wydanie dostępne dla wszystkich.',
     milestones: [
       { range: '22 czerwca — 5 lipca', title: 'Onboarding pierwszych firm pilotażowych',          desc: 'Indywidualne spotkania 30 min z każdą firmą pilotażową, konfiguracja konta, import danych floty, szkolenie kierowców i właścicieli.' },
       { range: '6—26 lipca',          title: 'Dane z pilotażu i dopasowanie planów subskrypcji', desc: 'Analiza realnego użycia produktu — liczba aktywnych pojazdów, częstotliwość eksportów FK, użycie OCR, alerty AETR. Dopasowanie planów subskrypcji do wielkości flot i typów klientów (firma transportowa, biuro rachunkowe).' },
@@ -174,7 +174,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
 };
 ---
 
-<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM — 3-letnia perspektywa. Siedem etapów rozwoju, start produktu 19 czerwca 2026, dwa lata badań i rozwoju w 2027–2028 finansowanych ze środków UE.">
+<MarketingLayout title="Roadmapa — BusiKM" description="Plan rozwoju BusiKM — 3-letnia perspektywa. Siedem etapów rozwoju, MVP dostępne od 19 czerwca 2026, pilotaż do 22 sierpnia 2026, dwa lata badań i rozwoju w 2027–2028 finansowanych ze środków UE.">
 
   <!-- ===================== HERO ===================== -->
   <section class="relative overflow-hidden bg-surface">
@@ -186,17 +186,17 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
         </span>
-        <span class="text-sm font-medium text-text">e-TMS dla busów 2,5–3,5 t · start produktu 19 czerwca 2026</span>
+        <span class="text-sm font-medium text-text">e-TMS dla busów 2,5–3,5 t · MVP live · pilotaż do 22 sierpnia 2026</span>
       </div>
 
       <h1 class="hero-seq-2 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-text leading-[1.18] tracking-tight mb-6">
-        Plan rozwoju produktu.<br>
-        <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">Cztery kamienie milowe przed nami.</span>
+        MVP już na rynku.<br>
+        <span class="inline-block bg-gradient-to-r from-[#005CE8] to-[#3380FF] bg-clip-text text-transparent pb-2">Trwa pilotaż. Trzy przełomy przed nami.</span>
       </h1>
 
       <p class="hero-seq-3 text-lg sm:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
-        <strong class="text-text">19 czerwca 2026 — start produktu</strong> w wersji beta dla pierwszych firm pilotażowych operujących busami 2,5–3,5&nbsp;t.
-        <strong class="text-text">22 sierpnia 2026 — pierwsze publiczne wydanie</strong>, po dwumiesięcznym pilotażu i dopasowaniu planów subskrypcji.
+        <strong class="text-text">19 czerwca 2026 — MVP dostępne</strong> w wersji beta dla pierwszych firm pilotażowych operujących busami 2,5–3,5&nbsp;t.
+        <strong class="text-text">Teraz — pilotaż do 22 sierpnia 2026</strong>: szukamy firm transportowych do testów na realnych trasach, potem pierwsze publiczne wydanie.
         <strong class="text-text">Grudzień 2026 — druga generacja produktu</strong> ze scoringiem kierowców, planowaniem tras z przerwami AETR i integratorem opłat drogowych.
         <strong class="text-text">2027–2028 — trzecia generacja</strong> z funkcjami z programu badawczo-rozwojowego finansowanego ze środków UE (szczegóły poufne).
       </p>
@@ -225,8 +225,8 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
           <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">kamieni milowych w planie</div>
         </div>
         <div class="flex flex-col items-center">
-          <div class="text-3xl sm:text-4xl font-extrabold text-brand-light font-display leading-none">19 cze</div>
-          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">Start produktu 2026</div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-brand-light font-display leading-none">22 sie</div>
+          <div class="text-sm text-text-tertiary mt-2 min-h-[2.5rem] flex items-start justify-center">pierwsze publiczne wydanie 2026</div>
         </div>
       </div>
     </div>
@@ -454,7 +454,7 @@ const numberWord = (n: number, one: string, few: string, many: string): string =
             </div>
           ))}
         </div>
-        <p class="text-xs text-text-tertiary">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — na przełomie maja i czerwca 2026, w kolejnej fali rozwoju po starcie produktu.</p>
+        <p class="text-xs text-text-tertiary">Eksport diet zagranicznych kierowców do tych samych systemów oraz integracja z Krajowym Systemem e-Faktur (KSeF) — w kolejnej fali rozwoju, po zakończeniu pilotażu.</p>
       </div>
     </div>
   </section>

@@ -18,7 +18,7 @@ export const pl = {
     roadmap: 'Roadmapa',
     technology: 'Technologia',
     g2v2: 'G2V2',
-    tryDemo: 'Wypróbuj demo',
+    tryDemo: 'Zaloguj',
     bookMeeting: 'Umów spotkanie',
   },
   forWhom: {

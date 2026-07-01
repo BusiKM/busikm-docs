@@ -1,5 +1,9 @@
 ---
 import { t, detectLocale, getHreflangAlternates } from '../i18n';
+import { APP_URL } from '../lib/app-url';
+
+// Origin aplikacji (login + app) — do propagacji motywu na zewnętrzną domenę.
+const appOrigin = new URL(APP_URL).origin;
 
 interface Props {
   title: string;
@@ -63,11 +67,11 @@ const featureList = locale === 'en' ? [
 ];
 
 const offerName = locale === 'en'
-  ? 'Pilot program — lifetime free'
-  : 'Program pilotażowy — dożywotnio gratis';
+  ? 'Pilot program — lifetime free (until August 22, 2026)'
+  : 'Program pilotażowy — dożywotnio gratis (do 22 sierpnia 2026)';
 const offerDescription = locale === 'en'
-  ? 'BusiKM is in pilot program phase. First transport companies and accounting firms join lifetime-free in exchange for feedback. Commercial pricing will be announced after pilot ends.'
-  : 'BusiKM jest w fazie programu pilotażowego. Pierwsze firmy i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu.';
+  ? 'BusiKM MVP is live. Pilot program runs until August 22, 2026 — first transport companies and accounting firms join lifetime-free in exchange for feedback. Commercial pricing will be announced after the pilot ends.'
+  : 'BusiKM MVP jest dostępne. Program pilotażowy trwa do 22 sierpnia 2026 — pierwsze firmy transportowe i biura rachunkowe biorą udział dożywotnio gratis w zamian za feedback. Cennik komercyjny ogłosimy po zakończeniu pilotażu.';
 
 const websiteDescription = locale === 'en'
   ? 'e-TMS (Transport Management System) for vans 2.5–3.5 t and accounting integration'
@@ -93,7 +97,6 @@ const websiteDescription = locale === 'en'
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
@@ -203,5 +206,34 @@ const websiteDescription = locale === 'en'
   </head>
   <body class="min-h-screen bg-surface text-text">
     <slot />
+
+    <!-- Propagacja motywu (light/dark) na zewnętrzną aplikację BusiKM (login + app) -->
+    <!-- Dokleja ?theme=light|dark do wszystkich linków na appOrigin, żeby logowanie/aplikacja -->
+    <!-- otwierały się w tym samym trybie co strona. Aktualizuje href przy każdej zmianie motywu. -->
+    <script is:inline define:vars={{ appOrigin }}>
+      (function () {
+        function resolvedTheme() {
+          return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+        function decorate() {
+          var theme = resolvedTheme();
+          var links = document.querySelectorAll('a[href]');
+          for (var i = 0; i < links.length; i++) {
+            var a = links[i];
+            var href = a.getAttribute('href');
+            if (!href || href.indexOf(appOrigin) !== 0) continue;
+            try {
+              var u = new URL(href, window.location.href);
+              u.searchParams.set('theme', theme);
+              a.setAttribute('href', u.toString());
+            } catch (e) {}
+          }
+        }
+        decorate();
+        // Re-decorate po zmianie motywu (ThemeToggle przełącza klasę `.dark` na <html>).
+        var mo = new MutationObserver(decorate);
+        mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      })();
+    </script>
   </body>
 </html>

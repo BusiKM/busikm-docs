@@ -61,7 +61,7 @@ const webScreens = [
 
       <div class="hero-seq-4 flex flex-wrap gap-3 mb-12">
         <a href={APP_LOGIN_URL} class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#8B5CF6] text-white text-[15px] font-semibold hover:bg-[#7C3AED] transition-colors shadow-[0_1px_3px_rgba(139,92,246,0.4)]">
-          Wypróbuj demo
+          Zaloguj
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/funkcje" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-text text-[15px] font-semibold hover:bg-surface-2 transition-colors">
@@ -448,7 +448,7 @@ const webScreens = [
         { q: 'Jak działa import do mojego Insert GT / Comarch / Symfonia?', a: 'Po eksporcie z BusiKM otrzymujesz plik gotowy do natywnego importu w Twoim systemie księgowym. W Insert GT klikasz Operacje → Dodaj na podstawie, w Comarch ERP Optima Narzędzia → Importy, w Symfonii Księgowość → Import specjalny. Cały proces zajmuje 2–3 minuty per klient. Sumy kontrolne weryfikują się automatycznie.' },
         { q: 'Czy paczki VAT-REF są zgodne z 8 dyrektywą?', a: 'Tak. BusiKM identyfikuje faktury kwalifikujące się do zwrotu VAT z 8 krajów (DE, FR, IT, NL, AT, BE, ES, CZ — najczęstsze w transporcie międzynarodowym). Generuje paczkę z metadanymi (numer faktury, data, sprzedawca, NIP, kwota netto, VAT, kategoria) + załączniki PDF. Sam wniosek składasz przez polski US (e-Urząd Skarbowy → VAT-REF) — US przekazuje do administracji kraju zwrotu. Termin: do 30 września roku następnego po roku kalendarzowym poniesienia kosztów.' },
         { q: 'Ile zajmuje wdrożenie nowego klienta?', a: 'Klient otrzymuje od Ciebie zaproszenie z linkiem. Po jego rejestracji właściciel firmy konfiguruje pojazdy i zaprasza kierowców (10 minut). Pierwsza trasa GPS się rejestruje od razu. Pierwszy eksport do Twojego systemu BR — w ciągu 30 dni od pierwszych zleceń. Ty nie konfigurujesz technicznie nic.' },
-        { q: 'Kiedy będzie white-label (mój branding na panelu)?', a: 'Q3 2026. Własne logo, kolory, domena (np. flota.twoje-bro.pl). Twoi klienci widzą Twoją markę zamiast BusiKM. Funkcja zaplanowana w roadmapie po pierwszej publicznej premierze produktu.' },
+        { q: 'Kiedy będzie white-label (mój branding na panelu)?', a: 'Q3 2026. Własne logo, kolory, domena (np. flota.twoje-bro.pl). Twoi klienci widzą Twoją markę zamiast BusiKM. Funkcja zaplanowana w roadmapie po pierwszym publicznym wydaniu (po 22 sierpnia 2026).' },
       ].map(faq => (
         <details class="group bg-surface rounded-2xl border border-transparent hover:border-border-subtle transition-colors">
           <summary class="flex items-center justify-between cursor-pointer p-5 font-semibold text-[14.5px] text-text hover:text-[#8B5CF6] transition-colors">

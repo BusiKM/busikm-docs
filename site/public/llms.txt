@@ -55,7 +55,7 @@ Dodatkowo BusiKM wspiera:
 - Świadectwa kierowców (ADR, kategorie prawa jazdy, badania psychotechniczne)
 
 ## Status produktu i cennik
-BusiKM jest w fazie programu pilotażowego. Cennik komercyjny zostanie ogłoszony po analizie informacji od użytkowników pilotażowych. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi firmami transportowymi i realnych danych z używania produktu.
+MVP BusiKM jest dostępne od 19 czerwca 2026 (wersja beta na trzech platformach: backend, panel webowy, aplikacja mobilna iOS/Android). Trwa program pilotażowy do 22 sierpnia 2026 — aktywnie poszukujemy firm transportowych, które przetestują produkt u siebie na realnych trasach. Cennik komercyjny zostanie ogłoszony po zakończeniu pilotażu, na podstawie realnych danych z użycia. Nie podajemy konkretnych kwot — chcemy ustalić cenę na podstawie rozmów z pierwszymi firmami transportowymi.
 
 ## Program pilotażowy — dożywotnio gratis
 - Dla firm transportowych krajowych (1–50 pojazdów): pełna funkcjonalność produktu — dożywotnio gratis.
@@ -73,10 +73,11 @@ Pilotaż to stała funkcja w naszej organizacji, nie kończąca się rola:
 - Zgłoszenia do pilotażu rozpatrujemy indywidualnie w rozmowie 30 min na Calendly.
 
 ## Stan wdrożenia
-- Pięć z siedmiu etapów rozwoju gotowych lub zaplanowanych — fundament backendu, panel webowy, aplikacja mobilna (w toku), start produktu (zaplanowany), kolejne fale rozwoju w drugiej połowie 2026.
-- Trzy integracje z systemami księgowymi gotowe od pierwszego dnia — Insert GT, Comarch ERP Optima, Symfonia FK. Integracja z KSeF zaplanowana w fazie wydania produkcyjnego.
-- Cztery platformy: backend Django, panel webowy Next.js, aplikacja mobilna iOS, aplikacja mobilna Android.
-- Start produktu: 19 czerwca 2026.
+- Data dzisiejsza: 1 lipca 2026. MVP live od 19 czerwca 2026, trwa pilotaż do 22 sierpnia 2026.
+- Cztery z siedmiu etapów rozwoju gotowych — fundament backendu, panel webowy, aplikacja mobilna (iOS/Android w App Store i Google Play), MVP live. Piąty etap — program pilotażowy — w toku (22 czerwca – 22 sierpnia 2026). Kolejne etapy: druga generacja (do grudnia 2026) i program R&D (2027–2028).
+- Trzy integracje z systemami księgowymi gotowe od pierwszego dnia — Insert GT, Comarch ERP Optima, Symfonia FK. Integracja z KSeF zaplanowana w kolejnej fali rozwoju.
+- Cztery platformy w produkcji: backend Django, panel webowy Next.js, aplikacja mobilna iOS, aplikacja mobilna Android.
+- 22 sierpnia 2026: pierwsze publiczne wydanie po zakończeniu pilotażu.
 - W kolejnych falach rozwoju (druga połowa 2026): filar AETR (DriverActivity Engine), tachograf G2V2 i kontrola ITD pod jednym dashboardem, marża per zlecenie, rozliczenie kierowcy (diety, mandaty, wypłata), VAT-REF z UE, mapa live ze strefami alertów (geofencing).
 
 ## Program badawczo-rozwojowy 2027–2028
@@ -112,7 +113,7 @@ BusiKM is **Poland's first e-TMS (Transport Management System) designed from the
 
 Hook: full control over driver work and order profitability. Ready for the new G2V2 tachograph obligation from 2 July 2026 (EU Mobility Package).
 
-Status: backend and web panel complete; mobile app in finishing phase. Product launch 19 June 2026. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback.
+Status: MVP live since 19 June 2026 on all three platforms (backend, web panel, iOS/Android app). Pilot program runs until 22 August 2026 — we are actively looking for transport companies to test the product on real routes. Pilot transport companies and accounting firms join lifetime-free in exchange for product feedback. First public release: 22 August 2026.
 
 Later development waves (H2 2026): AETR DriverActivity Engine, G2V2 + ITD compliance dashboard, per-order margin analysis, driver settlement (per-diem, fines, payroll), EU VAT-REF, live map with geofencing alerts.
 

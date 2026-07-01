@@ -10,18 +10,32 @@
 interface Props {
   color?: 'auto' | 'dark' | 'white';
   size?: 'sm' | 'md' | 'lg';
+  variant?: 'icon' | 'wordmark';
 }
-const { color = 'auto', size = 'md' } = Astro.props;
+const { color = 'auto', size = 'md', variant = 'icon' } = Astro.props;
 
 const iconSizes = { sm: 24, md: 28, lg: 34 };
 const iconH = iconSizes[size];
 
-const ICON_DARK = '/logo/ios-icon-iOS-Default.png';
-const ICON_LIGHT = '/logo/ios-icon-iOS-ClearDark.png';
+// Wysokosc pelnego logo (wordmark SVG). Szerokosc auto (aspect ~5:1).
+const wordmarkSizes = { sm: 26, md: 30, lg: 38 };
+const wordmarkH = wordmarkSizes[size];
+
+const ICON_DARK = '/logo/logo.svg';
+const ICON_LIGHT = '/logo/logo.svg';
+const LOGO_SVG = '/logo/logo.svg';
 ---
 
 <a href="/" class="inline-flex items-center gap-2 shrink-0" aria-label="BusiKM — strona główna">
-  {color === 'auto' ? (
+  {variant === 'wordmark' ? (
+    <img
+      src={LOGO_SVG}
+      alt="BusiKM"
+      height={wordmarkH}
+      style={`height:${wordmarkH}px;width:auto;border-radius:5px;`}
+      loading="eager"
+    />
+  ) : color === 'auto' ? (
     <>
       <img
         src={ICON_DARK}
