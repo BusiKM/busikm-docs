@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="display:flex;flex-direction:column;gap:96px;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B">
+
+<!-- 1. DOMYŚLNY -->
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#6E6E76">STAN 1 · pasek domyślny · 72 px · białe tło z rozmyciem · linia u dołu</div>
+  <div data-screen-label="Nav · domyślny" style="width:1440px;height:900px;background:#FAFAFA;overflow:hidden;position:relative;border:1px solid #E3E3E6">
+    <div style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6">
+      <div style="display:flex;align-items:center;gap:44px"><div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div><div style="display:flex;gap:30px;font-size:15px;font-weight:500"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+      <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+    </div>
+    <div style="padding:160px 0 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px">
+      <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div>
+      <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Kierowca jedzie.<br>Reszta dzieje się sama.</h1>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:700px">Zlecenia, trasy, koszty, faktury i komplet dla księgowej — w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2. PO PRZEWINIĘCIU -->
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#6E6E76">STAN 2 · pasek po przewinięciu &gt; 24 px · pojawia się cień</div>
+  <div data-screen-label="Nav · po przewinięciu" style="width:1440px;height:900px;background:#FAFAFA;overflow:hidden;position:relative;border:1px solid #E3E3E6">
+    <div style="position:absolute;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);z-index:2">
+      <div style="display:flex;align-items:center;gap:44px"><div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div><div style="display:flex;gap:30px;font-size:15px;font-weight:500"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+      <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+    </div>
+    <div style="position:absolute;top:-360px;left:0;right:0;padding:160px 0 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px;opacity:.9">
+      <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div>
+      <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Kierowca jedzie.<br>Reszta dzieje się sama.</h1>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:700px">Zlecenia, trasy, koszty, faktury i komplet dla księgowej — w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.</p>
+      <div style="display:flex;gap:12px"><span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center">Wypróbuj 14 dni</span><span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #E3E3E6;background:#fff;font-size:17px;font-weight:600;display:flex;align-items:center">Zobacz demo</span></div>
+      <div style="width:1120px;margin-top:64px;height:700px;border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 40px 80px rgba(11,95,255,.10)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. MENU CO ROBI -->
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#6E6E76">STAN 3 · otwarte menu „Co robi” · trzy kolumny + kafel demo</div>
+  <div data-screen-label="Nav · Co robi" style="width:1440px;height:900px;background:#FAFAFA;overflow:hidden;position:relative;border:1px solid #E3E3E6">
+    <div style="position:absolute;inset:0;background:rgba(10,10,11,.18);z-index:1"></div>
+    <div style="padding:160px 0 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div><h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Kierowca jedzie.<br>Reszta dzieje się sama.</h1></div>
+    <div style="position:absolute;top:0;left:0;right:0;z-index:2;background:#fff;border-bottom:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06)">
+      <div style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px">
+        <div style="display:flex;align-items:center;gap:44px"><div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div><div style="display:flex;gap:30px;font-size:15px;font-weight:500"><span style="color:#0B5FFF">Co robi <span style="font-size:12px">▴</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+        <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+      </div>
+      <div style="max-width:1120px;margin:0 auto;padding:40px 0 48px;display:grid;grid-template-columns:1fr 1fr 1fr 300px;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">W trasie</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Aplikacja kierowcy</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Nawigacja, trasa i koszty w jednej aplikacji</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Trasy i mapa floty</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Widzisz, gdzie jest każdy bus. Bez dzwonienia</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Czas pracy i przerwy</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Wiesz, kiedy kierowca musi stanąć</div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">W biurze</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Dyspozytornia</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Cały dzień pracy na jednym ekranie</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Zlecenia i faktury</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Ze zlecenia robi się faktura. Klient dostaje ją od razu</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Ile zostaje</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Zysk na każdym kursie, na bieżąco</div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">Na koniec miesiąca</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Koszty i paragony</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Zdjęcie zamiast reklamówki pod siedzeniem</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Dane dla księgowej</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Komplet dokumentów jednym przyciskiem</div></div>
+            <div style="padding:12px 14px;margin:0 -14px;border-radius:12px" style-hover="background:#F2F2F4"><div style="font-size:15px;font-weight:600">Dokumenty i terminy</div><div style="font-size:14px;line-height:1.5;color:#6E6E76;margin-top:2px">Nic nie wygaśnie po cichu</div></div>
+          </div>
+        </div>
+        <div style="border-radius:20px;background:#F2F2F4;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+          <div style="display:flex;flex-direction:column;gap:10px"><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em">Zobacz demo</div><div style="font-size:14px;line-height:1.5;color:#6E6E76">Prawdziwa aplikacja z przykładową firmą. Bez zakładania konta.</div></div>
+          <div style="height:110px;border-radius:12px;background:#fff;border:1px solid #E3E3E6;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:11px"><div style="color:#6E6E76">Pulpit · Trans-Bus Kowalski</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div style="border:1px solid #E3E3E6;border-radius:8px;padding:6px"><div style="color:#6E6E76;font-size:9px">Przychód</div><b>184 320</b></div><div style="border:1px solid #E3E3E6;border-radius:8px;padding:6px"><div style="color:#6E6E76;font-size:9px">Koszty</div><b>121 840</b></div><div style="border:1px solid #E3E3E6;border-radius:8px;padding:6px;background:#F2F2F4"><div style="color:#6E6E76;font-size:9px">Zysk</div><b>62 480</b></div></div></div>
+          <a href="#" style="font-size:15px;font-weight:600">Wejdź do demo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. MENU DLA KOGO -->
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#6E6E76">STAN 4 · otwarte menu „Dla kogo” · cztery role + dopisek</div>
+  <div data-screen-label="Nav · Dla kogo" style="width:1440px;height:900px;background:#FAFAFA;overflow:hidden;position:relative;border:1px solid #E3E3E6">
+    <div style="position:absolute;inset:0;background:rgba(10,10,11,.18);z-index:1"></div>
+    <div style="padding:160px 0 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div><h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Kierowca jedzie.<br>Reszta dzieje się sama.</h1></div>
+    <div style="position:absolute;top:0;left:0;right:0;z-index:2;background:#fff;border-bottom:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06)">
+      <div style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px">
+        <div style="display:flex;align-items:center;gap:44px"><div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div><div style="display:flex;gap:30px;font-size:15px;font-weight:500"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span style="color:#0B5FFF">Dla kogo <span style="font-size:12px">▴</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+        <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+      </div>
+      <div style="max-width:1120px;margin:0 auto;padding:40px 0 40px;display:flex;flex-direction:column;gap:32px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <div style="padding:24px;border-radius:20px;border:1px solid #E3E3E6;display:flex;flex-direction:column;gap:12px" style-hover="background:#F2F2F4"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">Przeglądarka</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em">Właściciel</div><div style="font-size:14px;line-height:1.5;color:#6E6E76">Zysk, koszty i cała flota na jednym ekranie</div></div>
+          <div style="padding:24px;border-radius:20px;border:1px solid #E3E3E6;display:flex;flex-direction:column;gap:12px" style-hover="background:#F2F2F4"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">Przeglądarka</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em">Dyspozytor</div><div style="font-size:14px;line-height:1.5;color:#6E6E76">Zlecenia, mapa i kierowca w jednym miejscu</div></div>
+          <div style="padding:24px;border-radius:20px;border:1px solid #E3E3E6;display:flex;flex-direction:column;gap:12px" style-hover="background:#F2F2F4"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">Przeglądarka</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em">Księgowa</div><div style="font-size:14px;line-height:1.5;color:#6E6E76">Komplet dokumentów jednym przyciskiem</div></div>
+          <div style="padding:24px;border-radius:20px;border:1px solid #E3E3E6;display:flex;flex-direction:column;gap:12px" style-hover="background:#F2F2F4"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600">Telefon</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em">Kierowca</div><div style="font-size:14px;line-height:1.5;color:#6E6E76">Jeden przycisk: rusz. Resztą zajmuje się telefon</div></div>
+        </div>
+        <div style="font-size:13px;line-height:1.5;color:#6E6E76">W małej firmie jedna osoba nosi dwie role. Przełączasz widok jednym kliknięciem.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. MENU NA TELEFONIE -->
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#6E6E76">STAN 5 · menu na telefonie · 390 px · zamknięte i otwarte</div>
+  <div style="display:flex;gap:40px">
+    <div data-screen-label="Nav · telefon zamknięte" style="width:390px;height:844px;background:#FAFAFA;overflow:hidden;border:1px solid #E3E3E6;position:relative">
+      <div style="height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(255,255,255,.86);border-bottom:1px solid #E3E3E6"><div style="font-weight:700;font-size:19px;letter-spacing:-0.02em">BusiKM</div><div style="display:flex;align-items:center;gap:14px"><span style="height:40px;padding:0 14px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;font-size:14px;font-weight:500;background:#fff">Zobacz demo</span><div style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span style="width:20px;height:2px;background:#0A0A0B"></span><span style="width:20px;height:2px;background:#0A0A0B"></span></div></div></div>
+      <div style="padding:96px 24px 0;display:flex;flex-direction:column;gap:24px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500;line-height:1.5">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div><h1 style="margin:0;font-size:44px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Kierowca jedzie. Reszta dzieje się sama.</h1><p style="margin:0;font-size:19px;line-height:1.5;color:#6E6E76">Zlecenia, trasy, koszty, faktury i komplet dla księgowej — w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.</p></div>
+    </div>
+    <div data-screen-label="Nav · telefon otwarte" style="width:390px;height:844px;background:#fff;overflow:hidden;border:1px solid #E3E3E6;display:flex;flex-direction:column">
+      <div style="height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #E3E3E6;flex:none"><div style="font-weight:700;font-size:19px;letter-spacing:-0.02em">BusiKM</div><div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px">×</div></div>
+      <div style="flex:1;overflow:hidden;padding:24px 20px;display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Co robi</div><div style="display:flex;flex-direction:column;font-size:16px">
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Aplikacja kierowcy</b><div style="font-size:13px;color:#6E6E76">Nawigacja, trasa i koszty w jednej aplikacji</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Trasy i mapa floty</b><div style="font-size:13px;color:#6E6E76">Widzisz, gdzie jest każdy bus. Bez dzwonienia</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Czas pracy i przerwy</b><div style="font-size:13px;color:#6E6E76">Wiesz, kiedy kierowca musi stanąć</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Dyspozytornia</b><div style="font-size:13px;color:#6E6E76">Cały dzień pracy na jednym ekranie</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Zlecenia i faktury</b><div style="font-size:13px;color:#6E6E76">Ze zlecenia robi się faktura. Klient dostaje ją od razu</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Ile zostaje</b><div style="font-size:13px;color:#6E6E76">Zysk na każdym kursie, na bieżąco</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Koszty i paragony</b><div style="font-size:13px;color:#6E6E76">Zdjęcie zamiast reklamówki pod siedzeniem</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #E3E3E6"><b>Dane dla księgowej</b><div style="font-size:13px;color:#6E6E76">Komplet dokumentów jednym przyciskiem</div></div>
+          <div style="padding:12px 0"><b>Dokumenty i terminy</b><div style="font-size:13px;color:#6E6E76">Nic nie wygaśnie po cichu</div></div>
+        </div></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dla kogo</div><div style="display:flex;gap:8px;flex-wrap:wrap;font-size:14px;font-weight:600"><span style="padding:10px 14px;border-radius:999px;background:#F2F2F4">Właściciel</span><span style="padding:10px 14px;border-radius:999px;background:#F2F2F4">Dyspozytor</span><span style="padding:10px 14px;border-radius:999px;background:#F2F2F4">Księgowa</span><span style="padding:10px 14px;border-radius:999px;background:#F2F2F4">Kierowca</span></div></div>
+        <div style="display:flex;gap:24px;font-size:16px;font-weight:600"><span>Cennik</span><span>Pomoc</span><span>Zaloguj się</span></div>
+      </div>
+      <div style="padding:16px 20px 24px;border-top:1px solid #E3E3E6;display:flex;flex-direction:column;gap:10px;flex:none"><span style="height:52px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center">Wypróbuj 14 dni</span><span style="height:52px;border-radius:12px;border:1px solid #E3E3E6;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center">Zobacz demo</span></div>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

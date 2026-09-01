@@ -10,6 +10,8 @@ export type NavLeaf = {
   href: string;
   label: string;
   benefit: string;
+  /** Gdzie ta rola pracuje — nadtytuł na karcie w menu „Dla kogo". */
+  device?: string;
 };
 
 export type NavGroup = {
@@ -27,6 +29,10 @@ export type NavEntry =
       href: string;
       groups: NavGroup[];
       promo?: { href: string; label: string; benefit: string };
+      /** Wąskie menu w jednej kolumnie zamiast pełnej szerokości. */
+      compact?: boolean;
+      /** Karty zamiast listy — układ z arkusza „Dla kogo". */
+      cards?: boolean;
     };
 
 export const coRobi: NavGroup[] = [
@@ -100,21 +106,25 @@ export const dlaKogo: NavGroup[] = [
         href: '/dla-kogo/wlasciciel',
         label: 'Właściciel',
         benefit: 'Zysk, koszty i cała flota na jednym ekranie',
+        device: 'Przeglądarka',
       },
       {
         href: '/dla-kogo/dyspozytor',
         label: 'Dyspozytor',
         benefit: 'Zlecenia, mapa i kierowca w jednym miejscu',
+        device: 'Przeglądarka',
       },
       {
         href: '/dla-kogo/ksiegowa',
         label: 'Księgowa',
         benefit: 'Komplet dokumentów jednym przyciskiem',
+        device: 'Przeglądarka',
       },
       {
         href: '/dla-kogo/kierowca',
         label: 'Kierowca',
         benefit: 'Jeden przycisk: rusz. Resztą zajmuje się telefon',
+        device: 'Telefon',
       },
     ],
   },
@@ -132,9 +142,25 @@ export const navigation: NavEntry[] = [
       benefit: 'Prawdziwa aplikacja z przykładową firmą. Bez zakładania konta.',
     },
   },
-  { kind: 'mega', label: 'Dla kogo', href: '/dla-kogo', groups: dlaKogo },
+  { kind: 'mega', label: 'Dla kogo', href: '/dla-kogo', groups: dlaKogo, cards: true },
   { kind: 'link', href: '/cennik', label: 'Cennik' },
-  { kind: 'link', href: '/pomoc', label: 'Pomoc' },
+  {
+    kind: 'mega',
+    label: 'Pomoc',
+    href: '/pomoc',
+    compact: true,
+    groups: [
+      {
+        heading: 'Pomoc',
+        items: [
+          { href: '/pomoc', label: 'Centrum pomocy', benefit: 'Odpowiedzi na najczęstsze pytania' },
+          { href: '/pomoc/pierwsze-kroki', label: 'Pierwsze kroki', benefit: 'Od konta do pierwszej faktury' },
+          { href: '/kontakt', label: 'Kontakt', benefit: 'Odpisujemy tego samego dnia' },
+          { href: '/status', label: 'Status usługi', benefit: 'Czy wszystko działa' },
+        ],
+      },
+    ],
+  },
 ];
 
 /** Nota pod menu „Dla kogo" — role są zbiorem, nie wyborem. */

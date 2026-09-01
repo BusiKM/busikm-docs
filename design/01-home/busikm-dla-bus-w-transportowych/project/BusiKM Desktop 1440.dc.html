@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="width:1440px;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;color:#0A0A0B">
+      <span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span>
+      <span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span>
+      <span>Cennik</span>
+      <span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500">
+    <span>Zaloguj się</span>
+    <span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span>
+  </div>
+</div>
+
+<!-- 6.1 HERO -->
+<div data-screen-label="6.1 Hero" style="position:relative;padding:160px 0 0;background:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,11,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.035) 1px,transparent 1px);background-size:120px 120px;pointer-events:none"></div>
+  <svg viewBox="0 0 1440 1200" style="position:absolute;inset:0;width:1440px;height:100%;pointer-events:none" preserveAspectRatio="none">
+    <path d="M 220 980 C 520 720, 760 760, 940 480 S 1180 300, 1320 120" fill="none" stroke="#0B5FFF" stroke-width="2" opacity=".18"></path>
+    <path d="M 220 980 C 520 720, 760 760, 940 480 S 1180 300, 1320 120" fill="none" stroke="#0B5FFF" stroke-width="14" opacity=".05"></path>
+    <circle cx="220" cy="980" r="5" fill="#0B5FFF" opacity=".35"></circle>
+    <circle cx="1320" cy="120" r="5" fill="#0B5FFF" opacity=".35"></circle>
+  </svg>
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · opacity 0→1 · 28 px ↑ · 700 ms · cubic-bezier(0.16,1,0.3,1) · kaskada 90 ms</div>
+  <div style="position:absolute;right:24px;top:24px;width:130px;text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">TŁO · kontur Europy 4–6% + jedna świecąca linia trasy</div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px">
+    <div style="font-size:14px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Busy 2,5–3,5 t · Transport krajowy i międzynarodowy</div>
+    <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Kierowca jedzie.<br>Reszta dzieje się sama.</h1>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:700px;text-wrap:pretty">Zlecenia, trasy, koszty, faktury i komplet dla księgowej — w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:8px">
+      <div style="display:flex;gap:12px">
+        <span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center" style-hover="background:#0A46C0">Wypróbuj 14 dni</span>
+        <span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #E3E3E6;background:#fff;font-size:17px;font-weight:600;display:flex;align-items:center">Zobacz demo</span>
+      </div>
+      <div style="font-size:14px;line-height:1.5;color:#6E6E76">Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.</div>
+    </div>
+  </div>
+  <!-- hero mockup -->
+  <div style="position:relative;max-width:1120px;margin:96px auto 0;padding-bottom:160px">
+    <div style="position:absolute;left:10%;right:10%;bottom:200px;height:200px;background:#0B5FFF;filter:blur(120px);opacity:.28;border-radius:50%"></div>
+    <div style="position:relative;border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 40px 80px rgba(11,95,255,.10),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10">
+      <div style="height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid #E3E3E6;background:#FAFAFA">
+        <span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span>
+        <span style="margin-left:16px;font-size:12px;color:#6E6E76">app.busikm.pl · Pulpit · wrzesień 2026</span>
+      </div>
+      <div style="display:grid;grid-template-columns:200px 1fr;height:calc(100% - 44px)">
+        <div style="border-right:1px solid #E3E3E6;padding:24px 16px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:#6E6E76">
+          <div style="padding:8px 12px;border-radius:10px;background:#E8EFFE;color:#0B5FFF;font-weight:600">Pulpit</div>
+          <div style="padding:8px 12px">Zlecenia</div><div style="padding:8px 12px">Mapa</div><div style="padding:8px 12px">Kierowcy</div><div style="padding:8px 12px">Pojazdy</div><div style="padding:8px 12px">Koszty</div><div style="padding:8px 12px">Faktury</div><div style="padding:8px 12px">Księgowa</div>
+        </div>
+        <div style="padding:28px 32px;display:flex;flex-direction:column;gap:24px">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:20px 22px"><div style="font-size:13px;color:#6E6E76">Przychód · wrzesień</div><div style="font-size:32px;font-weight:600;letter-spacing:-0.02em;margin-top:8px">184 320 zł</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:20px 22px"><div style="font-size:13px;color:#6E6E76">Koszty</div><div style="font-size:32px;font-weight:600;letter-spacing:-0.02em;margin-top:8px">121 840 zł</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:20px 22px;background:#F2F2F4"><div style="font-size:13px;color:#6E6E76">Zysk</div><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;margin-top:8px">62 480 zł</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:16px;flex:1">
+            <div style="border:1px solid #E3E3E6;border-radius:20px;background:#F2F2F4;position:relative;overflow:hidden">
+              <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,11,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.05) 1px,transparent 1px);background-size:48px 48px"></div>
+              <svg viewBox="0 0 400 260" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+                <path d="M 320 40 C 260 90, 220 120, 170 150 S 90 200, 60 230" fill="none" stroke="#0B5FFF" stroke-width="3"></path>
+                <circle cx="320" cy="40" r="6" fill="#0B5FFF"></circle><circle cx="60" cy="230" r="6" fill="#0B5FFF"></circle>
+                <circle cx="190" cy="138" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle>
+              </svg>
+              <div style="position:absolute;top:14px;left:14px;font-size:12px;font-weight:600;background:#fff;border-radius:8px;padding:6px 10px;border:1px solid #E3E3E6">Warszawa → Mediolan</div>
+              <div style="position:absolute;top:44%;left:48%;font-size:12px;background:#fff;border-radius:8px;padding:6px 10px;border:1px solid #E3E3E6"><b>WZ 4821K</b> · Marek W. · 14:20</div>
+            </div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;font-size:13px">
+              <div style="color:#6E6E76">Zlecenia dziś</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><div><b>Warszawa → Mediolan</b><div style="color:#6E6E76">WZ 4821K · Marek W.</div></div><span style="background:#E8EFFE;color:#0B5FFF;border-radius:999px;padding:4px 10px;font-weight:500">W trasie</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><div><b>Poznań → Rotterdam</b><div style="color:#6E6E76">PO 2093J · Tomasz L.</div></div><span style="background:#F2F2F4;color:#0A0A0B;border-radius:999px;padding:4px 10px;font-weight:500">Załadunek</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><b>Gdańsk → Hamburg</b><div style="color:#6E6E76">GD 7710R · Piotr K.</div></div><span style="background:rgba(48,209,88,.14);color:#1E9C43;border-radius:999px;padding:4px 10px;font-weight:500">Rozliczone</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin:24px auto 0;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+      <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · EKRAN WŁAŚCICIELA · DESKTOP 1440</div>
+      <div>Pulpit po zalogowaniu: trzy liczby u góry (przychód, koszty, zysk), mapa z trasą Warszawa → Mediolan, lista trzech zleceń ze statusami.</div>
+      <div style="display:flex;justify-content:space-between"><span>mockup-hero-pulpit-desktop.png</span><span>16:10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.2 CZTERY RZECZY -->
+<div data-screen-label="6.2 Cztery rzeczy" style="position:relative;padding:160px 0;background:#F2F2F4">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · kaskada 90 ms na kolumnach</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;max-width:720px">Cztery rzeczy, których nie będziesz już robił.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px">
+      <div style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid #E3E3E6"><div style="font-size:17px;line-height:1.6;color:#6E6E76;text-decoration:line-through">Dzwonisz do kierowcy: „gdzie jesteś?”</div><div style="font-size:22px;line-height:1.35;font-weight:600;letter-spacing:-0.01em">Widzisz go na mapie</div></div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid #E3E3E6"><div style="font-size:17px;line-height:1.6;color:#6E6E76;text-decoration:line-through">Wieczorem przepisujesz do Excela</div><div style="font-size:22px;line-height:1.35;font-weight:600;letter-spacing:-0.01em">Liczy się samo, w trakcie</div></div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid #E3E3E6"><div style="font-size:17px;line-height:1.6;color:#6E6E76;text-decoration:line-through">Zbierasz paragony z reklamówki</div><div style="font-size:22px;line-height:1.35;font-weight:600;letter-spacing:-0.01em">Kierowca robi zdjęcie w trasie</div></div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid #E3E3E6"><div style="font-size:17px;line-height:1.6;color:#6E6E76;text-decoration:line-through">Odpisujesz księgowej, czego brakuje</div><div style="font-size:22px;line-height:1.35;font-weight:600;letter-spacing:-0.01em">Dostaje komplet jednym przyciskiem</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.3 CZTERY OSOBY — CIEMNA -->
+<div data-screen-label="6.3 Cztery osoby" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">SCENA PRZYKLEJONA · treść podmienia się przy przewijaniu · bez przechwytywania</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:72px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Cztery role</div>
+      <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em;max-width:820px">Cztery osoby. Jeden system.<br>Każdy widzi swoje.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:400px 1fr;gap:64px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+            <div onClick="{{ tab.onClick }}" style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-radius:12px;cursor:pointer;background:{{ tab.bg }};color:{{ tab.color }};font-size:17px;font-weight:600"><span>{{ tab.name }}</span><span style="font-size:13px;font-weight:400;color:#8E8E96">{{ tab.device }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">{{ roleTitle }}</div>
+          <div style="font-size:17px;line-height:1.6;color:#8E8E96">{{ roleBody }}</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <!-- Właściciel -->
+        <sc-if value="{{ role0 }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:20px;background:#111113;border:1px solid #26262B;overflow:hidden;aspect-ratio:16/10;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+            <div style="height:40px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid #26262B"><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="margin-left:14px;font-size:12px;color:#8E8E96">Pulpit · Właściciel</span></div>
+            <div style="padding:28px;display:flex;flex-direction:column;gap:20px">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+                <div style="border:1px solid #26262B;border-radius:16px;padding:18px"><div style="font-size:12px;color:#8E8E96">Przychód</div><div style="font-size:28px;font-weight:600;margin-top:6px">184 320 zł</div></div>
+                <div style="border:1px solid #26262B;border-radius:16px;padding:18px"><div style="font-size:12px;color:#8E8E96">Koszty</div><div style="font-size:28px;font-weight:600;margin-top:6px">121 840 zł</div></div>
+                <div style="border:1px solid #26262B;border-radius:16px;padding:18px;background:#1A1A1E"><div style="font-size:12px;color:#8E8E96">Zysk</div><div style="font-size:28px;font-weight:700;margin-top:6px;color:#30D158">62 480 zł</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                <div style="border:1px solid #26262B;border-radius:16px;height:200px;position:relative;overflow:hidden;background:#141417">
+                  <svg viewBox="0 0 300 200" style="width:100%;height:100%" preserveAspectRatio="none"><path d="M 30 170 C 90 140, 130 110, 170 90 S 240 50, 270 30" fill="none" stroke="#0B5FFF" stroke-width="3"></path><circle cx="30" cy="170" r="5" fill="#0B5FFF"></circle><circle cx="270" cy="30" r="5" fill="#0B5FFF"></circle><circle cx="120" cy="120" r="5" fill="#0B5FFF"></circle></svg>
+                  <div style="position:absolute;left:12px;top:12px;font-size:11px;color:#8E8E96">Cała flota · 3 w trasie</div>
+                </div>
+                <div style="border:1px solid #26262B;border-radius:16px;padding:16px;font-size:13px;display:flex;flex-direction:column;gap:10px">
+                  <div style="color:#8E8E96">Marża na kursie</div>
+                  <div style="display:flex;justify-content:space-between"><span>Warszawa → Mediolan</span><b style="color:#30D158">31%</b></div>
+                  <div style="display:flex;justify-content:space-between"><span>Poznań → Rotterdam</span><b style="color:#30D158">27%</b></div>
+                  <div style="display:flex;justify-content:space-between"><span>Gdańsk → Hamburg</span><b>18%</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <!-- Dyspozytor -->
+        <sc-if value="{{ role1 }}" hint-placeholder-val="{{ false }}">
+          <div style="border-radius:20px;background:#111113;border:1px solid #26262B;overflow:hidden;aspect-ratio:16/10;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+            <div style="height:40px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid #26262B"><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="margin-left:14px;font-size:12px;color:#8E8E96">Dyspozytornia · wtorek</span></div>
+            <div style="display:grid;grid-template-columns:200px 1fr 180px;height:calc(100% - 40px);font-size:12px">
+              <div style="border-right:1px solid #26262B;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="color:#8E8E96">Zlecenia</div><div style="padding:10px;border-radius:10px;background:#1A1A1E"><b>Warszawa → Mediolan</b><div style="color:#8E8E96">Załadunek 06:00</div></div><div style="padding:10px;border-radius:10px"><b>Poznań → Rotterdam</b><div style="color:#8E8E96">W trasie</div></div><div style="padding:10px;border-radius:10px"><b>Łódź → Wiedeń</b><div style="color:#8E8E96">Nieprzypisane</div></div></div>
+              <div style="position:relative;background:#141417"><svg viewBox="0 0 300 220" style="width:100%;height:100%" preserveAspectRatio="none"><path d="M 40 180 C 100 150, 150 130, 190 90 S 250 40, 280 20" fill="none" stroke="#0B5FFF" stroke-width="3"></path><circle cx="150" cy="118" r="5" fill="#0B5FFF"></circle><circle cx="230" cy="60" r="5" fill="#0B5FFF"></circle></svg></div>
+              <div style="border-left:1px solid #26262B;padding:16px;display:flex;flex-direction:column;gap:10px"><div style="color:#8E8E96">Kierowca</div><b>Marek W.</b><div style="color:#8E8E96">WZ 4821K</div><div style="margin-top:6px;padding:8px 10px;border-radius:10px;background:#1A1A1E">Załadunek gotowy, ruszam.</div><div style="padding:8px 10px;border-radius:10px;background:#0B5FFF;color:#fff;align-self:flex-end">Jedź. Rozładunek 15:00.</div></div>
+            </div>
+          </div>
+        </sc-if>
+        <!-- Księgowa -->
+        <sc-if value="{{ role2 }}" hint-placeholder-val="{{ false }}">
+          <div style="border-radius:20px;background:#111113;border:1px solid #26262B;overflow:hidden;aspect-ratio:16/10;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+            <div style="height:40px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid #26262B"><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="width:9px;height:9px;border-radius:50%;background:#2E2E34"></span><span style="margin-left:14px;font-size:12px;color:#8E8E96">Księgowa · sierpień 2026</span></div>
+            <div style="padding:32px;display:flex;flex-direction:column;gap:20px;font-size:13px">
+              <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:22px;font-weight:600">Komplet za sierpień</div><div style="padding:10px 16px;border-radius:10px;background:#0B5FFF;color:#fff;font-weight:600">Pobierz komplet</div></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Sprzedaż</span><span style="color:#30D158">42 faktury</span></div>
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Koszty</span><span style="color:#30D158">318 paragonów</span></div>
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Przebieg</span><span style="color:#30D158">7 pojazdów</span></div>
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Delegacje</span><span style="color:#30D158">9 kierowców</span></div>
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Czas pracy</span><span style="color:#30D158">gotowe</span></div>
+                <div style="display:flex;justify-content:space-between;padding:12px 14px;border:1px solid #26262B;border-radius:12px"><span>Format</span><span>Comarch Optima</span></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <!-- Kierowca -->
+        <sc-if value="{{ role3 }}" hint-placeholder-val="{{ false }}">
+          <div style="aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;position:relative">
+            <div style="position:absolute;bottom:0;left:30%;right:30%;height:120px;background:#0B5FFF;filter:blur(80px);opacity:.35"></div>
+            <div style="position:relative;width:250px;height:542px;border-radius:40px;background:#000;border:1px solid #2A2A30;padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)">
+              <div style="height:100%;border-radius:32px;background:#111113;overflow:hidden;display:flex;flex-direction:column;font-size:12px">
+                <div style="padding:20px 18px 0;display:flex;justify-content:space-between;color:#8E8E96"><span>14:20</span><span>WZ 4821K</span></div>
+                <div style="padding:24px 18px 0;font-size:20px;font-weight:600;line-height:1.2">Warszawa → Mediolan</div>
+                <div style="padding:6px 18px 0;color:#8E8E96">Rozładunek 08:00 · jutro</div>
+                <div style="flex:1;margin:22px 18px 0;border-radius:16px;background:#141417;position:relative;overflow:hidden"><svg viewBox="0 0 200 260" style="width:100%;height:100%" preserveAspectRatio="none"><path d="M 40 240 C 80 200, 90 150, 110 110 S 150 50, 170 20" fill="none" stroke="#0B5FFF" stroke-width="4"></path><circle cx="110" cy="110" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle></svg></div>
+                <div style="margin:18px;padding:16px;border-radius:14px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600;font-size:16px">Rusz</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px">
+          <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · CZTERY KADRY · 3× PRZEGLĄDARKA + 1× TELEFON</div>
+          <div>Właściciel: pulpit z zyskiem i marżą. Dyspozytor: trzy kolumny. Księgowa: komplet za miesiąc. Kierowca: nawigacja i przycisk „Rusz”.</div>
+          <div style="display:flex;justify-content:space-between"><span>mockup-hero-pulpit-desktop.png · mockup-dyspozytornia-ekran-desktop.png · mockup-ksiegowa-eksport-desktop.png · mockup-kierowca-nawigacja-phone.png</span><span>16:10 · 9:19.5</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:14px;line-height:1.5;color:#8E8E96">Jesteś właścicielem i dyspozytorem w jednej osobie? Normalne. Przełączasz widok jednym kliknięciem.</div>
+  </div>
+</div>
+
+<!-- 6.4 TRZY RUCHY -->
+<div data-screen-label="6.4 Trzy ruchy" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">SCENA PRZYKLEJONA · kroki 01→03 podmieniają się przy przewijaniu</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:96px">
+    <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em;max-width:900px">Trzy ruchy. Reszta dzieje się bez Ciebie.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">01</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Kierowca rusza</div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Włącza trasę w telefonie. Robi zdjęcie licznika. Tyle.</div></div>
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">02</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Dane same lecą</div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Trasa, kilometry, czas pracy, paragony. Wszystko ląduje u Ciebie — nawet wtedy, gdy kierowca nie ma zasięgu.</div></div>
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">03</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Miesiąc się zamyka</div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Faktury dla klientów, koszty, przebieg i komplet dla księgowej. Jednym przyciskiem.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.5 DYSPOZYTORNIA -->
+<div data-screen-label="6.5 Dyspozytornia" style="position:relative;padding:0 0 160px;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Cały dzień pracy na jednym ekranie.</h2>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Zlecenia, mapa, kierowcy i rozmowa — obok siebie. Nie przełączasz zakładek i nie szukasz numeru w telefonie. Przypisujesz kierowcę i pojazd, a system podpowiada, kto ma wszystko ważne.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Zlecenie od przyjęcia po rozliczenie</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Kierowca i pojazd przypisani w dwie sekundy</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Rozmowa z kierowcą bez wychodzenia z ekranu</div>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#6E6E76">Dyspozytor ma w BusiKM własne stanowisko i własny dostęp.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10">
+        <div style="height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid #E3E3E6;background:#FAFAFA"><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="margin-left:16px;font-size:12px;color:#6E6E76">Dyspozytornia · wtorek, 2 września</span></div>
+        <div style="display:grid;grid-template-columns:320px 1fr 300px;height:calc(100% - 44px);font-size:13px">
+          <div style="border-right:1px solid #E3E3E6;padding:22px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;color:#6E6E76;margin-bottom:8px"><span>Zlecenia · 6</span><span style="color:#0B5FFF;font-weight:600">+ Nowe</span></div>
+            <div style="padding:14px;border-radius:14px;background:#E8EFFE;border:1px solid #C9D9FE"><div style="display:flex;justify-content:space-between"><b>Warszawa → Mediolan</b><span>3 900 €</span></div><div style="color:#6E6E76;margin-top:4px">Załadunek 06:00 · Marek W. · WZ 4821K</div></div>
+            <div style="padding:14px;border-radius:14px;border:1px solid #E3E3E6"><div style="display:flex;justify-content:space-between"><b>Poznań → Rotterdam</b><span>2 650 €</span></div><div style="color:#6E6E76;margin-top:4px">W trasie · Tomasz L. · PO 2093J</div></div>
+            <div style="padding:14px;border-radius:14px;border:1px solid #E3E3E6"><div style="display:flex;justify-content:space-between"><b>Gdańsk → Hamburg</b><span>1 800 €</span></div><div style="color:#6E6E76;margin-top:4px">Rozładunek 12:30 · Piotr K. · GD 7710R</div></div>
+            <div style="padding:14px;border-radius:14px;border:1px dashed #E3E3E6"><div style="display:flex;justify-content:space-between"><b>Łódź → Wiedeń</b><span>4 200 zł</span></div><div style="color:#6E6E76;margin-top:4px">Nieprzypisane · podpowiedź: Anna R.</div></div>
+          </div>
+          <div style="position:relative;background:#F2F2F4;overflow:hidden">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,11,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.05) 1px,transparent 1px);background-size:48px 48px"></div>
+            <svg viewBox="0 0 480 400" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+              <path d="M 400 60 C 330 110, 280 160, 230 220 S 130 320, 80 350" fill="none" stroke="#0B5FFF" stroke-width="3"></path>
+              <path d="M 380 90 C 300 120, 250 130, 120 130" fill="none" stroke="#0B5FFF" stroke-width="3" opacity=".5"></path>
+              <circle cx="255" cy="190" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="200" cy="130" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="330" cy="105" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle>
+            </svg>
+            <div style="position:absolute;left:52%;top:42%;background:#fff;border:1px solid #E3E3E6;border-radius:10px;padding:8px 12px;box-shadow:0 8px 24px rgba(0,0,0,.08)"><b>WZ 4821K</b> · Marek W.<div style="color:#6E6E76">Na miejscu 08:00</div></div>
+          </div>
+          <div style="border-left:1px solid #E3E3E6;padding:22px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;border-radius:50%;background:#E8EFFE;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0B5FFF">MW</span><div><b>Marek W.</b><div style="color:#6E6E76">WZ 4821K · wszystko ważne <span style="color:#1E9C43">●</span></div></div></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div style="padding:10px 12px;border-radius:12px;background:#F2F2F4;align-self:flex-start;max-width:85%">Załadunek gotowy, ruszam 06:10.</div>
+              <div style="padding:10px 12px;border-radius:12px;background:#0B5FFF;color:#fff;align-self:flex-end;max-width:85%">Jedź. Rozładunek jutro 08:00.</div>
+              <div style="padding:10px 12px;border-radius:12px;background:#F2F2F4;align-self:flex-start;max-width:85%">Tankowanie pod Brnem, paragon dodany.</div>
+            </div>
+            <div style="padding:10px 14px;border-radius:12px;border:1px solid #E3E3E6;color:#6E6E76">Napisz do kierowcy…</div>
+          </div>
+        </div>
+      </div>
+      <div style="align-self:center;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · EKRAN DYSPOZYTORA · DESKTOP 1440</div>
+        <div>Szeroki ekran w trzech kolumnach: lista zleceń, mapa z trasami, panel kierowcy z rozmową.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-dyspozytornia-ekran-desktop.png</span><span>16:10</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.6 APLIKACJA KIEROWCY — CIEMNA -->
+<div data-screen-label="6.6 Aplikacja kierowcy" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">SCENA PRZYKLEJONA · telefony zostają, punkty podmieniają się przy przewijaniu</div>
+  <svg viewBox="0 0 1440 1400" style="position:absolute;inset:0;width:1440px;height:100%;pointer-events:none" preserveAspectRatio="none"><path d="M 1500 300 C 1200 500, 1000 900, 700 1000 S 200 1100, -100 1300" fill="none" stroke="#0B5FFF" stroke-width="2" opacity=".14"></path><path d="M 1500 300 C 1200 500, 1000 900, 700 1000 S 200 1100, -100 1300" fill="none" stroke="#0B5FFF" stroke-width="40" opacity=".04"></path></svg>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative">
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">BusiKM Kierowca · iPhone i Android</div>
+        <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Cały dzień pracy w jednej aplikacji.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Kierowca dostaje kod, wpisuje go raz i jest w środku. Nie zakłada konta, nie wymyśla hasła, nie dzwoni do Ciebie z pytaniem, jak się zalogować.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 32px">
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#0B5FFF"></span></span><div><div style="font-size:17px;font-weight:600">Nawigacja jest w środku</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami</div></div></div>
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:2px;background:#0B5FFF"></span></span><div><div style="font-size:17px;font-weight:600">Koszt jednym przyciskiem</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">Zatankował, pstryknął, jedzie dalej</div></div></div>
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;border:2px solid #0B5FFF"></span></span><div><div style="font-size:17px;font-weight:600">Działa bez zasięgu</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">Tunel, góry, terminal promowy. Wszystko dośle, gdy złapie sygnał</div></div></div>
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:2px;background:#0B5FFF"></span></span><div><div style="font-size:17px;font-weight:600">Widzi, co czeka na wysłanie</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">Żadnego zgadywania, czy dane doszły</div></div></div>
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0B5FFF">A</span><div><div style="font-size:17px;font-weight:600">Sześć języków</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">Kierowca czyta w swoim języku, nie w Twoim</div></div></div>
+        <div style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:8px;border:1px solid #3A3A40;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#0B5FFF;box-shadow:inset 3px -3px 0 #111113"></span></span><div><div style="font-size:17px;font-weight:600">Tryb nocny</div><div style="font-size:15px;line-height:1.5;color:#8E8E96;margin-top:4px">O trzeciej nad ranem ekran nie razi w oczy</div></div></div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="height:48px;padding:0 18px;border-radius:12px;border:1px solid #3A3A40;display:flex;align-items:center;gap:10px"><span style="width:18px;height:18px;border-radius:5px;background:#FAFAFA"></span><div style="line-height:1.15"><div style="font-size:10px;color:#8E8E96">Pobierz w</div><div style="font-size:14px;font-weight:600">App Store</div></div></div>
+        <div style="height:48px;padding:0 18px;border-radius:12px;border:1px solid #3A3A40;display:flex;align-items:center;gap:10px"><span style="width:0;height:0;border-left:16px solid #FAFAFA;border-top:9px solid transparent;border-bottom:9px solid transparent"></span><div style="line-height:1.15"><div style="font-size:10px;color:#8E8E96">Pobierz z</div><div style="font-size:14px;font-weight:600">Google Play</div></div></div>
+      </div>
+    </div>
+    <div style="position:relative;height:720px;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;bottom:20px;left:15%;right:15%;height:140px;background:#0B5FFF;filter:blur(90px);opacity:.4"></div>
+      <!-- lewy telefon -->
+      <div style="position:absolute;left:40px;top:60px;width:270px;height:585px;border-radius:44px;background:#000;border:1px solid #2A2A30;padding:10px;transform:rotate(-8deg);box-shadow:0 40px 80px rgba(0,0,0,.6)">
+        <div style="height:100%;border-radius:36px;background:#111113;overflow:hidden;display:flex;flex-direction:column;font-size:12px">
+          <div style="padding:22px 18px 0;display:flex;justify-content:space-between;color:#8E8E96"><span>03:12</span><span>WZ 4821K</span></div>
+          <div style="flex:1;margin:18px 14px 0;border-radius:18px;background:#141417;position:relative;overflow:hidden">
+            <svg viewBox="0 0 220 320" style="width:100%;height:100%" preserveAspectRatio="none"><path d="M 60 300 C 100 240, 90 190, 120 140 S 170 60, 180 20" fill="none" stroke="#0B5FFF" stroke-width="5"></path><circle cx="112" cy="150" r="8" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle></svg>
+            <div style="position:absolute;top:14px;left:14px;right:14px;padding:12px;border-radius:12px;background:#1A1A1E;display:flex;justify-content:space-between"><div><div style="font-size:18px;font-weight:600">A1 · 214 km</div><div style="color:#8E8E96">Brenner, potem A22</div></div><div style="text-align:right"><div style="font-size:18px;font-weight:600">08:00</div><div style="color:#8E8E96">dojazd</div></div></div>
+          </div>
+          <div style="margin:14px;padding:16px;border-radius:18px;background:#1A1A1E"><div style="display:flex;justify-content:space-between"><b style="font-size:14px">Warszawa → Mediolan</b><span style="color:#30D158">w trasie</span></div><div style="color:#8E8E96;margin-top:4px">Rozładunek: Via Tortona 12 · 08:00</div><div style="display:flex;gap:8px;margin-top:12px"><span style="flex:1;padding:10px;border-radius:10px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600">Nawiguj</span><span style="flex:1;padding:10px;border-radius:10px;border:1px solid #3A3A40;text-align:center">Koszt</span></div></div>
+        </div>
+      </div>
+      <!-- prawy telefon -->
+      <div style="position:absolute;right:20px;top:20px;width:270px;height:585px;border-radius:44px;background:#000;border:1px solid #2A2A30;padding:10px;transform:rotate(5deg);box-shadow:0 50px 100px rgba(0,0,0,.7);z-index:2">
+        <div style="height:100%;border-radius:36px;background:#111113;overflow:hidden;display:flex;flex-direction:column;font-size:12px">
+          <div style="padding:22px 18px 0;display:flex;justify-content:space-between;color:#8E8E96"><span>03:14</span><span>Dodaj koszt</span></div>
+          <div style="margin:18px 14px 0;height:190px;border-radius:18px;background:#1E1E22;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:120px;height:150px;background:#F2F2F4;border-radius:4px;display:flex;flex-direction:column;gap:6px;padding:12px;color:#0A0A0B;font-size:8px;font-family:ui-monospace,Menlo,monospace"><div style="text-align:center;font-weight:700">OMV Brno</div><div style="display:flex;justify-content:space-between"><span>Diesel 78,4 l</span><span>96,20 €</span></div><div style="display:flex;justify-content:space-between"><span>AdBlue</span><span>7,10 €</span></div><div style="border-top:1px solid #D6D6DA;padding-top:4px;display:flex;justify-content:space-between;font-weight:700"><span>RAZEM</span><span>103,30 €</span></div></div><div style="position:absolute;bottom:12px;right:12px;padding:6px 10px;border-radius:999px;background:rgba(48,209,88,.16);color:#30D158;font-weight:600">rozpoznane</div></div>
+          <div style="margin:14px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Kwota</span><b>103,30 € · 442 zł</b></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Rodzaj</span><b>Paliwo</b></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Zlecenie</span><b>Warszawa → Mediolan</b></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Pojazd</span><b>WZ 4821K</b></div>
+          </div>
+          <div style="margin:0 14px;padding:16px;border-radius:14px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600;font-size:15px">Zapisz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1120px;margin:64px auto 0;display:flex;justify-content:flex-end;position:relative">
+    <div style="max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px">
+      <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · APLIKACJA KIEROWCY · TELEFON, TRYB NOCNY</div>
+      <div>Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu.</div>
+      <div style="display:flex;justify-content:space-between"><span>mockup-kierowca-nawigacja-phone.png · mockup-kierowca-koszt-phone.png</span><span>9:19.5</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.7 ZLECENIE → FAKTURA -->
+<div data-screen-label="6.7 Zlecenie → faktura" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · 700 ms · makieta 90 ms po tekście</div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);aspect-ratio:4/3;padding:28px;display:grid;grid-template-columns:1fr 24px 1fr;gap:12px;align-items:center;font-size:12px">
+        <div style="border:1px solid #E3E3E6;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;height:100%">
+          <div style="color:#6E6E76">Zlecenie · 2026/09/041</div>
+          <b style="font-size:15px">Warszawa → Mediolan</b>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6E6E76">Klient</span><span>Alpina Logistics</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6E6E76">Fracht</span><b>3 900 €</b></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6E6E76">Załadunek</span><span>2.09 · 06:00</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6E6E76">Rozładunek</span><span>3.09 · 08:00</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6E6E76">Kierowca</span><span>Marek W. · WZ 4821K</span></div>
+          <div style="margin-top:auto;padding:6px 10px;border-radius:999px;background:rgba(48,209,88,.14);color:#1E9C43;align-self:flex-start;font-weight:600">Kurs zakończony</div>
+        </div>
+        <div style="color:#0B5FFF;font-size:22px;text-align:center">→</div>
+        <div style="border:1px solid #E3E3E6;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;height:100%;background:#FAFAFA">
+          <div style="color:#6E6E76">Faktura · FV/2026/09/041</div>
+          <b style="font-size:15px">Alpina Logistics S.r.l.</b>
+          <div style="display:flex;justify-content:space-between"><span>Transport Warszawa → Mediolan</span><span>3 900 €</span></div>
+          <div style="display:flex;justify-content:space-between;color:#6E6E76"><span>Termin płatności</span><span>30 dni</span></div>
+          <div style="display:flex;justify-content:space-between;border-top:1px solid #E3E3E6;padding-top:8px"><b>Razem</b><b>3 900 € · 16 692 zł</b></div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+            <div style="padding:10px;border-radius:10px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600">Wyślij</div>
+            <div style="display:flex;gap:6px"><span style="flex:1;padding:6px;border-radius:8px;border:1px solid #E3E3E6;text-align:center"><span style="color:#1E9C43">●</span> mail</span><span style="flex:1;padding:6px;border-radius:8px;border:1px solid #E3E3E6;text-align:center"><span style="color:#1E9C43">●</span> e-faktura</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · ZLECENIE I FAKTURA · DESKTOP</div>
+        <div>Karta zlecenia po lewej, faktura po prawej, strzałka między nimi, przycisk „Wyślij”, znaczniki: mail, e-faktura.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-faktury-zlecenie-desktop.png</span><span>4:3</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Ze zlecenia robi się faktura.<br>Klient ma ją, zanim wrócisz do biura.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Zlecenie i faktura to jedno. Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz — plik na mail klienta i zgłoszenie do systemu e-faktur, jednym kliknięciem. Nic nie przepisujesz.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Faktura powstaje z danych zlecenia</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Wysyłka do klienta i do systemu e-faktur jednym kliknięciem</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Korekty i zaliczki tą samą ścieżką</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.8 ILE ZOSTAJE — CIEMNA -->
+<div data-screen-label="6.8 Ile zostaje" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · liczba zysku wchodzi 180 ms po karcie</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Wiesz, ile zostaje.<br>Na tym kursie. Dziś.</h2>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Fracht minus paliwo, opłaty drogowe, hotel i dieta kierowcy. Kierowca dodaje paragon w trasie — liczba na Twoim ekranie zmienia się od razu. Nie na koniec kwartału.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Przychód, koszty i zysk na pulpicie, na bieżąco</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Marża na każdym zleceniu z osobna</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Koszty w obcych walutach przeliczone po kursie z dnia</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:520px 1fr;gap:80px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px;position:relative">
+        <div style="position:absolute;left:10%;right:10%;bottom:80px;height:160px;background:#0B5FFF;filter:blur(100px);opacity:.35"></div>
+        <div style="position:relative;border-radius:20px;background:#111113;border:1px solid #26262B;box-shadow:0 40px 100px rgba(11,95,255,.18),0 30px 60px rgba(0,0,0,.6);aspect-ratio:4/3;padding:28px;display:flex;flex-direction:column;gap:14px;font-size:13px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="color:#8E8E96">Zlecenie · 2026/09/041</div><b style="font-size:18px">Warszawa → Mediolan</b></div><span style="padding:5px 10px;border-radius:999px;background:#E8EFFE;color:#0B5FFF;font-weight:600">w trasie</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Fracht</span><b>3 900 €</b></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;color:#8E8E96"><span>Paliwo · 3 paragony</span><span>− 612 €</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;color:#8E8E96"><span>Opłaty drogowe · AT, IT</span><span>− 184 €</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;color:#8E8E96"><span>Hotel · Brenner</span><span>− 78 €</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;color:#8E8E96;border-bottom:1px solid #26262B"><span>Dieta kierowcy · 2 dni</span><span>− 96 €</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:end;margin-top:auto"><div><div style="color:#8E8E96">Zysk na kursie</div><div style="font-size:30px;font-weight:700;letter-spacing:-0.02em;color:#30D158">2 930 € · 12 540 zł</div></div><div style="display:flex;align-items:end;gap:4px;height:44px"><span style="width:8px;height:30%;background:#3A3A40;border-radius:2px"></span><span style="width:8px;height:45%;background:#3A3A40;border-radius:2px"></span><span style="width:8px;height:40%;background:#3A3A40;border-radius:2px"></span><span style="width:8px;height:70%;background:#3A3A40;border-radius:2px"></span><span style="width:8px;height:100%;background:#0B5FFF;border-radius:2px"></span></div></div>
+        </div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px">
+          <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · KARTA ZYSKU · DESKTOP, TRYB NOCNY</div>
+          <div>Karta zlecenia Warszawa → Mediolan, rozbicie kosztów w wierszach, zysk na dole, obok mały wykres dzienny.</div>
+          <div style="display:flex;justify-content:space-between"><span>mockup-zysk-karta-desktop.png</span><span>4:3</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Zostaje</div>
+        <div style="font-size:120px;line-height:1;font-weight:700;letter-spacing:-0.04em">12 540 zł</div>
+        <div style="font-size:22px;line-height:1.5;color:#8E8E96">z 3 900 € frachtu. Liczba zmieni się, gdy Marek doda kolejny paragon.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.9 MAPA I TRASA -->
+<div data-screen-label="6.9 Mapa i trasa" style="position:relative;padding:160px 0;background:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,11,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.045) 1px,transparent 1px);background-size:160px 160px;pointer-events:none"></div>
+  <svg viewBox="0 0 1440 1300" style="position:absolute;inset:0;width:1440px;height:100%;pointer-events:none" preserveAspectRatio="none"><path d="M -50 1250 C 300 1000, 500 900, 760 600 S 1100 250, 1500 50" fill="none" stroke="#0B5FFF" stroke-width="2" opacity=".2"></path><path d="M -50 1250 C 300 1000, 500 900, 760 600 S 1100 250, 1500 50" fill="none" stroke="#0B5FFF" stroke-width="36" opacity=".045"></path></svg>
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">TŁO SEKCJI · siatka południków i równoleżników &lt; 8% + jedna świecąca trasa na ukos</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px;position:relative">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Klient pyta, gdzie jest ładunek.<br>Odpowiadasz w pięć sekund.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Każdy bus na mapie, na żywo. Klikasz — widzisz kierowcę, zlecenie i o której będzie na miejscu.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10;position:relative">
+        <div style="position:absolute;inset:0;background:#F2F2F4;background-image:linear-gradient(rgba(10,10,11,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.05) 1px,transparent 1px);background-size:64px 64px"></div>
+        <svg viewBox="0 0 1120 700" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+          <path d="M 720 200 C 640 300, 560 380, 520 460 S 440 600, 400 640" fill="none" stroke="#0B5FFF" stroke-width="3"></path>
+          <path d="M 600 230 C 480 240, 380 220, 280 260" fill="none" stroke="#0B5FFF" stroke-width="3" opacity=".6"></path>
+          <path d="M 640 120 C 560 150, 480 150, 420 140" fill="none" stroke="#0B5FFF" stroke-width="3" opacity=".4"></path>
+          <circle cx="720" cy="200" r="6" fill="#0B5FFF"></circle><circle cx="600" cy="230" r="6" fill="#0B5FFF"></circle><circle cx="640" cy="120" r="6" fill="#0B5FFF"></circle>
+          <circle cx="536" cy="430" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="400" cy="236" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="470" cy="150" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle>
+        </svg>
+        <div style="position:absolute;left:20px;top:20px;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #E3E3E6;font-size:13px;display:flex;gap:16px"><span><b>3</b> w trasie</span><span style="color:#6E6E76"><b style="color:#0A0A0B">1</b> załadunek</span><span style="color:#6E6E76"><b style="color:#0A0A0B">3</b> na bazie</span></div>
+        <div style="position:absolute;left:50%;top:56%;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 12px 32px rgba(0,0,0,.1);font-size:13px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">WZ 4821K</b><span>Marek W. · Warszawa → Mediolan</span><span style="color:#6E6E76">Na miejscu <b style="color:#0A0A0B">08:00</b> · 214 km do rozładunku</span></div>
+        <div style="position:absolute;right:20px;top:20px;font-size:12px;color:#6E6E76;background:#fff;border:1px solid #E3E3E6;border-radius:999px;padding:6px 12px"><span style="color:#1E9C43">●</span> na żywo</div>
+      </div>
+      <div style="align-self:center;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px;background:rgba(250,250,250,.8)">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · MAPA FLOTY · DESKTOP 1440</div>
+        <div>Mapa Europy z linią trasy i trzema znacznikami pojazdów, jeden dymek z numerem rejestracyjnym, kierowcą i godziną dojazdu.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-mapa-flota-desktop.png</span><span>16:10</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;max-width:1120px">
+      <h3 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Trasa układa się sama.</h3>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">System proponuje przejazd i bierze pod uwagę, co się dzieje na drodze. Coś się zmienia w trakcie — poprawiasz trasę u siebie, a kierowca ma nową wersję w telefonie w tej samej chwili.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6.10 CZAS PRACY — CIEMNA -->
+<div data-screen-label="6.10 Czas pracy" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · pierścienie wypełniają się 900 ms po wejściu</div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Wiesz, kiedy kierowca musi stanąć.<br>Zanim stanie za późno.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Jazda, przerwy i odpoczynki liczą się same. Kierowca dostaje przypomnienie wcześniej, nie po fakcie. Ty widzisz to samo, ze swojego biura.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Liczniki działają też bez zasięgu</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Miesięczna karta czasu pracy do wydruku</div>
+          <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Dni w każdym kraju liczone z trasy, nie z notatek</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:40px;border-top:1px solid #26262B">
+        <h3 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Tachograf zapisuje. BusiKM pokazuje.</h3>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Tachograf jest wymagany i robi swoje — rejestruje. BusiKM go nie zastępuje i nie udaje. Jest po to, żeby kierowca widział na ekranie, ile jeszcze może jechać i kiedy musi stanąć. Wcześniej, a nie po fakcie.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;aspect-ratio:4/3;padding:32px;display:flex;flex-direction:column;gap:28px;font-size:13px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+        <div style="display:flex;justify-content:space-between;color:#8E8E96"><span>Marek W. · WZ 4821K</span><span>dziś, 14:20</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div style="width:120px;height:120px;border-radius:50%;background:conic-gradient(#0B5FFF 0 68%,#26262B 68% 100%);display:flex;align-items:center;justify-content:center"><div style="width:96px;height:96px;border-radius:50%;background:#111113;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font-size:20px">6:07</b><span style="color:#8E8E96;font-size:11px">z 9:00</span></div></div><span style="color:#8E8E96">Jazda</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div style="width:120px;height:120px;border-radius:50%;background:conic-gradient(#FAFAFA 0 85%,#26262B 85% 100%);display:flex;align-items:center;justify-content:center"><div style="width:96px;height:96px;border-radius:50%;background:#111113;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font-size:20px">0:40</b><span style="color:#8E8E96;font-size:11px">do przerwy</span></div></div><span style="color:#8E8E96">Przerwa</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div style="width:120px;height:120px;border-radius:50%;background:conic-gradient(#30D158 0 100%,#26262B 100% 100%);display:flex;align-items:center;justify-content:center"><div style="width:96px;height:96px;border-radius:50%;background:#111113;display:flex;flex-direction:column;align-items:center;justify-content:center"><b style="font-size:20px">11:00</b><span style="color:#8E8E96;font-size:11px">wykonany</span></div></div><span style="color:#8E8E96">Odpoczynek</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto">
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:#1A1A1E"><span>Marek W. · WZ 4821K</span><span style="color:#8E8E96">przerwa za 40 min</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:#1A1A1E"><span>Tomasz L. · PO 2093J</span><span style="color:#30D158">w normie</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:#1A1A1E"><span>Piotr K. · GD 7710R</span><span style="color:#8E8E96">odpoczynek</span></div>
+        </div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · CZAS PRACY · DESKTOP, TRYB NOCNY</div>
+        <div>Trzy pierścienie postępu (jazda, przerwa, odpoczynek), obok lista kierowców ze statusem: w normie · przerwa za 40 min · odpoczynek.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-czas-pracy-pierscienie-desktop.png</span><span>4:3</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.11 KOSZTY I PARAGONY -->
+<div data-screen-label="6.11 Koszty i paragony" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · panel pól wysuwa się z telefonu 200 ms później</div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Reklamówka paragonów. Do wyrzucenia.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca wpisują się same, a koszt trafia do właściwego zlecenia i właściwego pojazdu.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Paliwo, opłaty drogowe, hotel, prom, parking, naprawa</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Obca waluta przeliczona automatycznie</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Zdjęcie zostaje jako dowód</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="height:600px;position:relative;display:flex;align-items:center">
+        <div style="width:240px;height:520px;border-radius:40px;background:#0A0A0B;padding:9px;transform:perspective(1200px) rotateY(14deg) rotate(-3deg);box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 48px rgba(0,0,0,.14)">
+          <div style="height:100%;border-radius:32px;background:#F2F2F4;overflow:hidden;display:flex;flex-direction:column;font-size:11px">
+            <div style="padding:20px 16px 0;display:flex;justify-content:space-between;color:#6E6E76"><span>11:42</span><span>Nowy koszt</span></div>
+            <div style="margin:16px 14px;flex:1;border-radius:16px;background:#D9D9DE;display:flex;align-items:center;justify-content:center"><div style="width:140px;background:#fff;border-radius:3px;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:8px;display:flex;flex-direction:column;gap:5px;box-shadow:0 4px 12px rgba(0,0,0,.1)"><div style="text-align:center;font-weight:700">Shell · Rotterdam</div><div style="text-align:center;color:#6E6E76">02.09.2026 11:38</div><div style="display:flex;justify-content:space-between"><span>Diesel 82,1 l</span><span>139,50 €</span></div><div style="display:flex;justify-content:space-between"><span>Myjnia</span><span>12,00 €</span></div><div style="border-top:1px dashed #ccc;padding-top:4px;display:flex;justify-content:space-between;font-weight:700"><span>TOTAAL</span><span>151,50 €</span></div></div></div>
+            <div style="margin:0 14px 14px;padding:14px;border-radius:14px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600;font-size:14px">Użyj zdjęcia</div>
+          </div>
+        </div>
+        <div style="position:absolute;right:0;top:110px;width:320px;border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 56px rgba(0,0,0,.1);padding:22px;display:flex;flex-direction:column;gap:10px;font-size:13px">
+          <div style="display:flex;justify-content:space-between;color:#6E6E76;margin-bottom:4px"><span>Rozpoznane pola</span><span style="color:#1E9C43;font-weight:600">5 z 5</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Sprzedawca</span><b>Shell · Rotterdam</b></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Data</span><b>2.09.2026</b></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Kwota</span><b>151,50 € · 648,42 zł</b></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Rodzaj</span><b>Paliwo</b></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Zlecenie · pojazd</span><b>Poznań → Rotterdam · PO 2093J</b></div>
+        </div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · KOSZT Z PARAGONU · TELEFON</div>
+        <div>Telefon ze zdjęciem paragonu (perspektywa), obok „odklejony” panel z rozpoznanymi polami podświetlonymi na zielono.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-koszty-paragon-phone.png</span><span>9:19.5</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.12 KONIEC MIESIĄCA — CIEMNA -->
+<div data-screen-label="6.12 Koniec miesiąca" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · arkusze wchodzą od tyłu do przodu, 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="height:560px;position:relative">
+        <div style="position:absolute;left:60px;top:20px;width:440px;height:480px;border-radius:16px;background:#141417;border:1px solid #26262B;transform:rotate(-6deg);opacity:.6"></div>
+        <div style="position:absolute;left:40px;top:40px;width:440px;height:480px;border-radius:16px;background:#161619;border:1px solid #26262B;transform:rotate(-3deg);opacity:.8"></div>
+        <div style="position:absolute;left:20px;top:60px;width:460px;height:480px;border-radius:16px;background:#111113;border:1px solid #2A2A30;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:26px;display:flex;flex-direction:column;gap:14px;font-size:13px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div style="padding:12px 16px;border-radius:12px;background:#0B5FFF;color:#fff;font-weight:600">Pobierz komplet za sierpień</div><div style="padding:10px 14px;border-radius:10px;border:1px solid #3A3A40;color:#8E8E96">Comarch Optima ▾</div></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Sprzedaż</span><span style="color:#8E8E96">42</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Zakupy i koszty</span><span style="color:#8E8E96">318</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Przebieg pojazdów</span><span style="color:#8E8E96">7</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Delegacje i diety</span><span style="color:#8E8E96">9</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Czas pracy</span><span style="color:#8E8E96">9</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Opłaty drogowe</span><span style="color:#8E8E96">61</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Paliwo</span><span style="color:#8E8E96">124</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26262B"><span>Korekty</span><span style="color:#8E8E96">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0"><span>Rejestr zmian</span><span style="color:#30D158">gotowe</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · EKSPORT DLA KSIĘGOWEJ · DESKTOP, TRYB NOCNY</div>
+        <div>Lista dziewięciu zestawień z licznikami, u góry duży przycisk „Pobierz komplet za sierpień” i wybór formatu. Stos arkuszy w perspektywie zostaje.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-ksiegowa-eksport-desktop.png</span><span>4:3</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Księgowa dostaje komplet.<br>Jednym przyciskiem.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Wybiera miesiąc, klika raz i ma wszystko: sprzedaż, koszty, przebieg, delegacje i czas pracy. W formacie, który wczyta do programu, którego już używa.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Insert, Comarch Optima, Symfonia albo zwykły arkusz</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>System sam mówi, czego brakuje</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Zamyka miesiąc i nikt nie zmienia już danych wstecz</div>
+      </div>
+      <div style="font-size:14px;line-height:1.5;color:#8E8E96">Księgowa może być z zewnątrz. Zapraszasz ją mailem, dostaje własny dostęp.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.13 DOKUMENTY I TERMINY -->
+<div data-screen-label="6.13 Dokumenty i terminy" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · wiersze listy kaskadą 90 ms · jedyne miejsce z amber</div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Nic nie wygaśnie po cichu.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat i mówi wcześniej — Tobie i kierowcy.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Wszystko w jednym miejscu — pojazdy, firma, kierowcy</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Przypomnienie na długo przed terminem, Tobie i kierowcy</div>
+        <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Jeden ekran pokazuje, co wymaga uwagi w tym miesiącu</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);aspect-ratio:4/3;padding:28px;display:flex;flex-direction:column;gap:14px;font-size:13px">
+        <div style="display:flex;justify-content:space-between;color:#6E6E76"><span>Dokumenty · wrzesień</span><span>posortowane po terminie</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:grid;grid-template-columns:1fr 130px 60px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #E3E3E6"><div><b>Ubezpieczenie OC</b><div style="color:#6E6E76">PO 2093J</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:12%;height:100%;background:#FF9500"></div></div><span style="text-align:right;font-weight:600">9 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 130px 60px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #E3E3E6"><div><b>Badania lekarskie</b><div style="color:#6E6E76">Tomasz L.</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:34%;height:100%;background:#0B5FFF"></div></div><span style="text-align:right">41 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 130px 60px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #E3E3E6"><div><b>Przegląd techniczny</b><div style="color:#6E6E76">WZ 4821K</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:55%;height:100%;background:#0B5FFF"></div></div><span style="text-align:right">88 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 130px 60px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #E3E3E6"><div><b>Licencja wspólnotowa</b><div style="color:#6E6E76">Firma</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:78%;height:100%;background:#30D158"></div></div><span style="text-align:right">214 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 130px 60px;gap:14px;align-items:center;padding:12px 0"><div><b>Prawo jazdy</b><div style="color:#6E6E76">Marek W.</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:92%;height:100%;background:#30D158"></div></div><span style="text-align:right">3 lata</span></div>
+        </div>
+        <div style="margin-top:auto;color:#6E6E76">Przypomnienie wysłane: Tobie i Tomaszowi L. · 30 dni wcześniej</div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · DOKUMENTY I TERMINY · DESKTOP</div>
+        <div>Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach. Amber tylko tu.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-dokumenty-terminy-desktop.png</span><span>4:3</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.14 RZECZY W ROBOCIE — CIEMNA -->
+<div data-screen-label="6.14 Rzeczy w robocie" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · kafelki kaskadą 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Rzeczy, które widać dopiero w robocie.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Tryb nocny</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">W telefonie kierowcy i w przeglądarce. Oczy podziękują</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Sześć języków</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Kierowca z Ukrainy, Rumunii czy Mołdawii czyta w swoim</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Bez zasięgu też działa</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Dane czekają w telefonie i dosyłają się same</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">System sam się odzywa</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Powiadomienie, gdy coś wymaga uwagi. Nie musisz zaglądać</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Nic nie instalujesz</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Otwierasz w przeglądarce, na laptopie i na telefonie</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Na starcie nie przytłacza</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Widzisz tylko to, co potrzebne. Reszta z czasem</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Widać, kto co zmienił</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">Każda zmiana ma autora i godzinę</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:180px"><div style="font-size:17px;font-weight:600">Dane zostają w Europie</div><div style="font-size:15px;line-height:1.5;color:#8E8E96">I zostają Twoje, także po rezygnacji</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.15 DEMO -->
+<div data-screen-label="6.15 Demo" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · 700 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Nie wierz na słowo. Wejdź i poklikaj.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">To prawdziwa aplikacja z przykładową firmą. Bez zakładania konta, bez podawania czegokolwiek. Niczego nie zepsujesz — dane wracają do porządku każdej nocy.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column">
+        <div style="height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid #E3E3E6;background:#FAFAFA"><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="margin-left:16px;font-size:12px;color:#6E6E76">demo.busikm.pl · Trans-Bus Kowalski · firma przykładowa</span></div>
+        <div style="flex:1;padding:56px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+          <div style="font-size:14px;color:#6E6E76;letter-spacing:.1em;text-transform:uppercase;font-weight:500">Od czego zaczniesz?</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:17px;font-weight:600;line-height:1.3">Pulpit z zyskiem miesiąca</div><div style="font-size:28px;font-weight:700;letter-spacing:-0.02em">62 480 zł</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:17px;font-weight:600;line-height:1.3">Dyspozytornia z mapą</div><div style="font-size:14px;color:#6E6E76">6 zleceń · 3 w trasie</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:17px;font-weight:600;line-height:1.3">Zlecenie, z którego powstaje faktura</div><div style="font-size:14px;color:#6E6E76">Warszawa → Mediolan</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:17px;font-weight:600;line-height:1.3">Komplet dokumentów dla księgowej</div><div style="font-size:14px;color:#6E6E76">sierpień · 9 zestawień</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:28px">
+            <span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center">Wejdź do demo</span>
+            <a href="#" style="font-size:17px;font-weight:500">Chcesz na swoich danych? Wypróbuj 14 dni →</a>
+          </div>
+        </div>
+      </div>
+      <div style="align-self:center;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px">
+        <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · WEJŚCIE DO DEMO · DESKTOP 1440</div>
+        <div>Ekran startowy demo z czterema kafelkami wyboru i przyciskiem „Wejdź do demo”.</div>
+        <div style="display:flex;justify-content:space-between"><span>mockup-demo-wejscie-desktop.png</span><span>16:10</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.16 PIERWSZY DZIEŃ — mist -->
+<div data-screen-label="6.16 Pierwszy dzień" style="position:relative;padding:160px 0;background:#F2F2F4">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · kroki kaskadą 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Pierwsza trasa jeszcze dziś.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:32px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:22px;font-weight:600;letter-spacing:-0.01em">Dodajesz pojazd</div><span style="font-size:14px;color:#0B5FFF;font-weight:600">2 minuty</span></div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Numer rejestracyjny i tyle.</div></div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:32px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:22px;font-weight:600;letter-spacing:-0.01em">Zapraszasz kierowcę</div><span style="font-size:14px;color:#0B5FFF;font-weight:600">1 minuta</span></div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Dostaje kod. Wpisuje go w aplikacji i już jest w środku.</div></div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:32px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:22px;font-weight:600;letter-spacing:-0.01em">Kierowca rusza</div><span style="font-size:14px;color:#0B5FFF;font-weight:600">od razu</span></div><div style="font-size:17px;line-height:1.6;color:#6E6E76">Pierwsza trasa pojawia się u Ciebie tego samego dnia.</div></div>
+    </div>
+    <div style="font-size:14px;line-height:1.5;color:#6E6E76">Nie ma wdrożenia, szkolenia ani spotkania z handlowcem.</div>
+  </div>
+</div>
+
+<!-- 6.17 JEDNA FAKTURA -->
+<div data-screen-label="6.17 Jedna faktura" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Jedna faktura zamiast czterech.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div style="border-radius:20px;border:1px solid #E3E3E6;padding:40px;display:flex;flex-direction:column;gap:20px">
+        <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dziś płacisz osobno za:</div>
+        <div style="display:flex;flex-direction:column;font-size:17px;line-height:1.6">
+          <div style="padding:14px 0;border-bottom:1px solid #E3E3E6">lokalizator w busie</div>
+          <div style="padding:14px 0;border-bottom:1px solid #E3E3E6">program do rozliczania czasu pracy</div>
+          <div style="padding:14px 0;border-bottom:1px solid #E3E3E6">system do zleceń i faktur</div>
+          <div style="padding:14px 0">arkusz, który prowadzisz sam</div>
+        </div>
+      </div>
+      <div style="border-radius:20px;background:#0A0A0B;color:#FAFAFA;padding:40px;display:flex;flex-direction:column;gap:20px;justify-content:space-between">
+        <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Z BusiKM:</div>
+        <div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Jedno konto. Jeden rachunek. Wszystko rozmawia ze sobą.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.18 CENNIK -->
+<div data-screen-label="6.18 Cennik" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · karty 90 ms po nagłówku</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:56px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
+      <h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Płacisz za pojazdy. Nie za ludzi.</h2>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:640px">Kierowcy i pracownicy biura bez limitu. Przyczepy i naczepy nie liczą się do abonamentu.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="display:flex;padding:4px;border-radius:12px;background:#F2F2F4;border:1px solid #E3E3E6">
+        <div onClick="{{ setMonthly }}" style="padding:10px 20px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;background:{{ monthlyBg }};color:{{ monthlyColor }};box-shadow:{{ monthlyShadow }}">Miesięcznie</div>
+        <div onClick="{{ setYearly }}" style="padding:10px 20px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;background:{{ yearlyBg }};color:{{ yearlyColor }};box-shadow:{{ yearlyShadow }}">Rocznie</div>
+      </div>
+      <span style="padding:6px 12px;border-radius:999px;background:#E8EFFE;color:#0B5FFF;font-size:14px;font-weight:600">2 miesiące gratis</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;max-width:880px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;padding:40px;display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="font-size:22px;font-weight:600">Start</div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:48px;font-weight:700;letter-spacing:-0.03em">{{ startPrice }}</span><span style="font-size:17px;color:#6E6E76">zł netto / {{ period }}</span></div></div>
+        <div style="display:flex;flex-direction:column;font-size:15px;line-height:1.5;border-top:1px solid #E3E3E6;border-bottom:1px solid #E3E3E6">
+          <div style="display:flex;justify-content:space-between;padding:12px 0"><span style="color:#6E6E76">Pojazdy</span><b>do 3</b></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #E3E3E6"><span style="color:#6E6E76">Kierowcy</span><b>bez limitu</b></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #E3E3E6"><span style="color:#6E6E76">Pracownicy biura</span><b>bez limitu</b></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5">
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>zlecenia i dyspozytornia</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>mapa i trasy</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>czas pracy</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>koszty i paragony</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>faktury dla klientów</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>aplikacja dla kierowców</div>
+        </div>
+        <span style="margin-top:auto;height:52px;border-radius:12px;border:1px solid #E3E3E6;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center">Wypróbuj 14 dni</span>
+      </div>
+      <div style="border-radius:28px;background:#fff;border:2px solid #0B5FFF;padding:40px;display:flex;flex-direction:column;gap:32px;position:relative">
+        <span style="position:absolute;top:-14px;left:40px;padding:5px 12px;border-radius:999px;background:#0B5FFF;color:#fff;font-size:13px;font-weight:600">Najczęściej wybierany</span>
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="font-size:22px;font-weight:600">Firma</div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:48px;font-weight:700;letter-spacing:-0.03em">{{ firmaPrice }}</span><span style="font-size:17px;color:#6E6E76">zł netto / {{ period }}</span></div></div>
+        <div style="display:flex;flex-direction:column;font-size:15px;line-height:1.5;border-top:1px solid #E3E3E6;border-bottom:1px solid #E3E3E6">
+          <div style="display:flex;justify-content:space-between;padding:12px 0"><span style="color:#6E6E76">Pojazdy</span><b>do 10, każdy kolejny +29 zł</b></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #E3E3E6"><span style="color:#6E6E76">Kierowcy</span><b>bez limitu</b></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #E3E3E6"><span style="color:#6E6E76">Pracownicy biura</span><b>bez limitu</b></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5">
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>wszystko ze Start, a do tego:</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>komplet dla księgowej</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>zestawienia sprzedaży i zakupów</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>rentowność zleceń</div>
+          <div style="display:flex;gap:12px"><span style="color:#0B5FFF">✓</span>raporty kosztów floty</div>
+        </div>
+        <span style="margin-top:auto;height:52px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center">Wypróbuj 14 dni</span>
+      </div>
+    </div>
+    <div style="font-size:14px;line-height:1.5;color:#6E6E76;text-align:center;max-width:560px">Bez umowy na czas określony. Rezygnujesz jednym kliknięciem. Twoje dane pobierzesz zawsze — także po rezygnacji.</div>
+  </div>
+</div>
+
+<!-- 6.19 DANE — CIEMNA -->
+<div data-screen-label="6.19 Twoje dane" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Twoje dane zostają Twoje.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;font-size:17px;line-height:1.6">
+      <div style="padding:20px 0;border-top:1px solid #26262B">Trzymamy je w Europie</div>
+      <div style="padding:20px 0;border-top:1px solid #26262B">Kopia zapasowa codziennie</div>
+      <div style="padding:20px 0;border-top:1px solid #26262B">Rezygnujesz — pobierasz wszystko</div>
+      <div style="padding:20px 0;border-top:1px solid #26262B">Widać, kto co zmienił i kiedy</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6.20 PYTANIA -->
+<div data-screen-label="6.20 Pytania" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Pytania</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="9">
+        <div style="border-bottom:1px solid #E3E3E6">
+          <div onClick="{{ q.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;cursor:pointer;font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.3"><span>{{ q.q }}</span><span style="color:#6E6E76;font-weight:400;font-size:24px;flex:none">{{ q.sign }}</span></div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 64px 28px 0;font-size:17px;line-height:1.6;color:#6E6E76">{{ q.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- 6.21 FINAŁ — CIEMNA -->
+<div data-screen-label="6.21 Finał" style="position:relative;padding:200px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:30%;right:30%;bottom:-200px;height:400px;background:#0B5FFF;filter:blur(160px);opacity:.25"></div>
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · nagłówek, potem przyciski 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
+    <h2 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Zacznij od jednej trasy.</h2>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#8E8E96">14 dni bez opłat. Bez umowy. Bez dzwonienia do handlowca.</p>
+    <div style="display:flex;gap:12px;margin-top:8px">
+      <span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center">Wypróbuj 14 dni</span>
+      <span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #3A3A40;font-size:17px;font-weight:600;display:flex;align-items:center">Zobacz demo</span>
+    </div>
+  </div>
+</div>
+
+<!-- 6.22 STOPKA -->
+<div data-screen-label="6.22 Stopka" style="background:#0A0A0B;color:#FAFAFA;border-top:1px solid #26262B;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#8E8E96">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#8E8E96">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#8E8E96">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#8E8E96">Pomoc</span><span style="color:#8E8E96">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap">
+      <span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span>
+      <span>Twoje dane zostają w Europie</span>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { role: 0, yearly: false, open: -1 };
+  renderVals() {
+    const { role, yearly, open } = this.state;
+    const roles = [
+      { name: 'Właściciel', device: 'przeglądarka', title: 'Widzisz, ile zostaje. Dziś, nie po miesiącu.', body: 'Przychód, koszty i zysk na pierwszym ekranie. Cała flota na mapie. Marża na każdym kursie.' },
+      { name: 'Dyspozytor', device: 'przeglądarka', title: 'Cały dzień pracy na jednym ekranie.', body: 'Zlecenia, mapa, kierowcy i rozmowa obok siebie. Trasa układa się sama.' },
+      { name: 'Księgowa', device: 'przeglądarka', title: 'Koniec miesiąca w jednym kliknięciu.', body: 'Komplet dokumentów w formacie jej programu. Zamyka miesiąc.' },
+      { name: 'Kierowca', device: 'telefon', title: 'Rusz. Resztą zajmuje się telefon.', body: 'Zlecenie, nawigacja, przerwy i koszty w jednej aplikacji.' },
+    ];
+    const tabs = roles.map((r, i) => ({ ...r, bg: i === role ? '#1C1C21' : 'transparent', color: i === role ? '#FAFAFA' : '#8E8E96', onClick: () => this.setState({ role: i }) }));
+    const qa = [
+      ['Mój kierowca tego nie ruszy.', 'Kierowca ma trzy przyciski: rusz, zrób zdjęcie, zakończ. Dostaje kod, wpisuje go raz i jest w środku. Aplikacja jest w jego języku.'],
+      ['Czy moja księgowa będzie musiała się przestawiać?', 'Nie. Pobiera plik i wczytuje do programu, którego już używa.'],
+      ['Mam już lokalizator w busach.', 'BusiKM pokazuje pozycję z telefonu kierowcy i łączy ją z tym, czego lokalizator nie umie: ze zleceniem, kosztami i rozliczeniem.'],
+      ['Mam tachograf. Po co mi jeszcze to?', 'Tachograf zapisuje, bo musi. BusiKM pokazuje — kierowca widzi na ekranie, ile jeszcze może jechać i kiedy musi stanąć, a Ty widzisz to samo z biura. To nie to samo urządzenie i nie ta sama robota.'],
+      ['Co, gdy kierowca nie ma zasięgu?', 'Aplikacja pracuje dalej i zapisuje wszystko w telefonie. Gdy złapie sygnał, dane dojeżdżają same.'],
+      ['Ile trwa uruchomienie?', 'Dodajesz pojazd, zapraszasz kierowcę, kierowca instaluje aplikację. Pierwsza trasa pojawia się u Ciebie tego samego dnia.'],
+      ['Czy dyspozytor widzi, ile zarabiam?', 'Nie musi. Pieniądze widzi właściciel i osoba od rozliczeń.'],
+      ['Czy przyczepa liczy się jako pojazd?', 'Nie. Płacisz tylko za pojazdy napędzane.'],
+      ['Co z danymi, gdy zrezygnuję?', 'Zostają Twoje. Pobierzesz je w komplecie.'],
+    ];
+    const faq = qa.map(([q, a], i) => ({ q, a, open: open === i, sign: open === i ? '−' : '+', toggle: () => this.setState({ open: open === i ? -1 : i }) }));
+    const on = { bg: '#fff', color: '#0A0A0B', shadow: '0 1px 3px rgba(0,0,0,.08)' }, off = { bg: 'transparent', color: '#6E6E76', shadow: 'none' };
+    const m = yearly ? off : on, y = yearly ? on : off;
+    return {
+      tabs, role0: role === 0, role1: role === 1, role2: role === 2, role3: role === 3,
+      roleTitle: roles[role].title, roleBody: roles[role].body,
+      faq,
+      setMonthly: () => this.setState({ yearly: false }), setYearly: () => this.setState({ yearly: true }),
+      monthlyBg: m.bg, monthlyColor: m.color, monthlyShadow: m.shadow, yearlyBg: y.bg, yearlyColor: y.color, yearlyShadow: y.shadow,
+      startPrice: yearly ? '1 490' : '149', firmaPrice: yearly ? '2 990' : '299', period: yearly ? 'rok' : 'mies.',
+    };
+  }
+}
+</script>
+</body>
+</html>

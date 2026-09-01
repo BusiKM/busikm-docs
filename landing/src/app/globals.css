@@ -15,9 +15,19 @@
   --color-muted: #6e6e76; /* tekst drugorzędny */
   --color-blue: #0b5fff; /* akcja główna, linki */
   --color-blue-dark: #0a46c0; /* hover linku i przycisku */
-  --color-blue-soft: #e8effe; /* pigułka aktywnej pozycji w nawigacji */
-  --color-amber: #ff9500; /* TYLKO terminy ustawowe */
-  --color-green: #30d158; /* stany „gotowe" */
+  --color-blue-soft: #e8effe; /* pigułka aktywnej pozycji, kafle */
+  --color-blue-soft-line: #c9d9fe; /* krawędź kafla blue-soft */
+  --color-amber: #ff9500; /* TYLKO wygasający dokument w sekcji dokumentów */
+  --color-green: #30d158; /* stany „gotowe" na ciemnym */
+  --color-green-ink: #1e9c43; /* to samo na jasnym, czytelnie */
+
+  /* --- Ciemne sekcje ----------------------------------------------------- */
+  --color-ink-muted: #8e8e96; /* tekst drugorzędny na ciemnym */
+  --color-surface-2: #1a1a1e; /* wypełnienie wierszy na ciemnym */
+  --color-surface-3: #141417; /* mapa i pola na ciemnym */
+  --color-line-dark: #26262b; /* krawędź na ciemnym */
+  --color-line-dark-2: #3a3a40; /* mocniejsza krawędź na ciemnym */
+  --color-line-strong: #d6d6da; /* obrys przerywany ramek makiet */
 
   /* --- Typografia -------------------------------------------------------- */
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
