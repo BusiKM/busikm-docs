@@ -134,7 +134,7 @@ jak mówi o nich właściciel przy kawie:
 |---|---|
 | „Ewidencja zgodna z art. 86a ustawy o VAT” | „Ewidencja, którą urząd uzna bez dyskusji” |
 | „Zgodność z rozporządzeniem 561/2006 i AETR” | „Przerwy i odpoczynki policzone, zanim ktoś zapyta” |
-| „Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t… kara do 10 000 zł” | „Od lipca 2026 bus w trasie zagranicznej musi mieć tachograf. Pilnujemy terminów za Ciebie” |
+| „Od 2 lipca 2026 pojazdy o DMC powyżej 2,5 t… kara do 10 000 zł” | *(nie piszemy tego wcale — obowiązek tachografowy to nie nasza rola)* |
 | „Rozliczenie diet wg Dz.U. 2013 poz. 167” | „Diety liczą się same, z dni, które kierowca faktycznie spędził za granicą” |
 | „Zgodność z RODO, dane w UE” | „Twoje dane zostają w Europie. I zostają Twoje” |
 
@@ -151,9 +151,20 @@ Dokładne nazwy dokumentów i przepisów mogą się pojawić **wyłącznie**:
 - **Nie porównujemy się z nikim z nazwy.** Kategorie — tak. Nazwy konkurencji — nie.
 - **Nie obiecujemy tego, czego nie ma.** Patrz tabela twierdzeń w `01`.
 
-### Jedna pułapka do ominięcia
+### Dwie pułapki do ominięcia
 
-Backlog mówi, że okres próbny startuje z **wymaganą kartą**. Dopóki to się nie zmieni,
-**nie wolno napisać „bez karty”** — ani w hero, ani w cenniku, ani w pytaniach.
-Piszemy: *„Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.”*
+**Karta przy okresie próbnym.** Okres próbny startuje z wymaganą kartą i tak zostaje —
+ale tego **nie komunikujemy głośno**. Nie piszemy „bez karty” (bo nieprawda) i nie piszemy
+„wymagana karta” (bo to niepotrzebny próg w treści marketingowej). Piszemy zawsze tak samo:
+*„Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.”*
 Ścieżka bez podawania czegokolwiek to **demo** — i tak ją nazywamy.
+
+**Tachograf to nie BusiKM.** Tachograf jest wymagany i **zapisuje**. BusiKM go nie zastępuje,
+nie pilnuje jego terminów i nie udaje urządzenia pokładowego. BusiKM jest **pomocą wizualną
+dla kierowcy**: pokazuje na ekranie, ile jeszcze może jechać i kiedy musi stanąć.
+
+| Nie tak | Tylko tak |
+|---|---|
+| „BusiKM pilnuje terminów tachografu” | „Tachograf zapisuje. BusiKM pokazuje” |
+| „Zgodność z obowiązkiem tachografowym” | „Kierowca widzi na ekranie, ile jeszcze może jechać” |
+| „Od lipca 2026 musisz mieć tachograf” | *(nie piszemy tego wcale — to nie nasza rola)* |

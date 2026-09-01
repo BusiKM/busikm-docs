@@ -144,6 +144,9 @@ naraz? · Ilu dyspozytorów mogę dodać?
 4. **Działa bez zasięgu** — liczniki chodzą w telefonie, dane dosyłają się później
 5. **Miesięczna karta do wydruku** — gotowa, bez przepisywania
 6. **Dni w każdym kraju** — liczone z trasy, z możliwością ręcznej poprawki
+7. **Tachograf zapisuje. BusiKM pokazuje.** — tachograf jest wymagany i robi swoje:
+   rejestruje. BusiKM go nie zastępuje. Jest po to, żeby kierowca **widział** na ekranie,
+   ile jeszcze może jechać i kiedy musi stanąć
 
 **Makieta:** pierścienie postępu i lista kierowców; obok podgląd karty miesięcznej.
 
@@ -165,8 +168,6 @@ Piszemy „przerwa”, „odpoczynek”, „limit dzienny” — bez podstaw pra
 4. **Waluty** — kwota, kurs i data widoczne na dokumencie
 5. **Kontrahenci w jednym miejscu** — raz wprowadzeni, podpowiadają się później
 6. **Historia** — co, komu i kiedy wysłano
-
-⚠️ Status wysyłki do KSeF — patrz `01`. Treść w czasie teraźniejszym dopiero po potwierdzeniu.
 
 ---
 
@@ -234,9 +235,9 @@ Piszemy „przerwa”, „odpoczynek”, „limit dzienny” — bez podstaw pra
 2. **Przypomnienie z wyprzedzeniem** — na długo przed terminem, nie dzień po
 3. **Kierowca też dostaje swoje** — o swoich dokumentach przypominamy jemu
 4. **Jeden ekran statusu** — widać, co wymaga uwagi w tym miesiącu
-5. **Tachograf** — od lipca 2026 bus w trasie zagranicznej musi go mieć; pokazujemy,
-   których pojazdów to dotyczy i do kiedy
-6. **Wydruk listy** — dla siebie albo dla księgowej
+5. **Wydruk listy** — dla siebie albo dla księgowej
+6. **Kolor ostrzegawczy tylko tutaj** — `amber` w całym serwisie zarezerwowany
+   dla dokumentu, który zaraz wygaśnie
 
 ---
 

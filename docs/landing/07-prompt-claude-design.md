@@ -67,9 +67,13 @@ procesów, dedykowany, kompleksowy, moduł, funkcjonalność, wdrożenie, w czas
 (pisz „na żywo”).
 
 **Zakaz twardy: na stronie nie ma ani jednego numeru rozporządzenia, artykułu ustawy,
-nazwy przepisu ani kwoty kary.** O obowiązkach mówimy tak, jak mówi o nich właściciel
-przy kawie: „Od lipca 2026 bus w trasie zagranicznej musi mieć tachograf. Pilnujemy
-terminów za Ciebie.”
+nazwy przepisu ani kwoty kary.** Piszemy o tym, co człowiek robi i widzi, nie o podstawie
+prawnej.
+
+**Tachograf to nie BusiKM.** Tachograf jest wymagany i zapisuje. BusiKM go nie zastępuje,
+nie pilnuje jego terminów i tego nie sugeruje — jest **pomocą wizualną dla kierowcy**:
+pokazuje na ekranie, ile jeszcze może jechać i kiedy musi stanąć. Na stronie pojawia się
+wyłącznie jako jedno zdanie w sekcji o czasie pracy: „Tachograf zapisuje. BusiKM pokazuje.”
 
 **Nie wymyślaj dowodu społecznego.** Produkt nie ma jeszcze klientów. Zero logotypów,
 opinii, cytatów, gwiazdek, liczb typu „500 zadowolonych firm”. Jeśli sekcja wygląda pusto —
@@ -88,7 +92,7 @@ mist       #F2F2F4   karty i pasy na jasnym
 line       #E3E3E6   subtelne krawędzie
 muted      #6E6E76   tekst drugorzędny
 blue       #0B5FFF   akcja główna, linki   (hover #0A46C0, pigułka #E8EFFE)
-amber      #FF9500   TYLKO sekcja o terminach — użyj raz
+amber      #FF9500   TYLKO wygasające dokumenty w sekcji 6.13 — użyj raz
 green      #30D158   stany „gotowe” w makietach
 ```
 
@@ -338,6 +342,10 @@ Treść: *Jazda, przerwy i odpoczynki liczą się same. Kierowca dostaje przypom
 nie po fakcie. Ty widzisz to samo, ze swojego biura.*
 Trzy punkty: Liczniki działają też bez zasięgu · Miesięczna karta czasu pracy do wydruku ·
 Dni w każdym kraju liczone z trasy, nie z notatek
+Drugi nagłówek (h3): **Tachograf zapisuje. BusiKM pokazuje.**
+Treść: *Tachograf jest wymagany i robi swoje — rejestruje. BusiKM go nie zastępuje i nie udaje.
+Jest po to, żeby kierowca widział na ekranie, ile jeszcze może jechać i kiedy musi stanąć.
+Wcześniej, a nie po fakcie.*
 Makieta: trzy pierścienie postępu (jazda, przerwa, odpoczynek), obok lista kierowców
 ze statusem: w normie · przerwa za 40 min · odpoczynek.
 
@@ -363,12 +371,12 @@ Makieta: lista dziewięciu zestawień z licznikami, u góry duży przycisk
 Nagłówek: **Nic nie wygaśnie po cichu.**
 Treść: *Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców.
 System pilnuje dat i mówi wcześniej — Tobie i kierowcy.*
-Drugi nagłówek (h3, **jedyne miejsce z kolorem amber**):
-**Od lipca 2026 bus w trasie zagranicznej musi mieć tachograf.**
-Treść: *Pokazujemy, których pojazdów w Twojej flocie to dotyczy i do kiedy.
-Bez straszenia, po prostu z wyprzedzeniem.*
+Trzy punkty: Wszystko w jednym miejscu — pojazdy, firma, kierowcy · Przypomnienie
+na długo przed terminem, Tobie i kierowcy · Jeden ekran pokazuje, co wymaga uwagi
+w tym miesiącu
 Makieta: lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach.
-**Ta sekcja ma być spokojna. Żadnej czerwieni, żadnych trójkątów ostrzegawczych,
+**To jedyne miejsce na stronie z kolorem amber** — dokument, który zaraz wygaśnie.
+**Sekcja ma być spokojna. Żadnej czerwieni, żadnych trójkątów ostrzegawczych,
 żadnego odliczania.**
 
 ### 6.14 Rzeczy, które widać dopiero w robocie — CIEMNA
@@ -439,8 +447,9 @@ Akordeon, domyślnie zamknięty, dziewięć pozycji:
    do programu, którego już używa.
 3. **Mam już lokalizator w busach.** — BusiKM pokazuje pozycję z telefonu kierowcy
    i łączy ją z tym, czego lokalizator nie umie: ze zleceniem, kosztami i rozliczeniem.
-4. **Czy muszę mieć tachograf, żeby korzystać?** — Nie. Czas pracy liczymy z aplikacji
-   kierowcy. Jeśli masz tachograf, przypomnimy Ci o terminach.
+4. **Mam tachograf. Po co mi jeszcze to?** — Tachograf zapisuje, bo musi. BusiKM pokazuje —
+   kierowca widzi na ekranie, ile jeszcze może jechać i kiedy musi stanąć, a Ty widzisz
+   to samo z biura. To nie to samo urządzenie i nie ta sama robota.
 5. **Co, gdy kierowca nie ma zasięgu?** — Aplikacja pracuje dalej i zapisuje wszystko
    w telefonie. Gdy złapie sygnał, dane dojeżdżają same.
 6. **Ile trwa uruchomienie?** — Dodajesz pojazd, zapraszasz kierowcę, kierowca instaluje

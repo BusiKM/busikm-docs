@@ -148,8 +148,7 @@ Fracht minus wszystkie koszty przypisane do zlecenia · marża w złotych i w pr
 
 ### Dokumenty i terminy
 Dokumenty pojazdu i firmy · dokumenty kierowców · przypomnienia z wyprzedzeniem
-(90 / 30 / 14 / 7 dni) w powiadomieniu i mailu · zbiorczy widok statusu ·
-terminy związane z tachografem.
+(90 / 30 / 14 / 7 dni) w powiadomieniu i mailu · zbiorczy widok statusu.
 
 ### Rozliczenia kierowców
 Dni w każdym kraju z trasy, z ręczną korektą · stawki diet zagranicznych ·
@@ -203,7 +202,7 @@ Legenda:
 | Sześć języków w aplikacji kierowcy | **[I]** | Do potwierdzenia, czy nadal wszystkie sześć |
 | Tryb nocny w aplikacji i w przeglądarce | **[U]** | Do potwierdzenia zrzutem ekranu |
 | Zlecenie połączone z fakturą | **[P]** | Faktury sprzedaży, typy transakcji, korekty — etap 4A |
-| Wysyłka faktury do klienta: PDF i KSeF jednym kliknięciem | **[U] [?]** | KSeF **nie występuje** w backlogu v2. `llms.txt` mówi „w kolejnej fali”. **Rozstrzygnij: piszemy jako działające czy jako zapowiedź** |
+| Wysyłka faktury do klienta: PDF i KSeF jednym kliknięciem | **[U]** ✅ | **Potwierdzone przez właściciela produktu — KSeF działa.** Piszemy w czasie teraźniejszym |
 | Komplet dokumentów dla księgowej jednym przyciskiem | **[P]** | Centrum eksportów, dziewięć rejestrów, XLSX — etap 4A |
 | Insert GT, Comarch ERP Optima, Symfonia FK | **[P]** | Rozszerzenie generatorów natywnych — etap 4A |
 | Walidacja kompletności przed eksportem | **[P]** | Etap 4A |
@@ -212,7 +211,7 @@ Legenda:
 | Marża aktualizuje się po dodaniu kosztu | **[I]** | |
 | Mapa floty na żywo | **[I]** | GPS w tle potwierdzony w v2, sama mapa z inwentarza |
 | Dyspozytor pracuje na jednym ekranie | **[U] [P]** | Rola potwierdzona w v2, układ jednoekranowy — do potwierdzenia projektem |
-| Trasa dobierana automatycznie, z uwzględnieniem ruchu | **[U] [?]** | Nie ma w v2. **Rozstrzygnij: działa czy zapowiedź** |
+| Trasa dobierana automatycznie, z uwzględnieniem ruchu | **[U]** ✅ | **Potwierdzone przez właściciela produktu — działa.** Czas teraźniejszy |
 | Zmiana trasy w trakcie jazdy, widoczna u kierowcy | **[U] [?]** | Do potwierdzenia |
 | Kontakt z kierowcą z ekranu dyspozytora | **[U] [I]** | Poprzednio opisywane jako czat z kierowcą |
 | Dni w każdym kraju liczone z trasy | **[P]** | Etap 4B |
@@ -220,13 +219,13 @@ Legenda:
 | Karta ewidencji czasu pracy do wydruku | **[P]** | Etap 4B |
 | Ostrzeżenie o przerwie zanim kierowca przekroczy | **[I]** | Silnik czasu pracy — poza zakresem v2 |
 | Przypomnienia o terminach dokumentów | **[I]** | |
-| Terminy tachografu, obowiązek od lipca 2026 | **[I] [?]** | Nie ma w v2. **Rozstrzygnij, czy zostaje jako sekcja na stronie głównej** |
+| Tachograf — BusiKM **nie** pilnuje terminów tachografu | — ✅ | **Rozstrzygnięte: tachograf to inne urządzenie i inna rola.** Tachograf zapisuje, bo jest wymagany. BusiKM jest **pomocą wizualną dla kierowcy** — pokazuje na ekranie, ile jeszcze może jechać. Nie zastępuje tachografu i tego nie sugeruje |
 | Publiczne demo bez rejestracji, dane resetowane co noc | **[P]** | Etap 5 |
 | 14 dni próby | **[P]** | Etap 2 |
-| Plany Start i Firma, kwoty 149 / 299 zł | **[P] [?]** | Nazwy planów potwierdzone. **Kwoty pochodzą z poprzedniego projektu — potwierdź** |
+| Plany Start i Firma, kwoty 149 / 299 zł | **[P]** ✅ | **Kwoty potwierdzone przez właściciela produktu** |
 | Płacisz za pojazdy napędzane, przyczepy gratis | **[P]** | Etap 2 |
 | Kierowcy i pracownicy biura bez limitu | **[P]** | Etap 2 |
-| Karta wymagana przy starcie okresu próbnego | **[P] [?]** | Backlog mówi „Checkout z wymaganą kartą”. **Nie wolno pisać „bez karty”** — patrz `02` |
+| Karta wymagana przy starcie okresu próbnego | **[P]** ✅ | Zostaje. **Nie komunikujemy tego głośno i nie pisemy „bez karty”** — patrz `02` |
 | Rezygnacja jednym kliknięciem, dane zostają | **[P]** | Portal klienta, tryb tylko do odczytu — etap 2 i 3 |
 | Dane na serwerach w Unii, RODO, umowa powierzenia | **[P]** | Etap 7 |
 | Biuro rachunkowe, panel multi-tenant | **USUNIĘTE** | **Nie wolno pisać** |
@@ -235,15 +234,24 @@ Legenda:
 | VAT-REF, zwrot podatku z Unii | **[I] [?]** | Nie ma w v2. Domyślnie **nie piszemy** |
 | Kabotaż, mapa parkingów, plan wymiany tachografów | **[I] [?]** | Nie ma w v2. Domyślnie **nie piszemy** |
 
-### Cztery rzeczy do rozstrzygnięcia przed publikacją
+### Rozstrzygnięcia właściciela produktu (2 września 2026)
 
-1. **KSeF** — działa dziś czy dopiero będzie? Od tego zależy, czy sekcja
-   „Zlecenie → faktura → klient” mówi „wysyłasz” czy „wyślesz”.
-2. **Kwoty w cenniku** — 149 i 299 zł to liczby z poprzedniego projektu. Potwierdź albo podaj nowe.
-3. **Karta przy okresie próbnym** — wymagana czy nie. Zmienia treść przycisku i podpisu pod nim.
-4. **Automatyczny dobór trasy i ruch na drodze** — to mocne twierdzenie i łatwo je sprawdzić
-   po wejściu do demo. Działa dziś czy piszemy w czasie przyszłym?
-5. **Sekcja o tachografie** — zostaje na stronie głównej czy schodzi na podstronę?
-   Argument za: to jest powód, dla którego właściciel busa szuka czegokolwiek w 2026 roku.
-   Argument przeciw: prosiłeś, żeby na stronie nie było przepisów.
-   **Propozycja:** zostaje, ale napisana jak fakt z życia, bez numerów rozporządzeń i bez kar.
+Wszystkie pięć otwartych kwestii zamkniętych:
+
+1. **KSeF działa.** Sekcja „Zlecenie → faktura → klient” pisana w czasie teraźniejszym:
+   *wysyłasz plik na mail klienta i zgłoszenie do systemu e-faktur, jednym kliknięciem*.
+2. **Kwoty 149 i 299 zł potwierdzone.**
+3. **Karta przy okresie próbnym zostaje, ale nie komunikujemy tego głośno.**
+   Nie piszemy „bez karty” i nie piszemy „wymagana karta”. Zdanie pod przyciskiem brzmi:
+   *„Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.”*
+   Ścieżką całkowicie bez zobowiązań jest **demo** — i tak ją nazywamy.
+4. **Automatyczny dobór trasy z uwzględnieniem ruchu działa.** Czas teraźniejszy.
+5. **Tachograf — zmiana ramy.** Tachograf to zupełnie inne urządzenie i inna rola:
+   jest **wymagany** i **zapisuje**. BusiKM go nie zastępuje, nie pilnuje jego terminów
+   i tego nie sugeruje. BusiKM jest **pomocą wizualną dla kierowcy** — pokazuje na ekranie,
+   ile jeszcze może jechać i kiedy musi stanąć.
+
+   Na stronie zostaje jako krótki blok w sekcji o czasie pracy:
+   **„Tachograf zapisuje. BusiKM pokazuje.”**
+   Znika sekcja o terminie lipca 2026 i o pilnowaniu terminów tachografu.
+   Kolor `amber` przechodzi na wygasające dokumenty w sekcji 14.

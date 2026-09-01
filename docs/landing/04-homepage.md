@@ -239,11 +239,6 @@ podświetlone od dołu.
 **Makieta:** karta zlecenia po lewej, faktura po prawej, między nimi strzałka.
 Na fakturze przycisk „Wyślij”, obok dwa znaczniki: „mail” i „e-faktura”.
 
-> ⚠️ **Zanim to pójdzie na stronę:** status KSeF do potwierdzenia — patrz `01`.
-> Jeśli to jeszcze nie działa, sekcja zostaje, ale zdanie brzmi:
-> *„Faktura powstaje z danych zlecenia i idzie do klienta mailem. Wysyłkę do systemu
-> e-faktur uruchamiamy w tym roku.”*
-
 **Link:** `Zobacz, jak działają faktury →` `/co-robi/zlecenia-i-faktury`
 
 ---
@@ -312,6 +307,13 @@ z numerem rejestracyjnym, kierowcą i godziną dojazdu.
 - Miesięczna karta czasu pracy gotowa do wydruku
 - Dni w każdym kraju liczone z trasy, nie z notatek kierowcy
 
+**Druga część sekcji, mniejszy nagłówek** *(h3)*
+> Tachograf zapisuje. BusiKM pokazuje.
+
+> Tachograf jest wymagany i robi swoje — rejestruje. BusiKM go nie zastępuje i nie udaje.
+> Jest po to, żeby kierowca **widział na ekranie**, ile jeszcze może jechać i kiedy musi
+> stanąć. Wcześniej, a nie po fakcie.
+
 **Makieta:** trzy pierścienie postępu (jazda, przerwa, odpoczynek), obok lista kierowców
 ze statusem: *w normie · przerwa za 40 min · odpoczynek*.
 
@@ -375,14 +377,14 @@ podświetlonymi na zielono jako rozpoznane.
 > Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat
 > i mówi wcześniej — Tobie i kierowcy.
 
-**Druga część, mniejszy nagłówek** *(h3, jedyne miejsce z kolorem `amber`)*
-> Od lipca 2026 bus w trasie zagranicznej musi mieć tachograf.
-
-> Pokazujemy, których pojazdów w Twojej flocie to dotyczy i do kiedy.
-> Bez straszenia, po prostu z wyprzedzeniem.
+**Trzy punkty**
+- Wszystko w jednym miejscu: pojazdy, firma, kierowcy
+- Przypomnienie na długo przed terminem — Tobie i kierowcy
+- Jeden ekran pokazuje, co wymaga uwagi w tym miesiącu
 
 **Makieta:** lista dokumentów posortowana po dniach do końca ważności,
-z paskami statusu w trzech kolorach.
+z paskami statusu w trzech kolorach. **To jedyne miejsce na stronie z kolorem `amber`** —
+dokument, który zaraz wygaśnie.
 
 **Link:** `Zobacz dokumenty i terminy →` `/co-robi/dokumenty-i-terminy`
 
@@ -497,8 +499,6 @@ zestawienia sprzedaży i zakupów · rentowność zleceń · raporty kosztów fl
 > Bez umowy na czas określony. Rezygnujesz jednym kliknięciem.
 > Twoje dane pobierzesz zawsze — także po rezygnacji.
 
-> ⚠️ Kwoty pochodzą z poprzedniego projektu strony. **Potwierdź je przed publikacją** — `01`.
-
 ---
 
 ## 20 · Twoje dane zostają Twoje — C
@@ -533,9 +533,10 @@ w kolejności, w jakiej padają.
 > To zostaw go albo wypowiedz — jak wolisz. BusiKM pokazuje pozycję z telefonu kierowcy
 > i łączy ją z tym, czego lokalizator nie umie: ze zleceniem, kosztami i rozliczeniem.
 
-**Czy muszę mieć tachograf, żeby korzystać?**
-> Nie. Czas pracy liczymy z aplikacji kierowcy. Jeśli masz tachograf,
-> przypomnimy Ci o terminach.
+**Mam tachograf. Po co mi jeszcze to?**
+> Tachograf zapisuje, bo musi. BusiKM pokazuje — kierowca widzi na ekranie, ile jeszcze
+> może jechać i kiedy musi stanąć, a Ty widzisz to samo z biura. To nie to samo urządzenie
+> i nie ta sama robota.
 
 **Co, gdy kierowca nie ma zasięgu?**
 > Aplikacja pracuje dalej i zapisuje wszystko w telefonie. Kierowca widzi, co czeka
