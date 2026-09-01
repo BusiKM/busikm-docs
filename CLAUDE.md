@@ -7,7 +7,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 To jest repozytorium **strony marketingowej** projektu BusiKM — platformy SaaS do zarządzania transportem busami 2,5–3,5 t i automatycznej ewidencji przebiegu pojazdów. Zawiera:
 
 - `landing/` — strona marketingowa busikm.pl (Next.js 16 App Router + Tailwind CSS 4)
-- `design/` — artboardy i spec z Claude Design, z których powstał landing (źródło prawdy dla copy, kolorów i typografii)
 - `docs/landing/` — **dokumentacja nowej strony** oparta na finalnej wersji aplikacji (backlog BusiKM v2): inwentarz produktu i tabela twierdzeń, odbiorcy i język, architektura informacji, treść strony głównej i podstron, system animacji, gotowe prompty do Claude Design. **Zacznij tu przed jakąkolwiek zmianą treści na stronie.**
 
 **Poprzednia wersja strony (Astro 6, katalog `site/`) została usunięta** — jest dostępna wyłącznie w historii gita (ostatni commit z `site/` na `main`, sprzed mergu gałęzi `feat/landing-nextjs`). Nie odtwarzaj z niej plików bez wyraźnej prośby użytkownika.
@@ -39,12 +38,12 @@ Deploy: Vercel. **Root Directory projektu w Vercelu musi wskazywać na `landing/
   - `src/components/mockups/` — makiety produktu (DashboardMockup, DriveTimeRings, MileageTable, OrderCard, ReceiptCapture, ProfitCard, ExportPack, TachographCard, DriverPhones)
   - `src/components/ui/` — Button, Container, TechCaption
 - **Server Components domyślnie**; `'use client'` tylko tam, gdzie jest stan: `Header`, `Pricing`, `Faq`
-- **Responsywność**: mobile-first, przełącznikiem na desktop jest breakpoint `lg:` (artboardy 390 i 1440 z `design/`)
+- **Responsywność**: mobile-first, przełącznikiem na desktop jest breakpoint `lg:` (projekt powstał z artboardów 390 i 1440)
 - **Assety statyczne**: `landing/public/` — favicony i PWA (`favicon.*`, `apple-touch-icon.png`, `mask-icon.svg`, `site.webmanifest`, `web-app-manifest-*.png`), `logo/logo.svg`, `og-image.png`, `robots.txt`, `llms.txt`, pitch deck PDF, podpisy e-mail (`podpis-*.html`)
 
 ## Design system (`landing/src/app/globals.css`)
 
-Cały system designu zdefiniowany w `@theme {}` — tokeny pochodzą z arkusza systemu (trzeci artboard w `design/`):
+Cały system designu zdefiniowany w `@theme {}` — to jedyne źródło tokenów:
 
 - **Kolory**: `--color-ink` #0A0A0B, `--color-paper` #FAFAFA, `--color-surface` #111113, `--color-mist` #F2F2F4, `--color-line` #E3E3E6, `--color-muted` #6E6E76, `--color-blue` #0B5FFF (+ `-dark` #0A46C0 na hover, `-soft` #E8EFFE — pigułka aktywnej pozycji w nawigacji), `--color-amber` #FF9500 (tylko sekcja tachografu), `--color-green` #30D158
 - **Fonty**: `--font-sans` (Inter), `--font-mono` (IBM Plex Mono) — ładowane przez `next/font/google` jako zmienne CSS
