@@ -1,5 +1,5 @@
 /**
- * Znak BusiKM — biały glif z site/public/logo/logo.svg osadzony na kaflu blue
+ * Znak BusiKM — biały glif z public/logo/logo.svg osadzony na kaflu blue
  * o promieniu 29% (≈12px przy kaflu 40px), zgodnie z arkuszem „Nawigacja — stany".
  */
 const GLYPH =

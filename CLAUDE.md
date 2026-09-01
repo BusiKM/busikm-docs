@@ -4,48 +4,57 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Opis repozytorium
 
-To jest repozytorium **strony marketingowej** projektu BusiKM — platformy SaaS do automatycznej ewidencji przebiegu pojazdów osobowych w działalności gospodarczej. Zawiera wyłącznie:
+To jest repozytorium **strony marketingowej** projektu BusiKM — platformy SaaS do zarządzania transportem busami 2,5–3,5 t i automatycznej ewidencji przebiegu pojazdów. Zawiera:
 
-- `site/` — strona marketingowa busikm.pl (Astro 6 + Tailwind CSS 4)
+- `landing/` — strona marketingowa busikm.pl (Next.js 16 App Router + Tailwind CSS 4)
+- `design/` — artboardy i spec z Claude Design, z których powstał landing (źródło prawdy dla copy, kolorów i typografii)
+- `docs/landing/` — **dokumentacja nowej strony** oparta na finalnej wersji aplikacji (backlog BusiKM v2): inwentarz produktu i tabela twierdzeń, odbiorcy i język, architektura informacji, treść strony głównej i podstron, system animacji, gotowe prompty do Claude Design. **Zacznij tu przed jakąkolwiek zmianą treści na stronie.**
+
+**Poprzednia wersja strony (Astro 6, katalog `site/`) została usunięta** — jest dostępna wyłącznie w historii gita (ostatni commit z `site/` na `main`, sprzed mergu gałęzi `feat/landing-nextjs`). Nie odtwarzaj z niej plików bez wyraźnej prośby użytkownika.
 
 Dokumentacja techniczna i biznesowa (`PROJECT_OVERVIEW`, `ARCHITECTURE`, `FEATURES`, `MONETIZATION`, `SUBSCRIPTION_MANAGEMENT`, `MARKETING_PLAN`, user guides itd.) została przeniesiona do repozytorium backendu. Kod źródłowy platformy (backend, mobile, web) znajduje się w oddzielnych repozytoriach.
 
-## Komendy — strona marketingowa (`site/`)
+## Komendy — strona marketingowa (`landing/`)
 
-Wszystkie komendy uruchamiane z katalogu `site/`:
+Wszystkie komendy uruchamiane z katalogu `landing/`:
 
 ```bash
-cd site
-npm install          # instalacja zaleznosci (wymaga Node >= 22.12.0)
-npm run dev          # serwer deweloperski na localhost:4321
-npm run build        # build produkcyjny do site/dist/
-npm run preview      # podglad buildu produkcyjnego
+cd landing
+npm install          # instalacja zależności
+npm run dev          # serwer deweloperski na localhost:3000 (Turbopack)
+npm run build        # build produkcyjny
+npm run start        # podgląd buildu produkcyjnego
+npm run lint         # ESLint
 ```
 
-Deploy: Vercel (statyczny output, konfiguracja w `site/vercel.json`).
+Deploy: Vercel. **Root Directory projektu w Vercelu musi wskazywać na `landing/`** — wcześniej wskazywał na `site/` (Astro).
 
-## Architektura strony (`site/`)
+## Architektura strony (`landing/`)
 
-- **Framework**: Astro 6 (static output) + Tailwind CSS 4 (via `@tailwindcss/vite` plugin) + @astrojs/sitemap
-- **Lancuch layoutow**: `BaseLayout.astro` (SEO, OG, fonty, analytics) → `MarketingLayout.astro` (Header + Footer + scroll reveal) / `DocsLayout.astro` (sidebar + prose)
-- **Komponenty**: `site/src/components/layout/` — Header, Footer, Logo. Nowe komponenty tworzyc w odpowiednich podkatalogach `components/`
-- **Strony marketingowe**: index, cennik, funkcje, roadmapa, strony per rola (`dla-kierowcow`, `dla-wlascicieli`, `dla-ksiegowych`, `dla-biur-rachunkowych`)
-- **Strony docs**: `site/src/pages/docs/` — strony dokumentacji technicznej
-- **Skrypty pomocnicze**: `site/scripts/generate-icons.mjs`, `site/scripts/generate-og.mjs`
-- **Konfiguracja Astro**: `site/astro.config.mjs` — `site: 'https://busikm.pl'`, output `static`, Tailwind przez Vite plugin
+- **Framework**: Next.js 16 (App Router, Turbopack) + React 19 + TypeScript 5.9 + Tailwind CSS 4 (przez `@tailwindcss/postcss`)
+- **Wejście**: `src/app/layout.tsx` (fonty przez `next/font/google`, metadata: title/description, favicony, manifest, OG) → `src/app/page.tsx` (kolejność sekcji landingu)
+- **Komponenty**:
+  - `src/components/layout/` — Header (nawigacja + menu mobilne), Footer, Logo
+  - `src/components/sections/` — Hero, HowItWorks, FeatureSection (wspólny szkielet sekcji A–F), Tachograph, DriverApp, OneInvoice, Pricing, Faq, FinalCta
+  - `src/components/mockups/` — makiety produktu (DashboardMockup, DriveTimeRings, MileageTable, OrderCard, ReceiptCapture, ProfitCard, ExportPack, TachographCard, DriverPhones)
+  - `src/components/ui/` — Button, Container, TechCaption
+- **Server Components domyślnie**; `'use client'` tylko tam, gdzie jest stan: `Header`, `Pricing`, `Faq`
+- **Responsywność**: mobile-first, przełącznikiem na desktop jest breakpoint `lg:` (artboardy 390 i 1440 z `design/`)
+- **Assety statyczne**: `landing/public/` — favicony i PWA (`favicon.*`, `apple-touch-icon.png`, `mask-icon.svg`, `site.webmanifest`, `web-app-manifest-*.png`), `logo/logo.svg`, `og-image.png`, `robots.txt`, `llms.txt`, pitch deck PDF, podpisy e-mail (`podpis-*.html`)
 
-## Design system (`site/src/styles/global.css`)
+## Design system (`landing/src/app/globals.css`)
 
-Caly system designu zdefiniowany w `@theme {}` w pliku `global.css`:
+Cały system designu zdefiniowany w `@theme {}` — tokeny pochodzą z arkusza systemu (trzeci artboard w `design/`):
 
-- **Brand**: `--color-brand: #005CE8` (Confidence Blue), warianty: `-light`, `-dark`, `-subtle`, `-border`
-- **Grayscale**: Apple-neutral skala `--color-gray-50` do `--color-gray-950`
-- **Semantic**: `--color-success` (zielony), `--color-warning` (pomaranczowy), `--color-danger` (czerwony)
-- **UI tokens**: `--color-surface`, `--color-border`, `--color-text`, `--color-text-secondary`
-- **Fonty**: `--font-display` (Plus Jakarta Sans — naglowki), `--font-sans` (DM Sans — body), `--font-mono` (JetBrains Mono)
-- **Animacje**: klasy `.reveal` i `.reveal-stagger` (IntersectionObserver, klasa `.is-visible`), `.hero-seq-1` do `.hero-seq-5` (sekwencja ladowania hero)
+- **Kolory**: `--color-ink` #0A0A0B, `--color-paper` #FAFAFA, `--color-surface` #111113, `--color-mist` #F2F2F4, `--color-line` #E3E3E6, `--color-muted` #6E6E76, `--color-blue` #0B5FFF (+ `-dark` #0A46C0 na hover, `-soft` #E8EFFE — pigułka aktywnej pozycji w nawigacji), `--color-amber` #FF9500 (tylko sekcja tachografu), `--color-green` #30D158
+- **Fonty**: `--font-sans` (Inter), `--font-mono` (IBM Plex Mono) — ładowane przez `next/font/google` jako zmienne CSS
+- **Skala typograficzna**: `--text-display`, `-h1`, `-h2`, `-h3`, `-lead`, `-body`, `-caption` oraz warianty mobilne z sufiksem `-m` (`--text-display-m`, `--text-h1-m`, …), każdy z własnym `--line-height` i `--letter-spacing`
+- **Promienie**: `--radius-btn` 12px, `--radius-card` 20px, `--radius-panel` 28px
+- **Cienie**: `--shadow-card`, `--shadow-hero`, `--shadow-blue`, `--shadow-phone`, `--shadow-tab`, `--shadow-nav` (pasek nawigacji po przewinięciu 24px)
 
-Uzywaj tokenow z `@theme` zamiast hardkodowanych wartosci kolorow.
+Używaj tokenów z `@theme` zamiast hardkodowanych wartości kolorów i rozmiarów.
+
+> Uwaga: favicony i `site.webmanifest` pochodzą jeszcze z poprzedniej identyfikacji (`theme_color` #005CE8), a landing używa #0B5FFF. Jeśli marka ma być spójna, zestaw ikon trzeba wygenerować ponownie.
 
 ## Stack technologiczny platformy (dokumentowany w repo backendu, nie w tym repo)
 
@@ -60,26 +69,24 @@ Uzywaj tokenow z `@theme` zamiast hardkodowanych wartosci kolorow.
 ## Kluczowe wzorce architektoniczne platformy (dokumentowane)
 
 - **RBAC** — 4 role: `driver`, `owner`, `accountant`, `accounting_firm`
-- **CompanyScopedMixin** — izolacja danych miedzy firmami (tenant isolation)
-- **TenantContextMiddleware** — przelaczanie kontekstu firmy (header `X-Company-Context`)
+- **CompanyScopedMixin** — izolacja danych między firmami (tenant isolation)
+- **TenantContextMiddleware** — przełączanie kontekstu firmy (header `X-Company-Context`)
 - **AbstractFKIntegration** — wzorzec Strategy dla integracji z systemami FK
 - **API-first** — schema OpenAPI z DRF → klient TS przez orval
 
 ## Konwencje
 
-- Strona marketingowa (`site/`) w jezyku polskim, komponenty Astro + Tailwind CSS 4 utility classes
+- Strona marketingowa (`landing/`) w języku polskim, komponenty React + Tailwind CSS 4 utility classes
 - **Conventional Commits** — format: `<type>(<scope>): <opis>`
 - **Git flow** — feature/* -> develop -> staging -> main
 
 ## Aktualizacja statystyk sprintów / ticketów
 
-Statystyki postępu są w **trzech miejscach** i muszą być zsynchronizowane:
+⚠️ **Strona `/roadmapa` i sekcja `STATUS PRODUKTU` nie zostały jeszcze przeniesione do `landing/`** — zniknęły razem z Astro. Do czasu ich odtworzenia jedynym miejscem ze statystykami postępu jest:
 
-1. **`site/src/pages/roadmapa.astro`** — sekcja `hero-seq-5` (hero stats: ukończone tickety, sprinty gotowe, tickety w backlogu, MVP LIVE) + tytuł "X sprintów za nami" w hero + lista sprintów z datami w sekcjach faz.
-2. **`site/src/pages/index.astro`** — sekcja `STATUS PRODUKTU` (ok. linia 860): tytuł "X sprintów za nami. MVP LIVE…" oraz 4 karty (`ukończonych ticketów`, `sprintów gotowych`, `integracje FK`, `MVP LIVE`).
-3. **`site/public/llms.txt`** — sekcja "Stan wdrożenia".
+1. **`landing/public/llms.txt`** — sekcja "Stan wdrożenia".
 
-**Przy każdej zmianie sprintów/ticketów (np. zamknięcie sprintu w Jirze) zaktualizuj WSZYSTKIE TRZY miejsca razem.** Pojedyncza zmiana tylko na roadmapie powoduje rozjazd narracji na stronie głównej.
+Po odtworzeniu roadmapy w Next.js dojdą dwa kolejne miejsca (strona roadmapy + sekcja statusu na stronie głównej) i **wszystkie trzeba będzie aktualizować razem** — pojedyncza zmiana tylko na roadmapie powoduje rozjazd narracji na stronie głównej.
 
 Źródłem prawdy są zamknięte sprinty w Jirze (BusiKM Cloud, cloudId `5b62c056-d341-4ff3-90d4-8dd0a04df072`) — sprawdzaj przez `closedSprints()` JQL.
 
@@ -87,11 +94,13 @@ Statystyki postępu są w **trzech miejscach** i muszą być zsynchronizowane:
 
 Komenda **`UPDATE ROADMAP`** (lub jej wariant po polsku) uruchamia pełną resynchronizację strony z aktualnym stanem Jiry, łącznie z **predykcją daty MVP** na podstawie rzeczywistego tempa pracy.
 
+⚠️ **Stan po przejściu na Next.js**: strona roadmapy nie istnieje jeszcze w `landing/`. Kroki 1–4 (dane z Jiry, drift, predykcja MVP) wykonuj bez zmian — ich wynik jest potrzebny do `llms.txt`. Kroki 5 i 6.1–6.2 (restrukturyzacja kart sprintów i faz na stronie) wykonasz dopiero po odtworzeniu roadmapy w Next.js; do tego czasu aktualizujesz wyłącznie `landing/public/llms.txt`. Opis struktury `roadmapa.astro` poniżej zostaje jako specyfikacja tego, co trzeba odtworzyć.
+
 ### Krok 1 — pobierz dane z Jiry (Atlassian MCP)
 
 Odpytaj Atlassian MCP (`searchJiraIssuesUsingJql`) i zapisz w pamięci roboczej:
 
-- **Sprinty zamknięte**: nazwa, planowana data zakończenia (z poprzedniej wersji `roadmapa.astro`), faktyczna `completeDate` (Jira), liczba `Done` ticketów.
+- **Sprinty zamknięte**: nazwa, planowana data zakończenia (z poprzedniej wersji roadmapy — dopóki strony nie ma, weź ją z sekcji "Stan wdrożenia" w `llms.txt` albo z historii gita: `git show <commit>:site/src/pages/roadmapa.astro`), faktyczna `completeDate` (Jira), liczba `Done` ticketów.
 - **Sprinty aktywne i przyszłe**: nazwa, planowane `startDate` / `endDate`.
 - **Backlog**: liczba ticketów w statusach innych niż Done (mapowanie do "ticketów w backlogu").
 - **Łączna liczba ticketów Done** (suma per sprint zamknięty).
@@ -178,16 +187,16 @@ W hero (lub stat-pasie pod hero) jeśli jest komunikat typu "X faz do MVP" / "Fa
 
 Zaktualizuj synchronicznie:
 
-1. **`site/src/pages/roadmapa.astro`**:
+1. **`landing/public/llms.txt`** — sekcja "Stan wdrożenia": dzisiejsza data, liczby, data MVP, lista zamkniętych sprintów. **To jedyny plik do aktualizacji, dopóki roadmapa nie wróci na stronę.**
+2. *(po odtworzeniu roadmapy w Next.js)* strona roadmapy:
    - Hero stats: liczba ukończonych ticketów, `N/35` sprintów, ticketów w backlogu, data MVP LIVE (skrócona).
    - Tytuł hero "X sprintów za nami".
    - Sekcja "Ukończone sprinty" — wstawione nowe karty (krok 5a).
    - Sekcja "Fazy przed nami" — renumerowane (krok 5b), daty po driftowaniu (krok 3).
    - Wszystkie anchor linki (`#faza-1`, `#faza-2`, …) i komponenty `<a>` zsynchronizowane z nową numeracją.
-2. **`site/src/pages/index.astro`** (sekcja `STATUS PRODUKTU`):
+3. *(po odtworzeniu sekcji `STATUS PRODUKTU` na stronie głównej)*:
    - Tytuł "X sprintów za nami. MVP LIVE …".
    - 4 karty (`ukończonych ticketów`, `N/35 sprintów gotowych`, `3 integracje FK`, skrócona data MVP).
-3. **`site/public/llms.txt`** — sekcja "Stan wdrożenia": dzisiejsza data, liczby, data MVP, lista zamkniętych sprintów.
 
 ### Krok 7 — raport zmian
 
@@ -197,7 +206,7 @@ Drift: -2 dni (szybciej niż plan)
 Zamknięte: S6b (132 ticketów łącznie, +8 vs poprzednia synchronizacja)
 Faza 1 zamknięta → Faza 2 staje się Fazą 1
 MVP: 30 maja 2026 → 28 maja 2026 (skrót: "28 maj")
-Pliki: roadmapa.astro, index.astro, llms.txt
+Pliki: llms.txt
 ```
 
 Następnie zaproponuj commit (`fix(roadmap): sync sprint X done · MVP shifted to …`) i czekaj na komendę commitu — nie commituj automatycznie.

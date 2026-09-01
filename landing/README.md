@@ -83,7 +83,7 @@ sekcja (`#jak-to-dziala`, `#dlakogo`, `#cennik`, `#pomoc`, `#kontakt`) jest pod
 paskiem. Nakładka menu mobilnego musi być **poza** `<header>`: `backdrop-filter`
 tworzy containing block dla `position: fixed` i nakładka miałaby zerową wysokość.
 
-Znak w pasku pochodzi z `site/public/logo/logo.svg` (biały glif) osadzonego na
+Znak w pasku pochodzi z `landing/public/logo/logo.svg` (biały glif) osadzonego na
 kaflu `blue` o promieniu 29% — komponent `Logo`.
 
 ## Odstępstwa od artboardu

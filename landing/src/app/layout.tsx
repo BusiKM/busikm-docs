@@ -16,10 +16,39 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 });
 
+const title = 'BusiKM — Kierowca jedzie. Reszta dzieje się sama.';
+const description =
+  'BusiKM zamienia trasy Twoich kierowców w kilometrówkę, ewidencję czasu pracy i komplet dokumentów dla księgowej. Bez Excela. Bez przepisywania.';
+
 export const metadata: Metadata = {
-  title: 'BusiKM — Kierowca jedzie. Reszta dzieje się sama.',
-  description:
-    'BusiKM zamienia trasy Twoich kierowców w kilometrówkę, ewidencję czasu pracy i komplet dokumentów dla księgowej. Bez Excela. Bez przepisywania.',
+  metadataBase: new URL('https://busikm.pl'),
+  title,
+  description,
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: '/apple-touch-icon.png',
+    other: [{ rel: 'mask-icon', url: '/mask-icon.svg', color: '#005CE8' }],
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'pl_PL',
+    url: 'https://busikm.pl',
+    siteName: 'BusiKM',
+    title,
+    description,
+    images: [{ url: '/og-image.png', width: 1219, height: 649, alt: 'BusiKM' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
