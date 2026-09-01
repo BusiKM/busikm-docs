@@ -142,7 +142,7 @@ także z ramkami.
 
 - [x] Dokumentacja i treść — `docs/landing/`
 - [x] Rozstrzygnięcia produktowe — pięć zamkniętych, patrz `01`
-- [ ] **Etap 0 — fundament w kodzie** ← następny ruch po mojej stronie
+- [x] **Etap 0 — fundament w kodzie** — `MockupSlot`, animacje, rozwijane menu, 25 tras
 - [ ] Etap 1 — strona główna w Claude Design ← następny ruch po Twojej stronie
 - [ ] Etap 2 — strona główna w kodzie
 - [ ] Etap 3 — podstrony, cztery fale

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, IBM_Plex_Mono } from 'next/font/google';
+import { RevealObserver } from '@/components/motion/RevealObserver';
 import './globals.css';
 
 const inter = Inter({
@@ -56,7 +57,19 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pl" className={`${inter.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* Włącza stan ukryty dla [data-reveal] zanim przeglądarka odmaluje
+            treść — dzięki temu nic nie mruga. Bez JavaScriptu i przy prośbie
+            o mniej ruchu strona jest po prostu widoczna. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.dataset.reveal='on'}}catch(e){}",
+          }}
+        />
+        {children}
+        <RevealObserver />
+      </body>
     </html>
   );
 }
