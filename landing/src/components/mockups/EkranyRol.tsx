@@ -166,12 +166,12 @@ export function EkranKsiegowej() {
 
 export function EkranKierowcy() {
   return (
-    <div className="relative flex items-center justify-center lg:aspect-16/10">
+    <div className="relative flex items-center justify-center overflow-hidden lg:aspect-16/10">
       <div
         aria-hidden
         className="absolute bottom-0 left-[30%] right-[30%] h-30 bg-blue opacity-35 blur-[80px]"
       />
-      <div className="relative h-[420px] w-[195px] rounded-[32px] border border-[#2A2A30] bg-black p-2.5 shadow-[0_30px_80px_rgba(0,0,0,.6)] lg:h-[542px] lg:w-[250px] lg:rounded-[40px]">
+      <div className="relative aspect-[195/420] h-[420px] w-[195px] rounded-[32px] border border-[#2A2A30] bg-black p-2.5 shadow-[0_30px_80px_rgba(0,0,0,.6)] lg:h-[92%] lg:w-auto lg:rounded-[40px]">
         <div className="flex h-full flex-col overflow-hidden rounded-[26px] bg-surface text-[12px] lg:rounded-[32px]">
           <div className="flex justify-between px-4.5 pt-5 text-ink-muted">
             <span>14:20</span>

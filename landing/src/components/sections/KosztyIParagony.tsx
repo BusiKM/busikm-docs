@@ -30,6 +30,7 @@ export function KosztyIParagony() {
             label="Koszt z paragonu · telefon"
             note="Telefon ze zdjęciem paragonu (perspektywa), obok „odklejony” panel z rozpoznanymi polami podświetlonymi na zielono."
             ratio="9:19.5"
+            box="4:5"
           >
             <ParagonMockup />
           </MockupSlot>

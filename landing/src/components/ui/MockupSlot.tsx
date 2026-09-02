@@ -44,8 +44,17 @@ type MockupSlotProps = {
   label: string;
   /** Co dokładnie ma być widać na docelowym zrzucie. */
   note: string;
-  /** Proporcje docelowego obrazu, np. „16:10". */
+  /** Proporcje docelowego zrzutu, np. „16:10". Trafiają do notki. */
   ratio: string;
+  /**
+   * Kształt pudła w układzie strony. Domyślnie taki jak `ratio`.
+   *
+   * Rozdzielony, bo zrzut telefonu ma proporcje 9:19.5, ale nie może zajmować
+   * pudła o takim kształcie — w kolumnie szerokiej na 660 px dałoby to 1430 px
+   * wysokości i zepchnęło resztę sekcji w dół. Telefon dostaje więc pudło
+   * takie jak sąsiednie ekrany i mieści się w nim wyśrodkowany.
+   */
+  box?: string;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -58,6 +67,7 @@ export function MockupSlot({
   label,
   note,
   ratio,
+  box,
   children,
   dark = false,
   noteClassName = '',
@@ -65,7 +75,7 @@ export function MockupSlot({
   const src = imageSrc(file);
 
   if (src) {
-    const [w, h] = ratio.split(':').map(Number);
+    const [w, h] = (box ?? ratio).split(':').map(Number);
     return (
       <div className="relative w-full" style={{ aspectRatio: `${w} / ${h}` }}>
         <Image

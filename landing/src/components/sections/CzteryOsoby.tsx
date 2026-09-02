@@ -19,6 +19,9 @@ function slot(file: string, ratio: string, children: React.ReactNode) {
       label="Cztery kadry · 3× przeglądarka + 1× telefon"
       note={NOTE}
       ratio={ratio}
+      // Wszystkie cztery role dostają to samo pudło, więc przełączanie
+      // zakładek nie zmienia wysokości sekcji.
+      box="16:10"
       dark
     >
       {children}

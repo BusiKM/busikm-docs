@@ -142,6 +142,26 @@ z kciukiem w górę, rysunkowych busów. Transport widać po danych, nie po obra
 
 ---
 
+## 4a. Kształt pudła to nie to samo, co proporcje zrzutu
+
+`MockupSlot` ma dwa osobne parametry:
+
+- **`ratio`** — proporcje, w jakich należy wyeksportować zrzut. Trafiają do notki
+  „do podmiany", żeby było wiadomo, co przygotować.
+- **`box`** — kształt miejsca, które makieta zajmuje w układzie strony.
+  Domyślnie taki sam jak `ratio`.
+
+Rozdzielenie jest konieczne przy telefonach. Zrzut telefonu ma proporcje 9:19.5,
+ale pudło o takim kształcie w kolumnie szerokiej na 660 px miałoby **1430 px
+wysokości** — telefon wisiałby w pustce, a reszta sekcji zjechałaby w dół.
+
+Dlatego w sekcji czterech ról wszystkie cztery zakładki dostają `box="16:10"`.
+Telefon mieści się w tym samym pudle co ekrany przeglądarki, wyśrodkowany,
+a przełączanie zakładek nie zmienia wysokości sekcji ani o piksel.
+
+**Reguła:** gdy w jednym miejscu przełączają się makiety o różnych proporcjach,
+wszystkie dostają to samo `box`.
+
 ## 5a. Podmiana pliku pod tą samą nazwą
 
 Optymalizator obrazów Next trzyma wynik **pod adresem, a nie pod zawartością pliku**.
