@@ -8,13 +8,14 @@ najpierw wraca ono do dokumentacji, dopiero potem do kodu.
 
 ```
 design/
-  01-home/            strona główna
-  02-aplikacja-kierowcy/
-  03-dyspozytornia/
-  04-dane-dla-ksiegowej/
-  05-rentownosc/
-  ...
+  01-home/                  strona główna          ✅ zaimplementowana
+  02-aplikacja-kierowcy/    ← fala 1, prompt 2
+  03-dyspozytornia/         ← fala 1, prompt 3
+  04-dane-dla-ksiegowej/    ← fala 1, prompt 4
+  05-rentownosc/            ← fala 1, prompt 5
 ```
+
+Katalogi fali 1 są już utworzone i czekają na eksporty.
 
 Numer odpowiada kolejności z `docs/landing/09-workflow-wdrozenia.md`.
 W katalogu ląduje wyeksportowany plik canvasu (`*.dc.html`) razem z tym,

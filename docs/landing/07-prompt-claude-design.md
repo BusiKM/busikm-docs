@@ -510,57 +510,316 @@ Jeśli musi czytać, żeby to zrozumieć — projekt jest za gęsty.
 ---
 ---
 
-# PROMPTY 2–14 — PODSTRONY
+## Wspólna część każdego promptu
 
-Wklejaj pojedynczo, **po zaakceptowaniu strony głównej**, w tej samej rozmowie
-(wtedy Claude Design zna już system) albo w nowej, doklejając rozdziały 3 i 4 z PROMPTU 1.
+Jeśli projektujesz w **tej samej rozmowie**, w której powstała strona główna — możesz ten
+rozdział pominąć, Claude Design zna już system. W nowej rozmowie wklej go przed treścią strony.
 
-## Szablon wspólny
-
-> Zaprojektuj podstronę **[NAZWA]** serwisu BusiKM, w tym samym systemie wizualnym,
-> co strona główna (te same kolory, ta sama typografia, ten sam rytm sekcji naprzemiennie
-> jasnych i ciemnych, ten sam pasek nawigacji i ta sama stopka).
+> Projektujesz podstronę serwisu **BusiKM** — polskiego programu dla firm transportowych
+> jeżdżących busami 2,5–3,5 t. Język: **polski, z polskimi znakami**. Estetyka Apple:
+> spokojna, dorosła, dużo powietrza, duża typografia.
 >
-> Ta strona ma **szczegółowo opisać jeden obszar aplikacji**. Jest dłuższa i bardziej
-> konkretna niż sekcja na stronie głównej — ktoś, kto tu trafia, już wie, czym jest BusiKM,
-> i chce zobaczyć, jak to dokładnie działa.
+> **Kolory:** ink `#0A0A0B`, paper `#FAFAFA`, surface `#111113`, mist `#F2F2F4`,
+> line `#E3E3E6`, muted `#6E6E76`, blue `#0B5FFF` (hover `#0A46C0`, pigułka `#E8EFFE`),
+> amber `#FF9500` (tylko wygasające dokumenty), green `#30D158`.
+> Sekcje naprzemiennie jasne i ciemne, krawędź ostra.
 >
-> Szkielet strony:
-> 1. Nagłówek — korzyść w dwóch linijkach, jedno zdanie pod spodem, przyciski
->    `Wypróbuj 14 dni` i `Zobacz demo`
+> **Typografia** Inter: display 88 / h1 64 / h2 40 / h3 28 / lead 22 / body 17 / caption 14.
+> Na telefonie display 44, h1 34, h2 34, h3 22, lead 19.
+>
+> **Rytm:** sekcje 160 px na desktopie, 96 px na telefonie. Treść w 1120 px, wyśrodkowana.
+> Promienie 12 / 20 / 28 px. Cienie delikatne i rozmyte.
+>
+> **Pasek nawigacji i stopka** takie same jak na stronie głównej.
+>
+> **Jak pisać:** zdania krótkie, każda funkcja opisana jako to, co czuje właściciel.
+> Zakazane: platforma, rozwiązanie, ekosystem, digitalizacja, moduł, funkcjonalność,
+> wdrożenie, dedykowany, kompleksowy.
+>
+> **Zakaz twardy:** ani jednego numeru rozporządzenia, artykułu ustawy, nazwy przepisu
+> ani kwoty kary. Zero wymyślonego dowodu społecznego — produkt nie ma jeszcze klientów.
+> Zero zdjęć stockowych.
+>
+> **Szkielet podstrony:**
+> 1. Nagłówek — korzyść w dwóch linijkach, zdanie pod spodem, przyciski
+>    `Wypróbuj 14 dni` (niebieski) i `Zobacz demo` (obrysowany)
 > 2. Duża makieta tego jednego ekranu, o którym jest strona
-> 3. Bloki „co to znaczy w praktyce” — naprzemiennie tekst i makieta
-> 4. Siatka sześciu kafelków z drobiazgami, które widać dopiero w użyciu
-> 5. Kto tego używa — jedna albo dwie role
+> 3. Bloki „co to znaczy w praktyce" — naprzemiennie tekst i makieta
+> 4. Siatka drobiazgów — sześć kafelków
+> 5. Kto tego używa — jedna albo dwie role, z odnośnikiem
 > 6. Trzy pytania dotyczące tylko tego obszaru
-> 7. Finał: **Zacznij od jednej trasy.**
+> 7. Finał, ten sam na wszystkich podstronach: **Zacznij od jednej trasy.**
+>    Podtytuł: *14 dni bez opłat. Bez umowy. Bez dzwonienia do handlowca.*
 >
-> Ten sam zakaz: żadnych przepisów, artykułów, kar, żadnego dowodu społecznego,
-> żadnych zdjęć stockowych. Dwa artboardy: desktop 1440 i telefon 390.
+> **Makiety:** rysuj uproszczone ekrany interfejsu. Przy każdej umieść etykietę
+> „DO PODMIANY", opis zawartości i nazwę pliku — te zrzuty podmienimy na prawdziwe.
+> W makietach prawdziwe dane z tego świata: trasy `Warszawa → Mediolan`,
+> `Poznań → Rotterdam`, numery `WZ 4821K`, `PO 2093J`, kierowcy `Marek W.`, `Tomasz L.`,
+> słowa: fracht, załadunek, rozładunek, opłata drogowa, dieta. Kwoty w złotych i w euro.
 >
-> Makiety jak na stronie głównej: etykieta „DO PODMIANY”, opis zawartości i nazwa pliku
-> w schemacie `mockup-<obszar>-<ekran>-<urządzenie>.png`. Każda z własną oprawą —
-> poświata, kąt, tło sekcyjne — żeby strona nie była jałowa.
->
-> **Treść strony:** *(wklej odpowiedni rozdział z pliku `05-podstrony.md`)*
+> **Do wyprodukowania:** dwa artboardy — desktop 1440 i telefon 390.
 
-## Kolejność
+---
+---
 
-| # | Strona | Rozdział w `05` |
+# PROMPT 2 — APLIKACJA KIEROWCY
+
+> Adres strony: `/co-robi/aplikacja-kierowcy`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 2".
+
+---
+
+Zaprojektuj podstronę **Aplikacja kierowcy**.
+
+To najważniejsza podstrona serwisu. Rozstrzyga się na niej największa obiekcja właściciela:
+**„mój kierowca tego nie ruszy"**. Wszystko na tej stronie ma pokazywać, że kierowca nie
+musi niczego wpisywać ani się uczyć.
+
+**Nadtytuł:** BUSIKM KIEROWCA · iPHONE I ANDROID
+
+**Nagłówek:** Cały dzień pracy w jednej aplikacji. / Bez wpisywania czegokolwiek w trasie.
+
+**Zdanie pod nagłówkiem:** *Kierowca dostaje kod, wpisuje go raz i jest w środku.
+Reszta to trzy przyciski.*
+
+**Osiem bloków, naprzemiennie tekst i makieta telefonu:**
+
+1. **Wchodzi kodem, nie zakłada konta** — Wysyłasz zaproszenie, kierowca dostaje kod,
+   ustawia własne hasło. Nie dzwoni do Ciebie z pytaniem, jaki ma login.
+2. **Nawigacja jest w środku** — Trasa ze zlecenia prowadzi go od razu, w tej samej
+   aplikacji. Nie przeskakuje między nawigacją a resztą, nie przepisuje adresu z jednej
+   aplikacji do drugiej. Zmieniasz trasę u siebie — on ma nową wersję w telefonie
+   w tej samej chwili.
+3. **Rusza jednym przyciskiem** — Zdjęcie licznika, przycisk „Rozpocznij trasę" i jedzie.
+   Telefon może zostać w kieszeni, ekran wyłączony. Trasa nagrywa się sama.
+4. **Koszt dodaje jednym przyciskiem** — Zatankował, pstryknął paragon i jedzie dalej.
+   Kwota, data i sprzedawca wpisują się same, koszt trafia do tego zlecenia i tego pojazdu.
+5. **Przerwa i powrót jednym tapnięciem** — Aplikacja przypomina o obowiązkowej przerwie
+   zanim będzie za późno, nie po fakcie.
+6. **Działa bez zasięgu** — Tunel, góry, terminal promowy, parking pod granicą. Wszystko
+   zapisuje się w telefonie i dosyła, gdy wróci sygnał. Kierowca ma ekran „Do wysłania"
+   i widzi, co jeszcze czeka.
+7. **Trasa poza zleceniem** — Dojazd do bazy, przejazd do serwisu też się liczy.
+   Start, stop, potwierdzenie.
+8. **Jego dokumenty w telefonie** — Prawo jazdy, badania, uprawnienia. Aplikacja przypomina
+   o terminach jemu i Tobie.
+
+**Siatka drobiazgów, sześć kafelków:** Tryb nocny · Sześć języków · Powiadomienia o nowym
+zleceniu · Bateria wystarcza na całą zmianę · Podgląd własnych tras z historii ·
+Kontakt z biurem jednym tapnięciem
+
+**Makiety — pięć ekranów telefonu, wszystkie w trybie nocnym:**
+lista zleceń · nawigacja z kartą zlecenia u dołu · dodawanie kosztu ze zdjęciem paragonu ·
+licznik czasu pracy · ekran „Do wysłania".
+Nazwy plików: `mockup-kierowca-zlecenia-phone.png`, `mockup-kierowca-nawigacja-phone.png`,
+`mockup-kierowca-koszt-phone.png`, `mockup-kierowca-czas-phone.png`,
+`mockup-kierowca-wysylka-phone.png`. Proporcje 9:19.5.
+
+**Na dole sekcji:** odznaki App Store i Google Play z prawdziwymi znakami sklepów —
+jabłko w bieli, czterokolorowy trójkąt Google Play. Kontener obrysowany, wysokość 48 px.
+
+**Kto tego używa:** Kierowca — z odnośnikiem do `/dla-kogo/kierowca`.
+
+**Trzy pytania:**
+- **Czy kierowca musi mieć służbowy telefon?** — Nie. Aplikacja działa na jego własnym
+  telefonie, a firmowych danych nie zostawia po odejściu.
+- **Czy aplikacja zużywa dużo danych?** — Nie. Trasa to punkty, nie obraz. Zdjęcia
+  paragonów wysyłają się skompresowane, a bez zasięgu czekają w telefonie.
+- **Co, gdy kierowca zmieni telefon?** — Instaluje aplikację na nowym, loguje się
+  i ma wszystko. Nic nie ginie, bo dane są u Ciebie, nie w telefonie.
+
+---
+**KONIEC PROMPTU 2**
+
+---
+---
+
+# PROMPT 3 — DYSPOZYTORNIA
+
+> Adres strony: `/co-robi/dyspozytornia`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 3".
+
+---
+
+Zaprojektuj podstronę **Dyspozytornia**.
+
+Czytelnikiem jest właściciel, który sam prowadzi trasy, albo firma, w której robi to osobna
+osoba. Strona ma pokazać jeden ekran, na którym mieści się cały dzień pracy.
+
+**Nadtytuł:** DYSPOZYTORNIA
+
+**Nagłówek:** Cały dzień pracy na jednym ekranie.
+
+**Zdanie pod nagłówkiem:** *Zlecenia, mapa, kierowcy i rozmowa — obok siebie.
+Bez przełączania zakładek.*
+
+**Siedem bloków:**
+
+1. **Jeden ekran zamiast czterech okien** — Po lewej zlecenia, w środku mapa, po prawej
+   kierowca. Wszystko widać naraz.
+2. **Zlecenie od przyjęcia po rozliczenie** — Zleceniodawca, załadunek, rozładunek, terminy,
+   stawka. Status widać na liście: przyjęte, w drodze, rozładunek, dostarczone.
+3. **Kierowca i pojazd w dwie sekundy** — Przypisujesz, a system podpowiada, kto ma ważne
+   uprawnienia i wolny czas pracy.
+4. **Trasa układa się sama** — System proponuje przejazd i bierze pod uwagę, co dzieje się
+   na drodze.
+5. **Zmiana w trakcie jazdy** — Klient przesuwa rozładunek, na trasie robi się korek —
+   poprawiasz u siebie, kierowca ma nową wersję od razu.
+6. **Rozmowa bez wychodzenia z ekranu** — Piszesz do kierowcy stąd. Nie szukasz numeru,
+   nie dzwonisz, nie tłumaczysz przez telefon, gdzie ma skręcić.
+7. **Dyspozytor to osobne stanowisko** — Ma własny dostęp. Widzi to, czego potrzebuje
+   do prowadzenia tras — nie musi widzieć rozliczeń firmy. W małej firmie właściciel
+   przełącza się na ten widok jednym kliknięciem.
+
+**Siatka drobiazgów, sześć kafelków:** Zlecenie z pliku klienta · Podpowiedź wolnego
+kierowcy · Historia zleceń z filtrami · Wysyłka zlecenia na telefon · Statusy widoczne
+u klienta · Dwa zlecenia na jednym przejeździe
+
+**Makieta główna:** pełnoekranowy pulpit dyspozytora, trzy kolumny — lista zleceń, mapa
+z trasami, panel kierowcy z rozmową. Plik `mockup-dyspozytornia-ekran-desktop.png`, 16:10.
+Dodatkowo dwie mniejsze: karta zlecenia (`mockup-dyspozytornia-zlecenie-desktop.png`, 4:3)
+i podgląd trasy z korkiem (`mockup-dyspozytornia-trasa-desktop.png`, 4:3).
+
+**Kto tego używa:** Dyspozytor i Właściciel — odnośniki do `/dla-kogo/dyspozytor`
+i `/dla-kogo/wlasciciel`.
+
+**Trzy pytania:**
+- **Czy dyspozytor widzi, ile zarabiam?** — Nie musi. Prowadzi trasy i zlecenia.
+  Pieniądze widzi właściciel i osoba od rozliczeń.
+- **Czy mogę być dyspozytorem i właścicielem naraz?** — Tak, i tak jest najczęściej.
+  Przełączasz widok jednym kliknięciem.
+- **Ilu dyspozytorów mogę dodać?** — Tylu, ilu potrzebujesz. Płacisz za pojazdy,
+  nie za ludzi.
+
+---
+**KONIEC PROMPTU 3**
+
+---
+---
+
+# PROMPT 4 — DANE DLA KSIĘGOWEJ
+
+> Adres strony: `/co-robi/dane-dla-ksiegowej`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 4".
+
+---
+
+Zaprojektuj podstronę **Dane dla księgowej**.
+
+Czyta ją właściciel, ale decyduje księgowa. Strona ma zdjąć obawę, że trzeba będzie zmienić
+program księgowy albo sposób pracy.
+
+**Nadtytuł:** DANE DLA KSIĘGOWEJ
+
+**Nagłówek:** Komplet dokumentów. / Jednym przyciskiem.
+
+**Zdanie pod nagłówkiem:** *Wybiera miesiąc, klika raz i ma wszystko — w formacie programu,
+którego już używa.*
+
+**Osiem bloków:**
+
+1. **Wybiera miesiąc i klika raz** — Dostaje wszystko za ten okres, bez proszenia
+   o brakujące papiery.
+2. **W formacie jej programu** — Insert, Comarch Optima, Symfonia albo zwykły arkusz.
+3. **Dziewięć zestawień** — Sprzedaż, zakupy, koszty, przebieg, delegacje, czas pracy,
+   kursy walut i pozostałe.
+4. **System sam mówi, czego brakuje** — Zanim plik pójdzie dalej, widać, co jest niekompletne.
+5. **Zamknięcie miesiąca** — Po zamknięciu nikt nie zmienia danych wstecz.
+6. **Historia pobrań** — Każdy plik można pobrać ponownie.
+7. **Rozliczenie kierowców** — Dni za granicą, diety, wypłata. Gotowe do wczytania.
+8. **Księgowa z zewnątrz** — Zapraszasz ją mailem, dostaje własny dostęp i widzi tylko to,
+   co powinna.
+
+**Siatka drobiazgów, sześć kafelków:** Kurs waluty zapisany przy dokumencie · Zdjęcie
+paragonu zostaje dowodem · Zestawienie użytych kursów za okres · Wydruk karty czasu pracy ·
+Podgląd przed pobraniem · Dostęp tylko do odczytu
+
+**Makieta główna:** centrum eksportów — lista dziewięciu zestawień z licznikami, u góry
+duży przycisk „Pobierz komplet za sierpień" i wybór formatu.
+Plik `mockup-ksiegowa-eksport-desktop.png`, 4:3.
+Dodatkowo: ekran walidacji przed eksportem (`mockup-ksiegowa-walidacja-desktop.png`, 4:3)
+i rozliczenie kierowcy z dietami (`mockup-ksiegowa-diety-desktop.png`, 4:3).
+
+**Kto tego używa:** Księgowa — odnośnik do `/dla-kogo/ksiegowa`.
+
+**Trzy pytania:**
+- **Czy moja księgowa będzie musiała się przestawiać?** — Nie. Pobiera plik i wczytuje
+  do programu, którego już używa.
+- **A jeśli mam biuro rachunkowe, nie księgową na etacie?** — To samo. Zapraszasz je mailem
+  i dostaje własny dostęp do Twojej firmy.
+- **Co, jeśli używa programu, którego nie ma na liście?** — Jest jeszcze zwykły arkusz,
+  z osobną zakładką na każde zestawienie.
+
+---
+**KONIEC PROMPTU 4**
+
+---
+---
+
+# PROMPT 5 — ILE ZOSTAJE
+
+> Adres strony: `/co-robi/rentownosc`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 5".
+
+---
+
+Zaprojektuj podstronę **Ile zostaje**.
+
+To strona o pieniądzach — jedyna, na której wolno pokazać duże liczby. Ma odpowiadać
+na pytanie, którego właściciel nie zadaje głośno: *czy ja na tym w ogóle zarabiam?*
+
+**Nadtytuł:** ILE ZOSTAJE
+
+**Nagłówek:** Wiesz, ile zostaje. / Na tym kursie. Dziś.
+
+**Zdanie pod nagłówkiem:** *Fracht minus paliwo, opłaty drogowe, hotel i dieta kierowcy.
+Kierowca dodaje paragon w trasie — liczba zmienia się od razu.*
+
+**Sześć bloków:**
+
+1. **Zysk na pierwszym ekranie** — Przychód, koszty i zysk, na bieżąco.
+2. **Marża na każdym zleceniu** — Nie raz na kwartał, tylko od razu.
+3. **Liczba zmienia się w trakcie** — Kierowca dodaje paragon, marża przelicza się sama.
+4. **Wszystkie koszty w środku** — Paliwo, opłaty drogowe, hotel, dieta, amortyzacja.
+5. **Porównanie okresów** — Czy ten miesiąc jest lepszy od poprzedniego.
+6. **Raporty** — Per pojazd, per kierowca, per kraj.
+
+**Siatka drobiazgów, sześć kafelków:** Waluty przeliczone po kursie z dnia · Sortowanie
+zleceń po marży · Zlecenie na minusie widać od razu · Koszty stałe rozłożone na kursy ·
+Eksport do arkusza · Podgląd bez zamykania miesiąca
+
+**Makieta główna:** karta jednego zlecenia Warszawa → Mediolan — fracht, rozbicie kosztów
+w wierszach, duża liczba zysku na dole, obok mały wykres dzienny.
+Plik `mockup-zysk-karta-desktop.png`, 4:3.
+Dodatkowo: tabela zleceń posortowana po marży (`mockup-zysk-tabela-desktop.png`, 16:10)
+i porównanie miesięcy (`mockup-zysk-porownanie-desktop.png`, 4:3).
+
+**Jeden mocny akcent typograficzny:** gdzieś na stronie duża liczba zysku jako element
+typograficzny obok makiety, nie w niej — tak jak w sekcji „Ile zostaje" na stronie głównej.
+
+**Kto tego używa:** Właściciel — odnośnik do `/dla-kogo/wlasciciel`.
+
+**Trzy pytania:**
+- **Skąd system wie, ile kosztowało paliwo?** — Z paragonu, który kierowca pstryknął
+  w trasie. Kwota i sprzedawca wpisują się same.
+- **Czy amortyzacja też jest liczona?** — Tak, rozkładana na kursy. Możesz ją wyłączyć,
+  jeśli wolisz patrzeć na sam wynik gotówkowy.
+- **Co z kosztami, które nie należą do żadnego kursu?** — Leasing, ubezpieczenie, serwis —
+  wchodzą jako koszty stałe i rozkładają się na przejechane kilometry.
+
+---
+**KONIEC PROMPTU 5**
+
+---
+---
+
+# FALE 2–4 — POZOSTAŁE PODSTRONY
+
+Prompty powstaną tak samo, gdy fala 1 będzie zaprojektowana. Treść czeka
+w `05-podstrony.md`, kolejność w `09-workflow-wdrozenia.md`:
+
+| Fala | Strony | Rozdziały w `05` |
 |---|---|---|
-| 2 | Aplikacja kierowcy | A1 |
-| 3 | Dyspozytornia | A2 |
-| 4 | Dane dla księgowej | A8 |
-| 5 | Ile zostaje | A7 |
-| 6 | Zlecenia i faktury | A5 |
-| 7 | Trasy i mapa floty | A3 |
-| 8 | Czas pracy i przerwy | A4 |
-| 9 | Koszty i paragony | A6 |
-| 10 | Dokumenty i terminy | A9 |
-| 11 | Właściciel / Dyspozytor / Księgowa / Kierowca | B1–B4 |
-| 12 | Cennik | C3 |
-| 13 | Demo | C4 |
-| 14 | Pomoc, Kontakt, Status | C5–C8 |
-
-Kolejność nie jest przypadkowa: pierwsze cztery podstrony to te, na które ludzie
-wchodzą najczęściej i które zdejmują największe obiekcje.
+| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty i terminy | A5, A3, A4, A6, A9 |
+| **3** | Cztery strony ról · Cennik · Demo | B1–B4, C3, C4 |
+| **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | C5–C12 |
