@@ -75,7 +75,7 @@ Fale nie czekają na siebie: kiedy ja implementuję falę pierwszą, Ty projektu
 |---|---|---|---|
 | **1** | Aplikacja kierowcy · Dyspozytornia · Dane dla księgowej · Ile zostaje | Zdejmują cztery największe obiekcje | ✅ zamknięta |
 | **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty | Domykają obszar „Co robi” | ✅ zamknięta |
-| **3** | Cztery strony ról · Cennik · Demo | Domykają nawigację | |
+| **3** | Cztery strony ról · Cennik · Demo | Domykają nawigację | prompty 11–16 gotowe, czeka na projekty |
 | **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | Nie potrzebują Claude Design — wystarczy szablon z fali 1 | |
 
 Rytm jednej fali: prompt → projekt → eksport do `design/NN-<nazwa>/` → kod → przegląd.
