@@ -166,7 +166,7 @@ export function Header() {
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
         onFocusCapture={() => setCompact(false)}
-        className={`sticky top-0 z-40 border-b transition-colors duration-300 ${
+        className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
           compact
             ? 'border-line-dark bg-ink shadow-card'
             : mega
@@ -178,8 +178,10 @@ export function Header() {
           {/* Pełny pasek — widoczny w hero i po przewinięciu w górę. */}
           <div
             inert={compact || undefined}
-            className={`absolute inset-0 flex items-center justify-between px-5 transition-[opacity,transform] duration-300 lg:px-12 ${
-              compact ? 'pointer-events-none -translate-y-1 opacity-0' : 'opacity-100'
+            className={`absolute inset-0 flex items-center justify-between px-5 transition-opacity ease-out lg:px-12 ${
+              compact
+                ? 'pointer-events-none opacity-0 duration-200'
+                : 'opacity-100 duration-300 delay-150'
             }`}
           >
           <div className="flex items-center gap-11">
@@ -281,8 +283,10 @@ export function Header() {
               jest już w treści; zostaje droga wejścia, której nie ma na ekranie. */}
           <div
             inert={!compact || undefined}
-            className={`absolute inset-0 grid grid-cols-[1fr_auto_1fr] items-center px-5 transition-[opacity,transform] duration-300 lg:px-12 ${
-              compact ? 'opacity-100' : 'pointer-events-none translate-y-1 opacity-0'
+            className={`absolute inset-0 grid grid-cols-[1fr_auto_1fr] items-center px-5 transition-opacity ease-out lg:px-12 ${
+              compact
+                ? 'opacity-100 duration-300 delay-150'
+                : 'pointer-events-none opacity-0 duration-200'
             }`}
           >
             <Link

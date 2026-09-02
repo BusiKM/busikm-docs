@@ -80,8 +80,16 @@ To jest wizualny dowód zdania „liczba zmienia się w trakcie”.
 - Przyciski: tło i cień 200 ms, bez podskakiwania
 - Karty: cień głębszy o jeden stopień w 200 ms, `translateY(-2px)`
 - Nawigacja: cień pod paskiem pojawia się po przewinięciu 24 px, 200 ms
-- Nawigacja, zmiana stanu: tło 300 ms, treść krzyżuje się przezroczystością
-  z przesunięciem 4 px, 300 ms. Kierunek przewijania czytany w `requestAnimationFrame`,
+- Nawigacja, zmiana stanu: przejście rozsunięte w czasie, sama przezroczystość,
+  bez ruchu w pionie:
+  1. tło i obrys — 300 ms `ease-out`,
+  2. treść wychodząca — 200 ms, od razu,
+  3. treść wchodząca — 300 ms z opóźnieniem 150 ms.
+
+  Kolejność nie jest kosmetyczna: treść listwy jest biała, więc nie może pojawić się,
+  zanim tło zdąży pociemnieć — inaczej przez moment mamy biały tekst na białym tle.
+  Rozsunięcie usuwa też „mętną" połowę przejścia, w której obie warstwy są
+  półprzezroczyste naraz. Kierunek przewijania czytany w `requestAnimationFrame`
   z progiem 8 px — szczegóły w `03`
 - Rozwijane menu: 180 ms, wejście z `translateY(-6px)`
 - Akordeon pytań: wysokość 240 ms, znacznik obraca się w tym samym czasie
