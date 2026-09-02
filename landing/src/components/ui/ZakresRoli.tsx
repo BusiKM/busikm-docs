@@ -20,9 +20,12 @@ export type KolumnaZakresu = {
 export function ZakresRoli({
   naglowek,
   kolumny,
+  nota,
 }: {
   naglowek: string;
   kolumny: readonly [KolumnaZakresu, KolumnaZakresu];
+  /** Zdanie na niebieskim tle pod kolumnami — gdy rola ma wyjątek do dopowiedzenia. */
+  nota?: string;
 }) {
   return (
     <Section tone="ink">
@@ -50,8 +53,13 @@ export function ZakresRoli({
                     k.przygaszona ? 'text-[#55555C]' : ''
                   }`}
                 >
-                  {k.pozycje.map((p) => (
-                    <span key={p} className="py-1.5 lg:py-2">
+                  {k.pozycje.map((p, i) => (
+                    <span
+                      key={p}
+                      className={`py-2.5 lg:py-3 ${
+                        i < k.pozycje!.length - 1 ? 'border-b border-line-dark' : ''
+                      }`}
+                    >
                       {p}
                     </span>
                   ))}
@@ -66,6 +74,15 @@ export function ZakresRoli({
             </div>
           ))}
         </div>
+
+        {nota && (
+          <p
+            data-reveal
+            className="rounded-card bg-blue-soft px-6 py-6 text-[17px] leading-relaxed font-medium text-pretty text-ink lg:px-10 lg:py-8 lg:text-lead"
+          >
+            {nota}
+          </p>
+        )}
       </div>
     </Section>
   );

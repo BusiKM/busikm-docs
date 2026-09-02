@@ -126,18 +126,18 @@ export function MockupSlot({
 
     if (!caption) return obraz;
     return (
-      <div className="flex flex-col gap-3.5">
+      <div className="flex h-full flex-col gap-3.5">
         {obraz}
-        {podpis(false)}
+        <div className="mt-auto">{podpis(false)}</div>
       </div>
     );
   }
 
   if (caption) {
     return (
-      <div className="flex flex-col gap-3.5">
+      <div className="flex h-full flex-col gap-3.5">
         {children}
-        {podpis(true)}
+        <div className="mt-auto">{podpis(true)}</div>
       </div>
     );
   }

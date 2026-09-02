@@ -2,9 +2,9 @@ import { Section } from '@/components/ui/Section';
 
 export type PunktDnia = {
   /** Godzina albo „koniec" — pierwsza, duża linia w kolumnie po lewej. */
-  godzina: string;
-  /** Druga linia, wersalikami: pora dnia albo czynność. */
-  pora: string;
+  godzina: React.ReactNode;
+  /** Druga linia, wersalikami: pora dnia, zakres dat albo nic. */
+  pora?: string;
   tresc: string;
   /** Drobna karta obok treści — ilustracja tego jednego momentu. */
   karta?: React.ReactNode;
@@ -19,10 +19,21 @@ export type PunktDnia = {
 export function OsDnia({
   naglowek = 'Twój dzień z BusiKM.',
   punkty,
+  skala = 'godziny',
 }: {
   naglowek?: string;
   punkty: PunktDnia[];
+  /**
+   * Godziny są krótkie i znoszą duży stopień; słowa („przez cały miesiąc")
+   * przy tym samym rozmiarze rozjeżdżają kolumnę na cztery linie.
+   */
+  skala?: 'godziny' | 'slowa';
 }) {
+  const stopien =
+    skala === 'slowa'
+      ? 'text-[19px] leading-tight tracking-[-0.02em] lg:text-[28px]'
+      : 'text-[24px] leading-none tracking-[-0.03em] lg:text-[40px]';
+
   return (
     <Section tone="ink">
       <div className="flex flex-col gap-12 lg:gap-24">
@@ -37,17 +48,17 @@ export function OsDnia({
           {punkty.map((p, i) => {
             const ostatni = i === punkty.length - 1;
             return (
-              <div key={p.godzina} className="contents">
+              <div key={i} className="contents">
                 <div
                   data-reveal
                   className={`flex flex-col gap-1 ${ostatni ? '' : 'pb-12 lg:pb-24'}`}
                 >
-                  <div className="text-[24px] leading-none font-bold tracking-[-0.03em] lg:text-[40px]">
-                    {p.godzina}
-                  </div>
-                  <div className="text-[11px] font-medium tracking-[0.1em] text-ink-muted uppercase lg:text-caption">
-                    {p.pora}
-                  </div>
+                  <div className={`font-bold ${stopien}`}>{p.godzina}</div>
+                  {p.pora && (
+                    <div className="text-[11px] font-medium tracking-[0.1em] text-ink-muted uppercase lg:text-caption">
+                      {p.pora}
+                    </div>
+                  )}
                 </div>
 
                 <div
