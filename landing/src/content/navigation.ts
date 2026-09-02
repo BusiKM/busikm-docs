@@ -25,7 +25,11 @@ export type NavEntry =
   | {
       kind: 'mega';
       label: string;
-      /** Adres huba — pozycja w pasku też jest klikalna. */
+      /**
+       * Prefiks działu — służy wyłącznie do podświetlenia pozycji, gdy
+       * czytelnik jest na którejś z jej podstron. Sama pozycja nigdzie
+       * nie prowadzi: jest tylko wyzwalaczem menu.
+       */
       href: string;
       groups: NavGroup[];
       promo?: { href: string; label: string; benefit: string };

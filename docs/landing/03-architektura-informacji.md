@@ -98,7 +98,8 @@ Zdania-korzyści zostają także na telefonie — to one sprzedają, nie etykiet
 ```
 /                                    Strona główna
 │
-├── /co-robi                         Przegląd: dziewięć obszarów, każdy z linkiem
+│                                    (bez strony zbiorczej — „Co robi” w pasku
+│                                     jest tylko wyzwalaczem menu)
 │   ├── /aplikacja-kierowcy          ← najważniejsza podstrona
 │   ├── /dyspozytornia
 │   ├── /trasy-i-mapa
@@ -109,7 +110,8 @@ Zdania-korzyści zostają także na telefonie — to one sprzedają, nie etykiet
 │   ├── /dane-dla-ksiegowej
 │   └── /dokumenty-i-terminy
 │
-├── /dla-kogo                        Cztery role obok siebie
+│                                    (bez strony zbiorczej — „Dla kogo” w pasku
+│                                     jest tylko wyzwalaczem menu)
 │   ├── /wlasciciel
 │   ├── /dyspozytor
 │   ├── /ksiegowa
@@ -129,8 +131,14 @@ Zdania-korzyści zostają także na telefonie — to one sprzedają, nie etykiet
     └── /podprocesorzy
 ```
 
-**Razem: 24 strony.** Strona główna, dziewięć stron funkcji, hub funkcji, cztery strony
-ról, hub ról, cennik, demo, pomoc, pierwsze kroki, kontakt, status, cztery dokumenty prawne.
+**Razem: 22 strony.** Strona główna, dziewięć stron funkcji, cztery strony ról, cennik,
+demo, pomoc, pierwsze kroki, kontakt, status, cztery dokumenty prawne.
+
+**Bez stron zbiorczych.** `/co-robi` i `/dla-kogo` nie istnieją. Pozycje „Co robi”,
+„Dla kogo” i „Pomoc” w pasku są wyłącznie wyzwalaczami menu: najechanie i wejście
+klawiaturą rozwijają listę, kliknięcie nie robi nic i nigdzie nie prowadzi. Menu niesie
+dziewięć pozycji z korzyściami — strona, która powtarzałaby to samo, byłaby przystankiem
+bez powodu.
 
 ---
 

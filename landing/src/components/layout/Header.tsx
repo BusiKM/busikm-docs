@@ -215,6 +215,9 @@ export function Header() {
                 }
 
                 const open = openMega === entry.label;
+                /* Pozycja jest wyłącznie wyzwalaczem menu: najechanie i wejście
+                   klawiaturą rozwijają listę, kliknięcie nie robi nic i nigdzie
+                   nie prowadzi. Strony zbiorcze nie istnieją. */
                 return (
                   <button
                     key={entry.label}
@@ -222,8 +225,8 @@ export function Header() {
                     aria-expanded={open}
                     aria-haspopup="true"
                     onMouseEnter={() => setOpenMega(entry.label)}
-                    onClick={() => setOpenMega(open ? null : entry.label)}
-                    className={`inline-flex cursor-pointer items-center gap-1.5 text-[15px] font-medium transition-colors hover:text-blue ${
+                    onFocus={() => setOpenMega(entry.label)}
+                    className={`inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors hover:text-blue ${
                       open || active ? 'text-blue' : 'text-ink'
                     }`}
                   >

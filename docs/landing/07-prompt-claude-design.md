@@ -1591,8 +1591,8 @@ Finał „Zacznij od jednej trasy." też pomijamy — tu jedynym wyjściem jest 
 
 # FALA 4 — STRONY ZBIORCZE, POMOC I DOKUMENTY
 
-Ostatnia fala. Dziesięć stron, siedem promptów — cztery dokumenty prawne dzielą
-jeden wzorzec, bo różni je tylko tekst.
+Ostatnia fala. Sześć stron, pięć promptów — cztery dokumenty prawne dzielą jeden
+wzorzec, bo różni je tylko tekst.
 
 Te strony nikogo nie przekonują. Ktoś, kto tu trafia, już się zdecydował albo czegoś
 szuka — i ma to znaleźć. **Mniej efektu, więcej porządku.** Żadnych ciemnych sekcji
@@ -1602,137 +1602,24 @@ Katalogi na eksporty:
 
 | Prompt | Strona | Katalog |
 |---|---|---|
-| 17 | Co robi — przegląd | `design/17-co-robi/` |
-| 18 | Dla kogo — przegląd | `design/18-dla-kogo/` |
 | 19 | Pomoc | `design/19-pomoc/` |
 | 20 | Pierwsze kroki | `design/20-pierwsze-kroki/` |
 | 21 | Kontakt | `design/21-kontakt/` |
 | 22 | Status usługi | `design/22-status/` |
 | 23 | Dokumenty prawne — jeden wzorzec na cztery strony | `design/23-prawne/` |
 
-## Do rozstrzygnięcia razem z falą 4
+## Strony zbiorcze — odwołane
 
-`/co-robi` i `/dla-kogo` istnieją, mają metadane i działają z adresu — ale **nie da się
-do nich dojść klikaniem**. Pozycja w pasku otwiera menu, a nagłówki kolumn w menu
-nie są odnośnikami. Dwie drogi:
+**Prompty 17 i 18 nie obowiązują.** `/co-robi` i `/dla-kogo` nie powstaną: pozycje
+„Co robi”, „Dla kogo” i „Pomoc” w pasku są wyłącznie wyzwalaczami menu — najechanie
+rozwija listę, kliknięcie nie robi nic. Menu niesie już dziewięć pozycji z korzyściami,
+więc strona powtarzająca tę samą listę byłaby przystankiem bez powodu.
 
-1. **„Zobacz wszystkie →"** na dole każdego rozwiniętego menu — bezpieczne, nic nie psuje
-2. **Pozycja w pasku staje się odnośnikiem** — najeżdżasz, otwiera się menu; klikasz,
-   wchodzisz na stronę zbiorczą
+Katalogi `design/17-co-robi/` i `design/18-dla-kogo/` zostają z eksportem, który zdążył
+powstać — jako ślad decyzji, nie jako zadanie.
 
-Rekomendacja: **druga**, bo pierwsza dokłada element do menu, które już niesie dziewięć
-pozycji z korzyściami. Zaprojektuj to przy prompcie 17 jako osobny artboard stanu paska.
-
----
----
-
-# PROMPT 17 — CO ROBI · PRZEGLĄD
-
-> Adres strony: `/co-robi`
-> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 17".
-
----
-
-Zaprojektuj stronę zbiorczą **Co robi**.
-
-To rozdroże, nie strona sprzedażowa. Człowiek wie już mniej więcej, czego szuka,
-i ma stąd trafić w jedno z dziewięciu miejsc jednym kliknięciem. Nic go tu nie musi
-przekonywać.
-
-**Nadtytuł:** CO ROBI
-
-**Nagłówek:** Dziewięć rzeczy, które robi za Ciebie.
-
-**Zdanie pod nagłówkiem:** *Od telefonu kierowcy po komplet dla księgowej. Każda z nich
-ma własną stronę.*
-
-**Dziewięć kafelków w trzech grupach.** Każdy kafelek: nazwa, jedno zdanie korzyści,
-odnośnik. Grupy oddzielone nagłówkiem trzeciego stopnia i światłem, nie ramkami.
-
-**W trasie**
-1. **Aplikacja kierowcy** — Nawigacja, trasa i koszty w jednej aplikacji · `/co-robi/aplikacja-kierowcy`
-2. **Trasy i mapa floty** — Widzisz, gdzie jest każdy bus. Bez dzwonienia · `/co-robi/trasy-i-mapa`
-3. **Czas pracy i przerwy** — Wiesz, kiedy kierowca musi stanąć · `/co-robi/czas-pracy`
-
-**W biurze**
-4. **Dyspozytornia** — Cały dzień pracy na jednym ekranie · `/co-robi/dyspozytornia`
-5. **Zlecenia i faktury** — Ze zlecenia robi się faktura. Klient dostaje ją od razu · `/co-robi/zlecenia-i-faktury`
-6. **Koszty i paragony** — Zdjęcie zamiast reklamówki pod siedzeniem · `/co-robi/koszty-i-paragony`
-
-**Na koniec miesiąca**
-7. **Ile zostaje** — Zysk na każdym kursie, na bieżąco · `/co-robi/rentownosc`
-8. **Dane dla księgowej** — Komplet dokumentów jednym przyciskiem · `/co-robi/dane-dla-ksiegowej`
-9. **Dokumenty i terminy** — Nic nie wygaśnie po cichu · `/co-robi/dokumenty-i-terminy`
-
-**Pod spodem sekcja demo** — ciemna, jedno zdanie i przycisk **Zobacz demo**.
-Bez makiety: makieta jest na stronie `/demo`, tu tylko przejście.
-
-**Dodatkowy artboard: pasek nawigacji.** Pokaż stan, w którym pozycja „Co robi"
-w pasku jest jednocześnie odnośnikiem i wyzwalaczem menu — żeby było widać, czym
-różni się najechanie od kliknięcia.
-
-**Bez makiet produktu, bez trzech pytań, bez drobiazgów.** Strona ma być krótka.
-
----
-**KONIEC PROMPTU 17**
-
----
----
-
-# PROMPT 18 — DLA KOGO · PRZEGLĄD
-
-> Adres strony: `/dla-kogo`
-> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 18".
-
----
-
-Zaprojektuj stronę zbiorczą **Dla kogo**.
-
-Cztery karty obok siebie. Człowiek ma w pięć sekund rozpoznać siebie albo osobę,
-dla której szuka narzędzia.
-
-**Nadtytuł:** DLA KOGO
-
-**Nagłówek:** Cztery osoby. Jeden system.
-
-**Zdanie pod nagłówkiem:** *Każda widzi tylko to, co jej potrzebne. Płacisz za pojazdy,
-nie za ludzi — kierowcy i biuro bez limitu.*
-
-**Cztery karty, każda z korzyścią i trzema punktami:**
-
-**Właściciel** — Zysk, koszty i cała flota na jednym ekranie · `/dla-kogo/wlasciciel`
-- Przychód, koszty i zysk na bieżąco
-- Mapa floty bez dzwonienia do kierowców
-- Komplet dla księgowej jednym przyciskiem
-
-**Dyspozytor** — Zlecenia, mapa i kierowca w jednym miejscu · `/dla-kogo/dyspozytor`
-- Jeden ekran zamiast czterech okien
-- Trasa układa się sama, z ruchem na drodze
-- Zmiana w trakcie trafia do kierowcy od razu
-
-**Księgowa** — Komplet dokumentów jednym przyciskiem · `/dla-kogo/ksiegowa`
-- Dziewięć zestawień w formacie jej programu
-- System sam mówi, czego brakuje
-- Zamknięty miesiąc zostaje zamknięty
-
-**Kierowca** — Jeden przycisk: rusz. Resztą zajmuje się telefon · `/dla-kogo/kierowca`
-- Nawigacja w tej samej aplikacji
-- Paragon zdjęciem, bez wpisywania
-- Przerwa z wyprzedzeniem, nie po fakcie
-
-Karta kierowcy **ciemna**, pozostałe jasne — tak samo jak jego strona odbija się
-od reszty serwisu.
-
-**Nota pod kartami, wyróżniona:** *Jedna osoba może mieć dwie role. Prowadzisz firmę
-sam? Właściciel i dyspozytor na jednym koncie, bez dopłaty.*
-
-**Dodatkowy artboard: pasek nawigacji** — to samo co w prompcie 17, dla pozycji
-„Dla kogo".
-
-**Bez makiet produktu i bez pytań.**
-
----
-**KONIEC PROMPTU 18**
+Fala 4 to więc pięć promptów i sześć stron: pomoc, pierwsze kroki, kontakt, status
+i jeden wzorzec na cztery dokumenty prawne.
 
 ---
 ---
