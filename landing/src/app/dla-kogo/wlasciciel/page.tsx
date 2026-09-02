@@ -2,12 +2,13 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { Akordeon } from '@/components/ui/Akordeon';
+import { HeroRoli } from '@/components/ui/HeroRoli';
+import { OsDnia } from '@/components/ui/OsDnia';
+import { PrzekreslonaLista } from '@/components/ui/PrzekreslonaLista';
+import { ZakresRoli } from '@/components/ui/ZakresRoli';
 import { pageMetadata } from '@/components/layout/PageShell';
-import { Hero } from '@/components/pages/wlasciciel/Hero';
-import { TwojDzien } from '@/components/pages/wlasciciel/TwojDzien';
+import { dzienWlasciciela } from '@/components/pages/wlasciciel/dzien';
 import { Ekrany } from '@/components/pages/wlasciciel/Ekrany';
-import { CzegoNieRobisz } from '@/components/pages/wlasciciel/CzegoNieRobisz';
-import { CoWidzisz } from '@/components/pages/wlasciciel/CoWidzisz';
 
 export const metadata = pageMetadata('dla-kogo/wlasciciel');
 
@@ -26,23 +27,51 @@ const pytania = [
   ],
 ] as const;
 
+const nieRobisz = [
+  'dzwonisz z pytaniem „gdzie jesteś”',
+  'przepisujesz zlecenia do arkusza',
+  'zbierasz paragony z kabin',
+  'liczysz marżę po kwartale',
+  'pilnujesz terminów w kalendarzu na ścianie',
+];
+
 /**
  * Właściciel — strona roli wg projektu „BusiKM Dla właściciela" z Claude Design
  * (design/11-wlasciciel). Treść: docs/landing/05, rozdział B1.
- *
- * Szkielet strony roli jest inny niż podstron obszarowych: oś dnia zamiast
- * numerowanych bloków, lista przekreślona i zakres dostępu w dwóch kolumnach.
  */
 export default function Page() {
   return (
     <>
       <Header />
       <main>
-        <Hero />
-        <TwojDzien />
+        <HeroRoli
+          nadtytul="Dla właściciela"
+          tytul={
+            <>
+              Wiesz, ile zostaje. <br className="hidden lg:inline" />
+              I gdzie jest każdy bus.
+            </>
+          }
+          lead="Bez dzwonienia do kierowców, bez przepisywania do arkusza, bez czekania na koniec kwartału."
+        />
+        <OsDnia punkty={dzienWlasciciela} />
         <Ekrany />
-        <CzegoNieRobisz />
-        <CoWidzisz />
+        <PrzekreslonaLista rzeczy={nieRobisz} />
+        <ZakresRoli
+          naglowek="Co widzisz, a czego nie musisz."
+          kolumny={[
+            {
+              nadtytul: 'Widzisz',
+              tytul: 'Wszystko.',
+              tresc: 'Każde zlecenie, każdy koszt, każdą trasę, wszystkie pieniądze.',
+            },
+            {
+              nadtytul: 'Nie musisz',
+              tytul: 'Wchodzić w to codziennie.',
+              tresc: 'Dyspozytor prowadzi dzień, księgowa zamyka miesiąc, Ty patrzysz na wynik.',
+            },
+          ]}
+        />
         <Akordeon heading="Trzy pytania" items={pytania} />
       </main>
       <FinalCta />
