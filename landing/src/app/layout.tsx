@@ -56,7 +56,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pl" className={`${inter.variable} ${plexMono.variable}`}>
+    // suppressHydrationWarning: skrypt niżej dopisuje do <html> atrybut
+    // data-reveal, zanim React zdąży się podpiąć. Serwer go nie renderuje,
+    // więc bez tego React zgłasza rozjazd przy hydratacji.
+    <html
+      lang="pl"
+      className={`${inter.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         {/* Włącza stan ukryty dla [data-reveal] zanim przeglądarka odmaluje
             treść — dzięki temu nic nie mruga. Bez JavaScriptu i przy prośbie

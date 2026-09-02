@@ -303,7 +303,7 @@ Sześć punktów w dwóch rzędach, każdy z drobną ikoną:
 - **Widzi, co czeka na wysłanie** — Żadnego zgadywania, czy dane doszły
 - **Sześć języków** — Kierowca czyta w swoim języku, nie w Twoim
 - **Tryb nocny** — O trzeciej nad ranem ekran nie razi w oczy
-Na dole: dwie neutralne odznaki sklepów — **narysuj je, nie używaj oficjalnych logotypów**.
+Na dole: dwie odznaki sklepów z **prawdziwymi znakami App Store i Google Play** — jabłko w bieli, trójkąt Google Play w czterech kolorach marki. Kontener obrysowany, wysokość 48 px, promień 12 px.
 Makieta: dwa telefony pod lekkim kątem, w trybie nocnym, podświetlone od dołu.
 Lewy — nawigacja z trasą i kartą zlecenia u dołu. Prawy — dodawanie kosztu ze zdjęciem paragonu.
 

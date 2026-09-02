@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Logo } from '@/components/layout/Logo';
 import {
   appLinks,
   coRobi,
@@ -116,8 +117,9 @@ export function Header() {
             <Link
               href="/"
               aria-label="BusiKM — strona główna"
-              className="text-[19px] font-bold tracking-[-0.02em] text-ink lg:text-[20px]"
+              className="flex items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-ink lg:text-[20px]"
             >
+              <Logo decorative className="size-8 flex-none lg:size-9" />
               BusiKM
             </Link>
 

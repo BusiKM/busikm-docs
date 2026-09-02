@@ -1,6 +1,7 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { TelefonyKierowcy } from '@/components/mockups/TelefonyKierowcy';
+import { StoreBadges } from '@/components/ui/StoreBadges';
 
 const points = [
   ['Nawigacja jest w środku', 'Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami'],
@@ -10,31 +11,6 @@ const points = [
   ['Sześć języków', 'Kierowca czyta w swoim języku, nie w Twoim'],
   ['Tryb nocny', 'O trzeciej nad ranem ekran nie razi w oczy'],
 ] as const;
-
-/** Odznaki sklepów rysowane, bez oficjalnych logotypów. */
-function OdznakiSklepow() {
-  return (
-    <div className="flex gap-2.5 lg:gap-3">
-      <div className="flex h-12 flex-1 items-center justify-center gap-2 rounded-btn border border-line-dark-2 px-4.5 lg:flex-none lg:justify-start lg:gap-2.5">
-        <span aria-hidden className="size-4 rounded-[5px] bg-paper lg:size-4.5" />
-        <div className="leading-tight">
-          <div className="hidden text-[10px] text-ink-muted lg:block">Pobierz w</div>
-          <div className="text-[13px] font-semibold lg:text-caption">App Store</div>
-        </div>
-      </div>
-      <div className="flex h-12 flex-1 items-center justify-center gap-2 rounded-btn border border-line-dark-2 px-4.5 lg:flex-none lg:justify-start lg:gap-2.5">
-        <span
-          aria-hidden
-          className="size-0 border-y-[8px] border-l-[14px] border-y-transparent border-l-paper lg:border-y-[9px] lg:border-l-[16px]"
-        />
-        <div className="leading-tight">
-          <div className="hidden text-[10px] text-ink-muted lg:block">Pobierz z</div>
-          <div className="text-[13px] font-semibold lg:text-caption">Google Play</div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /** 6.6 — aplikacja kierowcy. Sekcja, która zdejmuje obiekcję „on tego nie ruszy". */
 export function AplikacjaKierowcy() {
@@ -94,7 +70,7 @@ export function AplikacjaKierowcy() {
             ))}
           </div>
 
-          <OdznakiSklepow />
+          <StoreBadges />
         </div>
 
         <div data-reveal>

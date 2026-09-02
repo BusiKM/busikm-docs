@@ -210,7 +210,9 @@ Najważniejsza sekcja dla obiekcji „mój kierowca tego nie ruszy”.
 | **Sześć języków** | Kierowca czyta w swoim języku, nie w Twoim |
 | **Tryb nocny** | O trzeciej nad ranem ekran nie razi w oczy |
 
-**Na dole:** dwie neutralne odznaki sklepów — narysowane, **nie oficjalne logotypy**.
+**Na dole:** dwie odznaki sklepów z prawdziwymi znakami — jabłko App Store i czterokolorowy
+trójkąt Google Play. Aplikacja nie jest jeszcze opublikowana, więc odznaki nie prowadzą nigdzie;
+adresy dodajemy po wydaniu (`StoreBadges`, tablica `stores`).
 
 **Makieta:** dwa telefony pod lekkim kątem. Lewy — nawigacja z trasą i kartą zlecenia
 u dołu. Prawy — ekran dodawania kosztu ze zdjęciem paragonu. Oba w trybie nocnym,
