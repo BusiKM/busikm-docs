@@ -79,6 +79,10 @@ export function AplikacjaKierowcy() {
             label="Aplikacja kierowcy · telefon, tryb nocny"
             note="Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu."
             ratio="4:3"
+            // Dwa telefony w pudle 4:3 zajmowały tylko 60% jego szerokości —
+            // za mało jak na bohatera sekcji. Powiększenie mieści się
+            // w kolumnie, bo widoczna treść zrzutu jest węższa od pudła.
+            imageScale={1.55}
             dark
           >
             <TelefonyKierowcy />

@@ -65,15 +65,6 @@ type MockupSlotProps = {
    * „do podmiany" i tak już nie ma, bo zrzut istnieje.
    */
   imageScale?: number;
-  /**
-   * Przesunięcie obrazu w poziomie, w pikselach.
-   *
-   * Potrzebne, gdy zrzut ma niesymetryczne marginesy — `object-contain`
-   * centruje wtedy plik, a nie to, co na nim widać. Zrzut kierowcy ma po
-   * prawej 270 px pustki, przez co telefon uciekał w lewo. Po ponownym
-   * eksporcie przyciętym do treści ten parametr będzie zbędny.
-   */
-  imageOffsetX?: number;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -88,7 +79,6 @@ export function MockupSlot({
   ratio,
   box,
   imageScale,
-  imageOffsetX,
   children,
   dark = false,
   noteClassName = '',
@@ -104,14 +94,8 @@ export function MockupSlot({
           alt={`${label} — ${note}`}
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
-          className="object-contain"
-          style={
-            imageScale || imageOffsetX
-              ? {
-                  transform: `translateX(${imageOffsetX ?? 0}px) scale(${imageScale ?? 1})`,
-                }
-              : undefined
-          }
+          className={`object-contain ${imageScale ? 'pointer-events-none' : ''}`}
+          style={imageScale ? { transform: `scale(${imageScale})` } : undefined}
           unoptimized={DEV}
         />
       </div>

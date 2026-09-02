@@ -17,7 +17,6 @@ function slot(
   ratio: string,
   children: React.ReactNode,
   imageScale?: number,
-  imageOffsetX?: number,
 ) {
   return (
     <MockupSlot
@@ -29,7 +28,6 @@ function slot(
       // zakładek nie zmienia wysokości sekcji.
       box="16:10"
       imageScale={imageScale}
-      imageOffsetX={imageOffsetX}
       dark
     >
       {children}
@@ -66,10 +64,10 @@ const roles: Role[] = [
     body: 'Zlecenie, nawigacja, przerwy i koszty w jednej aplikacji.',
     // Telefon jest wąski, więc w pudle 16:10 wychodziłby dużo mniejszy
     // niż ekrany przeglądarki. Powiększenie wyrównuje wrażenie.
-    // 1.42 — telefon jest wąski i w pudle 16:10 wychodziłby dużo mniejszy
-    // niż ekrany przeglądarki. 66 px w prawo — zrzut ma po prawej stronie
-    // pustkę, przez którą object-contain centrował plik, a nie telefon.
-    screen: slot('mockup-kierowca-nawigacja-phone.png', '9:19.5', <EkranKierowcy />, 1.42, 66),
+    // Telefon jest wąski i w pudle 16:10 wychodziłby dużo mniejszy niż ekrany
+    // przeglądarki, stąd powiększenie. Sam zrzut jest przycięty do korpusu
+    // z równymi marginesami, więc centruje się sam.
+    screen: slot('mockup-kierowca-nawigacja-phone.png', '9:19.5', <EkranKierowcy />, 1.42),
   },
 ];
 
