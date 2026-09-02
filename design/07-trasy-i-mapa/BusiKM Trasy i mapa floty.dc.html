@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span style="color:#0B5FFF">Co robi <span style="font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+</div>
+
+<!-- HERO — jasna, tło siatka + trasa -->
+<div data-screen-label="Hero" style="position:relative;padding:160px 0 0;background:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,11,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.045) 1px,transparent 1px);background-size:160px 160px;pointer-events:none"></div>
+  <svg viewBox="0 0 1440 1400" style="position:absolute;inset:0;width:1440px;height:100%;pointer-events:none" preserveAspectRatio="none"><path d="M -50 1350 C 300 1050, 500 950, 760 620 S 1100 260, 1500 60" fill="none" stroke="#0B5FFF" stroke-width="2" opacity=".2"></path><path d="M -50 1350 C 300 1050, 500 950, 760 620 S 1100 260, 1500 60" fill="none" stroke="#0B5FFF" stroke-width="36" opacity=".045"></path></svg>
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">TŁO SEKCJI · siatka południków &lt; 8% + jedna trasa na ukos · WEJŚCIE 700 ms</div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px">
+    <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Trasy i mapa floty</div>
+    <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:1120px">Widzisz, gdzie jest każdy bus.<br>Bez dzwonienia.</h1>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:640px">Klient pyta o ładunek — odpowiadasz w pięć sekund, patrząc na jeden ekran.</p>
+  </div>
+  <!-- makieta główna -->
+  <div style="position:relative;max-width:1120px;margin:96px auto 0;padding-bottom:160px">
+    <div style="position:absolute;left:10%;right:10%;bottom:200px;height:200px;background:#0B5FFF;filter:blur(120px);opacity:.25;border-radius:50%"></div>
+    <div style="position:relative;border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 40px 80px rgba(11,95,255,.10),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10">
+      <div style="position:absolute;inset:0;background:#F2F2F4;background-image:linear-gradient(rgba(10,10,11,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,11,.05) 1px,transparent 1px);background-size:64px 64px"></div>
+      <svg viewBox="0 0 1120 700" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+        <path d="M 720 200 C 640 300, 560 380, 520 460 S 440 600, 400 640" fill="none" stroke="#0B5FFF" stroke-width="3"></path>
+        <path d="M 600 230 C 480 240, 380 220, 280 260" fill="none" stroke="#0B5FFF" stroke-width="3" opacity=".6"></path>
+        <path d="M 640 120 C 560 150, 480 150, 420 140" fill="none" stroke="#0B5FFF" stroke-width="3" opacity=".4"></path>
+        <circle cx="720" cy="200" r="6" fill="#0B5FFF"></circle><circle cx="600" cy="230" r="6" fill="#0B5FFF"></circle><circle cx="640" cy="120" r="6" fill="#0B5FFF"></circle>
+        <circle cx="536" cy="430" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="400" cy="236" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle><circle cx="470" cy="150" r="9" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle>
+      </svg>
+      <div style="position:absolute;left:20px;top:20px;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #E3E3E6;font-size:13px;display:flex;gap:16px"><span><b>3</b> w trasie</span><span style="color:#6E6E76"><b style="color:#0A0A0B">1</b> załadunek</span><span style="color:#6E6E76"><b style="color:#0A0A0B">3</b> na bazie</span></div>
+      <div style="position:absolute;left:50%;top:56%;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 12px 32px rgba(0,0,0,.1);font-size:13px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">WZ 4821K</b><span>Marek W. · Warszawa → Mediolan</span><span style="color:#6E6E76">Na miejscu <b style="color:#0A0A0B">08:00</b> · 214 km do rozładunku</span></div>
+      <div style="position:absolute;right:20px;top:20px;font-size:12px;color:#6E6E76;background:#fff;border:1px solid #E3E3E6;border-radius:999px;padding:6px 12px"><span style="color:#1E9C43">●</span> na żywo</div>
+    </div>
+    <div style="margin:24px auto 0;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px;background:rgba(250,250,250,.8)">
+      <div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · MAPA FLOTY · DESKTOP 1440</div>
+      <div>Mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu. Ten sam ekran co na stronie głównej.</div>
+      <div style="display:flex;justify-content:space-between"><span>mockup-mapa-flota-desktop.png</span><span>16:10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1+2. MAPA NA ŻYWO / KLIENT PYTA — CIEMNA -->
+<div data-screen-label="1–2 Mapa na żywo" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · dymek pojawia się 180 ms po pytaniu klienta</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">01</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Mapa na żywo</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Każdy bus jako punkt na mapie. Klikasz i masz kierowcę, zlecenie i godzinę dojazdu.</p></div>
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">02</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Klient pyta, Ty odpowiadasz</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">W pięć sekund, bez telefonu do kierowcy i bez wyrywania go z jazdy.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:stretch">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:16px"><div style="font-size:13px;color:#8E8E96">09:41 · telefon od klienta</div><div style="font-size:22px;line-height:1.3;font-weight:600;letter-spacing:-0.01em">„Gdzie jest mój ładunek do Mediolanu?”</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden"><svg viewBox="0 0 300 200" style="position:absolute;inset:0;width:100%;height:100%;opacity:.35" preserveAspectRatio="none"><path d="M 260 30 C 200 70, 160 110, 120 140 S 60 180, 30 190" fill="none" stroke="#0B5FFF" stroke-width="3"></path></svg><div style="font-size:13px;color:#8E8E96;position:relative">09:41 · klikasz punkt na mapie</div><div style="position:relative;padding:14px 16px;border-radius:14px;background:#1A1A1E;border:1px solid #26262B;font-size:13px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">WZ 4821K</b><span>Marek W. · Warszawa → Mediolan</span><span style="color:#8E8E96">Bolzano, A22 · na miejscu <b style="color:#FAFAFA">08:00</b> jutro</span></div></div>
+      <div style="border-radius:20px;background:#0B5FFF;color:#fff;padding:32px;display:flex;flex-direction:column;gap:16px"><div style="font-size:13px;color:rgba(255,255,255,.7)">09:41 · odpowiadasz</div><div style="font-size:22px;line-height:1.3;font-weight:600;letter-spacing:-0.01em">„Jest pod Bolzano. Jutro o ósmej u Państwa.”</div><div style="margin-top:auto;font-size:14px;color:rgba(255,255,255,.7)">Kierowca jedzie dalej. Nikt do niego nie dzwonił.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. TRASA UKŁADA SIĘ SAMA — jasna -->
+<div data-screen-label="3 Trasa układa się sama" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">03</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Trasa układa się sama</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">System proponuje przejazd i bierze pod uwagę, co się dzieje na drodze. Korek, wypadek, zamknięty odcinek — trasa przelicza się, a kierowca dostaje nową wersję w telefonie w tej samej chwili.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);aspect-ratio:4/3;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px">
+        <div style="border-radius:14px;background:#F2F2F4;position:relative;overflow:hidden;display:flex;flex-direction:column">
+          <svg viewBox="0 0 200 260" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none"><path d="M 170 30 C 140 90, 120 130, 100 170 S 60 230, 30 240" fill="none" stroke="#6E6E76" stroke-width="3" stroke-dasharray="6 6"></path><circle cx="112" cy="140" r="12" fill="#6E6E76" opacity=".25"></circle><circle cx="112" cy="140" r="5" fill="#6E6E76"></circle><circle cx="170" cy="30" r="5" fill="#0A0A0B"></circle><circle cx="30" cy="240" r="5" fill="#0A0A0B"></circle></svg>
+          <div style="position:relative;padding:14px;display:flex;flex-direction:column;gap:2px"><span style="color:#6E6E76">Stara trasa</span><b>A22 · Brenner</b></div>
+          <div style="position:relative;margin-top:auto;padding:14px;display:flex;flex-direction:column;gap:2px"><span style="color:#6E6E76">Dojazd</span><b style="font-size:18px;color:#6E6E76;text-decoration:line-through">08:40</b><span style="color:#6E6E76">korek 14 km pod Bolzano</span></div>
+        </div>
+        <div style="border-radius:14px;background:#F2F2F4;position:relative;overflow:hidden;display:flex;flex-direction:column;border:1px solid #C9D9FE">
+          <svg viewBox="0 0 200 260" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none"><path d="M 170 30 C 190 100, 120 120, 90 180 S 60 230, 30 240" fill="none" stroke="#0B5FFF" stroke-width="4"></path><circle cx="170" cy="30" r="5" fill="#0B5FFF"></circle><circle cx="30" cy="240" r="5" fill="#0B5FFF"></circle><circle cx="140" cy="110" r="7" fill="#fff" stroke="#0B5FFF" stroke-width="3"></circle></svg>
+          <div style="position:relative;padding:14px;display:flex;flex-direction:column;gap:2px"><span style="color:#0B5FFF;font-weight:600">Nowa trasa</span><b>przez Brixen · SS12</b></div>
+          <div style="position:relative;margin-top:auto;padding:14px;display:flex;flex-direction:column;gap:2px"><span style="color:#6E6E76">Dojazd</span><b style="font-size:18px">08:05</b><span style="color:#1E9C43">− 35 min · kierowca ma nową wersję</span></div>
+        </div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · TRASA PRZELICZONA · DESKTOP</div><div>Stara i nowa wersja obok siebie, znacznik korka, różnica w czasie dojazdu.</div><div style="display:flex;justify-content:space-between"><span>mockup-trasy-przeliczenie-desktop.png</span><span>4:3</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. HISTORIA TRAS — CIEMNA -->
+<div data-screen-label="4 Historia tras" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;box-shadow:0 30px 80px rgba(0,0,0,.5);aspect-ratio:4/3;padding:24px;display:flex;flex-direction:column;gap:12px;font-size:12px;white-space:nowrap">
+        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">Trasy · wrzesień</b><span style="color:#8E8E96">38 przejazdów · 21 460 km</span></div>
+        <div style="display:flex;gap:8px"><span style="padding:6px 12px;border-radius:999px;background:#1A1A1E;border:1px solid #26262B">1–30 września ▾</span><span style="padding:6px 12px;border-radius:999px;background:#1A1A1E;border:1px solid #26262B">Kierowca: wszyscy ▾</span><span style="padding:6px 12px;border-radius:999px;background:#1A1A1E;border:1px solid #26262B">Pojazd: wszystkie ▾</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0;border-bottom:1px solid #26262B;color:#8E8E96"><span>Data</span><span>Trasa</span><span>Kierowca · pojazd</span><span style="text-align:right">km</span><span style="text-align:right">Czas</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">2.09</span><b>Warszawa → Mediolan</b><span style="color:#8E8E96">Marek W. · WZ 4821K</span><span style="text-align:right">1 640</span><span style="text-align:right">19:40</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">1.09</span><b>Poznań → Rotterdam</b><span style="color:#8E8E96">Tomasz L. · PO 2093J</span><span style="text-align:right">1 120</span><span style="text-align:right">13:15</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">1.09</span><b>Gdańsk → Hamburg</b><span style="color:#8E8E96">Piotr K. · GD 7710R</span><span style="text-align:right">680</span><span style="text-align:right">8:05</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">31.08</span><b>Mediolan → serwis Bergamo</b><span style="color:#8E8E96">Marek W. · WZ 4821K</span><span style="text-align:right">48</span><span style="text-align:right">0:55</span></div>
+        <div style="display:grid;grid-template-columns:60px 1.3fr 1fr 64px 60px;gap:10px;padding:10px 0"><span style="color:#8E8E96">30.08</span><b>Kraków → Wiedeń</b><span style="color:#8E8E96">Anna R. · KR 5512M</span><span style="text-align:right">420</span><span style="text-align:right">5:30</span></div>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;color:#8E8E96"><span>Postoje dłuższe niż 15 min zaznaczone na trasie</span><span>eksport do arkusza</span></div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · LISTA TRAS Z FILTRAMI · DESKTOP, TRYB NOCNY</div><div>Filtry: data, kierowca, pojazd. Kolumny: trasa, kilometry, czas.</div><div style="display:flex;justify-content:space-between"><span>mockup-trasy-lista-desktop.png</span><span>4:3</span></div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">04</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Historia tras</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Każdy przejazd zapisany: kilometry, czas, postoje. Do sprawdzenia po miesiącu i po roku.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5+6. KRAJE / BEZ ZLECENIA — jasna -->
+<div data-screen-label="5–6 Kraje i przejazd bez zlecenia" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="border-radius:28px;background:#F2F2F4;padding:56px;display:flex;flex-direction:column;gap:40px;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">05</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Kraje na trasie</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">System sam widzi, gdzie kierowca był i jak długo. Nikt tego nie zgłasza ręcznie.</p></div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:24px;display:flex;flex-direction:column;font-size:14px"><div style="display:flex;justify-content:space-between;color:#6E6E76;padding-bottom:10px">Marek W. · Warszawa → Mediolan<span>2–3.09</span></div><div style="display:flex;height:10px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:12px"><span style="width:22%;background:#C9CBD1"></span><span style="width:18%;background:#9A9AA2"></span><span style="width:20%;background:#6E6E76"></span><span style="width:10%;background:#0A46C0"></span><span style="width:30%;background:#0B5FFF"></span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #E3E3E6"><span>Polska</span><span>4 h 20 min</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #E3E3E6"><span>Czechy</span><span>3 h 35 min</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #E3E3E6"><span>Niemcy</span><span>3 h 50 min</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #E3E3E6"><span>Austria</span><span>2 h 05 min</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #E3E3E6"><span>Włochy</span><span>5 h 50 min</span></div></div>
+    </div>
+    <div style="border-radius:28px;background:#F2F2F4;padding:56px;display:flex;flex-direction:column;gap:40px;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">06</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Przejazd bez zlecenia też się liczy</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Dojazd do bazy, wyjazd do serwisu, przeprowadzka pojazdu. Kilometry nie giną.</p></div>
+      <div style="border-radius:20px;background:#0A0A0B;color:#FAFAFA;padding:24px;display:flex;flex-direction:column;gap:14px;font-size:14px"><div style="display:flex;justify-content:space-between;color:#8E8E96"><span>Przejazd bez zlecenia</span><span>31.08 · 16:40</span></div><div style="display:flex;justify-content:space-between"><span>Mediolan → serwis, Bergamo</span><b>48 km · 0:55</b></div><div style="display:flex;justify-content:space-between;color:#8E8E96"><span>Powód</span><span>Serwis · WZ 4821K</span></div><div style="display:flex;gap:10px;margin-top:6px"><span style="flex:1;padding:14px;border-radius:12px;background:#1A1A1E;text-align:center">Start</span><span style="flex:1;padding:14px;border-radius:12px;background:#1A1A1E;text-align:center">Stop</span><span style="flex:1;padding:14px;border-radius:12px;background:#0B5FFF;text-align:center;font-weight:600">Potwierdź</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DROBIAZGI — CIEMNA -->
+<div data-screen-label="Drobiazgi" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Drobiazgi, które widać dopiero w robocie.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Ostatnia znana pozycja zostaje po utracie zasięgu</div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Filtr po kierowcy i po pojeździe</div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Kilometry z trasy, nie z licznika przepisanego ręcznie</div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Postoje dłuższe niż 15 minut zaznaczone</div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Podgląd trasy z dowolnego dnia</div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Mapa w trybie nocnym</div>
+    </div>
+    <div style="padding-top:64px;border-top:1px solid #26262B;font-size:17px;line-height:1.6;color:#8E8E96">Kto tego używa: <a href="/dla-kogo/dyspozytor">Dyspozytor →</a> <span style="margin:0 12px">·</span> <a href="/dla-kogo/wlasciciel">Właściciel →</a></div>
+  </div>
+</div>
+
+<!-- PYTANIA — jasna -->
+<div data-screen-label="Pytania" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Trzy pytania</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid #E3E3E6">
+          <div onClick="{{ q.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;cursor:pointer;font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.3"><span>{{ q.q }}</span><span style="color:#6E6E76;font-weight:400;font-size:24px;flex:none">{{ q.sign }}</span></div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 64px 28px 0;font-size:17px;line-height:1.6;color:#6E6E76">{{ q.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FINAŁ — CIEMNA -->
+<div data-screen-label="Finał" style="position:relative;padding:200px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:30%;right:30%;bottom:-200px;height:400px;background:#0B5FFF;filter:blur(160px);opacity:.25"></div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
+    <h2 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Zacznij od jednej trasy.</h2>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#8E8E96">14 dni bez opłat. Bez umowy. Bez dzwonienia do handlowca.</p>
+    <div style="display:flex;gap:12px;margin-top:8px"><span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Wypróbuj 14 dni</span><span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #3A3A40;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Zobacz demo</span></div>
+  </div>
+</div>
+
+<!-- STOPKA -->
+<div data-screen-label="Stopka" style="background:#0A0A0B;color:#FAFAFA;border-top:1px solid #26262B;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#FAFAFA">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#8E8E96">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#8E8E96">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#8E8E96">Pomoc</span><span style="color:#8E8E96">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap"><span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span><span>Twoje dane zostają w Europie</span></div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+  renderVals() {
+    const { open } = this.state;
+    const qa = [
+      ['Czy kierowca musi coś włączać?', 'Nie. Trasa nagrywa się od przycisku „Rozpocznij trasę”, telefon może zostać w kieszeni.'],
+      ['Co, gdy telefon straci zasięg?', 'Trasa zapisuje się dalej w telefonie i dosyła, gdy sygnał wróci. Na mapie zostaje ostatnia znana pozycja z godziną.'],
+      ['Czy to śledzenie kierowcy po godzinach?', 'Nie. Nagrywa się trasa zlecenia, między „Rozpocznij” a „Zakończ”. Po zakończeniu pozycja nie jest zbierana.'],
+    ];
+    return { faq: qa.map(([q, a], i) => ({ q, a, open: open === i, sign: open === i ? '−' : '+', toggle: () => this.setState({ open: open === i ? -1 : i }) })) };
+  }
+}
+</script>
+</body>
+</html>
