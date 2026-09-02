@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Section } from '@/components/ui/Section';
+import { Section, Eyebrow } from '@/components/ui/Section';
 import { appLinks } from '@/content/navigation';
 
-const plans = [
+export const plans = [
   {
     name: 'Start',
     monthly: '149',
@@ -45,8 +45,19 @@ const plans = [
   },
 ] as const;
 
-/** 6.18 — cennik. Przełącznik miesięcznie / rocznie, jak w projekcie. */
-export function Cennik() {
+/**
+ * 6.18 — cennik. Przełącznik miesięcznie / rocznie, jak w projekcie.
+ *
+ * Ta sama sekcja otwiera stronę `/cennik` — tam dostaje nadtytuł i nagłówek
+ * pierwszego stopnia, bo jest nagłówkiem strony, a nie jedną z sekcji.
+ */
+export function Cennik({
+  nadtytul,
+  jakoH1 = false,
+}: {
+  nadtytul?: string;
+  jakoH1?: boolean;
+} = {}) {
   const [yearly, setYearly] = useState(false);
   const period = yearly ? 'rok' : 'mies.';
 
@@ -59,9 +70,17 @@ export function Cennik() {
     <Section id="cennik">
       <div className="flex flex-col gap-8 lg:items-center lg:gap-14">
         <div className="flex flex-col gap-5 lg:items-center lg:gap-6 lg:text-center">
-          <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-            Płacisz za pojazdy. Nie za ludzi.
-          </h2>
+          {nadtytul && <Eyebrow>{nadtytul}</Eyebrow>}
+          {jakoH1 ? (
+            <h1 data-reveal className="text-display-m font-bold text-balance lg:text-display">
+              Płacisz za pojazdy. <br className="hidden lg:inline" />
+              Nie za ludzi.
+            </h1>
+          ) : (
+            <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
+              Płacisz za pojazdy. Nie za ludzi.
+            </h2>
+          )}
           <p
             data-reveal
             className="max-w-[640px] text-lead-m text-pretty text-muted lg:text-lead"

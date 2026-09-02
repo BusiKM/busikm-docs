@@ -16,7 +16,7 @@ export function Akordeon({
   id?: string;
   heading: string;
   items: readonly (readonly [string, string])[];
-  tone?: 'paper' | 'surface';
+  tone?: 'paper' | 'mist' | 'surface';
 }) {
   const [open, setOpen] = useState(-1);
   const dark = tone === 'surface';
