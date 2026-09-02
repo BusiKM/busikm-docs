@@ -136,6 +136,9 @@ to zrzuty tylko dla podstrony; **z gwiazdką** — ten sam plik, co na stronie g
 | Koszty i paragony | `mockup-koszty-paragon-phone.png` \* | telefon 9:19.5 | Telefon w perspektywie ze zdjęciem paragonu i rozpoznanymi polami |
 | Koszty i paragony | `mockup-koszty-lista-desktop.png` | desktop 16:10 | Koszty miesiąca z kategoriami i miniaturami zdjęć |
 | Koszty i paragony | `mockup-koszty-kurs-desktop.png` | desktop 4:3 | Kwota w euro i w złotych, kurs i data przeliczenia |
+| Dokumenty i terminy | `mockup-dokumenty-terminy-desktop.png` \* | desktop 4:3 | Dokumenty po dniach do końca ważności, paski w trzech kolorach |
+| Dokumenty i terminy | `mockup-dokumenty-status-desktop.png` | desktop 16:10 | Status miesiąca w trzech kolumnach: pojazdy, firma, kierowcy |
+| Dokumenty i terminy | `mockup-dokumenty-kierowca-phone.png` | telefon 9:19.5 | Dokumenty kierowcy w telefonie z najbliższym terminem |
 
 **Uwaga o `mockup-faktury-*`.** Strona główna ma `mockup-faktury-zlecenie-desktop.png` —
 zwartą kartę 4:3 w połowie szerokości. Podstrona ma `mockup-faktury-ekran-desktop.png` —

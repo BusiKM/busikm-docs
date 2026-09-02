@@ -74,7 +74,7 @@ Fale nie czekają na siebie: kiedy ja implementuję falę pierwszą, Ty projektu
 | Fala | Strony | Dlaczego w tej kolejności | Stan |
 |---|---|---|---|
 | **1** | Aplikacja kierowcy · Dyspozytornia · Dane dla księgowej · Ile zostaje | Zdejmują cztery największe obiekcje | ✅ zamknięta |
-| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty | Domykają obszar „Co robi” | prompty 6–10 gotowe, czeka na projekty |
+| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty | Domykają obszar „Co robi” | ✅ zamknięta |
 | **3** | Cztery strony ról · Cennik · Demo | Domykają nawigację | |
 | **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | Nie potrzebują Claude Design — wystarczy szablon z fali 1 | |
 
