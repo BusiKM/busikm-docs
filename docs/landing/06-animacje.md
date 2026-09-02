@@ -80,6 +80,9 @@ To jest wizualny dowód zdania „liczba zmienia się w trakcie”.
 - Przyciski: tło i cień 200 ms, bez podskakiwania
 - Karty: cień głębszy o jeden stopień w 200 ms, `translateY(-2px)`
 - Nawigacja: cień pod paskiem pojawia się po przewinięciu 24 px, 200 ms
+- Nawigacja, zmiana stanu: tło 300 ms, treść krzyżuje się przezroczystością
+  z przesunięciem 4 px, 300 ms. Kierunek przewijania czytany w `requestAnimationFrame`,
+  z progiem 8 px — szczegóły w `03`
 - Rozwijane menu: 180 ms, wejście z `translateY(-6px)`
 - Akordeon pytań: wysokość 240 ms, znacznik obraca się w tym samym czasie
 

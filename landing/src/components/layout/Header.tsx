@@ -70,19 +70,59 @@ function DemoPreview() {
   );
 }
 
+/** Poniżej tej wysokości pasek zawsze wygląda normalnie — jesteśmy jeszcze w hero. */
+const HERO_END = 640;
+/** Mniejsze ruchy kółka ignorujemy, żeby pasek nie drgał. */
+const MIN_DELTA = 8;
+
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [compact, setCompact] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const lastY = useRef(0);
 
+  // W dół — pasek zamienia się w listwę z akcją. W górę — wraca menu.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+
+    const measure = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > 24);
+
+      if (y < HERO_END) {
+        lastY.current = y;
+        setCompact(false);
+        return;
+      }
+
+      const delta = y - lastY.current;
+      if (Math.abs(delta) < MIN_DELTA) return;
+      lastY.current = y;
+      setCompact(delta > 0);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(measure);
+    };
+
+    measure();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
+
+  // Otwarte menu i wejście klawiaturą zawsze przywracają pełny pasek —
+  // inaczej nawigacja byłaby nieosiągalna z klawiatury.
+  useEffect(() => {
+    if (mobileOpen || openMega) setCompact(false);
+  }, [mobileOpen, openMega]);
 
   useEffect(() => {
     setOpenMega(null);
@@ -125,13 +165,23 @@ export function Header() {
       <header
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
-        className={`sticky top-0 z-40 border-b border-line transition-shadow duration-200 ${
-          mega
-            ? 'bg-white shadow-card'
-            : `bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
+        onFocusCapture={() => setCompact(false)}
+        className={`sticky top-0 z-40 border-b transition-colors duration-300 ${
+          compact
+            ? 'border-line-dark bg-ink shadow-card'
+            : mega
+              ? 'border-line bg-white shadow-card'
+              : `border-line bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 lg:h-18 lg:px-12">
+        <div className="relative mx-auto h-16 max-w-[1440px] lg:h-18">
+          {/* Pełny pasek — widoczny w hero i po przewinięciu w górę. */}
+          <div
+            inert={compact || undefined}
+            className={`absolute inset-0 flex items-center justify-between px-5 transition-[opacity,transform] duration-300 lg:px-12 ${
+              compact ? 'pointer-events-none -translate-y-1 opacity-0' : 'opacity-100'
+            }`}
+          >
           <div className="flex items-center gap-11">
             <Link
               href="/"
@@ -224,6 +274,55 @@ export function Header() {
                 </>
               )}
             </button>
+          </div>
+          </div>
+
+          {/* Listwa z akcją — po przewinięciu w dół. Menu schodzi, bo czytelnik
+              jest już w treści; zostaje droga wejścia, której nie ma na ekranie. */}
+          <div
+            inert={!compact || undefined}
+            className={`absolute inset-0 grid grid-cols-[1fr_auto_1fr] items-center px-5 transition-[opacity,transform] duration-300 lg:px-12 ${
+              compact ? 'opacity-100' : 'pointer-events-none translate-y-1 opacity-0'
+            }`}
+          >
+            <Link
+              href="/"
+              aria-label="BusiKM — strona główna"
+              className="flex w-fit items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-paper hover:text-paper lg:text-[20px]"
+            >
+              <Logo decorative className="size-8 flex-none lg:size-9" />
+              <span className="hidden sm:inline">BusiKM</span>
+            </Link>
+
+            <Link
+              href={appLinks.demo}
+              className="flex h-10 items-center gap-2 rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark hover:text-white lg:px-6 lg:text-[15px]"
+            >
+              Zobacz demo
+              <span aria-hidden className="text-[13px] opacity-70">
+                →
+              </span>
+            </Link>
+
+            <div className="flex items-center justify-end gap-3.5">
+              <a
+                href={appLinks.login}
+                className="hidden items-center gap-2 text-[15px] font-medium text-paper/65 transition-colors hover:text-paper lg:inline-flex"
+              >
+                <UserIcon className="size-[18px]" />
+                Zaloguj się
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setMobileOpen(true)}
+                aria-label="Menu"
+                className="-mr-2.5 flex size-11 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
+              >
+                <span className="h-0.5 w-5 bg-paper" />
+                <span className="h-0.5 w-5 bg-paper" />
+              </button>
+            </div>
           </div>
         </div>
 

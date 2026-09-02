@@ -60,6 +60,30 @@ Stopka tego menu, drobnym szarym:
 Centrum pomocy `/pomoc` · Pierwsze kroki `/pomoc/pierwsze-kroki` ·
 Kontakt `/kontakt` · Status usługi `/status`
 
+### Dwa stany paska przy przewijaniu
+
+Pasek reaguje na **kierunek** przewijania, nie na samą pozycję.
+
+| Kiedy | Jak wygląda |
+|---|---|
+| W hero (poniżej 640 px) | Pełny pasek: logo, cztery pozycje menu, „Zaloguj się", „Zobacz demo" |
+| Przewijanie **w dół** poniżej hero | Listwa z akcją: tło `ink`, logo po lewej, **niebieskie „Zobacz demo" na środku**, „Zaloguj się" po prawej |
+| Przewijanie **w górę** | Pełny pasek wraca |
+
+**Dlaczego menu znika.** W chwili przełączenia czytelnik jest już w treści — przyciski
+z hero zjechały mu z ekranu. Zadanie paska zmienia się z „pomóż się rozejrzeć" na
+„nie zgub drogi wejścia". Menu jest wtedy zbędne, a wróci jednym ruchem w górę.
+
+**Dlaczego wolno tu użyć niebieskiego.** Zasada „jeden niebieski przycisk na ekranie"
+obowiązuje dalej — po prostu poniżej hero nie ma już drugiego niebieskiego przycisku,
+z którym CTA mogłoby konkurować.
+
+Trzy rzeczy, bez których ten mechanizm irytuje:
+- przełączenie dopiero **poniżej 640 px** — w hero pasek nigdy się nie zmienia,
+- **próg 8 px** na zmianę kierunku, żeby pasek nie drgał przy drobnych ruchach kółka,
+- wejście klawiaturą i otwarte menu **zawsze przywracają pełny pasek** — inaczej
+  nawigacja byłaby nieosiągalna z klawiatury.
+
 ### Nawigacja na telefonie
 
 Zamknięta: logo · przycisk **Demo** · hamburger.
