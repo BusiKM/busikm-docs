@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+input,textarea,select{font-family:inherit}
+input::placeholder,textarea::placeholder{color:#9A9AA2}
+</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+</div>
+
+<!-- HERO + FORMULARZ -->
+<div data-screen-label="Kontakt" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · 700 ms · formularz 90 ms po nagłówku · po wysłaniu: zielone „Dostaliśmy. Odpiszemy dziś.” w miejscu przycisku</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:96px">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Kontakt</div>
+      <h1 style="margin:0;font-size:80px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:1120px;white-space:nowrap">Napisz.<br>Odpisujemy tego samego dnia.</h1>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:640px">W dni robocze, między 8:00 a 17:00. Odpowiada człowiek, nie automat z numerem zgłoszenia.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start">
+      <!-- Formularz -->
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;padding:48px;display:flex;flex-direction:column;gap:24px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#6E6E76">Imię<input type="text" placeholder="Marek" style="height:52px;padding:0 16px;border-radius:12px;border:1px solid #E3E3E6;background:#FAFAFA;font-size:17px;color:#0A0A0B;outline:none" style-focus="border-color:#0B5FFF;background:#fff"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#6E6E76">Adres e-mail<input type="email" placeholder="marek@twojafirma.pl" style="height:52px;padding:0 16px;border-radius:12px;border:1px solid #E3E3E6;background:#FAFAFA;font-size:17px;color:#0A0A0B;outline:none" style-focus="border-color:#0B5FFF;background:#fff"></label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#6E6E76">Czego dotyczy
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ topics }}" as="t" hint-placeholder-count="4"><span onClick="{{ t.pick }}" style="padding:10px 16px;border-radius:999px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }};font-size:15px;font-weight:500;cursor:pointer">{{ t.label }}</span></sc-for>
+          </div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:#6E6E76">Wiadomość<textarea placeholder="Napisz, co się dzieje albo o co chcesz zapytać." style="min-height:160px;padding:14px 16px;border-radius:12px;border:1px solid #E3E3E6;background:#FAFAFA;font-size:17px;line-height:1.5;color:#0A0A0B;outline:none;resize:vertical" style-focus="border-color:#0B5FFF;background:#fff"></textarea></label>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="height:56px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#0A46C0">Wyślij wiadomość</span>
+          <div style="font-size:13px;line-height:1.5;color:#6E6E76">Odpowiadamy na ten sam adres, z którego piszesz.</div>
+        </div>
+      </div>
+
+      <!-- Prawa kolumna -->
+      <div style="display:flex;flex-direction:column">
+        <div style="padding:0 0 40px;border-bottom:1px solid #E3E3E6;display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Napisz wprost</div>
+          <div onClick="{{ copy }}" style="display:flex;align-items:baseline;gap:14px;cursor:pointer;flex-wrap:wrap"><a href="mailto:kontakt@busikm.pl" style="font-size:32px;font-weight:600;letter-spacing:-0.02em;color:#0A0A0B">kontakt@busikm.pl</a><span style="font-size:14px;color:{{ copyColor }};font-weight:500">{{ copyLabel }}</span></div>
+        </div>
+        <div style="padding:40px 0;border-bottom:1px solid #E3E3E6;display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Zanim napiszesz</div>
+          <div style="font-size:22px;line-height:1.4;font-weight:600;letter-spacing:-0.01em">Odpowiedź może już być w centrum pomocy.</div>
+          <a href="BusiKM Pomoc.dc.html" style="font-size:17px;font-weight:500">/pomoc →</a>
+        </div>
+        <div style="padding:40px 0 0;display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dane firmy</div>
+          <div style="font-size:14px;line-height:1.7;color:#6E6E76">BusiKM sp. z o.o.<br>ul. Przykładowa 1, 00-000 Warszawa<br>NIP 000-000-00-00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOPKA -->
+<div data-screen-label="Stopka" style="background:#0A0A0B;color:#FAFAFA;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#8E8E96">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#8E8E96">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#8E8E96">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#8E8E96">Pomoc</span><span style="color:#FAFAFA">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap"><span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span><span>Twoje dane zostają w Europie</span></div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { topic: 0, copied: false };
+  renderVals() {
+    const { topic, copied } = this.state;
+    const labels = ['pytanie przed zakupem', 'pomoc techniczna', 'rozliczenia i faktury', 'coś innego'];
+    return {
+      topics: labels.map((label, i) => ({ label, pick: () => this.setState({ topic: i }),
+        bg: i === topic ? '#0A0A0B' : '#fff', color: i === topic ? '#FAFAFA' : '#0A0A0B', border: i === topic ? '#0A0A0B' : '#E3E3E6' })),
+      copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('kontakt@busikm.pl'); } catch (e) {} this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1800); },
+      copyLabel: copied ? 'skopiowano' : 'kliknij, aby skopiować', copyColor: copied ? '#1E9C43' : '#6E6E76',
+    };
+  }
+}
+</script>
+</body>
+</html>

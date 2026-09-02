@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span style="color:#0B5FFF">Pomoc <span style="font-size:12px">▾</span></span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+</div>
+
+<!-- HERO -->
+<div data-screen-label="Hero" style="position:relative;padding:160px 0 96px;background:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · 700 ms · pasek postępu wypełnia się 900 ms po wejściu · kroki kaskadą 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#6E6E76"><a href="BusiKM Pomoc.dc.html" style="color:#6E6E76">Pomoc</a><span>›</span><span style="letter-spacing:.1em;text-transform:uppercase;font-weight:500">Pierwsze kroki</span></div>
+      <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:1120px">Od konta do pierwszej faktury.</h1>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:640px">Siedem kroków. Pierwszy zajmuje dwie minuty, ostatni robi się sam.</p>
+    </div>
+    <!-- pasek postępu / licznik czasu -->
+    <div style="border-radius:28px;background:#0A0A0B;color:#FAFAFA;padding:40px 48px;display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Cała ścieżka</div><div style="font-size:64px;line-height:1;font-weight:700;letter-spacing:-0.03em">~10 minut</div><div style="font-size:17px;color:#8E8E96;margin-top:6px">Twojej pracy. Resztę robi kierowca i system.</div></div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:4px;height:12px">
+          <span style="flex:2;border-radius:6px;background:#0B5FFF"></span><span style="flex:1;border-radius:6px;background:#0B5FFF"></span><span style="flex:2;border-radius:6px;background:#0B5FFF"></span><span style="flex:3;border-radius:6px;background:#0B5FFF"></span><span style="flex:1.5;border-radius:6px;background:#3A3A40;border:1px dashed #55555C;box-sizing:border-box"></span><span style="flex:1;border-radius:6px;background:#0B5FFF"></span><span style="flex:1;border-radius:6px;background:#0B5FFF"></span>
+        </div>
+        <div style="display:flex;gap:4px;font-size:12px;color:#8E8E96">
+          <span style="flex:2">1 · 2 min</span><span style="flex:1">2 · 1 min</span><span style="flex:2">3 · 2 min</span><span style="flex:3">4 · 3 min</span><span style="flex:1.5">5 · kierowca</span><span style="flex:1">6 · 1 min</span><span style="flex:1">7 · 1 min</span>
+        </div>
+        <div style="display:flex;gap:20px;font-size:13px;color:#8E8E96;padding-top:6px"><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:#0B5FFF"></span>Twoja praca · 10 min</span><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:#3A3A40;border:1px dashed #55555C;box-sizing:border-box"></span>po stronie kierowcy</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KROKI -->
+<div data-screen-label="Siedem kroków" style="position:relative;padding:0 0 160px;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:120px 1fr 200px;gap:40px;align-items:start;padding:40px 0;border-top:1px solid #E3E3E6">
+        <div style="display:flex;align-items:center;gap:16px">
+          <span onClick="{{ s.toggle }}" style="width:32px;height:32px;border-radius:50%;border:2px solid {{ s.ringColor }};background:{{ s.fill }};display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;color:#fff;font-size:15px;font-weight:700">{{ s.mark }}</span>
+          <span style="font-size:40px;line-height:1;font-weight:700;letter-spacing:-0.03em;color:{{ s.numColor }}">{{ s.num }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;color:{{ s.titleColor }};text-decoration:{{ s.deco }}">{{ s.title }}</div>
+          <div style="font-size:17px;line-height:1.6;color:#6E6E76;max-width:640px">{{ s.body }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+          <span style="font-size:14px;color:#6E6E76;white-space:nowrap">{{ s.time }}</span>
+          <sc-if value="{{ s.hasAction }}" hint-placeholder-val="{{ true }}"><a href="#" style="height:40px;padding:0 16px;border-radius:12px;border:1px solid #E3E3E6;background:#fff;font-size:14px;font-weight:600;color:#0A0A0B;display:flex;align-items:center;white-space:nowrap" style-hover="border-color:#0B5FFF;color:#0B5FFF">{{ s.action }}</a></sc-if>
+        </div>
+      </div>
+    </sc-for>
+    <div style="border-top:1px solid #E3E3E6"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:14px;color:#6E6E76"><span>Odhaczone: {{ doneCount }} z 7 · ta sama lista jest w aplikacji po zalogowaniu</span><span onClick="{{ reset }}" style="cursor:pointer">wyczyść</span></div>
+  </div>
+</div>
+
+<!-- DÓŁ: dwa odnośniki -->
+<div data-screen-label="Odnośniki" style="position:relative;padding:96px 0 160px;background:#F2F2F4">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <a href="BusiKM Pomoc.dc.html" style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#0A0A0B;font-size:22px;font-weight:600;letter-spacing:-0.01em" style-hover="border-color:#0B5FFF"><span>← Wróć do centrum pomocy</span></a>
+    <a href="/kontakt" style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#0A0A0B;font-size:22px;font-weight:600;letter-spacing:-0.01em" style-hover="border-color:#0B5FFF"><span>Napisz do nas, jeśli coś nie działa</span><span style="color:#0B5FFF">→</span></a>
+  </div>
+</div>
+
+<!-- STOPKA -->
+<div data-screen-label="Stopka" style="background:#0A0A0B;color:#FAFAFA;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#8E8E96">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#8E8E96">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#8E8E96">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#FAFAFA">Pomoc</span><span style="color:#8E8E96">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap"><span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span><span>Twoje dane zostają w Europie</span></div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { done: [] };
+  renderVals() {
+    const { done } = this.state;
+    const data = [
+      ['Załóż konto', 'Adres e-mail i nazwa firmy. Reszta danych potem.', '2 minuty', 'Załóż konto'],
+      ['Dodaj pierwszy pojazd', 'Numer rejestracyjny i to wszystko. Ubezpieczenie i przegląd dopiszesz, kiedy będziesz miał pod ręką.', '1 minuta', 'Dodaj pojazd'],
+      ['Zaproś kierowcę', 'Wpisujesz imię i numer telefonu, kierowca dostaje kod. Instaluje aplikację i ustawia własne hasło.', '2 minuty', 'Zaproś kierowcę'],
+      ['Wprowadź pierwsze zlecenie', 'Kontrahent, fracht, załadunek, rozładunek. Przypisz kierowcę i pojazd.', '3 minuty', 'Nowe zlecenie'],
+      ['Kierowca rusza', 'Zdjęcie licznika, „Rozpocznij trasę”. Od tego momentu trasa, czas pracy i koszty zapisują się same.', 'po jego stronie', null],
+      ['Sprawdź, co się zebrało', 'Po zakończeniu kursu masz kilometry, godziny, paragony i marżę. Nic z tego nie wpisywałeś.', 'minuta', 'Otwórz pulpit'],
+      ['Wystaw fakturę', 'Ze zlecenia, jednym kliknięciem. Plik idzie na mail klienta i do systemu e-faktur.', 'minuta', 'Wystaw fakturę'],
+    ];
+    const steps = data.map(([title, body, time, action], i) => {
+      const d = done.includes(i);
+      return { num: String(i + 1).padStart(2, '0'), title, body, time, action, hasAction: !!action,
+        mark: d ? '✓' : '', fill: d ? '#0B5FFF' : 'transparent', ringColor: d ? '#0B5FFF' : '#C9CBD1',
+        numColor: d ? '#C9CBD1' : '#0A0A0B', titleColor: d ? '#9A9AA2' : '#0A0A0B', deco: d ? 'line-through' : 'none',
+        toggle: () => this.setState({ done: d ? done.filter(x => x !== i) : [...done, i] }) };
+    });
+    return { steps, doneCount: done.length, reset: () => this.setState({ done: [] }) };
+  }
+}
+</script>
+</body>
+</html>
