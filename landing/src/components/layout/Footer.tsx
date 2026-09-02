@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
+import { firma } from '@/content/firma';
 import { Logo } from '@/components/layout/Logo';
 import { footerColumns } from '@/content/navigation';
 
@@ -36,9 +37,9 @@ export function Footer() {
 
         <div className="flex flex-wrap justify-between gap-4 border-t border-line-dark pt-6 text-caption text-ink-muted lg:gap-6">
           <span>
-            Movgranto Sp. z o.o. ·{' '}
-            <a href="mailto:kontakt@busikm.pl" className="text-ink-muted hover:text-paper">
-              kontakt@busikm.pl
+            {firma.nazwa} · NIP {firma.nip} ·{' '}
+            <a href={`mailto:${firma.email}`} className="text-ink-muted hover:text-paper">
+              {firma.email}
             </a>
           </span>
           <span>Twoje dane zostają w Europie</span>

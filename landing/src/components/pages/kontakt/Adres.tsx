@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/ui/Section';
+import { firma } from '@/content/firma';
 
-const ADRES = 'kontakt@busikm.pl';
+const ADRES = firma.email;
 
 /** Adres do skopiowania jednym kliknięciem, bez wchodzenia w formularz. */
 export function Adres() {
@@ -51,11 +52,15 @@ export function Adres() {
       <div className="flex flex-col gap-3 p-6 lg:p-8">
         <Eyebrow>Dane firmy</Eyebrow>
         <div className="text-[14px] leading-relaxed text-muted lg:text-caption">
-          Movgranto Sp. z o.o.
+          {firma.nazwa}
           <br />
-          ul. Przykładowa 1, 00-000 Warszawa
+          {firma.ulica}
           <br />
-          NIP 000-000-00-00
+          {firma.miasto}
+          <br />
+          NIP {firma.nip} · REGON {firma.regon}
+          <br />
+          KRS {firma.krs}
         </div>
       </div>
     </div>
