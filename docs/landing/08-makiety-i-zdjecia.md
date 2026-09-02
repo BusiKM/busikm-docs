@@ -130,6 +130,9 @@ to zrzuty tylko dla podstrony; **z gwiazdką** — ten sam plik, co na stronie g
 | Trasy i mapa floty | `mockup-mapa-flota-desktop.png` \* | desktop 16:10 | Mapa Europy, dymek nad pojazdem z godziną dojazdu |
 | Trasy i mapa floty | `mockup-trasy-przeliczenie-desktop.png` | desktop 4:3 | Stara i nowa trasa obok siebie, znacznik korka, różnica w czasie |
 | Trasy i mapa floty | `mockup-trasy-lista-desktop.png` | desktop 4:3 | Historia przejazdów z filtrami: data, kierowca, pojazd |
+| Czas pracy i przerwy | `mockup-czas-pracy-pierscienie-desktop.png` \* | desktop 4:3 | Pierścienie jazdy, przerwy i odpoczynku + lista kierowców |
+| Czas pracy i przerwy | `mockup-kierowca-czas-phone.png` \* | telefon 9:19.5 | Licznik w telefonie z przypomnieniem o przerwie |
+| Czas pracy i przerwy | `mockup-czas-karta-desktop.png` | desktop 4:3 | Karta czasu pracy do wydruku: dni, godziny, kraje, PDF |
 
 **Uwaga o `mockup-faktury-*`.** Strona główna ma `mockup-faktury-zlecenie-desktop.png` —
 zwartą kartę 4:3 w połowie szerokości. Podstrona ma `mockup-faktury-ekran-desktop.png` —
