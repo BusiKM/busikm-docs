@@ -91,8 +91,39 @@ Tło przezroczyste tam, gdzie makieta leży na tle sekcji.
 | 14 | Dokumenty | `mockup-dokumenty-terminy-desktop.png` | desktop 4:3 | Lista dokumentów po dniach do końca ważności, paski w trzech kolorach |
 | 16 | Demo | `mockup-demo-wejscie-desktop.png` | desktop 16:10 | Pulpit demo z paskiem „To jest demo” u góry |
 
-**Podstrony** trzymają ten sam schemat: `mockup-<obszar>-<ekran>-<urządzenie>.png`.
-Pełna lista powstanie razem z projektami podstron.
+---
+
+## 3a. Lista obrazów — podstrony
+
+Ten sam schemat: `mockup-<obszar>-<ekran>-<urządzenie>.png`. Wiersze bez gwiazdki
+to zrzuty tylko dla podstrony; **z gwiazdką** — ten sam plik, co na stronie głównej.
+
+| Podstrona | Plik | Urządzenie | Co ma być widać |
+|---|---|---|---|
+| Aplikacja kierowcy | `mockup-kierowca-telefony-phone.png` | dwa telefony | Dwa telefony pod kątem: lista zleceń i nawigacja, tryb nocny |
+| Aplikacja kierowcy | `mockup-kierowca-zlecenia-phone.png` | telefon 9:19.5 | Lista zleceń dnia ze statusami, tryb nocny |
+| Aplikacja kierowcy | `mockup-kierowca-nawigacja-phone.png` \* | telefon 9:19.5 | Nawigacja z kartą zlecenia u dołu, tryb nocny |
+| Aplikacja kierowcy | `mockup-kierowca-koszt-phone.png` \* | telefon 9:19.5 | Dodawanie kosztu ze zdjęciem paragonu, tryb nocny |
+| Aplikacja kierowcy | `mockup-kierowca-czas-phone.png` | telefon 9:19.5 | Licznik czasu pracy, tryb nocny |
+| Aplikacja kierowcy | `mockup-kierowca-wysylka-phone.png` | telefon 9:19.5 | Ekran „Do wysłania" — co czeka na zasięg, tryb nocny |
+| Dyspozytornia | `mockup-dyspozytornia-ekran-desktop.png` \* | desktop 16:10 | Trzy kolumny: zlecenia, mapa, panel kierowcy |
+| Dyspozytornia | `mockup-dyspozytornia-zlecenie-desktop.png` | desktop 4:3 | Karta zlecenia z przypisaniem kierowcy |
+| Dyspozytornia | `mockup-dyspozytornia-trasa-desktop.png` | desktop 4:3 | Podgląd trasy ze zmianą w trakcie jazdy |
+| Dane dla księgowej | `mockup-ksiegowa-eksport-desktop.png` \* | desktop 4:3 | Centrum eksportów, przycisk „Pobierz komplet" |
+| Dane dla księgowej | `mockup-ksiegowa-walidacja-desktop.png` | desktop 4:3 | Lista zestawień: komplet / do uzupełnienia. Bez czerwieni |
+| Dane dla księgowej | `mockup-ksiegowa-diety-desktop.png` | desktop 4:3 | Rozliczenie kierowcy: dni za granicą, diety, wypłata |
+| Ile zostaje | `mockup-zysk-karta-desktop.png` \* | desktop 4:3 | Karta kursu z rozbiciem kosztów i zyskiem na dole |
+| Ile zostaje | `mockup-zysk-tabela-desktop.png` | desktop 16:10 | Zlecenia po marży, wyróżniony wiersz po dodaniu paragonu |
+| Ile zostaje | `mockup-zysk-porownanie-desktop.png` | desktop 4:3 | Dwa miesiące, słupki tygodniowe, różnica w zł i procentach |
+| Zlecenia i faktury | `mockup-faktury-ekran-desktop.png` | desktop 16:10 | Pełne okno: zlecenie, strzałka, faktura, „Wystaw i wyślij" |
+| Zlecenia i faktury | `mockup-faktury-wysylka-desktop.png` | desktop 4:3 | Okno wysyłki: adresat, PDF, przełącznik e-faktury, status |
+| Zlecenia i faktury | `mockup-faktury-historia-desktop.png` | desktop 4:3 | Wystawione dokumenty z datą wysyłki i stanem |
+
+**Uwaga o `mockup-faktury-*`.** Strona główna ma `mockup-faktury-zlecenie-desktop.png` —
+zwartą kartę 4:3 w połowie szerokości. Podstrona ma `mockup-faktury-ekran-desktop.png` —
+pełne okno przeglądarki 16:10. To dwa różne zrzuty tego samego procesu, więc dwie nazwy.
+Przyrostek `-ekran-` zarezerwowany jest dla pełnego okna aplikacji, tak jak
+w `mockup-dyspozytornia-ekran-desktop.png`.
 
 ---
 

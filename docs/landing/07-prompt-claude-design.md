@@ -879,7 +879,9 @@ Ten sam dokument w PDF i w e-fakturze · Duplikat na życzenie klienta
 
 **Makiety:**
 Główna — zlecenie po lewej, faktura po prawej, między nimi strzałka i przycisk
-„Wystaw i wyślij". Plik `mockup-faktury-zlecenie-desktop.png`, 16:10.
+„Wystaw i wyślij". Plik `mockup-faktury-ekran-desktop.png`, 16:10.
+*(W kodzie ta nazwa, nie `-zlecenie-`: `mockup-faktury-zlecenie-desktop.png` to karta 4:3
+ze strony głównej — inny zrzut. Przyrostek `-ekran-` oznacza pełne okno aplikacji.)*
 Dodatkowo: okno wysyłki z mailem klienta, załącznikiem PDF, przełącznikiem e-faktury
 i statusem „dostarczone" (`mockup-faktury-wysylka-desktop.png`, 4:3) oraz lista
 wystawionych dokumentów z datami i statusem (`mockup-faktury-historia-desktop.png`, 4:3).
