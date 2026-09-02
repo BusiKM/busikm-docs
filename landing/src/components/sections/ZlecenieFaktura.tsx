@@ -32,6 +32,7 @@ export function ZlecenieFaktura() {
             label="Zlecenie i faktura · desktop"
             note="Karta zlecenia po lewej, faktura po prawej, strzałka między nimi, przycisk „Wyślij”, znaczniki: mail, e-faktura."
             ratio="4:3"
+            imageScale={1.5}
           >
             <ZlecenieFakturaMockup />
           </MockupSlot>

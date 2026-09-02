@@ -72,6 +72,15 @@ mockup-<obszar>-<co-widać>-<urządzenie>.png
 Format: **PNG**, dwukrotna gęstość (`@2x` w pliku źródłowym, wynikowy plik bez sufiksu).
 Tło przezroczyste tam, gdzie makieta leży na tle sekcji.
 
+**Kadruj do treści.** Zrzut wyeksportowany na kwadratowym płótnie z szerokim marginesem
+(tak wychodzą oprawy w iMaca) zajmuje w pudle sekcji połowę tego, co powinien —
+`object-contain` dopasowuje całe płótno, razem z pustką. Zmierzone: iMac na płótnie
+12800 × 12800 wypełniał 58% szerokości pudła 4:3.
+
+Doraźnie ratuje to `imageScale` w `MockupSlot` (powiększa obraz ponad pudło, nie ruszając
+układu sekcji) — ale lepszy jest ciasny kadr w eksporcie. Wtedy nic nie trzeba nadpisywać
+w kodzie.
+
 ---
 
 ## 3. Lista wszystkich obrazów — strona główna
