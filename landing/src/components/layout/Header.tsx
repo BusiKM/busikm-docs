@@ -23,6 +23,25 @@ import {
 
 const CARET = '▾';
 
+/** Znak logowania — prosta sylwetka, bez wypełnienia. */
+function UserIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      className={className}
+      aria-hidden
+      focusable="false"
+    >
+      <circle cx="10" cy="6.5" r="3.25" />
+      <path d="M3.75 16.75a6.25 6.25 0 0 1 12.5 0" />
+    </svg>
+  );
+}
+
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -174,18 +193,22 @@ export function Header() {
           <div className="flex items-center gap-3.5 lg:gap-7">
             <a
               href={appLinks.login}
-              className="hidden text-[15px] font-medium text-ink hover:text-blue lg:inline"
+              className="hidden items-center gap-2 text-[15px] font-medium text-ink/65 transition-colors hover:text-ink lg:inline-flex"
             >
+              <UserIcon className="size-[18px]" />
               Zaloguj się
             </a>
 
             <Link
               href={appLinks.demo}
-              className={`h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px] ${
+              className={`h-10 items-center gap-2 rounded-btn bg-ink px-3.5 text-[14px] font-semibold text-paper transition-colors hover:bg-surface hover:text-paper lg:flex lg:px-[18px] lg:text-[15px] ${
                 mobileOpen ? 'hidden' : 'flex'
               }`}
             >
               Zobacz demo
+              <span aria-hidden className="text-[13px] opacity-60">
+                →
+              </span>
             </Link>
 
             <button
