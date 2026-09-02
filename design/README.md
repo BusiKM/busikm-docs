@@ -18,15 +18,22 @@ design/
   08-czas-pracy/            fala 2, prompt 8        ✅ zaimplementowana
   09-koszty-i-paragony/     fala 2, prompt 9        ✅ zaimplementowana
   10-dokumenty-i-terminy/   fala 2, prompt 10       ✅ zaimplementowana
-  11-wlasciciel/            ← fala 3, prompt 11
-  12-dyspozytor/            ← fala 3, prompt 12
-  13-ksiegowa/              ← fala 3, prompt 13
-  14-kierowca/              ← fala 3, prompt 14
-  15-cennik/                ← fala 3, prompt 15
-  16-demo/                  ← fala 3, prompt 16
+  11-wlasciciel/            fala 3, prompt 11       ✅ zaimplementowana
+  12-dyspozytor/            fala 3, prompt 12       ✅ zaimplementowana
+  13-ksiegowa/              fala 3, prompt 13       ✅ zaimplementowana
+  14-kierowca/              fala 3, prompt 14       ✅ zaimplementowana
+  15-cennik/                fala 3, prompt 15       ✅ zaimplementowana
+  16-demo/                  fala 3, prompt 16       ✅ zaimplementowana
+  17-co-robi/               ← fala 4, prompt 17
+  18-dla-kogo/              ← fala 4, prompt 18
+  19-pomoc/                 ← fala 4, prompt 19
+  20-pierwsze-kroki/        ← fala 4, prompt 20
+  21-kontakt/               ← fala 4, prompt 21
+  22-status/                ← fala 4, prompt 22
+  23-prawne/                ← fala 4, prompt 23 (jeden wzorzec na cztery strony)
 ```
 
-Fale 1 i 2 są zamknięte. Katalogi fali 3 czekają na eksporty.
+Fale 1–3 są zamknięte. Katalogi fali 4 czekają na eksporty.
 
 **Fala 3 prawie nie potrzebuje nowych zrzutów** — strony ról składają ekrany
 narysowane w falach 1 i 2. Przy każdej makiecie w prompcie podana jest nazwa pliku

@@ -1589,16 +1589,379 @@ Finał „Zacznij od jednej trasy." też pomijamy — tu jedynym wyjściem jest 
 ---
 ---
 
-# FALA 4 — STRONY POMOCNICZE
+# FALA 4 — STRONY ZBIORCZE, POMOC I DOKUMENTY
 
-Nie potrzebują Claude Design. Powstaną z szablonu podstrony i istniejących części
-wspólnych, treść czeka w `05-podstrony.md`, rozdziały C5–C12:
+Ostatnia fala. Dziesięć stron, siedem promptów — cztery dokumenty prawne dzielą
+jeden wzorzec, bo różni je tylko tekst.
 
-| Strony | Rozdziały w `05` |
-|---|---|
-| Pomoc · Pierwsze kroki · Kontakt · Status usługi | C5–C8 |
-| Regulamin · Polityka prywatności · Powierzenie danych · Podprocesorzy | C9–C12 |
+Te strony nikogo nie przekonują. Ktoś, kto tu trafia, już się zdecydował albo czegoś
+szuka — i ma to znaleźć. **Mniej efektu, więcej porządku.** Żadnych ciemnych sekcji
+na pełną szerokość poza finałem, żadnych dużych makiet, żadnych scen.
 
-Zostają też dwie strony zbiorcze — `/co-robi` (C1) i `/dla-kogo` (C2). Obie mają dziś
-szkielet i **nie da się do nich dojść klikaniem** — pozycje w pasku otwierają menu,
-a nagłówki kolumn nie są odnośnikami. Do rozstrzygnięcia razem z falą 4.
+Katalogi na eksporty:
+
+| Prompt | Strona | Katalog |
+|---|---|---|
+| 17 | Co robi — przegląd | `design/17-co-robi/` |
+| 18 | Dla kogo — przegląd | `design/18-dla-kogo/` |
+| 19 | Pomoc | `design/19-pomoc/` |
+| 20 | Pierwsze kroki | `design/20-pierwsze-kroki/` |
+| 21 | Kontakt | `design/21-kontakt/` |
+| 22 | Status usługi | `design/22-status/` |
+| 23 | Dokumenty prawne — jeden wzorzec na cztery strony | `design/23-prawne/` |
+
+## Do rozstrzygnięcia razem z falą 4
+
+`/co-robi` i `/dla-kogo` istnieją, mają metadane i działają z adresu — ale **nie da się
+do nich dojść klikaniem**. Pozycja w pasku otwiera menu, a nagłówki kolumn w menu
+nie są odnośnikami. Dwie drogi:
+
+1. **„Zobacz wszystkie →"** na dole każdego rozwiniętego menu — bezpieczne, nic nie psuje
+2. **Pozycja w pasku staje się odnośnikiem** — najeżdżasz, otwiera się menu; klikasz,
+   wchodzisz na stronę zbiorczą
+
+Rekomendacja: **druga**, bo pierwsza dokłada element do menu, które już niesie dziewięć
+pozycji z korzyściami. Zaprojektuj to przy prompcie 17 jako osobny artboard stanu paska.
+
+---
+---
+
+# PROMPT 17 — CO ROBI · PRZEGLĄD
+
+> Adres strony: `/co-robi`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 17".
+
+---
+
+Zaprojektuj stronę zbiorczą **Co robi**.
+
+To rozdroże, nie strona sprzedażowa. Człowiek wie już mniej więcej, czego szuka,
+i ma stąd trafić w jedno z dziewięciu miejsc jednym kliknięciem. Nic go tu nie musi
+przekonywać.
+
+**Nadtytuł:** CO ROBI
+
+**Nagłówek:** Dziewięć rzeczy, które robi za Ciebie.
+
+**Zdanie pod nagłówkiem:** *Od telefonu kierowcy po komplet dla księgowej. Każda z nich
+ma własną stronę.*
+
+**Dziewięć kafelków w trzech grupach.** Każdy kafelek: nazwa, jedno zdanie korzyści,
+odnośnik. Grupy oddzielone nagłówkiem trzeciego stopnia i światłem, nie ramkami.
+
+**W trasie**
+1. **Aplikacja kierowcy** — Nawigacja, trasa i koszty w jednej aplikacji · `/co-robi/aplikacja-kierowcy`
+2. **Trasy i mapa floty** — Widzisz, gdzie jest każdy bus. Bez dzwonienia · `/co-robi/trasy-i-mapa`
+3. **Czas pracy i przerwy** — Wiesz, kiedy kierowca musi stanąć · `/co-robi/czas-pracy`
+
+**W biurze**
+4. **Dyspozytornia** — Cały dzień pracy na jednym ekranie · `/co-robi/dyspozytornia`
+5. **Zlecenia i faktury** — Ze zlecenia robi się faktura. Klient dostaje ją od razu · `/co-robi/zlecenia-i-faktury`
+6. **Koszty i paragony** — Zdjęcie zamiast reklamówki pod siedzeniem · `/co-robi/koszty-i-paragony`
+
+**Na koniec miesiąca**
+7. **Ile zostaje** — Zysk na każdym kursie, na bieżąco · `/co-robi/rentownosc`
+8. **Dane dla księgowej** — Komplet dokumentów jednym przyciskiem · `/co-robi/dane-dla-ksiegowej`
+9. **Dokumenty i terminy** — Nic nie wygaśnie po cichu · `/co-robi/dokumenty-i-terminy`
+
+**Pod spodem sekcja demo** — ciemna, jedno zdanie i przycisk **Zobacz demo**.
+Bez makiety: makieta jest na stronie `/demo`, tu tylko przejście.
+
+**Dodatkowy artboard: pasek nawigacji.** Pokaż stan, w którym pozycja „Co robi"
+w pasku jest jednocześnie odnośnikiem i wyzwalaczem menu — żeby było widać, czym
+różni się najechanie od kliknięcia.
+
+**Bez makiet produktu, bez trzech pytań, bez drobiazgów.** Strona ma być krótka.
+
+---
+**KONIEC PROMPTU 17**
+
+---
+---
+
+# PROMPT 18 — DLA KOGO · PRZEGLĄD
+
+> Adres strony: `/dla-kogo`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 18".
+
+---
+
+Zaprojektuj stronę zbiorczą **Dla kogo**.
+
+Cztery karty obok siebie. Człowiek ma w pięć sekund rozpoznać siebie albo osobę,
+dla której szuka narzędzia.
+
+**Nadtytuł:** DLA KOGO
+
+**Nagłówek:** Cztery osoby. Jeden system.
+
+**Zdanie pod nagłówkiem:** *Każda widzi tylko to, co jej potrzebne. Płacisz za pojazdy,
+nie za ludzi — kierowcy i biuro bez limitu.*
+
+**Cztery karty, każda z korzyścią i trzema punktami:**
+
+**Właściciel** — Zysk, koszty i cała flota na jednym ekranie · `/dla-kogo/wlasciciel`
+- Przychód, koszty i zysk na bieżąco
+- Mapa floty bez dzwonienia do kierowców
+- Komplet dla księgowej jednym przyciskiem
+
+**Dyspozytor** — Zlecenia, mapa i kierowca w jednym miejscu · `/dla-kogo/dyspozytor`
+- Jeden ekran zamiast czterech okien
+- Trasa układa się sama, z ruchem na drodze
+- Zmiana w trakcie trafia do kierowcy od razu
+
+**Księgowa** — Komplet dokumentów jednym przyciskiem · `/dla-kogo/ksiegowa`
+- Dziewięć zestawień w formacie jej programu
+- System sam mówi, czego brakuje
+- Zamknięty miesiąc zostaje zamknięty
+
+**Kierowca** — Jeden przycisk: rusz. Resztą zajmuje się telefon · `/dla-kogo/kierowca`
+- Nawigacja w tej samej aplikacji
+- Paragon zdjęciem, bez wpisywania
+- Przerwa z wyprzedzeniem, nie po fakcie
+
+Karta kierowcy **ciemna**, pozostałe jasne — tak samo jak jego strona odbija się
+od reszty serwisu.
+
+**Nota pod kartami, wyróżniona:** *Jedna osoba może mieć dwie role. Prowadzisz firmę
+sam? Właściciel i dyspozytor na jednym koncie, bez dopłaty.*
+
+**Dodatkowy artboard: pasek nawigacji** — to samo co w prompcie 17, dla pozycji
+„Dla kogo".
+
+**Bez makiet produktu i bez pytań.**
+
+---
+**KONIEC PROMPTU 18**
+
+---
+---
+
+# PROMPT 19 — POMOC
+
+> Adres strony: `/pomoc`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 19".
+
+---
+
+Zaprojektuj **Centrum pomocy**.
+
+Ktoś tu trafia, bo coś mu nie działa albo czegoś nie umie. Jest zniecierpliwiony.
+Wyszukiwarka ma być pierwszą rzeczą, którą widzi, i ma być duża.
+
+**Nadtytuł:** POMOC
+
+**Nagłówek:** W czym pomóc?
+
+**Pole wyszukiwania** — duże, na pełną szerokość kolumny treści, z podpowiedzią
+*„Wpisz, czego szukasz — np. faktura, przerwa, eksport"*. Pod nim, drobnym szarym,
+trzy najczęstsze hasła jako pigułki: **jak dodać kierowcę · eksport dla księgowej ·
+zmiana planu**.
+
+**Cztery kategorie, karty:**
+
+1. **Pierwsze kroki** — Od założenia konta do pierwszej wystawionej faktury ·
+   odnośnik do `/pomoc/pierwsze-kroki`
+2. **Kierowcy** — Zaproszenie, aplikacja, trasy, paragony, czas pracy
+3. **Rozliczenia i księgowość** — Eksporty, formaty, zamknięcie miesiąca, diety
+4. **Konto i płatności** — Plan, faktura za BusiKM, użytkownicy, rezygnacja
+
+Przy każdej karcie liczba artykułów, drobnym szarym. Bez ikon — nazwy same wystarczą.
+
+**Na dole, ciemna sekcja: kontakt do człowieka.**
+Nagłówek: **Nie znalazłeś? Napisz.**
+Zdanie: *Odpisujemy tego samego dnia roboczego. Nie ma tu formularzy zgłoszeniowych
+z numerem sprawy.*
+Przycisk: **Napisz do nas** → `/kontakt`
+
+**Bez makiet produktu.**
+
+---
+**KONIEC PROMPTU 19**
+
+---
+---
+
+# PROMPT 20 — PIERWSZE KROKI
+
+> Adres strony: `/pomoc/pierwsze-kroki`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 20".
+
+---
+
+Zaprojektuj stronę **Pierwsze kroki**.
+
+To ten sam materiał, którego używa checklista w aplikacji — więc ma wyglądać jak
+lista do odhaczania, a nie jak artykuł.
+
+**Nadtytuł:** PIERWSZE KROKI
+
+**Nagłówek:** Od konta do pierwszej faktury.
+
+**Zdanie pod nagłówkiem:** *Siedem kroków. Pierwszy zajmuje dwie minuty, ostatni robi
+się sam.*
+
+**Siedem kroków, ponumerowanych, jeden pod drugim.** Każdy: numer, tytuł, jedno–dwa
+zdania, a przy krokach, które da się zrobić od razu — mały przycisk prowadzący
+w odpowiednie miejsce aplikacji.
+
+1. **Załóż konto** — Adres e-mail i nazwa firmy. Reszta danych potem. *(2 minuty)*
+2. **Dodaj pierwszy pojazd** — Numer rejestracyjny i to wszystko. Ubezpieczenie
+   i przegląd dopiszesz, kiedy będziesz miał pod ręką. *(1 minuta)*
+3. **Zaproś kierowcę** — Wpisujesz imię i numer telefonu, kierowca dostaje kod.
+   Instaluje aplikację i ustawia własne hasło. *(2 minuty)*
+4. **Wprowadź pierwsze zlecenie** — Kontrahent, fracht, załadunek, rozładunek.
+   Przypisz kierowcę i pojazd. *(3 minuty)*
+5. **Kierowca rusza** — Zdjęcie licznika, „Rozpocznij trasę". Od tego momentu trasa,
+   czas pracy i koszty zapisują się same. *(po jego stronie)*
+6. **Sprawdź, co się zebrało** — Po zakończeniu kursu masz kilometry, godziny, paragony
+   i marżę. Nic z tego nie wpisywałeś. *(minuta)*
+7. **Wystaw fakturę** — Ze zlecenia, jednym kliknięciem. Plik idzie na mail klienta
+   i do systemu e-faktur. *(minuta)*
+
+**Pasek postępu albo licznik czasu** gdzieś na górze: *cała ścieżka to około dziesięciu
+minut Twojej pracy*. To jest najmocniejszy argument tej strony — pokaż go, nie chowaj.
+
+**Na dole:** dwa odnośniki obok siebie — **Wróć do centrum pomocy** i **Napisz do nas,
+jeśli coś nie działa**.
+
+---
+**KONIEC PROMPTU 20**
+
+---
+---
+
+# PROMPT 21 — KONTAKT
+
+> Adres strony: `/kontakt`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 21".
+
+---
+
+Zaprojektuj stronę **Kontakt**.
+
+Krótka i uczciwa. **Nie ma numeru telefonu** i nie udajemy, że jest — dopóki nie ma
+kogoś, kto go odbierze. Zamiast tego mówimy wprost, kiedy odpisujemy.
+
+**Nadtytuł:** KONTAKT
+
+**Nagłówek:** Napisz. Odpisujemy tego samego dnia.
+
+**Zdanie pod nagłówkiem:** *W dni robocze, między 8:00 a 17:00. Odpowiada człowiek,
+nie automat z numerem zgłoszenia.*
+
+**Układ dwukolumnowy.**
+
+**Lewa kolumna — formularz:**
+- Imię
+- Adres e-mail
+- Czego dotyczy — lista: *pytanie przed zakupem · pomoc techniczna · rozliczenia
+  i faktury · coś innego*
+- Wiadomość
+- Przycisk **Wyślij wiadomość**
+- Pod przyciskiem, drobnym szarym: *Odpowiadamy na ten sam adres, z którego piszesz.*
+
+**Prawa kolumna — trzy bloki, jeden pod drugim:**
+1. **Napisz wprost** — `kontakt@busikm.pl` · duże, do skopiowania jednym kliknięciem
+2. **Zanim napiszesz** — Odpowiedź może już być w centrum pomocy · odnośnik `/pomoc`
+3. **Dane firmy** — nazwa spółki, adres, NIP. Drobnym szarym, bez wyróżnień.
+
+**Bez mapy, bez zdjęć zespołu, bez numeru telefonu.**
+
+---
+**KONIEC PROMPTU 21**
+
+---
+---
+
+# PROMPT 22 — STATUS USŁUGI
+
+> Adres strony: `/status`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 22".
+
+---
+
+Zaprojektuj stronę **Status usługi**.
+
+Najprostsza strona w serwisie. Jedno pytanie, jedna odpowiedź, widoczna z drugiego
+końca pokoju.
+
+**Nadtytuł:** STATUS
+
+**Wielki stan na środku:** **Wszystko działa.**
+Pod spodem, drobnym szarym: *Sprawdzone o 14:20. Aktualizujemy co pięć minut.*
+Obok stanu zielona kropka. **To jedyne miejsce poza sekcją dokumentów, gdzie kolor
+niesie znaczenie** — zielony działa, pomarańczowy przerwa w części usługi, czerwony
+przerwa całkowita. Zaprojektuj wszystkie trzy stany.
+
+**Cztery wiersze — części usługi:** Aplikacja webowa · Aplikacja kierowcy ·
+Wysyłka faktur · Eksporty dla księgowej. Każdy z własną kropką i słowem.
+
+**Historia przerw — lista, ostatnie dwanaście miesięcy.** Każdy wpis: data, czas
+trwania, jedno zdanie co się stało i jedno co zrobiliśmy. Jeśli przerw nie było,
+pokaż to wprost: *W ostatnich dwunastu miesiącach nie było przerw.* — i tak ma
+wyglądać stan domyślny w projekcie.
+
+**Na dole:** *Coś nie działa, a tu świeci na zielono? Napisz do nas.* z odnośnikiem
+do `/kontakt`.
+
+**Bez nagłówka sprzedażowego, bez finału, bez przycisków do wypróbowania.**
+Ktoś tu przychodzi sprawdzić jedną rzecz.
+
+---
+**KONIEC PROMPTU 22**
+
+---
+---
+
+# PROMPT 23 — DOKUMENTY PRAWNE · JEDEN WZORZEC
+
+> Adresy: `/regulamin` · `/prywatnosc` · `/powierzenie-danych` · `/podprocesorzy`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 23".
+
+---
+
+Zaprojektuj **wzorzec strony dokumentu prawnego**. Jeden układ obsłuży cztery strony;
+różni je tylko tekst.
+
+To jedyne miejsce w serwisie, gdzie wolno używać języka prawnego. Ale układ ma robić
+wszystko, żeby ten tekst dało się czytać.
+
+**Nadtytuł:** DOKUMENT
+
+**Nagłówek:** nazwa dokumentu, np. **Regulamin**
+
+**Pod nagłówkiem, w jednej linii:** *Obowiązuje od 1 września 2026 · wersja 2 ·
+[poprzednie wersje]*
+
+**Ramka streszczenia na samej górze, przed treścią** — na tle `blue-soft`,
+nagłówek **W skrócie** i trzy–cztery punkty prostym językiem. To nie zastępuje
+dokumentu i tak trzeba to podpisać jednym zdaniem drobnym szarym, ale to jedyna
+część, którą ktokolwiek przeczyta.
+
+**Układ dwukolumnowy na desktopie:**
+- **Lewa, wąska, przyklejona przy przewijaniu:** spis treści z numerami paragrafów,
+  aktywna pozycja wyróżniona
+- **Prawa:** treść dokumentu
+
+Na telefonie spis treści zwija się w składany element nad treścią.
+
+**Typografia treści — to jest sedno tego promptu:**
+- Szerokość wiersza **maksymalnie 70 znaków**, nie na pełne 1120 px
+- Nagłówki paragrafów numerowane, z widocznym odstępem nad
+- Odstęp między akapitami większy niż zwykle
+- Definicje i terminy wytłuszczone, bez wersalików
+- Listy z wcięciem, numeracja zagnieżdżona jak w dokumencie
+- Tabele (podprocesorzy) — proste, z linią pod nagłówkiem, przewijane poziomo
+  we własnym kontenerze na telefonie
+
+**Na dole:** data ostatniej zmiany, odnośnik do pozostałych trzech dokumentów
+i jedno zdanie: *Masz pytanie do tego dokumentu? Napisz.* z adresem.
+
+**Zaprojektuj dwa artboardy treści:** jeden z paragrafami (regulamin) i jeden
+z tabelą (podprocesorzy) — to dwa różne problemy typograficzne.
+
+**Bez finału, bez przycisków sprzedażowych.**
+
+---
+**KONIEC PROMPTU 23**
