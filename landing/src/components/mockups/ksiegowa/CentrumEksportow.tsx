@@ -22,7 +22,7 @@ export function CentrumEksportow() {
       <div className="absolute inset-x-[10%] top-0 h-[340px] rotate-[-5deg] rounded-card border border-line-dark bg-surface-3 opacity-55 lg:inset-x-[10%] lg:h-[520px]" />
       <div className="absolute inset-x-[6%] top-4 h-[340px] rotate-[-2.5deg] rounded-card border border-line-dark bg-[#161619] opacity-80 lg:top-6 lg:h-[520px]" />
 
-      <div className="absolute inset-x-0 top-8 flex h-[360px] flex-col gap-3 rounded-card border border-[#2A2A30] bg-surface p-5 text-[12px] shadow-[0_40px_100px_rgba(0,0,0,.6)] lg:inset-x-[2.5%] lg:top-12 lg:h-[520px] lg:gap-4.5 lg:p-8 lg:text-caption">
+      <div className="absolute inset-x-0 top-8 flex h-[360px] flex-col gap-3 rounded-card border border-[#2A2A30] bg-surface text-paper p-5 text-[12px] shadow-[0_40px_100px_rgba(0,0,0,.6)] lg:inset-x-[2.5%] lg:top-12 lg:h-[520px] lg:gap-4.5 lg:p-8 lg:text-caption">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="text-[11px] text-ink-muted lg:text-[13px]">

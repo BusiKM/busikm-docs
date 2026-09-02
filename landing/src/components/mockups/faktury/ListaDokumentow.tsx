@@ -67,7 +67,7 @@ const kolumny = 'grid grid-cols-[1fr_74px_82px] gap-3 lg:grid-cols-[1fr_1.2fr_70
 /** Wystawione dokumenty miesiąca z datą wysyłki i stanem. */
 export function ListaDokumentow() {
   return (
-    <div className="flex flex-col gap-2 rounded-card border border-line-dark bg-surface p-5 text-[12px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-8 lg:text-[13px]">
+    <div className="flex flex-col gap-2 rounded-card border border-line-dark bg-surface text-paper p-5 text-[12px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-8 lg:text-[13px]">
       <div className="flex items-center justify-between gap-3">
         <b className="text-[16px] lg:text-[18px]">Wystawione · wrzesień</b>
         <span className="flex-none text-ink-muted">12 dokumentów</span>

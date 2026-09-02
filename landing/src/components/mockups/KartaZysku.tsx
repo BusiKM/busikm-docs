@@ -16,7 +16,7 @@ const costs = [
  */
 export function KartaZysku() {
   return (
-    <div className="flex flex-col gap-2 rounded-card border border-line-dark bg-surface p-4 text-[12px] shadow-[0_40px_100px_rgba(11,95,255,.18),0_30px_60px_rgba(0,0,0,.6)] lg:aspect-4/3 lg:gap-3 lg:p-7 lg:text-[13px]">
+    <div className="flex flex-col gap-2 rounded-card border border-line-dark bg-surface text-paper p-4 text-[12px] shadow-[0_40px_100px_rgba(11,95,255,.18),0_30px_60px_rgba(0,0,0,.6)] lg:aspect-4/3 lg:gap-3 lg:p-7 lg:text-[13px]">
       <div className="flex items-center justify-between gap-3">
         <div>
           <div className="hidden text-ink-muted lg:block">Zlecenie · 2026/09/041</div>

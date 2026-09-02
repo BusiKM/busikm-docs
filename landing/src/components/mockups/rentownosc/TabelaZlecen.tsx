@@ -123,7 +123,7 @@ const kolumny =
  */
 export function TabelaZlecen() {
   return (
-    <div className="flex flex-col overflow-hidden rounded-card border border-line-dark bg-surface shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-16/10 lg:rounded-panel">
+    <div className="flex flex-col overflow-hidden rounded-card border border-line-dark bg-surface text-paper shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-16/10 lg:rounded-panel">
       <Chrome dark label="Zlecenia · wrzesień · posortowane po marży" />
 
       <div className="flex flex-1 flex-col p-4 text-[12px] lg:p-10 lg:text-caption">
@@ -177,6 +177,47 @@ export function TabelaZlecen() {
           <span className="lg:hidden">Minus na dole listy</span>
           <span className="flex-none">razem: 62 480 zł</span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Ta sama lista w połowie szerokości — cztery kolumny zamiast sześciu.
+ *
+ * Pełna wersja jest zaprojektowana na 1120 px. W kafelku o połowie tej
+ * szerokości kolumny schodziły do „Warszaw…" i „Mare…", a wiersze wychodziły
+ * poza kadr 16:10. Tu zostają tylko te dane, które w tym rozmiarze da się
+ * przeczytać: trasa, kierowca, zysk i marża.
+ */
+export function TabelaZlecenWaska() {
+  const kolumnyWaskie = 'grid grid-cols-[1.5fr_1fr_70px_58px] items-center gap-2.5';
+
+  return (
+    <div className="flex flex-col overflow-hidden rounded-card border border-line-dark bg-surface text-paper shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-16/10">
+      <Chrome dark label="Zlecenia · po marży" />
+
+      <div className="flex flex-1 flex-col px-5 py-4 text-[11px] lg:px-6">
+        <div className={`${kolumnyWaskie} border-b border-line-dark py-2 text-ink-muted`}>
+          <span>Zlecenie</span>
+          <span>Kierowca</span>
+          <span className="text-right">Zysk</span>
+          <span className="text-right">Marża</span>
+        </div>
+
+        {zlecenia.slice(0, 5).map((z) => (
+          <div
+            key={z.trasa}
+            className={`${kolumnyWaskie} border-b border-line-dark py-2.5 last:border-0`}
+          >
+            <b className="truncate">{z.trasa}</b>
+            <span className="truncate text-ink-muted">{z.kto.split(' · ')[0]}</span>
+            <span className="text-right">{z.zysk}</span>
+            <b className={`text-right ${z.dobra ? 'text-green' : ''} ${z.minus ? 'text-ink-muted' : ''}`}>
+              {z.marza}
+            </b>
+          </div>
+        ))}
       </div>
     </div>
   );

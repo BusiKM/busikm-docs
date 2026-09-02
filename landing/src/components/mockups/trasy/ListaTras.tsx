@@ -25,7 +25,7 @@ const kolumny = 'grid grid-cols-[44px_1fr_52px_52px] gap-2.5 lg:grid-cols-[60px_
 /** Historia przejazdów z filtrami — także tych bez zlecenia. */
 export function ListaTras() {
   return (
-    <div className="flex flex-col gap-3 rounded-card border border-line-dark bg-surface p-5 text-[12px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-6">
+    <div className="flex flex-col gap-3 rounded-card border border-line-dark bg-surface text-paper p-5 text-[12px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-6">
       <div className="flex items-center justify-between gap-3">
         <b className="text-[16px] lg:text-[18px]">Trasy · wrzesień</b>
         <span className="flex-none text-ink-muted">

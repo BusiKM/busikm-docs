@@ -139,6 +139,12 @@ to zrzuty tylko dla podstrony; **z gwiazdką** — ten sam plik, co na stronie g
 | Dokumenty i terminy | `mockup-dokumenty-terminy-desktop.png` \* | desktop 4:3 | Dokumenty po dniach do końca ważności, paski w trzech kolorach |
 | Dokumenty i terminy | `mockup-dokumenty-status-desktop.png` | desktop 16:10 | Status miesiąca w trzech kolumnach: pojazdy, firma, kierowcy |
 | Dokumenty i terminy | `mockup-dokumenty-kierowca-phone.png` | telefon 9:19.5 | Dokumenty kierowcy w telefonie z najbliższym terminem |
+| Właściciel | `mockup-hero-pulpit-desktop.png` \* · `mockup-mapa-flota-desktop.png` \* · `mockup-zysk-tabela-desktop.png` \* · `mockup-dokumenty-terminy-desktop.png` \* | — | Strona roli nie wnosi własnych zrzutów: zestawia cztery ekrany z fal 1 i 2 |
+
+**Podpis zamiast ramki.** Gdy kilka makiet stoi obok siebie w siatce, `MockupSlot`
+przyjmuje `caption` — wtedy notka „do podmiany" zwija się do jednej linii obok nazwy
+ekranu, a nazwa zostaje także po podmianie zrzutu. Przerywana ramka jest dla makiet
+stojących samotnie.
 
 **Uwaga o `mockup-faktury-*`.** Strona główna ma `mockup-faktury-zlecenie-desktop.png` —
 zwartą kartę 4:3 w połowie szerokości. Podstrona ma `mockup-faktury-ekran-desktop.png` —

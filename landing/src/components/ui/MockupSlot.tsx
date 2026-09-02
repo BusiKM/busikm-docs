@@ -70,6 +70,14 @@ type MockupSlotProps = {
   dark?: boolean;
   /** Klasy opakowania notki — pozwala ją zwęzić albo wyśrodkować. */
   noteClassName?: string;
+  /**
+   * Nazwa ekranu pod makietą. Gdy podana, notka „do podmiany" zwija się
+   * do jednej linii obok tej nazwy zamiast przerywanej ramki — a sama nazwa
+   * zostaje także po podmianie zrzutu. Tak wygląda siatka ekranów na
+   * stronach ról, gdzie kilka makiet stoi obok siebie i każda potrzebuje
+   * podpisu, a nie akapitu.
+   */
+  caption?: string;
 };
 
 export function MockupSlot({
@@ -82,12 +90,27 @@ export function MockupSlot({
   children,
   dark = false,
   noteClassName = '',
+  caption,
 }: MockupSlotProps) {
   const src = imageSrc(file);
 
+  const podpis = (brakuje: boolean) =>
+    caption ? (
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <b className="text-[15px] lg:text-body">{caption}</b>
+        {brakuje && (
+          <span
+            className={`font-mono text-[10px] lg:text-[11px] ${dark ? 'text-ink-muted' : 'text-muted'}`}
+          >
+            Do podmiany · {file} · {ratio}
+          </span>
+        )}
+      </div>
+    ) : null;
+
   if (src) {
     const [w, h] = (box ?? ratio).split(':').map(Number);
-    return (
+    const obraz = (
       <div className="relative w-full" style={{ aspectRatio: `${w} / ${h}` }}>
         <Image
           src={src}
@@ -98,6 +121,23 @@ export function MockupSlot({
           style={imageScale ? { transform: `scale(${imageScale})` } : undefined}
           unoptimized={DEV}
         />
+      </div>
+    );
+
+    if (!caption) return obraz;
+    return (
+      <div className="flex flex-col gap-3.5">
+        {obraz}
+        {podpis(false)}
+      </div>
+    );
+  }
+
+  if (caption) {
+    return (
+      <div className="flex flex-col gap-3.5">
+        {children}
+        {podpis(true)}
       </div>
     );
   }

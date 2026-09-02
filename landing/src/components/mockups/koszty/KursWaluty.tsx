@@ -1,7 +1,7 @@
 /** Koszt w euro i w złotych — z kursem zapisanym przy dokumencie. */
 export function KursWaluty() {
   return (
-    <div className="flex flex-col gap-4 rounded-card border border-line-dark bg-surface p-6 text-[13px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-8 lg:text-caption">
+    <div className="flex flex-col gap-4 rounded-card border border-line-dark bg-surface text-paper p-6 text-[13px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-8 lg:text-caption">
       <div className="flex items-center justify-between gap-3">
         <div>
           <div className="text-[12px] text-ink-muted lg:text-[13px]">Koszt · paliwo</div>

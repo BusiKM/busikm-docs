@@ -8,7 +8,7 @@ const pozycje = [
 /** Koszty, których nikt nie fotografuje — a i tak wchodzą do marży. */
 export function KosztyFirmowe() {
   return (
-    <div className="flex flex-col gap-3 rounded-card border border-line-dark bg-surface p-6 text-[13px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:p-8 lg:text-caption">
+    <div className="flex flex-col gap-3 rounded-card border border-line-dark bg-surface text-paper p-6 text-[13px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:p-8 lg:text-caption">
       <div className="flex justify-between gap-3 text-ink-muted">
         <span className="truncate">
           Koszty firmowe · PO 2093J<span className="hidden lg:inline"> · wrzesień</span>
