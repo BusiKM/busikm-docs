@@ -1,14 +1,15 @@
 import { Section } from '@/components/ui/Section';
 
 /**
- * Blok „numer + nagłówek + zdanie" z makietą obok — powtarza się sześć razy
- * na tej stronie, raz z makietą po lewej, raz po prawej.
+ * Blok „numer + nagłówek + zdanie" z makietą obok — podstawowy rytm podstron.
+ * Makieta raz po lewej, raz po prawej.
  */
 export function Blok({
   numer,
   tytul,
   tresc,
   makieta,
+  dodatek,
   strona = 'right',
   tone = 'paper',
 }: {
@@ -16,6 +17,8 @@ export function Blok({
   tytul: string;
   tresc: string;
   makieta: React.ReactNode;
+  /** Coś pod treścią — pigułki statusów, lista, cokolwiek. */
+  dodatek?: React.ReactNode;
   /** Po której stronie makieta na desktopie. */
   strona?: 'left' | 'right';
   tone?: 'paper' | 'ink';
@@ -43,6 +46,7 @@ export function Blok({
           >
             {tresc}
           </p>
+          {dodatek && <div data-reveal>{dodatek}</div>}
         </div>
 
         <div data-reveal className={strona === 'left' ? 'lg:order-1' : ''}>

@@ -5,7 +5,7 @@ import { Akordeon } from '@/components/ui/Akordeon';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { pageMetadata } from '@/components/layout/PageShell';
 import { Hero } from '@/components/pages/aplikacja-kierowcy/Hero';
-import { Blok } from '@/components/pages/aplikacja-kierowcy/Blok';
+import { Blok } from '@/components/ui/Blok';
 import { Kod } from '@/components/pages/aplikacja-kierowcy/Kod';
 import { Rusza } from '@/components/pages/aplikacja-kierowcy/Rusza';
 import { TrasaIDokumenty } from '@/components/pages/aplikacja-kierowcy/TrasaIDokumenty';
