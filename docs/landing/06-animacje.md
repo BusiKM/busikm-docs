@@ -124,7 +124,19 @@ w zwykłe sekcje jedna pod drugą.
 
 Bez dodatkowych bibliotek. Wystarczy `IntersectionObserver` i CSS.
 
-**Wejście treści** — jeden komponent kliencki montowany raz w `layout.tsx`:
+**Wejście treści** — komponent kliencki w `layout.tsx`. Dwie rzeczy, bez których
+treść zostaje niewidoczna:
+
+1. **Obserwator musi startować na nowo przy każdej zmianie adresu.** Komponent siedzi
+   w głównym układzie, a ten przy przejściu między stronami nie jest montowany ponownie.
+   Bez `pathname` w zależnościach efektu nowa strona nigdy nie trafia pod obserwację
+   i zostaje przy `opacity: 0` — wygląda to jak strona, która się nie wczytała, i mija
+   dopiero po twardym przeładowaniu. Objaw myli, bo wskazuje na pamięć podręczną,
+   a przyczyna jest zupełnie inna.
+2. **Węzły dokładane później** (strumieniowanie, Suspense) łapie `MutationObserver`
+   na `document.body`.
+
+Szkic:
 
 ```tsx
 // obserwuje [data-reveal], nadaje klasę .is-visible, przestaje obserwować
