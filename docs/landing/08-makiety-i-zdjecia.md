@@ -77,6 +77,10 @@ Tło przezroczyste tam, gdzie makieta leży na tle sekcji.
 `object-contain` dopasowuje całe płótno, razem z pustką. Zmierzone: iMac na płótnie
 12800 × 12800 wypełniał 58% szerokości pudła 4:3.
 
+To samo dotyczy telefonów wyeksportowanych w kadrze poziomym: zmierzone,
+`mockup-kierowca-nawigacja-phone.png` na płótnie 3200 × 2400 zajmuje 30% szerokości
+i w pudle 9:19.5 wypełnia go w 30% × 28%.
+
 Doraźnie ratuje to `imageScale` w `MockupSlot` (powiększa obraz ponad pudło, nie ruszając
 układu sekcji) — ale lepszy jest ciasny kadr w eksporcie. Wtedy nic nie trzeba nadpisywać
 w kodzie.

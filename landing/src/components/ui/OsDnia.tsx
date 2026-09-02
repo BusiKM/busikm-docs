@@ -20,9 +20,11 @@ export function OsDnia({
   naglowek = 'Twój dzień z BusiKM.',
   punkty,
   skala = 'godziny',
+  tone = 'ink',
 }: {
   naglowek?: string;
   punkty: PunktDnia[];
+  tone?: 'ink' | 'surface';
   /**
    * Godziny są krótkie i znoszą duży stopień; słowa („przez cały miesiąc")
    * przy tym samym rozmiarze rozjeżdżają kolumnę na cztery linie.
@@ -35,7 +37,7 @@ export function OsDnia({
       : 'text-[24px] leading-none tracking-[-0.03em] lg:text-[40px]';
 
   return (
-    <Section tone="ink">
+    <Section tone={tone}>
       <div className="flex flex-col gap-12 lg:gap-24">
         <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
           {naglowek}

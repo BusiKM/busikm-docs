@@ -38,16 +38,26 @@ function Slot({
   label,
   note,
   dark,
+  imageScale,
   children,
 }: {
   file: string;
   label: string;
   note: string;
   dark?: boolean;
+  imageScale?: number;
   children: React.ReactNode;
 }) {
   return (
-    <MockupSlot file={file} label={label} note={note} ratio="9:19.5" box="6:7" dark={dark}>
+    <MockupSlot
+      file={file}
+      label={label}
+      note={note}
+      ratio="9:19.5"
+      box="6:7"
+      imageScale={imageScale}
+      dark={dark}
+    >
       {children}
     </MockupSlot>
   );
@@ -76,6 +86,7 @@ export default function Page() {
               dark
               file="mockup-kierowca-nawigacja-phone.png"
               label="Nawigacja · telefon, tryb nocny"
+              imageScale={1.8}
               note="Nawigacja z trasą, u góry następny manewr i godzina dojazdu, u dołu karta zlecenia."
             >
               <EkranNawigacja />

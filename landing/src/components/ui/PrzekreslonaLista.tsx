@@ -12,9 +12,9 @@ export function PrzekreslonaLista({
 }: {
   naglowek?: string;
   rzeczy: readonly string[];
-  tone?: 'mist' | 'ink';
+  tone?: 'mist' | 'ink' | 'surface';
 }) {
-  const dark = tone === 'ink';
+  const dark = tone !== 'mist';
 
   return (
     <Section tone={tone}>

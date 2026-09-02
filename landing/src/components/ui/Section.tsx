@@ -7,7 +7,7 @@ import { Container } from '@/components/ui/Container';
 type SectionProps = {
   id?: string;
   /** Tło sekcji. Ciemna sekcja to moment, w którym czytelnik ma się zatrzymać. */
-  tone?: 'paper' | 'mist' | 'ink';
+  tone?: 'paper' | 'mist' | 'ink' | 'surface';
   /** Nadpisuje domyślne odstępy pionowe. */
   spacing?: string;
   className?: string;
@@ -18,6 +18,7 @@ const tones = {
   paper: 'bg-paper',
   mist: 'bg-mist',
   ink: 'bg-ink text-paper',
+  surface: 'bg-surface text-paper',
 } as const;
 
 export function Section({

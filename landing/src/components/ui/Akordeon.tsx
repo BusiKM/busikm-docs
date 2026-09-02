@@ -11,25 +11,30 @@ export function Akordeon({
   id,
   heading,
   items,
+  tone = 'paper',
 }: {
   id?: string;
   heading: string;
   items: readonly (readonly [string, string])[];
+  tone?: 'paper' | 'surface';
 }) {
   const [open, setOpen] = useState(-1);
+  const dark = tone === 'surface';
+  const linia = dark ? 'border-line-dark' : 'border-line';
+  const drugi = dark ? 'text-ink-muted' : 'text-muted';
 
   return (
-    <Section id={id}>
+    <Section id={id} tone={tone}>
       <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-16">
         <h2 data-reveal className="text-h2-m font-semibold lg:text-h2">
           {heading}
         </h2>
 
-        <div className="flex flex-col border-t border-line">
+        <div className={`flex flex-col border-t ${linia}`}>
           {items.map(([question, answer], i) => {
             const isOpen = open === i;
             return (
-              <div key={question} className="border-b border-line">
+              <div key={question} className={`border-b ${linia}`}>
                 <button
                   type="button"
                   aria-expanded={isOpen}
@@ -39,13 +44,13 @@ export function Akordeon({
                   <span>{question}</span>
                   <span
                     aria-hidden
-                    className="flex-none text-[22px] font-normal text-muted lg:text-[24px]"
+                    className={`flex-none text-[22px] font-normal lg:text-[24px] ${drugi}`}
                   >
                     {isOpen ? '−' : '+'}
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="pb-6 text-[16px] leading-relaxed text-muted lg:pr-16 lg:pb-7 lg:text-body">
+                  <div className={`pb-6 text-[16px] leading-relaxed lg:pr-16 lg:pb-7 lg:text-body ${drugi}`}>
                     {answer}
                   </div>
                 )}

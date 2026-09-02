@@ -2,8 +2,13 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { appLinks } from '@/content/navigation';
 
-/** 6.21 — finał. Ten sam na stronie głównej i na wszystkich podstronach. */
-export function FinalCta() {
+/**
+ * 6.21 — finał. Ten sam na stronie głównej i na wszystkich podstronach.
+ *
+ * `nota` dochodzi tylko na stronie kierowcy: to jedyne miejsce, gdzie
+ * czytelnik nie jest osobą, która kupuje.
+ */
+export function FinalCta({ nota }: { nota?: string } = {}) {
   return (
     <Section tone="ink" spacing="py-24 lg:py-50">
       <div
@@ -26,6 +31,15 @@ export function FinalCta() {
             Zobacz demo
           </Button>
         </div>
+
+        {nota && (
+          <p
+            data-reveal
+            className="mt-6 max-w-[640px] border-t border-line-dark pt-8 text-[15px] leading-relaxed text-pretty text-ink-muted lg:mt-10 lg:text-body"
+          >
+            {nota}
+          </p>
+        )}
       </div>
     </Section>
   );
