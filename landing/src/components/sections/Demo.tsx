@@ -19,9 +19,9 @@ export function Demo() {
 
         <div data-reveal>
           <MockupSlot
-            file="mockup-demo-wejscie-desktop.png"
+            file="mockup-demo-ekran-desktop.png"
             label="Wejście do demo · desktop 1440"
-            note="Ekran startowy demo z czterema kafelkami wyboru i przyciskiem „Wejdź do demo”."
+            note="Demo od środka: pasek „to demo”, przełącznik roli (właściciel · dyspozytor · księgowa) i pulpit właściciela."
             ratio="16:10"
             imageScale={1.5}
             noteClassName="lg:mx-auto lg:max-w-[600px]"

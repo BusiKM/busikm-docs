@@ -102,7 +102,7 @@ w kodzie.
 | 12 | Koszty i paragony | `mockup-koszty-paragon-phone.png` | telefon 9:19.5 | Zdjęcie paragonu i formularz z polami rozpoznanymi na zielono |
 | 13 | Koniec miesiąca | `mockup-ksiegowa-eksport-desktop.png` | desktop 4:3 | Lista dziewięciu zestawień, przycisk „Pobierz komplet za sierpień” |
 | 14 | Dokumenty | `mockup-dokumenty-terminy-desktop.png` | desktop 4:3 | Lista dokumentów po dniach do końca ważności, paski w trzech kolorach |
-| 16 | Demo | `mockup-demo-wejscie-desktop.png` | desktop 16:10 | Pulpit demo z paskiem „To jest demo” u góry |
+| 16 | Demo | `mockup-demo-ekran-desktop.png` | desktop 16:10 | Demo od środka: pasek „to demo”, przełącznik roli, pulpit właściciela |
 
 ---
 

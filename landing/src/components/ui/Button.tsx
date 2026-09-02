@@ -3,7 +3,7 @@ import Link from 'next/link';
 /** Przyciski wg projektu: 56 px na desktopie, 52 px na telefonie, promień 12 px. */
 
 type Variant = 'primary' | 'secondary' | 'secondaryDark';
-type Size = 'md' | 'nav';
+type Size = 'md' | 'nav' | 'duzy';
 
 const base =
   'inline-flex items-center justify-center rounded-btn font-semibold transition-colors';
@@ -19,6 +19,7 @@ const variants: Record<Variant, string> = {
 const sizes: Record<Size, string> = {
   md: 'h-[52px] px-7 text-body lg:h-14',
   nav: 'h-10 px-[18px] text-[15px] font-medium',
+  duzy: 'h-[58px] px-9 text-[17px] lg:h-16 lg:px-9 lg:text-[19px]',
 };
 
 type ButtonProps = {
