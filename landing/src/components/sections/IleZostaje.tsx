@@ -33,7 +33,7 @@ export function IleZostaje() {
           <div data-reveal className="relative lg:order-2 lg:flex lg:flex-col lg:gap-3">
             <Eyebrow dark>Zostaje</Eyebrow>
             <div className="text-[56px] leading-none font-bold tracking-[-0.04em] lg:text-[120px]">
-              12 540 zł
+              11 980 zł
             </div>
             <div className="hidden text-lead leading-relaxed text-ink-muted lg:block">
               z 3 900 € frachtu. Liczba zmieni się, gdy Marek doda kolejny paragon.

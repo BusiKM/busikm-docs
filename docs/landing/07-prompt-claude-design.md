@@ -813,13 +813,365 @@ typograficzny obok makiety, nie w niej — tak jak w sekcji „Ile zostaje" na s
 ---
 ---
 
-# FALE 2–4 — POZOSTAŁE PODSTRONY
+# FALA 2 — PIĘĆ PODSTRON OBSZAROWYCH
 
-Prompty powstaną tak samo, gdy fala 1 będzie zaprojektowana. Treść czeka
+Te pięć stron domyka dział „Co robi". Każdą projektuj w tej samej rozmowie co falę 1 —
+Claude Design zna wtedy system i nie trzeba wklejać rozdziału wspólnego. W nowej rozmowie
+wklej najpierw **Wspólną część każdego promptu** (wyżej), potem jeden prompt.
+
+Przy każdym proś o **dwa artboardy: desktop 1440 i telefon 390**. Brak wersji na telefon
+zmusza do zgadywania, co się chowa, a co zostaje.
+
+Katalogi na eksporty:
+
+| Prompt | Strona | Katalog |
+|---|---|---|
+| 6 | Zlecenia i faktury | `design/06-zlecenia-i-faktury/` |
+| 7 | Trasy i mapa floty | `design/07-trasy-i-mapa/` |
+| 8 | Czas pracy i przerwy | `design/08-czas-pracy/` |
+| 9 | Koszty i paragony | `design/09-koszty-i-paragony/` |
+| 10 | Dokumenty i terminy | `design/10-dokumenty-i-terminy/` |
+
+**Nazwy plików makiet powtórzone z fali 1 są celowe.** Ekran, który już stoi na stronie
+głównej, ma na podstronie wyglądać tak samo — jeden zrzut obsłuży oba miejsca.
+
+---
+---
+
+# PROMPT 6 — ZLECENIA I FAKTURY
+
+> Adres strony: `/co-robi/zlecenia-i-faktury`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 6".
+
+---
+
+Zaprojektuj podstronę **Zlecenia i faktury**.
+
+Ta strona zabiera właścicielowi wieczory. Dziś przepisuje dane ze zlecenia do programu
+do faktur, potem szuka maila klienta, potem odkłada to na jutro. Strona ma pokazać,
+że faktura powstaje z tego, co i tak zostało wpisane raz.
+
+**Nadtytuł:** ZLECENIA I FAKTURY
+
+**Nagłówek:** Ze zlecenia robi się faktura. / Klient ma ją, zanim wrócisz do biura.
+
+**Zdanie pod nagłówkiem:** *Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz.
+Niczego nie przepisujesz.*
+
+**Sześć bloków:**
+
+1. **Zlecenie i faktura to jedno** — Fracht, kontrahent, termin i waluta są już w środku.
+   Faktura powstaje z tego, co wpisałeś raz, przy przyjmowaniu zlecenia.
+2. **Wysyłka jednym kliknięciem** — Plik idzie na mail klienta i do systemu e-faktur
+   w tej samej chwili. Widzisz, że doszło.
+3. **Korekty i zaliczki** — Tą samą ścieżką. Korekta wie, do czego się odnosi, zaliczka
+   odlicza się od faktury końcowej. Bez kombinowania w arkuszu.
+4. **Waluty** — Kwota, kurs i data przeliczenia zostają na dokumencie. Nikt nie liczy
+   tego w kalkulatorze trzy tygodnie później.
+5. **Kontrahenci w jednym miejscu** — Raz wprowadzony klient podpowiada się przy każdym
+   następnym zleceniu, z adresem i numerem.
+6. **Historia** — Co, komu i kiedy wysłano. Każdy dokument do podejrzenia i pobrania
+   ponownie.
+
+**Siatka drobiazgów, sześć kafelków:** Numeracja ciągła, bez luk · Termin płatności
+liczony od wysyłki · Przypomnienie o zaległej płatności · Podgląd przed wysyłką ·
+Ten sam dokument w PDF i w e-fakturze · Duplikat na życzenie klienta
+
+**Makiety:**
+Główna — zlecenie po lewej, faktura po prawej, między nimi strzałka i przycisk
+„Wystaw i wyślij". Plik `mockup-faktury-zlecenie-desktop.png`, 16:10.
+Dodatkowo: okno wysyłki z mailem klienta, załącznikiem PDF, przełącznikiem e-faktury
+i statusem „dostarczone" (`mockup-faktury-wysylka-desktop.png`, 4:3) oraz lista
+wystawionych dokumentów z datami i statusem (`mockup-faktury-historia-desktop.png`, 4:3).
+
+**Kto tego używa:** Właściciel — odnośnik do `/dla-kogo/wlasciciel`.
+Księgowa — odnośnik do `/dla-kogo/ksiegowa`.
+
+**Trzy pytania:**
+- **Czy muszę korzystać z e-faktur?** — Wysyłka na mail działa tak jak dotąd. E-faktura
+  jest drugim kanałem — włączasz ją wtedy, kiedy chcesz.
+- **Co, jeśli klient chce faktury w euro?** — Wystawiasz w euro. Kurs i data przeliczenia
+  zostają na dokumencie.
+- **Czy faktura trafia od razu do księgowej?** — Tak, wchodzi do zestawienia sprzedaży
+  za ten miesiąc. Księgowa nie musi o nią prosić.
+
+---
+**KONIEC PROMPTU 6**
+
+---
+---
+
+# PROMPT 7 — TRASY I MAPA FLOTY
+
+> Adres strony: `/co-robi/trasy-i-mapa`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 7".
+
+---
+
+Zaprojektuj podstronę **Trasy i mapa floty**.
+
+Strona rozstrzyga jedną scenę: dzwoni klient i pyta, gdzie jest ładunek. Dziś właściciel
+dzwoni do kierowcy, wyrywa go z jazdy i oddzwania. Ma być tak, że patrzy na mapę
+i odpowiada od razu.
+
+**Nadtytuł:** TRASY I MAPA FLOTY
+
+**Nagłówek:** Widzisz, gdzie jest każdy bus. / Bez dzwonienia.
+
+**Zdanie pod nagłówkiem:** *Klient pyta o ładunek — odpowiadasz w pięć sekund,
+patrząc na jeden ekran.*
+
+**Sześć bloków:**
+
+1. **Mapa na żywo** — Każdy bus jako punkt na mapie. Klikasz i masz kierowcę, zlecenie
+   i godzinę dojazdu.
+2. **Klient pyta, Ty odpowiadasz** — W pięć sekund, bez telefonu do kierowcy i bez
+   wyrywania go z jazdy.
+3. **Trasa układa się sama** — System proponuje przejazd i bierze pod uwagę, co się dzieje
+   na drodze. Korek, wypadek, zamknięty odcinek — trasa przelicza się, a kierowca dostaje
+   nową wersję w telefonie w tej samej chwili.
+4. **Historia tras** — Każdy przejazd zapisany: kilometry, czas, postoje. Do sprawdzenia
+   po miesiącu i po roku.
+5. **Kraje na trasie** — System sam widzi, gdzie kierowca był i jak długo. Nikt tego
+   nie zgłasza ręcznie.
+6. **Przejazd bez zlecenia też się liczy** — Dojazd do bazy, wyjazd do serwisu,
+   przeprowadzka pojazdu. Kilometry nie giną.
+
+**Siatka drobiazgów, sześć kafelków:** Ostatnia znana pozycja zostaje po utracie zasięgu ·
+Filtr po kierowcy i po pojeździe · Kilometry z trasy, nie z licznika przepisanego ręcznie ·
+Postoje dłuższe niż 15 minut zaznaczone · Podgląd trasy z dowolnego dnia · Mapa w trybie nocnym
+
+**Makiety:**
+Główna — mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu.
+Plik `mockup-mapa-flota-desktop.png`, 16:10 *(ten sam ekran co na stronie głównej)*.
+Dodatkowo: lista tras z filtrami — data, kierowca, pojazd, kilometry, czas
+(`mockup-trasy-lista-desktop.png`, 4:3) oraz trasa przeliczona z powodu ruchu:
+stara i nowa wersja obok siebie, różnica w czasie (`mockup-trasy-przeliczenie-desktop.png`, 4:3).
+
+**Kto tego używa:** Dyspozytor — odnośnik do `/dla-kogo/dyspozytor`.
+Właściciel — odnośnik do `/dla-kogo/wlasciciel`.
+
+**Trzy pytania:**
+- **Czy kierowca musi coś włączać?** — Nie. Trasa nagrywa się od przycisku
+  „Rozpocznij trasę", telefon może zostać w kieszeni.
+- **Co, gdy telefon straci zasięg?** — Trasa zapisuje się dalej w telefonie i dosyła,
+  gdy sygnał wróci. Na mapie zostaje ostatnia znana pozycja z godziną.
+- **Czy to śledzenie kierowcy po godzinach?** — Nie. Nagrywa się trasa zlecenia, między
+  „Rozpocznij" a „Zakończ". Po zakończeniu pozycja nie jest zbierana.
+
+---
+**KONIEC PROMPTU 7**
+
+---
+---
+
+# PROMPT 8 — CZAS PRACY I PRZERWY
+
+> Adres strony: `/co-robi/czas-pracy`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 8".
+
+---
+
+Zaprojektuj podstronę **Czas pracy i przerwy**.
+
+Na tej stronie trzeba rozbroić jedno nieporozumienie: że to ma zastąpić tachograf.
+Nie zastępuje i nie udaje. Tachograf jest wymagany i **zapisuje**. BusiKM **pokazuje** —
+kierowca widzi na ekranie, ile jeszcze może jechać i kiedy musi stanąć.
+
+**Nadtytuł:** CZAS PRACY I PRZERWY
+
+**Nagłówek:** Wiesz, kiedy kierowca musi stanąć. / Zanim stanie za późno.
+
+**Zdanie pod nagłówkiem:** *Jazda, przerwy i odpoczynki liczą się same. Kierowca widzi
+to na telefonie, Ty na jednym ekranie.*
+
+**Sześć bloków:**
+
+1. **Liczniki idą same** — Jazda, przerwa, odpoczynek, dyspozycyjność. Nikt nic nie
+   zapisuje w zeszycie.
+2. **Kierowca dostaje przypomnienie wcześniej** — Telefon mówi „za 20 minut przerwa",
+   a nie „miałeś stanąć godzinę temu".
+3. **Ty widzisz to samo** — Lista kierowców ze statusem: jedzie, na przerwie, odpoczywa,
+   dostępny. Wszyscy na jednym ekranie.
+4. **Działa bez zasięgu** — Liczniki chodzą w telefonie. Dane dosyłają się, gdy wróci
+   sygnał.
+5. **Miesięczna karta do wydruku** — Gotowa, bez przepisywania. Do teczki albo
+   do księgowej.
+6. **Dni w każdym kraju** — Liczone z trasy. Możesz poprawić ręcznie, jeśli coś
+   wyglądało inaczej.
+
+**Osobna sekcja, ciemna, na pełną szerokość — najważniejsza na tej stronie:**
+
+> ### Tachograf zapisuje. BusiKM pokazuje.
+>
+> Tachograf jest wymagany i robi swoje: rejestruje. BusiKM go nie zastępuje i nie udaje.
+> Jest po to, żeby kierowca **widział** na ekranie, ile jeszcze może jechać i kiedy
+> musi stanąć.
+
+Zestaw to jako dwie kolumny albo dwie karty obok siebie — po lewej „zapisuje",
+po prawej „pokazuje". Bez ikon ostrzegawczych, bez czerwieni.
+
+**Siatka drobiazgów, sześć kafelków:** Licznik widoczny na ekranie blokady · Sygnał
+dźwiękowy przed przerwą · Ręczna korekta z podanym powodem · Podgląd tygodnia i miesiąca ·
+Status kierowcy widoczny w dyspozytorni · Karta miesięczna w PDF
+
+**Makiety:**
+Główna — pierścienie postępu (jazda, przerwa, odpoczynek) i lista kierowców ze statusem.
+Plik `mockup-czas-pracy-pierscienie-desktop.png`, 4:3 *(ten sam ekran co na stronie głównej)*.
+Dodatkowo: ekran licznika w telefonie kierowcy, tryb nocny
+(`mockup-kierowca-czas-phone.png`, 9:19.5 — **ten sam plik co na stronie o aplikacji
+kierowcy**) oraz karta miesięczna do wydruku: dni, godziny, kraje
+(`mockup-czas-karta-desktop.png`, 4:3).
+
+**Kto tego używa:** Kierowca — odnośnik do `/dla-kogo/kierowca`.
+Właściciel — odnośnik do `/dla-kogo/wlasciciel`.
+
+**Trzy pytania:**
+- **Czy to zastępuje tachograf?** — Nie i nie próbuje. Tachograf zapisuje, BusiKM pokazuje
+  kierowcy, ile jeszcze może jechać.
+- **Skąd system wie, że kierowca jedzie?** — Z trasy, która nagrywa się w telefonie
+  od przycisku „Rozpocznij trasę".
+- **Co, gdy kierowca zapomni zakończyć trasę?** — Aplikacja mu przypomni, a Ty możesz
+  poprawić godzinę ręcznie, z podanym powodem.
+
+**Uwaga językowa — obowiązuje na całej stronie:** ani jednego numeru rozporządzenia,
+artykułu ani kwoty kary. Piszemy „przerwa", „odpoczynek", „limit dzienny" — bez podstaw
+prawnych i bez straszenia.
+
+---
+**KONIEC PROMPTU 8**
+
+---
+---
+
+# PROMPT 9 — KOSZTY I PARAGONY
+
+> Adres strony: `/co-robi/koszty-i-paragony`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 9".
+
+---
+
+Zaprojektuj podstronę **Koszty i paragony**.
+
+Ta strona ma jeden obraz w tle: reklamówka pełna paragonów na tylnym siedzeniu, którą
+ktoś rozwija pod koniec miesiąca. Cała strona jest o tym, że ta reklamówka jest
+do wyrzucenia.
+
+**Nadtytuł:** KOSZTY I PARAGONY
+
+**Nagłówek:** Reklamówka paragonów. / Do wyrzucenia.
+
+**Zdanie pod nagłówkiem:** *Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca
+wpisują się same.*
+
+**Sześć bloków:**
+
+1. **Zdjęcie zamiast wpisywania** — Pstryka paragon, formularz wypełnia się sam.
+   Poprawia tylko wtedy, gdy coś się nie zgadza.
+2. **Trafia tam, gdzie trzeba** — Do tego zlecenia, tego pojazdu, tego kierowcy.
+   Bez segregowania wieczorem przy stole.
+3. **Kategorie z życia** — Paliwo, opłaty drogowe, hotel, posiłek, prom, parking, naprawa.
+4. **Obca waluta** — Przeliczona po kursie z dnia. Kurs zostaje przy dokumencie na stałe,
+   nie trzeba go potem odtwarzać.
+5. **Zdjęcie zostaje dowodem** — Nikt nie szuka papierka po trzech miesiącach.
+   Zdjęcie leży przy koszcie.
+6. **Koszty firmowe też** — Leasing, ubezpieczenie, serwis. Nie tylko to, co w trasie.
+
+**Siatka drobiazgów, sześć kafelków:** Paragon dodany bez zasięgu czeka w telefonie ·
+Ten sam paragon nie wejdzie dwa razy · Koszt widać u właściciela od razu · Podpowiedź
+kategorii po sprzedawcy · Filtr kosztów po pojeździe · Zdjęcia wychodzą razem z zestawieniem
+
+**Makiety:**
+Główna — telefon kierowcy: zdjęcie paragonu i wypełniony formularz obok, tryb nocny.
+Plik `mockup-koszty-paragon-phone.png`, 9:19.5 *(ten sam ekran co na stronie głównej)*.
+Dodatkowo: lista kosztów miesiąca z kategoriami, pojazdami i miniaturami zdjęć
+(`mockup-koszty-lista-desktop.png`, 16:10) oraz koszt w euro z kursem i datą przeliczenia
+(`mockup-koszty-kurs-desktop.png`, 4:3).
+
+**Kto tego używa:** Kierowca — odnośnik do `/dla-kogo/kierowca`.
+Księgowa — odnośnik do `/dla-kogo/ksiegowa`.
+
+**Trzy pytania:**
+- **Co, gdy paragon jest zmięty albo wyblakły?** — Kierowca poprawia kwotę ręcznie.
+  Zdjęcie i tak zostaje przy koszcie.
+- **Czy kierowca widzi koszty całej firmy?** — Nie. Widzi tylko to, co sam dodał.
+- **Czy paliwo z karty flotowej też wchodzi?** — Tak, jako koszt firmowy. Tego nie trzeba
+  fotografować.
+
+---
+**KONIEC PROMPTU 9**
+
+---
+---
+
+# PROMPT 10 — DOKUMENTY I TERMINY
+
+> Adres strony: `/co-robi/dokumenty-i-terminy`
+> Skopiuj wszystko poniżej, aż do „KONIEC PROMPTU 10".
+
+---
+
+Zaprojektuj podstronę **Dokumenty i terminy**.
+
+To jedyna strona w serwisie, na której wolno użyć koloru ostrzegawczego — pomarańczowego
+`#FF9500`. Nigdzie indziej się nie pojawia, więc tu znaczy dokładnie jedno: ten dokument
+zaraz wygaśnie.
+
+**Nadtytuł:** DOKUMENTY I TERMINY
+
+**Nagłówek:** Nic nie wygaśnie po cichu.
+
+**Zdanie pod nagłówkiem:** *Ubezpieczenie, przegląd, licencja, prawo jazdy, badania.
+System pilnuje dat i mówi wcześniej — Tobie i kierowcy.*
+
+**Sześć bloków:**
+
+1. **Wszystko w jednym miejscu** — Pojazdy, firma, kierowcy. Jedna lista zamiast trzech
+   szuflad i jednego segregatora.
+2. **Przypomnienie z wyprzedzeniem** — Na długo przed terminem, nie dzień po. Sam
+   ustawiasz, ile dni wcześniej.
+3. **Kierowca też dostaje swoje** — O jego prawie jazdy i badaniach przypominamy jemu,
+   nie tylko Tobie.
+4. **Jeden ekran statusu** — Widać, co wymaga uwagi w tym miesiącu. I nic poza tym.
+5. **Wydruk listy** — Dla siebie albo dla księgowej, na jedną stronę.
+6. **Kolor ostrzegawczy tylko tutaj** — Pomarańczowy w całym serwisie jest zarezerwowany
+   dla dokumentu, który zaraz wygaśnie. Jak go zobaczysz, od razu wiesz, o co chodzi.
+
+**Siatka drobiazgów, sześć kafelków:** Skan dokumentu przy pozycji · Przypomnienie mailem
+i w aplikacji · Termin przesuwasz jednym kliknięciem po odnowieniu · Historia poprzednich
+polis i przeglądów · Dokumenty pojazdu widoczne dla kierowcy w trasie · Lista do wydruku
+na jedną stronę
+
+**Makiety:**
+Główna — lista dokumentów z datami, jeden wiersz w kolorze ostrzegawczym.
+Plik `mockup-dokumenty-terminy-desktop.png`, 4:3 *(ten sam ekran co na stronie głównej)*.
+Dodatkowo: ekran statusu miesiąca w trzech kolumnach — pojazdy, firma, kierowcy
+(`mockup-dokumenty-status-desktop.png`, 16:10) oraz telefon kierowcy z jego dokumentami
+i najbliższym terminem badania, tryb nocny (`mockup-dokumenty-kierowca-phone.png`, 9:19.5).
+
+**Kto tego używa:** Właściciel — odnośnik do `/dla-kogo/wlasciciel`.
+Kierowca — odnośnik do `/dla-kogo/kierowca`.
+
+**Trzy pytania:**
+- **Skąd system zna daty?** — Wpisujesz je raz przy dokumencie. Po odnowieniu przesuwasz
+  termin jednym kliknięciem.
+- **Czy przypomnienie przyjdzie mailem?** — Tak, mailem i w aplikacji. Kierowca dostaje
+  swoje na telefon.
+- **Co, gdy dokument dotyczy tylko jednego pojazdu?** — Wtedy siedzi przy tym pojeździe
+  i nie miesza się z resztą floty.
+
+---
+**KONIEC PROMPTU 10**
+
+---
+---
+
+# FALE 3–4 — POZOSTAŁE PODSTRONY
+
+Prompty powstaną tak samo, gdy fala 2 będzie zaprojektowana. Treść czeka
 w `05-podstrony.md`, kolejność w `09-workflow-wdrozenia.md`:
 
 | Fala | Strony | Rozdziały w `05` |
 |---|---|---|
-| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty i terminy | A5, A3, A4, A6, A9 |
 | **3** | Cztery strony ról · Cennik · Demo | B1–B4, C3, C4 |
 | **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | C5–C12 |

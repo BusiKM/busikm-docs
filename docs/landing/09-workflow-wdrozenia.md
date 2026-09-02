@@ -71,14 +71,14 @@ Dostajesz commit na gałęzi i krótką listę rozbieżności do decyzji.
 
 Fale nie czekają na siebie: kiedy ja implementuję falę pierwszą, Ty projektujesz drugą.
 
-| Fala | Strony | Dlaczego w tej kolejności |
-|---|---|---|
-| **1** | Aplikacja kierowcy · Dyspozytornia · Dane dla księgowej · Ile zostaje | Zdejmują cztery największe obiekcje |
-| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty | Domykają obszar „Co robi” |
-| **3** | Cztery strony ról · Cennik · Demo | Domykają nawigację |
-| **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | Nie potrzebują Claude Design — wystarczy szablon z fali 1 |
+| Fala | Strony | Dlaczego w tej kolejności | Stan |
+|---|---|---|---|
+| **1** | Aplikacja kierowcy · Dyspozytornia · Dane dla księgowej · Ile zostaje | Zdejmują cztery największe obiekcje | ✅ zamknięta |
+| **2** | Zlecenia i faktury · Trasy i mapa · Czas pracy · Koszty i paragony · Dokumenty | Domykają obszar „Co robi” | prompty 6–10 gotowe, czeka na projekty |
+| **3** | Cztery strony ról · Cennik · Demo | Domykają nawigację | |
+| **4** | Pomoc · Pierwsze kroki · Kontakt · Status · cztery prawne | Nie potrzebują Claude Design — wystarczy szablon z fali 1 | |
 
-Rytm jednej fali: prompt → projekt → eksport do `design/0N-<nazwa>/` → kod → przegląd.
+Rytm jednej fali: prompt → projekt → eksport do `design/NN-<nazwa>/` → kod → przegląd.
 
 *Około dwóch sesji na falę.*
 
