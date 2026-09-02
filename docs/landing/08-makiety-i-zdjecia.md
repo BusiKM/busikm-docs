@@ -133,6 +133,9 @@ to zrzuty tylko dla podstrony; **z gwiazdką** — ten sam plik, co na stronie g
 | Czas pracy i przerwy | `mockup-czas-pracy-pierscienie-desktop.png` \* | desktop 4:3 | Pierścienie jazdy, przerwy i odpoczynku + lista kierowców |
 | Czas pracy i przerwy | `mockup-kierowca-czas-phone.png` \* | telefon 9:19.5 | Licznik w telefonie z przypomnieniem o przerwie |
 | Czas pracy i przerwy | `mockup-czas-karta-desktop.png` | desktop 4:3 | Karta czasu pracy do wydruku: dni, godziny, kraje, PDF |
+| Koszty i paragony | `mockup-koszty-paragon-phone.png` \* | telefon 9:19.5 | Telefon w perspektywie ze zdjęciem paragonu i rozpoznanymi polami |
+| Koszty i paragony | `mockup-koszty-lista-desktop.png` | desktop 16:10 | Koszty miesiąca z kategoriami i miniaturami zdjęć |
+| Koszty i paragony | `mockup-koszty-kurs-desktop.png` | desktop 4:3 | Kwota w euro i w złotych, kurs i data przeliczenia |
 
 **Uwaga o `mockup-faktury-*`.** Strona główna ma `mockup-faktury-zlecenie-desktop.png` —
 zwartą kartę 4:3 w połowie szerokości. Podstrona ma `mockup-faktury-ekran-desktop.png` —

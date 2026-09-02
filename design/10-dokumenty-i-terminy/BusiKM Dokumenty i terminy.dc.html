@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span style="color:#0B5FFF">Co robi <span style="font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+</div>
+
+<!-- HERO — jasna -->
+<div data-screen-label="Hero" style="position:relative;padding:160px 0 0;background:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · opacity 0→1 · 28 px ↑ · 700 ms · wiersze listy kaskadą 90 ms · sekcja spokojna, bez odliczania</div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px">
+    <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dokumenty i terminy</div>
+    <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:1120px;white-space:nowrap">Nic nie wygaśnie po cichu.</h1>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:680px">Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat i mówi wcześniej — Tobie i kierowcy.</p>
+  </div>
+  <!-- makieta główna -->
+  <div style="position:relative;max-width:1120px;margin:96px auto 0;padding-bottom:160px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <div style="position:relative;width:760px">
+      <div style="position:absolute;left:10%;right:10%;bottom:40px;height:180px;background:#0B5FFF;filter:blur(110px);opacity:.2"></div>
+      <div style="position:relative;border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 40px 80px rgba(11,95,255,.08),0 12px 32px rgba(0,0,0,.06);aspect-ratio:4/3;padding:40px;display:flex;flex-direction:column;gap:16px;font-size:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="color:#6E6E76;font-size:13px">Dokumenty · wrzesień 2026</div><b style="font-size:20px;letter-spacing:-0.01em">Posortowane po terminie</b></div><span style="color:#6E6E76">17 dokumentów</span></div>
+        <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6">
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid #E3E3E6"><div><b>Ubezpieczenie OC</b><div style="color:#6E6E76">PO 2093J · pojazd</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:12%;height:100%;background:#FF9500"></div></div><span style="text-align:right;font-weight:600">9 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid #E3E3E6"><div><b>Badania lekarskie</b><div style="color:#6E6E76">Tomasz L. · kierowca</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:34%;height:100%;background:#0B5FFF"></div></div><span style="text-align:right">41 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid #E3E3E6"><div><b>Przegląd techniczny</b><div style="color:#6E6E76">WZ 4821K · pojazd</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:55%;height:100%;background:#0B5FFF"></div></div><span style="text-align:right">88 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid #E3E3E6"><div><b>Licencja wspólnotowa</b><div style="color:#6E6E76">Firma</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:78%;height:100%;background:#30D158"></div></div><span style="text-align:right">214 dni</span></div>
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid #E3E3E6"><div><b>Badania psychologiczne</b><div style="color:#6E6E76">Marek W. · kierowca</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:86%;height:100%;background:#30D158"></div></div><span style="text-align:right">1,5 roku</span></div>
+          <div style="display:grid;grid-template-columns:1fr 180px 80px;gap:20px;align-items:center;padding:16px 0"><div><b>Prawo jazdy</b><div style="color:#6E6E76">Marek W. · kierowca</div></div><div style="height:6px;border-radius:3px;background:#F2F2F4;overflow:hidden"><div style="width:92%;height:100%;background:#30D158"></div></div><span style="text-align:right">3 lata</span></div>
+        </div>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;color:#6E6E76;font-size:13px"><span>Przypomnienie wysłane: Tobie i Tomaszowi L. · 30 dni wcześniej</span><span>Wydrukuj listę</span></div>
+      </div>
+    </div>
+    <div style="max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · DOKUMENTY I TERMINY · DESKTOP</div><div>Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach, jeden wiersz w kolorze ostrzegawczym. Ten sam ekran co na stronie głównej.</div><div style="display:flex;justify-content:space-between"><span>mockup-dokumenty-terminy-desktop.png</span><span>4:3</span></div></div>
+  </div>
+</div>
+
+<!-- 1. WSZYSTKO W JEDNYM MIEJSCU — CIEMNA -->
+<div data-screen-label="1 Wszystko w jednym miejscu" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · trzy kolumny kaskadą 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">01</div><h2 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Wszystko w jednym miejscu</h2></div>
+      <p style="margin:0;font-size:22px;line-height:1.5;color:#8E8E96">Pojazdy, firma, kierowcy. Jedna lista zamiast trzech szuflad i jednego segregatora.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:18px;font-size:14px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Pojazdy</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">7 pojazdów</div><div style="display:flex;flex-direction:column;border-top:1px solid #26262B"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Ubezpieczenie OC/AC</span><span style="color:#8E8E96">7</span></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Przegląd techniczny</span><span style="color:#8E8E96">7</span></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Winieta, tachograf</span><span style="color:#8E8E96">14</span></div></div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:18px;font-size:14px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Firma</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">Trans-Bus Kowalski</div><div style="display:flex;flex-direction:column;border-top:1px solid #26262B"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Licencja wspólnotowa</span><span style="color:#8E8E96">1</span></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Ubezpieczenie przewoźnika</span><span style="color:#8E8E96">1</span></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Zabezpieczenie finansowe</span><span style="color:#8E8E96">1</span></div></div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:18px;font-size:14px"><div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#8E8E96;font-weight:500">Kierowcy</div><div style="font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em">9 kierowców</div><div style="display:flex;flex-direction:column;border-top:1px solid #26262B"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Prawo jazdy</span><span style="color:#8E8E96">9</span></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span>Badania lekarskie i psychologiczne</span><span style="color:#8E8E96">18</span></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Uprawnienia</span><span style="color:#8E8E96">9</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. PRZYPOMNIENIE Z WYPRZEDZENIEM — jasna -->
+<div data-screen-label="2 Przypomnienie z wyprzedzeniem" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">02</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Przypomnienie z wyprzedzeniem</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Na długo przed terminem, nie dzień po. Sam ustawiasz, ile dni wcześniej.</p>
+    </div>
+    <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);padding:32px;display:flex;flex-direction:column;gap:20px;font-size:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">Przypominaj wcześniej</b><span style="color:#6E6E76">Ubezpieczenie OC · PO 2093J</span></div>
+      <div style="display:flex;gap:8px"><span style="padding:10px 16px;border-radius:999px;border:1px solid #E3E3E6;color:#6E6E76">7 dni</span><span style="padding:10px 16px;border-radius:999px;border:1px solid #E3E3E6;color:#6E6E76">14 dni</span><span style="padding:10px 16px;border-radius:999px;background:#0A0A0B;color:#FAFAFA;font-weight:600">30 dni</span><span style="padding:10px 16px;border-radius:999px;border:1px solid #E3E3E6;color:#6E6E76">60 dni</span><span style="padding:10px 16px;border-radius:999px;border:1px solid #E3E3E6;color:#6E6E76">90 dni</span></div>
+      <div style="position:relative;height:56px;margin-top:8px">
+        <div style="position:absolute;left:0;right:0;top:26px;height:4px;border-radius:2px;background:#F2F2F4"></div>
+        <div style="position:absolute;left:0;width:72%;top:26px;height:4px;border-radius:2px;background:#0B5FFF"></div>
+        <div style="position:absolute;left:0;top:0;font-size:12px;color:#6E6E76">dziś</div>
+        <div style="position:absolute;left:calc(72% - 6px);top:20px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #0B5FFF"></div>
+        <div style="position:absolute;left:calc(72% - 40px);top:40px;font-size:12px;font-weight:600;white-space:nowrap">przypomnienie · 30 dni przed</div>
+        <div style="position:absolute;right:0;top:0;font-size:12px;color:#6E6E76">termin · 12.10</div>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6;padding-top:8px"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E3E3E6"><span>Mail do Ciebie</span><span style="color:#1E9C43;font-weight:600">włączone</span></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E3E3E6"><span>Powiadomienie w aplikacji</span><span style="color:#1E9C43;font-weight:600">włączone</span></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span>Drugie przypomnienie · 7 dni przed</span><span style="color:#1E9C43;font-weight:600">włączone</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. KIEROWCA TEŻ DOSTAJE SWOJE — CIEMNA -->
+<div data-screen-label="3 Kierowca też dostaje swoje" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px;position:relative">
+      <div style="position:absolute;bottom:60px;left:20%;right:20%;height:140px;background:#0B5FFF;filter:blur(90px);opacity:.3"></div>
+      <div style="position:relative;width:270px;height:585px;border-radius:44px;background:#000;border:1px solid #2A2A30;padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.6)"><div style="height:100%;border-radius:36px;background:#111113;overflow:hidden;display:flex;flex-direction:column;font-size:12px"><div style="padding:22px 18px 0;display:flex;justify-content:space-between;color:#8E8E96"><span>07:40</span><span>Tomasz L.</span></div><div style="padding:24px 18px 0;font-size:22px;font-weight:600">Moje dokumenty</div><div style="margin:16px 18px 0;padding:16px;border-radius:16px;background:#1A1A1E;border:1px solid #26262B;display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between"><b style="font-size:14px">Badania lekarskie</b><span style="color:#8E8E96">41 dni</span></div><div style="color:#8E8E96">Ważne do 13.10.2026</div><div style="height:5px;border-radius:3px;background:#26262B;overflow:hidden;margin-top:6px"><div style="width:34%;height:100%;background:#0B5FFF"></div></div><div style="color:#8E8E96;margin-top:4px">Przypomnimy Ci 30 dni przed. Szefowi też.</div></div><div style="padding:18px;display:flex;flex-direction:column;gap:8px"><div style="padding:14px;border-radius:14px;background:#141417;display:flex;justify-content:space-between;align-items:center"><div><b>Prawo jazdy · C1</b><div style="color:#8E8E96">do 2029</div></div><span style="color:#30D158">ważne</span></div><div style="padding:14px;border-radius:14px;background:#141417;display:flex;justify-content:space-between;align-items:center"><div><b>Badania psychologiczne</b><div style="color:#8E8E96">do 2028</div></div><span style="color:#30D158">ważne</span></div><div style="padding:14px;border-radius:14px;background:#141417;display:flex;justify-content:space-between;align-items:center"><div><b>Kod 95</b><div style="color:#8E8E96">do 2028</div></div><span style="color:#30D158">ważne</span></div><div style="padding:14px;border-radius:14px;background:#141417;display:flex;justify-content:space-between;align-items:center"><div><b>Dokumenty pojazdu</b><div style="color:#8E8E96">PO 2093J · do wglądu w trasie</div></div><span style="color:#8E8E96">→</span></div></div><div style="margin-top:auto;display:flex;justify-content:space-around;padding:14px 0 22px;border-top:1px solid #26262B;color:#8E8E96;font-size:11px"><span>Zlecenia</span><span>Trasa</span><span>Koszty</span><span style="color:#FAFAFA">Dokumenty</span></div></div></div>
+      <div style="max-width:520px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · DOKUMENTY KIEROWCY · TELEFON, TRYB NOCNY</div><div>Telefon kierowcy z jego dokumentami i najbliższym terminem badania u góry.</div><div style="display:flex;justify-content:space-between"><span>mockup-dokumenty-kierowca-phone.png</span><span>9:19.5</span></div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">03</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Kierowca też dostaje swoje</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">O jego prawie jazdy i badaniach przypominamy jemu, nie tylko Tobie.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 4. JEDEN EKRAN STATUSU — jasna -->
+<div data-screen-label="4 Jeden ekran statusu" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">04</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Jeden ekran statusu</h2></div>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Widać, co wymaga uwagi w tym miesiącu. I nic poza tym.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column">
+        <div style="height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid #E3E3E6;background:#FAFAFA"><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="margin-left:16px;font-size:12px;color:#6E6E76">app.busikm.pl · Dokumenty · status na wrzesień</span></div>
+        <div style="flex:1;padding:40px;display:flex;flex-direction:column;gap:28px;font-size:14px">
+          <div style="display:flex;justify-content:space-between;align-items:end"><div><div style="color:#6E6E76;font-size:13px">Wrzesień 2026</div><b style="font-size:24px;letter-spacing:-0.01em">Jedna rzecz wymaga uwagi w tym miesiącu.</b></div><span style="color:#6E6E76">17 dokumentów · 16 w porządku</span></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1">
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between"><span style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Pojazdy</span><span style="color:#6E6E76">7</span></div><div style="padding:14px;border-radius:14px;background:#FFF4E5;border:1px solid rgba(255,149,0,.35);display:flex;justify-content:space-between;align-items:center"><div><b>Ubezpieczenie OC</b><div style="color:#6E6E76">PO 2093J</div></div><b style="color:#FF9500">9 dni</b></div><div style="padding:14px;border-radius:14px;background:#F2F2F4;display:flex;justify-content:space-between;align-items:center"><div><b>Przegląd techniczny</b><div style="color:#6E6E76">WZ 4821K</div></div><span>88 dni</span></div><div style="margin-top:auto;color:#6E6E76;font-size:13px">pozostałe 12 · w porządku</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between"><span style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Firma</span><span style="color:#6E6E76">3</span></div><div style="padding:14px;border-radius:14px;background:#F2F2F4;display:flex;justify-content:space-between;align-items:center"><div><b>Licencja wspólnotowa</b><div style="color:#6E6E76">Firma</div></div><span>214 dni</span></div><div style="margin-top:auto;color:#6E6E76;font-size:13px">pozostałe 2 · w porządku</div></div>
+            <div style="border:1px solid #E3E3E6;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between"><span style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Kierowcy</span><span style="color:#6E6E76">9</span></div><div style="padding:14px;border-radius:14px;background:#F2F2F4;display:flex;justify-content:space-between;align-items:center"><div><b>Badania lekarskie</b><div style="color:#6E6E76">Tomasz L.</div></div><span>41 dni</span></div><div style="margin-top:auto;color:#6E6E76;font-size:13px">pozostałe 26 · w porządku</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="align-self:center;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · STATUS MIESIĄCA · DESKTOP 1440</div><div>Trzy kolumny: pojazdy, firma, kierowcy. Tylko to, co wymaga uwagi; reszta jako liczba „w porządku”.</div><div style="display:flex;justify-content:space-between"><span>mockup-dokumenty-status-desktop.png</span><span>16:10</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5+6 — CIEMNA -->
+<div data-screen-label="5–6 Wydruk i kolor ostrzegawczy" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="border-radius:28px;background:#111113;border:1px solid #26262B;padding:56px;display:flex;flex-direction:column;gap:40px;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">05</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Wydruk listy</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Dla siebie albo dla księgowej, na jedną stronę.</p></div>
+      <div style="border-radius:12px;background:#F2F2F4;color:#0A0A0B;padding:24px;display:flex;flex-direction:column;gap:8px;font-size:12px;aspect-ratio:1/1.2;max-width:300px;align-self:center;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.5)"><div style="display:flex;justify-content:space-between;color:#6E6E76"><span>Dokumenty · wrzesień 2026</span><span>1/1</span></div><b>Trans-Bus Kowalski</b><div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #D6D6DA"><span>Ubezpieczenie OC · PO 2093J</span><span>12.10</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #E3E3E6"><span>Badania lek. · Tomasz L.</span><span>13.10</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #E3E3E6"><span>Przegląd · WZ 4821K</span><span>29.11</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #E3E3E6"><span>Licencja wspólnotowa</span><span>04.04.27</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #E3E3E6;color:#6E6E76"><span>… 13 kolejnych</span><span></span></div><div style="margin-top:auto;color:#6E6E76">Wydrukowano 2.09.2026 · busikm.pl</div></div>
+    </div>
+    <div style="border-radius:28px;background:#111113;border:1px solid #26262B;padding:56px;display:flex;flex-direction:column;gap:40px;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:20px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">06</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Kolor ostrzegawczy tylko tutaj</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Pomarańczowy w całym serwisie jest zarezerwowany dla dokumentu, który zaraz wygaśnie. Jak go zobaczysz, od razu wiesz, o co chodzi.</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:14px"><div style="display:grid;grid-template-columns:1fr 140px 70px;gap:16px;align-items:center;padding:14px 16px;border-radius:14px;background:#0A0A0B;border:1px solid #26262B"><div><b>Ubezpieczenie OC</b><div style="color:#8E8E96">PO 2093J</div></div><div style="height:6px;border-radius:3px;background:#26262B;overflow:hidden"><div style="width:12%;height:100%;background:#FF9500"></div></div><b style="text-align:right;color:#FF9500">9 dni</b></div><div style="display:grid;grid-template-columns:1fr 140px 70px;gap:16px;align-items:center;padding:14px 16px;border-radius:14px;background:#0A0A0B;border:1px solid #26262B"><div><b>Badania lekarskie</b><div style="color:#8E8E96">Tomasz L.</div></div><div style="height:6px;border-radius:3px;background:#26262B;overflow:hidden"><div style="width:34%;height:100%;background:#0B5FFF"></div></div><span style="text-align:right">41 dni</span></div><div style="display:grid;grid-template-columns:1fr 140px 70px;gap:16px;align-items:center;padding:14px 16px;border-radius:14px;background:#0A0A0B;border:1px solid #26262B"><div><b>Prawo jazdy</b><div style="color:#8E8E96">Marek W.</div></div><div style="height:6px;border-radius:3px;background:#26262B;overflow:hidden"><div style="width:92%;height:100%;background:#30D158"></div></div><span style="text-align:right">3 lata</span></div><div style="display:flex;gap:20px;color:#8E8E96;font-size:13px;padding-top:8px"><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:#FF9500"></span>zaraz wygaśnie</span><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:#0B5FFF"></span>w tym kwartale</span><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:#30D158"></span>w porządku</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DROBIAZGI — jasna, mist -->
+<div data-screen-label="Drobiazgi" style="position:relative;padding:160px 0;background:#F2F2F4">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Drobiazgi, które widać dopiero w robocie.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Skan dokumentu przy pozycji</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Przypomnienie mailem i w aplikacji</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Termin przesuwasz jednym kliknięciem po odnowieniu</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Historia poprzednich polis i przeglądów</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Dokumenty pojazdu widoczne dla kierowcy w trasie</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Lista do wydruku na jedną stronę</div>
+    </div>
+    <div style="padding-top:64px;border-top:1px solid #E3E3E6;font-size:17px;line-height:1.6;color:#6E6E76">Kto tego używa: <a href="/dla-kogo/wlasciciel">Właściciel →</a> <span style="margin:0 12px">·</span> <a href="/dla-kogo/kierowca">Kierowca →</a></div>
+  </div>
+</div>
+
+<!-- PYTANIA — jasna -->
+<div data-screen-label="Pytania" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Trzy pytania</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid #E3E3E6">
+          <div onClick="{{ q.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;cursor:pointer;font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.3"><span>{{ q.q }}</span><span style="color:#6E6E76;font-weight:400;font-size:24px;flex:none">{{ q.sign }}</span></div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 64px 28px 0;font-size:17px;line-height:1.6;color:#6E6E76">{{ q.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FINAŁ — CIEMNA -->
+<div data-screen-label="Finał" style="position:relative;padding:200px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:30%;right:30%;bottom:-200px;height:400px;background:#0B5FFF;filter:blur(160px);opacity:.25"></div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
+    <h2 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Zacznij od jednej trasy.</h2>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#8E8E96">14 dni bez opłat. Bez umowy. Bez dzwonienia do handlowca.</p>
+    <div style="display:flex;gap:12px;margin-top:8px"><span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Wypróbuj 14 dni</span><span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #3A3A40;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Zobacz demo</span></div>
+  </div>
+</div>
+
+<!-- STOPKA -->
+<div data-screen-label="Stopka" style="background:#0A0A0B;color:#FAFAFA;border-top:1px solid #26262B;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#8E8E96">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#8E8E96">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#FAFAFA">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#8E8E96">Pomoc</span><span style="color:#8E8E96">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap"><span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span><span>Twoje dane zostają w Europie</span></div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+  renderVals() {
+    const { open } = this.state;
+    const qa = [
+      ['Skąd system zna daty?', 'Wpisujesz je raz przy dokumencie. Po odnowieniu przesuwasz termin jednym kliknięciem.'],
+      ['Czy przypomnienie przyjdzie mailem?', 'Tak, mailem i w aplikacji. Kierowca dostaje swoje na telefon.'],
+      ['Co, gdy dokument dotyczy tylko jednego pojazdu?', 'Wtedy siedzi przy tym pojeździe i nie miesza się z resztą floty.'],
+    ];
+    return { faq: qa.map(([q, a], i) => ({ q, a, open: open === i, sign: open === i ? '−' : '+', toggle: () => this.setState({ open: open === i ? -1 : i }) })) };
+  }
+}
+</script>
+</body>
+</html>

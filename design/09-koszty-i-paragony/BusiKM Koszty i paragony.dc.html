@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#FAFAFA;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;overflow:hidden;position:relative">
+
+<!-- NAV -->
+<div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);border-bottom:1px solid #E3E3E6;position:relative;z-index:5">
+  <div style="display:flex;align-items:center;gap:44px">
+    <a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a>
+    <div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span style="color:#0B5FFF">Co robi <span style="font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+</div>
+
+<!-- HERO — jasna -->
+<div data-screen-label="Hero" style="position:relative;padding:160px 0 0;background:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">WEJŚCIE · opacity 0→1 · 28 px ↑ · 700 ms · panel pól wysuwa się z telefonu 200 ms później</div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px">
+    <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Koszty i paragony</div>
+    <h1 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;max-width:980px">Reklamówka paragonów.<br>Do wyrzucenia.</h1>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#6E6E76;max-width:640px">Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca wpisują się same.</p>
+  </div>
+  <!-- makieta główna: telefon + odklejony panel -->
+  <div style="position:relative;max-width:1120px;margin:96px auto 0;padding-bottom:160px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <div style="position:relative;width:800px;height:640px;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;left:20%;right:20%;bottom:40px;height:160px;background:#0B5FFF;filter:blur(110px);opacity:.22"></div>
+      <div style="position:relative;width:270px;height:585px;border-radius:44px;background:#000;border:1px solid #2A2A30;padding:10px;transform:perspective(1400px) rotateY(14deg) rotate(-3deg);margin-right:220px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 30px 60px rgba(0,0,0,.18)">
+        <div style="height:100%;border-radius:36px;background:#111113;color:#FAFAFA;overflow:hidden;display:flex;flex-direction:column;font-size:12px">
+          <div style="padding:22px 18px 0;display:flex;justify-content:space-between;color:#8E8E96"><span>11:42</span><span>Nowy koszt</span></div>
+          <div style="margin:18px 14px 0;height:230px;border-radius:18px;background:#1E1E22;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:130px;height:170px;background:#F2F2F4;border-radius:4px;display:flex;flex-direction:column;gap:6px;padding:12px;color:#0A0A0B;font-size:8px;font-family:ui-monospace,Menlo,monospace;transform:rotate(-2deg)"><div style="text-align:center;font-weight:700">Shell · Rotterdam</div><div style="text-align:center;color:#6E6E76">02.09.2026 11:38</div><div style="display:flex;justify-content:space-between"><span>Diesel 82,1 l</span><span>139,50 €</span></div><div style="display:flex;justify-content:space-between"><span>Myjnia</span><span>12,00 €</span></div><div style="border-top:1px dashed #ccc;padding-top:4px;display:flex;justify-content:space-between;font-weight:700"><span>TOTAAL</span><span>151,50 €</span></div></div><div style="position:absolute;bottom:12px;right:12px;padding:6px 10px;border-radius:999px;background:rgba(48,209,88,.16);color:#30D158;font-weight:600">rozpoznane · 5 z 5</div></div>
+          <div style="margin:14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Kwota</span><b>151,50 € · 648 zł</b></div><div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Rodzaj</span><b>Paliwo</b></div><div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#1A1A1E"><span style="color:#8E8E96">Zlecenie</span><b>Poznań → Rotterdam</b></div></div>
+          <div style="margin:auto 14px 14px;padding:16px;border-radius:14px;background:#0B5FFF;color:#fff;text-align:center;font-weight:600;font-size:15px">Zapisz</div>
+        </div>
+      </div>
+      <div style="position:absolute;right:40px;top:120px;width:360px;border-radius:20px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 56px rgba(0,0,0,.1);padding:24px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <div style="display:flex;justify-content:space-between;color:#6E6E76;margin-bottom:4px"><span>Rozpoznane pola</span><span style="color:#1E9C43;font-weight:600">5 z 5</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Sprzedawca</span><b>Shell · Rotterdam</b></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Data</span><b>2.09.2026 · 11:38</b></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Kwota</span><b>151,50 € · 648,42 zł</b></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Rodzaj</span><b>Paliwo</b></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 14px;border-radius:10px;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.4)"><span style="color:#6E6E76">Zlecenie · pojazd</span><b>Poznań → Rotterdam · PO 2093J</b></div>
+      </div>
+    </div>
+    <div style="max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · KOSZT Z PARAGONU · TELEFON, TRYB NOCNY</div><div>Telefon w perspektywie ze zdjęciem paragonu i wypełnionym formularzem; obok „odklejony” panel z rozpoznanymi polami. Ten sam ekran co na stronie głównej.</div><div style="display:flex;justify-content:space-between"><span>mockup-koszty-paragon-phone.png</span><span>9:19.5</span></div></div>
+  </div>
+</div>
+
+<!-- 1+2 — CIEMNA -->
+<div data-screen-label="1–2 Zdjęcie i trafia tam, gdzie trzeba" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#55555C">WEJŚCIE · trzy kroki kaskadą 90 ms</div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px">
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">01</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Zdjęcie zamiast wpisywania</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Pstryka paragon, formularz wypełnia się sam. Poprawia tylko wtedy, gdy coś się nie zgadza.</p></div>
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">02</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Trafia tam, gdzie trzeba</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Do tego zlecenia, tego pojazdu, tego kierowcy. Bez segregowania wieczorem przy stole.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:20px;min-height:220px"><div style="font-size:13px;color:#8E8E96">11:38 · stacja Shell, Rotterdam</div><div style="width:64px;height:84px;background:#F2F2F4;border-radius:4px;transform:rotate(-4deg)"></div><div style="font-size:22px;line-height:1.3;font-weight:600;letter-spacing:-0.01em;margin-top:auto">Pstryk.</div></div>
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:20px;min-height:220px"><div style="font-size:13px;color:#8E8E96">11:38 · formularz</div><div style="display:flex;flex-direction:column;gap:6px;font-size:13px"><div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#1A1A1E"><span style="color:#8E8E96">Kwota</span><b>151,50 €</b></div><div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#1A1A1E"><span style="color:#8E8E96">Sprzedawca</span><b>Shell</b></div><div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#1A1A1E"><span style="color:#8E8E96">Rodzaj</span><b>Paliwo</b></div></div><div style="font-size:22px;line-height:1.3;font-weight:600;letter-spacing:-0.01em;margin-top:auto">Wypełnia się samo.</div></div>
+      <div style="border-radius:20px;background:#0B5FFF;color:#fff;padding:32px;display:flex;flex-direction:column;gap:20px;min-height:220px"><div style="font-size:13px;color:rgba(255,255,255,.7)">11:39 · u Ciebie</div><div style="display:flex;flex-direction:column;gap:6px;font-size:14px"><span>Zlecenie · Poznań → Rotterdam</span><span>Pojazd · PO 2093J</span><span>Kierowca · Tomasz L.</span></div><div style="font-size:22px;line-height:1.3;font-weight:600;letter-spacing:-0.01em;margin-top:auto">Już tam, gdzie trzeba.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. KATEGORIE — jasna -->
+<div data-screen-label="3 Kategorie z życia" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">03</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Kategorie z życia</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Paliwo, opłaty drogowe, hotel, posiłek, prom, parking, naprawa.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:17px;font-weight:500">
+      <span style="padding:16px 24px;border-radius:999px;background:#0A0A0B;color:#FAFAFA">Paliwo</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Opłaty drogowe</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Hotel</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Posiłek</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Prom</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Parking</span>
+      <span style="padding:16px 24px;border-radius:999px;background:#fff;border:1px solid #E3E3E6">Naprawa</span>
+      <span style="padding:16px 24px;border-radius:999px;color:#6E6E76;border:1px dashed #E3E3E6">podpowiedź po sprzedawcy</span>
+    </div>
+  </div>
+</div>
+
+<!-- 4. OBCA WALUTA — CIEMNA -->
+<div data-screen-label="4 Obca waluta" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:20px;background:#111113;border:1px solid #26262B;box-shadow:0 30px 80px rgba(0,0,0,.5);aspect-ratio:4/3;padding:32px;display:flex;flex-direction:column;gap:16px;font-size:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="color:#8E8E96;font-size:13px">Koszt · paliwo</div><b style="font-size:18px">Shell · Rotterdam</b></div><span style="color:#8E8E96">2.09.2026</span></div>
+        <div style="display:flex;align-items:end;gap:16px;padding:16px 0;border-top:1px solid #26262B;border-bottom:1px solid #26262B"><div><div style="color:#8E8E96;font-size:13px">W euro</div><div style="font-size:36px;font-weight:700;letter-spacing:-0.03em">151,50 €</div></div><span style="color:#8E8E96;font-size:22px;padding-bottom:6px">→</span><div><div style="color:#8E8E96;font-size:13px">W złotych</div><div style="font-size:36px;font-weight:700;letter-spacing:-0.03em">648,42 zł</div></div></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">Kurs</span><span>4,2800 zł</span></div><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #26262B"><span style="color:#8E8E96">Data przeliczenia</span><span>1.09.2026 · dzień przed dokumentem</span></div><div style="display:flex;justify-content:space-between;padding:10px 0"><span style="color:#8E8E96">Zapisane przy dokumencie</span><span style="color:#30D158;font-weight:600">na stałe</span></div></div>
+        <div style="margin-top:auto;color:#8E8E96;font-size:13px">Nikt nie odtwarza kursu z tabeli trzy tygodnie później.</div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#8E8E96;border:1px dashed #3A3A40;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · KOSZT W EURO Z KURSEM · DESKTOP, TRYB NOCNY</div><div>Kwota w euro i w złotych, kurs, data przeliczenia, zapisane przy dokumencie.</div><div style="display:flex;justify-content:space-between"><span>mockup-koszty-kurs-desktop.png</span><span>4:3</span></div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">04</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Obca waluta</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Przeliczona po kursie z dnia. Kurs zostaje przy dokumencie na stałe, nie trzeba go potem odtwarzać.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. ZDJĘCIE DOWODEM — jasna -->
+<div data-screen-label="5 Zdjęcie zostaje dowodem" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px"><div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">05</div><h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Zdjęcie zostaje dowodem</h2></div>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6E6E76">Nikt nie szuka papierka po trzech miesiącach. Zdjęcie leży przy koszcie.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="border-radius:28px;background:#fff;border:1px solid #E3E3E6;box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column">
+        <div style="height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border-bottom:1px solid #E3E3E6;background:#FAFAFA"><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="width:10px;height:10px;border-radius:50%;background:#E3E3E6"></span><span style="margin-left:16px;font-size:12px;color:#6E6E76">app.busikm.pl · Koszty · wrzesień 2026</span></div>
+        <div style="flex:1;padding:32px 40px;display:flex;flex-direction:column;gap:12px;font-size:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;gap:8px"><span style="padding:6px 12px;border-radius:999px;background:#F2F2F4;border:1px solid #E3E3E6;font-size:13px">1–30 września ▾</span><span style="padding:6px 12px;border-radius:999px;background:#F2F2F4;border:1px solid #E3E3E6;font-size:13px">Pojazd: wszystkie ▾</span><span style="padding:6px 12px;border-radius:999px;background:#F2F2F4;border:1px solid #E3E3E6;font-size:13px">Kategoria: wszystkie ▾</span></div><span style="color:#6E6E76">318 kosztów · 121 840 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6;color:#6E6E76;font-size:13px"><span></span><span>Data</span><span>Sprzedawca</span><span>Kategoria</span><span>Pojazd · kierowca</span><span>Zlecenie</span><span style="text-align:right">Kwota</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><span style="width:40px;height:48px;border-radius:4px;background:#F2F2F4;border:1px solid #E3E3E6"></span><span style="color:#6E6E76">2.09</span><b>Shell · Rotterdam</b><span>Paliwo</span><span style="color:#6E6E76">PO 2093J · Tomasz L.</span><span style="color:#6E6E76">Poznań → Rotterdam</span><span style="text-align:right">648,42 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><span style="width:40px;height:48px;border-radius:4px;background:#F2F2F4;border:1px solid #E3E3E6"></span><span style="color:#6E6E76">2.09</span><b>OMV · Brno</b><span>Paliwo</span><span style="color:#6E6E76">WZ 4821K · Marek W.</span><span style="color:#6E6E76">Warszawa → Mediolan</span><span style="text-align:right">442,12 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><span style="width:40px;height:48px;border-radius:4px;background:#F2F2F4;border:1px solid #E3E3E6"></span><span style="color:#6E6E76">2.09</span><b>ASFINAG · A13</b><span>Opłaty drogowe</span><span style="color:#6E6E76">WZ 4821K · Marek W.</span><span style="color:#6E6E76">Warszawa → Mediolan</span><span style="text-align:right">112,40 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><span style="width:40px;height:48px;border-radius:4px;background:#F2F2F4;border:1px solid #E3E3E6"></span><span style="color:#6E6E76">2.09</span><b>Hotel Brenner Nord</b><span>Hotel</span><span style="color:#6E6E76">WZ 4821K · Marek W.</span><span style="color:#6E6E76">Warszawa → Mediolan</span><span style="text-align:right">333,84 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #E3E3E6"><span style="width:40px;height:48px;border-radius:4px;background:#F2F2F4;border:1px solid #E3E3E6"></span><span style="color:#6E6E76">1.09</span><b>Stena Line · Gdynia</b><span>Prom</span><span style="color:#6E6E76">GD 7710R · Piotr K.</span><span style="color:#6E6E76">Gdańsk → Hamburg</span><span style="text-align:right">1 240,00 zł</span></div>
+          <div style="display:grid;grid-template-columns:48px 70px 1.4fr 1fr 1fr 1fr 110px;gap:14px;align-items:center;padding:10px 0"><span style="width:40px;height:48px;border-radius:4px;border:1px dashed #E3E3E6"></span><span style="color:#6E6E76">1.09</span><b>Leasing · rata 9/36</b><span>Koszt firmowy</span><span style="color:#6E6E76">PO 2093J</span><span style="color:#6E6E76">—</span><span style="text-align:right">2 890,00 zł</span></div>
+          <div style="margin-top:auto;color:#6E6E76;font-size:13px">Miniatura = zdjęcie paragonu. Klikasz i widzisz oryginał.</div>
+        </div>
+      </div>
+      <div style="align-self:center;max-width:600px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.55;color:#6E6E76;border:1px dashed #D6D6DA;border-radius:8px;padding:10px 14px"><div style="font-weight:600;letter-spacing:.06em">DO PODMIANY · LISTA KOSZTÓW MIESIĄCA · DESKTOP 1440</div><div>Koszty z kategoriami, pojazdami i miniaturami zdjęć; filtry u góry.</div><div style="display:flex;justify-content:space-between"><span>mockup-koszty-lista-desktop.png</span><span>16:10</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. KOSZTY FIRMOWE — CIEMNA -->
+<div data-screen-label="6 Koszty firmowe" style="position:relative;padding:160px 0;background:#0A0A0B;color:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:14px;color:#0B5FFF;font-weight:600;letter-spacing:.06em">06</div>
+      <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Koszty firmowe też</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#8E8E96">Leasing, ubezpieczenie, serwis. Nie tylko to, co w trasie.</p>
+    </div>
+    <div style="border-radius:20px;background:#111113;border:1px solid #26262B;padding:32px;display:flex;flex-direction:column;gap:12px;font-size:14px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+      <div style="display:flex;justify-content:space-between;color:#8E8E96"><span>Koszty firmowe · PO 2093J · wrzesień</span><span>bez zdjęcia</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #26262B"><span>Leasing · rata 9/36</span><span>2 890 zł</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #26262B"><span>Ubezpieczenie OC/AC · 1/12</span><span>640 zł</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #26262B"><span>Serwis · wymiana oleju</span><span>1 180 zł</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #26262B"><span>Paliwo z karty flotowej</span><span>4 312 zł</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #26262B;border-bottom:1px solid #26262B"><b>Razem</b><b>9 022 zł</b></div>
+      <div style="color:#8E8E96;font-size:13px">Rozkładają się na przejechane kilometry i wchodzą do marży każdego kursu.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DROBIAZGI — jasna, mist -->
+<div data-screen-label="Drobiazgi" style="position:relative;padding:160px 0;background:#F2F2F4">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Drobiazgi, które widać dopiero w robocie.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Paragon dodany bez zasięgu czeka w telefonie</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Ten sam paragon nie wejdzie dwa razy</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Koszt widać u właściciela od razu</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Podpowiedź kategorii po sprzedawcy</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Filtr kosztów po pojeździe</div>
+      <div style="border-radius:20px;background:#fff;border:1px solid #E3E3E6;padding:28px;font-size:17px;font-weight:600;min-height:120px;line-height:1.35">Zdjęcia wychodzą razem z zestawieniem</div>
+    </div>
+    <div style="padding-top:64px;border-top:1px solid #E3E3E6;font-size:17px;line-height:1.6;color:#6E6E76">Kto tego używa: <a href="/dla-kogo/kierowca">Kierowca →</a> <span style="margin:0 12px">·</span> <a href="/dla-kogo/ksiegowa">Księgowa →</a></div>
+  </div>
+</div>
+
+<!-- PYTANIA — jasna -->
+<div data-screen-label="Pytania" style="position:relative;padding:160px 0;background:#FAFAFA">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start">
+    <h2 style="margin:0;font-size:40px;line-height:1.15;font-weight:600;letter-spacing:-0.02em">Trzy pytania</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #E3E3E6">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid #E3E3E6">
+          <div onClick="{{ q.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;cursor:pointer;font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.3"><span>{{ q.q }}</span><span style="color:#6E6E76;font-weight:400;font-size:24px;flex:none">{{ q.sign }}</span></div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 64px 28px 0;font-size:17px;line-height:1.6;color:#6E6E76">{{ q.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FINAŁ — CIEMNA -->
+<div data-screen-label="Finał" style="position:relative;padding:200px 0;background:#0A0A0B;color:#FAFAFA;overflow:hidden">
+  <div style="position:absolute;left:30%;right:30%;bottom:-200px;height:400px;background:#0B5FFF;filter:blur(160px);opacity:.25"></div>
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
+    <h2 style="margin:0;font-size:88px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Zacznij od jednej trasy.</h2>
+    <p style="margin:0;font-size:22px;line-height:1.5;color:#8E8E96">14 dni bez opłat. Bez umowy. Bez dzwonienia do handlowca.</p>
+    <div style="display:flex;gap:12px;margin-top:8px"><span style="height:56px;padding:0 28px;border-radius:12px;background:#0B5FFF;color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Wypróbuj 14 dni</span><span style="height:56px;padding:0 28px;border-radius:12px;border:1px solid #3A3A40;font-size:17px;font-weight:600;display:flex;align-items:center;white-space:nowrap">Zobacz demo</span></div>
+  </div>
+</div>
+
+<!-- STOPKA -->
+<div data-screen-label="Stopka" style="background:#0A0A0B;color:#FAFAFA;border-top:1px solid #26262B;padding:80px 0 40px">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:32px;font-size:15px;line-height:1.6">
+      <div style="font-weight:700;font-size:20px;letter-spacing:-0.02em">BusiKM</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Co robi</div><span style="color:#8E8E96">Aplikacja kierowcy</span><span style="color:#8E8E96">Trasy i mapa floty</span><span style="color:#8E8E96">Czas pracy i przerwy</span><span style="color:#8E8E96">Dyspozytornia</span><span style="color:#8E8E96">Zlecenia i faktury</span><span style="color:#8E8E96">Ile zostaje</span><span style="color:#FAFAFA">Koszty i paragony</span><span style="color:#8E8E96">Dane dla księgowej</span><span style="color:#8E8E96">Dokumenty i terminy</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Dla kogo</div><span style="color:#8E8E96">Właściciel</span><span style="color:#8E8E96">Dyspozytor</span><span style="color:#8E8E96">Księgowa</span><span style="color:#8E8E96">Kierowca</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Firma</div><span style="color:#8E8E96">Cennik</span><span style="color:#8E8E96">Demo</span><span style="color:#8E8E96">Pomoc</span><span style="color:#8E8E96">Kontakt</span><span style="color:#8E8E96">Status usługi</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-weight:600;margin-bottom:8px">Prawne</div><span style="color:#8E8E96">Regulamin</span><span style="color:#8E8E96">Polityka prywatności</span><span style="color:#8E8E96">Powierzenie danych</span><span style="color:#8E8E96">Podprocesorzy</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid #26262B;font-size:14px;color:#8E8E96;flex-wrap:wrap"><span>BusiKM sp. z o.o. · NIP 000-000-00-00 · kontakt@busikm.pl</span><span>Twoje dane zostają w Europie</span></div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+  renderVals() {
+    const { open } = this.state;
+    const qa = [
+      ['Co, gdy paragon jest zmięty albo wyblakły?', 'Kierowca poprawia kwotę ręcznie. Zdjęcie i tak zostaje przy koszcie.'],
+      ['Czy kierowca widzi koszty całej firmy?', 'Nie. Widzi tylko to, co sam dodał.'],
+      ['Czy paliwo z karty flotowej też wchodzi?', 'Tak, jako koszt firmowy. Tego nie trzeba fotografować.'],
+    ];
+    return { faq: qa.map(([q, a], i) => ({ q, a, open: open === i, sign: open === i ? '−' : '+', toggle: () => this.setState({ open: open === i ? -1 : i }) })) };
+  }
+}
+</script>
+</body>
+</html>
