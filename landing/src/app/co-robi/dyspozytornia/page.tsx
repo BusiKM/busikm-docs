@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FinalCta } from '@/components/sections/FinalCta';
@@ -8,7 +9,7 @@ import { pageMetadata } from '@/components/layout/PageShell';
 import { Hero } from '@/components/pages/dyspozytornia/Hero';
 import { JedenEkran } from '@/components/pages/dyspozytornia/JedenEkran';
 import { TrasaIZmiana } from '@/components/pages/dyspozytornia/TrasaIZmiana';
-import { Drobiazgi } from '@/components/pages/dyspozytornia/Drobiazgi';
+import { Drobiazgi } from '@/components/ui/Drobiazgi';
 import { KartaZlecenia } from '@/components/mockups/dyspozytornia/KartaZlecenia';
 import { PrzypiszKierowce } from '@/components/mockups/dyspozytornia/PrzypiszKierowce';
 import { Rozmowa } from '@/components/mockups/dyspozytornia/Rozmowa';
@@ -30,6 +31,15 @@ const pytania = [
     'Tylu, ilu potrzebujesz. Płacisz za pojazdy, nie za ludzi.',
   ],
 ] as const;
+
+const drobiazgi = [
+  'Zlecenie z pliku klienta',
+  'Podpowiedź wolnego kierowcy',
+  'Historia zleceń z filtrami',
+  'Wysyłka zlecenia na telefon',
+  'Statusy widoczne u klienta',
+  'Dwa zlecenia na jednym przejeździe',
+];
 
 const statusy = [
   ['przyjęte', 'bg-mist text-ink'],
@@ -102,7 +112,21 @@ export default function Page() {
           makieta={<ZakresDostepu />}
         />
 
-        <Drobiazgi />
+        <Drobiazgi
+          kafelki={drobiazgi}
+          stopka={
+            <>
+              Kto tego używa:{' '}
+              <Link href="/dla-kogo/dyspozytor" className="text-blue">
+                Dyspozytor →
+              </Link>
+              <span className="mx-3">·</span>
+              <Link href="/dla-kogo/wlasciciel" className="text-blue">
+                Właściciel →
+              </Link>
+            </>
+          }
+        />
         <Akordeon heading="Trzy pytania" items={pytania} />
       </main>
       <FinalCta />
