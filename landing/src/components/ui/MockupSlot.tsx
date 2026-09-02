@@ -13,13 +13,27 @@ import Image from 'next/image';
  */
 
 const MOCKUPS_DIR = path.join(process.cwd(), 'public', 'mockups');
+const DEV = process.env.NODE_ENV === 'development';
 
-function hasImage(file: string): boolean {
-  if (file.includes('/') || file.includes('..')) return false;
+/**
+ * Adres zrzutu, jeśli plik już jest.
+ *
+ * W trybie deweloperskim dokładamy sygnaturę czasu ostatniej zmiany i omijamy
+ * optymalizator obrazów. Powód: optymalizator trzyma wynik pod adresem, a nie
+ * pod zawartością pliku — po podmianie zrzutu pod tą samą nazwą oddaje stary
+ * obraz z tym samym ETagiem, aż do restartu serwera. Sprawdzone: plik
+ * statyczny zmienia ETag poprawnie, zoptymalizowany nie.
+ *
+ * W produkcji problemu nie ma, bo pliki nie zmieniają się w locie — tam
+ * zostaje optymalizacja i czysty adres.
+ */
+function imageSrc(file: string): string | null {
+  if (file.includes('/') || file.includes('..')) return null;
   try {
-    return fs.existsSync(path.join(MOCKUPS_DIR, file));
+    const { mtimeMs } = fs.statSync(path.join(MOCKUPS_DIR, file));
+    return DEV ? `/mockups/${file}?v=${Math.round(mtimeMs)}` : `/mockups/${file}`;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -48,16 +62,19 @@ export function MockupSlot({
   dark = false,
   noteClassName = '',
 }: MockupSlotProps) {
-  if (hasImage(file)) {
+  const src = imageSrc(file);
+
+  if (src) {
     const [w, h] = ratio.split(':').map(Number);
     return (
       <div className="relative w-full" style={{ aspectRatio: `${w} / ${h}` }}>
         <Image
-          src={`/mockups/${file}`}
+          src={src}
           alt={`${label} — ${note}`}
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
           className="object-contain"
+          unoptimized={DEV}
         />
       </div>
     );

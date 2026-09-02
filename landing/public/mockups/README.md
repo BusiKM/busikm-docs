@@ -4,6 +4,14 @@ Tu trafiają prawdziwe zrzuty ekranów BusiKM. Dopóki pliku nie ma, komponent
 `MockupSlot` rysuje w jego miejscu ramkę z opisem i nazwą pliku.
 **Podmiana = wrzucenie obrazu pod właściwą nazwą.** Nic więcej.
 
+**Po wrzuceniu pliku odśwież kartę w przeglądarce.** Zmiana w `public/` nie
+przeładowuje strony sama z siebie. Adres obrazka w trybie deweloperskim niesie
+sygnaturę czasu pliku, więc odświeżenie zawsze pokaże nową wersję.
+
+**Rozdzielczość:** eksportuj w dwukrotnej szerokości docelowej, czyli około
+2240 px dla makiet na całą szerokość. Zrzut 1000 px będzie miękki na ekranach
+Retina.
+
 ## Nazewnictwo
 
 ```

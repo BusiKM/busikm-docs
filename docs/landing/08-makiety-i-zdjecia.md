@@ -142,6 +142,21 @@ z kciukiem w górę, rysunkowych busów. Transport widać po danych, nie po obra
 
 ---
 
+## 5a. Podmiana pliku pod tą samą nazwą
+
+Optymalizator obrazów Next trzyma wynik **pod adresem, a nie pod zawartością pliku**.
+Po nadpisaniu zrzutu tą samą nazwą oddaje stary obraz z tym samym ETagiem, aż do
+restartu serwera — plik statyczny zmienia ETag poprawnie, zoptymalizowany nie.
+`minimumCacheTTL: 0` tego nie naprawia.
+
+Dlatego `MockupSlot` w trybie deweloperskim dokłada do adresu sygnaturę czasu
+ostatniej zmiany pliku i omija optymalizator (`unoptimized`). Wrzucasz nowy plik,
+odświeżasz stronę i widzisz nowy obraz. W produkcji zostaje czysty adres
+i optymalizacja, bo tam pliki nie zmieniają się w locie.
+
+**Uwaga:** zmiana pliku w `public/` nie przeładowuje strony sama z siebie —
+po wrzuceniu zrzutu trzeba odświeżyć kartę.
+
 ## 6. Kiedy podmieniamy
 
 1. Powstaje kod ekranu w aplikacji.
