@@ -201,14 +201,11 @@ export function Header() {
 
             <Link
               href={appLinks.demo}
-              className={`h-10 items-center gap-2 rounded-btn bg-ink px-3.5 text-[14px] font-semibold text-paper transition-colors hover:bg-surface hover:text-paper lg:flex lg:px-[18px] lg:text-[15px] ${
+              className={`h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px] ${
                 mobileOpen ? 'hidden' : 'flex'
               }`}
             >
               Zobacz demo
-              <span aria-hidden className="text-[13px] opacity-60">
-                →
-              </span>
             </Link>
 
             <button

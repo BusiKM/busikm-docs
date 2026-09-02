@@ -115,19 +115,15 @@ ról, hub ról, cennik, demo, pomoc, pierwsze kroki, kontakt, status, cztery dok
 | Rodzaj | Napis | Dokąd | Gdzie występuje |
 |---|---|---|---|
 | Główny (niebieski) | **Wypróbuj 14 dni** | rejestracja w aplikacji | Hero, cennik, finał, każda podstrona na dole |
-| Drugi (obrysowany) | **Zobacz demo** | demo w aplikacji | Hero, sekcja demo, podstrony |
-| W pasku (wypełniony czarny, ze strzałką) | **Zobacz demo** | demo w aplikacji | Tylko pasek nawigacji — patrz nota niżej |
+| Drugi (obrysowany) | **Zobacz demo** | demo w aplikacji | Pasek nawigacji, hero, sekcja demo, podstrony |
 | Trzeci (tekst ze strzałką) | **Zobacz, jak to działa →** | podstrona funkcji | Pod każdą sekcją na stronie głównej |
 | Tekstowy z ikoną sylwetki | **Zaloguj się** | logowanie w aplikacji | Tylko pasek nawigacji |
 
 **Zasada:** na jednym ekranie nigdy więcej niż jeden niebieski przycisk.
 
-**Dlaczego demo w pasku jest czarne, a nie niebieskie.** Pasek jest przyklejony, więc towarzyszy
-hero, w którym stoi już niebieskie „Wypróbuj 14 dni". Dwa niebieskie przyciski obok siebie
-zaczynają ze sobą konkurować i łamią zasadę wyżej. Obrysowany przycisk z kolei ginie na białym
-pasku. Wypełnienie kolorem `ink` daje mu siłę, nie odbierając jej głównemu przyciskowi.
-„Zaloguj się" zostaje tekstem — dostaje ikonę sylwetki i stonowany kolor, bo to droga dla
-tych, którzy już mają konto, a nie zaproszenie dla nowych.
+**Demo w pasku zostaje obrysowane.** Wypełnienie kolorem `ink` było sprawdzone i odrzucone —
+za ciężkie na jasnym pasku. „Zaloguj się" zostaje tekstem z ikoną sylwetki i stonowanym
+kolorem, bo to droga dla tych, którzy już mają konto, a nie zaproszenie dla nowych.
 
 Pod głównym przyciskiem zawsze ten sam podpis, drobnym szarym:
 > Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.
