@@ -17,7 +17,7 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
   const role = roles[active];
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[400px_1fr] lg:items-start lg:gap-16">
+    <div className="grid gap-8 lg:grid-cols-[400px_1fr] lg:items-center lg:gap-16">
       <div className="flex flex-col gap-6 lg:gap-10">
         <div
           role="tablist"

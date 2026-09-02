@@ -12,7 +12,13 @@ import { rolesNote } from '@/content/navigation';
 const NOTE =
   'Właściciel: pulpit z zyskiem i marżą. Dyspozytor: trzy kolumny. Księgowa: komplet za miesiąc. Kierowca: nawigacja i przycisk „Rusz”.';
 
-function slot(file: string, ratio: string, children: React.ReactNode) {
+function slot(
+  file: string,
+  ratio: string,
+  children: React.ReactNode,
+  imageScale?: number,
+  imageOffsetX?: number,
+) {
   return (
     <MockupSlot
       file={file}
@@ -22,6 +28,8 @@ function slot(file: string, ratio: string, children: React.ReactNode) {
       // Wszystkie cztery role dostają to samo pudło, więc przełączanie
       // zakładek nie zmienia wysokości sekcji.
       box="16:10"
+      imageScale={imageScale}
+      imageOffsetX={imageOffsetX}
       dark
     >
       {children}
@@ -56,7 +64,12 @@ const roles: Role[] = [
     device: 'telefon',
     title: 'Rusz. Resztą zajmuje się telefon.',
     body: 'Zlecenie, nawigacja, przerwy i koszty w jednej aplikacji.',
-    screen: slot('mockup-kierowca-nawigacja-phone.png', '9:19.5', <EkranKierowcy />),
+    // Telefon jest wąski, więc w pudle 16:10 wychodziłby dużo mniejszy
+    // niż ekrany przeglądarki. Powiększenie wyrównuje wrażenie.
+    // 1.42 — telefon jest wąski i w pudle 16:10 wychodziłby dużo mniejszy
+    // niż ekrany przeglądarki. 66 px w prawo — zrzut ma po prawej stronie
+    // pustkę, przez którą object-contain centrował plik, a nie telefon.
+    screen: slot('mockup-kierowca-nawigacja-phone.png', '9:19.5', <EkranKierowcy />, 1.42, 66),
   },
 ];
 

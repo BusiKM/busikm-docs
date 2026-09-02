@@ -55,6 +55,25 @@ type MockupSlotProps = {
    * takie jak sąsiednie ekrany i mieści się w nim wyśrodkowany.
    */
   box?: string;
+  /**
+   * Powiększenie samego obrazu ponad pudło, np. 1.35.
+   *
+   * Zrzut telefonu jest wąski, więc w pudle 16:10 ogranicza go wysokość
+   * i wychodzi mały. Powiększenie pozwala mu urosnąć bez zmiany wysokości
+   * pudła, czyli bez ruszania układu sekcji. Obraz wychodzi wtedy poza pudło
+   * symetrycznie w górę i w dół — na ciemnym tle to niewidoczne, a notki
+   * „do podmiany" i tak już nie ma, bo zrzut istnieje.
+   */
+  imageScale?: number;
+  /**
+   * Przesunięcie obrazu w poziomie, w pikselach.
+   *
+   * Potrzebne, gdy zrzut ma niesymetryczne marginesy — `object-contain`
+   * centruje wtedy plik, a nie to, co na nim widać. Zrzut kierowcy ma po
+   * prawej 270 px pustki, przez co telefon uciekał w lewo. Po ponownym
+   * eksporcie przyciętym do treści ten parametr będzie zbędny.
+   */
+  imageOffsetX?: number;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -68,6 +87,8 @@ export function MockupSlot({
   note,
   ratio,
   box,
+  imageScale,
+  imageOffsetX,
   children,
   dark = false,
   noteClassName = '',
@@ -84,6 +105,13 @@ export function MockupSlot({
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
           className="object-contain"
+          style={
+            imageScale || imageOffsetX
+              ? {
+                  transform: `translateX(${imageOffsetX ?? 0}px) scale(${imageScale ?? 1})`,
+                }
+              : undefined
+          }
           unoptimized={DEV}
         />
       </div>
