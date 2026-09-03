@@ -111,7 +111,24 @@ export function MockupSlot({
   if (src) {
     const [w, h] = (box ?? ratio).split(':').map(Number);
     const obraz = (
-      <div className="relative w-full" style={{ aspectRatio: `${w} / ${h}` }}>
+      /*
+        `key` przy adresie pliku jest tu istotny, a nie kosmetyczny.
+        Gdy sąsiad podmienia makietę w tym samym miejscu — zakładki ról,
+        takty sceny przyklejonej — React bez klucza zostawia ten sam
+        element `<img>` i tylko zmienia mu `src` oraz `transform`. Styl
+        wchodzi natychmiast, bitmapa dopiero po pobraniu, więc przez chwilę
+        widać **poprzedni** obraz przeskalowany współczynnikiem nowego:
+        laptop puchnie do 1,42, a dopiero potem pojawia się telefon.
+        Zmierzone: około 300 ms przy wolniejszym łączu.
+
+        Klucz wymusza wymianę elementu, więc stary obraz znika od razu,
+        a nowy wchodzi płynnie klasą `wchodzi`.
+      */
+      <div
+        key={src}
+        className="wchodzi relative w-full"
+        style={{ aspectRatio: `${w} / ${h}` }}
+      >
         <Image
           src={src}
           alt={`${label} — ${note}`}
