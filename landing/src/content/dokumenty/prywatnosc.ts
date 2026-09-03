@@ -14,8 +14,8 @@ export const prywatnosc: Dokument = {
   href: '/prywatnosc',
   tytul: 'Polityka prywatności',
   obowiazujeOd: '1 września 2026',
-  wersja: 1,
-  ostatniaZmiana: '1 września 2026',
+  wersja: 2,
+  ostatniaZmiana: '3 września 2026',
   wSkrocie: [
     'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
     'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
@@ -110,6 +110,7 @@ export const prywatnosc: Dokument = {
           wstep: 'Dane mogą trafić do:',
           punkty: [
 'dostawców, którzy pomagają nam świadczyć usługę — Amazon Web Services (serwery, bazy, pliki), Amazon SES (poczta), Stripe (płatności), Mapbox (trasy), Google Cloud Vision (odczyt paragonów), Sentry (błędy) oraz Apple i Google (dostarczanie powiadomień). Pełną listę z zakresem przetwarzania prowadzimy w dokumencie Podprocesorzy;',
+            'dostawców obsługujących formularz kontaktowy — Google Ireland (baza Firestore, w której zapisujemy wiadomość, region europejski) i Resend (dostarczenie powiadomienia o niej na naszą skrzynkę, region irlandzki). Dotyczy to wyłącznie danych, które sam wpiszesz w formularzu;',
             'biura rachunkowego i doradców, w zakresie niezbędnym do rozliczeń;',
             'organów publicznych, jeżeli obowiązek wynika z przepisów.',
           ],
@@ -128,7 +129,7 @@ export const prywatnosc: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Serwery, bazy danych, pliki, kopie zapasowe, poczta i płatności działają w Europejskim Obszarze Gospodarczym.',
+            'Serwery, bazy danych, pliki, kopie zapasowe, poczta i płatności działają w Europejskim Obszarze Gospodarczym. Wiadomości z formularza kontaktowego również: baza stoi w regionie europejskim, a powiadomienia wychodzą z serwerów w Irlandii.',
         },
         {
           typ: 'akapit',

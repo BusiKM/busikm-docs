@@ -19,7 +19,7 @@ export const podprocesorzy: Dokument = {
   href: '/podprocesorzy',
   tytul: 'Podprocesorzy',
   obowiazujeOd: '1 września 2026',
-  wersja: 1,
+  wersja: 2,
   ostatniaZmiana: '3 września 2026',
   wSkrocie: [
     'Podprocesor to firma, która pomaga nam świadczyć usługę — na przykład trzyma serwery albo rozpoznaje tekst z paragonu.',
@@ -134,6 +134,11 @@ export const podprocesorzy: Dokument = {
               termin: 'Grafana',
               opis:
                 'wykresy obciążenia i dostępności usługi. Działa na naszych serwerach, dane nie trafiają do dostawcy oprogramowania.',
+            },
+            {
+              termin: 'Formularz kontaktowy na stronie',
+              opis:
+                'wiadomość wysłaną z busikm.pl zapisujemy w bazie Firestore (Google Ireland, region europejski), a powiadomienie o niej dostarcza Resend z serwerów w Irlandii. To nie są podprocesorzy w rozumieniu tego rejestru: dotyczą danych, których jesteśmy administratorem, a nie danych powierzonych nam przez klientów. Wymienia ich polityka prywatności.',
             },
           ],
         },
