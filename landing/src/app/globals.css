@@ -19,6 +19,7 @@
   --color-blue-soft-line: #c9d9fe; /* krawędź kafla blue-soft */
   --color-amber: #ff9500; /* TYLKO wygasający dokument w sekcji dokumentów */
   --color-green: #30d158; /* stany „gotowe" na ciemnym */
+  --color-red: #ff3b30; /* TYLKO przerwa całkowita na stronie statusu */
   --color-green-ink: #1e9c43; /* to samo na jasnym, czytelnie */
 
   /* --- Ciemne sekcje ----------------------------------------------------- */
