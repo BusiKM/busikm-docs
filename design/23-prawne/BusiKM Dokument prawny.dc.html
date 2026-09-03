@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECECEF;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B;-webkit-font-smoothing:antialiased}
+a{color:#0B5FFF;text-decoration:none}a:hover{color:#0A46C0}
+</style>
+</helmet>
+<div style="display:flex;gap:160px;align-items:flex-start;padding:120px;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0B">
+
+<!-- ARTBOARD 1 · REGULAMIN -->
+<div style="display:flex;flex-direction:column;gap:20px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#6E6E76;letter-spacing:.06em">1 · WZORZEC Z PARAGRAFAMI · /regulamin · desktop 1440</div>
+  <div style="width:1440px;background:#FAFAFA;overflow:hidden;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 64px rgba(0,0,0,.08)">
+    <div data-screen-label="Nawigacja" style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);border-bottom:1px solid #E3E3E6">
+      <div style="display:flex;align-items:center;gap:44px"><a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a><div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+      <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+    </div>
+
+    <div data-screen-label="Regulamin" style="position:relative;padding:120px 0 160px">
+      <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">SPIS TREŚCI przyklejony (top 96 px) · aktywna pozycja podąża za przewijaniem · na telefonie składany element nad treścią</div>
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dokument</div>
+          <h1 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Regulamin</h1>
+          <div style="font-size:14px;color:#6E6E76;display:flex;gap:10px;flex-wrap:wrap"><span>Obowiązuje od 1 września 2026</span><span>·</span><span>wersja 2</span><span>·</span><a href="#">poprzednie wersje</a></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:240px 1fr;gap:80px;align-items:start">
+          <!-- spis treści -->
+          <div style="position:sticky;top:96px;display:flex;flex-direction:column;gap:2px;font-size:14px;line-height:1.5">
+            <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600;margin-bottom:12px">Spis treści</div>
+            <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+              <div onClick="{{ t.pick }}" style="display:flex;gap:10px;padding:8px 12px;margin-left:-12px;border-radius:10px;cursor:pointer;background:{{ t.bg }};color:{{ t.color }};font-weight:{{ t.weight }}"><span style="width:22px;flex:none;color:#9A9AA2">{{ t.num }}</span><span>{{ t.title }}</span></div>
+            </sc-for>
+          </div>
+
+          <!-- treść -->
+          <div style="display:flex;flex-direction:column;gap:56px;max-width:60ch">
+            <!-- W skrócie -->
+            <div style="border-radius:20px;background:#E8EFFE;padding:32px 36px;display:flex;flex-direction:column;gap:16px">
+              <div style="font-size:22px;font-weight:600;letter-spacing:-0.01em">W skrócie</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Płacisz za pojazdy, nie za ludzi. Kierowcy i biuro bez limitu.</div>
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem, bez okresu wypowiedzenia.</div>
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Dane są Twoje. Pobierzesz je zawsze, także po rezygnacji.</div>
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Trzymamy je w Europie i nie sprzedajemy nikomu.</div>
+              </div>
+              <div style="font-size:13px;line-height:1.5;color:#6E6E76">To streszczenie ułatwia czytanie, ale nie zastępuje dokumentu. Wiążąca jest treść poniżej.</div>
+            </div>
+
+            <!-- §1 -->
+            <div id="p1" style="display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">§ 1</span>Definicje</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7">Pojęcia użyte w Regulaminie mają następujące znaczenie:</p>
+              <ol style="margin:0;padding-left:28px;display:flex;flex-direction:column;gap:14px;font-size:17px;line-height:1.7">
+                <li><b>Usługodawca</b> — BusiKM sp. z o.o. z siedzibą w Warszawie, ul. Przykładowa 1, 00-000 Warszawa, NIP 000-000-00-00.</li>
+                <li><b>Usługa</b> — dostęp do aplikacji BusiKM w przeglądarce oraz aplikacji BusiKM Kierowca na telefon, wraz z przechowywaniem danych wprowadzonych przez Klienta.</li>
+                <li><b>Klient</b> — przedsiębiorca, który założył Konto i korzysta z Usługi w związku z prowadzoną działalnością.</li>
+                <li><b>Użytkownik</b> — osoba, której Klient nadał dostęp do Konta w jednej z ról: właściciel, dyspozytor, księgowa, kierowca.</li>
+                <li><b>Pojazd</b> — pojazd napędzany wprowadzony do Konta. Przyczepy i naczepy nie są Pojazdami w rozumieniu Regulaminu.</li>
+              </ol>
+            </div>
+
+            <!-- §2 -->
+            <div id="p2" style="display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">§ 2</span>Zakres usługi</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7">Usługodawca udostępnia Klientowi Usługę w zakresie wynikającym z wybranego planu. Zakres planów opisany jest w Cenniku i stanowi część Umowy.</p>
+              <p style="margin:0;font-size:17px;line-height:1.7">Usługa obejmuje w szczególności:</p>
+              <ol style="margin:0;padding-left:28px;display:flex;flex-direction:column;gap:14px;font-size:17px;line-height:1.7">
+                <li>prowadzenie zleceń transportowych oraz wystawianie i wysyłkę faktur;</li>
+                <li>rejestrowanie tras, kosztów i czasu pracy przez aplikację Kierowcy;</li>
+                <li>przygotowanie zestawień dla księgowości w formatach wskazanych w Cenniku;
+                  <ol style="margin:10px 0 0;padding-left:28px;display:flex;flex-direction:column;gap:8px;list-style:lower-alpha">
+                    <li>zestawienia generowane są za wybrany miesiąc kalendarzowy;</li>
+                    <li>po zamknięciu miesiąca dane za ten okres nie podlegają zmianie.</li>
+                  </ol>
+                </li>
+              </ol>
+              <p style="margin:0;font-size:17px;line-height:1.7">Usługa nie zastępuje urządzeń rejestrujących wymaganych odrębnymi przepisami. Wskazania czasu pracy w Usłudze mają charakter <b>pomocniczy</b>.</p>
+            </div>
+
+            <!-- §3 -->
+            <div id="p3" style="display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">§ 3</span>Konto i użytkownicy</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7">Konto zakłada Klient, podając adres e-mail i nazwę firmy. Klient odpowiada za dostępy nadane Użytkownikom i może je w każdej chwili odebrać.</p>
+              <p style="margin:0;font-size:17px;line-height:1.7">Liczba Użytkowników w rolach właściciel, dyspozytor, księgowa i kierowca nie jest ograniczona i nie wpływa na wysokość opłaty.</p>
+            </div>
+
+            <!-- §4 -->
+            <div id="p4" style="display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">§ 4</span>Opłaty</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7">Opłata zależy od liczby Pojazdów w Koncie i wybranego planu, zgodnie z Cennikiem obowiązującym w dniu rozpoczęcia okresu rozliczeniowego.</p>
+              <p style="margin:0;font-size:17px;line-height:1.7">Przez pierwsze <b>14 dni</b> od założenia Konta Usługa jest bezpłatna. Po tym okresie Klient wybiera plan; do czasu wyboru Konto działa w trybie tylko do odczytu.</p>
+            </div>
+
+            <div style="color:#9A9AA2;font-size:14px;padding-top:8px">§ 5 – § 8 · dalsza treść dokumentu</div>
+
+            <!-- dół -->
+            <div style="border-top:1px solid #E3E3E6;padding-top:40px;display:flex;flex-direction:column;gap:24px;font-size:15px;line-height:1.6;color:#6E6E76">
+              <div>Ostatnia zmiana: 1 września 2026</div>
+              <div style="display:flex;gap:20px;flex-wrap:wrap"><span>Pozostałe dokumenty:</span><a href="#">Polityka prywatności</a><a href="#">Powierzenie danych</a><a href="#">Podprocesorzy</a></div>
+              <div>Masz pytanie do tego dokumentu? Napisz: <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTBOARD 2 · PODPROCESORZY -->
+<div style="display:flex;flex-direction:column;gap:20px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#6E6E76;letter-spacing:.06em">2 · WZORZEC Z TABELĄ · /podprocesorzy · desktop 1440</div>
+  <div style="width:1440px;background:#FAFAFA;overflow:hidden;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 64px rgba(0,0,0,.08)">
+    <div style="height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.86);border-bottom:1px solid #E3E3E6">
+      <div style="display:flex;align-items:center;gap:44px"><a href="BusiKM Strona główna.dc.html" style="font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#0A0A0B">BusiKM</a><div style="display:flex;gap:30px;font-size:15px;font-weight:500;white-space:nowrap"><span>Co robi <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Dla kogo <span style="color:#6E6E76;font-size:12px">▾</span></span><span>Cennik</span><span>Pomoc <span style="color:#6E6E76;font-size:12px">▾</span></span></div></div>
+      <div style="display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;white-space:nowrap"><span>Zaloguj się</span><span style="height:40px;padding:0 18px;border-radius:12px;border:1px solid #E3E3E6;display:flex;align-items:center;background:#fff">Zobacz demo</span></div>
+    </div>
+
+    <div data-screen-label="Podprocesorzy" style="position:relative;padding:120px 0 160px">
+      <div style="position:absolute;left:24px;top:24px;width:112px;font-family:ui-monospace,Menlo,monospace;font-size:10px;line-height:1.5;color:#9A9AA2">TABELA · własny kontener, na telefonie przewijana poziomo · pierwsza kolumna przyklejona</div>
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dokument</div>
+          <h1 style="margin:0;font-size:64px;line-height:1.08;font-weight:700;letter-spacing:-0.025em">Podprocesorzy</h1>
+          <div style="font-size:14px;color:#6E6E76;display:flex;gap:10px;flex-wrap:wrap"><span>Obowiązuje od 1 września 2026</span><span>·</span><span>wersja 1</span><span>·</span><a href="#">poprzednie wersje</a></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:240px 1fr;gap:80px;align-items:start">
+          <div style="position:sticky;top:96px;display:flex;flex-direction:column;gap:2px;font-size:14px;line-height:1.5">
+            <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:600;margin-bottom:12px">Spis treści</div>
+            <div style="display:flex;gap:10px;padding:8px 12px;margin-left:-12px;border-radius:10px;background:#F2F2F4;font-weight:600"><span style="width:22px;flex:none;color:#9A9AA2">1</span><span>Kim są podprocesorzy</span></div>
+            <div style="display:flex;gap:10px;padding:8px 12px;margin-left:-12px;border-radius:10px;color:#6E6E76"><span style="width:22px;flex:none;color:#9A9AA2">2</span><span>Lista podprocesorów</span></div>
+            <div style="display:flex;gap:10px;padding:8px 12px;margin-left:-12px;border-radius:10px;color:#6E6E76"><span style="width:22px;flex:none;color:#9A9AA2">3</span><span>Zmiany na liście</span></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:56px">
+            <div style="max-width:60ch;border-radius:20px;background:#E8EFFE;padding:32px 36px;display:flex;flex-direction:column;gap:16px">
+              <div style="font-size:22px;font-weight:600;letter-spacing:-0.01em">W skrócie</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.6">
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Podprocesor to firma, która pomaga nam świadczyć usługę, np. trzyma serwery albo wysyła maile.</div>
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>Wszyscy przetwarzają dane w Europie.</div>
+                <div style="display:flex;gap:12px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:11px;flex:none"></span>O każdej zmianie na liście informujemy mailem 30 dni wcześniej.</div>
+              </div>
+              <div style="font-size:13px;line-height:1.5;color:#6E6E76">To streszczenie ułatwia czytanie, ale nie zastępuje dokumentu. Wiążąca jest treść poniżej.</div>
+            </div>
+
+            <div style="max-width:60ch;display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">1.</span>Kim są podprocesorzy</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7"><b>Podprocesor</b> to podmiot, któremu Usługodawca powierza przetwarzanie danych osobowych w imieniu Klienta, w zakresie niezbędnym do świadczenia Usługi. Każdy podprocesor jest związany umową powierzenia o treści nie łagodniejszej niż umowa między Usługodawcą a Klientem.</p>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">2.</span>Lista podprocesorów</h2>
+              <div style="overflow-x:auto;border-radius:12px">
+                <table style="width:100%;min-width:760px;border-collapse:collapse;font-size:15px;line-height:1.5;text-align:left">
+                  <thead><tr style="border-bottom:2px solid #0A0A0B"><th style="padding:12px 16px 12px 0;font-weight:600;white-space:nowrap">Podmiot</th><th style="padding:12px 16px;font-weight:600">Do czego go używamy</th><th style="padding:12px 16px;font-weight:600;white-space:nowrap">Jakie dane</th><th style="padding:12px 16px;font-weight:600;white-space:nowrap">Kraj</th><th style="padding:12px 0 12px 16px;font-weight:600;white-space:nowrap">Od kiedy</th></tr></thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid #E3E3E6"><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Hetzner Online GmbH</td><td style="padding:16px">Serwery i kopie zapasowe aplikacji</td><td style="padding:16px">wszystkie dane w Koncie</td><td style="padding:16px;white-space:nowrap">Niemcy, Finlandia</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                    <tr style="border-bottom:1px solid #E3E3E6"><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Scaleway SAS</td><td style="padding:16px">Przechowywanie zdjęć paragonów i dokumentów</td><td style="padding:16px">zdjęcia, pliki PDF</td><td style="padding:16px;white-space:nowrap">Francja</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                    <tr style="border-bottom:1px solid #E3E3E6"><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Postmark (ActiveCampaign)</td><td style="padding:16px">Wysyłka maili: zaproszenia, faktury, przypomnienia</td><td style="padding:16px">adres e-mail, treść wiadomości</td><td style="padding:16px;white-space:nowrap">Irlandia</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                    <tr style="border-bottom:1px solid #E3E3E6"><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Stripe Payments Europe</td><td style="padding:16px">Płatności za abonament</td><td style="padding:16px">dane rozliczeniowe firmy</td><td style="padding:16px;white-space:nowrap">Irlandia</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                    <tr style="border-bottom:1px solid #E3E3E6"><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Mapbox Inc. (EU)</td><td style="padding:16px">Mapa i wyznaczanie tras</td><td style="padding:16px">pozycje pojazdów, adresy</td><td style="padding:16px;white-space:nowrap">Niemcy</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                    <tr><td style="padding:16px 16px 16px 0;font-weight:600;white-space:nowrap">Smsapi sp. z o.o.</td><td style="padding:16px">Kod zaproszenia dla kierowcy SMS-em</td><td style="padding:16px">numer telefonu</td><td style="padding:16px;white-space:nowrap">Polska</td><td style="padding:16px 0 16px 16px;white-space:nowrap;color:#6E6E76">1.09.2026</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="font-size:13px;line-height:1.5;color:#6E6E76">Nazwy podmiotów są przykładowe do czasu podpisania umów.</div>
+            </div>
+
+            <div style="max-width:60ch;display:flex;flex-direction:column;gap:24px;padding-top:24px">
+              <h2 style="margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;display:flex;gap:16px"><span style="color:#9A9AA2;font-weight:500">3.</span>Zmiany na liście</h2>
+              <p style="margin:0;font-size:17px;line-height:1.7">O zamiarze dodania lub zmiany podprocesora Usługodawca informuje Klienta mailem co najmniej <b>30 dni</b> wcześniej. Klient może w tym czasie zgłosić sprzeciw; w razie sprzeciwu strony ustalają rozwiązanie albo Klient może wypowiedzieć Umowę bez dodatkowych kosztów.</p>
+            </div>
+
+            <div style="max-width:60ch;border-top:1px solid #E3E3E6;padding-top:40px;display:flex;flex-direction:column;gap:24px;font-size:15px;line-height:1.6;color:#6E6E76">
+              <div>Ostatnia zmiana: 1 września 2026</div>
+              <div style="display:flex;gap:20px;flex-wrap:wrap"><span>Pozostałe dokumenty:</span><a href="#">Regulamin</a><a href="#">Polityka prywatności</a><a href="#">Powierzenie danych</a></div>
+              <div>Masz pytanie do tego dokumentu? Napisz: <a href="mailto:kontakt@busikm.pl">kontakt@busikm.pl</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTBOARD 3 · TELEFON -->
+<div style="display:flex;flex-direction:column;gap:20px">
+  <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#6E6E76;letter-spacing:.06em">3 · TELEFON 390 · spis treści składany</div>
+  <div style="width:390px;background:#FAFAFA;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04),0 24px 64px rgba(0,0,0,.08)">
+    <div style="height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #E3E3E6"><div style="font-weight:700;font-size:19px">BusiKM</div><div style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px"><span style="width:20px;height:2px;background:#0A0A0B"></span><span style="width:20px;height:2px;background:#0A0A0B"></span></div></div>
+    <div style="padding:64px 24px 96px;display:flex;flex-direction:column;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:16px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E76;font-weight:500">Dokument</div><h1 style="margin:0;font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-0.025em">Regulamin</h1><div style="font-size:13px;color:#6E6E76">Obowiązuje od 1 września 2026 · wersja 2 · <a href="#">poprzednie wersje</a></div></div>
+      <div style="border:1px solid #E3E3E6;border-radius:12px;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:15px;font-weight:600"><span>Spis treści · 8 paragrafów</span><span style="color:#6E6E76">▾</span></div>
+      <div style="border-radius:16px;background:#E8EFFE;padding:24px;display:flex;flex-direction:column;gap:12px"><div style="font-size:19px;font-weight:600">W skrócie</div><div style="font-size:16px;line-height:1.6;display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:10px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:10px;flex:none"></span>Płacisz za pojazdy, nie za ludzi.</div><div style="display:flex;gap:10px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:10px;flex:none"></span>14 dni nie płacisz. Rezygnujesz jednym kliknięciem.</div><div style="display:flex;gap:10px"><span style="width:6px;height:6px;border-radius:50%;background:#0B5FFF;margin-top:10px;flex:none"></span>Dane są Twoje. Pobierzesz je zawsze.</div></div><div style="font-size:12px;line-height:1.5;color:#6E6E76">Streszczenie nie zastępuje dokumentu.</div></div>
+      <div style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-size:22px;line-height:1.25;font-weight:600;display:flex;gap:12px"><span style="color:#9A9AA2;font-weight:500">§ 1</span>Definicje</h2><p style="margin:0;font-size:16px;line-height:1.7">Pojęcia użyte w Regulaminie mają następujące znaczenie:</p><ol style="margin:0;padding-left:24px;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.7"><li><b>Usługodawca</b> — BusiKM sp. z o.o. z siedzibą w Warszawie.</li><li><b>Usługa</b> — dostęp do aplikacji BusiKM w przeglądarce oraz aplikacji BusiKM Kierowca.</li></ol></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="font-size:13px;color:#6E6E76">Tabela (podprocesorzy) — przewijana poziomo:</div><div style="overflow-x:auto;border:1px solid #E3E3E6;border-radius:12px;background:#fff"><table style="min-width:640px;border-collapse:collapse;font-size:13px;line-height:1.5;text-align:left"><thead><tr style="border-bottom:2px solid #0A0A0B"><th style="padding:10px 14px;font-weight:600;position:sticky;left:0;background:#fff">Podmiot</th><th style="padding:10px 14px;font-weight:600">Do czego</th><th style="padding:10px 14px;font-weight:600">Dane</th><th style="padding:10px 14px;font-weight:600">Kraj</th></tr></thead><tbody><tr style="border-bottom:1px solid #E3E3E6"><td style="padding:12px 14px;font-weight:600;position:sticky;left:0;background:#fff">Hetzner</td><td style="padding:12px 14px">Serwery i kopie</td><td style="padding:12px 14px">wszystkie</td><td style="padding:12px 14px">Niemcy</td></tr><tr><td style="padding:12px 14px;font-weight:600;position:sticky;left:0;background:#fff">Scaleway</td><td style="padding:12px 14px">Zdjęcia paragonów</td><td style="padding:12px 14px">pliki</td><td style="padding:12px 14px">Francja</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 0 };
+  renderVals() {
+    const titles = ['Definicje', 'Zakres usługi', 'Konto i użytkownicy', 'Opłaty', 'Dane Klienta', 'Odpowiedzialność', 'Rezygnacja', 'Zmiany regulaminu'];
+    return { toc: titles.map((title, i) => ({ num: '§ ' + (i + 1), title, pick: () => this.setState({ active: i }),
+      bg: i === this.state.active ? '#F2F2F4' : 'transparent', color: i === this.state.active ? '#0A0A0B' : '#6E6E76', weight: i === this.state.active ? 600 : 400 })) };
+  }
+}
+</script>
+</body>
+</html>

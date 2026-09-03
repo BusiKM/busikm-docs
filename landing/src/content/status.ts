@@ -4,6 +4,11 @@
  * Nie ma jeszcze monitoringu, który zmieniałby to sam, więc stan ustawiamy
  * ręcznie: zmiana `stan` i ewentualne dopisanie zdarzenia to jeden commit.
  * Strona nie udaje, że sprawdza się co pięć minut — mówi wprost, jak jest.
+ *
+ * Docelowo podłączenie pod Sentry albo Grafanę. Wtedy `stan` i `czesci` przyjdą
+ * z monitoringu, `zdarzenia` zostaną ręczne (to nie jest log, tylko wyjaśnienie
+ * dla człowieka), a podpis pod nagłówkiem w `app/status/page.tsx` trzeba będzie
+ * zmienić z „sprawdzamy ręcznie" na prawdziwą częstotliwość.
  */
 
 export type Stan = 'ok' | 'czesciowa' | 'przerwa';
