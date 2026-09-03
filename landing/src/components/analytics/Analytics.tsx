@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
@@ -25,15 +25,24 @@ declare global {
 /**
  * Odsłony przy przechodzeniu między stronami.
  *
- * App Router zmienia adres bez przeładowania dokumentu, więc GA4 zliczyłby
- * tylko pierwszą stronę. Dlatego automatyczna odsłona jest wyłączona
- * (`send_page_view: false`), a wysyłamy ją sami przy każdej zmianie ścieżki.
+ * App Router zmienia adres bez przeładowania dokumentu, więc GA4 sam zliczyłby
+ * tylko tę stronę, na której skrypt wystartował. Pierwszą odsłonę zostawiamy
+ * jednak `gtag`-owi (`send_page_view` domyślnie włączone), a tutaj obsługujemy
+ * wyłącznie **kolejne** przejścia — stąd pominięcie pierwszego przebiegu.
+ *
+ * Bez tego pominięcia pierwsza strona liczy się dwa razy: raz z konfiguracji
+ * skryptu, raz z tego efektu przy montowaniu.
  */
 function OdslonyStron() {
   const sciezka = usePathname();
   const parametry = useSearchParams();
+  const pierwszy = useRef(true);
 
   useEffect(() => {
+    if (pierwszy.current) {
+      pierwszy.current = false;
+      return;
+    }
     if (!GA_ID || !window.gtag) return;
     const zapytanie = parametry.toString();
     window.gtag('event', 'page_view', {
@@ -77,17 +86,11 @@ export function Analytics() {
             analytics_storage: 'granted'
           });
           gtag('config', '${GA_ID}', {
-            send_page_view: false,
             // Polityka prywatności mówi, że ciasteczka analityczne wygasają
             // po 14 miesiącach. GA4 domyślnie ustawia dwa lata, więc bez tej
             // linijki dokument mówiłby nieprawdę. 425 dni = 14 miesięcy.
             cookie_expires: 36720000,
             cookie_flags: 'SameSite=Lax;Secure'
-          });
-          gtag('event', 'page_view', {
-            page_path: location.pathname + location.search,
-            page_location: location.href,
-            page_title: document.title
           });
         `}
       </Script>
