@@ -40,8 +40,32 @@ const nextConfig: NextConfig = {
       { source: '/aetr', destination: '/co-robi/czas-pracy', permanent: true },
       // Przegląd funkcji — dziś rolę spisu pełni strona główna
       { source: '/funkcje', destination: '/', permanent: true },
-      // Dokumentacja przeniosła się do repo backendu; czytelnik szuka pomocy
+      // Dokumentacja przeniosła się do repo backendu. Cztery strony mają
+      // jednak dokładny odpowiednik w nowym serwisie, więc idą pod adres
+      // o tej samej treści, a nie zbiorczo do pomocy.
       { source: '/docs', destination: '/pomoc', permanent: true },
+      {
+        source: '/docs/aplikacja-mobilna',
+        destination: '/co-robi/aplikacja-kierowcy',
+        permanent: true,
+      },
+      {
+        source: '/docs/aplikacja-webowa',
+        destination: '/co-robi/dyspozytornia',
+        permanent: true,
+      },
+      {
+        source: '/docs/integracje-fk',
+        destination: '/co-robi/dane-dla-ksiegowej',
+        permanent: true,
+      },
+      // „Bezpieczeństwo" to dziś § 9 polityki prywatności — „Jak chronimy dane"
+      { source: '/docs/bezpieczenstwo', destination: '/prywatnosc', permanent: true },
+      { source: '/docs/funkcje-szczegolowo', destination: '/', permanent: true },
+      // Bez odpowiednika i bez przekierowania: /docs/slownik, /roadmapa,
+      // /technologia, /g2v2-przygotowanie i cała gałąź /en/*. Roadmapa ma
+      // wrócić pod tym samym adresem, więc 404 jest tu stanem przejściowym,
+      // a nie decyzją.
     ];
   },
 
