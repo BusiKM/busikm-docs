@@ -4,46 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { appLinks } from '@/content/navigation';
-
-export const plans = [
-  {
-    name: 'Start',
-    monthly: '149',
-    yearly: '1 490',
-    specs: [
-      ['Pojazdy', 'do 3'],
-      ['Kierowcy', 'bez limitu'],
-      ['Pracownicy biura', 'bez limitu'],
-    ],
-    features: [
-      'zlecenia i dyspozytornia',
-      'mapa i trasy',
-      'czas pracy',
-      'koszty i paragony',
-      'faktury dla klientów',
-      'aplikacja dla kierowców',
-    ],
-    highlighted: false,
-  },
-  {
-    name: 'Firma',
-    monthly: '299',
-    yearly: '2 990',
-    specs: [
-      ['Pojazdy', 'do 10, każdy kolejny +29 zł'],
-      ['Kierowcy', 'bez limitu'],
-      ['Pracownicy biura', 'bez limitu'],
-    ],
-    features: [
-      'wszystko ze Start, a do tego:',
-      'komplet dla księgowej',
-      'zestawienia sprzedaży i zakupów',
-      'rentowność zleceń',
-      'raporty kosztów floty',
-    ],
-    highlighted: true,
-  },
-] as const;
+import { plans } from '@/content/cennik';
 
 /**
  * 6.18 — cennik. Przełącznik miesięcznie / rocznie, jak w projekcie.

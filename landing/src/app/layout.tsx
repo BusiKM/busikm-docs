@@ -1,6 +1,13 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, IBM_Plex_Mono } from 'next/font/google';
 import { RevealObserver } from '@/components/motion/RevealObserver';
+import { Analytics } from '@/components/analytics/Analytics';
+import { BanerZgody } from '@/components/analytics/BanerZgody';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { grafStronyGlownej } from '@/components/seo/schema';
+import { OkruszkiSeo } from '@/components/seo/OkruszkiSeo';
+import { metadataStronyGlownej } from '@/lib/metadata';
+import { serwis } from '@/content/seo';
 import './globals.css';
 
 const inter = Inter({
@@ -17,39 +24,17 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 });
 
-const title = 'BusiKM — Kierowca jedzie. Reszta dzieje się sama.';
-const description =
-  'BusiKM zamienia trasy Twoich kierowców w kilometrówkę, ewidencję czasu pracy i komplet dokumentów dla księgowej. Bez Excela. Bez przepisywania.';
+export const metadata: Metadata = metadataStronyGlownej();
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://busikm.pl'),
-  title,
-  description,
-  manifest: '/site.webmanifest',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '48x48' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
-    ],
-    apple: '/apple-touch-icon.png',
-    other: [{ rel: 'mask-icon', url: '/mask-icon.svg', color: '#005CE8' }],
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'pl_PL',
-    url: 'https://busikm.pl',
-    siteName: 'BusiKM',
-    title,
-    description,
-    images: [{ url: '/og-image.png', width: 1219, height: 649, alt: 'BusiKM' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-    images: ['/og-image.png'],
-  },
+/**
+ * Kolor paska przeglądarki na Androidzie i w aplikacji zainstalowanej
+ * z ekranu głównego. Musi zgadzać się z `theme_color` w `site.webmanifest`.
+ */
+export const viewport: Viewport = {
+  themeColor: '#0B5FFF',
+  colorScheme: 'light',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -60,10 +45,20 @@ export default function RootLayout({
     // data-reveal, zanim React zdąży się podpiąć. Serwer go nie renderuje,
     // więc bez tego React zgłasza rozjazd przy hydratacji.
     <html
-      lang="pl"
+      lang={serwis.jezyk}
       className={`${inter.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Wyprzedzające połączenie z serwerem czcionek. `next/font` pobiera
+            pliki z własnej domeny, ale arkusz Google Fonts nadal wychodzi
+            na zewnątrz przy pierwszym wejściu. */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* Dane strukturalne opisujące firmę, serwis i produkt. Stoją
+            w korzeniu, bo dotyczą całego serwisu, a nie pojedynczej strony. */}
+        <JsonLd dane={grafStronyGlownej()} />
+        <OkruszkiSeo />
+      </head>
       <body>
         {/* Włącza stan ukryty dla [data-reveal] zanim przeglądarka odmaluje
             treść — dzięki temu nic nie mruga. Bez JavaScriptu i przy prośbie
@@ -76,6 +71,8 @@ export default function RootLayout({
         />
         {children}
         <RevealObserver />
+        <BanerZgody />
+        <Analytics />
       </body>
     </html>
   );

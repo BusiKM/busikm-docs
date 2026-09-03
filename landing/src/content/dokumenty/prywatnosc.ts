@@ -192,7 +192,7 @@ export const prywatnosc: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Nie używamy plików cookie do reklamy ani do profilowania w celach marketingowych. Zgodę na analitykę możesz cofnąć, czyszcząc pliki cookie w przeglądarce albo pisząc do nas.',
+            'Nie używamy plików cookie do reklamy ani do profilowania w celach marketingowych. Zgodę na analitykę wyrażasz w okienku, które pokazuje się przy pierwszej wizycie — a cofasz odnośnikiem „Ustawienia cookie" na dole każdej strony. Do czasu zgody licznik odwiedzin w ogóle się nie ładuje.',
         },
       ],
     },

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FinalCta } from '@/components/sections/FinalCta';
@@ -13,20 +12,14 @@ import { pages } from '@/content/pages';
  * docs/landing/05-podstrony.md.
  */
 
-export function pageMetadata(slug: string): Metadata {
-  const page = pages[slug];
-  if (!page) throw new Error(`Brak opisu strony: ${slug}`);
-  return {
-    title: `${page.title} · BusiKM`,
-    description: page.description,
-    alternates: { canonical: `/${slug}` },
-    openGraph: {
-      title: `${page.title} · BusiKM`,
-      description: page.description,
-      url: `/${slug}`,
-    },
-  };
-}
+/**
+ * Metadane podstrony.
+ *
+ * Właściwa budowa siedzi w `lib/metadata.ts` — tu zostaje tylko przekazanie
+ * dalej, bo wszystkie podstrony importują tę nazwę stąd i nie ma powodu
+ * przepisywać dwudziestu kilku plików.
+ */
+export { pageMetadata } from '@/lib/metadata';
 
 export function PageShell({ slug }: { slug: string }) {
   const page = pages[slug];

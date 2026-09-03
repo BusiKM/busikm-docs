@@ -3,6 +3,7 @@ import { Container } from '@/components/ui/Container';
 import { firma } from '@/content/firma';
 import { Logo } from '@/components/layout/Logo';
 import { footerColumns } from '@/content/navigation';
+import { PrzyciskCookie } from '@/components/analytics/PrzyciskCookie';
 
 /** 6.22 — stopka. Ciemna, pięć kolumn, bez ikon mediów społecznościowych. */
 export function Footer() {
@@ -42,7 +43,10 @@ export function Footer() {
               {firma.email}
             </a>
           </span>
-          <span>Twoje dane zostają w Europie</span>
+          <span className="flex flex-wrap items-center gap-4 lg:gap-6">
+            <PrzyciskCookie />
+            Twoje dane zostają w Europie
+          </span>
         </div>
       </Container>
     </footer>

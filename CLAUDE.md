@@ -39,7 +39,8 @@ Deploy: Vercel. **Root Directory projektu w Vercelu musi wskazywać na `landing/
   - `src/components/ui/` — Button, Container, TechCaption
 - **Server Components domyślnie**; `'use client'` tylko tam, gdzie jest stan: `Header`, `Pricing`, `Faq`
 - **Responsywność**: mobile-first, przełącznikiem na desktop jest breakpoint `lg:` (projekt powstał z artboardów 390 i 1440)
-- **Assety statyczne**: `landing/public/` — favicony i PWA (`favicon.*`, `apple-touch-icon.png`, `mask-icon.svg`, `site.webmanifest`, `web-app-manifest-*.png`), `logo/logo.svg`, `og-image.png`, `robots.txt`, `llms.txt`, pitch deck PDF, podpisy e-mail (`podpis-*.html`)
+- **Assety statyczne**: `landing/public/` — favicony i PWA (`favicon.*`, `apple-touch-icon.png`, `mask-icon.svg`, `site.webmanifest`, `web-app-manifest-*.png`), `logo/logo.svg`, `og-image/og-image.jpg`, `llms.txt`, pitch deck PDF, podpisy e-mail (`podpis-*.html`)
+- **SEO i analityka**: `src/content/seo.ts` (adresy, lista tras, wykluczenia z indeksu) → `src/lib/metadata.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, `src/components/seo/` (dane strukturalne), `src/components/analytics/` (GA4 za zgodą + baner cookie). Pełny opis: `docs/landing/10-seo-i-analityka.md`. **Nowa podstrona musi dostać wpis w `trasy` w `seo.ts`**, inaczej nie trafi do mapy strony. `robots.txt` i `sitemap.xml` są generowane — nie dokładaj ich do `public/`
 
 ## Design system (`landing/src/app/globals.css`)
 
@@ -53,7 +54,7 @@ Cały system designu zdefiniowany w `@theme {}` — to jedyne źródło tokenów
 
 Używaj tokenów z `@theme` zamiast hardkodowanych wartości kolorów i rozmiarów.
 
-> Uwaga: favicony i `site.webmanifest` pochodzą jeszcze z poprzedniej identyfikacji (`theme_color` #005CE8), a landing używa #0B5FFF. Jeśli marka ma być spójna, zestaw ikon trzeba wygenerować ponownie.
+> Uwaga: **same pliki favicon** pochodzą jeszcze z poprzedniej identyfikacji — narysowane w #005CE8, podczas gdy landing używa #0B5FFF. `site.webmanifest` i `theme-color` zostały już poprawione na #0B5FFF, więc pasek przeglądarki jest zgodny; niespójny zostaje wyłącznie kolor samych ikon. Zestaw trzeba wygenerować ponownie (RealFaviconGenerator).
 
 ## Stack technologiczny platformy (dokumentowany w repo backendu, nie w tym repo)
 

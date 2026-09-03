@@ -2,10 +2,17 @@
 
 import { useState } from 'react';
 import { Section } from '@/components/ui/Section';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { pytaniaIOdpowiedzi } from '@/components/seo/schema';
 
 /**
  * Pytania w akordeonie — ten sam układ na stronie głównej i na podstronach.
  * Domyślnie wszystkie zamknięte.
+ *
+ * Przy okazji wystawia te same pytania jako dane strukturalne — skoro
+ * odpowiedzi i tak stoją w kodzie strony, opisanie ich robotowi nic nie
+ * kosztuje. Znacznik jest tu, a nie na dwudziestu stronach osobno, żeby
+ * treść widoczna i treść dla wyszukiwarki nie mogły się rozjechać.
  */
 export function Akordeon({
   id,
@@ -25,6 +32,7 @@ export function Akordeon({
 
   return (
     <Section id={id} tone={tone}>
+      <JsonLd dane={pytaniaIOdpowiedzi(items)} />
       <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-16">
         <h2 data-reveal className="text-h2-m font-semibold lg:text-h2">
           {heading}
