@@ -45,7 +45,7 @@ export function Footer() {
           </span>
           <span className="flex flex-wrap items-center gap-4 lg:gap-6">
             <PrzyciskCookie />
-            Twoje dane zostają w Europie
+            Serwery i kopie zapasowe w Europie
           </span>
         </div>
       </Container>

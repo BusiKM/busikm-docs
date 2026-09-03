@@ -8,7 +8,7 @@ const tiles = [
   ['Nic nie instalujesz', 'Otwierasz w przeglądarce, na laptopie i na telefonie'],
   ['Na starcie nie przytłacza', 'Widzisz tylko to, co potrzebne. Reszta z czasem'],
   ['Widać, kto co zmienił', 'Każda zmiana ma autora i godzinę'],
-  ['Dane zostają w Europie', 'I zostają Twoje, także po rezygnacji'],
+  ['Serwery w Europie', 'Dane zostają Twoje, także po rezygnacji'],
 ] as const;
 
 /** 6.14 — drobiazgi, które widać dopiero w użyciu. */
