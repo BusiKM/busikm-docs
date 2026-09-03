@@ -26,8 +26,19 @@ export type PageSpec = {
    * tytuł mówi językiem zapytań.
    */
   seoTitle?: string;
-  /** Opis dla wyszukiwarek. */
+  /** Opis dla wyszukiwarek. Google pokazuje około 155 znaków. */
   description: string;
+  /**
+   * Krótszy opis do podglądu w mediach społecznościowych, jeśli `description`
+   * jest za długi.
+   *
+   * Facebook i LinkedIn ucinają podgląd na telefonie w okolicy 125 znaków,
+   * czyli wcześniej niż Google. Opis dobrany pod wyszukiwarkę gubi wtedy
+   * ostatnie zdanie — a to zwykle w nim siedzi wezwanie do działania.
+   * Skracamy tylko tam, gdzie obcięcie coś kosztuje; „…sześć języków." albo
+   * urwana kropka nie są tego warte.
+   */
+  opisOg?: string;
   /** Co znajdzie się na tej stronie — lista do czasu projektu. */
   outline?: string[];
 };
@@ -266,6 +277,8 @@ export const pages: Record<string, PageSpec> = {
     seoTitle: 'Cennik — od 149 zł netto miesięcznie · BusiKM',
     description:
       'Start 149 zł i Firma 299 zł netto miesięcznie. Płacisz za pojazdy, kierowcy i biuro bez limitu. Bez umowy terminowej, 14 dni za darmo.',
+    opisOg:
+      'Start 149 zł, Firma 299 zł netto miesięcznie. Płacisz za pojazdy — kierowcy i biuro bez limitu. 14 dni za darmo.',
   },
 
   demo: {
@@ -276,6 +289,8 @@ export const pages: Record<string, PageSpec> = {
     seoTitle: 'Demo — zobacz program bez zakładania konta · BusiKM',
     description:
       'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji i bez podawania czegokolwiek — wchodzisz i klikasz.',
+    opisOg:
+      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji i bez podawania czegokolwiek.',
   },
 
   pomoc: {

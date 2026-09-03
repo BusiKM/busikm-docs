@@ -122,6 +122,8 @@ export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
   const zMarka = nazwa.includes(serwis.nazwa);
   const tytul = opcje.tytul ?? (zMarka ? nazwa : `${nazwa} · ${serwis.nazwa}`);
   const opis = opcje.opis ?? page.description;
+  // Podgląd społecznościowy ucina wcześniej niż wyszukiwarka — patrz `opisOg`.
+  const opisPodgladu = page.opisOg ?? opis;
   const sciezka = `/${slug}`;
   const wIndeksie = !nieindeksowane.includes(sciezka);
 
@@ -136,13 +138,13 @@ export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
       siteName: serwis.nazwa,
       url: sciezka,
       title: tytul,
-      description: opis,
+      description: opisPodgladu,
       images: [obrazPodgladu],
     },
     twitter: {
       card: 'summary_large_image',
       title: tytul,
-      description: opis,
+      description: opisPodgladu,
       images: [serwis.ogImage],
     },
   };
@@ -174,13 +176,13 @@ export function metadataStronyGlownej(): Metadata {
       siteName: serwis.nazwa,
       url: '/',
       title: serwis.tytul,
-      description: serwis.opis,
+      description: serwis.opisOg,
       images: [obrazPodgladu],
     },
     twitter: {
       card: 'summary_large_image',
       title: serwis.tytul,
-      description: serwis.opis,
+      description: serwis.opisOg,
       images: [serwis.ogImage],
     },
     /**

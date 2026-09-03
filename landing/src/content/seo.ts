@@ -22,6 +22,13 @@ export const serwis = {
   tytul: 'Program do zarządzania transportem busami · BusiKM',
   opis:
     'Ewidencja przebiegu pojazdu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm transportowych z busami 2,5–3,5 t. 14 dni za darmo.',
+  /**
+   * Krótsza wersja do podglądu w mediach społecznościowych. Wersja dla Google
+   * ma 150 znaków i gubi na telefonie całe „14 dni za darmo" — czyli jedyne
+   * wezwanie do działania w całym podglądzie.
+   */
+  opisOg:
+    'Ewidencja przebiegu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm z busami 2,5–3,5 t. 14 dni gratis.',
   jezyk: 'pl',
   locale: 'pl_PL',
   /** Obraz do podglądu w mediach społecznościowych — w `public/`. */
