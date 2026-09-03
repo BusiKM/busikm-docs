@@ -348,3 +348,30 @@ Prosta strona: działa / nie działa, historia przerw.
 ## C9–C12 · Dokumenty prawne
 `/regulamin` · `/prywatnosc` · `/powierzenie-danych` · `/podprocesorzy`
 Zwykły, czytelny tekst. To jedyne miejsce, gdzie wolno używać języka prawnego.
+
+---
+
+## C9–C12 · Stan dokumentów prawnych
+
+Cztery dokumenty są napisane i podpięte pod stopkę. **To szkice do przeglądu
+prawnego**, oparte na standardzie polskich usług SaaS B2B:
+
+| Dokument | Na czym oparty | Co wymaga potwierdzenia |
+|---|---|---|
+| Regulamin | art. 8 ust. 3 ustawy o świadczeniu usług drogą elektroniczną | SLA, granice odpowiedzialności, terminy w § 6 i § 11 |
+| Polityka prywatności | art. 13 RODO + sekcja o cookie | tabela retencji i lista narzędzi analitycznych |
+| Powierzenie danych | art. 28 ust. 3 RODO, lit. a–h | kategorie danych w pkt 4 i środki bezpieczeństwa w pkt 6 |
+| Podprocesorzy | art. 28 ust. 4 RODO | **nazwy dostawców są przykładowe** — do wpisania po podpisaniu umów |
+
+Trzy rzeczy, które w tych tekstach są decyzjami, nie standardem, i warto je
+świadomie potwierdzić albo zmienić:
+
+1. **Regulamin § 3** — usługa jest B2B, ale wprost obejmuje jednoosobowe
+   działalności prawami konsumenta (prawo odstąpienia 14 dni). To wynika
+   z tego, kto jest odbiorcą produktu.
+2. **Regulamin § 4** — zdanie, że liczniki czasu pracy są pomocnicze i nie
+   zastępują tachografu. Ta sama linia co na `/co-robi/czas-pracy`; bez niej
+   strona obiecuje więcej, niż produkt robi.
+3. **Powierzenie pkt 8** — 24 godziny na zgłoszenie naruszenia klientowi.
+   RODO wymaga „bez zbędnej zwłoki"; podanie konkretnej liczby jest naszą
+   deklaracją i trzeba umieć jej dotrzymać.

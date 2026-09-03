@@ -1,7 +1,11 @@
-import { PageShell, pageMetadata } from '@/components/layout/PageShell';
+import { StronaDokumentu } from '@/components/pages/dokument/StronaDokumentu';
+import { pageMetadata } from '@/components/layout/PageShell';
+import { podprocesorzy, pozostaleDokumenty } from '@/content/dokumenty';
 
 export const metadata = pageMetadata('podprocesorzy');
 
 export default function Page() {
-  return <PageShell slug="podprocesorzy" />;
+  return (
+    <StronaDokumentu dokument={podprocesorzy} pozostale={pozostaleDokumenty('/podprocesorzy')} />
+  );
 }
