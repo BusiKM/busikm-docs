@@ -1,46 +1,103 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
-const ADRES = 'kontakt@busikm.pl';
-
-const tematy = [
-  'pytanie przed zakupem',
-  'pomoc techniczna',
-  'rozliczenia i faktury',
-  'coś innego',
-] as const;
+import { firma } from '@/content/firma';
+import { firebaseGotowy } from '@/lib/firebase';
+import { wyslijWiadomosc, tematy, LIMITY } from '@/lib/wiadomosci';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
 
+type Stan = 'gotowy' | 'wysyłam' | 'wysłane' | 'błąd';
+
 /**
- * Formularz otwiera pocztę czytelnika z gotową wiadomością.
+ * Formularz kontaktowy.
  *
- * Nie ma jeszcze serwera, który przyjąłby zgłoszenie, a formularz, który
- * połyka wiadomość i mówi „dziękujemy", jest gorszy niż jego brak. Przy
- * `mailto:` wysyła własny program pocztowy, więc zdanie „odpowiadamy na ten
- * sam adres, z którego piszesz" jest prawdziwe co do słowa.
+ * Wiadomość ląduje w Firestore (kolekcja `wiadomosci`), a stamtąd trasa
+ * `/api/powiadom` wysyła powiadomienie na skrzynkę. Ten sam układ, co
+ * w movgranto-homepage.
+ *
+ * **Bez konfiguracji Firebase formularz cofa się do `mailto:`** — otwiera
+ * pocztę czytelnika z gotową treścią. To celowe: przy pracy lokalnej,
+ * w podglądach gałęzi i gdyby konfiguracja kiedykolwiek zniknęła,
+ * formularz nadal działa. Nigdy nie połknie wiadomości i nie powie
+ * „dziękujemy", nie mając gdzie jej zapisać.
  */
 export function Formularz() {
   const [imie, setImie] = useState('');
   const [mail, setMail] = useState('');
   const [temat, setTemat] = useState(0);
   const [tresc, setTresc] = useState('');
+  const [pulapka, setPulapka] = useState('');
+  const [stan, setStan] = useState<Stan>('gotowy');
 
-  const link = () => {
-    const podpis = [imie && `— ${imie}`, mail && mail].filter(Boolean).join('\n');
+  const kompletne = imie.trim() && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail) && tresc.trim();
+
+  const linkPocztowy = () => {
+    const podpis = [imie && `— ${imie}`, mail].filter(Boolean).join('\n');
     const body = [tresc, podpis].filter(Boolean).join('\n\n');
-    return `mailto:${ADRES}?subject=${encodeURIComponent(`BusiKM · ${tematy[temat]}`)}&body=${encodeURIComponent(body)}`;
+    return `mailto:${firma.email}?subject=${encodeURIComponent(
+      `BusiKM · ${tematy[temat]}`,
+    )}&body=${encodeURIComponent(body)}`;
   };
 
+  const wyslij = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!kompletne || stan === 'wysyłam') return;
+    setStan('wysyłam');
+    try {
+      await wyslijWiadomosc({
+        imie,
+        email: mail,
+        temat: tematy[temat],
+        tresc,
+        pulapka,
+      });
+      setStan('wysłane');
+      setImie('');
+      setMail('');
+      setTresc('');
+    } catch {
+      setStan('błąd');
+    }
+  };
+
+  if (stan === 'wysłane') {
+    return (
+      <div
+        role="status"
+        className="flex flex-col gap-3 rounded-card border border-line bg-mist p-6 lg:p-8"
+      >
+        <div className="text-[19px] font-semibold lg:text-h3">Wiadomość poszła.</div>
+        <p className="text-[16px] leading-relaxed text-muted lg:text-body">
+          Odpowiadamy tego samego dnia roboczego, na adres, który podałeś. Jeśli sprawa
+          jest pilna, napisz wprost na{' '}
+          <a href={`mailto:${firma.email}`} className="text-blue">
+            {firma.email}
+          </a>
+          .
+        </p>
+        <button
+          type="button"
+          onClick={() => setStan('gotowy')}
+          className="self-start text-[15px] font-semibold text-blue lg:text-body"
+        >
+          Napisz jeszcze raz
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-5 lg:gap-6">
+    <form onSubmit={wyslij} className="flex flex-col gap-5 lg:gap-6">
       <label className="flex flex-col gap-2">
         <span className="text-[14px] font-medium lg:text-caption">Imię</span>
         <input
           value={imie}
           onChange={(e) => setImie(e.target.value)}
+          maxLength={LIMITY.imie}
           placeholder="Marek"
           className={pole}
         />
@@ -52,6 +109,7 @@ export function Formularz() {
           type="email"
           value={mail}
           onChange={(e) => setMail(e.target.value)}
+          maxLength={LIMITY.email}
           placeholder="marek@twojafirma.pl"
           className={pole}
         />
@@ -84,23 +142,73 @@ export function Formularz() {
           value={tresc}
           onChange={(e) => setTresc(e.target.value)}
           rows={6}
+          maxLength={LIMITY.tresc}
           placeholder="Napisz, co się dzieje albo o co chcesz zapytać."
           className="w-full resize-y rounded-btn border border-line bg-white px-4 py-3.5 text-[16px] leading-relaxed outline-none placeholder:text-muted focus:border-blue lg:text-body"
         />
       </label>
 
+      {/*
+        Pułapka na boty. Człowiek tego pola nie zobaczy i nie zatabuluje do
+        niego; automat wypełniający wszystko po kolei owszem. Wypełnione =
+        cicho udajemy sukces i nic nie zapisujemy.
+      */}
+      <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Nie wypełniaj tego pola
+          <input
+            tabIndex={-1}
+            autoComplete="off"
+            value={pulapka}
+            onChange={(e) => setPulapka(e.target.value)}
+          />
+        </label>
+      </div>
+
       <div className="flex flex-col gap-3">
-        {/* Prawdziwy odnośnik, nie przycisk z przekierowaniem: działa prawy
-            przycisk myszy, kopiowanie adresu i otwarcie w nowej karcie. */}
-        <a
-          href={link()}
-          className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark lg:h-14 lg:self-start lg:text-body"
-        >
-          Wyślij wiadomość
-        </a>
-        <p className="text-[13px] text-muted lg:text-caption">
-          Otworzy się Twój program pocztowy z gotową wiadomością. Odpowiadamy na ten sam
-          adres, z którego piszesz.
+        {firebaseGotowy ? (
+          <button
+            type="submit"
+            disabled={!kompletne || stan === 'wysyłam'}
+            className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark disabled:cursor-not-allowed disabled:bg-line disabled:text-muted lg:h-14 lg:self-start lg:text-body"
+          >
+            {stan === 'wysyłam' ? 'Wysyłam…' : 'Wyślij wiadomość'}
+          </button>
+        ) : (
+          // Prawdziwy odnośnik, nie przycisk: działa prawy przycisk myszy,
+          // kopiowanie adresu i otwarcie w nowej karcie.
+          <a
+            href={linkPocztowy()}
+            className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark lg:h-14 lg:self-start lg:text-body"
+          >
+            Wyślij wiadomość
+          </a>
+        )}
+
+        <p aria-live="polite" className="text-[13px] leading-relaxed text-muted lg:text-caption">
+          {stan === 'błąd' ? (
+            <span className="text-ink">
+              Nie udało się wysłać. Napisz wprost na{' '}
+              <a href={linkPocztowy()} className="text-blue">
+                {firma.email}
+              </a>{' '}
+              — ta droga działa zawsze.
+            </span>
+          ) : firebaseGotowy ? (
+            <>
+              Odpowiadamy na podany adres. Twoje dane wykorzystujemy wyłącznie do
+              odpowiedzi na tę wiadomość —{' '}
+              <Link href="/prywatnosc" className="text-blue">
+                polityka prywatności
+              </Link>
+              .
+            </>
+          ) : (
+            <>
+              Otworzy się Twój program pocztowy z gotową wiadomością. Odpowiadamy na ten
+              sam adres, z którego piszesz.
+            </>
+          )}
         </p>
       </div>
     </form>
