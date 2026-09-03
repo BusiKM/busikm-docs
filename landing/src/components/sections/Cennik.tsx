@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { appLinks } from '@/content/navigation';
+import { Licznik } from '@/components/motion/Licznik';
 import { plans } from '@/content/cennik';
 
 /**
@@ -89,9 +90,14 @@ export function Cennik({
               <div className="flex flex-col gap-3">
                 <div className="text-[19px] font-semibold lg:text-[22px]">{plan.name}</div>
                 <div className="flex items-baseline gap-1.5 lg:gap-2">
-                  <span className="text-[40px] font-bold tracking-[-0.03em] lg:text-5xl">
-                    {yearly ? plan.yearly : plan.monthly}
-                  </span>
+                  {/* Kwota dolicza się od poprzedniej — patrz `Licznik`.
+                      Liczby w `content/cennik.ts` są tekstem ze spacją
+                      rozdzielającą tysiące, więc tutaj wracają na liczbę,
+                      a separator dokłada z powrotem licznik. */}
+                  <Licznik
+                    wartosc={Number((yearly ? plan.yearly : plan.monthly).replace(/\s/g, ''))}
+                    className="text-[40px] font-bold tracking-[-0.03em] lg:text-5xl"
+                  />
                   <span className="text-[15px] text-muted lg:text-body">
                     zł netto / {period}
                   </span>

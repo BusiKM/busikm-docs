@@ -143,6 +143,40 @@
     transform: none;
   }
 
+  /* --- Cyfry licznika kwoty -----------------------------------------------
+     Nowa cyfra wjeżdża od dołu, poprzednia wyjeżdża górą. Krótko, bo przy
+     doliczaniu jedności zmieniają się kilkadziesiąt razy na sekundę i
+     dłuższa animacja zlałaby się w plamę. */
+  .cyfra-wjazd {
+    animation: cyfra-wjazd 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .cyfra-wyjazd {
+    animation: cyfra-wyjazd 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes cyfra-wjazd {
+    from {
+      transform: translateY(90%);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  @keyframes cyfra-wyjazd {
+    from {
+      transform: none;
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-90%);
+      opacity: 0;
+    }
+  }
+
   /* --- Wejście podmienianej makiety ----------------------------------------
      Makieta wymieniona w tym samym miejscu (zakładki ról, takty sceny
      przyklejonej) wchodzi krótkim rozjaśnieniem zamiast pojawiać się skokiem.
@@ -162,7 +196,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .wchodzi {
+    .wchodzi,
+    .cyfra-wjazd,
+    .cyfra-wyjazd {
       animation: none;
     }
 
