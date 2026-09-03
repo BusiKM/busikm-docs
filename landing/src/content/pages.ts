@@ -13,8 +13,19 @@ export type PageSpec = {
   heading: string;
   /** Zdanie pod nagłówkiem. */
   lead: string;
-  /** Tytuł w zakładce przeglądarki. */
+  /** Krótka nazwa strony — okruszki, menu, odwołania w tekście. */
   title: string;
+  /**
+   * Tytuł dla wyszukiwarki, jeśli ma być inny niż `title`.
+   *
+   * Google daje na tytuł około 60 znaków i traktuje go jako najmocniejszy
+   * sygnał tego, o czym jest strona. Nazwy w głosie marki — „Ile zostaje",
+   * „Dyspozytornia" — są dobre w nawigacji, ale nie zawierają słów, które
+   * ktokolwiek wpisuje w wyszukiwarce. Dlatego tytuł w wyniku wyszukiwania
+   * jest rozdzielony od nagłówka na stronie: nagłówek zostaje w głosie marki,
+   * tytuł mówi językiem zapytań.
+   */
+  seoTitle?: string;
   /** Opis dla wyszukiwarek. */
   description: string;
   /** Co znajdzie się na tej stronie — lista do czasu projektu. */
@@ -36,8 +47,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Cały dzień pracy w jednej aplikacji.\nBez wpisywania czegokolwiek w trasie.',
     lead: 'Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.',
     title: 'Aplikacja kierowcy',
+    seoTitle: 'Aplikacja dla kierowcy busa — nawigacja i koszty · BusiKM',
     description:
-      'Nawigacja, trasa, przerwy i koszty w jednej aplikacji. Działa bez zasięgu, w sześciu językach, z trybem nocnym.',
+      'Aplikacja mobilna dla kierowców: nawigacja w środku, koszt jednym przyciskiem, przerwy i praca bez zasięgu. iPhone i Android, sześć języków.',
     outline: [
       'Wchodzi kodem, nie zakłada konta',
       'Nawigacja jest w środku — nie przeskakuje między aplikacjami',
@@ -55,8 +67,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Cały dzień pracy\nna jednym ekranie.',
     lead: 'Zlecenia, mapa, kierowcy i rozmowa — obok siebie. Bez przełączania zakładek.',
     title: 'Dyspozytornia',
+    seoTitle: 'Program dla dyspozytora transportu i mapa floty · BusiKM',
     description:
-      'Zlecenia, mapa i kierowcy na jednym ekranie. Trasa układa się sama, a zmiana w trakcie jazdy trafia do kierowcy od razu.',
+      'Zlecenia, mapa floty i kierowcy na jednym ekranie. Trasa układa się sama, a zmiana w trakcie jazdy trafia do kierowcy od razu.',
     outline: [
       'Jeden ekran zamiast czterech okien',
       'Zlecenie od przyjęcia po rozliczenie',
@@ -73,8 +86,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Widzisz, gdzie jest każdy bus.\nBez dzwonienia.',
     lead: 'Pozycje na żywo, historia tras i przejazdy, które liczą się nawet bez zlecenia.',
     title: 'Trasy i mapa floty',
+    seoTitle: 'Mapa floty i trasy busów na żywo · BusiKM',
     description:
-      'Mapa floty na żywo, historia tras, kraje na trasie i przejazdy poza zleceniem.',
+      'Widzisz, gdzie jest każdy bus, bez dzwonienia. Trasa zapisuje się sama i zamienia w gotową ewidencję przebiegu pojazdu.',
     outline: [
       'Mapa na żywo',
       'Klient pyta, Ty odpowiadasz',
@@ -90,8 +104,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Wiesz, kiedy kierowca musi stanąć.\nZanim stanie za późno.',
     lead: 'Liczniki idą same, także bez zasięgu. Kierowca dostaje przypomnienie wcześniej, nie po fakcie.',
     title: 'Czas pracy i przerwy',
+    seoTitle: 'Ewidencja czasu pracy kierowcy — program · BusiKM',
     description:
-      'Jazda, przerwy i odpoczynki liczone na bieżąco. Miesięczna karta do wydruku i dni w każdym kraju liczone z trasy.',
+      'Czas jazdy, przerwy i odpoczynki liczone same z trasy. Kierowca wie, kiedy musi stanąć, a Ty masz gotowe zestawienie za miesiąc.',
     outline: [
       'Liczniki idą same',
       'Kierowca dostaje przypomnienie wcześniej',
@@ -108,8 +123,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Ze zlecenia robi się faktura.\nKlient ma ją, zanim wrócisz do biura.',
     lead: 'Faktura powstaje z danych zlecenia, a wysyłka do klienta i do systemu e-faktur to jedno kliknięcie.',
     title: 'Zlecenia i faktury',
+    seoTitle: 'Zlecenia transportowe i faktury — program · BusiKM',
     description:
-      'Zlecenie połączone z fakturą. Wysyłka mailem i do KSeF jednym kliknięciem, razem z korektami i zaliczkami.',
+      'Ze zlecenia robi się faktura jednym kliknięciem. Klient dostaje ją mailem, a Ty widzisz, kto jeszcze nie zapłacił.',
     outline: [
       'Zlecenie i faktura to jedno',
       'Wysyłka jednym kliknięciem',
@@ -125,8 +141,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Reklamówka paragonów.\nDo wyrzucenia.',
     lead: 'Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca wpisują się same.',
     title: 'Koszty i paragony',
+    seoTitle: 'Rozliczanie kosztów i paragonów w transporcie · BusiKM',
     description:
-      'Zdjęcie zamiast wpisywania. Koszt trafia do właściwego zlecenia i pojazdu, obca waluta przelicza się sama.',
+      'Kierowca robi zdjęcie paragonu, a system sam odczytuje kwotę, datę i walutę. Koniec z reklamówką rachunków pod siedzeniem.',
     outline: [
       'Zdjęcie zamiast wpisywania',
       'Trafia tam, gdzie trzeba',
@@ -142,8 +159,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Wiesz, ile zostaje.\nNa tym kursie. Dziś.',
     lead: 'Kierowca dodaje paragon w trasie — liczba na Twoim ekranie zmienia się od razu.',
     title: 'Ile zostaje',
+    seoTitle: 'Rentowność zleceń transportowych — zysk na kursie · BusiKM',
     description:
-      'Przychód, koszty i zysk na bieżąco. Marża na każdym zleceniu z osobna, z kosztami w obcych walutach.',
+      'Przychód, koszty i zysk na każdym kursie z osobna. Marża liczona na bieżąco, razem z kosztami w obcych walutach.',
     outline: [
       'Zysk na pierwszym ekranie',
       'Marża na każdym zleceniu',
@@ -159,8 +177,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Komplet dokumentów.\nJednym przyciskiem.',
     lead: 'Wybiera miesiąc, klika raz i ma wszystko — w formacie programu, którego już używa.',
     title: 'Dane dla księgowej',
+    seoTitle: 'Dokumenty dla księgowej z firmy transportowej · BusiKM',
     description:
-      'Dziewięć zestawień za wybrany miesiąc, w formacie Insert, Comarch Optima, Symfonia albo zwykłego arkusza.',
+      'Komplet zestawień za miesiąc jednym przyciskiem: przebieg, koszty, faktury sprzedaży i zakupu. W formacie, który księgowa po prostu wczyta.',
     outline: [
       'Wybiera miesiąc i klika raz',
       'W formacie jej programu',
@@ -178,8 +197,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Nic nie wygaśnie\npo cichu.',
     lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat i mówi wcześniej.',
     title: 'Dokumenty i terminy',
+    seoTitle: 'Pilnowanie terminów dokumentów i badań w firmie · BusiKM',
     description:
-      'Dokumenty pojazdów, firmy i kierowców w jednym miejscu, z przypomnieniem na długo przed terminem.',
+      'Przeglądy, ubezpieczenia, badania kierowców i uprawnienia w jednym miejscu. Dostajesz przypomnienie, zanim coś wygaśnie.',
     outline: [
       'Wszystko w jednym miejscu',
       'Przypomnienie z wyprzedzeniem',
@@ -203,8 +223,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Wiesz, ile zostaje.\nI gdzie jest każdy bus.',
     lead: 'Przychód, koszty i zysk na pierwszym ekranie po zalogowaniu. Cała flota na mapie.',
     title: 'BusiKM dla właściciela',
+    seoTitle: 'BusiKM dla właściciela firmy transportowej',
     description:
-      'Zysk na bieżąco, mapa floty, rentowność każdego zlecenia i dokumenty, które nie wygasną po cichu.',
+      'Zysk, koszty i cała flota na jednym ekranie. Wiesz, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.',
   },
 
   'dla-kogo/dyspozytor': {
@@ -212,8 +233,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Cały dzień pracy\nna jednym ekranie.',
     lead: 'Zlecenia, mapa, kierowcy i rozmowa obok siebie. Trasa układa się sama.',
     title: 'BusiKM dla dyspozytora',
+    seoTitle: 'BusiKM dla dyspozytora — zlecenia, mapa, kierowcy',
     description:
-      'Zlecenia, mapa i kierowcy w jednym miejscu. Trasa dobiera się sama, a zmiana w trakcie jazdy trafia do kierowcy od razu.',
+      'Zlecenia, mapa i rozmowa z kierowcą w jednym oknie. Bez przełączania zakładek i bez dzwonienia, żeby ustalić, gdzie kto jest.',
   },
 
   'dla-kogo/ksiegowa': {
@@ -221,8 +243,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Koniec miesiąca\nw jednym kliknięciu.',
     lead: 'Komplet dokumentów w formacie Twojego programu. Zamykasz miesiąc i nikt nie zmienia danych wstecz.',
     title: 'BusiKM dla księgowej',
+    seoTitle: 'BusiKM dla księgowej firmy transportowej',
     description:
-      'Komplet dokumentów za miesiąc jednym przyciskiem, w formacie Insert, Comarch Optima albo Symfonia.',
+      'Komplet dokumentów za miesiąc jednym przyciskiem, w formacie do wczytania. Bez dopytywania o brakujące paragony i faktury.',
   },
 
   'dla-kogo/kierowca': {
@@ -230,8 +253,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Rusz.\nResztą zajmuje się telefon.',
     lead: 'Zlecenie, nawigacja, przerwy i koszty w jednej aplikacji. Bez zakładania konta.',
     title: 'BusiKM dla kierowcy',
+    seoTitle: 'BusiKM dla kierowcy — aplikacja na telefon',
     description:
-      'Nawigacja w tej samej aplikacji, koszt jednym przyciskiem, praca bez zasięgu i sześć języków.',
+      'Jeden przycisk: rusz. Nawigacja, przerwy i koszty w tej samej aplikacji. Działa bez zasięgu, w sześciu językach.',
   },
 
   cennik: {
@@ -239,8 +263,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Płacisz za pojazdy.\nNie za ludzi.',
     lead: 'Kierowcy i pracownicy biura bez limitu. Przyczepy i naczepy nie liczą się do abonamentu.',
     title: 'Cennik',
+    seoTitle: 'Cennik — od 149 zł netto miesięcznie · BusiKM',
     description:
-      'Start 149 zł i Firma 299 zł netto miesięcznie. Bez umowy na czas określony, rezygnacja jednym kliknięciem.',
+      'Start 149 zł i Firma 299 zł netto miesięcznie. Płacisz za pojazdy, kierowcy i biuro bez limitu. Bez umowy terminowej, 14 dni za darmo.',
   },
 
   demo: {
@@ -248,8 +273,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Nie wierz na słowo.\nWejdź i poklikaj.',
     lead: 'Prawdziwa aplikacja z przykładową firmą. Bez zakładania konta — i niczego nie zepsujesz.',
     title: 'Demo BusiKM',
+    seoTitle: 'Demo — zobacz program bez zakładania konta · BusiKM',
     description:
-      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji, dane wracają do porządku każdej nocy.',
+      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji i bez podawania czegokolwiek — wchodzisz i klikasz.',
   },
 
   pomoc: {
@@ -257,8 +283,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Pomoc,\nkiedy jej potrzebujesz.',
     lead: 'Pierwsze kroki, praca kierowcy, rozliczenia i konto. A jak czegoś nie ma — piszesz do człowieka.',
     title: 'Centrum pomocy',
+    seoTitle: 'Centrum pomocy · BusiKM',
     description:
-      'Pierwsze kroki, aplikacja kierowcy, rozliczenia i księgowość, konto i płatności.',
+      'Pierwsze kroki, aplikacja kierowcy, rozliczenia i księgowość, konto i płatności. A jak czegoś nie ma — piszesz do człowieka.',
   },
 
   'pomoc/pierwsze-kroki': {
@@ -266,8 +293,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Pierwsza trasa\njeszcze dziś.',
     lead: 'Od założenia konta po pierwszą zamkniętą fakturę. Krok po kroku.',
     title: 'Pierwsze kroki',
+    seoTitle: 'Pierwsze kroki — od konta do pierwszej faktury · BusiKM',
     description:
-      'Dodaj pojazd, zaproś kierowcę, odbierz pierwszą trasę. Cała droga od rejestracji po pierwszą fakturę.',
+      'Dodaj pojazd, zaproś kierowcę, odbierz pierwszą trasę. Cała droga od założenia konta po pierwszą wystawioną fakturę.',
   },
 
   kontakt: {
@@ -275,7 +303,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Napisz.\nOdpisujemy tego samego dnia.',
     lead: 'Pytanie o funkcję, o rozliczenie albo o to, czy BusiKM poradzi sobie z Twoim przypadkiem.',
     title: 'Kontakt',
-    description: 'Napisz do nas — odpowiadamy w tym samym dniu roboczym.',
+    seoTitle: 'Kontakt · BusiKM',
+    description:
+      'Napisz do nas — odpowiadamy tego samego dnia roboczego. Pytania o funkcje, rozliczenia i wdrożenie w Twojej firmie.',
   },
 
   status: {
@@ -283,7 +313,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Czy BusiKM\ndziała.',
     lead: 'Aktualny stan usługi i historia przerw.',
     title: 'Status usługi',
-    description: 'Aktualny stan działania BusiKM i historia przerw w dostępie.',
+    seoTitle: 'Status usługi — czy BusiKM działa · BusiKM',
+    description:
+      'Aktualny stan działania BusiKM i historia przerw w dostępie. Sprawdź tutaj, zanim napiszesz do nas — może problem jest już u nas na tablicy.',
   },
 
   regulamin: {
@@ -291,7 +323,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Regulamin',
     lead: 'Zasady korzystania z BusiKM.',
     title: 'Regulamin',
-    description: 'Zasady korzystania z serwisu BusiKM.',
+    seoTitle: 'Regulamin serwisu · BusiKM',
+    description:
+      'Zasady korzystania z BusiKM: zawarcie umowy i konto, opłaty i rozliczenia, dostępność usługi, odpowiedzialność, reklamacje i rozwiązanie umowy.',
   },
 
   prywatnosc: {
@@ -299,7 +333,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Polityka prywatności',
     lead: 'Jakie dane zbieramy, po co i jak długo je trzymamy.',
     title: 'Polityka prywatności',
-    description: 'Jakie dane zbiera BusiKM, w jakim celu i jak długo je przechowuje.',
+    seoTitle: 'Polityka prywatności i plików cookie · BusiKM',
+    description:
+      'Jakie dane zbiera BusiKM, w jakim celu, jak długo je przechowuje i jakie masz prawa. Wraz z zasadami używania plików cookie.',
   },
 
   'powierzenie-danych': {
@@ -307,7 +343,9 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Powierzenie danych',
     lead: 'Umowa powierzenia przetwarzania danych osobowych.',
     title: 'Powierzenie danych',
-    description: 'Umowa powierzenia przetwarzania danych osobowych dla klientów BusiKM.',
+    seoTitle: 'Umowa powierzenia przetwarzania danych · BusiKM',
+    description:
+      'Warunki powierzenia przetwarzania danych osobowych dla klientów BusiKM — zakres, zabezpieczenia i podprocesorzy.',
   },
 
   podprocesorzy: {
@@ -315,6 +353,8 @@ export const pages: Record<string, PageSpec> = {
     heading: 'Podprocesorzy',
     lead: 'Lista dostawców, którzy przetwarzają dane w imieniu BusiKM.',
     title: 'Podprocesorzy',
-    description: 'Publiczny rejestr podprocesorów BusiKM.',
+    seoTitle: 'Podprocesorzy — z jakich dostawców korzystamy · BusiKM',
+    description:
+      'Publiczny rejestr podprocesorów BusiKM: kto przetwarza dane w naszym imieniu, po co i gdzie te dane się znajdują.',
   },
 };

@@ -114,12 +114,13 @@ export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
   const page = pages[slug];
   if (!page) throw new Error(`Brak opisu strony: ${slug}`);
 
-  // Sześć tytułów w `pages.ts` niesie już markę („BusiKM dla kierowcy",
-  // „Demo BusiKM"). Doklejenie przyrostka dawało „Demo BusiKM · BusiKM" —
-  // powtórzona nazwa zjada limit ~60 znaków w wyniku wyszukiwania i wygląda
-  // na automat.
-  const zMarka = page.title.includes(serwis.nazwa);
-  const tytul = opcje.tytul ?? (zMarka ? page.title : `${page.title} · ${serwis.nazwa}`);
+  // Tytuł w wyniku wyszukiwania jest rozdzielony od nazwy strony: `seoTitle`
+  // mówi językiem zapytań, `title` zostaje krótką nazwą do okruszków i menu.
+  // Gdy `seoTitle` nie ma, doklejamy markę — chyba że nazwa już ją niesie
+  // („BusiKM dla kierowcy"), bo powtórzenie zjada limit ~60 znaków.
+  const nazwa = page.seoTitle ?? page.title;
+  const zMarka = nazwa.includes(serwis.nazwa);
+  const tytul = opcje.tytul ?? (zMarka ? nazwa : `${nazwa} · ${serwis.nazwa}`);
   const opis = opcje.opis ?? page.description;
   const sciezka = `/${slug}`;
   const wIndeksie = !nieindeksowane.includes(sciezka);

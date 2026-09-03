@@ -11,9 +11,17 @@
 export const serwis = {
   url: 'https://busikm.pl',
   nazwa: 'BusiKM',
-  tytul: 'BusiKM — Kierowca jedzie. Reszta dzieje się sama.',
+  /**
+   * Tytuł strony głównej w wyniku wyszukiwania.
+   *
+   * Nie jest to hasło z nagłówka. Nagłówek „Kierowca jedzie. Reszta dzieje
+   * się sama." sprzedaje komuś, kto już jest na stronie — ale nie zawiera
+   * ani jednego słowa, które ktoś wpisuje w Google. Tytuł prowadzi frazą,
+   * której szuka właściciel firmy transportowej, i dopiero potem podaje markę.
+   */
+  tytul: 'Program do zarządzania transportem busami · BusiKM',
   opis:
-    'BusiKM zamienia trasy Twoich kierowców w kilometrówkę, ewidencję czasu pracy i komplet dokumentów dla księgowej. Bez Excela. Bez przepisywania.',
+    'Ewidencja przebiegu pojazdu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm transportowych z busami 2,5–3,5 t. 14 dni za darmo.',
   jezyk: 'pl',
   locale: 'pl_PL',
   /** Obraz do podglądu w mediach społecznościowych — w `public/`. */
