@@ -43,7 +43,7 @@ const drobiazgi = [
 
 const statusy = [
   ['przyjęte', 'bg-mist text-ink'],
-  ['w drodze', 'bg-blue-soft text-blue'],
+  ['w drodze', 'bg-blue-soft text-blue-dark'],
   ['rozładunek', 'bg-mist text-ink'],
   ['dostarczone', 'bg-green/14 text-green-ink'],
 ] as const;
@@ -117,11 +117,11 @@ export default function Page() {
           stopka={
             <>
               Kto tego używa:{' '}
-              <Link href="/dla-kogo/dyspozytor" className="text-blue">
+              <Link href="/dla-kogo/dyspozytor">
                 Dyspozytor →
               </Link>
               <span className="mx-3">·</span>
-              <Link href="/dla-kogo/wlasciciel" className="text-blue">
+              <Link href="/dla-kogo/wlasciciel">
                 Właściciel →
               </Link>
             </>

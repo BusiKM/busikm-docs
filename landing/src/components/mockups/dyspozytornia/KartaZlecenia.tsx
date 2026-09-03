@@ -18,7 +18,7 @@ export function KartaZlecenia() {
           <div className="text-muted">Zlecenie · 2026/09/041</div>
           <b className="text-[17px] lg:text-[20px]">Warszawa → Mediolan</b>
         </div>
-        <span className="flex-none rounded-full bg-blue-soft px-3 py-1.5 font-semibold text-blue">
+        <span className="flex-none rounded-full bg-blue-soft px-3 py-1.5 font-semibold text-blue-dark">
           w drodze
         </span>
       </div>

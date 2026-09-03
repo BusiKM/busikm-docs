@@ -18,7 +18,7 @@ export function MapaIKlient() {
             <div key={numer} className="flex flex-col gap-4 lg:gap-6">
               <div
                 data-reveal
-                className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption"
+                className="text-[13px] font-semibold tracking-[0.06em] text-blue-light lg:text-caption"
               >
                 {numer}
               </div>
@@ -71,11 +71,11 @@ export function MapaIKlient() {
           </div>
 
           <div data-reveal className="flex flex-col gap-4 rounded-card bg-blue p-6 text-white lg:p-8">
-            <div className="text-[13px] text-white/70">09:41 · odpowiadasz</div>
+            <div className="text-[13px] text-white">09:41 · odpowiadasz</div>
             <div className="text-[19px] leading-snug font-semibold tracking-[-0.01em] lg:text-[22px]">
               „Jest pod Bolzano. Jutro o ósmej u Państwa.”
             </div>
-            <div className="mt-auto text-[14px] text-white/70">
+            <div className="mt-auto text-[14px] text-white">
               Kierowca jedzie dalej. Nikt do niego nie dzwonił.
             </div>
           </div>

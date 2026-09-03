@@ -30,7 +30,7 @@ export function PrzekreslonaLista({
               data-reveal
               className={`border-t py-4 text-[20px] leading-tight font-semibold tracking-[-0.01em] line-through decoration-[3px] lg:py-6 lg:text-h3 ${
                 dark
-                  ? 'border-line-dark text-[#55555C] decoration-paper'
+                  ? 'border-line-dark text-ink-faint decoration-paper'
                   : 'border-line text-muted decoration-ink'
               } ${i === rzeczy.length - 1 ? 'border-b' : ''}`}
             >

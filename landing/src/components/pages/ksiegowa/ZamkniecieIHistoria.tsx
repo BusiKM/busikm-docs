@@ -49,7 +49,7 @@ export function ZamkniecieIHistoria() {
                 }`}
               >
                 <span className="truncate">{plik}</span>
-                <span className="flex-none text-blue">pobierz ↓</span>
+                <span className="flex-none text-blue-light">pobierz ↓</span>
               </div>
             ))}
           </div>

@@ -115,7 +115,7 @@ export function StronaDokumentu({
 
             <div className="flex min-w-0 flex-col gap-10 lg:gap-14">
               <div className={`${KOLUMNA} flex flex-col gap-3.5 rounded-card bg-blue-soft p-6 lg:p-8`}>
-                <div className="text-[12px] font-medium tracking-[0.1em] text-blue uppercase">
+                <div className="text-[12px] font-medium tracking-[0.1em] text-blue-dark uppercase">
                   W skrócie
                 </div>
                 <ul className="flex flex-col gap-2 text-[16px] leading-relaxed text-pretty lg:text-body">

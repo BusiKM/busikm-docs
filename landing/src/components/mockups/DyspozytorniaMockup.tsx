@@ -67,7 +67,7 @@ export function DyspozytorniaMockup() {
 
         <div className="flex flex-col gap-1.5 border-l border-line p-2.5 lg:gap-3 lg:p-[22px]">
           <div className="flex items-center gap-2 lg:gap-3">
-            <span className="hidden size-9 items-center justify-center rounded-full bg-blue-soft font-semibold text-blue lg:flex">
+            <span className="hidden size-9 items-center justify-center rounded-full bg-blue-soft font-semibold text-blue-dark lg:flex">
               MW
             </span>
             <div className="min-w-0">

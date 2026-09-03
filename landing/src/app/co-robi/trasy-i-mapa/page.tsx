@@ -93,11 +93,11 @@ export default function Page() {
           stopka={
             <>
               Kto tego używa:{' '}
-              <Link href="/dla-kogo/dyspozytor" className="text-blue">
+              <Link href="/dla-kogo/dyspozytor">
                 Dyspozytor →
               </Link>
               <span className="mx-3">·</span>
-              <Link href="/dla-kogo/wlasciciel" className="text-blue">
+              <Link href="/dla-kogo/wlasciciel">
                 Właściciel →
               </Link>
             </>

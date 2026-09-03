@@ -39,7 +39,7 @@ export function PasekPostepu() {
               key={o.etykieta}
               style={{ flex: o.udzial }}
               className={`rounded-md ${
-                o.kierowca ? 'border border-dashed border-[#55555C] bg-line-dark-2' : 'bg-blue'
+                o.kierowca ? 'border border-dashed border-ink-faint bg-line-dark-2' : 'bg-blue'
               }`}
             />
           ))}
@@ -61,7 +61,7 @@ export function PasekPostepu() {
           <span className="flex items-center gap-2">
             <span
               aria-hidden
-              className="size-2.5 rounded-[3px] border border-dashed border-[#55555C] bg-line-dark-2"
+              className="size-2.5 rounded-[3px] border border-dashed border-ink-faint bg-line-dark-2"
             />
             po stronie kierowcy
           </span>

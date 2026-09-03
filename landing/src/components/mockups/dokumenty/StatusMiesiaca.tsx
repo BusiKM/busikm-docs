@@ -69,7 +69,7 @@ export function StatusMiesiaca() {
                     <b className="block truncate">{p.co}</b>
                     <div className="truncate text-muted">{p.kto}</div>
                   </div>
-                  <span className={`flex-none ${p.pilne ? 'font-bold text-amber' : ''}`}>
+                  <span className={`flex-none ${p.pilne ? 'font-bold text-amber-ink' : ''}`}>
                     {p.kiedy}
                   </span>
                 </div>

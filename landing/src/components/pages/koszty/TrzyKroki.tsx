@@ -21,7 +21,7 @@ export function TrzyKroki() {
             <div key={numer} className="flex flex-col gap-4 lg:gap-6">
               <div
                 data-reveal
-                className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption"
+                className="text-[13px] font-semibold tracking-[0.06em] text-blue-light lg:text-caption"
               >
                 {numer}
               </div>
@@ -75,7 +75,7 @@ export function TrzyKroki() {
             data-reveal
             className="flex min-h-45 flex-col gap-5 rounded-card bg-blue p-6 text-white lg:min-h-55 lg:p-8"
           >
-            <div className="text-[13px] text-white/70">11:39 · u Ciebie</div>
+            <div className="text-[13px] text-white">11:39 · u Ciebie</div>
             <div className="flex flex-col gap-1.5 text-[14px]">
               <span>Zlecenie · Poznań → Rotterdam</span>
               <span>Pojazd · PO 2093J</span>

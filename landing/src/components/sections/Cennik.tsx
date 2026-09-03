@@ -63,7 +63,7 @@ export function Cennik({
               Rocznie
             </button>
           </div>
-          <span className="rounded-full bg-blue-soft px-2.5 py-[5px] text-[13px] font-semibold text-blue lg:px-3 lg:py-1.5 lg:text-caption">
+          <span className="rounded-full bg-blue-soft px-2.5 py-[5px] text-[13px] font-semibold text-blue-dark lg:px-3 lg:py-1.5 lg:text-caption">
             2 miesiące gratis
           </span>
         </div>

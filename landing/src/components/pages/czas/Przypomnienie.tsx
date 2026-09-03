@@ -30,7 +30,7 @@ export function Przypomnienie() {
         <div className="flex flex-col gap-4 lg:gap-6">
           <div
             data-reveal
-            className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption"
+            className="text-[13px] font-semibold tracking-[0.06em] text-blue-light lg:text-caption"
           >
             02
           </div>
@@ -46,7 +46,7 @@ export function Przypomnienie() {
               <span>Za 20 minut przerwa</span>
               <span className="flex-none text-green">tak</span>
             </div>
-            <div className="flex justify-between gap-4 rounded-[14px] border border-dashed border-line-dark px-4.5 py-3.5 text-[#55555C]">
+            <div className="flex justify-between gap-4 rounded-[14px] border border-dashed border-line-dark px-4.5 py-3.5 text-ink-faint">
               <span className="line-through">Miałeś stanąć godzinę temu</span>
               <span className="flex-none">nie</span>
             </div>

@@ -42,7 +42,7 @@ export function SpisTresci({ paragrafy }: { paragrafy: Paragraf[] }) {
               href={`#${kotwica(p.numer)}`}
               onClick={() => setOtwarty(false)}
               className={`flex gap-2.5 rounded-lg px-3 py-2 text-[14px] leading-snug transition-colors lg:text-[15px] ${
-                czynny ? 'bg-blue-soft font-medium text-blue' : 'text-muted hover:text-ink'
+                czynny ? 'bg-blue-soft font-medium text-blue-dark' : 'text-muted hover:text-ink'
               }`}
             >
               <span className="flex-none tabular-nums">{p.numer}</span>

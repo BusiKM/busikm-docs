@@ -25,7 +25,11 @@ export function KartaBloku({
       }`}
     >
       <div className="flex flex-col gap-4 lg:gap-5">
-        <div className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption">
+        <div
+          className={`text-[13px] font-semibold tracking-[0.06em] lg:text-caption ${
+            dark ? 'text-blue-light' : 'text-blue'
+          }`}
+        >
           {numer}
         </div>
         <h2 className="text-h2-m font-semibold text-balance lg:text-h2">{tytul}</h2>

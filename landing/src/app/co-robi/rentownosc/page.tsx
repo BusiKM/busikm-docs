@@ -86,7 +86,7 @@ export default function Page() {
           stopka={
             <>
               Kto tego używa:{' '}
-              <Link href="/dla-kogo/wlasciciel" className="text-blue">
+              <Link href="/dla-kogo/wlasciciel">
                 Właściciel →
               </Link>
             </>

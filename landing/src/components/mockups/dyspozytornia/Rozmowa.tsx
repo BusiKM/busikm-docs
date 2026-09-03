@@ -11,7 +11,7 @@ export function Rozmowa() {
   return (
     <div className="mx-auto flex w-full max-w-[460px] flex-col gap-3 rounded-card border border-line-dark bg-surface p-6 text-[13px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:p-7 lg:text-caption">
       <div className="flex items-center gap-3 border-b border-line-dark pb-3.5">
-        <span className="flex size-9 items-center justify-center rounded-full bg-[#1C1C21] font-semibold text-blue">
+        <span className="flex size-9 items-center justify-center rounded-full bg-[#1C1C21] font-semibold text-blue-light">
           MW
         </span>
         <div>

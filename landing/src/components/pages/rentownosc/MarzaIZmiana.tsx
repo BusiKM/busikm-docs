@@ -17,7 +17,7 @@ export function MarzaIZmiana() {
             <div key={numer} className="flex flex-col gap-4 lg:gap-6">
               <div
                 data-reveal
-                className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption"
+                className="text-[13px] font-semibold tracking-[0.06em] text-blue-light lg:text-caption"
               >
                 {numer}
               </div>

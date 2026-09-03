@@ -56,7 +56,7 @@ export function DemoMockup() {
             <span
               key={m}
               className={`rounded-lg px-2.5 py-1 ${
-                i === 0 ? 'bg-blue-soft font-semibold text-blue' : 'text-muted'
+                i === 0 ? 'bg-blue-soft font-semibold text-blue-dark' : 'text-muted'
               }`}
             >
               {m}

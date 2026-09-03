@@ -83,7 +83,7 @@ export function KartaFormat() {
           }`}
         >
           <span className="truncate">{nazwa}</span>
-          <span className={`flex-none ${wybrany ? 'text-blue' : 'text-ink-muted'}`}>{format}</span>
+          <span className={`flex-none ${wybrany ? 'text-blue-light' : 'text-ink-muted'}`}>{format}</span>
         </div>
       ))}
     </div>

@@ -6,13 +6,20 @@
 --------------------------------------------------------------------------- */
 
 @theme {
-  /* --- Kolory ------------------------------------------------------------ */
+  /* --- Kolory ------------------------------------------------------------
+     Wartości dobrane tak, by tekst spełniał WCAG AA (4,5:1) na tłach, na
+     których faktycznie stoi. Kolor funkcyjny ma dwa warianty: nasycony do
+     wypełnień (kropka, pasek) i przygaszony do tekstu — `green` / `green-ink`,
+     `amber` / `amber-ink`. Niebieski dodatkowo `blue-light` na ciemne sekcje,
+     bo #0B5FFF na czerni daje tylko 3,86:1.
+     Sprawdzane skryptem: kontrast każdego węzła tekstowego na jego
+     rzeczywistym tle, na wszystkich 24 stronach. */
   --color-ink: #0a0a0b; /* tekst na jasnym, tło sekcji ciemnych */
   --color-paper: #fafafa; /* tło sekcji jasnych */
   --color-surface: #111113; /* karty na ciemnym */
   --color-mist: #f2f2f4; /* karty na jasnym */
   --color-line: #e3e3e6; /* subtelne krawędzie */
-  --color-muted: #6e6e76; /* tekst drugorzędny */
+  --color-muted: #6c6c74; /* tekst drugorzędny */
   --color-blue: #0b5fff; /* akcja główna, linki */
   --color-blue-dark: #0a46c0; /* hover linku i przycisku */
   --color-blue-soft: #e8effe; /* pigułka aktywnej pozycji, kafle */
@@ -20,7 +27,9 @@
   --color-amber: #ff9500; /* TYLKO wygasający dokument w sekcji dokumentów */
   --color-green: #30d158; /* stany „gotowe" na ciemnym */
   --color-red: #ff3b30; /* TYLKO przerwa całkowita na stronie statusu */
-  --color-green-ink: #1e9c43; /* to samo na jasnym, czytelnie */
+  --color-green-ink: #187b35; /* to samo na jasnym, czytelnie */
+  --color-amber-ink: #a15e00; /* bursztyn jako TEKST — sam #ff9500 jest nieczytelny */
+  --color-blue-light: #3a7eff; /* niebieski jako tekst na ciemnym tle */
 
   /* --- Ciemne sekcje ----------------------------------------------------- */
   --color-ink-muted: #8e8e96; /* tekst drugorzędny na ciemnym */
@@ -29,6 +38,7 @@
   --color-line-dark: #26262b; /* krawędź na ciemnym */
   --color-line-dark-2: #3a3a40; /* mocniejsza krawędź na ciemnym */
   --color-line-strong: #d6d6da; /* obrys przerywany ramek makiet */
+  --color-ink-faint: #808081; /* tekst przygaszony na ciemnym — np. przekreślony */
 
   /* --- Typografia -------------------------------------------------------- */
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",

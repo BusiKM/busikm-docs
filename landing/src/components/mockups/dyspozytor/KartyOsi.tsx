@@ -49,7 +49,7 @@ export function KartaKierowcy() {
             <b>{k.kto}</b> <span className="text-ink-muted">{k.poj}</span>
             <div className="truncate text-ink-muted">{k.stan}</div>
           </div>
-          <span className={`flex-none ${i === 0 ? 'text-blue' : 'text-ink-muted'}`}>
+          <span className={`flex-none ${i === 0 ? 'text-blue-light' : 'text-ink-muted'}`}>
             {k.pigulka}
           </span>
         </div>

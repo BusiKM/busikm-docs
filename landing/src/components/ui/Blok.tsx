@@ -33,7 +33,9 @@ export function Blok({
         >
           <div
             data-reveal
-            className="text-[13px] font-semibold tracking-[0.06em] text-blue lg:text-caption"
+            className={`text-[13px] font-semibold tracking-[0.06em] lg:text-caption ${
+              dark ? 'text-blue-light' : 'text-blue'
+            }`}
           >
             {numer}
           </div>

@@ -50,7 +50,7 @@ export function ZakresRoli({
               {k.pozycje && (
                 <div
                   className={`flex flex-col text-[19px] leading-snug font-semibold tracking-[-0.01em] lg:text-lead ${
-                    k.przygaszona ? 'text-[#55555C]' : ''
+                    k.przygaszona ? 'text-ink-faint' : ''
                   }`}
                 >
                   {k.pozycje.map((p, i) => (

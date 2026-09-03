@@ -41,8 +41,13 @@ export function Drobiazgi({
 
         {stopka && (
           <p
+            /* Odnośnik koloruje sekcja, nie strona: na ciemnym tle marka
+               #0B5FFF daje tylko 3,86:1, więc potrzebny jest jaśniejszy
+               wariant. Strony przekazują sam tekst odnośnika bez klasy. */
             className={`border-t pt-10 text-[16px] leading-relaxed lg:pt-16 lg:text-body ${
-              dark ? 'border-line-dark text-ink-muted' : 'border-line text-muted'
+              dark
+                ? 'border-line-dark text-ink-muted [&_a]:text-blue-light'
+                : 'border-line text-muted [&_a]:text-blue'
             }`}
           >
             {stopka}

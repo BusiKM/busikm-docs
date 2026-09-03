@@ -36,7 +36,7 @@ export function Drobiazgi() {
           <StoreBadges />
           <p className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
             Kto tego używa:{' '}
-            <Link href="/dla-kogo/kierowca" className="text-blue">
+            <Link href="/dla-kogo/kierowca" className="text-blue-light">
               Kierowca →
             </Link>
           </p>

@@ -14,7 +14,7 @@ export function EkranZlecenia() {
         <div className="rounded-2xl border border-[#2A2A30] bg-surface-2 p-4">
           <div className="flex justify-between gap-2">
             <b className="text-[13px] lg:text-[14px]">Warszawa → Mediolan</b>
-            <span className="text-blue">06:00</span>
+            <span className="text-blue-light">06:00</span>
           </div>
           <div className="mt-1.5 text-ink-muted">Załadunek · ul. Marywilska 44</div>
           <div className="text-ink-muted">Rozładunek jutro 08:00 · Via Tortona 12</div>

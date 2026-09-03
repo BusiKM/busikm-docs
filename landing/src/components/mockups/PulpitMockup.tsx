@@ -13,7 +13,7 @@ const orders = [
 ] as const;
 
 const tones = {
-  blue: 'bg-blue-soft text-blue',
+  blue: 'bg-blue-soft text-blue-dark',
   mist: 'bg-mist text-ink',
   green: 'bg-green/14 text-green-ink',
 } as const;
@@ -31,7 +31,7 @@ export function PulpitMockup() {
               <div
                 key={item}
                 className={`rounded-[10px] px-3 py-2 ${
-                  i === 0 ? 'bg-blue-soft font-semibold text-blue' : ''
+                  i === 0 ? 'bg-blue-soft font-semibold text-blue-dark' : ''
                 }`}
               >
                 {item}

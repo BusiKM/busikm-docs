@@ -103,7 +103,7 @@ export default function Page() {
           stopka={
             <>
               Kto tego używa:{' '}
-              <Link href="/dla-kogo/ksiegowa" className="text-blue">
+              <Link href="/dla-kogo/ksiegowa">
                 Księgowa →
               </Link>
             </>
