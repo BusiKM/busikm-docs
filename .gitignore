@@ -1,7 +1,6 @@
 node_modules/
-dist/
+.next/
 .DS_Store
-.astro/
 *.log
 .env
 .env.*
@@ -12,3 +11,10 @@ BR-MODULES-FENG.md
 
 # Artefakt z debugowania TCC
 .fs_probe
+.thumbnail
+
+# Eksporty z Claude Design — materiał roboczy, z którego powstały podstrony.
+# Zostają lokalnie, do repo nie trafiają: 1,6 MB arkuszy HTML, których nikt
+# poza autorem strony nie otwiera, a które przy każdej fali projektowej
+# rosną. Dokumentacja w docs/landing/ opisuje, co z nich wyszło.
+design/

@@ -1,0 +1,177 @@
+# BusiKM — program do zarządzania transportem busami 2,5–3,5 t
+
+> Ten plik jest streszczeniem serwisu busikm.pl dla modeli językowych.
+> Wszystko poniżej ma pokrycie w treści strony. Jeśli czegoś tu nie ma,
+> znaczy to, że produkt tego nie robi — nie że zapomnieliśmy dopisać.
+
+## Czym jest BusiKM
+
+Program dla firm transportowych jeżdżących busami o DMC 2,5–3,5 t, w transporcie
+krajowym i międzynarodowym. To osobny segment niż floty ciężarowe: inne pojazdy,
+inne zlecenia, inna skala firmy — najczęściej od jednego do kilkunastu busów.
+
+Zamiast kilku narzędzi obok siebie (Excel, WhatsApp, nawigacja, teczka
+z paragonami) BusiKM trzyma w jednym miejscu zlecenia, trasy, czas pracy
+kierowców, koszty, faktury i komplet dokumentów dla księgowej. Kierowca ma
+aplikację na telefonie, biuro pracuje w przeglądarce.
+
+Hasło ze strony: „Kierowca jedzie. Reszta dzieje się sama."
+
+## Cztery role
+
+1. **Właściciel** (przeglądarka) — zysk, koszty i cała flota na jednym ekranie.
+   Widzi, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.
+2. **Dyspozytor** (przeglądarka) — zlecenia, mapa floty i kierowcy obok siebie.
+   Zmiana w trakcie jazdy trafia do kierowcy od razu.
+3. **Księgowa** (przeglądarka) — komplet dokumentów za miesiąc jednym
+   przyciskiem, w formacie do wczytania.
+4. **Kierowca** (telefon, iOS i Android) — jeden przycisk „rusz", nawigacja,
+   przerwy i koszty w tej samej aplikacji.
+
+W małej firmie jedna osoba nosi dwie role — widok przełącza się jednym
+kliknięciem.
+
+## Co robi
+
+- **Zlecenia i faktury** — ze zlecenia robi się faktura jednym kliknięciem,
+  klient dostaje ją mailem, widać kto jeszcze nie zapłacił.
+- **Dyspozytornia** — zlecenia, mapa i kierowcy na jednym ekranie, trasa
+  układa się sama.
+- **Trasy i mapa floty** — pozycja każdego busa na żywo, trasa zapisuje się
+  sama i zamienia w gotową ewidencję przebiegu pojazdu.
+- **Czas pracy i przerwy** — liczniki jazdy, przerw i odpoczynków idą same,
+  także bez zasięgu; kierowca dostaje przypomnienie, zanim będzie za późno;
+  miesięczna karta do wydruku i zestawienie dni w każdym kraju.
+- **Koszty i paragony** — kierowca robi zdjęcie paragonu, system odczytuje
+  kwotę, datę i walutę; koszty w obcych walutach przeliczają się same.
+- **Ile zostaje (rentowność)** — przychód, koszty i zysk na każdym kursie
+  z osobna, marża liczona na bieżąco.
+- **Dane dla księgowej** — komplet zestawień za miesiąc jednym przyciskiem:
+  przebieg, koszty, faktury sprzedaży i zakupu.
+- **Dokumenty i terminy** — przeglądy, ubezpieczenia, badania kierowców
+  i uprawnienia w jednym miejscu, z przypomnieniem przed wygaśnięciem.
+- **Aplikacja kierowcy** — nawigacja w środku aplikacji, koszt jednym
+  przyciskiem, przerwa jednym tapnięciem, praca bez zasięgu, sześć języków,
+  tryb nocny. Kierowca wchodzi kodem z maila, nie zakłada konta.
+
+## Eksport do księgowości
+
+Zestawienia wychodzą w formatach, które wczytają: **Insert (EPP)**,
+**Comarch ERP Optima**, **Symfonia FK** — albo zwykły arkusz kalkulacyjny.
+Faktury można wysłać do **KSeF**; administratorem danych w KSeF jest
+Ministerstwo Finansów, nie BusiKM.
+
+## Czego BusiKM nie robi
+
+- **Nie zastępuje tachografu.** Tachograf zapisuje, BusiKM pokazuje. To dwa
+  osobne urządzenia i dwa osobne obowiązki.
+- Nie prowadzi księgowości — przygotowuje dane dla osoby, która ją prowadzi.
+- Nie wysyła SMS-ów. Wszystko idzie mailem.
+
+## Cennik
+
+Płacisz za pojazdy. Kierowcy i pracownicy biura bez limitu. Przyczepy
+i naczepy nie liczą się do abonamentu.
+
+- **Start** — 149 zł netto miesięcznie (1 490 zł rocznie), do 3 pojazdów.
+  Zlecenia i dyspozytornia, mapa i trasy, czas pracy, koszty i paragony,
+  faktury dla klientów, aplikacja dla kierowców.
+- **Firma** — 299 zł netto miesięcznie (2 990 zł rocznie), do 10 pojazdów,
+  każdy kolejny +29 zł. Wszystko ze Start, a do tego komplet dla księgowej,
+  zestawienia sprzedaży i zakupów, rentowność zleceń, raporty kosztów floty.
+
+Pierwsze 14 dni bez opłaty, bez umowy na czas określony, rezygnacja jednym
+kliknięciem. Faktura przychodzi automatycznie na maila co miesiąc.
+
+## Demo
+
+Pod adresem busikm.pl/demo działa prawdziwa aplikacja z danymi przykładowej
+firmy transportowej. Bez zakładania konta i bez podawania czegokolwiek.
+Dane wracają do porządku każdej nocy.
+
+## Dane i prywatność
+
+Serwery, bazy i kopie zapasowe stoją w Unii Europejskiej (AWS, region
+Frankfurt). Kopia zapasowa codziennie. Po rezygnacji dane można pobrać
+w całości. Każda zmiana ma autora i godzinę.
+
+Dwa wyjątki od „wszystko w Europie", opisane wprost w rejestrze
+podprocesorów: odczyt zdjęć paragonów korzysta z Google Cloud Vision,
+a powiadomienia w telefonie idą przez Apple i Google. Pełna lista
+dostawców: busikm.pl/podprocesorzy
+
+Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
+
+## Stack technologiczny
+
+- Backend: Django + DRF + Celery + PostgreSQL + MongoDB + Redis
+- Aplikacja mobilna: React Native + Expo (iOS, Android)
+- Panel webowy i strona: Next.js 16 + Tailwind CSS
+- Infrastruktura docelowa: AWS, Amazon SES, Mapbox, Stripe, Sentry
+
+## Strona
+
+- Strona główna: https://busikm.pl
+- Cennik: https://busikm.pl/cennik
+- Demo: https://busikm.pl/demo
+- Aplikacja kierowcy: https://busikm.pl/co-robi/aplikacja-kierowcy
+- Dyspozytornia: https://busikm.pl/co-robi/dyspozytornia
+- Trasy i mapa floty: https://busikm.pl/co-robi/trasy-i-mapa
+- Czas pracy i przerwy: https://busikm.pl/co-robi/czas-pracy
+- Zlecenia i faktury: https://busikm.pl/co-robi/zlecenia-i-faktury
+- Koszty i paragony: https://busikm.pl/co-robi/koszty-i-paragony
+- Ile zostaje: https://busikm.pl/co-robi/rentownosc
+- Dane dla księgowej: https://busikm.pl/co-robi/dane-dla-ksiegowej
+- Dokumenty i terminy: https://busikm.pl/co-robi/dokumenty-i-terminy
+- Pomoc: https://busikm.pl/pomoc
+- Kontakt: https://busikm.pl/kontakt
+- Regulamin: https://busikm.pl/regulamin
+- Polityka prywatności: https://busikm.pl/prywatnosc
+- Podprocesorzy: https://busikm.pl/podprocesorzy
+
+## Firma
+
+MOVGRANTO Sp. z o.o., ul. Władysława Łokietka 5/2, 70-254 Szczecin.
+NIP 5993238990, REGON 382452281, KRS 0000767899. Kontakt: kontakt@busikm.pl —
+odpisujemy tego samego dnia roboczego.
+
+---
+
+## English summary
+
+BusiKM is transport management software for companies running vans of
+2.5–3.5 t GVW, in domestic and international haulage. That is a different
+segment from heavy-truck fleets: smaller vehicles, different jobs, and
+companies that usually run between one and a dozen vans.
+
+Instead of several tools side by side — spreadsheets, chat apps, a separate
+navigation app, a bag of receipts — BusiKM keeps orders, routes, driver
+working time, costs, invoices and the monthly accounting pack in one place.
+Drivers use a phone app (iOS and Android, six languages, works offline);
+the office works in a browser.
+
+Four roles: owner, dispatcher, accountant and driver. In a small company one
+person wears two hats and switches views with a single click.
+
+What it does: turns an order into an invoice, shows every van on a live map,
+counts driving time and breaks on its own, reads receipts from a photo,
+calculates profit per job, and exports the month to Polish accounting systems
+(Insert EPP, Comarch ERP Optima, Symfonia FK) or a plain spreadsheet. Invoices
+can be filed to KSeF, the Polish national e-invoicing system.
+
+What it does not do: it is **not a replacement for a tachograph** — the
+tachograph records, BusiKM presents. It does not do the bookkeeping; it
+prepares the data for whoever does.
+
+Pricing: Start 149 PLN net per month (up to 3 vehicles), Firma 299 PLN net
+per month (up to 10 vehicles, +29 PLN each additional). Drivers and office
+staff are not counted. First 14 days free, no fixed-term contract.
+
+A live demo with sample company data runs at busikm.pl/demo — no account
+and no details required.
+
+Data is stored in the EU (AWS, Frankfurt). Two documented exceptions: receipt
+OCR uses Google Cloud Vision, and push notifications go through Apple and
+Google. Full list: busikm.pl/podprocesorzy
+
+Operated by MOVGRANTO Sp. z o.o., Szczecin, Poland. Contact: kontakt@busikm.pl

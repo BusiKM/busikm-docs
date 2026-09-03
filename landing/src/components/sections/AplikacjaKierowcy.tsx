@@ -1,0 +1,94 @@
+import { Section, Eyebrow } from '@/components/ui/Section';
+import { MockupSlot } from '@/components/ui/MockupSlot';
+import { TelefonyKierowcy } from '@/components/mockups/TelefonyKierowcy';
+import { StoreBadges } from '@/components/ui/StoreBadges';
+
+const points = [
+  ['Nawigacja jest w środku', 'Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami'],
+  ['Koszt jednym przyciskiem', 'Zatankował, pstryknął, jedzie dalej'],
+  ['Działa bez zasięgu', 'Tunel, góry, terminal promowy. Wszystko dośle, gdy złapie sygnał'],
+  ['Widzi, co czeka na wysłanie', 'Żadnego zgadywania, czy dane doszły'],
+  ['Sześć języków', 'Kierowca czyta w swoim języku, nie w Twoim'],
+  ['Tryb nocny', 'O trzeciej nad ranem ekran nie razi w oczy'],
+] as const;
+
+/** 6.6 — aplikacja kierowcy. Sekcja, która zdejmuje obiekcję „on tego nie ruszy". */
+export function AplikacjaKierowcy() {
+  return (
+    <Section tone="ink">
+      <svg
+        viewBox="0 0 1440 1400"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 size-full"
+        aria-hidden
+      >
+        <path
+          d="M 1500 300 C 1200 500, 1000 900, 700 1000 S 200 1100, -100 1300"
+          fill="none"
+          stroke="#0B5FFF"
+          strokeWidth="40"
+          opacity=".04"
+        />
+        <path
+          d="M 1500 300 C 1200 500, 1000 900, 700 1000 S 200 1100, -100 1300"
+          fill="none"
+          stroke="#0B5FFF"
+          strokeWidth="2"
+          opacity=".14"
+        />
+      </svg>
+
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-20">
+        <div className="flex flex-col gap-8 lg:gap-10">
+          <div className="flex flex-col gap-5 lg:gap-6">
+            <Eyebrow dark>BusiKM Kierowca · iPhone i Android</Eyebrow>
+            <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
+              Cały dzień pracy w jednej aplikacji.
+            </h2>
+            <p data-reveal className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
+              Kierowca dostaje kod, wpisuje go raz i jest w środku. Nie zakłada konta, nie wymyśla
+              hasła, nie dzwoni do Ciebie z pytaniem, jak się zalogować.
+            </p>
+          </div>
+
+          <div data-reveal-group className="grid gap-5 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-7">
+            {points.map(([title, body]) => (
+              <div key={title} data-reveal className="flex gap-3.5">
+                <span
+                  aria-hidden
+                  className="hidden size-7 flex-none items-center justify-center rounded-lg border border-line-dark-2 lg:flex"
+                >
+                  <span className="size-2 rounded-full bg-blue" />
+                </span>
+                <div>
+                  <div className="text-[16px] font-semibold lg:text-body">{title}</div>
+                  <div className="mt-1 text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+                    {body}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <StoreBadges />
+        </div>
+
+        <div data-reveal>
+          <MockupSlot
+            file="mockup-kierowca-telefony-phone.png"
+            label="Aplikacja kierowcy · telefon, tryb nocny"
+            note="Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu."
+            ratio="4:3"
+            // Dwa telefony w pudle 4:3 zajmowały tylko 60% jego szerokości —
+            // za mało jak na bohatera sekcji. Powiększenie mieści się
+            // w kolumnie, bo widoczna treść zrzutu jest węższa od pudła.
+            imageScale={1.55}
+            dark
+          >
+            <TelefonyKierowcy />
+          </MockupSlot>
+        </div>
+      </div>
+    </Section>
+  );
+}
