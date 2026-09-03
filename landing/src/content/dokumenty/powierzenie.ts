@@ -104,8 +104,8 @@ export const powierzenie: Dokument = {
           wiersze: [
             [
               'Kierowcy',
-              'imię i nazwisko, numer telefonu, adres e-mail, numer prawa jazdy i terminy badań, pozycja pojazdu w czasie zlecenia, czas jazdy i przerw, zdjęcia dokumentów',
-              'wprowadzasz Ty albo kierowca w aplikacji',
+              'imię i nazwisko, adres e-mail, numer prawa jazdy i terminy badań, pozycja pojazdu w czasie zlecenia, czas jazdy i przerw, zdjęcia dokumentów; numer telefonu, jeżeli go wpiszesz',
+              'wprowadzasz Ty przy zaproszeniu albo kierowca w aplikacji',
             ],
             [
               'Pracownicy biura',

@@ -29,7 +29,7 @@ const nieRobisz = [
   'przeskakujesz między aplikacjami',
   'liczysz godziny na kartce',
   'tłumaczysz przez telefon, gdzie jesteś',
-  'przepisujesz adres z SMS-a do nawigacji',
+  'przepisujesz adres z wiadomości do nawigacji',
 ];
 
 /**
