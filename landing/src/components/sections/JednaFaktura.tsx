@@ -1,4 +1,5 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
+import { PlynaceKsztalty } from '@/components/motion/PlynaceKsztalty';
 
 const paid = [
   'lokalizator w busie',
@@ -34,12 +35,34 @@ export function JednaFaktura() {
             </div>
           </div>
 
+          {/*
+            Karta z animowanym tłem. `isolate` domyka kontekst nakładania,
+            żeby płótno nie wychodziło poza zaokrąglone rogi, a treść siedzi
+            nad nim w osobnej warstwie.
+          */}
           <div
             data-reveal
-            className="flex flex-col justify-between gap-4 rounded-card bg-ink p-6 text-paper lg:gap-5 lg:p-10"
+            className="relative isolate flex min-h-64 flex-col justify-between gap-4 overflow-hidden rounded-card bg-ink p-6 text-paper lg:min-h-80 lg:gap-5 lg:p-10"
           >
-            <Eyebrow dark>Z BusiKM:</Eyebrow>
-            <div className="text-[22px] leading-tight font-semibold tracking-[-0.01em] lg:text-h3">
+            <PlynaceKsztalty />
+
+            {/*
+              Przyciemnienie tylko pod tekstem — nadtytuł u góry i zdanie
+              u dołu. Środek karty zostaje odsłonięty, więc animacja ma gdzie
+              grać. Bez tego jaśniejsza bryła podjeżdża pod litery i zbija
+              kontrast poniżej progu; sprawdzane pomiarem pikseli.
+            */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-linear-to-b from-ink from-0% via-transparent via-30% to-ink to-78%"
+            />
+
+            {/* Jaśniejszy niż zwykły nadtytuł na ciemnym: pod spodem
+                pracuje animacja, a szarość #8E8E96 nie miała tu zapasu. */}
+            <Eyebrow dark className="relative text-paper/80">
+              Z BusiKM:
+            </Eyebrow>
+            <div className="relative text-[22px] leading-tight font-semibold tracking-[-0.01em] lg:text-h3">
               Jedno konto. Jeden rachunek. Wszystko rozmawia ze sobą.
             </div>
           </div>
