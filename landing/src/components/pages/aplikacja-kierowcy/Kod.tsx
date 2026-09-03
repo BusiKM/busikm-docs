@@ -2,7 +2,7 @@ import { Section } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { EkranZlecenia } from '@/components/mockups/kierowca/EkranZlecenia';
 
-/** 01 — wchodzi kodem. SMS z kodem, strzałka, ekran z listą zleceń. */
+/** 01 — wchodzi kodem. Mail z kodem, strzałka, ekran z listą zleceń. */
 export function Kod() {
   return (
     <Section>
@@ -33,7 +33,7 @@ export function Kod() {
           >
             <div className="flex flex-col items-center gap-5 lg:flex-row lg:justify-center lg:gap-8">
               <div className="flex w-[200px] flex-none flex-col gap-2 rounded-2xl border border-line bg-white p-4.5 text-[12px] shadow-card">
-                <div className="text-muted">SMS · BusiKM</div>
+                <div className="text-muted">E-mail · BusiKM</div>
                 <div className="leading-relaxed">Marek, Twój kod do BusiKM:</div>
                 <div className="text-[26px] font-bold tracking-[0.12em]">482 190</div>
                 <div className="text-muted">Wpisz go raz w aplikacji.</div>

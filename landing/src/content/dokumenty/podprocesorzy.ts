@@ -2,25 +2,30 @@ import { firma } from '@/content/firma';
 import type { Dokument } from '@/content/dokumenty/typy';
 
 /**
- * Lista podprocesorów.
+ * Rejestr podprocesorów — stos docelowy na produkcji.
  *
- * ⚠️ SZKIC. Nazwy podmiotów są przykładowe do czasu podpisania umów — tak też
- * mówi stopka pod tabelą, żeby strona nie twierdziła nieprawdy. Po podpisaniu
- * umów trzeba tu wpisać rzeczywistych dostawców, ich siedziby i daty. Lista
- * jest częścią umowy powierzenia, więc każda zmiana wymaga powiadomienia
- * klientów z 30-dniowym wyprzedzeniem.
+ * ⚠️ SZKIC DO PRZEGLĄDU PRAWNEGO. Lista jest listą stanu docelowego, nie
+ * bieżącego: produkt jest w budowie, a staging chodzi na Railway. Decyzja
+ * właściciela produktu: na produkcji AWS (serwery, Postgres, Redis, MongoDB,
+ * pliki, kopie), Amazon SES do poczty, Google Cloud Vision do rozpoznawania
+ * paragonów, Mapbox do tras, Stripe do płatności, Sentry i Grafana do
+ * obserwowalności, sklepy Apple i Google do dystrybucji aplikacji i dostarczania
+ * powiadomień. SMS-ów nie ma i nie będzie — kod zaproszenia idzie mailem.
+ *
+ * Rejestr jest zadaniem BKM-1971 w etapie 7 backlogu. Jeżeli stos zmieni się
+ * przed uruchomieniem, ta lista idzie do aktualizacji razem z nim.
  */
 export const podprocesorzy: Dokument = {
   href: '/podprocesorzy',
   tytul: 'Podprocesorzy',
   obowiazujeOd: '1 września 2026',
   wersja: 1,
-  ostatniaZmiana: '1 września 2026',
+  ostatniaZmiana: '3 września 2026',
   wSkrocie: [
-    'Podprocesor to firma, która pomaga nam świadczyć usługę — na przykład trzyma serwery albo wysyła maile.',
-    'Wszyscy przetwarzają dane w Europie.',
+    'Podprocesor to firma, która pomaga nam świadczyć usługę — na przykład trzyma serwery albo rozpoznaje tekst z paragonu.',
+    'Serwery, bazy danych, pliki i kopie zapasowe trzymamy w Europie.',
+    'Dwie rzeczy wymagają dostawców spoza Europy: rozpoznawanie paragonów i powiadomienia w telefonie. Piszemy o tym wprost, zamiast to chować.',
     'O każdej zmianie na liście uprzedzamy mailem 30 dni wcześniej.',
-    'Każdy z nich ma z nami umowę nakładającą te same obowiązki, które my mamy wobec Ciebie.',
   ],
   paragrafy: [
     {
@@ -30,7 +35,7 @@ export const podprocesorzy: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Podprocesor to dalszy podmiot przetwarzający w rozumieniu art. 28 ust. 4 RODO — firma, której powierzamy część przetwarzania danych, żeby móc świadczyć usługę. Nie moglibyśmy działać bez serwerów, poczty czy operatora płatności, więc korzystamy z wyspecjalizowanych dostawców zamiast budować to samodzielnie.',
+            'Podprocesor to dalszy podmiot przetwarzający w rozumieniu art. 28 ust. 4 RODO — firma, której powierzamy część przetwarzania danych, żeby móc świadczyć usługę. Nie moglibyśmy działać bez serwerów czy usługi rozpoznającej tekst ze zdjęcia, więc korzystamy z wyspecjalizowanych dostawców zamiast budować to samodzielnie.',
         },
         {
           typ: 'akapit',
@@ -45,64 +50,124 @@ export const podprocesorzy: Dokument = {
       bloki: [
         {
           typ: 'tabela',
-          naglowki: ['Podmiot', 'Do czego go używamy', 'Jakie dane', 'Kraj', 'Od kiedy'],
+          naglowki: ['Podmiot', 'Do czego go używamy', 'Jakie dane', 'Gdzie przetwarza'],
           wiersze: [
             [
-              'Hetzner Online GmbH',
-              'Serwery aplikacji i kopie zapasowe',
+              'Amazon Web Services',
+              'Serwery, bazy danych (PostgreSQL, Redis, MongoDB), pliki i kopie zapasowe',
               'wszystkie dane w koncie',
-              'Niemcy, Finlandia',
-              '1.09.2026',
+              'Unia Europejska (Frankfurt)',
             ],
             [
-              'Scaleway SAS',
-              'Przechowywanie zdjęć paragonów i dokumentów',
-              'zdjęcia, pliki PDF',
-              'Francja',
-              '1.09.2026',
+              'Amazon SES',
+              'Wysyłka maili: zaproszenia z kodem, faktury, przypomnienia o terminach',
+              'adres e-mail, treść wiadomości i załączniki',
+              'Unia Europejska',
             ],
             [
-              'Postmark (ActiveCampaign)',
-              'Wysyłka maili: zaproszenia, faktury, przypomnienia',
-              'adres e-mail, treść wiadomości',
-              'Irlandia',
-              '1.09.2026',
+              'Mapbox',
+              'Wyznaczanie tras i zamiana adresów na współrzędne',
+              'adresy załadunku i rozładunku, pozycje pojazdów',
+              'Unia Europejska',
             ],
             [
-              'Stripe Payments Europe',
-              'Płatności za abonament',
-              'dane rozliczeniowe firmy',
-              'Irlandia',
-              '1.09.2026',
+              'Google Cloud (Vision)',
+              'Rozpoznawanie tekstu ze zdjęć paragonów',
+              'zdjęcia paragonów i odczytane z nich kwoty',
+              'Unia Europejska, podmiot spoza EOG',
             ],
             [
-              'Mapbox (oddział UE)',
-              'Mapa i wyznaczanie tras',
-              'pozycje pojazdów, adresy',
-              'Niemcy',
-              '1.09.2026',
+              'Stripe',
+              'Płatności za abonament i faktury za usługę',
+              'dane rozliczeniowe firmy, adres e-mail',
+              'Unia Europejska (Irlandia)',
             ],
             [
-              'SMSAPI sp. z o.o.',
-              'Kod zaproszenia dla kierowcy SMS-em',
-              'numer telefonu',
-              'Polska',
-              '1.09.2026',
+              'Sentry',
+              'Zgłoszenia błędów aplikacji',
+              'identyfikator użytkownika, adres IP, kontekst błędu',
+              'Unia Europejska',
+            ],
+            [
+              'Apple (App Store, powiadomienia)',
+              'Dystrybucja aplikacji kierowcy i dostarczanie powiadomień',
+              'token urządzenia, treść powiadomienia',
+              'poza EOG',
+            ],
+            [
+              'Google (Google Play, powiadomienia)',
+              'Dystrybucja aplikacji kierowcy i dostarczanie powiadomień',
+              'token urządzenia, treść powiadomienia',
+              'poza EOG',
             ],
           ],
           stopka:
-            'Nazwy podmiotów są przykładowe do czasu podpisania umów. Lista zostanie uzupełniona o rzeczywistych dostawców przed uruchomieniem usługi.',
+            'Statystyki działania usługi zbieramy narzędziem Grafana uruchomionym na naszych własnych serwerach — nie jest to osobny podprocesor, bo dane nie opuszczają naszej infrastruktury.',
         },
       ],
     },
     {
       numer: '3',
+      tytul: 'Kto nie jest podprocesorem',
+      bloki: [
+        {
+          typ: 'definicje',
+          wstep:
+            'Aplikacja łączy się też z systemami, które nie przetwarzają danych w naszym imieniu — dla porządku wymieniamy je osobno:',
+          pozycje: [
+            {
+              termin: 'Krajowy System e-Faktur',
+              opis:
+                'system Ministerstwa Finansów. Wysyłamy tam faktury na Twoje polecenie; administratorem danych w KSeF jest organ, nie my.',
+            },
+            {
+              termin: 'Narodowy Bank Polski',
+              opis:
+                'publiczne API kursów walut. Pobieramy same kursy, bez przekazywania jakichkolwiek danych.',
+            },
+            {
+              termin: 'VIES (Komisja Europejska)',
+              opis:
+                'sprawdzanie numerów VAT kontrahentów. Przekazujemy numer VAT firmy, nie dane osobowe.',
+            },
+            {
+              termin: 'Grafana',
+              opis:
+                'wykresy obciążenia i dostępności usługi. Działa na naszych serwerach, dane nie trafiają do dostawcy oprogramowania.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      numer: '4',
+      tytul: 'Przetwarzanie poza Europą',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'Serwery, bazy danych, pliki, kopie zapasowe, poczta i płatności działają w Unii Europejskiej. Dwie rzeczy wymagają jednak podmiotów spoza Europejskiego Obszaru Gospodarczego: rozpoznawanie tekstu z paragonów oraz dostarczanie powiadomień do telefonu, które zawsze idzie przez Apple albo Google.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską. Rozpoznawanie paragonów ustawiamy na region europejski dostawcy. Powiadomienie zawiera token urządzenia i krótką treść — nigdy zdjęć, dokumentów ani danych rozliczeniowych.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Jeżeli wolisz, żeby zdjęcia paragonów nie opuszczały Europy, napisz do nas — możemy przełączyć Twoje konto na silnik rozpoznawania działający na naszych serwerach. Odczyt jest wtedy nieco mniej dokładny.',
+        },
+      ],
+    },
+    {
+      numer: '5',
       tytul: 'Zmiany na liście',
       bloki: [
         {
           typ: 'akapit',
           tresc:
-            'O zamiarze dodania podprocesora albo zastąpienia istniejącego informujemy mailem co najmniej 30 dni przed zmianą. W wiadomości podajemy nazwę podmiotu, zakres przetwarzania i kraj.',
+            'O zamiarze dodania podprocesora albo zastąpienia istniejącego informujemy mailem co najmniej 30 dni przed zmianą. W wiadomości podajemy nazwę podmiotu, zakres przetwarzania i miejsce przetwarzania danych.',
         },
         {
           typ: 'akapit',

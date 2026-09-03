@@ -361,7 +361,7 @@ prawnego**, oparte na standardzie polskich usług SaaS B2B:
 | Regulamin | art. 8 ust. 3 ustawy o świadczeniu usług drogą elektroniczną | SLA, granice odpowiedzialności, terminy w § 6 i § 11 |
 | Polityka prywatności | art. 13 RODO + sekcja o cookie | tabela retencji i lista narzędzi analitycznych |
 | Powierzenie danych | art. 28 ust. 3 RODO, lit. a–h | kategorie danych w pkt 4 i środki bezpieczeństwa w pkt 6 |
-| Podprocesorzy | art. 28 ust. 4 RODO | **nazwy dostawców są przykładowe** — do wpisania po podpisaniu umów |
+| Podprocesorzy | art. 28 ust. 4 RODO | lista stanu docelowego (produkcja na AWS), potwierdzona przez właściciela produktu |
 
 Trzy rzeczy, które w tych tekstach są decyzjami, nie standardem, i warto je
 świadomie potwierdzić albo zmienić:
@@ -375,3 +375,26 @@ Trzy rzeczy, które w tych tekstach są decyzjami, nie standardem, i warto je
 3. **Powierzenie pkt 8** — 24 godziny na zgłoszenie naruszenia klientowi.
    RODO wymaga „bez zbędnej zwłoki"; podanie konkretnej liczby jest naszą
    deklaracją i trzeba umieć jej dotrzymać.
+
+### Stos docelowy w rejestrze podprocesorów
+
+Lista opisuje **produkcję, nie staging**. Staging chodzi na Railway; produkcja
+idzie na AWS. Decyzja właściciela produktu, potwierdzona 3 września 2026:
+
+| Dostawca | Do czego | Gdzie |
+|---|---|---|
+| Amazon Web Services | serwery, PostgreSQL, Redis, MongoDB, pliki, kopie | UE, Frankfurt |
+| Amazon SES | poczta: zaproszenia z kodem, faktury, przypomnienia | UE |
+| Mapbox | trasy i geokodowanie | UE |
+| Google Cloud Vision | odczyt paragonów | UE, podmiot spoza EOG |
+| Stripe | płatności za abonament | UE, Irlandia |
+| Sentry | błędy aplikacji | UE |
+| Apple, Google | dystrybucja aplikacji i dostarczanie powiadomień | poza EOG |
+
+**SMS-ów nie ma i nie będzie** — kod zaproszenia dla kierowcy idzie mailem
+(BKM-1855). Makieta na `/co-robi/aplikacja-kierowcy` pokazywała SMS-a i została
+poprawiona; to samo w kroku trzecim na `/pomoc/pierwsze-kroki`.
+
+**Grafana nie jest podprocesorem** — chodzi na naszych serwerach, dane nie
+opuszczają infrastruktury. Wpisana do sekcji „kto nie jest podprocesorem"
+razem z KSeF, NBP i VIES.

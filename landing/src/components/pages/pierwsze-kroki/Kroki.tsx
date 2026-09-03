@@ -32,7 +32,7 @@ const kroki: Krok[] = [
   {
     tytul: 'Zaproś kierowcę',
     tresc:
-      'Wpisujesz imię i numer telefonu, kierowca dostaje kod. Instaluje aplikację i ustawia własne hasło.',
+      'Wpisujesz imię i adres e-mail, kierowca dostaje kod. Instaluje aplikację i ustawia własne hasło.',
     czas: '2 minuty',
   },
   {

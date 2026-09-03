@@ -109,7 +109,7 @@ export const prywatnosc: Dokument = {
           typ: 'lista',
           wstep: 'Dane mogą trafić do:',
           punkty: [
-            'dostawców, którzy pomagają nam świadczyć usługę — serwerów, poczty, płatności, map. Pełną listę prowadzimy w dokumencie Podprocesorzy;',
+'dostawców, którzy pomagają nam świadczyć usługę — Amazon Web Services (serwery, bazy, pliki), Amazon SES (poczta), Stripe (płatności), Mapbox (trasy), Google Cloud Vision (odczyt paragonów), Sentry (błędy) oraz Apple i Google (dostarczanie powiadomień). Pełną listę z zakresem przetwarzania prowadzimy w dokumencie Podprocesorzy;',
             'biura rachunkowego i doradców, w zakresie niezbędnym do rozliczeń;',
             'organów publicznych, jeżeli obowiązek wynika z przepisów.',
           ],
@@ -128,7 +128,12 @@ export const prywatnosc: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Dane przechowujemy i przetwarzamy w Europejskim Obszarze Gospodarczym. Jeżeli w przyszłości któryś z dostawców miałby przetwarzać dane poza EOG, poprzedzimy to zmianą listy podprocesorów i zabezpieczymy transfer standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską.',
+            'Serwery, bazy danych, pliki, kopie zapasowe, poczta i płatności działają w Europejskim Obszarze Gospodarczym.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Dwie rzeczy wymagają podmiotów spoza EOG: rozpoznawanie tekstu ze zdjęć paragonów oraz dostarczanie powiadomień do telefonu kierowcy, które zawsze przechodzi przez Apple albo Google. Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską, a usługę rozpoznawania ustawiamy na region europejski dostawcy. Szczegóły opisuje dokument Podprocesorzy.',
         },
       ],
     },
