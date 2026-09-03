@@ -64,9 +64,9 @@ export function EkranWlasciciela() {
           <div className="flex flex-col gap-2.5 text-[12px] lg:gap-2.5 lg:rounded-2xl lg:border lg:border-line-dark lg:p-4 lg:text-[13px]">
             <div className="text-ink-muted">Marża na kursie</div>
             {[
-              ['Warszawa → Mediolan', '31%', true],
-              ['Poznań → Rotterdam', '27%', true],
-              ['Gdańsk → Hamburg', '18%', false],
+              ['Gdańsk → Hamburg', '41%', true],
+              ['Warszawa → Mediolan', '36%', true],
+              ['Kraków → Wiedeń', '18%', false],
             ].map(([route, margin, good]) => (
               <div key={route as string} className="flex justify-between gap-2">
                 <span className="truncate">{route}</span>

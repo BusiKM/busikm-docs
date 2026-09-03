@@ -1,9 +1,20 @@
+/**
+ * Koszty jednego kursu — razem 2 496 € przy frachcie 3 900 €, czyli marża 36%.
+ *
+ * Największą pozycją jest kierowca, nie paliwo. Tak to wygląda w transporcie
+ * busami: pięć dni pracy człowieka kosztuje więcej niż tankowanie. Bez tej
+ * pozycji rozbicie kosztów wyglądałoby optymistycznie w sposób, który każdy
+ * przewoźnik rozpozna jako nieprawdziwy.
+ *
+ * Kilometraż jest liczony w obie strony (3 280 km), bo pojazd musi wrócić —
+ * sama trasa Warszawa → Mediolan to 1 640 km.
+ */
 const costs = [
-  { label: 'Paliwo', detail: ' · 3 paragony', value: '− 612 €' },
-  { label: 'Opłaty drogowe', detail: ' · AT, IT', value: '− 184 €' },
-  { label: 'Hotel', detail: ' · Brenner', value: '− 78 €' },
-  { label: 'Dieta kierowcy', detail: ' · 2 dni', value: '− 96 €' },
-  { label: 'Amortyzacja', detail: ' · 1 640 km', value: '− 131 €' },
+  { label: 'Kierowca', detail: ' · wynagrodzenie i dieta, 5 dni', value: '− 1 060 €' },
+  { label: 'Paliwo', detail: ' · 6 paragonów', value: '− 716 €' },
+  { label: 'Opłaty drogowe', detail: ' · AT, IT', value: '− 291 €' },
+  { label: 'Amortyzacja', detail: ' · 3 280 km', value: '− 273 €' },
+  { label: 'Nocleg', detail: ' · Brenner', value: '− 156 €' },
 ] as const;
 
 /**
@@ -51,7 +62,7 @@ export function KartaZysku() {
         <div>
           <div className="text-ink-muted">Zysk na kursie</div>
           <div className="text-[18px] font-bold tracking-[-0.02em] text-green lg:text-[30px]">
-            2 799 €<span className="hidden lg:inline"> · 11 980 zł</span>
+            1 404 €<span className="hidden lg:inline"> · 6 009 zł</span>
           </div>
         </div>
         <div className="hidden h-11 items-end gap-1 lg:flex" aria-hidden>

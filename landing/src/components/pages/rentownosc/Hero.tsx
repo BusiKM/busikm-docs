@@ -23,7 +23,7 @@ export function Hero() {
           data-reveal
           className="max-w-[680px] text-lead-m text-pretty text-ink-muted lg:text-lead"
         >
-          Fracht minus paliwo, opłaty drogowe, hotel i dieta kierowcy. Kierowca dodaje paragon
+          Fracht minus paliwo, opłaty drogowe, nocleg i koszt kierowcy. Kierowca dodaje paragon
           w trasie — liczba zmienia się od razu.
         </p>
       </Container>
@@ -50,7 +50,7 @@ export function Hero() {
         <div data-reveal className="flex flex-col gap-2 lg:gap-3">
           <Eyebrow dark>Zostaje</Eyebrow>
           <div className="text-[56px] leading-none font-bold tracking-[-0.04em] lg:text-[120px]">
-            11 980 zł
+            6 009 zł
           </div>
           <p className="max-w-[460px] text-[16px] leading-relaxed text-ink-muted lg:text-lead">
             z 3 900 € frachtu. Liczba zmieni się, gdy Marek doda kolejny paragon.

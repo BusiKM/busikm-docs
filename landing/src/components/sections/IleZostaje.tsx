@@ -15,7 +15,7 @@ export function IleZostaje() {
 
           <div className="flex flex-col gap-5 lg:gap-6">
             <p data-reveal className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
-              Fracht minus paliwo, opłaty drogowe, hotel i dieta kierowcy. Kierowca dodaje paragon
+              Fracht minus paliwo, opłaty drogowe, nocleg i koszt kierowcy. Kierowca dodaje paragon
               w trasie — liczba na Twoim ekranie zmienia się od razu. Nie na koniec kwartału.
             </p>
             <Bullets
@@ -33,7 +33,7 @@ export function IleZostaje() {
           <div data-reveal className="relative lg:order-2 lg:flex lg:flex-col lg:gap-3">
             <Eyebrow dark>Zostaje</Eyebrow>
             <div className="text-[56px] leading-none font-bold tracking-[-0.04em] lg:text-[120px]">
-              11 980 zł
+              6 009 zł
             </div>
             <div className="hidden text-lead leading-relaxed text-ink-muted lg:block">
               z 3 900 € frachtu. Liczba zmieni się, gdy Marek doda kolejny paragon.
