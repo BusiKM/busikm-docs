@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { wyslijWiadomosc, tematy, LIMITY } from '@/lib/wiadomosci';
+import { TRESC_ZGODY } from '@/content/zgoda';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -30,6 +31,7 @@ export function Formularz() {
   const [mail, setMail] = useState('');
   const [temat, setTemat] = useState(0);
   const [tresc, setTresc] = useState('');
+  const [zgoda, setZgoda] = useState(false);
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
@@ -53,12 +55,14 @@ export function Formularz() {
         email: mail,
         temat: tematy[temat],
         tresc,
+        zgoda,
         pulapka,
       });
       setStan('wysłane');
       setImie('');
       setMail('');
       setTresc('');
+      setZgoda(false);
     } catch {
       setStan('błąd');
     }
@@ -164,6 +168,24 @@ export function Formularz() {
           />
         </label>
       </div>
+
+      {/*
+        Zgoda **nieobowiązkowa** i to jest tu istotne. Usługą jest odpowiedź
+        na pytanie — uzależnienie jej od zgody marketingowej byłoby
+        warunkowaniem zakazanym przez art. 7 ust. 4 RODO. Na stronach zapisu
+        jest odwrotnie, bo tam usługą jest sama lista.
+      */}
+      {firebaseGotowy && (
+        <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted lg:text-caption">
+          <input
+            type="checkbox"
+            checked={zgoda}
+            onChange={(e) => setZgoda(e.target.checked)}
+            className="mt-0.5 size-4.5 flex-none accent-blue"
+          />
+          <span>{TRESC_ZGODY}</span>
+        </label>
+      )}
 
       <div className="flex flex-col gap-3">
         {firebaseGotowy ? (

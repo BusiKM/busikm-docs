@@ -12,11 +12,15 @@
  * a rozdzielenie po fakcie jest trudniejsze niż zapisanie osobno od razu.
  */
 
+import type { Zrodlo } from '@/content/zgoda';
+
 export type Lista = 'demo' | 'konto';
 
 export type OpisListy = {
   /** Nazwa kolekcji w Firestore. Ta sama wartość waliduje `firestore.rules`. */
   lista: Lista;
+  /** Tag, pod którym adres trafi kiedyś do narzędzia wysyłkowego. */
+  zrodlo: Zrodlo;
   eyebrow: string;
   naglowek: string;
   /** Zdania pod nagłówkiem — każde w osobnej linii, jak w projekcie. */
@@ -32,28 +36,30 @@ export type OpisListy = {
 export const listy: Record<Lista, OpisListy> = {
   demo: {
     lista: 'demo',
+    zrodlo: 'demo',
     eyebrow: 'Demo',
     naglowek: 'Demo przygotowujemy.',
     lead: [
       'Prawdziwa aplikacja z danymi przykładowej firmy transportowej.',
-      'Zostaw adres, a dostaniesz je w dniu uruchomienia.',
-      'Razem z 14 dniami bez opłat.',
+      'Zapisz się na listę — napiszemy w dniu uruchomienia',
+      'i będziemy dzielić się tym, co nowego.',
     ],
-    wezwanie: 'Powiadom mnie o demo',
-    obietnica: 'Napiszemy raz — w dniu uruchomienia.',
-    poZapisie: 'Napiszemy w dniu, w którym demo ruszy.',
+    wezwanie: 'Zapisz się na listę',
+    obietnica: 'Pierwsza wiadomość w dniu uruchomienia demo. Później rzadko i tylko o BusiKM.',
+    poZapisie: 'Napiszemy w dniu, w którym demo ruszy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
   },
   konto: {
     lista: 'konto',
+    zrodlo: 'rejestracja',
     eyebrow: 'Dostęp do aplikacji',
     naglowek: 'Konta otwieramy wkrótce.',
     lead: [
       'Sprawdzamy BusiKM na prawdziwych trasach, w małej grupie firm.',
-      'Zostaw adres, a odezwiemy się, gdy otworzymy zapisy.',
+      'Zapisz się na listę — napiszemy, gdy otworzymy zapisy.',
     ],
-    wezwanie: 'Powiadom mnie o zapisach',
-    obietnica: 'Napiszemy raz — gdy otworzymy zapisy.',
-    poZapisie: 'Napiszemy, gdy otworzymy zapisy.',
+    wezwanie: 'Zapisz się na listę',
+    obietnica: 'Pierwsza wiadomość, gdy otworzymy zapisy. Później rzadko i tylko o BusiKM.',
+    poZapisie: 'Napiszemy, gdy otworzymy zapisy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
   },
 };
 

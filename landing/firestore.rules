@@ -13,6 +13,19 @@ rules_version = '2';
 // Listy są osobnymi kolekcjami, nie jedną z polem `lista`: reguły przypisuje
 // się do ścieżki, więc osobne kolekcje można walidować niezależnie, a przy
 // eksporcie adresów trudniej je pomylić.
+//
+// ── Zgoda marketingowa ──────────────────────────────────────────────────────
+// Na listach zgoda jest **wymagana** — reguła odrzuca dokument bez `zgoda ==
+// true`. Wolno tak, bo usługą jest tam sama lista i zgoda nie warunkuje
+// niczego innego (art. 7 ust. 4 RODO).
+//
+// W kolekcji `wiadomosci` jest odwrotnie: usługą jest odpowiedź na pytanie,
+// więc zgoda musi być nieobowiązkowa i reguła przyjmuje oba stany.
+//
+// Dowód zgody (`trescZgody`, `wersjaZgody`, `kanalZgody`) jest wymagany
+// wszędzie tam, gdzie zgoda padła. To na nas spoczywa ciężar wykazania jej
+// treści — art. 7 ust. 1 RODO — a samo `true` nie dowodzi, pod czym ktoś się
+// podpisał.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -37,23 +50,43 @@ service cloud.firestore {
     }
   }
 
+  // Dowód zgody: gdy `zgoda == true`, muszą być wszystkie trzy pola i muszą
+  // mieć sens. Gdy zgody nie ma — nie wolno ich podać wcale.
+  function dowodZgody(d) {
+    return d.zgoda == true
+      ? d.trescZgody is string && d.trescZgody.size() > 40 && d.trescZgody.size() <= 400
+        && d.wersjaZgody is int && d.wersjaZgody > 0
+        && d.kanalZgody == 'email'
+      : !('trescZgody' in d) && !('wersjaZgody' in d) && !('kanalZgody' in d);
+  }
+
   function poprawnaWiadomosc(d) {
-    return d.keys().hasOnly(['imie', 'email', 'temat', 'tresc', 'createdAt', 'source'])
-      && d.keys().hasAll(['imie', 'email', 'temat', 'tresc', 'createdAt'])
+    return d.keys().hasOnly(['imie', 'email', 'temat', 'tresc', 'zgoda',
+                             'trescZgody', 'wersjaZgody', 'kanalZgody',
+                             'createdAt', 'source'])
+      && d.keys().hasAll(['imie', 'email', 'temat', 'tresc', 'zgoda', 'createdAt'])
       && d.imie is string && d.imie.size() > 0 && d.imie.size() <= 120
       && d.email is string && d.email.size() <= 160 && d.email.matches('.+@.+[.].+')
       && d.tresc is string && d.tresc.size() > 0 && d.tresc.size() <= 4000
       && d.temat in ['pytanie przed zakupem', 'pomoc techniczna', 'rozliczenia i faktury', 'coś innego']
+      && d.zgoda is bool
+      && dowodZgody(d)
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }
 
   function poprawnyZapis(d) {
-    return d.keys().hasOnly(['imie', 'email', 'zgodaNaWiesci', 'createdAt', 'source'])
-      && d.keys().hasAll(['imie', 'email', 'zgodaNaWiesci', 'createdAt'])
+    return d.keys().hasOnly(['imie', 'email', 'zrodlo', 'zgoda',
+                             'trescZgody', 'wersjaZgody', 'kanalZgody',
+                             'createdAt', 'source'])
+      && d.keys().hasAll(['imie', 'email', 'zrodlo', 'zgoda',
+                          'trescZgody', 'wersjaZgody', 'kanalZgody', 'createdAt'])
       && d.imie is string && d.imie.size() > 0 && d.imie.size() <= 80
       && d.email is string && d.email.size() <= 160 && d.email.matches('.+@.+[.].+')
-      && d.zgodaNaWiesci is bool
+      && d.zrodlo in ['demo', 'rejestracja']
+      // Bez zgody nie ma zapisu na listę — to nie jest pole opcjonalne.
+      && d.zgoda == true
+      && dowodZgody(d)
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }

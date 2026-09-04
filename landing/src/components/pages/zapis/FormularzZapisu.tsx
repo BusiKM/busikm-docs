@@ -7,6 +7,7 @@ import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { zapiszNaListe } from '@/lib/zapisy';
 import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
+import { TRESC_ZGODY } from '@/content/zgoda';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -14,15 +15,20 @@ const pole =
 type Stan = 'gotowy' | 'wysyłam' | 'zapisany' | 'błąd';
 
 /**
- * Zapis na listę wczesnego dostępu — imię i adres.
+ * Zapis na listę — imię, adres i zgoda.
+ *
+ * Zgoda jest tu **wymagana** i to jest zgodne z prawem, choć wygląda na
+ * pierwszy rzut oka odwrotnie. Art. 7 ust. 4 RODO zabrania uzależniać
+ * wykonanie usługi od zgody, która nie jest do niej niezbędna — ale na tych
+ * stronach usługą **jest** lista. Zgoda nie warunkuje niczego innego, bo nic
+ * innego tu nie oferujemy. W formularzu kontaktowym jest odwrotnie i tam
+ * okienko musi być nieobowiązkowe.
  *
  * Imię nie jest ozdobą: pierwsza wiadomość ma zaczynać się od „Cześć Marek",
- * a nie od „Dzień dobry". To jedyny powód, dla którego o nie pytamy, i tak
- * jest napisane pod polem.
+ * a nie od „Dzień dobry".
  *
- * Bez konfiguracji Firebase formularz cofa się do `mailto:` — ta sama zasada,
- * co w formularzu kontaktowym. Nigdy nie połknie adresu, nie mając gdzie go
- * zapisać.
+ * Bez konfiguracji Firebase formularz cofa się do `mailto:` — nigdy nie
+ * połknie adresu, nie mając gdzie go zapisać.
  */
 export function FormularzZapisu({ opis }: { opis: OpisListy }) {
   const [imie, setImie] = useState('');
@@ -31,7 +37,8 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
-  const kompletne = imie.trim().length > 0 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail);
+  const kompletne =
+    imie.trim().length > 0 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail) && zgoda;
 
   const linkPocztowy = () =>
     `mailto:${firma.email}?subject=${encodeURIComponent(
@@ -47,7 +54,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
         imie,
         email: mail,
         lista: opis.lista,
-        zgodaNaWiesci: zgoda,
+        zrodlo: opis.zrodlo,
         pulapka,
       });
       setStan('zapisany');
@@ -113,19 +120,19 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       </div>
 
       {/*
-        Zgoda jest dobrowolna i dotyczy wyłącznie tego, co ponad jedną
-        wiadomość o starcie. Samo wysłanie formularza to prośba o to
-        powiadomienie — pytanie o zgodę na coś, o co człowiek właśnie
-        poprosił, byłoby pytaniem pozornym.
+        Brzmienie zgody jest jedno dla całego serwisu i wersjonowane —
+        razem z adresem trafia do bazy, bo to na nas spoczywa ciężar dowodu
+        (art. 7 ust. 1 RODO). Nie zmieniaj go tutaj: `content/zgoda.ts`.
       */}
       <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted lg:text-caption">
         <input
           type="checkbox"
           checked={zgoda}
           onChange={(e) => setZgoda(e.target.checked)}
+          required
           className="mt-0.5 size-4.5 flex-none accent-blue"
         />
-        <span>Chcę dostawać wiadomości o BusiKM. Nieobowiązkowe.</span>
+        <span>{TRESC_ZGODY}</span>
       </label>
 
       {firebaseGotowy ? (
