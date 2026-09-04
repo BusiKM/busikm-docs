@@ -87,10 +87,14 @@ Skopiuj sześć wartości z `firebaseConfig` do zmiennych `NEXT_PUBLIC_FIREBASE_
 
 `resend.com` → API Keys → Create
 
-- Domena: dodaj `busikm.pl` i wpisz rekordy DNS, które pokaże Resend
-  (SPF, DKIM). Bez tego mail wychodzi z `onboarding@resend.dev` i częściej
-  wpada do spamu.
-- `POWIADOM_OD` po weryfikacji: `BusiKM <formularz@busikm.pl>`
+- Domena `busikm.pl` jest w Resend zweryfikowana (SPF i DKIM na poddomenie
+  `send.busikm.pl`), więc powiadomienia wychodzą z własnego adresu.
+- `POWIADOM_OD`: `BusiKM <formularz@busikm.pl>` — ta sama wartość stoi jako
+  domyślna w kodzie, na wypadek gdyby zmiennej zabrakło.
+
+  Skrzynka `formularz@` **nie musi istnieć** — do wysyłki wystarczy
+  uwierzytelniona domena. Odpowiedzi i tak trafiają gdzie indziej: `reply_to`
+  jest ustawiane na adres osoby, która napisała.
 
 ### 5. Vercel
 
@@ -101,7 +105,7 @@ Settings → Environment Variables, wyłącznie środowisko **Production**:
 | `NEXT_PUBLIC_FIREBASE_*` (sześć) | Config |
 | `RESEND_API_KEY` | **Secret** |
 | `POWIADOM_NA` | Config — `kontakt@busikm.pl` |
-| `POWIADOM_OD` | Config |
+| `POWIADOM_OD` | Config — `BusiKM <formularz@busikm.pl>` |
 
 `NEXT_PUBLIC_*` są wpisywane do kodu w trakcie budowania, więc po zapisaniu
 konieczny **Redeploy**.

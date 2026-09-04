@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="pl">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
+  <title>Jesteś na liście BusiKM</title>
+
+  <!--[if mso]>
+  <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+  <![endif]-->
+
+  <!-- Inter i IBM Plex Mono ładują się w Apple Mail i iOS. Gmail i Outlook je
+       zignorują i zejdą na stos systemowy — dlatego każdy font-family niżej
+       ma pełny fallback, a nie samo "Inter". -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+
+  <style type="text/css">
+    :root { color-scheme: light; supported-color-schemes: light; }
+
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+
+    /* Klienci pocztowe lubią same podlinkowywać adresy i numery — poniższe
+       zabiera im kolor, żeby nie wstawiały domyślnego błękitu systemowego. */
+    a[x-apple-data-detectors] {
+      color: inherit !important; text-decoration: none !important;
+      font-size: inherit !important; font-family: inherit !important;
+      font-weight: inherit !important; line-height: inherit !important;
+    }
+
+    @media only screen and (max-width: 620px) {
+      .ramka       { width: 100% !important; }
+      .wyplata     { padding-left: 24px !important; padding-right: 24px !important; }
+      .naglowek    { font-size: 28px !important; }
+      .lead        { font-size: 18px !important; }
+    }
+  </style>
+</head>
+
+<body style="margin:0; padding:0; background-color:#FAFAFA;">
+
+  <!-- Podgląd w skrzynce. Ciąg znaków zerowej szerokości blokuje doklejanie
+       stopki do podglądu przez Gmaila. -->
+  <div style="display:none; font-size:1px; color:#FAFAFA; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    Napiszemy, gdy będzie o czym — i nic poza tym.
+    &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
+  </div>
+
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FAFAFA;">
+    <tr>
+      <td align="center" style="padding:32px 12px 48px 12px;">
+
+        <!-- Układ płynny, nie stały: `width="100%"` z `max-width` zwęża się sam,
+             bez media query. Ważne, bo część klientów (starszy Gmail na koncie
+             spoza Google'a, Yahoo) potrafi wyciąć <style> razem z @media —
+             wtedy tabela na sztywno 600 px wystaje poza ekran telefonu.
+             Outlook nie zna `max-width`, więc dostaje własną ramkę 600 px. -->
+        <!--[if mso | IE]>
+        <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" width="600"><tr><td>
+        <![endif]-->
+        <table role="presentation" class="ramka" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; max-width:600px;">
+
+          <!-- ── Znak ────────────────────────────────────────────────── -->
+          <tr>
+            <td align="left" style="padding:0 4px 24px 4px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <img src="https://busikm.pl/web-app-manifest-192x192.png" width="40" height="40" alt="" style="display:block; width:40px; height:40px; border-radius:12px;" />
+                  </td>
+                  <td style="vertical-align:middle; padding-left:12px; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:19px; font-weight:700; letter-spacing:-0.02em; color:#0A0A0B;">
+                    BusiKM
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── Karta ───────────────────────────────────────────────── -->
+          <tr>
+            <td style="background-color:#FFFFFF; border:1px solid #E3E3E6; border-radius:20px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td class="wyplata" style="padding:40px;">
+
+                    <div style="font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#6C6C74;">
+                      Wczesny dostęp
+                    </div>
+
+                    <h1 class="naglowek" style="margin:16px 0 0 0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:32px; line-height:1.12; letter-spacing:-0.025em; font-weight:700; color:#0A0A0B;">
+                      {% if first_name %}{{ first_name }}, jesteś na liście.{% else %}Jesteś na liście.{% endif %}
+                    </h1>
+
+                    <!-- Jedno zdanie zależne od tego, skąd przyszedł zapis.
+                         Właściwość `zrodlo` ustawia /api/zapis przy tworzeniu
+                         profilu: demo | rejestracja | formularz. -->
+                    <p class="lead" style="margin:20px 0 0 0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:19px; line-height:1.5; color:#6C6C74;">
+                      {% if person|lookup:'zrodlo' == 'demo' %}Napiszemy w dniu, w którym ruszy demo — prawdziwa aplikacja z danymi przykładowej firmy transportowej.{% elif person|lookup:'zrodlo' == 'rejestracja' %}Napiszemy, gdy otworzymy zapisy do aplikacji. Dowiesz się, zanim ogłosimy to publicznie.{% elif person|lookup:'zrodlo' == 'formularz' %}Na Twoją wiadomość odpowiadamy osobno, tego samego dnia roboczego. Tutaj będziemy pisać o tym, co nowego w BusiKM.{% else %}Napiszemy, gdy będzie o czym — o uruchomieniu demo i otwarciu zapisów.{% endif %}
+                    </p>
+
+                    <p style="margin:24px 0 0 0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:17px; line-height:1.6; color:#0A0A0B;">
+                      BusiKM to program dla firm jeżdżących busami 2,5–3,5 t. Zlecenia, trasy, czas pracy kierowców, koszty i komplet dokumentów dla księgowej trzyma w jednym miejscu — zamiast w Excelu, WhatsAppie i teczce z paragonami.
+                    </p>
+
+                    <!-- ── Ciemny panel ──────────────────────────────── -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:32px; background-color:#0A0A0B; border-radius:20px;">
+                      <tr>
+                        <td style="padding:28px;">
+
+                          <div style="font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#8E8E96;">
+                            Czego się spodziewać
+                          </div>
+
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:20px;">
+                            <tr>
+                              <td style="padding-bottom:16px; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+                                <div style="font-size:17px; font-weight:600; color:#FAFAFA;">W dniu, w którym ruszy demo</div>
+                                <div style="margin-top:4px; font-size:15px; line-height:1.55; color:#8E8E96;">Cała aplikacja na przykładowej firmie. Bez zakładania konta.</div>
+                              </td>
+                            </tr>
+                            <tr><td style="border-top:1px solid #26262B; font-size:0; line-height:0;">&nbsp;</td></tr>
+                            <tr>
+                              <td style="padding:16px 0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+                                <div style="font-size:17px; font-weight:600; color:#FAFAFA;">Gdy otworzymy zapisy</div>
+                                <div style="margin-top:4px; font-size:15px; line-height:1.55; color:#8E8E96;">Najpierw do Ciebie, potem publicznie.</div>
+                              </td>
+                            </tr>
+                            <tr><td style="border-top:1px solid #26262B; font-size:0; line-height:0;">&nbsp;</td></tr>
+                            <tr>
+                              <td style="padding-top:16px; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+                                <div style="font-size:17px; font-weight:600; color:#FAFAFA;">Poza tym rzadko</div>
+                                <div style="margin-top:4px; font-size:15px; line-height:1.55; color:#8E8E96;">Tylko o BusiKM. Żadnych obcych reklam, żadnych SMS-ów.</div>
+                              </td>
+                            </tr>
+                          </table>
+
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- ── Przycisk ──────────────────────────────────── -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+                      <tr>
+                        <td align="left">
+                          <!--[if mso]>
+                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://busikm.pl" style="height:52px; v-text-anchor:middle; width:250px;" arcsize="23%" stroke="f" fillcolor="#0B5FFF">
+                            <w:anchorlock/>
+                            <center style="color:#FFFFFF; font-family:Arial,sans-serif; font-size:17px; font-weight:bold;">Zobacz, co potrafi</center>
+                          </v:roundrect>
+                          <![endif]-->
+                          <!--[if !mso]><!-- -->
+                          <a href="https://busikm.pl" style="display:inline-block; background-color:#0B5FFF; color:#FFFFFF; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:17px; font-weight:600; line-height:52px; height:52px; padding:0 28px; border-radius:12px; text-decoration:none; text-align:center;">Zobacz, co potrafi</a>
+                          <!--<![endif]-->
+                        </td>
+                      </tr>
+                    </table>
+
+                    <p style="margin:28px 0 0 0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:15px; line-height:1.6; color:#6C6C74;">
+                      Masz pytanie? Odpowiedz na tę wiadomość — czytamy każdą.
+                    </p>
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── Stopka ──────────────────────────────────────────────── -->
+          <tr>
+            <td class="wyplata" style="padding:32px 12px 0 12px; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; font-size:13px; line-height:1.6; color:#6C6C74;">
+
+              <p style="margin:0;">
+                Dostajesz tę wiadomość, bo zapisałeś się na liście BusiKM na busikm.pl i zaznaczyłeś zgodę na informacje o produkcie.
+              </p>
+
+              <!-- Art. 7 ust. 3 RODO: wycofanie zgody ma być równie łatwe jak
+                   jej udzielenie. Stąd pełne zdanie i wyraźny odnośnik, a nie
+                   szare „unsubscribe" ósemką na dole. -->
+              <p style="margin:12px 0 0 0;">
+                Nie chcesz ich dostawać?
+                <a href="{% unsubscribe_link %}" style="color:#0B5FFF; font-weight:600; text-decoration:underline;">Wypisz się jednym kliknięciem</a>
+                — zgodę wycofasz w każdej chwili, bez podawania powodu.
+              </p>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:24px;">
+                <tr><td style="border-top:1px solid #E3E3E6; font-size:0; line-height:0;">&nbsp;</td></tr>
+              </table>
+
+              <p style="margin:20px 0 0 0; color:#6C6C74;">
+                MOVGRANTO Sp. z o.o. · ul. Władysława Łokietka 5/2 · 70-254 Szczecin<br />
+                NIP 5993238990 · KRS 0000767899
+              </p>
+
+              <p style="margin:12px 0 0 0;">
+                <a href="https://busikm.pl" style="color:#6C6C74; text-decoration:underline;">busikm.pl</a>
+                &nbsp;·&nbsp;
+                <a href="https://busikm.pl/prywatnosc" style="color:#6C6C74; text-decoration:underline;">Polityka prywatności</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:kontakt@busikm.pl" style="color:#6C6C74; text-decoration:underline;">kontakt@busikm.pl</a>
+              </p>
+
+            </td>
+          </tr>
+
+        </table>
+        <!--[if mso | IE]>
+        </td></tr></table>
+        <![endif]-->
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
