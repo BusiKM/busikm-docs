@@ -6,15 +6,32 @@ import { TRESC_ZGODY, WERSJA_ZGODY, type Zrodlo } from '@/content/zgoda';
  * Wołane po stronie serwera, z tras `/api/zapis` i `/api/powiadom` — klucz
  * Klaviyo jest prywatny i nigdy nie może trafić do przeglądarki.
  *
- * ## Dlaczego akurat ten punkt końcowy
+ * ## Dlaczego dwa wywołania, a nie jedno
  *
- * `profile-subscription-bulk-create-jobs` jest jedynym, który **zapisuje
- * zgodę razem z profilem**. Zwykłe `POST /api/profiles` tworzy kontakt, ale
- * nie subskrybuje go i nie odnotowuje momentu wyrażenia zgody — a to właśnie
- * ten moment trzeba umieć wykazać.
+ * Wygodniej byłoby wysłać wszystko naraz, ale Klaviyo na to nie pozwala.
+ * Punkt `profile-subscription-bulk-create-jobs` przyjmuje **wyłącznie adres
+ * i subskrypcję** — na `first_name` odpowiada `400 'first_name' is not
+ * a valid field for the resource 'profile'`, na `properties` tak samo.
+ * Sprawdzone na żywym API, nie wyczytane z dokumentacji.
  *
- * `consented_at` ustawiamy na czas zapisu u nas, żeby data w Klaviyo zgadzała
- * się z `createdAt` w Firestore. Dwa systemy, jedna data.
+ * Stąd podział:
+ *
+ * 1. `POST /api/profile-import` — imię i właściwości. Idempotentny:
+ *    ten sam adres drugi raz zwraca to samo `id` i aktualizuje pola,
+ *    zamiast tworzyć duplikat. Sprawdzone.
+ * 2. `POST /api/profile-subscription-bulk-create-jobs` — zgoda i lista.
+ *    To jedyny punkt, który zapisuje **moment wyrażenia zgody**, a właśnie
+ *    ten moment trzeba umieć wykazać.
+ *
+ * Kolejność ma znaczenie: najpierw dane, potem subskrypcja. Odwrotnie
+ * pierwsza wysyłka mogłaby zastać profil bez imienia.
+ *
+ * Daty zgody **nie podajemy** i to też wyszło z API: przy `historical_import:
+ * false` Klaviyo odpowiada `Non-historical email subscription cannot have
+ * consented_at timestamp`. Sam stempluje moment wywołania — a że wołamy je
+ * zaraz po zapisie, data i tak zgadza się z `createdAt` w Firestore.
+ * `consented_at` wolno podać wyłącznie przy imporcie zgód zebranych wcześniej
+ * gdzie indziej.
  *
  * ## Odpowiedzialność za wypis
  *
@@ -52,54 +69,76 @@ export async function zapiszWKlaviyo(dane: {
   if (!klucz) return { ok: false, pominiete: 'brak KLAVIYO_API_KEY' };
   if (!lista) return { ok: false, pominiete: 'brak KLAVIYO_LISTA_ID' };
 
-  const teraz = new Date().toISOString();
-
-  const body = {
-    data: {
-      type: 'profile-subscription-bulk-create-job',
-      attributes: {
-        profiles: {
-          data: [
-            {
-              type: 'profile',
-              attributes: {
-                email: dane.email,
-                first_name: dane.imie,
-                // Tag, po którym budujesz segmenty w Klaviyo. Ta sama wartość
-                // co w polu `zrodlo` w Firestore — dwa systemy, jedna nazwa.
-                properties: {
-                  zrodlo: dane.zrodlo,
-                  zgoda_wersja: WERSJA_ZGODY,
-                  zgoda_tresc: TRESC_ZGODY,
-                },
-                subscriptions: {
-                  email: { marketing: { consent: 'SUBSCRIBED', consented_at: teraz } },
-                },
-              },
-            },
-          ],
-        },
-        historical_import: false,
-      },
-      relationships: { list: { data: { type: 'list', id: lista } } },
-    },
+  const naglowki = {
+    Authorization: `Klaviyo-API-Key ${klucz}`,
+    revision: REVISION,
+    'Content-Type': 'application/vnd.api+json',
+    accept: 'application/vnd.api+json',
   };
 
   try {
-    const odp = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs', {
+    // 1. Imię i tag. Idempotentne — ten sam adres aktualizuje istniejący
+    //    profil zamiast tworzyć drugi.
+    const profil = await fetch('https://a.klaviyo.com/api/profile-import', {
       method: 'POST',
-      headers: {
-        Authorization: `Klaviyo-API-Key ${klucz}`,
-        revision: REVISION,
-        'Content-Type': 'application/vnd.api+json',
-        accept: 'application/vnd.api+json',
-      },
-      body: JSON.stringify(body),
+      headers: naglowki,
+      body: JSON.stringify({
+        data: {
+          type: 'profile',
+          attributes: {
+            email: dane.email,
+            first_name: dane.imie,
+            properties: {
+              zrodlo: dane.zrodlo,
+              zgoda_wersja: WERSJA_ZGODY,
+              zgoda_tresc: TRESC_ZGODY,
+            },
+          },
+        },
+      }),
     });
 
-    // Punkt końcowy jest asynchroniczny: 202 znaczy „przyjęte do wykonania".
-    if (odp.status === 202 || odp.ok) return { ok: true };
-    return { ok: false, blad: `${odp.status} ${(await odp.text()).slice(0, 300)}` };
+    if (!profil.ok) {
+      return { ok: false, blad: `profil ${profil.status} ${(await profil.text()).slice(0, 250)}` };
+    }
+
+    // 2. Zgoda i przypisanie do listy. Punkt asynchroniczny — 202 znaczy
+    //    „przyjęte do wykonania".
+    const subskrypcja = await fetch(
+      'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs',
+      {
+        method: 'POST',
+        headers: naglowki,
+        body: JSON.stringify({
+          data: {
+            type: 'profile-subscription-bulk-create-job',
+            attributes: {
+              profiles: {
+                data: [
+                  {
+                    type: 'profile',
+                    attributes: {
+                      email: dane.email,
+                      subscriptions: {
+                        email: { marketing: { consent: 'SUBSCRIBED' } },
+                      },
+                    },
+                  },
+                ],
+              },
+              historical_import: false,
+            },
+            relationships: { list: { data: { type: 'list', id: lista } } },
+          },
+        }),
+      },
+    );
+
+    if (subskrypcja.status === 202 || subskrypcja.ok) return { ok: true };
+    return {
+      ok: false,
+      blad: `subskrypcja ${subskrypcja.status} ${(await subskrypcja.text()).slice(0, 250)}`,
+    };
   } catch (e) {
     return { ok: false, blad: String(e) };
   }
