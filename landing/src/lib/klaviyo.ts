@@ -62,6 +62,13 @@ export async function zapiszWKlaviyo(dane: {
   imie: string;
   email: string;
   zrodlo: Zrodlo;
+  /**
+   * Plan i okres wybrane w cenniku — jeśli człowiek przyszedł stamtąd.
+   * Osobne właściwości, nie jeden sklejony tekst: w Klaviyo segment buduje
+   * się porównaniem wartości, więc `plan == 'firma'` ma działać bez
+   * dopasowywania wzorców.
+   */
+  wybor?: { plan: string; okres: string } | null;
 }): Promise<WynikKlaviyo> {
   const klucz = process.env.KLAVIYO_API_KEY;
   const lista = process.env.KLAVIYO_LISTA_ID;
@@ -92,6 +99,9 @@ export async function zapiszWKlaviyo(dane: {
               zrodlo: dane.zrodlo,
               zgoda_wersja: WERSJA_ZGODY,
               zgoda_tresc: TRESC_ZGODY,
+              ...(dane.wybor
+                ? { plan: dane.wybor.plan, okres: dane.wybor.okres }
+                : {}),
             },
           },
         },

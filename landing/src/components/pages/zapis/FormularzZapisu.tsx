@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 
 import { firma } from '@/content/firma';
@@ -8,7 +8,31 @@ import { firebaseGotowy } from '@/lib/firebase';
 import { zapiszNaListe } from '@/lib/zapisy';
 import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
 import { TRESC_ZGODY } from '@/content/zgoda';
+import { odczytajWybor, opiszWybor } from '@/content/zainteresowanie';
 import { Wymagane } from '@/components/ui/Wymagane';
+
+/**
+ * Adres strony jako magazyn zewnętrzny.
+ *
+ * Parametry wyboru z cennika żyją poza Reactem, więc czytamy je hookiem od
+ * tego przeznaczonym, zamiast przepisywać efektem do stanu — ten drugi
+ * sposób kosztuje dodatkowy render przy każdym wejściu.
+ *
+ * Świadomie nie sięgamy po `useSearchParams` z Nexta: ten wymaga granicy
+ * `Suspense` nad formularzem i przy stronie budowanej statycznie każe
+ * pokazać stan zastępczy zamiast pól. Formularz jest tu treścią główną,
+ * więc ma się wyrenderować od razu, a `/zaloguj` ma zostać statyczna.
+ *
+ * `popstate` łapie cofnięcie się z cennika przyciskiem „wstecz".
+ */
+function subskrybujAdres(przy: () => void): () => void {
+  window.addEventListener('popstate', przy);
+  return () => window.removeEventListener('popstate', przy);
+}
+
+const adresTeraz = () => window.location.search;
+/** Serwer nie zna adresu czytelnika — do hydracji zachowujemy się jak bez parametrów. */
+const adresNaSerwerze = () => '';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -38,6 +62,10 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
+  /** Plan i okres wybrane w cenniku — tylko gdy człowiek przyszedł stamtąd. */
+  const adres = useSyncExternalStore(subskrybujAdres, adresTeraz, adresNaSerwerze);
+  const wybor = useMemo(() => odczytajWybor(new URLSearchParams(adres)), [adres]);
+
   const kompletne =
     imie.trim().length > 0 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail) && zgoda;
 
@@ -56,6 +84,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
         email: mail,
         lista: opis.lista,
         zrodlo: opis.zrodlo,
+        zainteresowanie: wybor,
         pulapka,
       });
       setStan('zapisany');
@@ -80,6 +109,24 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
 
   return (
     <form onSubmit={wyslij} className="flex flex-col gap-4 lg:gap-5">
+      {/*
+        Pokazujemy wybór z cennika, zamiast wozić go po cichu. Człowiek widzi,
+        że nie przepadł, i ma jak go poprawić — a my nie zbieramy w tle
+        niczego, czego nie postawilibyśmy mu przed oczami.
+      */}
+      {wybor && (
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-btn border border-blue-soft-line bg-blue-soft px-4 py-3 text-[14px] lg:text-caption">
+          <span className="text-muted">Wybrany plan:</span>
+          <b>{opiszWybor(wybor)}</b>
+          <Link
+            href="/cennik"
+            className="ml-auto font-medium text-blue-dark underline-offset-2 hover:underline"
+          >
+            zmień
+          </Link>
+        </div>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
         <label className="flex flex-col gap-2">
           <span className="text-[14px] font-medium lg:text-caption">

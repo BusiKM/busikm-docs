@@ -29,6 +29,31 @@ export function odczytajZgode(): Zgoda {
   }
 }
 
+/**
+ * Subskrypcja zmian decyzji — dla `useSyncExternalStore`.
+ *
+ * Zgoda siedzi w `localStorage`, czyli w magazynie **poza** Reactem. Czytanie
+ * jej efektem i przepisywanie do stanu powoduje kaskadę renderów; ten hook
+ * powstał dokładnie po to, żeby czytać takie źródła bez tej kaskady.
+ *
+ * Nasłuchujemy dwóch rzeczy: własnego zdarzenia (decyzja w tej karcie) oraz
+ * `storage` (decyzja w innej karcie tej samej witryny — przeglądarka nie
+ * wysyła go do karty, która sama zapisała).
+ */
+export function subskrybujZgode(przy: () => void): () => void {
+  window.addEventListener(ZDARZENIE_ZMIANY, przy);
+  window.addEventListener('storage', przy);
+  return () => {
+    window.removeEventListener(ZDARZENIE_ZMIANY, przy);
+    window.removeEventListener('storage', przy);
+  };
+}
+
+/** Serwer nie zna decyzji czytelnika — do hydracji zachowujemy się jak przy jej braku. */
+export function zgodaNaSerwerze(): Zgoda {
+  return null;
+}
+
 export function zapiszZgode(zgoda: Exclude<Zgoda, null>) {
   try {
     window.localStorage.setItem(KLUCZ, zgoda);

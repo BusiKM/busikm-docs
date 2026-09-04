@@ -36,11 +36,12 @@ const dlugosc = (n: number) => Math.max(1, Math.floor(Math.log10(Math.max(1, n))
 function Kolumna({ cyfra, widoczna }: { cyfra: number; widoczna: boolean }) {
   const [stan, setStan] = useState({ teraz: cyfra, przed: cyfra, obrot: 0 });
 
-  useEffect(() => {
-    setStan((s) =>
-      s.teraz === cyfra ? s : { teraz: cyfra, przed: s.teraz, obrot: s.obrot + 1 },
-    );
-  }, [cyfra]);
+  // Poprawka stanu w trakcie renderu, nie w efekcie. React przerywa wtedy
+  // render i powtarza go z nową wartością, zanim cokolwiek trafi na ekran —
+  // przez efekt stara cyfra mignęłaby przez jedną klatkę przed animacją.
+  if (stan.teraz !== cyfra) {
+    setStan({ teraz: cyfra, przed: stan.teraz, obrot: stan.obrot + 1 });
+  }
 
   return (
     <span
@@ -88,6 +89,13 @@ export function Licznik({
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       zrodlo.current = wartosc;
+      // Wyjątek świadomy. Reguła broni przed kaskadą renderów, a to jest
+      // sterownik animacji: efekt synchronizuje stan Reacta z zegarem
+      // przeglądarki (rAF) i o to w efektach chodzi. Ta gałąź to w dodatku
+      // pojedynczy skok do wartości docelowej dla kogoś, kto wyłączył ruch
+      // w systemie — nie pętla. Przepuszczenie jej przez rAF opóźniłoby
+      // kwotę o klatkę dokładnie tym osobom, które prosiły o brak animacji.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBiezaca(wartosc);
       return;
     }

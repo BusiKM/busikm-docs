@@ -1,14 +1,27 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 
 import {
   odczytajZgode,
+  subskrybujZgode,
   zapiszZgode,
+  zgodaNaSerwerze,
   ZDARZENIE_OTWARCIA,
-  type Zgoda,
 } from './zgoda';
+
+/**
+ * Wykrycie hydracji bez efektu.
+ *
+ * Baner nie może trafić do HTML-a budowanego statycznie: mrugnąłby przy
+ * każdym wejściu każdemu, kto już zdecydował. Na serwerze migawka mówi więc
+ * „jeszcze nie", a po hydracji „już" — i dopiero wtedy widoczność w ogóle
+ * wchodzi w grę. Nic tu nie subskrybujemy, bo hydracja zdarza się raz.
+ */
+const BEZ_ZMIAN = () => () => {};
+const PO_HYDRACJI = () => true;
+const PRZED_HYDRACJA = () => false;
 
 /**
  * Pytanie o zgodę na analitykę.
@@ -22,28 +35,33 @@ import {
  * dalej. Bez decyzji licznik po prostu się nie ładuje.
  */
 export function BanerZgody() {
-  const [widoczny, setWidoczny] = useState(false);
-  const [wybor, setWybor] = useState<Zgoda>(null);
+  // Decyzja czytana wprost z `localStorage`, nie przepisywana do stanu.
+  // Dzięki temu „Teraz wybrane" nadąża też za zmianą w innej karcie.
+  const wybor = useSyncExternalStore(subskrybujZgode, odczytajZgode, zgodaNaSerwerze);
+  const poHydracji = useSyncExternalStore(BEZ_ZMIAN, PO_HYDRACJI, PRZED_HYDRACJA);
+
+  /** Otwarcie z odnośnika „Ustawienia cookie" — pokazuje baner mimo decyzji. */
+  const [wymuszony, setWymuszony] = useState(false);
+  const [zamkniety, setZamkniety] = useState(false);
 
   useEffect(() => {
-    const zapisany = odczytajZgode();
-    setWybor(zapisany);
-    if (zapisany === null) setWidoczny(true);
-
     const otworz = () => {
-      setWybor(odczytajZgode());
-      setWidoczny(true);
+      setWymuszony(true);
+      setZamkniety(false);
     };
     window.addEventListener(ZDARZENIE_OTWARCIA, otworz);
     return () => window.removeEventListener(ZDARZENIE_OTWARCIA, otworz);
   }, []);
 
+  // Widoczność wyliczana, nie trzymana w stanie: baner należy się temu, kto
+  // jeszcze nie zdecydował, albo temu, kto sam po niego sięgnął w stopce.
+  const widoczny = poHydracji && !zamkniety && (wymuszony || wybor === null);
   if (!widoczny) return null;
 
   const zdecyduj = (zgoda: 'tak' | 'nie') => {
     const poprzednia = odczytajZgode();
     zapiszZgode(zgoda);
-    setWidoczny(false);
+    setZamkniety(true);
     // Wycofanie zgody musi usunąć licznik z pamięci, a nie tylko przestać
     // go zasilać — samo odmontowanie komponentu nie cofa tego, co gtag
     // zdążył podpiąć do `window`.

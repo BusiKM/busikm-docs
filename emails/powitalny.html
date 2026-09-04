@@ -6,7 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
-  <title>Jesteś na liście BusiKM</title>
+  <!-- Bez <title>. W przeglądarce trafiłby do zakładki, ale klienci pocztowe
+       rozbierają strukturę dokumentu i osadzają treść we własnym <body> —
+       wtedy tekst tytułu ląduje w ciele wiadomości i Apple Mail renderuje go
+       jako pierwszy akapit, nad logo. Rolę tytułu pełni temat wiadomości. -->
 
   <!--[if mso]>
   <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>

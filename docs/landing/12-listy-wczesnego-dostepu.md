@@ -82,3 +82,64 @@ odrzucony, a formularz pokaże błąd z odesłaniem na `kontakt@busikm.pl`.
 5. adresy z listy `zapisy-demo` — wysyłka obiecanej jednej wiadomości
 
 To samo dla `/zaloguj`, gdy dojdzie publiczna rejestracja (`BKM-1858`).
+
+## Plan i okres z cennika
+
+Przycisk „Wypróbuj 14 dni" w cenniku prowadzi na `/zaloguj` z wyborem
+w adresie:
+
+```
+/zaloguj?plan=firma&okres=rocznie
+```
+
+Formularz odczytuje go po zamontowaniu, pokazuje nad polami („Wybrany plan:
+Firma · rocznie", z odnośnikiem „zmień") i przekazuje dalej — do Firestore,
+powiadomienia na skrzynkę i Klaviyo. W powiadomieniu plan jest **w temacie**,
+więc zgłoszenie da się ocenić bez otwierania.
+
+Źródło wartości i obie walidacje: `src/content/zainteresowanie.ts`.
+
+### Dlaczego odczyt z `window`, a nie `useSearchParams`
+
+Hook wymaga granicy `Suspense` nad komponentem, a przy stronie budowanej
+statycznie każe wyrenderować stan zastępczy zamiast pól. Formularz jest tu
+treścią główną — ma pojawić się od razu; wybór z cennika to dodatek, który
+może dojść ułamek sekundy później. Dzięki temu `/zaloguj` zostaje w buildzie
+stroną statyczną (`○`), a nie renderowaną na żądanie.
+
+### Pola są opcjonalne na całej drodze
+
+Na `/zaloguj` wchodzi się też wprost — z zakładki, z nagłówka, z wyszukiwarki.
+Taki zapis jest równie poprawny i nie może niczego wywracać. Dlatego `plan`
+i `okres` są opcjonalne w typie, w regułach Firestore i w Klaviyo, a do bazy
+trafiają **rozkładane warunkowo**, nie jako `undefined` — Firestore zapisałby
+je wtedy jako `null` i dokument przestałby przechodzić walidację.
+
+To **deklaracja zainteresowania, nie zamówienie**. Nikt jeszcze nie płaci
+ani nie wybiera planu wiążąco.
+
+### Reguły Firestore trzeba wgrać osobno
+
+`poprawnyZapis` używa `hasOnly`, więc dokument z nieznanym polem jest
+odrzucany. Nowe pola wymagają wgrania `landing/firestore.rules` do konsoli
+Firebase — **przed** wdrożeniem strony, inaczej każdy zapis z cennika padnie
+na regułach.
+
+Reguła dopuszcza albo oba pola naraz, albo żadne, i wyłącznie wartości
+`start`/`firma` oraz `miesiecznie`/`rocznie`.
+
+### Sprawdzone
+
+| Przypadek | Wynik |
+|---|---|
+| `plan=firma&okres=rocznie` | właściwości zapisane w Klaviyo |
+| brak parametrów | brak właściwości, nie puste wartości |
+| `plan=<script>&okres=za darmo` | odrzucone, profil bez właściwości |
+
+### Co to daje w Klaviyo
+
+`plan` i `okres` są osobnymi właściwościami, nie jednym sklejonym tekstem —
+segment buduje się porównaniem wartości (`plan == 'firma'`), bez dopasowywania
+wzorców. Pierwszy sensowny segment: **Firma + rocznie** to osoby, które
+oglądały najdroższy wariant z największym zobowiązaniem.
+

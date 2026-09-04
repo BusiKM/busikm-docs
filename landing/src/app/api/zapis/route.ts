@@ -4,6 +4,12 @@ import { firma } from '@/content/firma';
 import { LIMITY_ZAPISU } from '@/content/zapisy';
 import { zapiszWKlaviyo } from '@/lib/klaviyo';
 import type { Zrodlo } from '@/content/zgoda';
+import {
+  poprawnyWybor,
+  opiszWybor,
+  nazwaPlanu,
+  nazwaOkresu,
+} from '@/content/zainteresowanie';
 
 /**
  * Powiadomienie o nowym zapisie na listę wczesnego dostępu.
@@ -44,6 +50,11 @@ export async function POST(request: Request) {
   const email = String(dane.email ?? '').slice(0, LIMITY_ZAPISU.email);
   const zrodlo = String(dane.zrodlo ?? '');
 
+  // Wybór z cennika przechodzi tę samą walidację, co w przeglądarce. Trasa
+  // jest publiczna i nie zakłada, że wywołał ją nasz formularz — cokolwiek
+  // spoza listy daje `null`, czyli po prostu „nie wiemy".
+  const wybor = poprawnyWybor(dane.plan, dane.okres);
+
   const poprawny =
     imie.length > 0 &&
     /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) &&
@@ -56,7 +67,7 @@ export async function POST(request: Request) {
   // Klaviyo najpierw: to tam ląduje lista, z której kiedyś pójdzie wysyłka.
   // Powiadomienie na naszą skrzynkę jest wygodą, nie warunkiem — więc gdyby
   // trzeba było wybrać, które ma się udać, wybieramy zapis kontaktu.
-  const klaviyo = await zapiszWKlaviyo({ imie, email, zrodlo: zrodlo as Zrodlo });
+  const klaviyo = await zapiszWKlaviyo({ imie, email, zrodlo: zrodlo as Zrodlo, wybor });
 
   if (!klucz) {
     return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY', klaviyo }, { status: 200 });
@@ -74,6 +85,14 @@ export async function POST(request: Request) {
           <td style="padding:4px 16px 4px 0;color:#6C6C74">E-mail</td>
           <td><a href="mailto:${bezpiecznie(email)}" style="color:#0B5FFF">${bezpiecznie(email)}</a></td>
         </tr>
+        ${
+          wybor
+            ? `<tr>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74">Z cennika</td>
+          <td><b>${bezpiecznie(opiszWybor(wybor))}</b></td>
+        </tr>`
+            : ''
+        }
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Tag</td>
           <td><code>${bezpiecznie(zrodlo)}</code></td>
@@ -93,7 +112,10 @@ export async function POST(request: Request) {
         from: odKogo,
         to: [doKogo],
         reply_to: email,
-        subject: `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo}) — ${imie}`,
+        // Plan w temacie, żeby dało się ocenić zgłoszenie bez otwierania.
+        subject:
+          `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo}) — ${imie}` +
+          (wybor ? ` · ${nazwaPlanu(wybor.plan)} ${nazwaOkresu(wybor.okres)}` : ''),
         html,
       }),
     });

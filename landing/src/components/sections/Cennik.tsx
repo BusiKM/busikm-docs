@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Section, Eyebrow } from '@/components/ui/Section';
-import { appLinks } from '@/content/navigation';
+import { linkProbny } from '@/content/zainteresowanie';
 import { Licznik } from '@/components/motion/Licznik';
 import { plans } from '@/content/cennik';
 
@@ -129,8 +129,11 @@ export function Cennik({
                 ))}
               </div>
 
+              {/* Przycisk niesie to, co człowiek ma przed oczami: który plan
+                  i który okres rozliczenia. Strona zapisu odczyta to z adresu,
+                  a informacja dojedzie aż do powiadomienia na skrzynkę. */}
               <Link
-                href={appLinks.trial}
+                href={linkProbny({ plan: plan.id, okres: yearly ? 'rocznie' : 'miesiecznie' })}
                 className={`mt-auto flex h-12 items-center justify-center rounded-btn text-[16px] font-semibold lg:h-13 lg:text-body ${
                   plan.highlighted
                     ? 'bg-blue text-white hover:bg-blue-dark hover:text-white'

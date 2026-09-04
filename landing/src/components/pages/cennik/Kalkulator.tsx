@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
-import { appLinks } from '@/content/navigation';
+import { linkProbny, nazwaPlanu, type PlanId } from '@/content/zainteresowanie';
 
 const MAX = 25;
 
 /** Start do trzech pojazdów, dalej Firma; powyżej dziesięciu każdy kolejny +29 zł. */
 function wylicz(pojazdy: number) {
-  const plan = pojazdy <= 3 ? 'Start' : 'Firma';
+  const plan: PlanId = pojazdy <= 3 ? 'start' : 'firma';
   const ponad = Math.max(0, pojazdy - 10);
   const cena = pojazdy <= 3 ? 149 : 299 + ponad * 29;
   const dopisek = ponad > 0 ? `299 + ${ponad} × 29 zł` : null;
@@ -83,7 +83,7 @@ export function Kalkulator() {
             {cena} zł
           </div>
           <p className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
-            netto · plan <b className="text-paper">{plan}</b>
+            netto · plan <b className="text-paper">{nazwaPlanu(plan)}</b>
             {dopisek && <> · {dopisek}</>}
           </p>
           <p className="text-lead-m font-semibold text-balance lg:text-lead">
@@ -91,7 +91,9 @@ export function Kalkulator() {
           </p>
 
           <div className="mt-2 flex flex-col gap-2.5">
-            <Button href={appLinks.trial} fullWidth>
+            {/* Kalkulator wie, do którego planu doszedł suwak — niech ta
+                wiedza jedzie dalej. Okres miesięczny, bo taką kwotę pokazuje. */}
+            <Button href={linkProbny({ plan, okres: 'miesiecznie' })} fullWidth>
               Wypróbuj 14 dni
             </Button>
             <p className="text-[13px] text-ink-muted lg:text-caption">
