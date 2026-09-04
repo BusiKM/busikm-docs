@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState, Suspense } from 'react';
+import { useEffect, useRef, useSyncExternalStore, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
-import { odczytajZgode, ZDARZENIE_ZMIANY, type Zgoda } from './zgoda';
+import { odczytajZgode, subskrybujZgode, zgodaNaSerwerze } from './zgoda';
 
 /**
  * Google Analytics 4 — ładowany dopiero po zgodzie.
@@ -56,14 +56,10 @@ function OdslonyStron() {
 }
 
 export function Analytics() {
-  const [zgoda, setZgoda] = useState<Zgoda>(null);
-
-  useEffect(() => {
-    setZgoda(odczytajZgode());
-    const reakcja = (e: Event) => setZgoda((e as CustomEvent<Zgoda>).detail);
-    window.addEventListener(ZDARZENIE_ZMIANY, reakcja);
-    return () => window.removeEventListener(ZDARZENIE_ZMIANY, reakcja);
-  }, []);
+  // Zgoda mieszka w `localStorage`, poza Reactem. Czytana wprost ze źródła,
+  // nie przepisywana do stanu efektem — inaczej każde wejście na stronę
+  // kosztuje dodatkowy render, a decyzja z innej karty w ogóle nie dochodzi.
+  const zgoda = useSyncExternalStore(subskrybujZgode, odczytajZgode, zgodaNaSerwerze);
 
   if (!GA_ID || zgoda !== 'tak') return null;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 
 import { firma } from '@/content/firma';
@@ -8,12 +8,31 @@ import { firebaseGotowy } from '@/lib/firebase';
 import { zapiszNaListe } from '@/lib/zapisy';
 import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
 import { TRESC_ZGODY } from '@/content/zgoda';
-import {
-  odczytajWybor,
-  opiszWybor,
-  type Zainteresowanie,
-} from '@/content/zainteresowanie';
+import { odczytajWybor, opiszWybor } from '@/content/zainteresowanie';
 import { Wymagane } from '@/components/ui/Wymagane';
+
+/**
+ * Adres strony jako magazyn zewnętrzny.
+ *
+ * Parametry wyboru z cennika żyją poza Reactem, więc czytamy je hookiem od
+ * tego przeznaczonym, zamiast przepisywać efektem do stanu — ten drugi
+ * sposób kosztuje dodatkowy render przy każdym wejściu.
+ *
+ * Świadomie nie sięgamy po `useSearchParams` z Nexta: ten wymaga granicy
+ * `Suspense` nad formularzem i przy stronie budowanej statycznie każe
+ * pokazać stan zastępczy zamiast pól. Formularz jest tu treścią główną,
+ * więc ma się wyrenderować od razu, a `/zaloguj` ma zostać statyczna.
+ *
+ * `popstate` łapie cofnięcie się z cennika przyciskiem „wstecz".
+ */
+function subskrybujAdres(przy: () => void): () => void {
+  window.addEventListener('popstate', przy);
+  return () => window.removeEventListener('popstate', przy);
+}
+
+const adresTeraz = () => window.location.search;
+/** Serwer nie zna adresu czytelnika — do hydracji zachowujemy się jak bez parametrów. */
+const adresNaSerwerze = () => '';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -43,20 +62,9 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
-  /**
-   * Plan i okres wybrane w cenniku, jeśli człowiek przyszedł stamtąd.
-   *
-   * Czytane z `window` po zamontowaniu, a nie hookiem `useSearchParams` —
-   * ten wymaga granicy `Suspense` nad formularzem i przy stronie budowanej
-   * statycznie każe pokazać zastępczy stan zamiast pól. Formularz jest tu
-   * treścią główną, więc ma się wyrenderować od razu; wybór z cennika to
-   * dodatek, który może dojść ułamek sekundy później. Dzięki temu
-   * `/zaloguj` zostaje stroną statyczną.
-   */
-  const [wybor, setWybor] = useState<Zainteresowanie | null>(null);
-  useEffect(() => {
-    setWybor(odczytajWybor(new URLSearchParams(window.location.search)));
-  }, []);
+  /** Plan i okres wybrane w cenniku — tylko gdy człowiek przyszedł stamtąd. */
+  const adres = useSyncExternalStore(subskrybujAdres, adresTeraz, adresNaSerwerze);
+  const wybor = useMemo(() => odczytajWybor(new URLSearchParams(adres)), [adres]);
 
   const kompletne =
     imie.trim().length > 0 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail) && zgoda;

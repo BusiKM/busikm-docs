@@ -150,7 +150,7 @@ export function Szukaj() {
 
           {widoczne.length === 0 && (
             <p className="text-[16px] leading-relaxed text-muted lg:col-span-2 lg:text-body">
-              Nic nie pasuje do „{fraza}". Napisz do nas — odpisujemy tego samego dnia
+              Nic nie pasuje do „{fraza}”. Napisz do nas — odpisujemy tego samego dnia
               roboczego.
             </p>
           )}

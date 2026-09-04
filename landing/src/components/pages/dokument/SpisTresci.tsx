@@ -13,9 +13,11 @@ export function SpisTresci({ paragrafy }: { paragrafy: Paragraf[] }) {
   const [aktywny, setAktywny] = useState(paragrafy[0]?.numer ?? '');
   const [otwarty, setOtwarty] = useState(false);
 
-  const mapaKotwic = new Map(paragrafy.map((p) => [kotwica(p.numer), p.numer]));
-
   useEffect(() => {
+    // Mapa budowana w środku: zależy wyłącznie od `paragrafy`, a tworzona
+    // przy renderze byłaby za każdym razem nową referencją.
+    const mapaKotwic = new Map(paragrafy.map((p) => [kotwica(p.numer), p.numer]));
+
     const naglowki = paragrafy
       .map((p) => document.getElementById(kotwica(p.numer)))
       .filter((e): e is HTMLElement => Boolean(e));
@@ -24,7 +26,11 @@ export function SpisTresci({ paragrafy }: { paragrafy: Paragraf[] }) {
     const io = new IntersectionObserver(
       (wpisy) => {
         const widoczne = wpisy.filter((w) => w.isIntersecting);
-        if (widoczne.length > 0) setAktywny(mapaKotwic.get(widoczne[0].target.id) ?? aktywny);
+        // Aktualizacja funkcyjna, nie odczyt z domknięcia: `aktywny` zostawał
+        // tam z pierwszego renderu, więc nieudane wyszukanie kotwicy cofało
+        // spis do pierwszej pozycji zamiast zostawić bieżącą.
+        if (widoczne.length > 0)
+          setAktywny((biezacy) => mapaKotwic.get(widoczne[0].target.id) ?? biezacy);
       },
       { rootMargin: '-80px 0px -70% 0px', threshold: 0 },
     );

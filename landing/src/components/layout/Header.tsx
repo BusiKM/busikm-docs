@@ -78,7 +78,7 @@ const MIN_DELTA = 8;
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [compact, setCompact] = useState(false);
+  const [zwinietyPrzewijaniem, setCompact] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -118,16 +118,21 @@ export function Header() {
     };
   }, []);
 
-  // Otwarte menu i wejście klawiaturą zawsze przywracają pełny pasek —
-  // inaczej nawigacja byłaby nieosiągalna z klawiatury.
-  useEffect(() => {
-    if (mobileOpen || openMega) setCompact(false);
-  }, [mobileOpen, openMega]);
+  // Otwarte menu zawsze przywraca pełny pasek — inaczej nawigacja byłaby
+  // nieosiągalna z klawiatury. Wyliczane, nie ustawiane efektem: stan
+  // wynikający z innego stanu nie potrzebuje dodatkowego renderu.
+  const compact = zwinietyPrzewijaniem && !mobileOpen && !openMega;
 
-  useEffect(() => {
+  // Zmiana adresu zamyka menu. Poprawka stanu w trakcie renderu, a nie
+  // w efekcie — React obsługuje ten wzorzec osobno: przerywa render
+  // i powtarza go z nową wartością, zanim cokolwiek trafi na ekran.
+  // Przez efekt otwarte menu mignęłoby jeszcze na nowej stronie.
+  const [poprzedniaSciezka, setPoprzedniaSciezka] = useState(pathname);
+  if (poprzedniaSciezka !== pathname) {
+    setPoprzedniaSciezka(pathname);
     setOpenMega(null);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
