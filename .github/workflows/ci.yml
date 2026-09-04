@@ -1,0 +1,84 @@
+# Kontrola przed scaleniem.
+#
+# Trzy bramki, każda łapie coś, czego pozostałe nie widzą:
+#
+#   tsc    — typy. Nie uruchamia kodu, więc widzi błędy na ścieżkach,
+#            w które test nigdy nie wejdzie.
+#   eslint — wzorce. Typy się zgadzają, a kod i tak jest zły: nieaktualne
+#            domknięcie w efekcie, stan ustawiany tam, gdzie powoduje
+#            kaskadę renderów.
+#   build  — prawda. Prerender wykonuje kod na serwerze i wywala się na
+#            rzeczach, których dwie poprzednie nie mają jak zobaczyć —
+#            u nas raz na module `'use client'` importowanym po stronie
+#            serwera, gdzie tablica przychodziła jako odsyłacz do komponentu.
+#
+# Build nie potrzebuje żadnych sekretów: analityka, Firebase, Resend
+# i Klaviyo są opcjonalne, a strona bez nich po prostu cofa się do
+# zachowania zastępczego. Dlatego CI działa też na kopiach od osób z zewnątrz.
+
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+# Nowy push do gałęzi przerywa poprzedni przebieg — nikt nie czeka na wynik
+# dla kodu, którego już nie ma.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  landing:
+    name: Landing — typy, lint, build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: landing
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: landing/package-lock.json
+
+      # `npm ci` zamiast `npm install`: instaluje dokładnie to, co w
+      # package-lock.json, i przerywa, gdy plik rozjechał się z package.json.
+      - name: Zależności
+        run: npm ci
+
+      - name: Typy
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  sekrety:
+    name: Sekrety
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Osobne zadanie, bez `npm ci` — dzięki temu w katalogu nie ma
+      # node_modules i skaner ogląda wyłącznie nasze pliki.
+      #
+      # Binarka wprost z wydania, nie gotowa akcja: `gitleaks-action`
+      # wymaga płatnej licencji dla organizacji, a samo narzędzie
+      # jest na licencji MIT.
+      - name: Skan
+        env:
+          WERSJA: 8.30.1
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${WERSJA}/gitleaks_${WERSJA}_linux_x64.tar.gz" \
+            | tar xz gitleaks
+          ./gitleaks dir --redact --no-banner --exit-code 1 .
