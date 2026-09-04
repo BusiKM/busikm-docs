@@ -7,6 +7,7 @@ import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { wyslijWiadomosc, tematy, LIMITY } from '@/lib/wiadomosci';
 import { TRESC_ZGODY } from '@/content/zgoda';
+import { Wymagane } from '@/components/ui/Wymagane';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -97,24 +98,32 @@ export function Formularz() {
   return (
     <form onSubmit={wyslij} className="flex flex-col gap-5 lg:gap-6">
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Imię</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Imię
+          <Wymagane />
+        </span>
         <input
           value={imie}
           onChange={(e) => setImie(e.target.value)}
           maxLength={LIMITY.imie}
           placeholder="Marek"
+          required
           className={pole}
         />
       </label>
 
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Adres e-mail</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Adres e-mail
+          <Wymagane />
+        </span>
         <input
           type="email"
           value={mail}
           onChange={(e) => setMail(e.target.value)}
           maxLength={LIMITY.email}
           placeholder="marek@twojafirma.pl"
+          required
           className={pole}
         />
       </label>
@@ -141,16 +150,26 @@ export function Formularz() {
       </fieldset>
 
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Wiadomość</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Wiadomość
+          <Wymagane />
+        </span>
         <textarea
           value={tresc}
           onChange={(e) => setTresc(e.target.value)}
           rows={6}
           maxLength={LIMITY.tresc}
           placeholder="Napisz, co się dzieje albo o co chcesz zapytać."
+          required
           className="w-full resize-y rounded-btn border border-line bg-white px-4 py-3.5 text-[16px] leading-relaxed outline-none placeholder:text-muted focus:border-blue lg:text-body"
         />
       </label>
+
+
+      {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
+      <p className="text-[12px] text-muted">
+        <span aria-hidden className="text-red-ink">*</span> pola wymagane
+      </p>
 
       {/*
         Pułapka na boty. Człowiek tego pola nie zobaczy i nie zatabuluje do

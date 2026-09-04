@@ -8,6 +8,7 @@ import { firebaseGotowy } from '@/lib/firebase';
 import { zapiszNaListe } from '@/lib/zapisy';
 import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
 import { TRESC_ZGODY } from '@/content/zgoda';
+import { Wymagane } from '@/components/ui/Wymagane';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -81,19 +82,26 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
     <form onSubmit={wyslij} className="flex flex-col gap-4 lg:gap-5">
       <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
         <label className="flex flex-col gap-2">
-          <span className="text-[14px] font-medium lg:text-caption">Imię</span>
+          <span className="text-[14px] font-medium lg:text-caption">
+            Imię
+            <Wymagane />
+          </span>
           <input
             value={imie}
             onChange={(e) => setImie(e.target.value)}
             maxLength={LIMITY_ZAPISU.imie}
             placeholder="Marek"
             autoComplete="given-name"
+            required
             className={pole}
           />
         </label>
 
         <label className="flex flex-col gap-2">
-          <span className="text-[14px] font-medium lg:text-caption">Adres e-mail</span>
+          <span className="text-[14px] font-medium lg:text-caption">
+            Adres e-mail
+            <Wymagane />
+          </span>
           <input
             type="email"
             value={mail}
@@ -101,10 +109,17 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
             maxLength={LIMITY_ZAPISU.email}
             placeholder="marek@twojafirma.pl"
             autoComplete="email"
+            required
             className={pole}
           />
         </label>
       </div>
+
+
+      {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
+      <p className="text-[12px] text-muted">
+        <span aria-hidden className="text-red-ink">*</span> pola wymagane
+      </p>
 
       {/* Pułapka na boty — człowiek tego pola nie zobaczy i nie zatabuluje. */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -132,7 +147,10 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
           required
           className="mt-0.5 size-4.5 flex-none accent-blue"
         />
-        <span>{TRESC_ZGODY}</span>
+        <span>
+          {TRESC_ZGODY}
+          <Wymagane />
+        </span>
       </label>
 
       {firebaseGotowy ? (
