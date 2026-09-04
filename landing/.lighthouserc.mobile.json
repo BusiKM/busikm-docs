@@ -24,13 +24,13 @@
         "resource-summary:script:size": [
           "error",
           {
-            "maxNumericValue": 1433600
+            "maxNumericValue": 921600
           }
         ],
         "resource-summary:total:size": [
           "error",
           {
-            "maxNumericValue": 2150400
+            "maxNumericValue": 1894400
           }
         ],
         "cumulative-layout-shift": [
@@ -60,7 +60,7 @@
         "categories:accessibility": [
           "error",
           {
-            "minScore": 0.9
+            "minScore": 0.95
           }
         ],
         "link-in-text-block": "warn",
@@ -74,7 +74,7 @@
         "largest-contentful-paint": [
           "error",
           {
-            "maxNumericValue": 12000
+            "maxNumericValue": 11500
           }
         ]
       }

@@ -26,8 +26,9 @@ internetowe.** To one decydują o pozycji, i tylko one.
 
 ## Dlaczego progi mobilne wyglądają rozpaczliwie
 
-W konfiguracji mobilnej stoi `largest-contentful-paint: 12000 ms`, czyli
-czterokrotność progu Google. To nie jest zgoda na wolną stronę.
+W konfiguracji mobilnej stoi `largest-contentful-paint: 11500 ms`, czyli
+ponad czterokrotność progu Google. Dla porównania desktop ma **2500 ms**,
+czyli dokładnie próg Google — tam mieścimy się z zapasem (zmierzone 1492 ms). To nie jest zgoda na wolną stronę.
 
 `next start` **nie kompresuje odpowiedzi** — sprawdzone: ta sama
 `Content-Length` z nagłówkiem `Accept-Encoding: gzip` i bez, żadnego
@@ -49,12 +50,12 @@ prawdziwą bramką:
 
 | Asercja | Próg | Dlaczego działa |
 |---|---|---|
-| `resource-summary:script:size` | 1400 KB | Bajty nie zależą od obciążenia maszyny. Ktoś dorzuci ciężką bibliotekę — widać od razu. |
-| `resource-summary:total:size` | 2100 KB | To samo dla całej strony, razem z obrazami. |
+| `resource-summary:script:size` | 900 KB | Bajty nie zależą od obciążenia maszyny. Ktoś dorzuci ciężką bibliotekę — widać od razu. |
+| `resource-summary:total:size` | 1850 KB | To samo dla całej strony, razem z obrazami. |
 | `cumulative-layout-shift` | 0,1 | Przeskoki układu wynikają z HTML i CSS, nie z procesora. Próg równy progowi Google. |
 | `categories:seo` | 100 | Deterministyczne: tytuł, opis, indeksowalność, poprawne odnośniki. |
 | `categories:best-practices` | 100 | Deterministyczne. |
-| `categories:accessibility` | ≥ 90 | Deterministyczne. Dziś 92–100. |
+| `categories:accessibility` | ≥ 95 | Deterministyczne. Dziś 96–100. |
 
 Regresję ładunku łapią budżety bajtowe, a nie wynik wydajności — dlatego
 to one są tu najważniejsze.
@@ -86,15 +87,18 @@ tłem daje 3,04–3,35:1 przy wymaganych 4,5:1.
 WCAG zwalnia z wymogu kontrastu tekst będący częścią obrazu o istotnej treści
 wizualnej, a to dokładnie ten przypadek — ale axe nie ma jak tego rozpoznać.
 
-## Realna rzecz do poprawy
+## Co już poprawione
 
-Lighthouse wskazuje **750 ms na nieużywanym JavaScripcie**. Strona główna
-wysyła ~830 KB skryptów (nieskompresowanych), `/kontakt` ~1,2 MB — ta druga
-ciągnie klienta Firebase, potrzebnego tylko przy wysyłce formularza.
+**Firebase ładuje się dopiero przy wysyłce.** Klient Firebase wchodził do
+paczki każdej strony z formularzem — `/kontakt` wysyłał przez to 1198 KB
+skryptów, choć odwiedzający najczęściej tylko czyta i wychodzi. Po zamianie
+importu na `import()` w miejscu zapisu: **805 KB, czyli o 33% mniej**,
+a cała strona z 1407 na 1014 KB. Szczegóły w `lib/firebase.ts`.
 
-Zysk byłby prawdziwy i widoczny także w polu, nie tylko w laboratorium.
-Kierunek: ładować Firebase dopiero przy pierwszej interakcji z formularzem,
-zamiast przy wejściu na stronę.
+**Odnośniki w tekście ciągłym są podkreślone.** Reguła w `globals.css`
+obejmuje `p a` i `li a`, czyli dokładnie to, co norma nazywa blokiem tekstu.
+Dostępność `/kontakt`, `/prywatnosc`, `/regulamin` i `/pomoc` wzrosła z 96
+do **100**.
 
 ## Aktualizacja progów po optymalizacji
 

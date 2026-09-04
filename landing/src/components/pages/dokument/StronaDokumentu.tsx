@@ -154,8 +154,8 @@ export function StronaDokumentu({
               </div>
 
               <div className="flex flex-col gap-4 border-t border-line pt-8 text-[15px] text-muted lg:text-body">
-                <span>Ostatnia zmiana: {dokument.ostatniaZmiana}</span>
-                <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <p>Ostatnia zmiana: {dokument.ostatniaZmiana}</p>
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   Pozostałe dokumenty:
                   {pozostale.map((d, i) => (
                     <span key={d.href} className="flex items-center gap-2">
@@ -165,13 +165,13 @@ export function StronaDokumentu({
                       {i < pozostale.length - 1 && <span aria-hidden>·</span>}
                     </span>
                   ))}
-                </span>
-                <span>
+                </p>
+                <p>
                   Masz pytanie do tego dokumentu? Napisz:{' '}
                   <a href={`mailto:${firma.email}`} className="text-blue">
                     {firma.email}
                   </a>
-                </span>
+                </p>
               </div>
             </div>
           </div>

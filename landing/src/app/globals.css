@@ -111,6 +111,26 @@
     scroll-behavior: smooth;
   }
 
+  /* Odnośnik w tekście ciągłym musi być rozpoznawalny nie tylko kolorem —
+     WCAG 1.4.1. Kolorem tego się nie da: `--color-blue` #0B5FFF wobec
+     `--color-muted` #6C6C74 daje 1,01:1, bo oba mają niemal identyczną
+     jasność, a norma wymaga 3:1. Nawet granat #062B80 dochodzi tylko do
+     2,42:1 i wygląda prawie czarno. Zostaje podkreślenie.
+
+     Reguła obejmuje wyłącznie akapity i pozycje list, czyli dokładnie to,
+     co norma nazywa blokiem tekstu. Przyciski, nadtytuły i samodzielne
+     odnośniki zostają bez podkreślenia — tam kolor nie jest jedyną
+     wskazówką, bo odróżnia je pozycja i otoczenie.
+
+     Napisana raz, obejmuje też treść dopisaną później — inaczej niż klasa
+     doklejana do każdego odnośnika z osobna, o której ktoś kiedyś zapomni. */
+  p a,
+  li a {
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.18em;
+  }
+
   body {
     background: var(--color-paper);
     color: var(--color-ink);
