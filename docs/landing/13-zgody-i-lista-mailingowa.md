@@ -106,6 +106,33 @@ Brak pola traktujemy jak brak zgody. Ten warunek siedzi w kodzie, a nie
 w czyjejś głowie przy ręcznym eksporcie — bo to jest dokładnie ta rzecz,
 o której najłatwiej zapomnieć.
 
+### Ustawienie listy: single opt-in
+
+Lista `BusiKM` musi być na **single opt-in**. Przy `double_opt_in` wywołanie
+kończy się kodem 202, ale profil **nie trafia na listę** — czeka na
+kliknięcie w mail potwierdzający, którego nasza strona nigdzie nie zapowiada.
+Wygląda to jak działająca integracja z pustą listą i tak właśnie wyglądało
+przez pierwsze podejście.
+
+Single opt-in jest tu wystarczający, bo **dowód zgody mamy własny**: treść,
+wersję, kanał i czas serwera zapisujemy w Firestore w tym samym momencie.
+Double opt-in dokłada do tego potwierdzenie adresu, ale kosztuje zwykle
+20–40% zapisów i wymagałby zapowiedzenia maila potwierdzającego w treści
+strony.
+
+Sprawdzenie: `Lists & segments → BusiKM → Settings → Consent`.
+
+### Profile raz oznaczone jako suppressed zostają
+
+Adresy, które przeszły przez nieudane podejście, mają
+`suppression: USER_SUPPRESSED` i **API ich nie odsubskrybuje** — to
+zabezpieczenie Klaviyo przed obchodzeniem wypisów. Trzeba je usunąć ręcznie
+w panelu albo testować na świeżych adresach.
+
+Przy testach używaj adresów z plusem (`kontakt+cokolwiek@busikm.pl`) —
+docierają do tej samej skrzynki, a w Klaviyo są osobnymi profilami, które
+łatwo znaleźć i skasować.
+
 ## Wypis — świadomie po stronie Klaviyo
 
 Własnego mechanizmu nie budujemy. Klaviyo dokleja odnośnik do każdej wysyłki
