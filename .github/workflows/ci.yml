@@ -82,3 +82,53 @@ jobs:
           curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${WERSJA}/gitleaks_${WERSJA}_linux_x64.tar.gz" \
             | tar xz gitleaks
           ./gitleaks dir --redact --no-banner --exit-code 1 .
+
+  lighthouse:
+    name: Lighthouse — ${{ matrix.profil }}
+    runs-on: ubuntu-latest
+    strategy:
+      # Bez przerywania: gdy padnie mobile, chcemy i tak zobaczyć desktop.
+      fail-fast: false
+      matrix:
+        profil: [desktop, mobile]
+    defaults:
+      run:
+        working-directory: landing
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: landing/package-lock.json
+
+      - name: Zależności
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Serwer podnosi i gasi sam @lhci/cli. Każda strona mierzona trzy razy,
+      # liczy się mediana — pojedynczy przebieg na współdzielonej maszynie
+      # potrafi odbiegać o kilkanaście punktów.
+      #
+      # Progi: landing/.lighthouserc.<profil>.json. Dlaczego mobilne wyglądają
+      # na rozpaczliwe (LCP 12 s), a produkcja jest szybka — patrz
+      # docs/landing/14-lighthouse-w-ci.md. W skrócie: `next start` nie
+      # kompresuje odpowiedzi, a Lighthouse mobile symuluje wolne 4G, więc
+      # nieskompresowane 1,7 MB samo w sobie zjada 8 sekund. Na Vercelu
+      # kompresję robi brzeg sieci. Te progi pilnują regresji, nie zgodności
+      # z progami Google.
+      - name: Pomiar
+        run: npx --yes @lhci/cli@latest autorun --config=.lighthouserc.${{ matrix.profil }}.json
+
+      # Raporty zostają także po nieudanym przebiegu — bez nich widać sam
+      # numer, a nie to, który element go zepsuł.
+      - name: Raporty
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: lighthouse-${{ matrix.profil }}
+          path: landing/.lighthouseci/
+          retention-days: 14
