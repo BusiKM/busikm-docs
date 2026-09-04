@@ -28,7 +28,9 @@ internetowe.** To one decydują o pozycji, i tylko one.
 
 W konfiguracji mobilnej stoi `largest-contentful-paint: 11500 ms`, czyli
 ponad czterokrotność progu Google. Dla porównania desktop ma **2500 ms**,
-czyli dokładnie próg Google — tam mieścimy się z zapasem (zmierzone 1492 ms). To nie jest zgoda na wolną stronę.
+czyli dokładnie próg Google — tam mieścimy się z zapasem (zmierzone 1492 ms).
+
+Mobilny próg **nie jest zgodą na wolną stronę**.
 
 `next start` **nie kompresuje odpowiedzi** — sprawdzone: ta sama
 `Content-Length` z nagłówkiem `Accept-Encoding: gzip` i bez, żadnego
@@ -60,22 +62,12 @@ prawdziwą bramką:
 Regresję ładunku łapią budżety bajtowe, a nie wynik wydajności — dlatego
 to one są tu najważniejsze.
 
-## Dwa znane ostrzeżenia
+## Jedno znane ostrzeżenie
 
-Ustawione na `warn`, żeby były widoczne i nie blokowały pracy.
-
-### `link-in-text-block`
-
-Odnośniki wewnątrz akapitów są odróżnialne **wyłącznie kolorem**. WCAG 1.4.1
-wymaga albo podkreślenia, albo kontrastu ≥ 3:1 między odnośnikiem a otaczającym
-tekstem.
-
-Policzone: `--color-blue` #0B5FFF wobec `--color-muted` #6C6C74 daje **1,01:1**.
-Oba kolory mają niemal identyczną jasność. Kolorem tego **nie da się naprawić** —
-nawet granat #062B80 dochodzi tylko do 2,42:1 i wygląda prawie czarno.
-
-Jedyne wyjście to podkreślenie odnośników w tekście ciągłym. To zmiana
-widoczna w projekcie, więc czeka na decyzję.
+`link-in-text-block` i `color-contrast` zostają na `warn`, żeby były widoczne
+i nie blokowały pracy. Pierwsze jest już naprawione i nie powinno wracać —
+gdyby wróciło, znaczy to, że ktoś dodał odnośnik poza akapitem. Drugie
+opisane niżej.
 
 ### `color-contrast`
 
@@ -95,10 +87,19 @@ skryptów, choć odwiedzający najczęściej tylko czyta i wychodzi. Po zamianie
 importu na `import()` w miejscu zapisu: **805 KB, czyli o 33% mniej**,
 a cała strona z 1407 na 1014 KB. Szczegóły w `lib/firebase.ts`.
 
-**Odnośniki w tekście ciągłym są podkreślone.** Reguła w `globals.css`
-obejmuje `p a` i `li a`, czyli dokładnie to, co norma nazywa blokiem tekstu.
+**Odnośniki w tekście ciągłym są podkreślone.** Wcześniej odróżniał je sam
+kolor, co narusza WCAG 1.4.1. Kolorem nie dało się tego naprawić: `--color-blue`
+#0B5FFF wobec `--color-muted` #6C6C74 daje **1,01:1** — oba mają niemal
+identyczną jasność, a norma wymaga 3:1. Nawet granat #062B80 dochodzi tylko
+do 2,42:1 i wygląda prawie czarno.
+
+Reguła w `globals.css` obejmuje `p a` i `li a`, czyli dokładnie to, co norma
+nazywa blokiem tekstu — przyciski i nadtytuły zostają bez podkreślenia.
 Dostępność `/kontakt`, `/prywatnosc`, `/regulamin` i `/pomoc` wzrosła z 96
 do **100**.
+
+Jeśli dodajesz odnośnik w zdaniu, umieść go w `<p>` albo `<li>`. Odnośnik
+w `<span>` regule umknie — tak właśnie było w stopce dokumentów prawnych.
 
 ## Aktualizacja progów po optymalizacji
 
