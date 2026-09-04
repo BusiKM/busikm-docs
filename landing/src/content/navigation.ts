@@ -143,7 +143,7 @@ export const navigation: NavEntry[] = [
     promo: {
       href: '/demo',
       label: 'Zobacz demo',
-      benefit: 'Prawdziwa aplikacja z przykładową firmą. Bez zakładania konta.',
+      benefit: 'Przygotowujemy je. Zostaw adres, a damy znać w dniu uruchomienia.',
     },
   },
   { kind: 'mega', label: 'Dla kogo', href: '/dla-kogo', groups: dlaKogo, cards: true },
@@ -195,9 +195,20 @@ export const footerColumns = [
   },
 ];
 
-/** Adresy aplikacji — dopóki nie ma docelowych, trzymamy je w jednym miejscu. */
+/**
+ * Adresy aplikacji — w jednym miejscu, bo część nie jest jeszcze docelowa.
+ *
+ * `login` prowadzi na własną stronę, nie do aplikacji. Publicznej
+ * rejestracji jeszcze nie ma (BKM-1858, etap 2 backlogu), a wersja testowa
+ * na stagingu wpuszcza wyłącznie firmy z grupy testowej — odesłanie tam
+ * wszystkich kończyłoby się ekranem logowania, na którym nikt się nie
+ * zaloguje. `/zaloguj` mówi, na czym stoimy, zbiera adres i zostawia wyjście
+ * osobom, które konto testowe już mają.
+ *
+ * `trial` prowadzi na cennik z tego samego powodu.
+ */
 export const appLinks = {
   trial: '/cennik',
   demo: '/demo',
-  login: 'https://app.busikm.pl',
+  login: '/zaloguj',
 } as const;

@@ -69,6 +69,7 @@ export const trasy: Trasa[] = [
 
   { sciezka: '/cennik', priorytet: 0.9, czestotliwosc: 'monthly' },
   { sciezka: '/demo', priorytet: 0.8, czestotliwosc: 'monthly' },
+  { sciezka: '/zaloguj', priorytet: 0.5, czestotliwosc: 'monthly' },
 
   { sciezka: '/co-robi/aplikacja-kierowcy', priorytet: 0.8, czestotliwosc: 'monthly' },
   { sciezka: '/co-robi/dyspozytornia', priorytet: 0.8, czestotliwosc: 'monthly' },

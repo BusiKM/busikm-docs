@@ -1,17 +1,34 @@
 rules_version = '2';
 
-// Reguły Firestore dla BusiKM — kolekcja `wiadomosci` z formularza kontaktowego.
+// Reguły Firestore dla BusiKM — trzy kolekcje z landingu:
+//   wiadomosci      formularz kontaktowy
+//   zapisy-demo     lista wczesnego dostępu do demo
+//   zapisy-konto    lista oczekujących na otwarcie zapisów do aplikacji
 //
 // Klucze klienta Firebase są publiczne z założenia, więc to te reguły, a nie
-// klucze, decydują o bezpieczeństwie. Pozwalamy wyłącznie utworzyć wiadomość
-// i tylko taką, która przejdzie walidację. Odczyt, edycja i kasowanie są
-// zamknięte dla wszystkich — zgłoszenia czyta się z konsoli albo Admin SDK.
+// klucze, decydują o bezpieczeństwie. Wolno wyłącznie utworzyć dokument i tylko
+// taki, który przejdzie walidację. Odczyt, edycja i kasowanie są zamknięte dla
+// wszystkich — dane czyta się z konsoli albo Admin SDK.
+//
+// Listy są osobnymi kolekcjami, nie jedną z polem `lista`: reguły przypisuje
+// się do ścieżki, więc osobne kolekcje można walidować niezależnie, a przy
+// eksporcie adresów trudniej je pomylić.
 service cloud.firestore {
   match /databases/{database}/documents {
 
     match /wiadomosci/{id} {
       allow read, update, delete: if false;
       allow create: if poprawnaWiadomosc(request.resource.data);
+    }
+
+    match /zapisy-demo/{id} {
+      allow read, update, delete: if false;
+      allow create: if poprawnyZapis(request.resource.data);
+    }
+
+    match /zapisy-konto/{id} {
+      allow read, update, delete: if false;
+      allow create: if poprawnyZapis(request.resource.data);
     }
 
     // Wszystko inne zablokowane.
@@ -27,6 +44,16 @@ service cloud.firestore {
       && d.email is string && d.email.size() <= 160 && d.email.matches('.+@.+[.].+')
       && d.tresc is string && d.tresc.size() > 0 && d.tresc.size() <= 4000
       && d.temat in ['pytanie przed zakupem', 'pomoc techniczna', 'rozliczenia i faktury', 'coś innego']
+      && d.createdAt == request.time
+      && (!('source' in d) || d.source == 'busikm-landing');
+  }
+
+  function poprawnyZapis(d) {
+    return d.keys().hasOnly(['imie', 'email', 'zgodaNaWiesci', 'createdAt', 'source'])
+      && d.keys().hasAll(['imie', 'email', 'zgodaNaWiesci', 'createdAt'])
+      && d.imie is string && d.imie.size() > 0 && d.imie.size() <= 80
+      && d.email is string && d.email.size() <= 160 && d.email.matches('.+@.+[.].+')
+      && d.zgodaNaWiesci is bool
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }
