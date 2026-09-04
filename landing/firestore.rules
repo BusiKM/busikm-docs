@@ -75,9 +75,21 @@ service cloud.firestore {
       && (!('source' in d) || d.source == 'busikm-landing');
   }
 
+  // Plan i okres wybrane w cenniku. Opcjonalne — na strony zapisu wchodzi się
+  // też wprost, z zakładki albo z wyszukiwarki. Ale jeśli już są, to oba
+  // naraz i wyłącznie ze znanych wartości: to deklaracja zainteresowania,
+  // a nie miejsce, gdzie ktoś z zewnątrz wpisze dowolny tekst.
+  function wyborZCennika(d) {
+    return ('plan' in d) == ('okres' in d)
+      && (!('plan' in d)
+          || (d.plan in ['start', 'firma']
+              && d.okres in ['miesiecznie', 'rocznie']));
+  }
+
   function poprawnyZapis(d) {
     return d.keys().hasOnly(['imie', 'email', 'zrodlo', 'zgoda',
                              'trescZgody', 'wersjaZgody', 'kanalZgody',
+                             'plan', 'okres',
                              'createdAt', 'source'])
       && d.keys().hasAll(['imie', 'email', 'zrodlo', 'zgoda',
                           'trescZgody', 'wersjaZgody', 'kanalZgody', 'createdAt'])
@@ -87,6 +99,7 @@ service cloud.firestore {
       // Bez zgody nie ma zapisu na listę — to nie jest pole opcjonalne.
       && d.zgoda == true
       && dowodZgody(d)
+      && wyborZCennika(d)
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }

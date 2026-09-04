@@ -2,12 +2,19 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { getDb, firebaseGotowy } from '@/lib/firebase';
 import { LIMITY_ZAPISU, type Lista } from '@/content/zapisy';
 import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY, type Zrodlo } from '@/content/zgoda';
+import type { Zainteresowanie } from '@/content/zainteresowanie';
 
 export type Zapis = {
   imie: string;
   email: string;
   lista: Lista;
   zrodlo: Zrodlo;
+  /**
+   * Plan i okres wybrane w cenniku — tylko gdy człowiek przyszedł stamtąd.
+   * Wejście wprost na stronę zapisu jest równie poprawne, więc pole jest
+   * opcjonalne na całej drodze, aż po reguły Firestore.
+   */
+  zainteresowanie?: Zainteresowanie | null;
   /** Ukryte pole antyspamowe — musi zostać puste. */
   pulapka?: string;
 };
@@ -30,6 +37,8 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
   const db = getDb();
   if (!db || !firebaseGotowy) throw new Error('Firebase nie jest skonfigurowany.');
 
+  const wybor = dane.zainteresowanie ?? null;
+
   const oczyszczone = {
     imie: dane.imie.trim().slice(0, LIMITY_ZAPISU.imie),
     email: dane.email.trim().toLowerCase().slice(0, LIMITY_ZAPISU.email),
@@ -42,6 +51,10 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
 
   await addDoc(collection(db, `zapisy-${dane.lista}`), {
     ...oczyszczone,
+    // Rozkładane warunkowo, nie jako `plan: undefined`: reguły dopuszczają
+    // wyłącznie znane pola, a Firestore zapisałby `undefined` jako `null`
+    // i dokument przestałby przechodzić walidację.
+    ...(wybor ? { plan: wybor.plan, okres: wybor.okres } : {}),
     createdAt: serverTimestamp(),
     source: 'busikm-landing',
   });
@@ -51,7 +64,12 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
     await fetch('/api/zapis', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imie: oczyszczone.imie, email: oczyszczone.email, zrodlo: dane.zrodlo }),
+      body: JSON.stringify({
+        imie: oczyszczone.imie,
+        email: oczyszczone.email,
+        zrodlo: dane.zrodlo,
+        ...(wybor ? { plan: wybor.plan, okres: wybor.okres } : {}),
+      }),
     });
   } catch {
     /* adres leży w bazie, powiadomienie można odtworzyć z konsoli */

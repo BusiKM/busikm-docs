@@ -14,6 +14,8 @@
 
 export const plans = [
   {
+    /** Identyfikator do adresu — patrz `content/zainteresowanie.ts`. */
+    id: 'start',
     name: 'Start',
     monthly: '149',
     yearly: '1 490',
@@ -33,6 +35,7 @@ export const plans = [
     highlighted: false,
   },
   {
+    id: 'firma',
     name: 'Firma',
     monthly: '299',
     yearly: '2 990',
