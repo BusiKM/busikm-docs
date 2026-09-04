@@ -15,6 +15,11 @@ import { firma } from '@/content/firma';
  * `WERSJA` — inaczej stare zapisy zaczną wskazywać na słowa, których ich
  * autorzy nigdy nie widzieli.
  *
+ * Wersja 2 dopisała, **jak** wycofać zgodę. Art. 7 ust. 3 RODO wymaga, żeby
+ * było to możliwe w każdej chwili i równie łatwo, jak jej udzielenie —
+ * a odnośnik w wiadomości nie wystarcza komuś, do kogo pierwsza wiadomość
+ * pójdzie dopiero za kilka miesięcy. Stąd druga droga, przez adres.
+ *
  * ## Podstawa prawna
  *
  * Art. 6 ust. 1 lit. a RODO (zgoda) oraz **art. 398 Prawa komunikacji
@@ -32,11 +37,12 @@ import { firma } from '@/content/firma';
  * więc tam zgoda musi być nieobowiązkowa.
  */
 
-export const WERSJA_ZGODY = 1;
+export const WERSJA_ZGODY = 2;
 
 export const TRESC_ZGODY =
   `Zgadzam się na otrzymywanie od ${firma.nazwa} informacji o BusiKM na podany adres ` +
-  'e-mail — w tym o uruchomieniu demo i otwarciu zapisów. Zgodę mogę wycofać w każdej chwili.';
+  'e-mail — w tym o uruchomieniu demo i otwarciu zapisów. Zgodę wycofam odnośnikiem ' +
+  `w każdej wiadomości albo pisząc na ${firma.email}.`;
 
 /** Kanał, którego zgoda dotyczy. Art. 398 PKE wymaga wskazania go wprost. */
 export const KANAL_ZGODY = 'email';

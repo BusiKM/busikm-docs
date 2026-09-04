@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { firma } from '@/content/firma';
 import { tematy, LIMITY } from '@/lib/wiadomosci';
+import { zapiszWKlaviyo } from '@/lib/klaviyo';
 
 /**
  * Powiadomienie o nowej wiadomości z formularza kontaktowego.
@@ -13,6 +14,14 @@ import { tematy, LIMITY } from '@/lib/wiadomosci';
  * Wymagane zmienne: `RESEND_API_KEY`, `POWIADOM_NA`, `POWIADOM_OD`.
  * Bez klucza zwracamy 200 z adnotacją — brak konfiguracji to stan
  * przejściowy, nie awaria.
+ *
+ * ## Kiedy adres trafia na listę
+ *
+ * **Tylko przy `zgoda === true`.** Tutaj zgoda jest nieobowiązkowa, bo usługą
+ * jest odpowiedź na pytanie — a osoba, która o nią nie prosiła, nie może
+ * wylądować w newsletterze. To jest ten warunek, o którym najłatwiej
+ * zapomnieć przy późniejszym eksporcie, więc filtr siedzi tu, w kodzie,
+ * a nie w cudzej głowie przy ręcznym imporcie.
  */
 
 export const runtime = 'nodejs';
@@ -30,10 +39,6 @@ export async function POST(request: Request) {
   const doKogo = process.env.POWIADOM_NA || firma.email;
   const odKogo = process.env.POWIADOM_OD || 'BusiKM <onboarding@resend.dev>';
 
-  if (!klucz) {
-    return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY' }, { status: 200 });
-  }
-
   let dane: Record<string, unknown>;
   try {
     dane = await request.json();
@@ -45,6 +50,7 @@ export async function POST(request: Request) {
   const email = String(dane.email ?? '').slice(0, LIMITY.email);
   const tresc = String(dane.tresc ?? '').slice(0, LIMITY.tresc);
   const temat = String(dane.temat ?? '');
+  const zgoda = dane.zgoda === true;
 
   // Ta sama walidacja co w regułach Firestore — trasa jest publiczna,
   // więc nie zakładamy, że wywołał ją nasz własny formularz.
@@ -56,6 +62,19 @@ export async function POST(request: Request) {
 
   if (!poprawny) {
     return NextResponse.json({ ok: false, blad: 'brak lub złe pola' }, { status: 400 });
+  }
+
+  // Bez zgody adres nie ma czego szukać na liście — zostaje w bazie
+  // wyłącznie po to, żeby dało się odpowiedzieć na pytanie.
+  const klaviyo = zgoda
+    ? await zapiszWKlaviyo({ imie, email, zrodlo: 'formularz' })
+    : ({ ok: false, pominiete: 'bez zgody marketingowej' } as const);
+
+  // Sprawdzenie klucza Resend dopiero tutaj, po Klaviyo. Odwrotna kolejność
+  // sprawiłaby, że brak konfiguracji poczty cicho blokowałby zapis kontaktu
+  // na listę — a to lista jest tu rzeczą trwałą, powiadomienie tylko wygodą.
+  if (!klucz) {
+    return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY', klaviyo }, { status: 200 });
   }
 
   const html = `
@@ -70,6 +89,10 @@ export async function POST(request: Request) {
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74;vertical-align:top">E-mail</td>
           <td><a href="mailto:${bezpiecznie(email)}" style="color:#0B5FFF">${bezpiecznie(email)}</a></td>
+        </tr>
+        <tr>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74;vertical-align:top">Zgoda</td>
+          <td>${zgoda ? `tak — dopisany do listy (${klaviyo.ok ? 'Klaviyo OK' : bezpiecznie('Klaviyo: ' + ('pominiete' in klaviyo ? klaviyo.pominiete : klaviyo.blad))})` : 'nie — sam kontakt, bez listy'}</td>
         </tr>
       </table>
       <div style="margin-top:20px;padding-top:20px;border-top:1px solid #E3E3E6;white-space:pre-wrap;font-size:15px">${bezpiecznie(tresc)}</div>
@@ -91,9 +114,9 @@ export async function POST(request: Request) {
     });
 
     if (!odp.ok) {
-      return NextResponse.json({ ok: false, blad: await odp.text() }, { status: 502 });
+      return NextResponse.json({ ok: false, blad: await odp.text(), klaviyo }, { status: 502 });
     }
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, klaviyo });
   } catch (e) {
     return NextResponse.json({ ok: false, blad: String(e) }, { status: 500 });
   }

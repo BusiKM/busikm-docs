@@ -66,24 +66,62 @@ Adresy z formularza kontaktowego bez zaznaczonej zgody **nie należą do
 listy**. Zostają w kolekcji `wiadomosci` i służą wyłącznie do odpowiedzi na
 zadane pytanie. Przy eksporcie filtruj po `zgoda == true`.
 
-## Przeniesienie do narzędzia wysyłkowego
+## Klaviyo — jak to działa
 
-Natywnej integracji Firebase → Klaviyo nie ma. Trzy drogi:
+Zapis idzie **wprost z tras `/api/zapis` i `/api/powiadom`**, bez pośrednika.
+Punkt końcowy: `POST /api/profile-subscription-bulk-create-jobs`.
 
-**1. Wprost z `/api/zapis`** — polecana. Trasa już istnieje i już wie
-o zapisie; dorzucenie wywołania API Klaviyo to kilkanaście linijek. Bez
-pośrednika, bez opóźnienia, bez kolejnego abonamentu. Profil trafia od razu
-z tagiem z pola `zrodlo`.
+To jedyny punkt, który **zapisuje zgodę razem z profilem**. Zwykłe
+`POST /api/profiles` tworzy kontakt, ale go nie subskrybuje i nie odnotowuje
+momentu wyrażenia zgody — a to właśnie ten moment trzeba umieć wykazać.
+`consented_at` ustawiamy na czas zapisu u nas, żeby data w Klaviyo zgadzała
+się z `createdAt` w Firestore.
 
-**2. Zapier albo Make** — bez kodu, ale wyzwalacz na Firestore chodzi
-z opóźnieniem do 15 minut i dokłada koszt.
+Do profilu trafiają: `email`, `first_name` oraz właściwości `zrodlo`,
+`zgoda_wersja`, `zgoda_tresc`. Tag `zrodlo` służy do budowania segmentów.
 
-**3. Rozszerzenie Firebase** — dla Klaviyo nie istnieje. Jest odpowiednik dla
-SendGrid (`twilio/sendgrid-sync-contacts`), gdyby wybór narzędzia był jeszcze
-otwarty.
+| Zmienna | Co to |
+|---|---|
+| `KLAVIYO_API_KEY` | klucz **prywatny**, zakres Profiles (Write) + Subscriptions (Write) |
+| `KLAVIYO_LISTA_ID` | sześcioznakowy identyfikator listy |
 
-Dopóki tego nie ma, adresy leżą w Firestore z kompletem pól potrzebnych do
-importu: imię, e-mail, tag, data i dowód zgody.
+Bez tych zmiennych funkcja nic nie robi i zwraca `pominiete`. Adres i tak
+leży w Firestore z kompletem pól, więc nic nie ginie — można go zaimportować
+ręcznie.
+
+**Wynik zapisu do Klaviyo widać w powiadomieniu na skrzynkę.** Wiersz
+„Klaviyo" mówi „zapisany" albo podaje powód niepowodzenia. Dzięki temu cicha
+awaria integracji nie przejdzie niezauważona.
+
+### Kolejność wywołań
+
+Najpierw Klaviyo, potem wysyłka powiadomienia. Odwrotna kolejność sprawiłaby,
+że brak konfiguracji poczty cicho blokowałby zapis kontaktu na listę — a to
+lista jest tu rzeczą trwałą, powiadomienie tylko wygodą.
+
+### Filtr zgody na formularzu kontaktowym
+
+Trasa `/api/powiadom` woła Klaviyo **wyłącznie przy `zgoda === true`**.
+Brak pola traktujemy jak brak zgody. Ten warunek siedzi w kodzie, a nie
+w czyjejś głowie przy ręcznym eksporcie — bo to jest dokładnie ta rzecz,
+o której najłatwiej zapomnieć.
+
+## Wypis — świadomie po stronie Klaviyo
+
+Własnego mechanizmu nie budujemy. Klaviyo dokleja odnośnik do każdej wysyłki
+i prowadzi listę wykluczeń; drugi mechanizm oznaczałby **dwa źródła prawdy**
+o tym, kto jest wypisany, i prędzej czy później wysyłkę do kogoś, kto się
+wypisał gdzie indziej. Lista wykluczeń należy do narzędzia, które wysyła.
+
+Zostaje jedna luka i trzeba ją obsłużyć ręcznie. Art. 7 ust. 3 RODO wymaga,
+żeby wycofanie było możliwe **w każdej chwili**, nie tylko gdy przyjdzie
+wiadomość. Ktoś zapisany dziś, do kogo Klaviyo napisze za trzy miesiące, nie
+ma w co kliknąć — dlatego treść zgody (od wersji 2) podaje też adres
+`kontakt@busikm.pl`.
+
+**Wycofanie zgłoszone mailem trzeba nanieść w Klaviyo ręcznie.** Profile →
+znajdź adres → Suppress. Dopóki nie ma tego w żadnym procesie, jest to
+jedyne miejsce, gdzie da się o tym zapomnieć.
 
 ## Czego nie wolno
 

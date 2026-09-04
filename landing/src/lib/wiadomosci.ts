@@ -74,6 +74,9 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
         email: oczyszczone.email,
         temat: oczyszczone.temat,
         tresc: oczyszczone.tresc,
+        // Trasa musi wiedzieć o zgodzie, bo tylko przy niej wolno dopisać
+        // adres do listy. Bez zgody zostaje w bazie i służy do odpowiedzi.
+        zgoda: oczyszczone.zgoda,
       }),
     });
   } catch {

@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { firma } from '@/content/firma';
 import { LIMITY_ZAPISU } from '@/content/zapisy';
+import { zapiszWKlaviyo } from '@/lib/klaviyo';
+import type { Zrodlo } from '@/content/zgoda';
 
 /**
  * Powiadomienie o nowym zapisie na listę wczesnego dostępu.
@@ -31,10 +33,6 @@ export async function POST(request: Request) {
   const doKogo = process.env.POWIADOM_NA || firma.email;
   const odKogo = process.env.POWIADOM_OD || 'BusiKM <onboarding@resend.dev>';
 
-  if (!klucz) {
-    return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY' }, { status: 200 });
-  }
-
   let dane: Record<string, unknown>;
   try {
     dane = await request.json();
@@ -55,6 +53,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, blad: 'brak lub złe pola' }, { status: 400 });
   }
 
+  // Klaviyo najpierw: to tam ląduje lista, z której kiedyś pójdzie wysyłka.
+  // Powiadomienie na naszą skrzynkę jest wygodą, nie warunkiem — więc gdyby
+  // trzeba było wybrać, które ma się udać, wybieramy zapis kontaktu.
+  const klaviyo = await zapiszWKlaviyo({ imie, email, zrodlo: zrodlo as Zrodlo });
+
+  if (!klucz) {
+    return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY', klaviyo }, { status: 200 });
+  }
+
   const html = `
     <div style="font-family:system-ui,-apple-system,sans-serif;color:#0A0A0B;line-height:1.6">
       <h2 style="margin:0 0 4px;font-size:18px">Nowy zapis — ${bezpiecznie(ETYKIETY[zrodlo] ?? zrodlo)}</h2>
@@ -71,6 +78,10 @@ export async function POST(request: Request) {
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Tag</td>
           <td><code>${bezpiecznie(zrodlo)}</code></td>
         </tr>
+        <tr>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74">Klaviyo</td>
+          <td>${klaviyo.ok ? 'zapisany' : bezpiecznie('nie — ' + ('pominiete' in klaviyo ? klaviyo.pominiete : klaviyo.blad))}</td>
+        </tr>
       </table>
     </div>`;
 
@@ -86,8 +97,8 @@ export async function POST(request: Request) {
         html,
       }),
     });
-    if (!odp.ok) return NextResponse.json({ ok: false, blad: await odp.text() }, { status: 502 });
-    return NextResponse.json({ ok: true });
+    if (!odp.ok) return NextResponse.json({ ok: false, blad: await odp.text(), klaviyo }, { status: 502 });
+    return NextResponse.json({ ok: true, klaviyo });
   } catch (e) {
     return NextResponse.json({ ok: false, blad: String(e) }, { status: 500 });
   }
