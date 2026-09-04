@@ -421,7 +421,7 @@ export function Header() {
                       href={mega.promo.href}
                       className="text-[15px] font-semibold text-blue"
                     >
-                      Wejdź do demo →
+                      Zapisz się po demo →
                     </Link>
                   </div>
                 )}

@@ -283,14 +283,26 @@ export const pages: Record<string, PageSpec> = {
 
   demo: {
     eyebrow: 'Demo',
-    heading: 'Nie wierz na słowo.\nWejdź i poklikaj.',
-    lead: 'Prawdziwa aplikacja z przykładową firmą. Bez zakładania konta — i niczego nie zepsujesz.',
+    heading: 'Demo przygotowujemy.\nZostaw adres.',
+    lead: 'Prawdziwa aplikacja z danymi przykładowej firmy. Dostaniesz ją w dniu uruchomienia.',
     title: 'Demo BusiKM',
-    seoTitle: 'Demo — zobacz program bez zakładania konta · BusiKM',
+    seoTitle: 'Demo BusiKM — zapisz się po wczesny dostęp',
     description:
-      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji i bez podawania czegokolwiek — wchodzisz i klikasz.',
+      'Demo z danymi przykładowej firmy transportowej przygotowujemy. Zostaw adres, a dostaniesz je w dniu uruchomienia, razem z 14 dniami bez opłat.',
     opisOg:
-      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Bez rejestracji i bez podawania czegokolwiek.',
+      'Demo z danymi przykładowej firmy transportowej przygotowujemy. Zostaw adres, a dostaniesz je w dniu uruchomienia.',
+  },
+
+  zaloguj: {
+    eyebrow: 'Dostęp do aplikacji',
+    heading: 'Konta otwieramy\nwkrótce.',
+    lead: 'BusiKM jest sprawdzany na prawdziwych trasach, w małej grupie firm. Zostaw adres, a odezwiemy się, gdy otworzymy zapisy.',
+    title: 'Dostęp do aplikacji',
+    seoTitle: 'Dostęp do BusiKM — zapisy wkrótce',
+    description:
+      'Aplikację sprawdzamy w małej grupie firm transportowych. Zostaw imię i adres, a odezwiemy się, gdy otworzymy zapisy. Pierwsze 14 dni bez opłat.',
+    opisOg:
+      'Aplikację sprawdzamy w małej grupie firm transportowych. Zostaw adres, a odezwiemy się, gdy otworzymy zapisy.',
   },
 
   pomoc: {

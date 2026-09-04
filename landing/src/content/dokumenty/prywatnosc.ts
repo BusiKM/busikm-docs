@@ -14,12 +14,13 @@ export const prywatnosc: Dokument = {
   href: '/prywatnosc',
   tytul: 'Polityka prywatności',
   obowiazujeOd: '1 września 2026',
-  wersja: 2,
+  wersja: 3,
   ostatniaZmiana: '3 września 2026',
   wSkrocie: [
     'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
     'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
     'Na stronie używamy plików cookie potrzebnych do jej działania. Analityczne włączamy dopiero za Twoją zgodą.',
+    'Jeśli zostawisz adres, żeby dostać wiadomość o uruchomieniu — użyjemy go do tej jednej wiadomości. Cokolwiek ponad to wymaga osobnej zgody, którą zaznaczasz sam.',
     'Masz prawo wglądu, poprawienia, usunięcia i przeniesienia swoich danych. Napisz, a zrobimy to.',
   ],
   paragrafy: [
@@ -81,6 +82,18 @@ export const prywatnosc: Dokument = {
               'do upływu terminu przedawnienia roszczeń',
             ],
             [
+              'Powiadomienie o uruchomieniu demo i otwarciu zapisów',
+              'imię, adres e-mail',
+              'art. 6 ust. 1 lit. b RODO — działania na Twoje żądanie przed zawarciem umowy',
+              'do wysłania powiadomienia, nie dłużej niż 12 miesięcy od zapisu',
+            ],
+            [
+              'Wiadomości o tym, co nowego w BusiKM',
+              'imię, adres e-mail',
+              'art. 6 ust. 1 lit. a RODO — Twoja zgoda, wraz z art. 10 ustawy o świadczeniu usług drogą elektroniczną',
+              'do cofnięcia zgody',
+            ],
+            [
               'Statystyka odwiedzin strony',
               'zanonimizowany adres IP, źródło wejścia, zdarzenia na stronie',
               'art. 6 ust. 1 lit. a RODO — Twoja zgoda',
@@ -110,7 +123,7 @@ export const prywatnosc: Dokument = {
           wstep: 'Dane mogą trafić do:',
           punkty: [
 'dostawców, którzy pomagają nam świadczyć usługę — Amazon Web Services (serwery, bazy, pliki), Amazon SES (poczta), Stripe (płatności), Mapbox (trasy), Google Cloud Vision (odczyt paragonów), Sentry (błędy) oraz Apple i Google (dostarczanie powiadomień). Pełną listę z zakresem przetwarzania prowadzimy w dokumencie Podprocesorzy;',
-            'dostawców obsługujących formularz kontaktowy — Google Ireland (baza Firestore, w której zapisujemy wiadomość, region europejski) i Resend (dostarczenie powiadomienia o niej na naszą skrzynkę, region irlandzki). Dotyczy to wyłącznie danych, które sam wpiszesz w formularzu;',
+            'dostawców obsługujących formularze na stronie — Google Ireland (baza Firestore, w której zapisujemy wiadomość, region europejski) i Resend (dostarczenie powiadomienia na naszą skrzynkę, region irlandzki). Dotyczy to wyłącznie danych, które sam wpiszesz — w formularzu kontaktowym albo zapisując się na powiadomienie o uruchomieniu;',
             'biura rachunkowego i doradców, w zakresie niezbędnym do rozliczeń;',
             'organów publicznych, jeżeli obowiązek wynika z przepisów.',
           ],

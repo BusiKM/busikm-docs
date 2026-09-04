@@ -11,11 +11,11 @@ export function Demo() {
       <div className="flex flex-col gap-8 lg:gap-18">
         <div className="grid gap-5 lg:grid-cols-2 lg:items-end lg:gap-16">
           <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-            Nie wierz na słowo. Wejdź i poklikaj.
+            Demo przygotowujemy. Zostaw adres.
           </h2>
           <p data-reveal className="text-[16px] leading-relaxed text-muted lg:text-body">
-            To prawdziwa aplikacja z przykładową firmą. Bez zakładania konta, bez podawania
-            czegokolwiek. Niczego nie zepsujesz — dane wracają do porządku każdej nocy.
+            Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Napiszemy w dniu,
+            w którym ruszy — razem z 14 dniami bez opłat.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export function Demo() {
         <div data-reveal className="mt-[5%] lg:mt-0">
           <Link
             href="/demo"
-            aria-label="Zobacz demo"
+            aria-label="Zapisz się po dostęp do demo"
             className="block cursor-pointer rounded-panel focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
           >
             <MockupSlot
