@@ -29,6 +29,7 @@
   --color-red: #ff3b30; /* TYLKO przerwa całkowita na stronie statusu */
   --color-green-ink: #187b35; /* to samo na jasnym, czytelnie */
   --color-amber-ink: #a15e00; /* bursztyn jako TEKST — sam #ff9500 jest nieczytelny */
+  --color-red-ink: #dd0c00; /* czerwień jako TEKST — gwiazdka pola wymaganego */
   --color-blue-light: #3a7eff; /* niebieski jako tekst na ciemnym tle */
 
   /* --- Ciemne sekcje ----------------------------------------------------- */

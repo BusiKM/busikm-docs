@@ -20,7 +20,7 @@ export const prywatnosc: Dokument = {
     'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
     'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
     'Na stronie używamy plików cookie potrzebnych do jej działania. Analityczne włączamy dopiero za Twoją zgodą.',
-    'Jeśli zostawisz adres, żeby dostać wiadomość o uruchomieniu — użyjemy go do tej jednej wiadomości. Cokolwiek ponad to wymaga osobnej zgody, którą zaznaczasz sam.',
+    'Zapisując się na listę, zgadzasz się na wiadomości o BusiKM. Zgodę wycofasz odnośnikiem w każdej z nich — zapisujemy jej treść i datę, żeby dało się wykazać, pod czym się podpisałeś.',
     'Masz prawo wglądu, poprawienia, usunięcia i przeniesienia swoich danych. Napisz, a zrobimy to.',
   ],
   paragrafy: [
@@ -82,16 +82,16 @@ export const prywatnosc: Dokument = {
               'do upływu terminu przedawnienia roszczeń',
             ],
             [
-              'Powiadomienie o uruchomieniu demo i otwarciu zapisów',
+              'Wiadomości o BusiKM, w tym o uruchomieniu demo i otwarciu zapisów',
               'imię, adres e-mail',
-              'art. 6 ust. 1 lit. b RODO — działania na Twoje żądanie przed zawarciem umowy',
-              'do wysłania powiadomienia, nie dłużej niż 12 miesięcy od zapisu',
+              'art. 6 ust. 1 lit. a RODO — Twoja zgoda, wraz z art. 398 Prawa komunikacji elektronicznej',
+              'do cofnięcia zgody',
             ],
             [
-              'Wiadomości o tym, co nowego w BusiKM',
-              'imię, adres e-mail',
-              'art. 6 ust. 1 lit. a RODO — Twoja zgoda, wraz z art. 10 ustawy o świadczeniu usług drogą elektroniczną',
-              'do cofnięcia zgody',
+              'Wykazanie, że zgoda została wyrażona',
+              'treść i wersja zgody, kanał, data i godzina zaznaczenia',
+              'art. 6 ust. 1 lit. c RODO — obowiązek rozliczalności z art. 7 ust. 1 RODO',
+              'przez czas przetwarzania na podstawie zgody i okres przedawnienia roszczeń',
             ],
             [
               'Statystyka odwiedzin strony',

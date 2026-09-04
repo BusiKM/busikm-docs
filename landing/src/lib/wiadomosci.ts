@@ -1,5 +1,6 @@
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { getDb, firebaseGotowy } from '@/lib/firebase';
+import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY } from '@/content/zgoda';
 
 /** Tematy z formularza. Ten sam zestaw waliduje `firestore.rules`. */
 export const tematy = [
@@ -16,6 +17,12 @@ export type Wiadomosc = {
   email: string;
   temat: Temat;
   tresc: string;
+  /**
+   * Zgoda marketingowa — tutaj **nieobowiązkowa**, inaczej niż na stronach
+   * zapisu. Usługą jest odpowiedź na pytanie, więc uzależnianie jej od zgody
+   * byłoby warunkowaniem zakazanym przez art. 7 ust. 4 RODO.
+   */
+  zgoda: boolean;
   /** Ukryte pole antyspamowe — musi zostać puste. */
   pulapka?: string;
 };
@@ -43,6 +50,12 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
     email: dane.email.trim().slice(0, LIMITY.email),
     temat: dane.temat,
     tresc: dane.tresc.trim().slice(0, LIMITY.tresc),
+    zgoda: dane.zgoda,
+    // Brzmienie zapisujemy tylko wtedy, gdy zgoda faktycznie padła — pusty
+    // dowód przy braku zgody byłby mylący przy późniejszym eksporcie.
+    ...(dane.zgoda
+      ? { trescZgody: TRESC_ZGODY, wersjaZgody: WERSJA_ZGODY, kanalZgody: KANAL_ZGODY }
+      : {}),
   };
 
   await addDoc(collection(db, 'wiadomosci'), {
@@ -56,7 +69,12 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
     await fetch('/api/powiadom', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(oczyszczone),
+      body: JSON.stringify({
+        imie: oczyszczone.imie,
+        email: oczyszczone.email,
+        temat: oczyszczone.temat,
+        tresc: oczyszczone.tresc,
+      }),
     });
   } catch {
     /* wiadomość leży w bazie, powiadomienie można dosłać ręcznie */

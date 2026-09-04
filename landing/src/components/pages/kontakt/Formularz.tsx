@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { wyslijWiadomosc, tematy, LIMITY } from '@/lib/wiadomosci';
+import { TRESC_ZGODY } from '@/content/zgoda';
+import { Wymagane } from '@/components/ui/Wymagane';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
@@ -30,6 +32,7 @@ export function Formularz() {
   const [mail, setMail] = useState('');
   const [temat, setTemat] = useState(0);
   const [tresc, setTresc] = useState('');
+  const [zgoda, setZgoda] = useState(false);
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
@@ -53,12 +56,14 @@ export function Formularz() {
         email: mail,
         temat: tematy[temat],
         tresc,
+        zgoda,
         pulapka,
       });
       setStan('wysłane');
       setImie('');
       setMail('');
       setTresc('');
+      setZgoda(false);
     } catch {
       setStan('błąd');
     }
@@ -93,24 +98,32 @@ export function Formularz() {
   return (
     <form onSubmit={wyslij} className="flex flex-col gap-5 lg:gap-6">
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Imię</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Imię
+          <Wymagane />
+        </span>
         <input
           value={imie}
           onChange={(e) => setImie(e.target.value)}
           maxLength={LIMITY.imie}
           placeholder="Marek"
+          required
           className={pole}
         />
       </label>
 
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Adres e-mail</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Adres e-mail
+          <Wymagane />
+        </span>
         <input
           type="email"
           value={mail}
           onChange={(e) => setMail(e.target.value)}
           maxLength={LIMITY.email}
           placeholder="marek@twojafirma.pl"
+          required
           className={pole}
         />
       </label>
@@ -137,16 +150,26 @@ export function Formularz() {
       </fieldset>
 
       <label className="flex flex-col gap-2">
-        <span className="text-[14px] font-medium lg:text-caption">Wiadomość</span>
+        <span className="text-[14px] font-medium lg:text-caption">
+          Wiadomość
+          <Wymagane />
+        </span>
         <textarea
           value={tresc}
           onChange={(e) => setTresc(e.target.value)}
           rows={6}
           maxLength={LIMITY.tresc}
           placeholder="Napisz, co się dzieje albo o co chcesz zapytać."
+          required
           className="w-full resize-y rounded-btn border border-line bg-white px-4 py-3.5 text-[16px] leading-relaxed outline-none placeholder:text-muted focus:border-blue lg:text-body"
         />
       </label>
+
+
+      {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
+      <p className="text-[12px] text-muted">
+        <span aria-hidden className="text-red-ink">*</span> pola wymagane
+      </p>
 
       {/*
         Pułapka na boty. Człowiek tego pola nie zobaczy i nie zatabuluje do
@@ -164,6 +187,24 @@ export function Formularz() {
           />
         </label>
       </div>
+
+      {/*
+        Zgoda **nieobowiązkowa** i to jest tu istotne. Usługą jest odpowiedź
+        na pytanie — uzależnienie jej od zgody marketingowej byłoby
+        warunkowaniem zakazanym przez art. 7 ust. 4 RODO. Na stronach zapisu
+        jest odwrotnie, bo tam usługą jest sama lista.
+      */}
+      {firebaseGotowy && (
+        <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-muted lg:text-caption">
+          <input
+            type="checkbox"
+            checked={zgoda}
+            onChange={(e) => setZgoda(e.target.checked)}
+            className="mt-0.5 size-4.5 flex-none accent-blue"
+          />
+          <span>{TRESC_ZGODY}</span>
+        </label>
+      )}
 
       <div className="flex flex-col gap-3">
         {firebaseGotowy ? (

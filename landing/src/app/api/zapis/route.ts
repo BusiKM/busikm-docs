@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { firma } from '@/content/firma';
-import { LIMITY_ZAPISU, listy } from '@/content/zapisy';
+import { LIMITY_ZAPISU } from '@/content/zapisy';
 
 /**
  * Powiadomienie o nowym zapisie na listę wczesnego dostępu.
@@ -15,9 +15,11 @@ import { LIMITY_ZAPISU, listy } from '@/content/zapisy';
 
 export const runtime = 'nodejs';
 
+/** Nazwy źródeł w powiadomieniu. Te same wartości trafiają do bazy jako tag. */
 const ETYKIETY: Record<string, string> = {
   demo: 'demo',
-  konto: 'dostęp do aplikacji',
+  rejestracja: 'dostęp do aplikacji',
+  formularz: 'formularz kontaktowy',
 };
 
 function bezpiecznie(t: string): string {
@@ -42,13 +44,12 @@ export async function POST(request: Request) {
 
   const imie = String(dane.imie ?? '').slice(0, LIMITY_ZAPISU.imie);
   const email = String(dane.email ?? '').slice(0, LIMITY_ZAPISU.email);
-  const lista = String(dane.lista ?? '');
-  const zgoda = dane.zgodaNaWiesci === true;
+  const zrodlo = String(dane.zrodlo ?? '');
 
   const poprawny =
     imie.length > 0 &&
     /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) &&
-    Object.keys(listy).includes(lista);
+    Object.keys(ETYKIETY).includes(zrodlo);
 
   if (!poprawny) {
     return NextResponse.json({ ok: false, blad: 'brak lub złe pola' }, { status: 400 });
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
 
   const html = `
     <div style="font-family:system-ui,-apple-system,sans-serif;color:#0A0A0B;line-height:1.6">
-      <h2 style="margin:0 0 4px;font-size:18px">Nowy zapis — ${bezpiecznie(ETYKIETY[lista] ?? lista)}</h2>
+      <h2 style="margin:0 0 4px;font-size:18px">Nowy zapis — ${bezpiecznie(ETYKIETY[zrodlo] ?? zrodlo)}</h2>
       <table style="border-collapse:collapse;font-size:14px;margin-top:16px">
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Imię</td>
@@ -67,8 +68,8 @@ export async function POST(request: Request) {
           <td><a href="mailto:${bezpiecznie(email)}" style="color:#0B5FFF">${bezpiecznie(email)}</a></td>
         </tr>
         <tr>
-          <td style="padding:4px 16px 4px 0;color:#6C6C74">Dalsze wieści</td>
-          <td>${zgoda ? 'tak, zgodził(a) się' : 'nie — tylko wiadomość o starcie'}</td>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74">Tag</td>
+          <td><code>${bezpiecznie(zrodlo)}</code></td>
         </tr>
       </table>
     </div>`;
@@ -81,7 +82,7 @@ export async function POST(request: Request) {
         from: odKogo,
         to: [doKogo],
         reply_to: email,
-        subject: `BusiKM · zapis na ${ETYKIETY[lista] ?? lista} — ${imie}`,
+        subject: `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo}) — ${imie}`,
         html,
       }),
     });
