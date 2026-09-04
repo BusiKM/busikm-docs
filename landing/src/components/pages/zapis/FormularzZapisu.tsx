@@ -125,10 +125,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
           onChange={(e) => setZgoda(e.target.checked)}
           className="mt-0.5 size-4.5 flex-none accent-blue"
         />
-        <span>
-          Chcę dostawać też inne wiadomości o BusiKM — nie częściej niż raz w miesiącu.
-          Nieobowiązkowe, możesz to odwołać jednym kliknięciem.
-        </span>
+        <span>Chcę dostawać wiadomości o BusiKM. Nieobowiązkowe.</span>
       </label>
 
       {firebaseGotowy ? (
@@ -159,7 +156,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
           </span>
         ) : (
           <>
-            {opis.obietnica} Imienia używamy tylko po to, żeby napisać do Ciebie po imieniu.{' '}
+            {opis.obietnica}{' '}
             <Link href="/prywatnosc" className="text-blue">
               Polityka prywatności
             </Link>

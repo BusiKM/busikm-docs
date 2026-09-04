@@ -8,7 +8,7 @@ export const metadata = pageMetadata('zaloguj');
 
 const etapy = [
   ['Teraz', 'MVP sprawdzamy na prawdziwych trasach, w małej grupie firm'],
-  ['Potem', 'otwieramy zapisy — pierwsze 14 dni bez opłat, bez karty'],
+  ['Potem', 'otwieramy zapisy — pierwsze 14 dni bez opłat'],
   ['Dalej', 'aplikacja kierowcy w App Store i Google Play'],
 ] as const;
 

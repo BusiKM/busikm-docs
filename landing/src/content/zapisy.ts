@@ -39,11 +39,9 @@ export const listy: Record<Lista, OpisListy> = {
       'Zostaw adres, a dostaniesz je w dniu uruchomienia.',
       'Razem z 14 dniami bez opłat.',
     ],
-    wezwanie: 'Powiadom mnie, gdy demo ruszy',
-    obietnica:
-      'Napiszemy raz — w dniu, w którym demo będzie gotowe. Bez zapisywania Cię na cokolwiek innego.',
-    poZapisie:
-      'Odezwiemy się w dniu, w którym demo ruszy. Do tego czasu nie dostaniesz od nas nic innego.',
+    wezwanie: 'Powiadom mnie o demo',
+    obietnica: 'Napiszemy raz — w dniu uruchomienia.',
+    poZapisie: 'Napiszemy w dniu, w którym demo ruszy.',
   },
   konto: {
     lista: 'konto',
@@ -53,11 +51,9 @@ export const listy: Record<Lista, OpisListy> = {
       'Sprawdzamy BusiKM na prawdziwych trasach, w małej grupie firm.',
       'Zostaw adres, a odezwiemy się, gdy otworzymy zapisy.',
     ],
-    wezwanie: 'Chcę wiedzieć, gdy ruszą zapisy',
-    obietnica:
-      'Napiszemy, gdy będzie można założyć konto. Pierwsze 14 dni bez opłat, bez podawania karty.',
-    poZapisie:
-      'Odezwiemy się, gdy otworzymy zapisy. Jeśli chcesz w międzyczasie o coś zapytać — napisz na kontakt@busikm.pl.',
+    wezwanie: 'Powiadom mnie o zapisach',
+    obietnica: 'Napiszemy raz — gdy otworzymy zapisy.',
+    poZapisie: 'Napiszemy, gdy otworzymy zapisy.',
   },
 };
 
