@@ -37,7 +37,7 @@ function bezpiecznie(tekst: string): string {
 export async function POST(request: Request) {
   const klucz = process.env.RESEND_API_KEY;
   const doKogo = process.env.POWIADOM_NA || firma.email;
-  const odKogo = process.env.POWIADOM_OD || 'BusiKM <onboarding@resend.dev>';
+  const odKogo = process.env.POWIADOM_OD || 'BusiKM <formularz@busikm.pl>';
 
   let dane: Record<string, unknown>;
   try {
