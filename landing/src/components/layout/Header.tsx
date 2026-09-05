@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/layout/Logo';
+import { IkonaMenu } from '@/components/layout/IkonaMenu';
 import {
   appLinks,
   coRobi,
@@ -301,11 +302,19 @@ export function Header() {
               Zaloguj się
             </a>
 
+            {/* Na telefonie tego przycisku nie ma i to jest celowe: pełny
+                pasek widać wyłącznie na górze strony, gdzie w hero stoi już
+                duży „Zobacz demo". Dwa te same wezwania na jednym ekranie
+                zabierały miejsce przy 375 px i nie dodawały niczego.
+
+                Wraca w listwie zwartej po przewinięciu — tam treściowy
+                przycisk jest już poza ekranem i wezwanie ma po co być.
+
+                Na desktopie zostaje: pasek jest szeroki, a przycisk siedzi
+                w prawym rogu, gdzie go się szuka. */}
             <Link
               href={appLinks.demo}
-              className={`h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px] ${
-                mobileOpen ? 'hidden' : 'flex'
-              }`}
+              className="hidden h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px]"
             >
               Zobacz demo
             </Link>
@@ -315,16 +324,9 @@ export function Header() {
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? 'Zamknij menu' : 'Menu'}
               aria-expanded={mobileOpen}
-              className="-mr-2.5 flex size-11 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
+              className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
             >
-              {mobileOpen ? (
-                <span className="text-[22px] leading-none text-ink">×</span>
-              ) : (
-                <>
-                  <span className="h-0.5 w-5 bg-ink" />
-                  <span className="h-0.5 w-5 bg-ink" />
-                </>
-              )}
+              <IkonaMenu otwarte={mobileOpen} className="bg-ink" />
             </button>
           </div>
           </div>
@@ -371,10 +373,12 @@ export function Header() {
                 type="button"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Menu"
-                className="-mr-2.5 flex size-11 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
+                className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
               >
-                <span className="h-0.5 w-5 bg-paper" />
-                <span className="h-0.5 w-5 bg-paper" />
+                {/* Ten przycisk wyłącznie otwiera: gdy menu jest otwarte,
+                    listwa zwarta i tak schodzi, a krzyżyk pokazuje przycisk
+                    w pełnym pasku. Stąd `otwarte` na stałe fałszywe. */}
+                <IkonaMenu otwarte={false} className="bg-paper" />
               </button>
             </div>
           </div>
