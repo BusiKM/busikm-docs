@@ -1,4 +1,3 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { getDb, firebaseGotowy } from '@/lib/firebase';
 import { LIMITY_ZAPISU, type Lista } from '@/content/zapisy';
 import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY, type Zrodlo } from '@/content/zgoda';
@@ -34,7 +33,11 @@ export type Zapis = {
 export async function zapiszNaListe(dane: Zapis): Promise<void> {
   if (dane.pulapka) return;
 
-  const db = getDb();
+  // SDK pobierane dopiero teraz — patrz `lib/firebase.ts`.
+  const [db, { addDoc, collection, serverTimestamp }] = await Promise.all([
+    getDb(),
+    import('firebase/firestore'),
+  ]);
   if (!db || !firebaseGotowy) throw new Error('Firebase nie jest skonfigurowany.');
 
   const wybor = dane.zainteresowanie ?? null;

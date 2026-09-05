@@ -1,5 +1,4 @@
-import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+import type { Firestore } from 'firebase/firestore';
 
 /**
  * Połączenie z Firebase — ten sam układ, co w movgranto-homepage.
@@ -13,6 +12,18 @@ import { getFirestore, type Firestore } from 'firebase/firestore';
  * Bez kompletu zmiennych `getDb()` zwraca `null`, a formularz cofa się do
  * `mailto:`. Dzięki temu praca lokalna i podglądy gałęzi działają bez
  * konfiguracji i nie zaśmiecają bazy.
+ *
+ * ## Dlaczego SDK ładuje się dopiero przy wysyłce
+ *
+ * Klient Firebase waży kilkaset kilobajtów i przy zwykłym imporcie wchodził
+ * do paczki każdej strony z formularzem — `/kontakt` wysyłał przez to 1,2 MB
+ * skryptów, choć odwiedzający najczęściej tylko czyta i wychodzi.
+ *
+ * Dlatego `getDb()` jest asynchroniczne i sięga po SDK przez `import()`
+ * dopiero w momencie zapisu. `firebaseGotowy` zostaje synchroniczne, bo to
+ * samo sprawdzenie zmiennych środowiskowych — formularz musi w trakcie
+ * renderu wiedzieć, czy pokazać przycisk wysyłki, czy cofnąć się do
+ * `mailto:`, i nie ma po co czekać na pobranie biblioteki.
  */
 
 const konfiguracja = {
@@ -31,10 +42,21 @@ export const firebaseGotowy = Boolean(
 
 let baza: Firestore | null = null;
 
-/** Instancja Firestore albo `null`, gdy brak konfiguracji. */
-export function getDb(): Firestore | null {
+/**
+ * Instancja Firestore albo `null`, gdy brak konfiguracji.
+ *
+ * Pierwsze wywołanie pobiera SDK; kolejne dostają gotową instancję.
+ */
+export async function getDb(): Promise<Firestore | null> {
   if (!firebaseGotowy) return null;
-  const app: FirebaseApp = getApps().length ? getApp() : initializeApp(konfiguracja);
-  if (!baza) baza = getFirestore(app);
+  if (baza) return baza;
+
+  const [{ initializeApp, getApps, getApp }, { getFirestore }] = await Promise.all([
+    import('firebase/app'),
+    import('firebase/firestore'),
+  ]);
+
+  const app = getApps().length ? getApp() : initializeApp(konfiguracja);
+  baza = getFirestore(app);
   return baza;
 }

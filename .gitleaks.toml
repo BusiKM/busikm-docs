@@ -1,0 +1,32 @@
+# Skaner sekretów — konfiguracja.
+#
+# Repozytorium jest **publiczne**, więc klucz wpuszczony do historii jest
+# jawny od pierwszej sekundy i jedyną naprawą jest jego wymiana. Skaner ma
+# złapać to wcześniej.
+#
+# Skanujemy stan bieżący, nie historię. W historii siedzą trzy przykładowe
+# tokeny JWT z nieistniejącej już dokumentacji API (`docs/API_SPECIFICATION.md`
+# i `site/src/pages/docs/api.astro`, obok „Jan Kowalski" i „jan@firma.pl") —
+# fałszywe trafienia, na których CI wisiałoby na czerwono w nieskończoność.
+# Zadaniem CI jest blokować nowe sekrety, a nie rozliczać przeszłość.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Zależności i wyniki budowania — nie nasz kod"
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)\.next/''',
+  '''(^|/)package-lock\.json$''',
+]
+
+[[allowlists]]
+description = "Klucz publiczny DKIM w dokumentacji poczty — z definicji jawny"
+regexTarget = "match"
+regexes = ['''p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB''']
+
+# Uwaga przy uruchomieniu lokalnym: skaner zgłosi klucze z `landing/.env.local`.
+# To poprawne i celowo nie ma go na liście wyjątków — gdyby ten plik kiedyś
+# trafił do repozytorium, skaner ma krzyknąć. W CI go nie ma, bo `checkout`
+# pobiera wyłącznie pliki śledzone przez gita.

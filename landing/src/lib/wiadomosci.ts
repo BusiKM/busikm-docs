@@ -1,4 +1,3 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { getDb, firebaseGotowy } from '@/lib/firebase';
 import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY } from '@/content/zgoda';
 
@@ -42,7 +41,12 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
   // Bot wypełnił ukryte pole — udajemy sukces i nic nie zapisujemy.
   if (dane.pulapka) return;
 
-  const db = getDb();
+  // SDK pobierane dopiero teraz — patrz `lib/firebase.ts`. Oba importy
+  // równolegle, bo i tak lecą z tej samej paczki.
+  const [db, { addDoc, collection, serverTimestamp }] = await Promise.all([
+    getDb(),
+    import('firebase/firestore'),
+  ]);
   if (!db || !firebaseGotowy) throw new Error('Firebase nie jest skonfigurowany.');
 
   const oczyszczone = {

@@ -81,7 +81,59 @@ Używaj tokenów z `@theme` zamiast hardkodowanych wartości kolorów i rozmiar�
 
 - Strona marketingowa (`landing/`) w języku polskim, komponenty React + Tailwind CSS 4 utility classes
 - **Conventional Commits** — format: `<type>(<scope>): <opis>`
-- **Git flow** — feature/* -> develop -> staging -> main
+- **Git flow** — `feat/*` → `develop` → `main`
+
+## Gałęzie i wdrożenie
+
+```
+feat/nazwa  ──PR──▶  develop  ──PR──▶  main  ──▶  Vercel (produkcja)
+```
+
+- **`main`** to produkcja. Vercel wdraża **wyłącznie stąd** — po scaleniu
+  strona jest na busikm.pl w kilka minut.
+- **`develop`** to gałąź domyślna w GitHubie, więc nowy PR celuje w nią sam
+  z siebie. Tu ląduje codzienna praca.
+- **`feat/*`** — jedna gałąź na jedno zadanie, kasowana po scaleniu.
+  Tak samo `fix/*`, `chore/*`, `docs/*`, `refactor/*`.
+
+Obie długożyjące gałęzie mają zabezpieczenie: **nie da się ich usunąć ani
+nadpisać force pushem**, a scalenie wymaga zielonego CI. Przegląd kodu nie
+jest wymagany — projekt prowadzi jedna osoba.
+
+Zabezpieczenie nie obejmuje administratora, więc w awarii da się je ominąć.
+Ta furtka istnieje na wypadek zepsutego CI, nie do codziennego użytku.
+
+### Wydanie na produkcję
+
+```bash
+git checkout develop && git pull
+gh pr create --base main --title "release: <co wchodzi>"
+gh pr merge <NR> --merge          # BEZ --delete-branch
+```
+
+⚠️ **Nigdy `--delete-branch` przy PR z `develop` do `main`.** Kasujemy
+wyłącznie gałęzie `feat/*` i pokrewne, po ich scaleniu do `develop`.
+
+## CI (`.github/workflows/ci.yml`)
+
+Rusza przy każdym PR i pushu na `develop` i `main`. Cztery kontrole, każda
+widzi coś, czego pozostałe nie:
+
+| Kontrola | Co łapie |
+|---|---|
+| `tsc --noEmit` | Typy. Nie uruchamia kodu, więc widzi ścieżki, w które test nie wejdzie. |
+| `npm run lint` | Wzorce. Typy się zgadzają, a kod i tak jest zły — nieaktualne domknięcie, stan ustawiany w efekcie. |
+| `npm run build` | Prawda. Prerender wykonuje kod na serwerze i wywala się na rzeczach niewidocznych dla dwóch powyższych. |
+| gitleaks | Sekrety. Repozytorium jest **publiczne** — klucz w historii jest jawny od pierwszej sekundy. |
+
+Build **nie potrzebuje żadnych sekretów**: analityka, Firebase, Resend
+i Klaviyo są opcjonalne, a strona bez nich cofa się do zachowania
+zastępczego. Nie dokładaj do CI zmiennych, bez których build miałby padać —
+to znaczyłoby, że strona przestała działać bez konfiguracji.
+
+Skaner sekretów sprawdza **stan bieżący, nie historię**: w starych commitach
+siedzą przykładowe tokeny JWT z usuniętej dokumentacji API i CI wisiałoby na
+nich bez końca.
 
 ## Aktualizacja statystyk sprintów / ticketów
 
