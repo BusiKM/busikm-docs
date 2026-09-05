@@ -123,6 +123,22 @@ export function Header() {
   // wynikający z innego stanu nie potrzebuje dodatkowego renderu.
   const compact = zwinietyPrzewijaniem && !mobileOpen && !openMega;
 
+  /**
+   * Kliknięcie w odnośnik zamyka menu — także gdy prowadzi tam, gdzie
+   * już jesteśmy.
+   *
+   * Reset przy zmianie adresu (niżej) tego nie łapie, bo przy odnośniku do
+   * bieżącej strony adres się nie zmienia. Menu zostawało wtedy otwarte,
+   * a razem z nim blokada przewijania — czyli gorzej niż przed poprawką,
+   * bo strona wracała na górę i zastawała człowieka w otwartym panelu.
+   */
+  const zamknijPoKliknieciu = (e: React.MouseEvent) => {
+    if ((e.target as Element).closest('a')) {
+      setMobileOpen(false);
+      setOpenMega(null);
+    }
+  };
+
   // Zmiana adresu zamyka menu. Poprawka stanu w trakcie renderu, a nie
   // w efekcie — React obsługuje ten wzorzec osobno: przerywa render
   // i powtarza go z nową wartością, zanim cokolwiek trafi na ekran.
@@ -340,7 +356,10 @@ export function Header() {
 
         {/* Rozwinięte menu */}
         {mega && (
-          <div className="absolute inset-x-0 top-full hidden border-b border-line bg-white lg:block">
+          <div
+            onClick={zamknijPoKliknieciu}
+            className="absolute inset-x-0 top-full hidden border-b border-line bg-white lg:block"
+          >
             {mega.compact ? (
               <div className="mx-auto max-w-[1120px] px-12 py-8">
                 <ul className="grid max-w-[560px] grid-cols-2 gap-x-10 gap-y-1.5">
@@ -448,7 +467,10 @@ export function Header() {
       {/* Menu na telefonie. Poza <header>, bo backdrop-filter tworzy
           containing block dla position: fixed. */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-white lg:hidden">
+        <div
+          onClick={zamknijPoKliknieciu}
+          className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-white lg:hidden"
+        >
           <div className="flex flex-1 flex-col gap-7 overflow-y-auto px-5 py-6">
             <div className="flex flex-col gap-3">
               <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">

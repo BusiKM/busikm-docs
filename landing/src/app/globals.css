@@ -227,6 +227,12 @@
       scroll-behavior: auto;
     }
 
+    /* Płynne przewijanie też jest ruchem. Bez tego kotwice i powrót na górę
+       jechały przez ekran także tym, którzy prosili system o spokój. */
+    html {
+      scroll-behavior: auto;
+    }
+
     html[data-reveal='on'] [data-reveal] {
       opacity: 1;
       transform: none;
