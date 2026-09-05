@@ -234,7 +234,11 @@ export function Header() {
               : `border-line bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
         }`}
       >
-        <div className="relative mx-auto h-16 max-w-[1440px] lg:h-18">
+        {/* 56 px na telefonie zamiast 64: pasek jest przyklejony, więc każdy
+              piksel jego wysokości zabiera treści miejsce na każdym ekranie.
+              Przycisk menu ma dalej 44 px, czyli tyle, ile trzeba na palec.
+              Wysokość musi zgadzać się z `top-14` panelu menu niżej. */}
+          <div className="relative mx-auto h-14 max-w-[1440px] lg:h-18">
           {/* Pełny pasek — widoczny w hero i po przewinięciu w górę. */}
           <div
             inert={compact || undefined}
@@ -251,7 +255,9 @@ export function Header() {
               className="flex items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-ink lg:text-[20px]"
             >
               <Logo decorative className="size-8 flex-none lg:size-9" />
-              BusiKM
+              {/* Sam znak na telefonie. Napis powtarzał to, co ikona już mówi,
+                  a przy 375 px każde takie powtórzenie kosztuje miejsce. */}
+              <span className="hidden lg:inline">BusiKM</span>
             </Link>
 
             <nav aria-label="Główna" className="hidden items-center gap-[30px] lg:flex">
@@ -359,7 +365,7 @@ export function Header() {
               className="flex w-fit items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-paper hover:text-paper lg:text-[20px]"
             >
               <Logo decorative className="size-8 flex-none lg:size-9" />
-              <span className="hidden sm:inline">BusiKM</span>
+              <span className="hidden lg:inline">BusiKM</span>
             </Link>
 
             {/* Przy otwartym menu na telefonie ten przycisk schodzi: to samo
@@ -519,7 +525,7 @@ export function Header() {
       {mobileOpen && (
         <div
           onClick={zamknijPoKliknieciu}
-          className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-white lg:hidden"
+          className="fixed inset-x-0 top-14 bottom-0 z-40 flex flex-col bg-white lg:hidden"
         >
           {/* Jedna lista sekcji, każda w tym samym rytmie: nadtytuł, potem
               wiersze „nazwa + po co to". Wcześniej panel mieszał trzy wzorce,
