@@ -120,10 +120,21 @@ export function Header() {
     };
   }, []);
 
-  // Otwarte menu zawsze przywraca pełny pasek — inaczej nawigacja byłaby
-  // nieosiągalna z klawiatury. Wyliczane, nie ustawiane efektem: stan
-  // wynikający z innego stanu nie potrzebuje dodatkowego renderu.
-  const compact = zwinietyPrzewijaniem && !mobileOpen && !openMega;
+  /**
+   * Czy pasek jest zwinięty — wyliczane, nie ustawiane efektem: stan
+   * wynikający z innego stanu nie potrzebuje dodatkowego renderu.
+   *
+   * Otwarcie menu **nie** rozjaśnia paska. Wcześniej było w tym warunku
+   * `!mobileOpen` i pasek przeskakiwał z czarnego na biały w chwili
+   * tapnięcia w hamburger — bo krzyżyk mieszkał wyłącznie w pełnym pasku
+   * i trzeba go było podstawić. Teraz obie listwy mają ten sam znak menu,
+   * więc pasek zostaje w kolorze, w którym był: ciemny po przewinięciu,
+   * jasny na górze strony.
+   *
+   * `openMega` zostaje: rozwinięte menu na desktopie jest białe i pasek
+   * musi się z nim zgrać.
+   */
+  const compact = zwinietyPrzewijaniem && !openMega;
 
   /**
    * Kliknięcie w odnośnik zamyka menu — także gdy prowadzi tam, gdzie
@@ -351,9 +362,15 @@ export function Header() {
               <span className="hidden sm:inline">BusiKM</span>
             </Link>
 
+            {/* Przy otwartym menu na telefonie ten przycisk schodzi: to samo
+                wezwanie stoi w sekcji „Zacznij", a układ zgadza się wtedy
+                z paskiem jasnym — znak i krzyżyk, nic pomiędzy.
+                Na desktopie menu mobilnego nie ma, więc przycisk zostaje. */}
             <Link
               href={appLinks.demo}
-              className="flex h-10 items-center gap-2 rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark hover:text-white lg:px-6 lg:text-[15px]"
+              className={`h-10 items-center gap-2 rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark hover:text-white lg:flex lg:px-6 lg:text-[15px] ${
+                mobileOpen ? 'hidden' : 'flex'
+              }`}
             >
               Zobacz demo
               <span aria-hidden className="text-[13px] opacity-70">
@@ -361,7 +378,11 @@ export function Header() {
               </span>
             </Link>
 
-            <div className="flex items-center justify-end gap-3.5">
+            {/* `col-start-3` jest tu konieczne, nie ozdobne: gdy przycisk demo
+                chowa się przy otwartym menu, `hidden` wyjmuje go z siatki
+                w całości i ta grupa przesuwa się do środkowej kolumny —
+                krzyżyk lądował wtedy na środku paska zamiast przy krawędzi. */}
+            <div className="col-start-3 flex items-center justify-end gap-3.5">
               <a
                 href={appLinks.login}
                 className="hidden items-center gap-2 text-[15px] font-medium text-paper/65 transition-colors hover:text-paper lg:inline-flex"
@@ -372,14 +393,12 @@ export function Header() {
 
               <button
                 type="button"
-                onClick={() => setMobileOpen(true)}
-                aria-label="Menu"
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-label={mobileOpen ? 'Zamknij menu' : 'Menu'}
+                aria-expanded={mobileOpen}
                 className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
               >
-                {/* Ten przycisk wyłącznie otwiera: gdy menu jest otwarte,
-                    listwa zwarta i tak schodzi, a krzyżyk pokazuje przycisk
-                    w pełnym pasku. Stąd `otwarte` na stałe fałszywe. */}
-                <IkonaMenu otwarte={false} className="bg-paper" />
+                <IkonaMenu otwarte={mobileOpen} className="bg-paper" />
               </button>
             </div>
           </div>
