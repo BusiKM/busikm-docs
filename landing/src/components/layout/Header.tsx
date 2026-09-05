@@ -160,6 +160,33 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  /**
+   * Nawigacja klawiaturą rozwija pasek — na *naciśnięcie* Tab, nie na
+   * przyjęcie ogniskowania.
+   *
+   * Rozwijanie w reakcji na ogniskowanie ma wadę nie do obejścia: listwa
+   * zwarta staje się `inert` dokładnie w chwili, gdy ogniskowanie w nią
+   * trafia. Przepadało wtedy do `body`, a kolejny Tab wchodził już w treść
+   * strony — czyli po przewinięciu cała nawigacja była dla klawiatury
+   * nieosiągalna.
+   *
+   * `keydown` biegnie przed przeniesieniem ogniskowania, więc pełny pasek
+   * jest gotowy, zanim cokolwiek w niego wejdzie. Obsługuje też Shift+Tab,
+   * bo to wciąż klawisz Tab.
+   *
+   * Kliknięcia myszą świadomie nie ruszamy: ono także ustawia ogniskowanie,
+   * i to przed samym kliknięciem, więc rozwinięcie paska zabierało pierwszy
+   * klik — odnośnik znikał spod kursora i trzeba było kliknąć drugi raz.
+   */
+  useEffect(() => {
+    if (!zwinietyPrzewijaniem) return;
+    const naTab = (e: KeyboardEvent) => {
+      if (e.key === 'Tab') setCompact(false);
+    };
+    window.addEventListener('keydown', naTab);
+    return () => window.removeEventListener('keydown', naTab);
+  }, [zwinietyPrzewijaniem]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
@@ -186,7 +213,6 @@ export function Header() {
       <header
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
-        onFocusCapture={() => setCompact(false)}
         className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
           compact
             ? 'border-line-dark bg-ink shadow-card'
