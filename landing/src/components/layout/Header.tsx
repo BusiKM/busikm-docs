@@ -9,6 +9,7 @@ import {
   appLinks,
   coRobi,
   dlaKogo,
+  menuMobilne,
   navigation,
   rolesNote,
   type NavEntry,
@@ -501,71 +502,51 @@ export function Header() {
           onClick={zamknijPoKliknieciu}
           className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-white lg:hidden"
         >
-          <div className="flex flex-1 flex-col gap-7 overflow-y-auto px-5 py-6">
-            <div className="flex flex-col gap-3">
-              <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-                Co robi
-              </div>
-              <div className="flex flex-col text-[16px]">
-                {coRobi
-                  .flatMap((g) => g.items)
-                  .map((item, i, all) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`py-3 ${i < all.length - 1 ? 'border-b border-line' : ''}`}
-                    >
-                      <b className="text-ink">{item.label}</b>
-                      <div className="text-[13px] text-muted">{item.benefit}</div>
-                    </Link>
-                  ))}
-              </div>
-            </div>
+          {/* Jedna lista sekcji, każda w tym samym rytmie: nadtytuł, potem
+              wiersze „nazwa + po co to". Wcześniej panel mieszał trzy wzorce,
+              a podstrony Pomocy nie miały tu żadnej drogi wejścia.
 
-            <div className="flex flex-col gap-3">
-              <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-                Dla kogo
+              Bez przypiętej stopki z przyciskami. Zasłaniała ostatnie wiersze
+              listy (widać to było na „Ile zostaje"), a te same wezwania stoją
+              teraz w sekcji „Zacznij" — w tym samym rytmie, co reszta. */}
+          <nav
+            aria-label="Menu"
+            className="flex flex-1 flex-col gap-8 overflow-y-auto px-5 pt-6 pb-12"
+          >
+            {menuMobilne.map((sekcja) => (
+              <div key={sekcja.heading} className="flex flex-col gap-2">
+                <h2 className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
+                  {sekcja.heading}
+                </h2>
+                <div className="flex flex-col">
+                  {sekcja.items.map((item, i, all) => {
+                    const czynny = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        aria-current={czynny ? 'page' : undefined}
+                        className={`py-3.5 ${i < all.length - 1 ? 'border-b border-line' : ''}`}
+                      >
+                        <b
+                          className={`block text-[16px] leading-snug ${
+                            czynny ? 'text-blue' : 'text-ink'
+                          }`}
+                        >
+                          {item.label}
+                        </b>
+                        {item.benefit && (
+                          <span className="mt-0.5 block text-[13px] leading-relaxed text-muted">
+                            {item.benefit}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 text-[14px] font-semibold">
-                {dlaKogo[0].items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-full bg-mist px-3.5 py-2.5 text-ink"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-6 text-[16px] font-semibold">
-              <Link href="/cennik" className="text-ink">
-                Cennik
-              </Link>
-              <Link href="/pomoc" className="text-ink">
-                Pomoc
-              </Link>
-              <a href={appLinks.login} className="text-ink">
-                Zaloguj się
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-none flex-col gap-2.5 border-t border-line px-5 pt-4 pb-6">
-            <Link
-              href={appLinks.trial}
-              className="flex h-[52px] items-center justify-center rounded-btn bg-blue text-body font-semibold text-white hover:text-white"
-            >
-              Wypróbuj 14 dni
-            </Link>
-            <Link
-              href={appLinks.demo}
-              className="flex h-[52px] items-center justify-center rounded-btn border border-line text-body font-semibold text-ink hover:text-ink"
-            >
-              Zobacz demo
-            </Link>
-          </div>
+            ))}
+          </nav>
         </div>
       )}
     </>
