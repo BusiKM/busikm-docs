@@ -18,7 +18,17 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[400px_1fr] lg:items-center lg:gap-16">
-      <div className="flex flex-col gap-6 lg:gap-10">
+      {/*
+        `min-w-0` jest tu konieczne, nie kosmetyczne.
+
+        Element siatki ma domyślnie `min-width: auto`, czyli nie skurczy się
+        poniżej szerokości swojej treści. Zakładki mają `flex-none`, więc ich
+        łączna szerokość rozpychała tę kolumnę do 407 px przy ekranie 375 px.
+        Kontener zakładek dostawał wtedy całą tę szerokość i jego
+        `overflow-x-auto` nie miał czego przewijać — „Kierowca" był po prostu
+        ucięty przez przodka i nie dało się do niego dotrzeć.
+      */}
+      <div className="flex min-w-0 flex-col gap-6 lg:gap-10">
         <div
           role="tablist"
           aria-label="Role w BusiKM"
@@ -53,7 +63,9 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
         </div>
       </div>
 
-      <div>{role.screen}</div>
+      {/* Ta sama pułapka po stronie makiety: bez `min-w-0` szeroki zrzut
+          rozpychałby kolumnę zamiast się do niej dopasować. */}
+      <div className="min-w-0">{role.screen}</div>
     </div>
   );
 }

@@ -63,6 +63,13 @@ type MockupSlotProps = {
    * pudła, czyli bez ruszania układu sekcji. Obraz wychodzi wtedy poza pudło
    * symetrycznie w górę i w dół — na ciemnym tle to niewidoczne, a notki
    * „do podmiany" i tak już nie ma, bo zrzut istnieje.
+   *
+   * **Działa dopiero od `lg`.** Powiększenie ma sens wyłącznie tam, gdzie
+   * wąski telefon stoi obok szerokich ekranów przeglądarki i trzeba wyrównać
+   * wrażenie. Na telefonie makieta zajmuje całą szerokość i nie ma z czym jej
+   * równać, a skala 1,5 rozpychała obraz o ponad sto pikseli poza ekran —
+   * zmierzone przy 375 px. Pionowo nadmiar ginie w ciemnym tle, poziomo
+   * przycinał treść zrzutu.
    */
   imageScale?: number;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
@@ -134,8 +141,14 @@ export function MockupSlot({
           alt={`${label} — ${note}`}
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
-          className={`object-contain ${imageScale ? 'pointer-events-none' : ''}`}
-          style={imageScale ? { transform: `scale(${imageScale})` } : undefined}
+          className={`object-contain ${
+            imageScale ? 'pointer-events-none scale-100 lg:scale-(--powiekszenie)' : ''
+          }`}
+          style={
+            imageScale
+              ? ({ '--powiekszenie': imageScale } as React.CSSProperties)
+              : undefined
+          }
           unoptimized={DEV}
         />
       </div>
