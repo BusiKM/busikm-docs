@@ -5,12 +5,25 @@ import { EkranNawigacja } from '@/components/mockups/kierowca/EkranNawigacja';
 import { EkranKoszt } from '@/components/mockups/kierowca/EkranKoszt';
 import { EkranCzas } from '@/components/mockups/kierowca/EkranCzas';
 
+/**
+ * Powiększenie zrzutów w tym rzędzie.
+ *
+ * Wszystkie cztery pliki mają ten sam kształt: kadr 4:3, a w nim telefon
+ * zajmujący 30% szerokości. Kafle są wąskie — przy pudle 152 px telefon
+ * wychodzi bez powiększenia szeroki na 46 px i nie widać z niego nic.
+ * Trójka daje mu 137 px, czyli prawie całą szerokość kafla.
+ *
+ * Wartość wspólna, nie wpisywana przy każdym ekranie: pliki są jednakowe,
+ * więc skala przy jednym z czterech znaczyła wyłącznie tyle, że o pozostałych
+ * zapomniano — i tak właśnie było.
+ */
+const POWIEKSZENIE = 3;
+
 const ekrany: {
   file: string;
   label: string;
   note: string;
   caption: string;
-  imageScale?: number;
   makieta: React.ReactNode;
 }[] = [
   {
@@ -25,8 +38,6 @@ const ekrany: {
     label: 'Nawigacja · telefon, tryb nocny',
     note: 'Trasa z kartą zlecenia u dołu, godzina dojazdu.',
     caption: 'Nawigacja',
-    /* Zrzut jest w kadrze poziomym, telefon zajmuje w nim 30% szerokości. */
-    imageScale: 3,
     makieta: <EkranNawigacja />,
   },
   {
@@ -63,7 +74,10 @@ export function Ekrany() {
                 note={e.note}
                 ratio="9:19.5"
                 box="9:19.5"
-                imageScale={e.imageScale}
+                imageScale={POWIEKSZENIE}
+                // Telefon to 30% kadru, a kafle są wąskie — powiększenie
+                // mieści się w nich również na telefonie.
+                imageScaleTelefon={POWIEKSZENIE}
                 dark
                 caption={e.caption}
               >

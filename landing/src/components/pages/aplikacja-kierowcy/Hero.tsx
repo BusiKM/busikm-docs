@@ -1,5 +1,6 @@
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
+import { MockupSlot } from '@/components/ui/MockupSlot';
 
 /** Trzy telefony wychodzące zza dolnej krawędzi sekcji. */
 function TelefonUciety({
@@ -20,54 +21,37 @@ function TelefonUciety({
   );
 }
 
-/** Nagłówek strony — ciemny, z trzema telefonami u dołu. */
-export function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-ink px-6 pt-24 text-paper lg:px-12 lg:pt-40">
-      <svg
-        viewBox="0 0 1440 1100"
-        preserveAspectRatio="xMidYMin slice"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[900px] w-full lg:h-[1100px]"
-        aria-hidden
-      >
-        <path
-          d="M -60 900 C 300 760, 520 820, 760 560 S 1120 200, 1500 80"
-          fill="none"
-          stroke="#0B5FFF"
-          strokeWidth="40"
-          opacity=".04"
-        />
-        <path
-          d="M -60 900 C 300 760, 520 820, 760 560 S 1120 200, 1500 80"
-          fill="none"
-          stroke="#0B5FFF"
-          strokeWidth="2"
-          opacity=".14"
-        />
-      </svg>
+/** Środkowy telefon — jedyny, który mieści się sensownie na wąskim ekranie. */
+const telefonSrodkowy = (
+        <TelefonUciety className="z-2 h-[260px] w-[220px] shadow-[0_-20px_80px_rgba(0,0,0,.5)] lg:h-[500px] lg:w-[280px]">
+          <div className="flex flex-col gap-3.5 px-4 pt-5 lg:px-5 lg:pt-6 lg:text-[13px]">
+            <div className="flex justify-between text-ink-muted">
+              <span>06:02</span>
+              <span>WZ 4821K</span>
+            </div>
+            <div className="mt-2 rounded-[18px] bg-surface-2 p-4 lg:p-4.5">
+              <div className="text-ink-muted">Licznik przed startem</div>
+              <div className="mt-1.5 text-[24px] font-bold tracking-[-0.02em] lg:text-[30px]">
+                184 210 km
+              </div>
+              <div className="mt-3 flex h-[70px] items-center justify-center rounded-xl bg-line-dark text-ink-muted lg:h-[90px]">
+                zdjęcie licznika
+              </div>
+            </div>
+            <div className="flex justify-between px-1 text-ink-muted">
+              <span>Warszawa → Mediolan</span>
+              <span className="text-green">gotowe</span>
+            </div>
+          </div>
+          <div className="mt-auto rounded-t-[18px] bg-blue p-4 text-center text-[16px] font-semibold text-white lg:p-5 lg:text-[18px]">
+            Rozpocznij trasę
+          </div>
+        </TelefonUciety>
+);
 
-      <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow dark>BusiKM Kierowca · iPhone i Android</Eyebrow>
-        <h1
-          data-reveal
-          className="max-w-[1040px] text-display-m font-bold text-balance lg:text-display"
-        >
-          Cały dzień pracy w jednej aplikacji. <br className="hidden lg:inline" />
-          Bez wpisywania czegokolwiek w trasie.
-        </h1>
-        <p
-          data-reveal
-          className="max-w-[640px] text-lead-m text-pretty text-ink-muted lg:text-lead"
-        >
-          Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.
-        </p>
-      </Container>
-
-      <div className="relative mt-16 flex h-[280px] items-end justify-center gap-4 lg:mt-24 lg:h-[560px] lg:gap-9">
-        <div
-          aria-hidden
-          className="absolute inset-x-[25%] bottom-0 h-40 bg-blue opacity-35 blur-[90px] lg:h-50 lg:blur-[120px]"
-        />
+/** Komplet trzech telefonów — układ na szerokie ekrany. */
+const telefony = (
+  <>
 
         <TelefonUciety className="hidden w-[250px] translate-y-10 rotate-[-4deg] opacity-70 lg:block lg:h-[420px]">
           <div className="p-4.5 text-ink-muted lg:p-5.5">
@@ -123,6 +107,120 @@ export function Hero() {
             </div>
           </div>
         </TelefonUciety>
+  </>
+);
+
+/** Nagłówek strony — ciemny, z telefonami u dołu. */
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-ink px-6 pt-24 text-paper lg:px-12 lg:pt-40">
+      <svg
+        viewBox="0 0 1440 1100"
+        preserveAspectRatio="xMidYMin slice"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[900px] w-full lg:h-[1100px]"
+        aria-hidden
+      >
+        <path
+          d="M -60 900 C 300 760, 520 820, 760 560 S 1120 200, 1500 80"
+          fill="none"
+          stroke="#0B5FFF"
+          strokeWidth="40"
+          opacity=".04"
+        />
+        <path
+          d="M -60 900 C 300 760, 520 820, 760 560 S 1120 200, 1500 80"
+          fill="none"
+          stroke="#0B5FFF"
+          strokeWidth="2"
+          opacity=".14"
+        />
+      </svg>
+
+      <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
+        <Eyebrow dark>BusiKM Kierowca · iPhone i Android</Eyebrow>
+        <h1
+          data-reveal
+          className="max-w-[1040px] text-display-m font-bold text-balance lg:text-display"
+        >
+          Cały dzień pracy w jednej aplikacji. <br className="hidden lg:inline" />
+          Bez wpisywania czegokolwiek w trasie.
+        </h1>
+        <p
+          data-reveal
+          className="max-w-[640px] text-lead-m text-pretty text-ink-muted lg:text-lead"
+        >
+          Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.
+        </p>
+      </Container>
+
+      {/*
+        Dwa zrzuty zamiast jednego: szeroko trzy telefony obok siebie, wąsko
+        jeden. Ten sam obraz w obu miejscach znaczyłby albo trzy telefony
+        ściśnięte do 375 px, albo jeden zgubiony na szerokim ekranie.
+
+        Do czasu wrzucenia plików stoją tu rysowane makiety — `MockupSlot`
+        podmienia je sam, gdy plik pojawi się w `public/mockups/`.
+      */}
+      <div className="relative mt-16 lg:mt-24">
+        <div
+          aria-hidden
+          className="absolute inset-x-[25%] bottom-0 h-40 bg-blue opacity-35 blur-[90px] lg:h-50 lg:blur-[120px]"
+        />
+
+        {/*
+          Bez powiększenia i z ograniczoną szerokością — inaczej niż pozostałe
+          zrzuty telefonu na tej stronie.
+
+          Tamte mają telefon zajmujący 30% szerokości kadru i bez powiększenia
+          wychodzą jak miniaturki. Ten jest wykadrowany ciasno: treść zajmuje
+          91% szerokości i 90% wysokości, więc każde powiększenie wypycha go
+          poza ekran — przy 1,35 wychodziło 374 px.
+
+          Szerokość ograniczona, bo pełna kolumna daje przy proporcjach 4:3
+          ponad tysiąc pikseli wysokości i sam nagłówek strony znika z ekranu.
+        */}
+        <div className="relative mx-auto hidden max-w-[900px] lg:block">
+          <MockupSlot
+            file="mockup-kierowca-hero-trzy-phone.png"
+            label="Trzy ekrany startu trasy · telefon, tryb nocny"
+            note="Od lewej: lista zleceń na dziś, licznik przed startem z przyciskiem „Rozpocznij trasę”, dodawanie kosztu ze zdjęciem paragonu."
+            ratio="4:3"
+            dark
+            noteClassName="mx-auto max-w-[640px]"
+          >
+            <div className="flex h-[560px] items-end justify-center gap-9">
+              {telefony}
+            </div>
+          </MockupSlot>
+        </div>
+
+        {/*
+          Telefon wychodzi zza dolnej krawędzi sekcji — tak jak rysowane
+          makiety, które tu wcześniej stały.
+        
+          Nie trzeba do tego żadnego przycinania: przy skali 2 zrzut wystaje
+          poza swoje pudło o 123 px w górę i w dół, a `overflow-hidden`
+          sekcji obcina to, co wyjdzie pod spodem. Odstęp u góry oddaje
+          te 123 px, żeby telefon nie nachodził na akapit.
+        
+          Skala 2 wyliczona: telefon zajmuje 44% szerokości kadru, więc przy
+          pudle 327 px wychodzi szeroki na 290 z 375 dostępnych.
+        */}
+        <div className="relative mt-28 lg:hidden">
+          <MockupSlot
+            file="mockup-kierowca-hero-phone.png"
+            label="Start trasy · telefon, tryb nocny"
+            note="Licznik przed startem, miejsce na zdjęcie licznika i przycisk „Rozpocznij trasę”."
+            ratio="4:3"
+            imageScale={2}
+            imageScaleTelefon={2}
+            dark
+          >
+            <div className="flex h-[280px] items-end justify-center gap-4">
+              {telefonSrodkowy}
+            </div>
+          </MockupSlot>
+        </div>
       </div>
     </section>
   );

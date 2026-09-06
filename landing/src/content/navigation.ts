@@ -212,3 +212,49 @@ export const appLinks = {
   demo: '/demo',
   login: '/zaloguj',
 } as const;
+
+/**
+ * Menu na telefonie — jedna lista sekcji, każda w tym samym rytmie.
+ *
+ * Wcześniej ten sam panel mieszał trzy wzorce: „Co robi" jako lista
+ * z opisami, „Dla kogo" jako pigułki bez opisów, a Cennik, Pomoc i Zaloguj
+ * jako rząd samych napisów. Przy okazji **cztery podstrony Pomocy nie miały
+ * na telefonie żadnej drogi wejścia** — pozycja prowadziła prosto na
+ * `/pomoc`, a Pierwsze kroki, Kontakt i Status usługi były osiągalne
+ * wyłącznie ze stopki.
+ *
+ * Sekcje z rozwijanych menu budują się same, więc nowa podstrona dopisana
+ * do `navigation` pojawi się tu bez ruszania nagłówka. Pozycje bez
+ * rozwinięcia (dziś Cennik) też się dobierają — brakujący opis dokłada
+ * `OPISY_POZYCJI`.
+ */
+export type SekcjaMenu = { heading: string; items: NavLeaf[] };
+
+/** Zdania dla pozycji, które nie mają własnego rozwinięcia w `navigation`. */
+const OPISY_POZYCJI: Record<string, string> = {
+  '/cennik': 'Ile zapłacisz przy swojej liczbie pojazdów',
+};
+
+export const menuMobilne: SekcjaMenu[] = [
+  ...navigation
+    .filter((e): e is Extract<NavEntry, { kind: 'mega' }> => e.kind === 'mega')
+    .map((e) => ({ heading: e.label, items: e.groups.flatMap((g) => g.items) })),
+  {
+    heading: 'Zacznij',
+    items: [
+      ...navigation
+        .filter((e): e is Extract<NavEntry, { kind: 'link' }> => e.kind === 'link')
+        .map((e) => ({ href: e.href, label: e.label, benefit: OPISY_POZYCJI[e.href] ?? '' })),
+      {
+        href: appLinks.demo,
+        label: 'Zobacz demo',
+        benefit: 'Przygotowujemy je — zostaw adres, damy znać',
+      },
+      {
+        href: appLinks.login,
+        label: 'Zaloguj się',
+        benefit: 'Konta otwieramy wkrótce',
+      },
+    ],
+  },
+];

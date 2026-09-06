@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/layout/Logo';
+import { IkonaMenu } from '@/components/layout/IkonaMenu';
 import {
   appLinks,
   coRobi,
   dlaKogo,
+  menuMobilne,
   navigation,
   rolesNote,
   type NavEntry,
@@ -22,6 +24,17 @@ import {
  */
 
 const CARET = '▾';
+
+/** Do tej wysokości pasek jest zawsze widoczny — jesteśmy jeszcze przy górze. */
+const PRZY_GORZE = 80;
+/**
+ * Mniejsze ruchy ignorujemy.
+ *
+ * Bez tego progu pasek reagowałby na każde drgnięcie kółka i przy zwykłym
+ * czytaniu chowałby się i wracał kilka razy na sekundę. Osiem pikseli to
+ * mniej niż jeden „klik" kółka i mniej niż przypadkowy ruch kciuka.
+ */
+const PROG_KIERUNKU = 8;
 
 /** Znak logowania — prosta sylwetka, bez wypełnienia. */
 function UserIcon({ className = '' }: { className?: string }) {
@@ -70,21 +83,25 @@ function DemoPreview() {
   );
 }
 
-/** Poniżej tej wysokości pasek zawsze wygląda normalnie — jesteśmy jeszcze w hero. */
-const HERO_END = 640;
-/** Mniejsze ruchy kółka ignorujemy, żeby pasek nie drgał. */
-const MIN_DELTA = 8;
-
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [zwinietyPrzewijaniem, setCompact] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [zjechal, setZjechal] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const lastY = useRef(0);
+  const ostatnieY = useRef(0);
 
-  // W dół — pasek zamienia się w listwę z akcją. W górę — wraca menu.
+  /**
+   * Pasek chowa się przy przewijaniu w dół i wraca przy przewijaniu w górę.
+   *
+   * Czytanie w dół to ruch kciuka w górę — wtedy pasek nie jest potrzebny
+   * i oddaje miejsce treści. Ruch kciuka w dół, czyli powrót w górę strony,
+   * zwykle znaczy „szukam nawigacji", więc pasek wraca od razu, bez czekania
+   * na dojechanie na samą górę.
+   *
+   * Przy górze strony jest widoczny zawsze, niezależnie od kierunku.
+   */
   useEffect(() => {
     let frame = 0;
 
@@ -93,16 +110,16 @@ export function Header() {
       const y = window.scrollY;
       setScrolled(y > 24);
 
-      if (y < HERO_END) {
-        lastY.current = y;
-        setCompact(false);
+      if (y <= PRZY_GORZE) {
+        ostatnieY.current = y;
+        setZjechal(false);
         return;
       }
 
-      const delta = y - lastY.current;
-      if (Math.abs(delta) < MIN_DELTA) return;
-      lastY.current = y;
-      setCompact(delta > 0);
+      const roznica = y - ostatnieY.current;
+      if (Math.abs(roznica) < PROG_KIERUNKU) return;
+      ostatnieY.current = y;
+      setZjechal(roznica > 0);
     };
 
     const onScroll = () => {
@@ -118,10 +135,21 @@ export function Header() {
     };
   }, []);
 
-  // Otwarte menu zawsze przywraca pełny pasek — inaczej nawigacja byłaby
-  // nieosiągalna z klawiatury. Wyliczane, nie ustawiane efektem: stan
-  // wynikający z innego stanu nie potrzebuje dodatkowego renderu.
-  const compact = zwinietyPrzewijaniem && !mobileOpen && !openMega;
+  /**
+   * Kliknięcie w odnośnik zamyka menu — także gdy prowadzi tam, gdzie
+   * już jesteśmy.
+   *
+   * Reset przy zmianie adresu (niżej) tego nie łapie, bo przy odnośniku do
+   * bieżącej strony adres się nie zmienia. Menu zostawało wtedy otwarte,
+   * a razem z nim blokada przewijania — czyli gorzej niż przed poprawką,
+   * bo strona wracała na górę i zastawała człowieka w otwartym panelu.
+   */
+  const zamknijPoKliknieciu = (e: React.MouseEvent) => {
+    if ((e.target as Element).closest('a')) {
+      setMobileOpen(false);
+      setOpenMega(null);
+    }
+  };
 
   // Zmiana adresu zamyka menu. Poprawka stanu w trakcie renderu, a nie
   // w efekcie — React obsługuje ten wzorzec osobno: przerywa render
@@ -160,6 +188,15 @@ export function Header() {
     return () => window.removeEventListener('pointerdown', onPointerDown);
   }, [openMega]);
 
+  /**
+   * Otwarte menu zatrzymuje pasek na miejscu.
+   *
+   * Panel na telefonie zaczyna się tuż pod paskiem i jest do niego
+   * przypięty, a krzyżyk zamykający siedzi w samym pasku — schowanie go
+   * zabrałoby jedyne wyjście z otwartego menu.
+   */
+  const schowany = zjechal && !mobileOpen && !openMega;
+
   const mega = navigation.find(
     (e): e is Extract<NavEntry, { kind: 'mega' }> =>
       e.kind === 'mega' && e.label === openMega,
@@ -170,25 +207,36 @@ export function Header() {
       <header
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
-        onFocusCapture={() => setCompact(false)}
-        className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
-          compact
-            ? 'border-line-dark bg-ink shadow-card'
-            : mega
-              ? 'border-line bg-white shadow-card'
-              : `border-line bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
+        /*
+          Wejście klawiaturą wyciąga schowany pasek z powrotem — inaczej
+          ogniskowanie trafiałoby w odnośniki stojące poza ekranem.
+
+          Tym razem jest to bezpieczne, w odróżnieniu od poprzedniej wersji
+          z ciemną listwą: pokazanie paska nie zamienia go na inny i niczego
+          nie robi `inert`, więc nie ma jak zabrać kliknięcia ani zgubić
+          ogniskowania. Myszą i tak nie da się kliknąć paska, którego nie
+          ma na ekranie.
+        */
+        onFocusCapture={() => setZjechal(false)}
+        /*
+          `translate`, nie `transform`. Tailwind 4 nie składa już `transform`,
+          tylko ustawia osobne właściwości, więc `-translate-y-full` daje
+          `translate: 0 -100%`. Animowanie `transform` nie robiło tu
+          niczego — pasek przeskakiwał w jednej klatce. Zmierzone.
+        */
+        className={`sticky top-0 z-40 border-b border-line transition-[translate,background-color,box-shadow] duration-300 ease-out ${
+          schowany ? '-translate-y-full' : 'translate-y-0'
+        } ${
+          mega
+            ? 'bg-white shadow-card'
+            : `bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
         }`}
       >
-        <div className="relative mx-auto h-16 max-w-[1440px] lg:h-18">
-          {/* Pełny pasek — widoczny w hero i po przewinięciu w górę. */}
-          <div
-            inert={compact || undefined}
-            className={`absolute inset-0 flex items-center justify-between px-5 transition-opacity ease-out lg:px-12 ${
-              compact
-                ? 'pointer-events-none opacity-0 duration-200'
-                : 'opacity-100 duration-300 delay-150'
-            }`}
-          >
+        {/* 56 px na telefonie zamiast 64: pasek jest przyklejony, więc każdy
+            piksel jego wysokości zabiera treści miejsce na każdym ekranie.
+            Przycisk menu ma dalej 44 px, czyli tyle, ile trzeba na palec.
+            Wysokość musi zgadzać się z `top-14` panelu menu niżej. */}
+        <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 lg:h-18 lg:px-12">
           <div className="flex items-center gap-11">
             <Link
               href="/"
@@ -196,7 +244,9 @@ export function Header() {
               className="flex items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-ink lg:text-[20px]"
             >
               <Logo decorative className="size-8 flex-none lg:size-9" />
-              BusiKM
+              {/* Sam znak na telefonie. Napis powtarzał to, co ikona już mówi,
+                  a przy 375 px każde takie powtórzenie kosztuje miejsce. */}
+              <span className="hidden lg:inline">BusiKM</span>
             </Link>
 
             <nav aria-label="Główna" className="hidden items-center gap-[30px] lg:flex">
@@ -259,11 +309,19 @@ export function Header() {
               Zaloguj się
             </a>
 
+            {/* Na telefonie tego przycisku nie ma i to jest celowe: pełny
+                pasek widać wyłącznie na górze strony, gdzie w hero stoi już
+                duży „Zobacz demo". Dwa te same wezwania na jednym ekranie
+                zabierały miejsce przy 375 px i nie dodawały niczego.
+
+                Wraca w listwie zwartej po przewinięciu — tam treściowy
+                przycisk jest już poza ekranem i wezwanie ma po co być.
+
+                Na desktopie zostaje: pasek jest szeroki, a przycisk siedzi
+                w prawym rogu, gdzie go się szuka. */}
             <Link
               href={appLinks.demo}
-              className={`h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px] ${
-                mobileOpen ? 'hidden' : 'flex'
-              }`}
+              className="hidden h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px]"
             >
               Zobacz demo
             </Link>
@@ -273,74 +331,19 @@ export function Header() {
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? 'Zamknij menu' : 'Menu'}
               aria-expanded={mobileOpen}
-              className="-mr-2.5 flex size-11 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
+              className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
             >
-              {mobileOpen ? (
-                <span className="text-[22px] leading-none text-ink">×</span>
-              ) : (
-                <>
-                  <span className="h-0.5 w-5 bg-ink" />
-                  <span className="h-0.5 w-5 bg-ink" />
-                </>
-              )}
+              <IkonaMenu otwarte={mobileOpen} className="bg-ink" />
             </button>
-          </div>
-          </div>
-
-          {/* Listwa z akcją — po przewinięciu w dół. Menu schodzi, bo czytelnik
-              jest już w treści; zostaje droga wejścia, której nie ma na ekranie. */}
-          <div
-            inert={!compact || undefined}
-            className={`absolute inset-0 grid grid-cols-[1fr_auto_1fr] items-center px-5 transition-opacity ease-out lg:px-12 ${
-              compact
-                ? 'opacity-100 duration-300 delay-150'
-                : 'pointer-events-none opacity-0 duration-200'
-            }`}
-          >
-            <Link
-              href="/"
-              aria-label="BusiKM — strona główna"
-              className="flex w-fit items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-paper hover:text-paper lg:text-[20px]"
-            >
-              <Logo decorative className="size-8 flex-none lg:size-9" />
-              <span className="hidden sm:inline">BusiKM</span>
-            </Link>
-
-            <Link
-              href={appLinks.demo}
-              className="flex h-10 items-center gap-2 rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark hover:text-white lg:px-6 lg:text-[15px]"
-            >
-              Zobacz demo
-              <span aria-hidden className="text-[13px] opacity-70">
-                →
-              </span>
-            </Link>
-
-            <div className="flex items-center justify-end gap-3.5">
-              <a
-                href={appLinks.login}
-                className="hidden items-center gap-2 text-[15px] font-medium text-paper/65 transition-colors hover:text-paper lg:inline-flex"
-              >
-                <UserIcon className="size-[18px]" />
-                Zaloguj się
-              </a>
-
-              <button
-                type="button"
-                onClick={() => setMobileOpen(true)}
-                aria-label="Menu"
-                className="-mr-2.5 flex size-11 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
-              >
-                <span className="h-0.5 w-5 bg-paper" />
-                <span className="h-0.5 w-5 bg-paper" />
-              </button>
-            </div>
           </div>
         </div>
 
         {/* Rozwinięte menu */}
         {mega && (
-          <div className="absolute inset-x-0 top-full hidden border-b border-line bg-white lg:block">
+          <div
+            onClick={zamknijPoKliknieciu}
+            className="absolute inset-x-0 top-full hidden border-b border-line bg-white lg:block"
+          >
             {mega.compact ? (
               <div className="mx-auto max-w-[1120px] px-12 py-8">
                 <ul className="grid max-w-[560px] grid-cols-2 gap-x-10 gap-y-1.5">
@@ -448,72 +451,55 @@ export function Header() {
       {/* Menu na telefonie. Poza <header>, bo backdrop-filter tworzy
           containing block dla position: fixed. */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-white lg:hidden">
-          <div className="flex flex-1 flex-col gap-7 overflow-y-auto px-5 py-6">
-            <div className="flex flex-col gap-3">
-              <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-                Co robi
-              </div>
-              <div className="flex flex-col text-[16px]">
-                {coRobi
-                  .flatMap((g) => g.items)
-                  .map((item, i, all) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`py-3 ${i < all.length - 1 ? 'border-b border-line' : ''}`}
-                    >
-                      <b className="text-ink">{item.label}</b>
-                      <div className="text-[13px] text-muted">{item.benefit}</div>
-                    </Link>
-                  ))}
-              </div>
-            </div>
+        <div
+          onClick={zamknijPoKliknieciu}
+          className="fixed inset-x-0 top-14 bottom-0 z-40 flex flex-col bg-white lg:hidden"
+        >
+          {/* Jedna lista sekcji, każda w tym samym rytmie: nadtytuł, potem
+              wiersze „nazwa + po co to". Wcześniej panel mieszał trzy wzorce,
+              a podstrony Pomocy nie miały tu żadnej drogi wejścia.
 
-            <div className="flex flex-col gap-3">
-              <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-                Dla kogo
+              Bez przypiętej stopki z przyciskami. Zasłaniała ostatnie wiersze
+              listy (widać to było na „Ile zostaje"), a te same wezwania stoją
+              teraz w sekcji „Zacznij" — w tym samym rytmie, co reszta. */}
+          <nav
+            aria-label="Menu"
+            className="flex flex-1 flex-col gap-8 overflow-y-auto px-5 pt-6 pb-12"
+          >
+            {menuMobilne.map((sekcja) => (
+              <div key={sekcja.heading} className="flex flex-col gap-2">
+                <h2 className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
+                  {sekcja.heading}
+                </h2>
+                <div className="flex flex-col">
+                  {sekcja.items.map((item, i, all) => {
+                    const czynny = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        aria-current={czynny ? 'page' : undefined}
+                        className={`py-3.5 ${i < all.length - 1 ? 'border-b border-line' : ''}`}
+                      >
+                        <b
+                          className={`block text-[16px] leading-snug ${
+                            czynny ? 'text-blue' : 'text-ink'
+                          }`}
+                        >
+                          {item.label}
+                        </b>
+                        {item.benefit && (
+                          <span className="mt-0.5 block text-[13px] leading-relaxed text-muted">
+                            {item.benefit}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 text-[14px] font-semibold">
-                {dlaKogo[0].items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-full bg-mist px-3.5 py-2.5 text-ink"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-6 text-[16px] font-semibold">
-              <Link href="/cennik" className="text-ink">
-                Cennik
-              </Link>
-              <Link href="/pomoc" className="text-ink">
-                Pomoc
-              </Link>
-              <a href={appLinks.login} className="text-ink">
-                Zaloguj się
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-none flex-col gap-2.5 border-t border-line px-5 pt-4 pb-6">
-            <Link
-              href={appLinks.trial}
-              className="flex h-[52px] items-center justify-center rounded-btn bg-blue text-body font-semibold text-white hover:text-white"
-            >
-              Wypróbuj 14 dni
-            </Link>
-            <Link
-              href={appLinks.demo}
-              className="flex h-[52px] items-center justify-center rounded-btn border border-line text-body font-semibold text-ink hover:text-ink"
-            >
-              Zobacz demo
-            </Link>
-          </div>
+            ))}
+          </nav>
         </div>
       )}
     </>

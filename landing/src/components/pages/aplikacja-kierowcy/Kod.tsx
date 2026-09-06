@@ -30,6 +30,11 @@ export function Kod() {
             note="Ekran po wejściu kodem: „Dziś” z dwoma zleceniami, poniżej zakończone, pasek zakładek u dołu."
             ratio="9:19.5"
             box="6:7"
+            // Ta sama wartość, co w blokach niżej — pliki mają identyczny
+            // kadr, w którym telefon zajmuje 30% szerokości. Bez tego wychodzi
+            // szeroki na 156 px w kolumnie mającej 520.
+            imageScale={1.8}
+            imageScaleTelefon={1.8}
           >
             <div className="flex flex-col items-center gap-5 lg:flex-row lg:justify-center lg:gap-8">
               <div className="flex w-[200px] flex-none flex-col gap-2 rounded-2xl border border-line bg-white p-4.5 text-[12px] shadow-card">
