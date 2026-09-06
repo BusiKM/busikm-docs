@@ -45,11 +45,16 @@ export function Hero() {
             ratio="2 × 9:19.5"
             box="16:10"
             imageScale={1.35}
-            // Zrzut jest w proporcjach 4:3, więc w pudle 16:10 ogranicza go
-            // wysokość i po bokach zostaje pusty margines. Powiększenie działa
-            // tu także na telefonie — poza ekran wychodzi sam ten margines,
-            // a bez niego telefony wyszłyby niepotrzebnie małe.
-            waskiWPudle
+            // Na telefonie mocniej niż na desktopie. Zrzut ma proporcje 4:3,
+            // więc w pudle 16:10 ogranicza go wysokość i zostaje pusty
+            // margines pliku — poza ekran wychodzi sam ten margines. Same
+            // telefony zajmują 66% szerokości kadru, więc przy 1,35 wychodziły
+            // na wąskim ekranie zbyt małe jak na hero, w którym są treścią.
+            //
+            // 1,8 wyliczone, nie dobrane na oko: przy 375 px daje telefonom
+            // 324 px, czyli po 25 px marginesu z każdej strony. Przy 2,0
+            // zostawało 7 px i kadr wyglądał na przycięty.
+            imageScaleTelefon={1.8}
             dark
             noteClassName="mx-auto max-w-[600px]"
           >

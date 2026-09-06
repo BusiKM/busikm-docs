@@ -28,10 +28,10 @@ function slot(
       // zakładek nie zmienia wysokości sekcji.
       box="16:10"
       imageScale={imageScale}
-      // Telefon 9:19.5 w pudle 16:10 ogranicza wysokość, więc po bokach
-      // zostaje mnóstwo miejsca — powiększenie działa tu także na telefonie
-      // i bez niego zrzut wychodzi znacząco mniejszy niż sąsiednie ekrany.
-      waskiWPudle={Boolean(imageScale)}
+      // Telefon w pudle 16:10 ogranicza wysokość, więc po bokach zostaje
+      // pusty margines pliku — powiększenie działa tu także na telefonie,
+      // a bez niego zrzut wychodzi znacząco mniejszy niż sąsiednie ekrany.
+      imageScaleTelefon={imageScale}
       dark
     >
       {children}

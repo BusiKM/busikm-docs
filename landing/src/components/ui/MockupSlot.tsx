@@ -72,18 +72,21 @@ type MockupSlotProps = {
    */
   imageScale?: number;
   /**
-   * Obraz jest smuklejszy niż pudło, w którym stoi.
+   * Powiększenie na telefonie. Podane osobno, bo rzadko równa się
+   * desktopowemu i nie zawsze w ogóle jest wskazane.
    *
-   * Dotyczy zrzutów telefonu wstawionych w pudło o proporcjach ekranu
-   * przeglądarki: ogranicza je wysokość, więc zostaje mnóstwo miejsca po
-   * bokach i powiększenie nie ma jak wyjść poza ekran. Tylko w tym układzie
-   * `imageScale` działa również na telefonie — bez tego telefon wychodziłby
-   * tam znacząco mniejszy, bo pudło 16:10 ścina go do wysokości.
+   * Podawaj je **tylko wtedy, gdy obraz jest smuklejszy niż pudło**, czyli
+   * przy zrzutach telefonu wstawionych w pudło o proporcjach przeglądarki.
+   * Ogranicza je wtedy wysokość, po bokach zostaje pusty margines pliku
+   * i powiększenie wychodzi poza ekran samym tym marginesem, nie treścią.
    *
-   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr
-   * i na wąskim ekranie nie ma dokąd się wylać.
+   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr —
+   * na desktopie wygląda dobrze, na wąskim ekranie nie ma dokąd się wylać
+   * i ucina treść. Zmierzone: od 66 do 214 px przy 375 px.
+   *
+   * Bez tej wartości `imageScale` działa dopiero od `lg`.
    */
-  waskiWPudle?: boolean;
+  imageScaleTelefon?: number;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -106,7 +109,7 @@ export function MockupSlot({
   ratio,
   box,
   imageScale,
-  waskiWPudle = false,
+  imageScaleTelefon,
   children,
   dark = false,
   noteClassName = '',
@@ -156,14 +159,17 @@ export function MockupSlot({
           sizes="(max-width: 1024px) 100vw, 1120px"
           className={`object-contain ${
             imageScale
-              ? `pointer-events-none ${
-                  waskiWPudle ? 'scale-(--powiekszenie)' : 'scale-100 lg:scale-(--powiekszenie)'
+              ? `pointer-events-none lg:scale-(--powiekszenie) ${
+                  imageScaleTelefon ? 'scale-(--powiekszenie-telefon)' : 'scale-100'
                 }`
               : ''
           }`}
           style={
             imageScale
-              ? ({ '--powiekszenie': imageScale } as React.CSSProperties)
+              ? ({
+                  '--powiekszenie': imageScale,
+                  '--powiekszenie-telefon': imageScaleTelefon,
+                } as React.CSSProperties)
               : undefined
           }
           unoptimized={DEV}
