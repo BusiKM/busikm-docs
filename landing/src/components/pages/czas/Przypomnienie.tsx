@@ -19,6 +19,11 @@ export function Przypomnienie() {
               note="Ten sam plik co na stronie o aplikacji kierowcy. Przypomnienie „za 20 minut przerwa” u góry, pierścień jazdy, przycisk „Przerwa”."
               ratio="9:19.5"
               box="6:7"
+              // Ten sam plik i ta sama wartość, co na stronie aplikacji
+              // kierowcy: telefon zajmuje 30% szerokości kadru, więc bez
+              // powiększenia wychodzi szeroki na 158 px w kolumnie mającej 520.
+              imageScale={1.8}
+              imageScaleTelefon={1.8}
               dark
               noteClassName="mx-auto max-w-[520px]"
             >
