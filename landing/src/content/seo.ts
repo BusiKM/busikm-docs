@@ -7,6 +7,8 @@
  * do `sitemap.xml`.
  */
 
+import { artykuly } from '@/content/pomoc';
+
 /** Adres produkcyjny. Kanoniczne adresy i mapa strony budują się na nim. */
 export const serwis = {
   url: 'https://busikm.pl',
@@ -88,6 +90,12 @@ export const trasy: Trasa[] = [
 
   { sciezka: '/pomoc', priorytet: 0.6, czestotliwosc: 'monthly' },
   { sciezka: '/pomoc/pierwsze-kroki', priorytet: 0.6, czestotliwosc: 'monthly' },
+  // Artykuły pomocy dopisują się same. Wypisywanie ich tutaj znaczyłoby, że
+  // nowa instrukcja trafia do serwisu, ale nie do mapy strony — i nikt tego
+  // nie zauważy, bo strona działa.
+  ...artykuly.map(
+    (a): Trasa => ({ sciezka: `/pomoc/${a.slug}`, priorytet: 0.5, czestotliwosc: 'monthly' }),
+  ),
   { sciezka: '/kontakt', priorytet: 0.5, czestotliwosc: 'yearly' },
   { sciezka: '/status', priorytet: 0.3, czestotliwosc: 'daily' },
 
