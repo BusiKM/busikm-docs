@@ -89,6 +89,11 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap gap-x-5 gap-y-1">
+            <span>{firma.sad}</span>
+            <span>Kapitał zakładowy {firma.kapital}</span>
+          </div>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-1">
             <a href={`mailto:${firma.email}`} className="text-ink-muted hover:text-paper">
               {firma.email}
             </a>

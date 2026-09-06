@@ -33,12 +33,28 @@ const pytania = [
 ] as const;
 
 /** Ekran telefonu w ramce do podmiany — powtarza się cztery razy. */
+/**
+ * Powiększenie zrzutów telefonu na tej stronie.
+ *
+ * Wszystkie pliki mają ten sam kształt: kadr 4:3, a w nim telefon zajmujący
+ * 30% szerokości i 81% wysokości — reszta to pusty margines. W pudle 6:7
+ * ogranicza je szerokość, więc bez powiększenia telefon wychodzi szeroki
+ * na 156 px w kolumnie mającej 520 i wygląda jak miniaturka.
+ *
+ * 1,8 daje mu 281 px szerokości i 569 px wysokości, czyli mniej więcej tyle,
+ * ile ma pudło. Poza kadr wychodzi sam pusty margines pliku.
+ *
+ * Wartość domyślna, nie wpisywana przy każdym bloku: pliki są jednakowe,
+ * więc różne skale znaczyłyby wyłącznie tyle, że ktoś zapomniał jednej.
+ */
+const POWIEKSZENIE = 1.8;
+
 function Slot({
   file,
   label,
   note,
   dark,
-  imageScale,
+  imageScale = POWIEKSZENIE,
   children,
 }: {
   file: string;
@@ -89,7 +105,6 @@ export default function Page() {
               dark
               file="mockup-kierowca-nawigacja-phone.png"
               label="Nawigacja · telefon, tryb nocny"
-              imageScale={1.8}
               note="Nawigacja z trasą, u góry następny manewr i godzina dojazdu, u dołu karta zlecenia."
             >
               <EkranNawigacja />
