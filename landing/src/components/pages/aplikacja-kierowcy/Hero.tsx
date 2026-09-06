@@ -167,13 +167,24 @@ export function Hero() {
           className="absolute inset-x-[25%] bottom-0 h-40 bg-blue opacity-35 blur-[90px] lg:h-50 lg:blur-[120px]"
         />
 
-        <div className="relative hidden lg:block">
+        {/*
+          Bez powiększenia i z ograniczoną szerokością — inaczej niż pozostałe
+          zrzuty telefonu na tej stronie.
+
+          Tamte mają telefon zajmujący 30% szerokości kadru i bez powiększenia
+          wychodzą jak miniaturki. Ten jest wykadrowany ciasno: treść zajmuje
+          91% szerokości i 90% wysokości, więc każde powiększenie wypycha go
+          poza ekran — przy 1,35 wychodziło 374 px.
+
+          Szerokość ograniczona, bo pełna kolumna daje przy proporcjach 4:3
+          ponad tysiąc pikseli wysokości i sam nagłówek strony znika z ekranu.
+        */}
+        <div className="relative mx-auto hidden max-w-[900px] lg:block">
           <MockupSlot
             file="mockup-kierowca-hero-trzy-phone.png"
             label="Trzy ekrany startu trasy · telefon, tryb nocny"
             note="Od lewej: lista zleceń na dziś, licznik przed startem z przyciskiem „Rozpocznij trasę”, dodawanie kosztu ze zdjęciem paragonu."
             ratio="4:3"
-            imageScale={1.35}
             dark
             noteClassName="mx-auto max-w-[640px]"
           >
@@ -183,12 +194,26 @@ export function Hero() {
           </MockupSlot>
         </div>
 
-        <div className="relative lg:hidden">
+        {/*
+          Telefon wychodzi zza dolnej krawędzi sekcji — tak jak rysowane
+          makiety, które tu wcześniej stały.
+        
+          Nie trzeba do tego żadnego przycinania: przy skali 2 zrzut wystaje
+          poza swoje pudło o 123 px w górę i w dół, a `overflow-hidden`
+          sekcji obcina to, co wyjdzie pod spodem. Odstęp u góry oddaje
+          te 123 px, żeby telefon nie nachodził na akapit.
+        
+          Skala 2 wyliczona: telefon zajmuje 44% szerokości kadru, więc przy
+          pudle 327 px wychodzi szeroki na 290 z 375 dostępnych.
+        */}
+        <div className="relative mt-28 lg:hidden">
           <MockupSlot
             file="mockup-kierowca-hero-phone.png"
             label="Start trasy · telefon, tryb nocny"
             note="Licznik przed startem, miejsce na zdjęcie licznika i przycisk „Rozpocznij trasę”."
-            ratio="2:3"
+            ratio="4:3"
+            imageScale={2}
+            imageScaleTelefon={2}
             dark
           >
             <div className="flex h-[280px] items-end justify-center gap-4">
