@@ -56,6 +56,9 @@ function Slot({
       ratio="9:19.5"
       box="6:7"
       imageScale={imageScale}
+      // Telefon zajmuje 30% szerokości kadru, więc nawet przy 1,8 zostaje
+      // mnóstwo zapasu — powiększenie działa tu także na telefonie.
+      imageScaleTelefon={imageScale}
       dark={dark}
     >
       {children}

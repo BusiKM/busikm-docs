@@ -73,16 +73,29 @@ export function AplikacjaKierowcy() {
           <StoreBadges />
         </div>
 
-        <div data-reveal>
+        {/*
+          Odstęp u góry tylko na telefonie i wynika wprost z powiększenia.
+          Skala działa w obie strony, więc zrzut wychodzi ponad swoje pudło
+          o (368 − 245) / 2 ≈ 61 px i wchodził w odznaki sklepów. `mt-16`
+          oddaje mu dokładnie te 64 px.
+
+          Na desktopie makieta stoi w osobnej kolumnie i nie ma czego
+          podchodzić, więc odstęp znika.
+        */}
+        <div data-reveal className="mt-16 lg:mt-0">
           <MockupSlot
             file="mockup-kierowca-telefony-phone.png"
             label="Aplikacja kierowcy · telefon, tryb nocny"
             note="Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu."
             ratio="4:3"
-            // Dwa telefony w pudle 4:3 zajmowały tylko 60% jego szerokości —
-            // za mało jak na bohatera sekcji. Powiększenie mieści się
-            // w kolumnie, bo widoczna treść zrzutu jest węższa od pudła.
+            // Dwa telefony zajmują 67% szerokości kadru — reszta to pusty
+            // margines pliku. Powiększenie mieści się w kolumnie właśnie
+            // dlatego, że widoczna treść jest węższa od pudła.
             imageScale={1.55}
+            // Na telefonie 1,5 zamiast 1,55: przy 327 px pudła treść urasta
+            // wtedy do 327 px, czyli dokładnie na szerokość ekranu bez marginesu
+            // ujemnego. Wyliczone z udziału treści w kadrze, nie dobrane.
+            imageScaleTelefon={1.5}
             dark
           >
             <TelefonyKierowcy />

@@ -64,6 +64,9 @@ export function Ekrany() {
                 ratio="9:19.5"
                 box="9:19.5"
                 imageScale={e.imageScale}
+                // Telefon to 30% kadru, a kafle są wąskie — powiększenie
+                // mieści się w nich również na telefonie.
+                imageScaleTelefon={e.imageScale}
                 dark
                 caption={e.caption}
               >

@@ -33,6 +33,9 @@ export function ZlecenieFaktura() {
             note="Karta zlecenia po lewej, faktura po prawej, strzałka między nimi, przycisk „Wyślij”, znaczniki: mail, e-faktura."
             ratio="4:3"
             imageScale={1.5}
+            // Treść zajmuje 78% kadru, więc na telefonie bezpiecznie wchodzi
+            // 1,28 — powyżej zaczyna wychodzić poza ekran samym zrzutem.
+            imageScaleTelefon={1.28}
           >
             <ZlecenieFakturaMockup />
           </MockupSlot>
