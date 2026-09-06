@@ -28,6 +28,10 @@ function slot(
       // zakładek nie zmienia wysokości sekcji.
       box="16:10"
       imageScale={imageScale}
+      // Telefon w pudle 16:10 ogranicza wysokość, więc po bokach zostaje
+      // pusty margines pliku — powiększenie działa tu także na telefonie,
+      // a bez niego zrzut wychodzi znacząco mniejszy niż sąsiednie ekrany.
+      imageScaleTelefon={imageScale}
       dark
     >
       {children}

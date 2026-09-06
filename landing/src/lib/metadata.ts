@@ -105,6 +105,50 @@ type Opcje = {
 };
 
 /**
+ * Metadane strony, której nie ma w `pages`.
+ *
+ * Artykuły pomocy żyją w treści, nie w mapie podstron — jest ich kilkanaście
+ * i rosną. Powielanie ich opisów w `content/pages.ts` znaczyłoby, że każdy
+ * nowy artykuł trzeba dopisać w dwóch miejscach, a zapomnienie o drugim widać
+ * dopiero w wyniku wyszukiwania.
+ */
+export function metadataTresci({
+  sciezka,
+  tytul,
+  opis,
+}: {
+  /** Pełna ścieżka z wiodącym ukośnikiem, np. `/pomoc/nowe-zlecenie`. */
+  sciezka: string;
+  tytul: string;
+  opis: string;
+}): Metadata {
+  const pelnyTytul = tytul.includes(serwis.nazwa) ? tytul : `${tytul} · ${serwis.nazwa}`;
+  const wIndeksie = !nieindeksowane.includes(sciezka);
+
+  return {
+    title: pelnyTytul,
+    description: opis,
+    alternates: { canonical: sciezka },
+    robots: wIndeksie ? roboty : { index: false, follow: true },
+    openGraph: {
+      type: 'article',
+      locale: serwis.locale,
+      siteName: serwis.nazwa,
+      url: sciezka,
+      title: pelnyTytul,
+      description: opis,
+      images: [obrazPodgladu],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pelnyTytul,
+      description: opis,
+      images: [serwis.ogImage],
+    },
+  };
+}
+
+/**
  * Metadane podstrony na podstawie jej ścieżki (bez wiodącego ukośnika).
  *
  * Ta sama funkcja obsługuje strony pełne i szkielety — o tym, czy strona

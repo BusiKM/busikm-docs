@@ -63,8 +63,30 @@ type MockupSlotProps = {
    * pudła, czyli bez ruszania układu sekcji. Obraz wychodzi wtedy poza pudło
    * symetrycznie w górę i w dół — na ciemnym tle to niewidoczne, a notki
    * „do podmiany" i tak już nie ma, bo zrzut istnieje.
+   *
+   * **Na telefonie działa tylko z `waskiWPudle`.** Zmierzone przy 375 px:
+   * wszędzie tam, gdzie pudło ma proporcje samego obrazu, powiększenie robi
+   * celowy wylew poza kadr — na desktopie wygląda dobrze, na telefonie
+   * uciekało z ekranu o 66 do 214 px i przycinało treść zrzutu. Pionowo
+   * nadmiar ginie w ciemnym tle, poziomo nie ma gdzie.
    */
   imageScale?: number;
+  /**
+   * Powiększenie na telefonie. Podane osobno, bo rzadko równa się
+   * desktopowemu i nie zawsze w ogóle jest wskazane.
+   *
+   * Podawaj je **tylko wtedy, gdy obraz jest smuklejszy niż pudło**, czyli
+   * przy zrzutach telefonu wstawionych w pudło o proporcjach przeglądarki.
+   * Ogranicza je wtedy wysokość, po bokach zostaje pusty margines pliku
+   * i powiększenie wychodzi poza ekran samym tym marginesem, nie treścią.
+   *
+   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr —
+   * na desktopie wygląda dobrze, na wąskim ekranie nie ma dokąd się wylać
+   * i ucina treść. Zmierzone: od 66 do 214 px przy 375 px.
+   *
+   * Bez tej wartości `imageScale` działa dopiero od `lg`.
+   */
+  imageScaleTelefon?: number;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -87,6 +109,7 @@ export function MockupSlot({
   ratio,
   box,
   imageScale,
+  imageScaleTelefon,
   children,
   dark = false,
   noteClassName = '',
@@ -134,8 +157,21 @@ export function MockupSlot({
           alt={`${label} — ${note}`}
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
-          className={`object-contain ${imageScale ? 'pointer-events-none' : ''}`}
-          style={imageScale ? { transform: `scale(${imageScale})` } : undefined}
+          className={`object-contain ${
+            imageScale
+              ? `pointer-events-none lg:scale-(--powiekszenie) ${
+                  imageScaleTelefon ? 'scale-(--powiekszenie-telefon)' : 'scale-100'
+                }`
+              : ''
+          }`}
+          style={
+            imageScale
+              ? ({
+                  '--powiekszenie': imageScale,
+                  '--powiekszenie-telefon': imageScaleTelefon,
+                } as React.CSSProperties)
+              : undefined
+          }
           unoptimized={DEV}
         />
       </div>

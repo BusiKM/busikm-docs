@@ -12,6 +12,38 @@ sygnaturę czasu pliku, więc odświeżenie zawsze pokaże nową wersję.
 2240 px dla makiet na całą szerokość. Zrzut 1000 px będzie miękki na ekranach
 Retina.
 
+## Kadr pliku decyduje o tym, czy trzeba go powiększyć
+
+To wracało już cztery razy w różnych miejscach, więc warto zapamiętać.
+
+Zrzuty telefonu przychodzą w dwóch odmianach i wyglądają na stronie zupełnie
+inaczej, mimo że plik „jest ten sam":
+
+**Kadr ciasny** — telefon zajmuje 90% i więcej szerokości pliku. Wchodzi
+w swoje miejsce w naturalnej wielkości, powiększenia nie potrzebuje.
+Powiększony wyszedłby poza ekran.
+
+**Kadr szeroki** — telefon stoi pośrodku poziomej ramki 4:3 i zajmuje raptem
+30% jej szerokości; reszta to pusty margines. Bez powiększenia wychodzi
+kilkakrotnie za mały: w kolumnie 520 px daje 158 px, a w wąskim kaflu 46 px.
+Wtedy trzeba podać `imageScale` — i `imageScaleTelefon`, jeśli ma działać
+także na telefonie.
+
+**Jeśli sam robisz zrzut, kadruj ciasno.** Wtedy nikt nie musi dobierać
+liczby, a plik wygląda tak samo w każdym miejscu, w które trafi.
+
+Sprawdzone wartości dla kadru szerokiego:
+
+| Miejsce | Pudło | Skala |
+|---|---|---|
+| kolumna obok tekstu | 520 px | `1.8` |
+| rząd czterech kafli | 152 px | `3` |
+
+Gdy dokładasz zrzut w nowym miejscu, spójrz na sąsiednie wywołanie
+`MockupSlot`. Jeśli ma `imageScale`, Twoje prawie na pewno też potrzebuje —
+brak tej wartości przy nowym pliku był przyczyną wszystkich czterech
+przypadków.
+
 ## Nazewnictwo
 
 ```

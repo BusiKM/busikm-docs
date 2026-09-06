@@ -1,49 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
+import { artykuly, kategorie, pasujeDoFrazy, NAZWY_ROL } from '@/content/pomoc';
 
-type Kategoria = {
-  nazwa: string;
-  opis: string;
-  /** Hasła, po których ta kategoria ma się znaleźć w wyszukiwaniu. */
-  hasla: string[];
-  href?: string;
-};
-
-const kategorie: Kategoria[] = [
-  {
-    nazwa: 'Pierwsze kroki',
-    opis: 'Od założenia konta do pierwszej wystawionej faktury',
-    hasla: ['konto', 'rejestracja', 'start', 'pojazd', 'zaproszenie', 'pierwsza faktura'],
-    href: '/pomoc/pierwsze-kroki',
-  },
-  {
-    nazwa: 'Kierowcy',
-    opis: 'Zaproszenie, aplikacja, trasy, paragony, czas pracy',
-    hasla: ['kierowca', 'aplikacja', 'kod', 'trasa', 'nawigacja', 'paragon', 'przerwa', 'czas pracy'],
-  },
-  {
-    nazwa: 'Rozliczenia i księgowość',
-    opis: 'Eksporty, formaty, zamknięcie miesiąca, diety',
-    hasla: ['eksport', 'księgowa', 'faktura', 'optima', 'insert', 'symfonia', 'dieta', 'zamknięcie miesiąca', 'waluta', 'kurs'],
-  },
-  {
-    nazwa: 'Konto i płatności',
-    opis: 'Plan, faktura za BusiKM, użytkownicy, rezygnacja',
-    hasla: ['plan', 'cennik', 'płatność', 'rezygnacja', 'użytkownik', 'zmiana planu', 'nip'],
-  },
-];
-
-const popularne = ['jak dodać kierowcę', 'eksport dla księgowej', 'zmiana planu'];
-
-function pasuje(k: Kategoria, fraza: string) {
-  const f = fraza.trim().toLowerCase();
-  if (!f) return true;
-  return [k.nazwa, k.opis, ...k.hasla].some((t) => t.toLowerCase().includes(f));
-}
+const popularne = ['kierowca', 'faktura', 'eksport', 'paragon', 'przerwa'];
 
 function LupaIcon() {
   return (
@@ -62,16 +25,31 @@ function LupaIcon() {
 }
 
 /**
- * Wyszukiwarka i cztery kategorie w jednej całości — pole filtruje karty
- * na żywo, więc wpisanie czegokolwiek daje odpowiedź od razu, bez przeładowania.
+ * Wyszukiwarka i spis artykułów.
  *
- * Kategorie bez adresu nie są odnośnikami. Dopóki nie ma za nimi artykułów,
- * karta, która wygląda jak odnośnik i nigdzie nie prowadzi, jest gorsza
- * niż karta, która o to nie prosi.
+ * Pole filtruje listę na żywo, bez przeładowania — ktoś tu trafia
+ * zniecierpliwiony i pierwsze, co widzi, ma być drogą do odpowiedzi.
+ *
+ * Kategorie bez trafień znikają w całości. Zwijanie pustego działu zamiast
+ * pokazywania nagłówka nad niczym jest tu ważniejsze niż stabilność układu:
+ * po wpisaniu „paragon" mają zostać dwa artykuły, a nie sześć nagłówków
+ * i dwa artykuły.
  */
 export function Szukaj() {
   const [fraza, setFraza] = useState('');
-  const widoczne = kategorie.filter((k) => pasuje(k, fraza));
+
+  const znalezione = useMemo(
+    () =>
+      kategorie
+        .map((k) => ({
+          kategoria: k,
+          pozycje: artykuly.filter((a) => a.kategoria === k.id && pasujeDoFrazy(a, fraza)),
+        }))
+        .filter((g) => g.pozycje.length > 0),
+    [fraza],
+  );
+
+  const razem = znalezione.reduce((suma, g) => suma + g.pozycje.length, 0);
 
   return (
     <section className="bg-paper px-6 pt-20 pb-24 lg:px-12 lg:pt-32 lg:pb-32">
@@ -102,54 +80,76 @@ export function Szukaj() {
               <button
                 key={p}
                 type="button"
-                onClick={() => setFraza(p.replace(/^jak /, ''))}
+                onClick={() => setFraza(p)}
                 className="cursor-pointer rounded-full bg-mist px-3.5 py-2 transition-colors hover:bg-line"
               >
                 {p}
               </button>
             ))}
+            {fraza && (
+              <button
+                type="button"
+                onClick={() => setFraza('')}
+                className="cursor-pointer rounded-full px-3.5 py-2 text-muted transition-colors hover:text-ink"
+              >
+                Wyczyść
+              </button>
+            )}
           </div>
         </div>
 
-        <div data-reveal-group className="grid gap-2.5 lg:grid-cols-2 lg:gap-4">
-          {widoczne.map((k) => {
-            const tresc = (
-              <>
-                <div className="text-[19px] font-semibold tracking-[-0.01em] lg:text-[22px]">
-                  {k.nazwa}
-                </div>
-                <div className="text-[15px] leading-relaxed text-muted lg:text-body">{k.opis}</div>
-              </>
-            );
+        {!fraza && (
+          <Link
+            data-reveal
+            href="/pomoc/pierwsze-kroki"
+            className="flex flex-col gap-2 rounded-card bg-ink p-6 text-paper lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-8"
+          >
+            <span className="flex flex-col gap-1.5">
+              <span className="text-[19px] font-semibold tracking-[-0.01em] lg:text-[22px]">
+                Dopiero zaczynasz?
+              </span>
+              <span className="text-[15px] leading-relaxed text-ink-muted lg:text-body">
+                Siedem kroków od konta do pierwszej faktury, do odhaczania po kolei.
+              </span>
+            </span>
+            <span className="text-[15px] font-semibold whitespace-nowrap lg:text-body">
+              Przejdź listę →
+            </span>
+          </Link>
+        )}
 
-            return k.href ? (
-              <Link
-                key={k.nazwa}
-                href={k.href}
-                data-reveal
-                className="flex min-h-36 flex-col gap-3 rounded-card border border-line bg-white p-6 text-ink shadow-card transition-colors hover:border-blue lg:p-8"
-              >
-                {tresc}
-                <div className="mt-auto text-[14px] font-semibold text-blue lg:text-[15px]">
-                  {k.href} →
-                </div>
-              </Link>
-            ) : (
-              <div
-                key={k.nazwa}
-                data-reveal
-                className="flex min-h-36 flex-col gap-3 rounded-card border border-dashed border-line bg-white/50 p-6 lg:p-8"
-              >
-                {tresc}
-                <div className="mt-auto text-[14px] text-muted lg:text-[15px]">
-                  Artykuły w przygotowaniu — napisz do nas, odpowiemy od ręki.
-                </div>
+        <div data-reveal-group className="flex flex-col gap-10 lg:gap-14">
+          {znalezione.map(({ kategoria, pozycje }) => (
+            <div key={kategoria.id} data-reveal className="flex flex-col gap-4 lg:gap-5">
+              <div className="flex flex-col gap-1">
+                <h2 className="text-h3-m font-semibold tracking-[-0.01em] lg:text-h3">
+                  {kategoria.nazwa}
+                </h2>
+                <p className="text-[15px] text-muted lg:text-body">{kategoria.opis}</p>
               </div>
-            );
-          })}
 
-          {widoczne.length === 0 && (
-            <p className="text-[16px] leading-relaxed text-muted lg:col-span-2 lg:text-body">
+              <div className="grid gap-2.5 lg:grid-cols-2 lg:gap-4">
+                {pozycje.map((a) => (
+                  <Link
+                    key={a.slug}
+                    href={`/pomoc/${a.slug}`}
+                    className="flex flex-col gap-2.5 rounded-card border border-line bg-white p-5 text-ink shadow-card transition-colors hover:border-blue lg:p-6"
+                  >
+                    <span className="text-[18px] font-semibold tracking-[-0.01em] lg:text-[20px]">
+                      {a.tytul}
+                    </span>
+                    <span className="text-[15px] leading-relaxed text-muted">{a.lead}</span>
+                    <span className="mt-auto pt-1 text-[13px] text-muted">
+                      {a.role.map((r) => NAZWY_ROL[r]).join(' · ')}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {razem === 0 && (
+            <p className="text-[16px] leading-relaxed text-muted lg:text-body">
               Nic nie pasuje do „{fraza}”. Napisz do nas — odpisujemy tego samego dnia
               roboczego.
             </p>

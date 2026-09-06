@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, IBM_Plex_Mono } from 'next/font/google';
 import { RevealObserver } from '@/components/motion/RevealObserver';
+import { PowrotNaGore } from '@/components/layout/PowrotNaGore';
 import { Analytics } from '@/components/analytics/Analytics';
 import { BanerZgody } from '@/components/analytics/BanerZgody';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -69,6 +70,7 @@ export default function RootLayout({
               "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.dataset.reveal='on'}}catch(e){}",
           }}
         />
+        <PowrotNaGore />
         {children}
         <RevealObserver />
         <BanerZgody />
