@@ -72,39 +72,22 @@ function DemoPreview() {
   );
 }
 
-/** Poniżej tej wysokości pasek zawsze wygląda normalnie — jesteśmy jeszcze w hero. */
-const HERO_END = 640;
-/** Mniejsze ruchy kółka ignorujemy, żeby pasek nie drgał. */
-const MIN_DELTA = 8;
-
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [zwinietyPrzewijaniem, setCompact] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const lastY = useRef(0);
 
-  // W dół — pasek zamienia się w listwę z akcją. W górę — wraca menu.
+  // Cień pod paskiem po zejściu z samej góry — jedyne, co pasek robi
+  // przy przewijaniu. Wcześniej zamieniał się jeszcze w ciemną listwę
+  // z akcją; zostało to usunięte, bo migotało w trakcie przewijania.
   useEffect(() => {
     let frame = 0;
 
     const measure = () => {
       frame = 0;
-      const y = window.scrollY;
-      setScrolled(y > 24);
-
-      if (y < HERO_END) {
-        lastY.current = y;
-        setCompact(false);
-        return;
-      }
-
-      const delta = y - lastY.current;
-      if (Math.abs(delta) < MIN_DELTA) return;
-      lastY.current = y;
-      setCompact(delta > 0);
+      setScrolled(window.scrollY > 24);
     };
 
     const onScroll = () => {
@@ -119,22 +102,6 @@ export function Header() {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
-
-  /**
-   * Czy pasek jest zwinięty — wyliczane, nie ustawiane efektem: stan
-   * wynikający z innego stanu nie potrzebuje dodatkowego renderu.
-   *
-   * Otwarcie menu **nie** rozjaśnia paska. Wcześniej było w tym warunku
-   * `!mobileOpen` i pasek przeskakiwał z czarnego na biały w chwili
-   * tapnięcia w hamburger — bo krzyżyk mieszkał wyłącznie w pełnym pasku
-   * i trzeba go było podstawić. Teraz obie listwy mają ten sam znak menu,
-   * więc pasek zostaje w kolorze, w którym był: ciemny po przewinięciu,
-   * jasny na górze strony.
-   *
-   * `openMega` zostaje: rozwinięte menu na desktopie jest białe i pasek
-   * musi się z nim zgrać.
-   */
-  const compact = zwinietyPrzewijaniem && !openMega;
 
   /**
    * Kliknięcie w odnośnik zamyka menu — także gdy prowadzi tam, gdzie
@@ -173,33 +140,6 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  /**
-   * Nawigacja klawiaturą rozwija pasek — na *naciśnięcie* Tab, nie na
-   * przyjęcie ogniskowania.
-   *
-   * Rozwijanie w reakcji na ogniskowanie ma wadę nie do obejścia: listwa
-   * zwarta staje się `inert` dokładnie w chwili, gdy ogniskowanie w nią
-   * trafia. Przepadało wtedy do `body`, a kolejny Tab wchodził już w treść
-   * strony — czyli po przewinięciu cała nawigacja była dla klawiatury
-   * nieosiągalna.
-   *
-   * `keydown` biegnie przed przeniesieniem ogniskowania, więc pełny pasek
-   * jest gotowy, zanim cokolwiek w niego wejdzie. Obsługuje też Shift+Tab,
-   * bo to wciąż klawisz Tab.
-   *
-   * Kliknięcia myszą świadomie nie ruszamy: ono także ustawia ogniskowanie,
-   * i to przed samym kliknięciem, więc rozwinięcie paska zabierało pierwszy
-   * klik — odnośnik znikał spod kursora i trzeba było kliknąć drugi raz.
-   */
-  useEffect(() => {
-    if (!zwinietyPrzewijaniem) return;
-    const naTab = (e: KeyboardEvent) => {
-      if (e.key === 'Tab') setCompact(false);
-    };
-    window.addEventListener('keydown', naTab);
-    return () => window.removeEventListener('keydown', naTab);
-  }, [zwinietyPrzewijaniem]);
-
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
@@ -226,28 +166,17 @@ export function Header() {
       <header
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
-        className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
-          compact
-            ? 'border-line-dark bg-ink shadow-card'
-            : mega
-              ? 'border-line bg-white shadow-card'
-              : `border-line bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
+        className={`sticky top-0 z-40 border-b border-line transition-[background-color,box-shadow] duration-300 ease-out ${
+          mega
+            ? 'bg-white shadow-card'
+            : `bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
         }`}
       >
         {/* 56 px na telefonie zamiast 64: pasek jest przyklejony, więc każdy
-              piksel jego wysokości zabiera treści miejsce na każdym ekranie.
-              Przycisk menu ma dalej 44 px, czyli tyle, ile trzeba na palec.
-              Wysokość musi zgadzać się z `top-14` panelu menu niżej. */}
-          <div className="relative mx-auto h-14 max-w-[1440px] lg:h-18">
-          {/* Pełny pasek — widoczny w hero i po przewinięciu w górę. */}
-          <div
-            inert={compact || undefined}
-            className={`absolute inset-0 flex items-center justify-between px-5 transition-opacity ease-out lg:px-12 ${
-              compact
-                ? 'pointer-events-none opacity-0 duration-200'
-                : 'opacity-100 duration-300 delay-150'
-            }`}
-          >
+            piksel jego wysokości zabiera treści miejsce na każdym ekranie.
+            Przycisk menu ma dalej 44 px, czyli tyle, ile trzeba na palec.
+            Wysokość musi zgadzać się z `top-14` panelu menu niżej. */}
+        <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 lg:h-18 lg:px-12">
           <div className="flex items-center gap-11">
             <Link
               href="/"
@@ -346,67 +275,6 @@ export function Header() {
             >
               <IkonaMenu otwarte={mobileOpen} className="bg-ink" />
             </button>
-          </div>
-          </div>
-
-          {/* Listwa z akcją — po przewinięciu w dół. Menu schodzi, bo czytelnik
-              jest już w treści; zostaje droga wejścia, której nie ma na ekranie. */}
-          <div
-            inert={!compact || undefined}
-            className={`absolute inset-0 grid grid-cols-[1fr_auto_1fr] items-center px-5 transition-opacity ease-out lg:px-12 ${
-              compact
-                ? 'opacity-100 duration-300 delay-150'
-                : 'pointer-events-none opacity-0 duration-200'
-            }`}
-          >
-            <Link
-              href="/"
-              aria-label="BusiKM — strona główna"
-              className="flex w-fit items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-paper hover:text-paper lg:text-[20px]"
-            >
-              <Logo decorative className="size-8 flex-none lg:size-9" />
-              <span className="hidden lg:inline">BusiKM</span>
-            </Link>
-
-            {/* Przy otwartym menu na telefonie ten przycisk schodzi: to samo
-                wezwanie stoi w sekcji „Zacznij", a układ zgadza się wtedy
-                z paskiem jasnym — znak i krzyżyk, nic pomiędzy.
-                Na desktopie menu mobilnego nie ma, więc przycisk zostaje. */}
-            <Link
-              href={appLinks.demo}
-              className={`h-10 items-center gap-2 rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark hover:text-white lg:flex lg:px-6 lg:text-[15px] ${
-                mobileOpen ? 'hidden' : 'flex'
-              }`}
-            >
-              Zobacz demo
-              <span aria-hidden className="text-[13px] opacity-70">
-                →
-              </span>
-            </Link>
-
-            {/* `col-start-3` jest tu konieczne, nie ozdobne: gdy przycisk demo
-                chowa się przy otwartym menu, `hidden` wyjmuje go z siatki
-                w całości i ta grupa przesuwa się do środkowej kolumny —
-                krzyżyk lądował wtedy na środku paska zamiast przy krawędzi. */}
-            <div className="col-start-3 flex items-center justify-end gap-3.5">
-              <a
-                href={appLinks.login}
-                className="hidden items-center gap-2 text-[15px] font-medium text-paper/65 transition-colors hover:text-paper lg:inline-flex"
-              >
-                <UserIcon className="size-[18px]" />
-                Zaloguj się
-              </a>
-
-              <button
-                type="button"
-                onClick={() => setMobileOpen((v) => !v)}
-                aria-label={mobileOpen ? 'Zamknij menu' : 'Menu'}
-                aria-expanded={mobileOpen}
-                className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
-              >
-                <IkonaMenu otwarte={mobileOpen} className="bg-paper" />
-              </button>
-            </div>
           </div>
         </div>
 
