@@ -75,6 +75,11 @@ export default function Page() {
               note="Telefon kierowcy z jego dokumentami i najbliższym terminem badania u góry."
               ratio="9:19.5"
               box="6:7"
+              // Zrzut ma szeroki kadr 4:3 z telefonem zajmującym 30% jego
+              // szerokości — bez powiększenia wychodzi na 158 px w kolumnie
+              // mającej 520. Ta sama wartość, co przy pozostałych telefonach.
+              imageScale={1.8}
+              imageScaleTelefon={1.8}
               dark
               noteClassName="mx-auto max-w-[520px]"
             >
