@@ -46,7 +46,20 @@ function Kolumna({ cyfra, widoczna }: { cyfra: number; widoczna: boolean }) {
   return (
     <span
       aria-hidden
-      className="relative inline-block overflow-hidden align-top transition-[width,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      /*
+        `leading-none` jest tu konieczne, nie kosmetyczne.
+
+        Kolumna ma sztywną wysokość `1em` i chowa nadmiar, żeby cyfra mogła
+        z niej wyjeżdżać. Wysokość wiersza dziedziczy się jednak z otoczenia
+        i przy `text-[40px]`, które ustawia sam rozmiar pisma, wychodziła
+        z `body` równa 1,6 — wiersz miał wtedy 64 px w kolumnie wysokiej na
+        40 i cyfra była ucięta u góry i u dołu.
+
+        Na desktopie tego nie było widać, bo `text-5xl` ustawia rozmiar
+        **razem** z wysokością wiersza równą 1. Stąd usterka wyłącznie
+        na telefonie.
+      */
+      className="relative inline-block overflow-hidden leading-none align-top transition-[width,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{ height: '1em', width: widoczna ? '0.62em' : '0em', opacity: widoczna ? 1 : 0 }}
     >
       {/* Klucz z numerem obrotu wymusza ponowne uruchomienie animacji przy
