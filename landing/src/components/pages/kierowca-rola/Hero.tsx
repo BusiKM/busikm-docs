@@ -45,6 +45,11 @@ export function Hero() {
             ratio="2 × 9:19.5"
             box="16:10"
             imageScale={1.35}
+            // Zrzut jest w proporcjach 4:3, więc w pudle 16:10 ogranicza go
+            // wysokość i po bokach zostaje pusty margines. Powiększenie działa
+            // tu także na telefonie — poza ekran wychodzi sam ten margines,
+            // a bez niego telefony wyszłyby niepotrzebnie małe.
+            waskiWPudle
             dark
             noteClassName="mx-auto max-w-[600px]"
           >

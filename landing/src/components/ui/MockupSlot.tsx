@@ -64,14 +64,26 @@ type MockupSlotProps = {
    * symetrycznie w górę i w dół — na ciemnym tle to niewidoczne, a notki
    * „do podmiany" i tak już nie ma, bo zrzut istnieje.
    *
-   * **Działa dopiero od `lg`.** Powiększenie ma sens wyłącznie tam, gdzie
-   * wąski telefon stoi obok szerokich ekranów przeglądarki i trzeba wyrównać
-   * wrażenie. Na telefonie makieta zajmuje całą szerokość i nie ma z czym jej
-   * równać, a skala 1,5 rozpychała obraz o ponad sto pikseli poza ekran —
-   * zmierzone przy 375 px. Pionowo nadmiar ginie w ciemnym tle, poziomo
-   * przycinał treść zrzutu.
+   * **Na telefonie działa tylko z `waskiWPudle`.** Zmierzone przy 375 px:
+   * wszędzie tam, gdzie pudło ma proporcje samego obrazu, powiększenie robi
+   * celowy wylew poza kadr — na desktopie wygląda dobrze, na telefonie
+   * uciekało z ekranu o 66 do 214 px i przycinało treść zrzutu. Pionowo
+   * nadmiar ginie w ciemnym tle, poziomo nie ma gdzie.
    */
   imageScale?: number;
+  /**
+   * Obraz jest smuklejszy niż pudło, w którym stoi.
+   *
+   * Dotyczy zrzutów telefonu wstawionych w pudło o proporcjach ekranu
+   * przeglądarki: ogranicza je wysokość, więc zostaje mnóstwo miejsca po
+   * bokach i powiększenie nie ma jak wyjść poza ekran. Tylko w tym układzie
+   * `imageScale` działa również na telefonie — bez tego telefon wychodziłby
+   * tam znacząco mniejszy, bo pudło 16:10 ścina go do wysokości.
+   *
+   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr
+   * i na wąskim ekranie nie ma dokąd się wylać.
+   */
+  waskiWPudle?: boolean;
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
@@ -94,6 +106,7 @@ export function MockupSlot({
   ratio,
   box,
   imageScale,
+  waskiWPudle = false,
   children,
   dark = false,
   noteClassName = '',
@@ -142,7 +155,11 @@ export function MockupSlot({
           fill
           sizes="(max-width: 1024px) 100vw, 1120px"
           className={`object-contain ${
-            imageScale ? 'pointer-events-none scale-100 lg:scale-(--powiekszenie)' : ''
+            imageScale
+              ? `pointer-events-none ${
+                  waskiWPudle ? 'scale-(--powiekszenie)' : 'scale-100 lg:scale-(--powiekszenie)'
+                }`
+              : ''
           }`}
           style={
             imageScale
