@@ -25,6 +25,17 @@ import {
 
 const CARET = '▾';
 
+/** Do tej wysokości pasek jest zawsze widoczny — jesteśmy jeszcze przy górze. */
+const PRZY_GORZE = 80;
+/**
+ * Mniejsze ruchy ignorujemy.
+ *
+ * Bez tego progu pasek reagowałby na każde drgnięcie kółka i przy zwykłym
+ * czytaniu chowałby się i wracał kilka razy na sekundę. Osiem pikseli to
+ * mniej niż jeden „klik" kółka i mniej niż przypadkowy ruch kciuka.
+ */
+const PROG_KIERUNKU = 8;
+
 /** Znak logowania — prosta sylwetka, bez wypełnienia. */
 function UserIcon({ className = '' }: { className?: string }) {
   return (
@@ -77,17 +88,38 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [zjechal, setZjechal] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const ostatnieY = useRef(0);
 
-  // Cień pod paskiem po zejściu z samej góry — jedyne, co pasek robi
-  // przy przewijaniu. Wcześniej zamieniał się jeszcze w ciemną listwę
-  // z akcją; zostało to usunięte, bo migotało w trakcie przewijania.
+  /**
+   * Pasek chowa się przy przewijaniu w dół i wraca przy przewijaniu w górę.
+   *
+   * Czytanie w dół to ruch kciuka w górę — wtedy pasek nie jest potrzebny
+   * i oddaje miejsce treści. Ruch kciuka w dół, czyli powrót w górę strony,
+   * zwykle znaczy „szukam nawigacji", więc pasek wraca od razu, bez czekania
+   * na dojechanie na samą górę.
+   *
+   * Przy górze strony jest widoczny zawsze, niezależnie od kierunku.
+   */
   useEffect(() => {
     let frame = 0;
 
     const measure = () => {
       frame = 0;
-      setScrolled(window.scrollY > 24);
+      const y = window.scrollY;
+      setScrolled(y > 24);
+
+      if (y <= PRZY_GORZE) {
+        ostatnieY.current = y;
+        setZjechal(false);
+        return;
+      }
+
+      const roznica = y - ostatnieY.current;
+      if (Math.abs(roznica) < PROG_KIERUNKU) return;
+      ostatnieY.current = y;
+      setZjechal(roznica > 0);
     };
 
     const onScroll = () => {
@@ -156,6 +188,15 @@ export function Header() {
     return () => window.removeEventListener('pointerdown', onPointerDown);
   }, [openMega]);
 
+  /**
+   * Otwarte menu zatrzymuje pasek na miejscu.
+   *
+   * Panel na telefonie zaczyna się tuż pod paskiem i jest do niego
+   * przypięty, a krzyżyk zamykający siedzi w samym pasku — schowanie go
+   * zabrałoby jedyne wyjście z otwartego menu.
+   */
+  const schowany = zjechal && !mobileOpen && !openMega;
+
   const mega = navigation.find(
     (e): e is Extract<NavEntry, { kind: 'mega' }> =>
       e.kind === 'mega' && e.label === openMega,
@@ -166,7 +207,26 @@ export function Header() {
       <header
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
-        className={`sticky top-0 z-40 border-b border-line transition-[background-color,box-shadow] duration-300 ease-out ${
+        /*
+          Wejście klawiaturą wyciąga schowany pasek z powrotem — inaczej
+          ogniskowanie trafiałoby w odnośniki stojące poza ekranem.
+
+          Tym razem jest to bezpieczne, w odróżnieniu od poprzedniej wersji
+          z ciemną listwą: pokazanie paska nie zamienia go na inny i niczego
+          nie robi `inert`, więc nie ma jak zabrać kliknięcia ani zgubić
+          ogniskowania. Myszą i tak nie da się kliknąć paska, którego nie
+          ma na ekranie.
+        */
+        onFocusCapture={() => setZjechal(false)}
+        /*
+          `translate`, nie `transform`. Tailwind 4 nie składa już `transform`,
+          tylko ustawia osobne właściwości, więc `-translate-y-full` daje
+          `translate: 0 -100%`. Animowanie `transform` nie robiło tu
+          niczego — pasek przeskakiwał w jednej klatce. Zmierzone.
+        */
+        className={`sticky top-0 z-40 border-b border-line transition-[translate,background-color,box-shadow] duration-300 ease-out ${
+          schowany ? '-translate-y-full' : 'translate-y-0'
+        } ${
           mega
             ? 'bg-white shadow-card'
             : `bg-white/86 backdrop-blur-[20px] backdrop-saturate-[180%] ${scrolled ? 'shadow-card' : ''}`
