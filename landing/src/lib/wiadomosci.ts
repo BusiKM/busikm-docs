@@ -1,7 +1,14 @@
 import { getDb, firebaseGotowy } from '@/lib/firebase';
 import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY } from '@/content/zgoda';
+import type { Jezyk } from '@/i18n/jezyki';
 
-/** Tematy z formularza. Ten sam zestaw waliduje `firestore.rules`. */
+/**
+ * Tematy z formularza. Ten sam zestaw waliduje `firestore.rules`.
+ *
+ * To identyfikatory, nie etykiety: do bazy i do powiadomienia trafiają
+ * zawsze po polsku, także z formularza angielskiego. Etykiety do pokazania
+ * człowiekowi trzyma `components/pages/kontakt/Formularz.tsx`.
+ */
 export const tematy = [
   'pytanie przed zakupem',
   'pomoc techniczna',
@@ -22,6 +29,8 @@ export type Wiadomosc = {
    * byłoby warunkowaniem zakazanym przez art. 7 ust. 4 RODO.
    */
   zgoda: boolean;
+  /** Język formularza — i brzmienia zgody, jeśli padła. */
+  jezyk: Jezyk;
   /** Ukryte pole antyspamowe — musi zostać puste. */
   pulapka?: string;
 };
@@ -55,10 +64,11 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
     temat: dane.temat,
     tresc: dane.tresc.trim().slice(0, LIMITY.tresc),
     zgoda: dane.zgoda,
+    jezyk: dane.jezyk,
     // Brzmienie zapisujemy tylko wtedy, gdy zgoda faktycznie padła — pusty
     // dowód przy braku zgody byłby mylący przy późniejszym eksporcie.
     ...(dane.zgoda
-      ? { trescZgody: TRESC_ZGODY, wersjaZgody: WERSJA_ZGODY, kanalZgody: KANAL_ZGODY }
+      ? { trescZgody: TRESC_ZGODY[dane.jezyk], wersjaZgody: WERSJA_ZGODY, kanalZgody: KANAL_ZGODY }
       : {}),
   };
 
@@ -81,6 +91,7 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
         // Trasa musi wiedzieć o zgodzie, bo tylko przy niej wolno dopisać
         // adres do listy. Bez zgody zostaje w bazie i służy do odpowiedzi.
         zgoda: oczyszczone.zgoda,
+        jezyk: oczyszczone.jezyk,
       }),
     });
   } catch {

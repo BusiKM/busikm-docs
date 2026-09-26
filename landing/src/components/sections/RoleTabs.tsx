@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useJezyk } from '@/i18n/klient';
 
 export type Role = {
   name: string;
@@ -13,6 +14,7 @@ export type Role = {
 
 /** Zakładki ról. Stan trzymany po stronie klienta, treść przychodzi z serwera. */
 export function RoleTabs({ roles }: { roles: Role[] }) {
+  const jezyk = useJezyk();
   const [active, setActive] = useState(0);
   const role = roles[active];
 
@@ -31,7 +33,7 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
       <div className="flex min-w-0 flex-col gap-6 lg:gap-10">
         <div
           role="tablist"
-          aria-label="Role w BusiKM"
+          aria-label={jezyk === 'pl' ? 'Role w BusiKM' : 'Roles in BusiKM'}
           /*
             Cztery równe kolumny zamiast przewijanej listy. Przewijanie było
             tu ślepym zaułkiem: „Kierowca" wystawał poza ekran i nic nie

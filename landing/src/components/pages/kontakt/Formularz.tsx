@@ -1,18 +1,106 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
-import { wyslijWiadomosc, tematy, LIMITY } from '@/lib/wiadomosci';
+import { wyslijWiadomosc, tematy, LIMITY, type Temat } from '@/lib/wiadomosci';
 import { TRESC_ZGODY } from '@/content/zgoda';
 import { Wymagane } from '@/components/ui/Wymagane';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
 
 const pole =
   'h-13 w-full rounded-btn border border-line bg-white px-4 text-[16px] outline-none placeholder:text-muted focus:border-blue lg:text-body';
 
 type Stan = 'gotowy' | 'wysyłam' | 'wysłane' | 'błąd';
+
+const TEKSTY: Tlumaczenia<{
+  /** Etykiety tematów. Do bazy idzie klucz — polski, jak w `lib/wiadomosci`. */
+  tematy: Record<Temat, string>;
+  poszla: string;
+  odpowiadamy: [string, string];
+  jeszczeRaz: string;
+  imie: string;
+  imieWzor: string;
+  email: string;
+  emailWzor: string;
+  czegoDotyczy: string;
+  wiadomosc: string;
+  wiadomoscWzor: string;
+  wymagane: string;
+  pulapka: string;
+  wysylam: string;
+  wyslij: string;
+  blad: [string, string];
+  daneTylko: string;
+  prywatnosc: string;
+  pocztowy: string;
+}> = {
+  pl: {
+    tematy: {
+      'pytanie przed zakupem': 'pytanie przed zakupem',
+      'pomoc techniczna': 'pomoc techniczna',
+      'rozliczenia i faktury': 'rozliczenia i faktury',
+      'coś innego': 'coś innego',
+    },
+    poszla: 'Wiadomość poszła.',
+    odpowiadamy: [
+      'Odpowiadamy tego samego dnia roboczego, na adres, który podałeś. Jeśli sprawa jest pilna, napisz wprost na',
+      '.',
+    ],
+    jeszczeRaz: 'Napisz jeszcze raz',
+    imie: 'Imię',
+    imieWzor: 'Marek',
+    email: 'Adres e-mail',
+    emailWzor: 'marek@twojafirma.pl',
+    czegoDotyczy: 'Czego dotyczy',
+    wiadomosc: 'Wiadomość',
+    wiadomoscWzor: 'Napisz, co się dzieje albo o co chcesz zapytać.',
+    wymagane: 'pola wymagane',
+    pulapka: 'Nie wypełniaj tego pola',
+    wysylam: 'Wysyłam…',
+    wyslij: 'Wyślij wiadomość',
+    blad: ['Nie udało się wysłać. Napisz wprost na', '— ta droga działa zawsze.'],
+    daneTylko:
+      'Odpowiadamy na podany adres. Twoje dane wykorzystujemy wyłącznie do odpowiedzi na tę wiadomość —',
+    prywatnosc: 'polityka prywatności',
+    pocztowy:
+      'Otworzy się Twój program pocztowy z gotową wiadomością. Odpowiadamy na ten sam adres, z którego piszesz.',
+  },
+  en: {
+    tematy: {
+      'pytanie przed zakupem': 'question before buying',
+      'pomoc techniczna': 'technical help',
+      'rozliczenia i faktury': 'billing and invoices',
+      'coś innego': 'something else',
+    },
+    poszla: 'Message sent.',
+    odpowiadamy: [
+      'We reply the same working day, to the address you gave. If it’s urgent, write to us directly at',
+      '.',
+    ],
+    jeszczeRaz: 'Write again',
+    imie: 'First name',
+    imieWzor: 'Mark',
+    email: 'Email address',
+    emailWzor: 'mark@yourcompany.com',
+    czegoDotyczy: 'What’s it about',
+    wiadomosc: 'Message',
+    wiadomoscWzor: 'Tell us what’s happening or what you’d like to ask.',
+    wymagane: 'required fields',
+    pulapka: 'Do not fill in this field',
+    wysylam: 'Sending…',
+    wyslij: 'Send message',
+    blad: ['That didn’t send. Write to us directly at', '— that always works.'],
+    daneTylko:
+      'We reply to the address you gave. We use your details only to answer this message —',
+    prywatnosc: 'privacy policy',
+    pocztowy:
+      'Your email app will open with the message ready. We reply to the address you write from.',
+  },
+};
 
 /**
  * Formularz kontaktowy.
@@ -28,6 +116,8 @@ type Stan = 'gotowy' | 'wysyłam' | 'wysłane' | 'błąd';
  * „dziękujemy", nie mając gdzie jej zapisać.
  */
 export function Formularz() {
+  const jezyk = useJezyk();
+  const t = TEKSTY[jezyk];
   const [imie, setImie] = useState('');
   const [mail, setMail] = useState('');
   const [temat, setTemat] = useState(0);
@@ -42,7 +132,7 @@ export function Formularz() {
     const podpis = [imie && `— ${imie}`, mail].filter(Boolean).join('\n');
     const body = [tresc, podpis].filter(Boolean).join('\n\n');
     return `mailto:${firma.email}?subject=${encodeURIComponent(
-      `BusiKM · ${tematy[temat]}`,
+      `BusiKM · ${t.tematy[tematy[temat]]}`,
     )}&body=${encodeURIComponent(body)}`;
   };
 
@@ -57,6 +147,7 @@ export function Formularz() {
         temat: tematy[temat],
         tresc,
         zgoda,
+        jezyk,
         pulapka,
       });
       setStan('wysłane');
@@ -75,21 +166,20 @@ export function Formularz() {
         role="status"
         className="flex flex-col gap-3 rounded-card border border-line bg-mist p-6 lg:p-8"
       >
-        <div className="text-[19px] font-semibold lg:text-h3">Wiadomość poszła.</div>
+        <div className="text-[19px] font-semibold lg:text-h3">{t.poszla}</div>
         <p className="text-[16px] leading-relaxed text-muted lg:text-body">
-          Odpowiadamy tego samego dnia roboczego, na adres, który podałeś. Jeśli sprawa
-          jest pilna, napisz wprost na{' '}
+          {t.odpowiadamy[0]}{' '}
           <a href={`mailto:${firma.email}`} className="text-blue">
             {firma.email}
           </a>
-          .
+          {t.odpowiadamy[1]}
         </p>
         <button
           type="button"
           onClick={() => setStan('gotowy')}
           className="self-start text-[15px] font-semibold text-blue lg:text-body"
         >
-          Napisz jeszcze raz
+          {t.jeszczeRaz}
         </button>
       </div>
     );
@@ -99,14 +189,14 @@ export function Formularz() {
     <form onSubmit={wyslij} className="flex flex-col gap-5 lg:gap-6">
       <label className="flex flex-col gap-2">
         <span className="text-[14px] font-medium lg:text-caption">
-          Imię
+          {t.imie}
           <Wymagane />
         </span>
         <input
           value={imie}
           onChange={(e) => setImie(e.target.value)}
           maxLength={LIMITY.imie}
-          placeholder="Marek"
+          placeholder={t.imieWzor}
           required
           className={pole}
         />
@@ -114,7 +204,7 @@ export function Formularz() {
 
       <label className="flex flex-col gap-2">
         <span className="text-[14px] font-medium lg:text-caption">
-          Adres e-mail
+          {t.email}
           <Wymagane />
         </span>
         <input
@@ -122,18 +212,18 @@ export function Formularz() {
           value={mail}
           onChange={(e) => setMail(e.target.value)}
           maxLength={LIMITY.email}
-          placeholder="marek@twojafirma.pl"
+          placeholder={t.emailWzor}
           required
           className={pole}
         />
       </label>
 
       <fieldset className="flex flex-col gap-2.5">
-        <legend className="mb-2.5 text-[14px] font-medium lg:text-caption">Czego dotyczy</legend>
+        <legend className="mb-2.5 text-[14px] font-medium lg:text-caption">{t.czegoDotyczy}</legend>
         <div className="flex flex-wrap gap-2">
-          {tematy.map((t, i) => (
+          {tematy.map((klucz, i) => (
             <button
-              key={t}
+              key={klucz}
               type="button"
               aria-pressed={i === temat}
               onClick={() => setTemat(i)}
@@ -143,7 +233,7 @@ export function Formularz() {
                   : 'border-line bg-white text-ink hover:border-muted'
               }`}
             >
-              {t}
+              {t.tematy[klucz]}
             </button>
           ))}
         </div>
@@ -151,7 +241,7 @@ export function Formularz() {
 
       <label className="flex flex-col gap-2">
         <span className="text-[14px] font-medium lg:text-caption">
-          Wiadomość
+          {t.wiadomosc}
           <Wymagane />
         </span>
         <textarea
@@ -159,7 +249,7 @@ export function Formularz() {
           onChange={(e) => setTresc(e.target.value)}
           rows={6}
           maxLength={LIMITY.tresc}
-          placeholder="Napisz, co się dzieje albo o co chcesz zapytać."
+          placeholder={t.wiadomoscWzor}
           required
           className="w-full resize-y rounded-btn border border-line bg-white px-4 py-3.5 text-[16px] leading-relaxed outline-none placeholder:text-muted focus:border-blue lg:text-body"
         />
@@ -168,7 +258,7 @@ export function Formularz() {
 
       {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
       <p className="text-[12px] text-muted">
-        <span aria-hidden className="text-red-ink">*</span> pola wymagane
+        <span aria-hidden className="text-red-ink">*</span> {t.wymagane}
       </p>
 
       {/*
@@ -178,7 +268,7 @@ export function Formularz() {
       */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
-          Nie wypełniaj tego pola
+          {t.pulapka}
           <input
             tabIndex={-1}
             autoComplete="off"
@@ -202,7 +292,7 @@ export function Formularz() {
             onChange={(e) => setZgoda(e.target.checked)}
             className="mt-0.5 size-4.5 flex-none accent-blue"
           />
-          <span>{TRESC_ZGODY}</span>
+          <span>{TRESC_ZGODY[jezyk]}</span>
         </label>
       )}
 
@@ -213,7 +303,7 @@ export function Formularz() {
             disabled={!kompletne || stan === 'wysyłam'}
             className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark disabled:cursor-not-allowed disabled:bg-line disabled:text-muted lg:h-14 lg:self-start lg:text-body"
           >
-            {stan === 'wysyłam' ? 'Wysyłam…' : 'Wyślij wiadomość'}
+            {stan === 'wysyłam' ? t.wysylam : t.wyslij}
           </button>
         ) : (
           // Prawdziwy odnośnik, nie przycisk: działa prawy przycisk myszy,
@@ -222,32 +312,30 @@ export function Formularz() {
             href={linkPocztowy()}
             className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark lg:h-14 lg:self-start lg:text-body"
           >
-            Wyślij wiadomość
+            {t.wyslij}
           </a>
         )}
 
         <p aria-live="polite" className="text-[13px] leading-relaxed text-muted lg:text-caption">
           {stan === 'błąd' ? (
             <span className="text-ink">
-              Nie udało się wysłać. Napisz wprost na{' '}
+              {t.blad[0]}{' '}
               <a href={linkPocztowy()} className="text-blue">
                 {firma.email}
               </a>{' '}
-              — ta droga działa zawsze.
+              {t.blad[1]}
             </span>
           ) : firebaseGotowy ? (
             <>
-              Odpowiadamy na podany adres. Twoje dane wykorzystujemy wyłącznie do
-              odpowiedzi na tę wiadomość —{' '}
+              {t.daneTylko}{' '}
               <Link href="/prywatnosc" className="text-blue">
-                polityka prywatności
+                {t.prywatnosc}
               </Link>
               .
             </>
           ) : (
             <>
-              Otworzy się Twój program pocztowy z gotową wiadomością. Odpowiadamy na ten
-              sam adres, z którego piszesz.
+              {t.pocztowy}
             </>
           )}
         </p>

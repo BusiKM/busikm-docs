@@ -1,7 +1,38 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+/** Która kolumna ma w tle kreskę trasy. Kolejność jak w `kolumny` niżej. */
+const Z_MAPA = [false, true, false] as const;
+
+const TEKSTY: Tlumaczenia<{
+  naglowek: string;
+  lead: string;
+  kolumny: readonly (readonly [string, string])[];
+}> = {
+  pl: {
+    naglowek: 'Jeden ekran zamiast czterech okien',
+    lead: 'Po lewej zlecenia, w środku mapa, po prawej kierowca. Wszystko widać naraz.',
+    kolumny: [
+      ['Po lewej', 'Zlecenia'],
+      ['W środku', 'Mapa'],
+      ['Po prawej', 'Kierowca'],
+    ],
+  },
+  en: {
+    naglowek: 'One screen instead of four windows',
+    lead: 'Orders on the left, the map in the middle, the driver on the right. Everything in view at once.',
+    kolumny: [
+      ['On the left', 'Orders'],
+      ['In the middle', 'Map'],
+      ['On the right', 'Driver'],
+    ],
+  },
+};
 
 /** 01 — trzy kolumny jednego ekranu, każda jako osobna karta. */
 export function JedenEkran() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section tone="ink">
       <div className="flex flex-col gap-10 lg:gap-20">
@@ -14,11 +45,11 @@ export function JedenEkran() {
               01
             </div>
             <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-              Jeden ekran zamiast czterech okien
+              {t.naglowek}
             </h2>
           </div>
           <p data-reveal className="text-lead-m text-ink-muted lg:text-lead">
-            Po lewej zlecenia, w środku mapa, po prawej kierowca. Wszystko widać naraz.
+            {t.lead}
           </p>
         </div>
 
@@ -26,17 +57,13 @@ export function JedenEkran() {
           data-reveal-group
           className="grid gap-2.5 lg:grid-cols-[1fr_1.4fr_1fr] lg:gap-4"
         >
-          {[
-            ['Po lewej', 'Zlecenia', false],
-            ['W środku', 'Mapa', true],
-            ['Po prawej', 'Kierowca', false],
-          ].map(([gdzie, co, zMapa]) => (
+          {t.kolumny.map(([gdzie, co], i) => (
             <div
-              key={co as string}
+              key={co}
               data-reveal
               className="relative flex min-h-35 flex-col justify-between gap-6 overflow-hidden rounded-card border border-line-dark bg-surface p-6 lg:min-h-50 lg:p-8"
             >
-              {zMapa && (
+              {Z_MAPA[i] && (
                 <svg
                   viewBox="0 0 300 200"
                   preserveAspectRatio="none"

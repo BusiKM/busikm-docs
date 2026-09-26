@@ -1,14 +1,46 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { Eyebrow } from '@/components/ui/Section';
 import { firma } from '@/content/firma';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
 
 const ADRES = firma.email;
 
+const TEKSTY: Tlumaczenia<{
+  napiszWprost: string;
+  skopiowano: string;
+  kliknij: string;
+  zanim: string;
+  odpowiedz: string;
+  pomoc: string;
+  daneFirmy: string;
+}> = {
+  pl: {
+    napiszWprost: 'Napisz wprost',
+    skopiowano: 'skopiowano',
+    kliknij: 'kliknij, aby skopiować',
+    zanim: 'Zanim napiszesz',
+    odpowiedz: 'Odpowiedź może już być w centrum pomocy.',
+    pomoc: '/pomoc →',
+    daneFirmy: 'Dane firmy',
+  },
+  en: {
+    napiszWprost: 'Write to us directly',
+    skopiowano: 'copied',
+    kliknij: 'click to copy',
+    zanim: 'Before you write',
+    odpowiedz: 'The answer may already be in the help centre.',
+    pomoc: '/help →',
+    daneFirmy: 'Company details',
+  },
+};
+
 /** Adres do skopiowania jednym kliknięciem, bez wchodzenia w formularz. */
 export function Adres() {
+  const t = TEKSTY[useJezyk()];
   const [skopiowane, setSkopiowane] = useState(false);
 
   const kopiuj = async () => {
@@ -24,7 +56,7 @@ export function Adres() {
   return (
     <div className="flex flex-col gap-6 lg:gap-8">
       <div className="flex flex-col gap-3 rounded-card border border-line bg-white p-6 lg:p-8">
-        <Eyebrow>Napisz wprost</Eyebrow>
+        <Eyebrow>{t.napiszWprost}</Eyebrow>
         <button
           type="button"
           onClick={kopiuj}
@@ -35,22 +67,22 @@ export function Adres() {
         <span
           className={`text-[13px] lg:text-caption ${skopiowane ? 'font-semibold text-green-ink' : 'text-muted'}`}
         >
-          {skopiowane ? 'skopiowano' : 'kliknij, aby skopiować'}
+          {skopiowane ? t.skopiowano : t.kliknij}
         </span>
       </div>
 
       <div className="flex flex-col gap-3 rounded-card border border-line bg-white p-6 lg:p-8">
-        <Eyebrow>Zanim napiszesz</Eyebrow>
+        <Eyebrow>{t.zanim}</Eyebrow>
         <p className="text-[16px] leading-relaxed text-muted lg:text-body">
-          Odpowiedź może już być w centrum pomocy.
+          {t.odpowiedz}
         </p>
         <Link href="/pomoc" className="text-[15px] font-semibold text-blue">
-          /pomoc →
+          {t.pomoc}
         </Link>
       </div>
 
       <div className="flex flex-col gap-3 p-6 lg:p-8">
-        <Eyebrow>Dane firmy</Eyebrow>
+        <Eyebrow>{t.daneFirmy}</Eyebrow>
         <div className="text-[14px] leading-relaxed text-muted lg:text-caption">
           {firma.nazwa}
           <br />

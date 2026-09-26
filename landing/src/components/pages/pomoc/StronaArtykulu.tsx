@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
@@ -6,6 +6,52 @@ import { SpisRozdzialow } from '@/components/pages/pomoc/SpisRozdzialow';
 import { firma } from '@/content/firma';
 import { artykulPoSlugu, kategorie } from '@/content/pomoc';
 import { kotwicaRozdzialu, NAZWY_ROL, type Artykul, type Blok } from '@/content/pomoc/typy';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  uwaga: string;
+  wkrotce: string;
+  sciezka: string;
+  pomoc: string;
+  dlaKogo: string;
+  gdzie: string;
+  ileZajmie: string;
+  zanim: string;
+  dalej: string;
+  wroc: string;
+  niezgodnosc: string;
+  napisz: string;
+}> = {
+  pl: {
+    uwaga: 'Uwaga',
+    wkrotce: 'Jeszcze tego nie ma',
+    sciezka: 'Ścieżka',
+    pomoc: 'Pomoc',
+    dlaKogo: 'Dla kogo',
+    gdzie: 'Gdzie',
+    ileZajmie: 'Ile zajmie',
+    zanim: 'Przygotuj przed startem',
+    dalej: 'Dalej przyda się',
+    wroc: '← Wróć do centrum pomocy',
+    niezgodnosc: 'Coś tu nie zgadza się z tym, co widzisz na ekranie?',
+    napisz: 'Napisz',
+  },
+  en: {
+    uwaga: 'Note',
+    wkrotce: 'Not available yet',
+    sciezka: 'Breadcrumb',
+    pomoc: 'Help',
+    dlaKogo: 'Who it’s for',
+    gdzie: 'Where',
+    ileZajmie: 'Time needed',
+    zanim: 'Have these ready',
+    dalej: 'Useful next',
+    wroc: '← Back to the help centre',
+    niezgodnosc: 'Something here doesn’t match what you see on screen?',
+    napisz: 'Tell us',
+  },
+};
 
 /** Szerokość wiersza pilnowana w znakach — tak się mierzy czytelność. */
 const KOLUMNA = 'max-w-[62ch]';
@@ -50,6 +96,7 @@ function Kroki({ kroki }: { kroki: { tytul: string; opis?: string }[] }) {
  * i musi wyglądać inaczej, żeby nikt nie szukał opisanego przycisku.
  */
 function Wyroznienie({ typ, tresc }: { typ: 'uwaga' | 'wkrotce'; tresc: string }) {
+  const t = TEKSTY[biezacyJezyk()];
   const uwaga = typ === 'uwaga';
 
   return (
@@ -63,7 +110,7 @@ function Wyroznienie({ typ, tresc }: { typ: 'uwaga' | 'wkrotce'; tresc: string }
           uwaga ? 'text-blue-dark' : 'text-muted'
         }`}
       >
-        {uwaga ? 'Uwaga' : 'Jeszcze tego nie ma'}
+        {uwaga ? t.uwaga : t.wkrotce}
       </div>
       <p className="text-pretty">{tresc}</p>
     </div>
@@ -153,9 +200,11 @@ function Znacznik({ etykieta, wartosc }: { etykieta: string; wartosc: string }) 
  * (rozdziały). Dopiero na końcu — dokąd dalej.
  */
 export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
-  const kategoria = kategorie.find((k) => k.id === artykul.kategoria);
+  const jezyk = biezacyJezyk();
+  const t = TEKSTY[jezyk];
+  const kategoria = kategorie[jezyk].find((k) => k.id === artykul.kategoria);
   const powiazane = (artykul.powiazane ?? [])
-    .map(artykulPoSlugu)
+    .map((slug) => artykulPoSlugu(slug, jezyk))
     .filter((a): a is Artykul => Boolean(a));
 
   return (
@@ -164,9 +213,9 @@ export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
       <main className="bg-paper px-6 pt-16 pb-20 lg:px-12 lg:pt-24 lg:pb-28">
         <Container className="flex flex-col gap-10 lg:gap-14">
           <div className="flex flex-col gap-4 lg:gap-5">
-            <nav aria-label="Ścieżka" className="flex items-center gap-3 text-[14px] text-muted">
+            <nav aria-label={t.sciezka} className="flex items-center gap-3 text-[14px] text-muted">
               <Link href="/pomoc" className="text-muted hover:text-ink">
-                Pomoc
+                {t.pomoc}
               </Link>
               <span aria-hidden>›</span>
               <span className="font-medium tracking-[0.1em] uppercase">{kategoria?.nazwa}</span>
@@ -184,11 +233,11 @@ export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
             <div className="flex min-w-0 flex-col gap-10 lg:gap-14">
               <div className="flex flex-wrap gap-x-10 gap-y-5 border-y border-line py-5">
                 <Znacznik
-                  etykieta="Dla kogo"
-                  wartosc={artykul.role.map((r) => NAZWY_ROL[r]).join(' · ')}
+                  etykieta={t.dlaKogo}
+                  wartosc={artykul.role.map((r) => NAZWY_ROL[jezyk][r]).join(' · ')}
                 />
-                {artykul.gdzie && <Znacznik etykieta="Gdzie" wartosc={artykul.gdzie} />}
-                {artykul.czas && <Znacznik etykieta="Ile zajmie" wartosc={artykul.czas} />}
+                {artykul.gdzie && <Znacznik etykieta={t.gdzie} wartosc={artykul.gdzie} />}
+                {artykul.czas && <Znacznik etykieta={t.ileZajmie} wartosc={artykul.czas} />}
               </div>
 
               {artykul.zanim && (
@@ -196,7 +245,7 @@ export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
                   className={`${KOLUMNA} flex flex-col gap-3.5 rounded-card bg-blue-soft p-6 lg:p-8`}
                 >
                   <div className="text-[12px] font-medium tracking-[0.1em] text-blue-dark uppercase">
-                    Przygotuj przed startem
+                    {t.zanim}
                   </div>
                   <ul className="flex flex-col gap-2 text-[16px] leading-relaxed text-pretty lg:text-body">
                     {artykul.zanim.map((z) => (
@@ -231,7 +280,7 @@ export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
               {powiazane.length > 0 && (
                 <div className="flex flex-col gap-4 border-t border-line pt-8">
                   <div className="text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-                    Dalej przyda się
+                    {t.dalej}
                   </div>
                   <div className="grid gap-2.5 lg:grid-cols-2 lg:gap-4">
                     {powiazane.map((a) => (
@@ -252,12 +301,12 @@ export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
 
               <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-[15px] lg:text-body">
                 <Link href="/pomoc" className="font-medium text-ink hover:text-blue">
-                  ← Wróć do centrum pomocy
+                  {t.wroc}
                 </Link>
                 <span className="text-muted">
-                  Coś tu nie zgadza się z tym, co widzisz na ekranie?{' '}
+                  {t.niezgodnosc}{' '}
                   <a href={`mailto:${firma.email}`} className="text-blue">
-                    Napisz
+                    {t.napisz}
                   </a>
                   .
                 </span>

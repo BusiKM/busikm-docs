@@ -1,3 +1,6 @@
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
 /**
  * Odznaki App Store i Google Play — prawdziwe znaki sklepów.
  *
@@ -34,11 +37,12 @@ function GooglePlayMark({ className = '' }: { className?: string }) {
 }
 
 const stores = [
-  { lead: 'Pobierz w', name: 'App Store', href: null as string | null },
-  { lead: 'Pobierz z', name: 'Google Play', href: null as string | null },
-];
+  { lead: { pl: 'Pobierz w', en: 'Download on the' }, name: 'App Store', href: null as string | null },
+  { lead: { pl: 'Pobierz z', en: 'Get it on' }, name: 'Google Play', href: null as string | null },
+] satisfies { lead: Tlumaczenia<string>; name: string; href: string | null }[];
 
 export function StoreBadges() {
+  const jezyk = biezacyJezyk();
   return (
     <div className="flex gap-2.5 lg:gap-3">
       {stores.map((store) => {
@@ -50,7 +54,7 @@ export function StoreBadges() {
               <GooglePlayMark className="size-5 lg:size-[22px]" />
             )}
             <div className="text-left leading-tight">
-              <div className="text-[10px] text-ink-muted">{store.lead}</div>
+              <div className="text-[10px] text-ink-muted">{store.lead[jezyk]}</div>
               <div className="text-[13px] font-semibold lg:text-caption">{store.name}</div>
             </div>
           </>

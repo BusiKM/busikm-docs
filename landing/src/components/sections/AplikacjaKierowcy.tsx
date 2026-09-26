@@ -2,18 +2,57 @@ import { Section, Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { TelefonyKierowcy } from '@/components/mockups/TelefonyKierowcy';
 import { StoreBadges } from '@/components/ui/StoreBadges';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const points = [
-  ['Nawigacja jest w środku', 'Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami'],
-  ['Koszt jednym przyciskiem', 'Zatankował, pstryknął, jedzie dalej'],
-  ['Działa bez zasięgu', 'Tunel, góry, terminal promowy. Wszystko dośle, gdy złapie sygnał'],
-  ['Widzi, co czeka na wysłanie', 'Żadnego zgadywania, czy dane doszły'],
-  ['Sześć języków', 'Kierowca czyta w swoim języku, nie w Twoim'],
-  ['Tryb nocny', 'O trzeciej nad ranem ekran nie razi w oczy'],
-] as const;
+type Punkt = readonly [string, string];
+
+const PUNKTY: Tlumaczenia<readonly Punkt[]> = {
+  pl: [
+    ['Nawigacja jest w środku', 'Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami'],
+    ['Koszt jednym przyciskiem', 'Zatankował, pstryknął, jedzie dalej'],
+    ['Działa bez zasięgu', 'Tunel, góry, terminal promowy. Wszystko dośle, gdy złapie sygnał'],
+    ['Widzi, co czeka na wysłanie', 'Żadnego zgadywania, czy dane doszły'],
+    ['Sześć języków', 'Kierowca czyta w swoim języku, nie w Twoim'],
+    ['Tryb nocny', 'O trzeciej nad ranem ekran nie razi w oczy'],
+  ],
+  en: [
+    ['Navigation built in', 'The route from the order guides them straight away. No jumping between apps'],
+    ['A cost in one tap', 'Filled up, snapped the receipt, back on the road'],
+    ['Works without signal', 'Tunnel, mountains, ferry terminal. It all goes through once there’s signal again'],
+    ['Sees what’s waiting to send', 'No guessing whether the data got through'],
+    ['Six languages', 'The driver reads in their language, not yours'],
+    ['Night mode', 'At three in the morning the screen doesn’t dazzle'],
+  ],
+};
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek: string;
+  lead: string;
+  label: string;
+  opis: string;
+}> = {
+  pl: {
+    eyebrow: 'BusiKM Kierowca · iPhone i Android',
+    naglowek: 'Cały dzień pracy w jednej aplikacji.',
+    lead: 'Kierowca dostaje kod, wpisuje go raz i jest w środku. Nie zakłada konta, nie wymyśla hasła, nie dzwoni do Ciebie z pytaniem, jak się zalogować.',
+    label: 'Aplikacja kierowcy · telefon, tryb nocny',
+    opis: 'Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu.',
+  },
+  en: {
+    eyebrow: 'BusiKM Driver · iPhone and Android',
+    naglowek: 'The whole working day in one app.',
+    lead: 'The driver gets a code, enters it once and they’re in. No account to set up, no password to think up, no calling you to ask how to log in.',
+    label: 'Driver app · phone, night mode',
+    opis: 'Left (−8°): navigation with the route and the order card at the bottom. Right (+5°, in front): adding a cost with a photo of the receipt.',
+  },
+};
 
 /** 6.6 — aplikacja kierowcy. Sekcja, która zdejmuje obiekcję „on tego nie ruszy". */
 export function AplikacjaKierowcy() {
+  const jezyk = biezacyJezyk();
+  const t = TEKSTY[jezyk];
   return (
     <Section tone="ink">
       <svg
@@ -41,18 +80,17 @@ export function AplikacjaKierowcy() {
       <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-20">
         <div className="flex flex-col gap-8 lg:gap-10">
           <div className="flex flex-col gap-5 lg:gap-6">
-            <Eyebrow dark>BusiKM Kierowca · iPhone i Android</Eyebrow>
+            <Eyebrow dark>{t.eyebrow}</Eyebrow>
             <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-              Cały dzień pracy w jednej aplikacji.
+              {t.naglowek}
             </h2>
             <p data-reveal className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
-              Kierowca dostaje kod, wpisuje go raz i jest w środku. Nie zakłada konta, nie wymyśla
-              hasła, nie dzwoni do Ciebie z pytaniem, jak się zalogować.
+              {t.lead}
             </p>
           </div>
 
           <div data-reveal-group className="grid gap-5 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-7">
-            {points.map(([title, body]) => (
+            {PUNKTY[jezyk].map(([title, body]) => (
               <div key={title} data-reveal className="flex gap-3.5">
                 <span
                   aria-hidden
@@ -85,8 +123,8 @@ export function AplikacjaKierowcy() {
         <div data-reveal className="mt-16 lg:mt-0">
           <MockupSlot
             file="mockup-kierowca-telefony-phone.png"
-            label="Aplikacja kierowcy · telefon, tryb nocny"
-            note="Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu."
+            label={t.label}
+            note={t.opis}
             ratio="4:3"
             // Dwa telefony zajmują 67% szerokości kadru — reszta to pusty
             // margines pliku. Powiększenie mieści się w kolumnie właśnie

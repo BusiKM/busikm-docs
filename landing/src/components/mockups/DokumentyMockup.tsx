@@ -1,3 +1,6 @@
+import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
 type Row = {
   name: string;
   who: string;
@@ -9,21 +12,46 @@ type Row = {
   wide?: boolean;
 };
 
-const rows: Row[] = [
-  { name: 'Ubezpieczenie OC', who: 'PO 2093J', pct: 12, color: 'bg-amber', left: '9 dni', urgent: true },
-  { name: 'Badania lekarskie', who: 'Tomasz L.', pct: 34, color: 'bg-blue', left: '41 dni' },
-  { name: 'Przegląd techniczny', who: 'WZ 4821K', pct: 55, color: 'bg-blue', left: '88 dni' },
-  { name: 'Licencja wspólnotowa', who: 'Firma', pct: 78, color: 'bg-green', left: '214 dni' },
-  { name: 'Prawo jazdy', who: 'Marek W.', pct: 92, color: 'bg-green', left: '3 lata', wide: true },
-];
+const ROWS: Record<Jezyk, Row[]> = {
+  pl: [
+    { name: 'Ubezpieczenie OC', who: 'PO 2093J', pct: 12, color: 'bg-amber', left: '9 dni', urgent: true },
+    { name: 'Badania lekarskie', who: 'Tomasz L.', pct: 34, color: 'bg-blue', left: '41 dni' },
+    { name: 'Przegląd techniczny', who: 'WZ 4821K', pct: 55, color: 'bg-blue', left: '88 dni' },
+    { name: 'Licencja wspólnotowa', who: 'Firma', pct: 78, color: 'bg-green', left: '214 dni' },
+    { name: 'Prawo jazdy', who: 'Marek W.', pct: 92, color: 'bg-green', left: '3 lata', wide: true },
+  ],
+  en: [
+    { name: 'Third-party liability insurance', who: 'PO 2093J', pct: 12, color: 'bg-amber', left: '9 days', urgent: true },
+    { name: 'Medical check', who: 'Tomasz L.', pct: 34, color: 'bg-blue', left: '41 days' },
+    { name: 'Roadworthiness test', who: 'WZ 4821K', pct: 55, color: 'bg-blue', left: '88 days' },
+    { name: 'Community licence', who: 'Company', pct: 78, color: 'bg-green', left: '214 days' },
+    { name: 'Driving licence', who: 'Marek W.', pct: 92, color: 'bg-green', left: '3 years', wide: true },
+  ],
+};
+
+const TEKSTY: Tlumaczenia<{ tytul: string; sortowanie: string; przypomnienie: string }> = {
+  pl: {
+    tytul: 'Dokumenty · wrzesień',
+    sortowanie: 'posortowane po terminie',
+    przypomnienie: 'Przypomnienie wysłane: Tobie i Tomaszowi L. · 30 dni wcześniej',
+  },
+  en: {
+    tytul: 'Documents · September',
+    sortowanie: 'sorted by due date',
+    przypomnienie: 'Reminder sent to you and Tomasz L. · 30 days ahead',
+  },
+};
 
 /** Dokumenty posortowane po dniach do końca ważności. Jedyne miejsce z amber. */
 export function DokumentyMockup() {
+  const jezyk = biezacyJezyk();
+  const rows = ROWS[jezyk];
+  const t = TEKSTY[jezyk];
   return (
     <div className="flex flex-col gap-3.5 rounded-card border border-line bg-white p-4 text-[12px] shadow-card lg:aspect-4/3 lg:p-7 lg:text-[13px]">
       <div className="hidden justify-between text-muted lg:flex">
-        <span>Dokumenty · wrzesień</span>
-        <span>posortowane po terminie</span>
+        <span>{t.tytul}</span>
+        <span>{t.sortowanie}</span>
       </div>
 
       <div data-reveal-group className="flex flex-col lg:gap-2.5">
@@ -48,7 +76,7 @@ export function DokumentyMockup() {
       </div>
 
       <div className="mt-auto hidden text-muted lg:block">
-        Przypomnienie wysłane: Tobie i Tomaszowi L. · 30 dni wcześniej
+        {t.przypomnienie}
       </div>
     </div>
   );

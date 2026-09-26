@@ -1,5 +1,61 @@
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  potem: string;
+  dojazd: string;
+  trasa: string;
+  wTrasie: string;
+  rozladunek: string;
+  nawiguj: string;
+  koszt: string;
+  dodajKoszt: string;
+  razem: string;
+  pola: readonly (readonly [string, string, string])[];
+  zlecenie: string;
+  zapisz: string;
+}> = {
+  pl: {
+    potem: 'Brenner, potem A22',
+    dojazd: 'dojazd',
+    trasa: 'Warszawa → Mediolan',
+    wTrasie: 'w trasie',
+    rozladunek: 'Rozładunek: Via Tortona 12 · 08:00',
+    nawiguj: 'Nawiguj',
+    koszt: 'Koszt',
+    dodajKoszt: 'Dodaj koszt',
+    razem: 'RAZEM',
+    pola: [
+      ['Kwota', '103,30 €', '103,30 € · 442 zł'],
+      ['Rodzaj', 'Paliwo', 'Paliwo'],
+      ['Pojazd', 'WZ 4821K', 'WZ 4821K'],
+    ],
+    zlecenie: 'Zlecenie',
+    zapisz: 'Zapisz',
+  },
+  en: {
+    potem: 'Brenner, then A22',
+    dojazd: 'arrival',
+    trasa: 'Warsaw → Milan',
+    wTrasie: 'en route',
+    rozladunek: 'Unloading: Via Tortona 12 · 08:00',
+    nawiguj: 'Navigate',
+    koszt: 'Cost',
+    dodajKoszt: 'Add cost',
+    razem: 'TOTAL',
+    pola: [
+      ['Amount', '€103.30', '€103.30 · PLN 442'],
+      ['Type', 'Fuel', 'Fuel'],
+      ['Vehicle', 'WZ 4821K', 'WZ 4821K'],
+    ],
+    zlecenie: 'Order',
+    zapisz: 'Save',
+  },
+};
+
 /** Dwa telefony pod kątem, w trybie nocnym — nawigacja i dodawanie kosztu. */
 export function TelefonyKierowcy() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="relative h-[440px] lg:flex lg:h-[720px] lg:items-center lg:justify-center">
       <div
@@ -28,29 +84,29 @@ export function TelefonyKierowcy() {
             <div className="absolute top-3.5 right-3.5 left-3.5 hidden justify-between rounded-xl bg-surface-2 p-3 lg:flex">
               <div>
                 <div className="text-[18px] font-semibold">A1 · 214 km</div>
-                <div className="text-ink-muted">Brenner, potem A22</div>
+                <div className="text-ink-muted">{t.potem}</div>
               </div>
               <div className="text-right">
                 <div className="text-[18px] font-semibold">08:00</div>
-                <div className="text-ink-muted">dojazd</div>
+                <div className="text-ink-muted">{t.dojazd}</div>
               </div>
             </div>
           </div>
 
           <div className="mx-2.5 mb-2.5 rounded-xl bg-surface-2 p-2.5 lg:m-3.5 lg:rounded-[18px] lg:p-4">
             <div className="flex justify-between gap-2">
-              <b className="lg:text-[14px]">Warszawa → Mediolan</b>
-              <span className="hidden text-green lg:inline">w trasie</span>
+              <b className="lg:text-[14px]">{t.trasa}</b>
+              <span className="hidden text-green lg:inline">{t.wTrasie}</span>
             </div>
             <div className="mt-1 hidden text-ink-muted lg:block">
-              Rozładunek: Via Tortona 12 · 08:00
+              {t.rozladunek}
             </div>
             <div className="mt-1.5 flex gap-2 lg:mt-3">
               <span className="flex-1 rounded-lg bg-blue py-1.5 text-center font-semibold text-white lg:rounded-[10px] lg:py-2.5">
-                Nawiguj
+                {t.nawiguj}
               </span>
               <span className="hidden flex-1 rounded-[10px] border border-line-dark-2 py-2.5 text-center lg:block">
-                Koszt
+                {t.koszt}
               </span>
             </div>
           </div>
@@ -62,7 +118,7 @@ export function TelefonyKierowcy() {
         <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-surface text-[10px] lg:rounded-[36px] lg:text-[12px]">
           <div className="flex justify-between px-3 pt-3.5 text-ink-muted lg:px-4.5 lg:pt-5.5">
             <span>03:14</span>
-            <span>Dodaj koszt</span>
+            <span>{t.dodajKoszt}</span>
           </div>
 
           <div className="mx-2.5 mt-1.5 flex h-[110px] items-center justify-center rounded-xl bg-[#1E1E22] lg:mx-3.5 lg:mt-4.5 lg:h-[190px] lg:rounded-[18px]">
@@ -73,18 +129,14 @@ export function TelefonyKierowcy() {
                 <span>96,20 €</span>
               </div>
               <div className="hidden justify-between border-t border-line-strong pt-1 font-bold lg:flex">
-                <span>RAZEM</span>
+                <span>{t.razem}</span>
                 <span>103,30 €</span>
               </div>
             </div>
           </div>
 
           <div className="m-2.5 flex flex-col gap-1.5 lg:m-3.5 lg:gap-2">
-            {[
-              ['Kwota', '103,30 €', '103,30 € · 442 zł'],
-              ['Rodzaj', 'Paliwo', 'Paliwo'],
-              ['Pojazd', 'WZ 4821K', 'WZ 4821K'],
-            ].map(([label, short, full]) => (
+            {t.pola.map(([label, short, full]) => (
               <div
                 key={label}
                 className="flex justify-between gap-2 rounded-lg bg-surface-2 p-2 lg:rounded-xl lg:px-3.5 lg:py-3"
@@ -97,13 +149,13 @@ export function TelefonyKierowcy() {
               </div>
             ))}
             <div className="hidden justify-between gap-2 rounded-xl bg-surface-2 px-3.5 py-3 lg:flex">
-              <span className="text-ink-muted">Zlecenie</span>
-              <b>Warszawa → Mediolan</b>
+              <span className="text-ink-muted">{t.zlecenie}</span>
+              <b>{t.trasa}</b>
             </div>
           </div>
 
           <div className="mx-2.5 mt-auto mb-2.5 rounded-[10px] bg-blue py-2.5 text-center text-[12px] font-semibold text-white lg:mx-3.5 lg:mb-3.5 lg:rounded-[14px] lg:py-4 lg:text-[15px]">
-            Zapisz
+            {t.zapisz}
           </div>
         </div>
       </div>

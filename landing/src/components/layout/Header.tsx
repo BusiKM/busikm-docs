@@ -1,19 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/layout/Logo';
 import { IkonaMenu } from '@/components/layout/IkonaMenu';
-import {
-  appLinks,
-  coRobi,
-  dlaKogo,
-  menuMobilne,
-  navigation,
-  rolesNote,
-  type NavEntry,
-} from '@/content/navigation';
+import { PrzelacznikJezyka } from '@/components/layout/PrzelacznikJezyka';
+import { appLinks, nawigacja, type NavEntry } from '@/content/navigation';
+import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
+import { lokalizuj, rozpoznaj } from '@/i18n/trasy';
 
 /**
  * Pasek nawigacji — wg artboardu „BusiKM Nawigacja" (pięć stanów).
@@ -35,6 +31,41 @@ const PRZY_GORZE = 80;
  * mniej niż jeden „klik" kółka i mniej niż przypadkowy ruch kciuka.
  */
 const PROG_KIERUNKU = 8;
+
+const TEKSTY: Tlumaczenia<{
+  domu: string;
+  glowna: string;
+  zaloguj: string;
+  demo: string;
+  zapiszDemo: string;
+  zamknij: string;
+  menu: string;
+  pulpit: string;
+  kafle: [string, string, string];
+}> = {
+  pl: {
+    domu: 'BusiKM — strona główna',
+    glowna: 'Główna',
+    zaloguj: 'Zaloguj się',
+    demo: 'Zobacz demo',
+    zapiszDemo: 'Zapisz się po demo →',
+    zamknij: 'Zamknij menu',
+    menu: 'Menu',
+    pulpit: 'Pulpit',
+    kafle: ['Przychód', 'Koszty', 'Zysk'],
+  },
+  en: {
+    domu: 'BusiKM — home',
+    glowna: 'Main',
+    zaloguj: 'Sign in',
+    demo: 'See the demo',
+    zapiszDemo: 'Join the demo list →',
+    zamknij: 'Close menu',
+    menu: 'Menu',
+    pulpit: 'Dashboard',
+    kafle: ['Revenue', 'Costs', 'Profit'],
+  },
+};
 
 /** Znak logowania — prosta sylwetka, bez wypełnienia. */
 function UserIcon({ className = '' }: { className?: string }) {
@@ -60,15 +91,16 @@ function isActive(pathname: string, href: string) {
 }
 
 /** Miniatura pulpitu w kaflu „Zobacz demo" — prosto z projektu. */
-function DemoPreview() {
+function DemoPreview({ jezyk }: { jezyk: Jezyk }) {
+  const t = TEKSTY[jezyk];
   return (
     <div className="flex h-[110px] flex-col gap-2 rounded-btn border border-line bg-white p-3.5 text-[11px]">
-      <div className="text-muted">Pulpit · Trans-Bus Kowalski</div>
+      <div className="text-muted">{t.pulpit} · Trans-Bus Kowalski</div>
       <div className="grid grid-cols-3 gap-1.5">
         {[
-          ['Przychód', '184 320', false],
-          ['Koszty', '121 840', false],
-          ['Zysk', '62 480', true],
+          [t.kafle[0], '184 320', false],
+          [t.kafle[1], '121 840', false],
+          [t.kafle[2], '62 480', true],
         ].map(([label, value, strong]) => (
           <div
             key={label as string}
@@ -84,7 +116,12 @@ function DemoPreview() {
 }
 
 export function Header() {
-  const pathname = usePathname();
+  const jezyk = useJezyk();
+  const t = TEKSTY[jezyk];
+  const { coRobi, dlaKogo, menuMobilne, navigation, rolesNote } = nawigacja(jezyk);
+  // Ścieżka polska — odnośniki w nawigacji są zapisane po polsku, więc
+  // podświetlenie porównuje je z nią, niezależnie od języka adresu.
+  const pathname = rozpoznaj(usePathname() ?? '/').sciezkaPl || '/';
   const [scrolled, setScrolled] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -240,7 +277,7 @@ export function Header() {
           <div className="flex items-center gap-11">
             <Link
               href="/"
-              aria-label="BusiKM — strona główna"
+              aria-label={t.domu}
               className="flex items-center gap-2.5 text-[19px] font-bold tracking-[-0.02em] text-ink lg:text-[20px]"
             >
               <Logo decorative className="size-8 flex-none lg:size-9" />
@@ -249,7 +286,7 @@ export function Header() {
               <span className="hidden lg:inline">BusiKM</span>
             </Link>
 
-            <nav aria-label="Główna" className="hidden items-center gap-[30px] lg:flex">
+            <nav aria-label={t.glowna} className="hidden items-center gap-[30px] lg:flex">
               {navigation.map((entry) => {
                 const active = isActive(pathname, entry.href);
 
@@ -301,12 +338,14 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-3.5 lg:gap-7">
+            <PrzelacznikJezyka />
+
             <a
-              href={appLinks.login}
+              href={lokalizuj(appLinks.login, jezyk)}
               className="hidden items-center gap-2 text-[15px] font-medium text-ink/65 transition-colors hover:text-ink lg:inline-flex"
             >
               <UserIcon className="size-[18px]" />
-              Zaloguj się
+              {t.zaloguj}
             </a>
 
             {/* Na telefonie tego przycisku nie ma i to jest celowe: pełny
@@ -323,13 +362,13 @@ export function Header() {
               href={appLinks.demo}
               className="hidden h-10 items-center rounded-btn border border-line bg-white px-3.5 text-[14px] font-medium text-ink transition-colors hover:border-muted hover:text-ink lg:flex lg:px-[18px] lg:text-[15px]"
             >
-              Zobacz demo
+              {t.demo}
             </Link>
 
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
-              aria-label={mobileOpen ? 'Zamknij menu' : 'Menu'}
+              aria-label={mobileOpen ? t.zamknij : t.menu}
               aria-expanded={mobileOpen}
               className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center lg:hidden"
             >
@@ -424,12 +463,12 @@ export function Header() {
                         {mega.promo.benefit}
                       </div>
                     </div>
-                    <DemoPreview />
+                    <DemoPreview jezyk={jezyk} />
                     <Link
                       href={mega.promo.href}
                       className="text-[15px] font-semibold text-blue"
                     >
-                      Zapisz się po demo →
+                      {t.zapiszDemo}
                     </Link>
                   </div>
                 )}
@@ -463,7 +502,7 @@ export function Header() {
               listy (widać to było na „Ile zostaje"), a te same wezwania stoją
               teraz w sekcji „Zacznij" — w tym samym rytmie, co reszta. */}
           <nav
-            aria-label="Menu"
+            aria-label={t.menu}
             className="flex flex-1 flex-col gap-8 overflow-y-auto px-5 pt-6 pb-12"
           >
             {menuMobilne.map((sekcja) => (

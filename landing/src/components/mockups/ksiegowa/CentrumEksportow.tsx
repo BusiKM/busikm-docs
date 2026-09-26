@@ -1,17 +1,61 @@
-const zestawienia = [
-  ['Sprzedaż', '42 faktury'],
-  ['Czas pracy', '9 kierowców'],
-  ['Zakupy', '37 faktur'],
-  ['Kursy walut', '22 dni'],
-  ['Koszty', '318 paragonów'],
-  ['Opłaty drogowe', '61'],
-  ['Przebieg', '7 pojazdów'],
-  ['Korekty', '2'],
-  ['Delegacje i diety', '9 kierowców'],
-] as const;
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+type Teksty = {
+  zestawienia: readonly (readonly [string, string])[];
+  naglowek: string;
+  miesiac: string;
+  przycisk: string;
+  kompletnosc: [string, string];
+  ostatnie: string;
+  stan: string;
+};
+
+const TEKSTY: Tlumaczenia<Teksty> = {
+  pl: {
+    zestawienia: [
+      ['Sprzedaż', '42 faktury'],
+      ['Czas pracy', '9 kierowców'],
+      ['Zakupy', '37 faktur'],
+      ['Kursy walut', '22 dni'],
+      ['Koszty', '318 paragonów'],
+      ['Opłaty drogowe', '61'],
+      ['Przebieg', '7 pojazdów'],
+      ['Korekty', '2'],
+      ['Delegacje i diety', '9 kierowców'],
+    ],
+    naglowek: 'Komplet dla księgowej',
+    miesiac: 'Sierpień 2026',
+    przycisk: 'Pobierz komplet za sierpień',
+    kompletnosc: ['Kompletność', '9 z 9 gotowe'],
+    ostatnie: 'Ostatnie pobranie: 1.09, 09:14 · Ewa M.',
+    stan: 'Miesiąc otwarty',
+  },
+  en: {
+    zestawienia: [
+      ['Sales', '42 invoices'],
+      ['Working time', '9 drivers'],
+      ['Purchases', '37 invoices'],
+      ['Exchange rates', '22 days'],
+      ['Costs', '318 receipts'],
+      ['Tolls', '61'],
+      ['Mileage', '7 vehicles'],
+      ['Corrections', '2'],
+      ['Business trips and per diems', '9 drivers'],
+    ],
+    naglowek: 'Full set for your accountant',
+    miesiac: 'August 2026',
+    przycisk: 'Download the full set for August',
+    kompletnosc: ['Completeness', '9 of 9 ready'],
+    ostatnie: 'Last download: 1 Sep, 09:14 · Ewa M.',
+    stan: 'Month open',
+  },
+};
 
 /** Stos arkuszy: komplet dla księgowej za wybrany miesiąc. */
 export function CentrumEksportow() {
+  const t = TEKSTY[biezacyJezyk()];
+  const { zestawienia } = t;
   return (
     <div className="relative mx-auto h-[420px] w-full max-w-[760px] lg:h-[620px]">
       <div
@@ -26,16 +70,16 @@ export function CentrumEksportow() {
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="text-[11px] text-ink-muted lg:text-[13px]">
-              Komplet dla księgowej
+              {t.naglowek}
             </div>
-            <b className="text-[18px] tracking-[-0.01em] lg:text-[22px]">Sierpień 2026</b>
+            <b className="text-[18px] tracking-[-0.01em] lg:text-[22px]">{t.miesiac}</b>
           </div>
           <div className="flex flex-wrap gap-2.5">
             <div className="rounded-xl border border-line-dark-2 px-4 py-3 text-ink-muted">
               Comarch Optima ▾
             </div>
             <div className="rounded-xl bg-blue px-4.5 py-3 font-semibold text-white">
-              Pobierz komplet za sierpień
+              {t.przycisk}
             </div>
           </div>
         </div>
@@ -53,14 +97,14 @@ export function CentrumEksportow() {
             </div>
           ))}
           <div className="hidden justify-between gap-3 py-[11px] lg:flex">
-            <span>Kompletność</span>
-            <span className="text-green">9 z 9 gotowe</span>
+            <span>{t.kompletnosc[0]}</span>
+            <span className="text-green">{t.kompletnosc[1]}</span>
           </div>
         </div>
 
         <div className="mt-auto flex flex-wrap justify-between gap-2 text-[11px] text-ink-muted lg:text-[13px]">
-          <span>Ostatnie pobranie: 1.09, 09:14 · Ewa M.</span>
-          <span>Miesiąc otwarty</span>
+          <span>{t.ostatnie}</span>
+          <span>{t.stan}</span>
         </div>
       </div>
     </div>

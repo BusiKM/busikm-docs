@@ -1,44 +1,99 @@
 import { Chrome } from '@/components/mockups/Chrome';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const kolumny = [
-  {
-    grupa: 'Pojazdy',
-    ile: '7',
-    pozycje: [
-      { co: 'Ubezpieczenie OC', kto: 'PO 2093J', kiedy: '9 dni', pilne: true },
-      { co: 'Przegląd techniczny', kto: 'WZ 4821K', kiedy: '88 dni' },
+type Kolumna = {
+  grupa: string;
+  ile: string;
+  pozycje: readonly { co: string; kto: string; kiedy: string; pilne?: boolean }[];
+  reszta: string;
+};
+
+type Teksty = {
+  chrome: string;
+  miesiac: string;
+  tytul: string;
+  podsumowanie: string;
+  kolumny: readonly Kolumna[];
+};
+
+const TEKSTY: Tlumaczenia<Teksty> = {
+  pl: {
+    chrome: 'app.busikm.pl · Dokumenty · status na wrzesień',
+    miesiac: 'Wrzesień 2026',
+    tytul: 'Jedna rzecz wymaga uwagi w tym miesiącu.',
+    podsumowanie: '17 dokumentów · 16 w porządku',
+    kolumny: [
+      {
+        grupa: 'Pojazdy',
+        ile: '7',
+        pozycje: [
+          { co: 'Ubezpieczenie OC', kto: 'PO 2093J', kiedy: '9 dni', pilne: true },
+          { co: 'Przegląd techniczny', kto: 'WZ 4821K', kiedy: '88 dni' },
+        ],
+        reszta: 'pozostałe 12 · w porządku',
+      },
+      {
+        grupa: 'Firma',
+        ile: '3',
+        pozycje: [{ co: 'Licencja wspólnotowa', kto: 'Firma', kiedy: '214 dni' }],
+        reszta: 'pozostałe 2 · w porządku',
+      },
+      {
+        grupa: 'Kierowcy',
+        ile: '9',
+        pozycje: [{ co: 'Badania lekarskie', kto: 'Tomasz L.', kiedy: '41 dni' }],
+        reszta: 'pozostałe 26 · w porządku',
+      },
     ],
-    reszta: 'pozostałe 12 · w porządku',
   },
-  {
-    grupa: 'Firma',
-    ile: '3',
-    pozycje: [{ co: 'Licencja wspólnotowa', kto: 'Firma', kiedy: '214 dni' }],
-    reszta: 'pozostałe 2 · w porządku',
+  en: {
+    chrome: 'app.busikm.pl · Documents · status for September',
+    miesiac: 'September 2026',
+    tytul: 'One thing needs your attention this month.',
+    podsumowanie: '17 documents · 16 all fine',
+    kolumny: [
+      {
+        grupa: 'Vehicles',
+        ile: '7',
+        pozycje: [
+          { co: 'Third-party liability insurance', kto: 'PO 2093J', kiedy: '9 days', pilne: true },
+          { co: 'Roadworthiness test', kto: 'WZ 4821K', kiedy: '88 days' },
+        ],
+        reszta: 'other 12 · all fine',
+      },
+      {
+        grupa: 'Company',
+        ile: '3',
+        pozycje: [{ co: 'Community licence', kto: 'Company', kiedy: '214 days' }],
+        reszta: 'other 2 · all fine',
+      },
+      {
+        grupa: 'Drivers',
+        ile: '9',
+        pozycje: [{ co: 'Medical check', kto: 'Tomasz L.', kiedy: '41 days' }],
+        reszta: 'other 26 · all fine',
+      },
+    ],
   },
-  {
-    grupa: 'Kierowcy',
-    ile: '9',
-    pozycje: [{ co: 'Badania lekarskie', kto: 'Tomasz L.', kiedy: '41 dni' }],
-    reszta: 'pozostałe 26 · w porządku',
-  },
-];
+};
 
 /** Status miesiąca: tylko to, co wymaga uwagi. Reszta jako liczba. */
 export function StatusMiesiaca() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="flex flex-col overflow-hidden rounded-card border border-line bg-white shadow-card lg:aspect-16/10 lg:rounded-panel">
-      <Chrome label="app.busikm.pl · Dokumenty · status na wrzesień" />
+      <Chrome label={t.chrome} />
 
       <div className="flex flex-1 flex-col gap-6 p-5 text-[13px] lg:gap-7 lg:p-10 lg:text-caption">
         <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
           <div>
-            <div className="text-[12px] text-muted lg:text-[13px]">Wrzesień 2026</div>
+            <div className="text-[12px] text-muted lg:text-[13px]">{t.miesiac}</div>
             <b className="text-[18px] tracking-[-0.01em] text-balance lg:text-[24px]">
-              Jedna rzecz wymaga uwagi w tym miesiącu.
+              {t.tytul}
             </b>
           </div>
-          <span className="text-muted">17 dokumentów · 16 w porządku</span>
+          <span className="text-muted">{t.podsumowanie}</span>
         </div>
 
         {/* Karty mają wysokość treści i stoją w pionowym środku kadru. Rozciągnięte
@@ -46,7 +101,7 @@ export function StatusMiesiaca() {
             kolumny mają po jednej pozycji, jest tu sensem, nie usterką. */}
         <div className="flex flex-1 items-center">
           <div className="grid w-full gap-2.5 lg:grid-cols-3 lg:gap-4">
-          {kolumny.map((k) => (
+          {t.kolumny.map((k) => (
             <div
               key={k.grupa}
               className="flex flex-col gap-3 rounded-card border border-line p-4 lg:p-6"

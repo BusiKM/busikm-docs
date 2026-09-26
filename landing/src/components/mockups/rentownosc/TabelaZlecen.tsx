@@ -1,4 +1,6 @@
 import { Chrome } from '@/components/mockups/Chrome';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
 type Zlecenie = {
   trasa: string;
@@ -18,100 +20,225 @@ type Zlecenie = {
   tylkoDesktop?: boolean;
 };
 
-const zlecenia: Zlecenie[] = [
-  {
-    trasa: 'Gdańsk → Hamburg',
-    skrot: 'GDA → HAM',
-    kto: 'Piotr K. · GD 7710R',
-    fracht: '1 800 €',
-    koszty: '− 1 062 €',
-    zysk: '738 €',
-    marza: '41%',
-    dobra: true,
+type Teksty = {
+  zlecenia: Zlecenie[];
+  chrome: string;
+  chromeWaski: string;
+  kolumny: { zlecenie: string; kto: string; fracht: string; koszty: string; zysk: string; marza: string };
+  kierowca: string;
+  minus: string;
+  minusKrotko: string;
+  razem: string;
+};
+
+const TEKSTY: Tlumaczenia<Teksty> = {
+  pl: {
+    zlecenia: [
+      {
+        trasa: 'Gdańsk → Hamburg',
+        skrot: 'GDA → HAM',
+        kto: 'Piotr K. · GD 7710R',
+        fracht: '1 800 €',
+        koszty: '− 1 062 €',
+        zysk: '738 €',
+        marza: '41%',
+        dobra: true,
+      },
+      {
+        trasa: 'Warszawa → Mediolan',
+        skrot: 'WAW → MIL',
+        kto: 'Marek W. · WZ 4821K',
+        fracht: '3 900 €',
+        koszty: '− 2 496 €',
+        zysk: '1 404 €',
+        marza: '36%',
+        poprzednia: '← 38%',
+        nota: 'paragon dodany 11:42 · OMV Brno',
+        dobra: true,
+      },
+      {
+        trasa: 'Wrocław → Drezno',
+        skrot: 'WRO → DRS',
+        kto: 'Ewa D. · SZ 3140P',
+        fracht: '1 150 €',
+        koszty: '− 771 €',
+        zysk: '379 €',
+        marza: '33%',
+        dobra: true,
+      },
+      {
+        trasa: 'Poznań → Rotterdam',
+        skrot: 'POZ → RTM',
+        kto: 'Tomasz L. · PO 2093J',
+        fracht: '2 650 €',
+        koszty: '− 1 855 €',
+        zysk: '795 €',
+        marza: '30%',
+        dobra: true,
+      },
+      {
+        trasa: 'Szczecin → Kopenhaga',
+        skrot: 'SZZ → CPH',
+        kto: 'Rafał B. · LU 8265T',
+        fracht: '2 100 €',
+        koszty: '− 1 512 €',
+        zysk: '588 €',
+        marza: '28%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Lublin → Monachium',
+        skrot: 'LUB → MUC',
+        kto: 'Piotr K. · GD 7710R',
+        fracht: '1 950 €',
+        koszty: '− 1 482 €',
+        zysk: '468 €',
+        marza: '24%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Katowice → Praga',
+        skrot: 'KTW → PRG',
+        kto: 'Tomasz L. · PO 2093J',
+        fracht: '4 800 zł',
+        koszty: '− 3 792 zł',
+        zysk: '1 008 zł',
+        marza: '21%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Kraków → Wiedeń',
+        skrot: 'KRK → VIE',
+        kto: 'Anna R. · KR 5512M',
+        fracht: '1 450 €',
+        koszty: '− 1 189 €',
+        zysk: '261 €',
+        marza: '18%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Łódź → Praga',
+        skrot: 'ŁDZ → PRG',
+        kto: 'Jan S. · KR 5512M',
+        fracht: '4 200 zł',
+        koszty: '− 4 410 zł',
+        zysk: '− 210 zł',
+        marza: '− 5%',
+        minus: true,
+      },
+    ],
+    chrome: 'Zlecenia · wrzesień · posortowane po marży',
+    chromeWaski: 'Zlecenia · po marży',
+    kolumny: { zlecenie: 'Zlecenie', kto: 'Kierowca · pojazd', fracht: 'Fracht', koszty: 'Koszty', zysk: 'Zysk', marza: 'Marża' },
+    kierowca: 'Kierowca',
+    minus: 'Zlecenie na minusie widać od razu — bez czerwieni, po prostu na dole listy.',
+    minusKrotko: 'Minus na dole listy',
+    razem: 'razem: 62 480 zł',
   },
-  {
-    trasa: 'Warszawa → Mediolan',
-    skrot: 'WAW → MIL',
-    kto: 'Marek W. · WZ 4821K',
-    fracht: '3 900 €',
-    koszty: '− 2 496 €',
-    zysk: '1 404 €',
-    marza: '36%',
-    poprzednia: '← 38%',
-    nota: 'paragon dodany 11:42 · OMV Brno',
-    dobra: true,
+  en: {
+    zlecenia: [
+      {
+        trasa: 'Gdańsk → Hamburg',
+        skrot: 'GDA → HAM',
+        kto: 'Piotr K. · GD 7710R',
+        fracht: '€1,800',
+        koszty: '− €1,062',
+        zysk: '€738',
+        marza: '41%',
+        dobra: true,
+      },
+      {
+        trasa: 'Warsaw → Milan',
+        skrot: 'WAW → MIL',
+        kto: 'Marek W. · WZ 4821K',
+        fracht: '€3,900',
+        koszty: '− €2,496',
+        zysk: '€1,404',
+        marza: '36%',
+        poprzednia: '← 38%',
+        nota: 'receipt added 11:42 · OMV Brno',
+        dobra: true,
+      },
+      {
+        trasa: 'Wrocław → Dresden',
+        skrot: 'WRO → DRS',
+        kto: 'Ewa D. · SZ 3140P',
+        fracht: '€1,150',
+        koszty: '− €771',
+        zysk: '€379',
+        marza: '33%',
+        dobra: true,
+      },
+      {
+        trasa: 'Poznań → Rotterdam',
+        skrot: 'POZ → RTM',
+        kto: 'Tomasz L. · PO 2093J',
+        fracht: '€2,650',
+        koszty: '− €1,855',
+        zysk: '€795',
+        marza: '30%',
+        dobra: true,
+      },
+      {
+        trasa: 'Szczecin → Copenhagen',
+        skrot: 'SZZ → CPH',
+        kto: 'Rafał B. · LU 8265T',
+        fracht: '€2,100',
+        koszty: '− €1,512',
+        zysk: '€588',
+        marza: '28%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Lublin → Munich',
+        skrot: 'LUB → MUC',
+        kto: 'Piotr K. · GD 7710R',
+        fracht: '€1,950',
+        koszty: '− €1,482',
+        zysk: '€468',
+        marza: '24%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Katowice → Prague',
+        skrot: 'KTW → PRG',
+        kto: 'Tomasz L. · PO 2093J',
+        fracht: 'PLN 4,800',
+        koszty: '− PLN 3,792',
+        zysk: 'PLN 1,008',
+        marza: '21%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Kraków → Vienna',
+        skrot: 'KRK → VIE',
+        kto: 'Anna R. · KR 5512M',
+        fracht: '€1,450',
+        koszty: '− €1,189',
+        zysk: '€261',
+        marza: '18%',
+        tylkoDesktop: true,
+      },
+      {
+        trasa: 'Łódź → Prague',
+        skrot: 'LDZ → PRG',
+        kto: 'Jan S. · KR 5512M',
+        fracht: 'PLN 4,200',
+        koszty: '− PLN 4,410',
+        zysk: '− PLN 210',
+        marza: '− 5%',
+        minus: true,
+      },
+    ],
+    chrome: 'Orders · September · sorted by margin',
+    chromeWaski: 'Orders · by margin',
+    kolumny: { zlecenie: 'Order', kto: 'Driver · vehicle', fracht: 'Freight', koszty: 'Costs', zysk: 'Profit', marza: 'Margin' },
+    kierowca: 'Driver',
+    minus: 'A loss-making order shows up straight away — no red, just at the bottom of the list.',
+    minusKrotko: 'Losses at the bottom',
+    razem: 'total: PLN 62,480',
   },
-  {
-    trasa: 'Wrocław → Drezno',
-    skrot: 'WRO → DRS',
-    kto: 'Ewa D. · SZ 3140P',
-    fracht: '1 150 €',
-    koszty: '− 771 €',
-    zysk: '379 €',
-    marza: '33%',
-    dobra: true,
-  },
-  {
-    trasa: 'Poznań → Rotterdam',
-    skrot: 'POZ → RTM',
-    kto: 'Tomasz L. · PO 2093J',
-    fracht: '2 650 €',
-    koszty: '− 1 855 €',
-    zysk: '795 €',
-    marza: '30%',
-    dobra: true,
-  },
-  {
-    trasa: 'Szczecin → Kopenhaga',
-    skrot: 'SZZ → CPH',
-    kto: 'Rafał B. · LU 8265T',
-    fracht: '2 100 €',
-    koszty: '− 1 512 €',
-    zysk: '588 €',
-    marza: '28%',
-    tylkoDesktop: true,
-  },
-  {
-    trasa: 'Lublin → Monachium',
-    skrot: 'LUB → MUC',
-    kto: 'Piotr K. · GD 7710R',
-    fracht: '1 950 €',
-    koszty: '− 1 482 €',
-    zysk: '468 €',
-    marza: '24%',
-    tylkoDesktop: true,
-  },
-  {
-    trasa: 'Katowice → Praga',
-    skrot: 'KTW → PRG',
-    kto: 'Tomasz L. · PO 2093J',
-    fracht: '4 800 zł',
-    koszty: '− 3 792 zł',
-    zysk: '1 008 zł',
-    marza: '21%',
-    tylkoDesktop: true,
-  },
-  {
-    trasa: 'Kraków → Wiedeń',
-    skrot: 'KRK → VIE',
-    kto: 'Anna R. · KR 5512M',
-    fracht: '1 450 €',
-    koszty: '− 1 189 €',
-    zysk: '261 €',
-    marza: '18%',
-    tylkoDesktop: true,
-  },
-  {
-    trasa: 'Łódź → Praga',
-    skrot: 'ŁDZ → PRG',
-    kto: 'Jan S. · KR 5512M',
-    fracht: '4 200 zł',
-    koszty: '− 4 410 zł',
-    zysk: '− 210 zł',
-    marza: '− 5%',
-    minus: true,
-  },
-];
+};
 
 /** Kolumny szerokie tylko na desktopie — na telefonie zostaje trasa, zysk i marża. */
 const kolumny =
@@ -122,23 +249,24 @@ const kolumny =
  * przeliczyła się po dodaniu paragonu — stąd „← 38%" obok nowej wartości.
  */
 export function TabelaZlecen() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="flex flex-col overflow-hidden rounded-card border border-line-dark bg-surface text-paper shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-16/10 lg:rounded-panel">
-      <Chrome dark label="Zlecenia · wrzesień · posortowane po marży" />
+      <Chrome dark label={t.chrome} />
 
       <div className="flex flex-1 flex-col p-4 text-[12px] lg:p-10 lg:text-caption">
         <div
           className={`${kolumny} border-b border-line-dark py-2.5 text-[11px] text-ink-muted lg:text-[13px]`}
         >
-          <span>Zlecenie</span>
-          <span className="hidden lg:block">Kierowca · pojazd</span>
-          <span className="hidden text-right lg:block">Fracht</span>
-          <span className="hidden text-right lg:block">Koszty</span>
-          <span className="text-right">Zysk</span>
-          <span className="text-right">Marża ↓</span>
+          <span>{t.kolumny.zlecenie}</span>
+          <span className="hidden lg:block">{t.kolumny.kto}</span>
+          <span className="hidden text-right lg:block">{t.kolumny.fracht}</span>
+          <span className="hidden text-right lg:block">{t.kolumny.koszty}</span>
+          <span className="text-right">{t.kolumny.zysk}</span>
+          <span className="text-right">{t.kolumny.marza} ↓</span>
         </div>
 
-        {zlecenia.map((z) => (
+        {t.zlecenia.map((z) => (
           <div
             key={z.trasa}
             className={`${kolumny} items-center border-b border-line-dark py-3 lg:py-4 ${
@@ -172,10 +300,10 @@ export function TabelaZlecen() {
 
         <div className="mt-auto flex justify-between gap-4 pt-3 text-[11px] text-ink-muted lg:pt-0 lg:text-[13px]">
           <span className="hidden lg:block">
-            Zlecenie na minusie widać od razu — bez czerwieni, po prostu na dole listy.
+            {t.minus}
           </span>
-          <span className="lg:hidden">Minus na dole listy</span>
-          <span className="flex-none">razem: 62 480 zł</span>
+          <span className="lg:hidden">{t.minusKrotko}</span>
+          <span className="flex-none">{t.razem}</span>
         </div>
       </div>
     </div>
@@ -191,21 +319,22 @@ export function TabelaZlecen() {
  * przeczytać: trasa, kierowca, zysk i marża.
  */
 export function TabelaZlecenWaska() {
+  const t = TEKSTY[biezacyJezyk()];
   const kolumnyWaskie = 'grid grid-cols-[1.5fr_1fr_70px_58px] items-center gap-2.5';
 
   return (
     <div className="flex flex-col overflow-hidden rounded-card border border-line-dark bg-surface text-paper shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-16/10">
-      <Chrome dark label="Zlecenia · po marży" />
+      <Chrome dark label={t.chromeWaski} />
 
       <div className="flex flex-1 flex-col px-5 py-4 text-[11px] lg:px-6">
         <div className={`${kolumnyWaskie} border-b border-line-dark py-2 text-ink-muted`}>
-          <span>Zlecenie</span>
-          <span>Kierowca</span>
-          <span className="text-right">Zysk</span>
-          <span className="text-right">Marża</span>
+          <span>{t.kolumny.zlecenie}</span>
+          <span>{t.kierowca}</span>
+          <span className="text-right">{t.kolumny.zysk}</span>
+          <span className="text-right">{t.kolumny.marza}</span>
         </div>
 
-        {zlecenia.slice(0, 5).map((z) => (
+        {t.zlecenia.slice(0, 5).map((z) => (
           <div
             key={z.trasa}
             className={`${kolumnyWaskie} border-b border-line-dark py-2.5 last:border-0`}

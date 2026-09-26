@@ -1,4 +1,5 @@
 import { TRESC_ZGODY, WERSJA_ZGODY, type Zrodlo } from '@/content/zgoda';
+import type { Jezyk } from '@/i18n/jezyki';
 
 /**
  * Zapis profilu na listę w Klaviyo.
@@ -69,6 +70,12 @@ export async function zapiszWKlaviyo(dane: {
    * dopasowywania wzorców.
    */
   wybor?: { plan: string; okres: string } | null;
+  /**
+   * Język formularza. Brzmienie zgody bierzemy stąd — z `content/zgoda` —
+   * a nie z tego, co przysłała przeglądarka: trasa jest publiczna, więc
+   * dowolny tekst z zewnątrz nie może udawać zgody.
+   */
+  jezyk: Jezyk;
 }): Promise<WynikKlaviyo> {
   const klucz = process.env.KLAVIYO_API_KEY;
   const lista = process.env.KLAVIYO_LISTA_ID;
@@ -98,7 +105,8 @@ export async function zapiszWKlaviyo(dane: {
             properties: {
               zrodlo: dane.zrodlo,
               zgoda_wersja: WERSJA_ZGODY,
-              zgoda_tresc: TRESC_ZGODY,
+              zgoda_tresc: TRESC_ZGODY[dane.jezyk],
+              zgoda_jezyk: dane.jezyk,
               ...(dane.wybor
                 ? { plan: dane.wybor.plan, okres: dane.wybor.okres }
                 : {}),

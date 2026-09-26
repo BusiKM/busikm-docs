@@ -2,25 +2,50 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { DokumentyMockup } from '@/components/mockups/DokumentyMockup';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  tytul: string;
+  lead: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    eyebrow: 'Dokumenty i terminy',
+    tytul: 'Nic nie wygaśnie po cichu.',
+    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat i mówi wcześniej — Tobie i kierowcy.',
+    label: 'Dokumenty i terminy · desktop',
+    note: 'Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach, jeden wiersz w kolorze ostrzegawczym. Ten sam ekran co na stronie głównej.',
+  },
+  en: {
+    eyebrow: 'Documents and deadlines',
+    tytul: 'Nothing expires quietly.',
+    lead: 'Insurance, roadworthiness test, operator licence, driving licence, medical checks. BusiKM watches the dates and warns you early — you and the driver.',
+    label: 'Documents and deadlines · desktop',
+    note: 'Document list sorted by days to expiry, bars in three colours, one row in the warning colour. The same screen as on the home page.',
+  },
+};
 
 /** Nagłówek strony — jasny, spokojny. Bez odliczania i bez straszenia. */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-paper px-6 pt-24 lg:px-12 lg:pt-40">
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow>Dokumenty i terminy</Eyebrow>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="max-w-[1120px] text-display-m font-bold text-balance lg:text-display"
         >
-          Nic nie wygaśnie po cichu.
+          {t.tytul}
         </h1>
         <p
           data-reveal
           className="max-w-[680px] text-lead-m text-pretty text-muted lg:text-lead"
         >
-          Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat
-          i mówi wcześniej — Tobie i kierowcy.
+          {t.lead}
         </p>
       </Container>
 
@@ -33,8 +58,8 @@ export function Hero() {
           <div className="relative">
             <MockupSlot
               file="mockup-dokumenty-terminy-desktop.png"
-              label="Dokumenty i terminy · desktop"
-              note="Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach, jeden wiersz w kolorze ostrzegawczym. Ten sam ekran co na stronie głównej."
+              label={t.label}
+              note={t.note}
               ratio="4:3"
               noteClassName="mx-auto max-w-[600px]"
             >

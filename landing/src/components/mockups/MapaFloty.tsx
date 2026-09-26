@@ -1,5 +1,38 @@
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  wTrasie: string;
+  zaladunek: string;
+  naBazie: string;
+  naZywo: string;
+  trasa: string;
+  naMiejscu: string;
+  doRozladunku: string;
+}> = {
+  pl: {
+    wTrasie: 'w trasie',
+    zaladunek: 'załadunek',
+    naBazie: 'na bazie',
+    naZywo: 'na żywo',
+    trasa: 'Marek W. · Warszawa → Mediolan',
+    naMiejscu: 'Na miejscu',
+    doRozladunku: ' · 214 km do rozładunku',
+  },
+  en: {
+    wTrasie: 'on the road',
+    zaladunek: 'loading',
+    naBazie: 'at base',
+    naZywo: 'live',
+    trasa: 'Marek W. · Warsaw → Milan',
+    naMiejscu: 'Arrives',
+    doRozladunku: ' · 214 km to unloading',
+  },
+};
+
 /** Mapa floty na żywo — trzy pojazdy i dymek z godziną dojazdu. */
 export function MapaFloty() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="relative h-[260px] overflow-hidden rounded-card border border-line bg-mist shadow-card lg:aspect-16/10 lg:h-auto lg:rounded-panel lg:bg-white">
       <div className="absolute inset-0 bg-mist bg-[linear-gradient(rgba(10,10,11,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(10,10,11,.05)_1px,transparent_1px)] bg-size-[64px_64px]" />
@@ -23,27 +56,27 @@ export function MapaFloty() {
 
       <div className="absolute top-5 left-5 hidden gap-4 rounded-btn border border-line bg-white px-3.5 py-2.5 text-[13px] lg:flex">
         <span>
-          <b>3</b> w trasie
+          <b>3</b> {t.wTrasie}
         </span>
         <span className="text-muted">
-          <b className="text-ink">1</b> załadunek
+          <b className="text-ink">1</b> {t.zaladunek}
         </span>
         <span className="text-muted">
-          <b className="text-ink">3</b> na bazie
+          <b className="text-ink">3</b> {t.naBazie}
         </span>
       </div>
 
       <div className="absolute top-5 right-5 hidden rounded-full border border-line bg-white px-3 py-1.5 text-[12px] text-muted lg:block">
-        <span className="text-green-ink">●</span> na żywo
+        <span className="text-green-ink">●</span> {t.naZywo}
       </div>
 
       <div className="absolute right-3.5 bottom-3.5 left-3.5 flex flex-col gap-1 rounded-[10px] border border-line bg-white px-3 py-2.5 text-[12px] shadow-card lg:top-[56%] lg:right-auto lg:bottom-auto lg:left-1/2 lg:w-auto lg:rounded-[14px] lg:px-4 lg:py-3.5 lg:text-[13px]">
         <b className="lg:text-[15px]">WZ 4821K</b>
-        <span className="hidden lg:block">Marek W. · Warszawa → Mediolan</span>
+        <span className="hidden lg:block">{t.trasa}</span>
         <span className="text-muted lg:hidden">Marek W.</span>
         <span className="text-muted">
-          Na miejscu <b className="text-ink">08:00</b>
-          <span className="hidden lg:inline"> · 214 km do rozładunku</span>
+          {t.naMiejscu} <b className="text-ink">08:00</b>
+          <span className="hidden lg:inline">{t.doRozladunku}</span>
         </span>
       </div>
     </div>

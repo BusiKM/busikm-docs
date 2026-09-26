@@ -1,19 +1,40 @@
 import { Section } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { TabelaZlecen } from '@/components/mockups/rentownosc/TabelaZlecen';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const punkty = [
-  ['02', 'Marża na każdym zleceniu', 'Nie raz na kwartał, tylko od razu.'],
-  ['03', 'Liczba zmienia się w trakcie', 'Kierowca dodaje paragon, marża przelicza się sama.'],
-] as const;
+const TEKSTY: Tlumaczenia<{
+  punkty: readonly (readonly [string, string, string])[];
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    punkty: [
+      ['02', 'Marża na każdym zleceniu', 'Nie raz na kwartał, tylko od razu.'],
+      ['03', 'Liczba zmienia się w trakcie', 'Kierowca dodaje paragon, marża przelicza się sama.'],
+    ],
+    label: 'Tabela zleceń po marży · desktop 1440, tryb nocny',
+    note: 'Zlecenia posortowane po marży, wyróżniony wiersz z przeliczoną marżą po dodaniu paragonu, zlecenie na minusie na dole.',
+  },
+  en: {
+    punkty: [
+      ['02', 'The margin on every order', 'Not once a quarter. Right away.'],
+      ['03', 'The number moves as you go', 'The driver adds a receipt and the margin recalculates itself.'],
+    ],
+    label: 'Orders by margin · desktop 1440, dark mode',
+    note: 'Orders sorted by margin, a highlighted row with the margin recalculated after a receipt was added, the loss-making order at the bottom.',
+  },
+};
 
 /** 02 + 03 — dwa punkty nad jedną tabelą, bo mówią o tej samej liście. */
 export function MarzaIZmiana() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section tone="ink">
       <div className="flex flex-col gap-10 lg:gap-18">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-          {punkty.map(([numer, tytul, tresc]) => (
+          {t.punkty.map(([numer, tytul, tresc]) => (
             <div key={numer} className="flex flex-col gap-4 lg:gap-6">
               <div
                 data-reveal
@@ -34,8 +55,8 @@ export function MarzaIZmiana() {
         <div data-reveal>
           <MockupSlot
             file="mockup-zysk-tabela-desktop.png"
-            label="Tabela zleceń po marży · desktop 1440, tryb nocny"
-            note="Zlecenia posortowane po marży, wyróżniony wiersz z przeliczoną marżą po dodaniu paragonu, zlecenie na minusie na dole."
+            label={t.label}
+            note={t.note}
             ratio="16:10"
             dark
             noteClassName="mx-auto max-w-[600px]"

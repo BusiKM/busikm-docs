@@ -1,6 +1,84 @@
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  licznikPrzedStartem: string;
+  licznik: string;
+  zdjecieLicznika: string;
+  trasa: string;
+  gotowe: string;
+  rozpocznij: string;
+  zlecenia: string;
+  dzis: string;
+  zaladunek: string;
+  dodajKoszt: string;
+  kwota: string;
+  kwotaWartosc: string;
+  eyebrow: string;
+  naglowek1: string;
+  naglowek2: string;
+  lead: string;
+  trzy: { label: string; note: string };
+  jeden: { label: string; note: string };
+}> = {
+  pl: {
+    licznikPrzedStartem: 'Licznik przed startem',
+    licznik: '184 210 km',
+    zdjecieLicznika: 'zdjęcie licznika',
+    trasa: 'Warszawa → Mediolan',
+    gotowe: 'gotowe',
+    rozpocznij: 'Rozpocznij trasę',
+    zlecenia: 'Zlecenia',
+    dzis: 'Dziś',
+    zaladunek: 'Załadunek 06:00',
+    dodajKoszt: 'Dodaj koszt',
+    kwota: 'Kwota',
+    kwotaWartosc: '103,30 €',
+    eyebrow: 'BusiKM Kierowca · iPhone i Android',
+    naglowek1: 'Cały dzień pracy w jednej aplikacji.',
+    naglowek2: 'Bez wpisywania czegokolwiek w trasie.',
+    lead: 'Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.',
+    trzy: {
+      label: 'Trzy ekrany startu trasy · telefon, tryb nocny',
+      note: 'Od lewej: lista zleceń na dziś, licznik przed startem z przyciskiem „Rozpocznij trasę”, dodawanie kosztu ze zdjęciem paragonu.',
+    },
+    jeden: {
+      label: 'Start trasy · telefon, tryb nocny',
+      note: 'Licznik przed startem, miejsce na zdjęcie licznika i przycisk „Rozpocznij trasę”.',
+    },
+  },
+  en: {
+    licznikPrzedStartem: 'Odometer before the start',
+    licznik: '184,210 km',
+    zdjecieLicznika: 'odometer photo',
+    trasa: 'Warsaw → Milan',
+    gotowe: 'ready',
+    rozpocznij: 'Start route',
+    zlecenia: 'Orders',
+    dzis: 'Today',
+    zaladunek: 'Loading 06:00',
+    dodajKoszt: 'Add cost',
+    kwota: 'Amount',
+    kwotaWartosc: '€103.30',
+    eyebrow: 'BusiKM Driver · iPhone and Android',
+    naglowek1: 'A whole working day in one app.',
+    naglowek2: 'Nothing to type on the road.',
+    lead: 'The driver gets a code, enters it once and they’re in. The rest is three buttons.',
+    trzy: {
+      label: 'Three route-start screens · phone, dark mode',
+      note: 'From the left: today’s orders, the odometer before the start with a “Start route” button, adding a cost with a receipt photo.',
+    },
+    jeden: {
+      label: 'Route start · phone, dark mode',
+      note: 'Odometer before the start, a space for the odometer photo and a “Start route” button.',
+    },
+  },
+};
+
+type Teksty = (typeof TEKSTY)['pl'];
 
 /** Trzy telefony wychodzące zza dolnej krawędzi sekcji. */
 function TelefonUciety({
@@ -22,7 +100,7 @@ function TelefonUciety({
 }
 
 /** Środkowy telefon — jedyny, który mieści się sensownie na wąskim ekranie. */
-const telefonSrodkowy = (
+const telefonSrodkowy = (t: Teksty) => (
         <TelefonUciety className="z-2 h-[260px] w-[220px] shadow-[0_-20px_80px_rgba(0,0,0,.5)] lg:h-[500px] lg:w-[280px]">
           <div className="flex flex-col gap-3.5 px-4 pt-5 lg:px-5 lg:pt-6 lg:text-[13px]">
             <div className="flex justify-between text-ink-muted">
@@ -30,39 +108,39 @@ const telefonSrodkowy = (
               <span>WZ 4821K</span>
             </div>
             <div className="mt-2 rounded-[18px] bg-surface-2 p-4 lg:p-4.5">
-              <div className="text-ink-muted">Licznik przed startem</div>
+              <div className="text-ink-muted">{t.licznikPrzedStartem}</div>
               <div className="mt-1.5 text-[24px] font-bold tracking-[-0.02em] lg:text-[30px]">
-                184 210 km
+                {t.licznik}
               </div>
               <div className="mt-3 flex h-[70px] items-center justify-center rounded-xl bg-line-dark text-ink-muted lg:h-[90px]">
-                zdjęcie licznika
+                {t.zdjecieLicznika}
               </div>
             </div>
             <div className="flex justify-between px-1 text-ink-muted">
-              <span>Warszawa → Mediolan</span>
-              <span className="text-green">gotowe</span>
+              <span>{t.trasa}</span>
+              <span className="text-green">{t.gotowe}</span>
             </div>
           </div>
           <div className="mt-auto rounded-t-[18px] bg-blue p-4 text-center text-[16px] font-semibold text-white lg:p-5 lg:text-[18px]">
-            Rozpocznij trasę
+            {t.rozpocznij}
           </div>
         </TelefonUciety>
 );
 
 /** Komplet trzech telefonów — układ na szerokie ekrany. */
-const telefony = (
+const telefony = (t: Teksty) => (
   <>
 
         <TelefonUciety className="hidden w-[250px] translate-y-10 rotate-[-4deg] opacity-70 lg:block lg:h-[420px]">
           <div className="p-4.5 text-ink-muted lg:p-5.5">
             <div className="flex justify-between">
               <span>05:40</span>
-              <span>Zlecenia</span>
+              <span>{t.zlecenia}</span>
             </div>
-            <div className="mt-5 text-[20px] font-semibold text-paper">Dziś</div>
+            <div className="mt-5 text-[20px] font-semibold text-paper">{t.dzis}</div>
             <div className="mt-3.5 rounded-[14px] bg-surface-2 p-3.5 text-paper">
-              <b>Warszawa → Mediolan</b>
-              <div className="mt-1 text-ink-muted">Załadunek 06:00</div>
+              <b>{t.trasa}</b>
+              <div className="mt-1 text-ink-muted">{t.zaladunek}</div>
             </div>
           </div>
         </TelefonUciety>
@@ -74,21 +152,21 @@ const telefony = (
               <span>WZ 4821K</span>
             </div>
             <div className="mt-2 rounded-[18px] bg-surface-2 p-4 lg:p-4.5">
-              <div className="text-ink-muted">Licznik przed startem</div>
+              <div className="text-ink-muted">{t.licznikPrzedStartem}</div>
               <div className="mt-1.5 text-[24px] font-bold tracking-[-0.02em] lg:text-[30px]">
-                184 210 km
+                {t.licznik}
               </div>
               <div className="mt-3 flex h-[70px] items-center justify-center rounded-xl bg-line-dark text-ink-muted lg:h-[90px]">
-                zdjęcie licznika
+                {t.zdjecieLicznika}
               </div>
             </div>
             <div className="flex justify-between px-1 text-ink-muted">
-              <span>Warszawa → Mediolan</span>
-              <span className="text-green">gotowe</span>
+              <span>{t.trasa}</span>
+              <span className="text-green">{t.gotowe}</span>
             </div>
           </div>
           <div className="mt-auto rounded-t-[18px] bg-blue p-4 text-center text-[16px] font-semibold text-white lg:p-5 lg:text-[18px]">
-            Rozpocznij trasę
+            {t.rozpocznij}
           </div>
         </TelefonUciety>
 
@@ -96,14 +174,14 @@ const telefony = (
           <div className="flex flex-col gap-3.5 p-4.5 text-ink-muted lg:p-5.5">
             <div className="flex justify-between">
               <span>11:38</span>
-              <span>Dodaj koszt</span>
+              <span>{t.dodajKoszt}</span>
             </div>
             <div className="flex h-30 items-center justify-center rounded-[14px] bg-[#1E1E22]">
               <div className="h-21 w-16 rounded-[3px] bg-mist" />
             </div>
             <div className="flex justify-between rounded-xl bg-surface-2 px-3.5 py-3 text-paper">
-              <span className="text-ink-muted">Kwota</span>
-              <b>103,30 €</b>
+              <span className="text-ink-muted">{t.kwota}</span>
+              <b>{t.kwotaWartosc}</b>
             </div>
           </div>
         </TelefonUciety>
@@ -112,6 +190,7 @@ const telefony = (
 
 /** Nagłówek strony — ciemny, z telefonami u dołu. */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-ink px-6 pt-24 text-paper lg:px-12 lg:pt-40">
       <svg
@@ -137,19 +216,19 @@ export function Hero() {
       </svg>
 
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow dark>BusiKM Kierowca · iPhone i Android</Eyebrow>
+        <Eyebrow dark>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="max-w-[1040px] text-display-m font-bold text-balance lg:text-display"
         >
-          Cały dzień pracy w jednej aplikacji. <br className="hidden lg:inline" />
-          Bez wpisywania czegokolwiek w trasie.
+          {t.naglowek1} <br className="hidden lg:inline" />
+          {t.naglowek2}
         </h1>
         <p
           data-reveal
           className="max-w-[640px] text-lead-m text-pretty text-ink-muted lg:text-lead"
         >
-          Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.
+          {t.lead}
         </p>
       </Container>
 
@@ -182,14 +261,14 @@ export function Hero() {
         <div className="relative mx-auto hidden max-w-[900px] lg:block">
           <MockupSlot
             file="mockup-kierowca-hero-trzy-phone.png"
-            label="Trzy ekrany startu trasy · telefon, tryb nocny"
-            note="Od lewej: lista zleceń na dziś, licznik przed startem z przyciskiem „Rozpocznij trasę”, dodawanie kosztu ze zdjęciem paragonu."
+            label={t.trzy.label}
+            note={t.trzy.note}
             ratio="4:3"
             dark
             noteClassName="mx-auto max-w-[640px]"
           >
             <div className="flex h-[560px] items-end justify-center gap-9">
-              {telefony}
+              {telefony(t)}
             </div>
           </MockupSlot>
         </div>
@@ -209,15 +288,15 @@ export function Hero() {
         <div className="relative mt-28 lg:hidden">
           <MockupSlot
             file="mockup-kierowca-hero-phone.png"
-            label="Start trasy · telefon, tryb nocny"
-            note="Licznik przed startem, miejsce na zdjęcie licznika i przycisk „Rozpocznij trasę”."
+            label={t.jeden.label}
+            note={t.jeden.note}
             ratio="4:3"
             imageScale={2}
             imageScaleTelefon={2}
             dark
           >
             <div className="flex h-[280px] items-end justify-center gap-4">
-              {telefonSrodkowy}
+              {telefonSrodkowy(t)}
             </div>
           </MockupSlot>
         </div>

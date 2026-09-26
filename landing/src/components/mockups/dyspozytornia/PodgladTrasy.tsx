@@ -1,5 +1,29 @@
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  poprawiona: string;
+  korek: string;
+  dojazd: string;
+  nowaWersja: string;
+}> = {
+  pl: {
+    poprawiona: 'Trasa poprawiona · 07:12',
+    korek: 'Korek na A22 · omijamy przez Brixen',
+    dojazd: 'Dojazd',
+    nowaWersja: 'kierowca ma nową wersję',
+  },
+  en: {
+    poprawiona: 'Route updated · 07:12',
+    korek: 'Jam on the A22 · detour via Brixen',
+    dojazd: 'Arrival',
+    nowaWersja: 'driver has the new version',
+  },
+};
+
 /** Trasa poprawiona po korku: stara kreskowana, nowa niebieska. */
 export function PodgladTrasy() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="relative h-[260px] overflow-hidden rounded-card border border-line bg-white shadow-card lg:aspect-4/3 lg:h-auto">
       <div className="absolute inset-0 bg-mist bg-[linear-gradient(rgba(10,10,11,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(10,10,11,.05)_1px,transparent_1px)] bg-size-[48px_48px]" />
@@ -32,19 +56,19 @@ export function PodgladTrasy() {
       </svg>
 
       <div className="absolute top-4 left-4 flex flex-col gap-0.5 rounded-xl border border-line bg-white px-3.5 py-2.5 text-[12px] lg:top-5 lg:left-5 lg:text-[13px]">
-        <b>Trasa poprawiona · 07:12</b>
-        <span className="text-muted">Korek na A22 · omijamy przez Brixen</span>
+        <b>{t.poprawiona}</b>
+        <span className="text-muted">{t.korek}</span>
       </div>
 
       <div className="absolute right-4 bottom-4 flex flex-col gap-0.5 rounded-xl border border-line bg-white px-3.5 py-2.5 text-[12px] lg:right-5 lg:bottom-5 lg:text-[13px]">
-        <span className="text-muted">Dojazd</span>
+        <span className="text-muted">{t.dojazd}</span>
         <b>
           <s className="font-normal text-muted">08:40</s> 08:05
         </b>
       </div>
 
       <div className="absolute bottom-4 left-4 hidden rounded-full border border-line bg-white px-3 py-1.5 text-[12px] lg:block lg:bottom-5 lg:left-5">
-        <span className="text-green-ink">●</span> kierowca ma nową wersję
+        <span className="text-green-ink">●</span> {t.nowaWersja}
       </div>
     </div>
   );

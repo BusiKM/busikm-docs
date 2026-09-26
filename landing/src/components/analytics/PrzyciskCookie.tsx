@@ -1,6 +1,7 @@
 'use client';
 
 import { otworzUstawieniaCookie } from './zgoda';
+import { useJezyk } from '@/i18n/klient';
 
 /**
  * Odnośnik w stopce, który przywraca baner zgody.
@@ -10,13 +11,14 @@ import { otworzUstawieniaCookie } from './zgoda';
  * w przeglądarce — a to nie jest wycofanie zgody, tylko obejście.
  */
 export function PrzyciskCookie() {
+  const jezyk = useJezyk();
   return (
     <button
       type="button"
       onClick={otworzUstawieniaCookie}
       className="text-caption text-ink-muted underline underline-offset-2 hover:text-paper"
     >
-      Ustawienia cookie
+      {jezyk === 'pl' ? 'Ustawienia cookie' : 'Cookie settings'}
     </button>
   );
 }

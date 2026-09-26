@@ -2,8 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Metadata } from 'next';
 
-import { serwis, nieindeksowane } from '@/content/seo';
+import { serwis, nieindeksowane, opisSerwisu } from '@/content/seo';
 import { pages } from '@/content/pages';
+import { KODY, type Jezyk } from '@/i18n/jezyki';
+import { jezykZParametrow, type ParametryJezyka } from '@/i18n/serwer';
+import { lokalizuj } from '@/i18n/trasy';
 
 /**
  * Budowanie metadanych stron.
@@ -72,12 +75,34 @@ if (!obraz) {
 }
 
 /** Obraz podglądu w formie, jakiej oczekuje `Metadata`. */
-export const obrazPodgladu = {
-  url: serwis.ogImage,
-  width: obraz.width,
-  height: obraz.height,
-  alt: `${serwis.nazwa} — ${serwis.tytul.split('—')[1]?.trim() ?? serwis.nazwa}`,
-};
+export function obrazPodgladu(jezyk: Jezyk) {
+  return {
+    url: serwis.ogImage,
+    width: obraz!.width,
+    height: obraz!.height,
+    alt: opisSerwisu[jezyk].tytul,
+  };
+}
+
+/**
+ * Adres kanoniczny i wersje językowe strony.
+ *
+ * Każda wersja wskazuje siebie jako kanoniczną i obie siebie nawzajem przez
+ * `hreflang` — tak Google wie, że `/cennik` i `/en/pricing` to ta sama strona
+ * w dwóch językach, a nie dwie kopie tej samej treści. `x-default` to polski,
+ * bo to wersja podstawowa serwisu.
+ */
+function adresy(sciezkaPl: string, jezyk: Jezyk): Metadata['alternates'] {
+  const pl = sciezkaPl || '/';
+  return {
+    canonical: lokalizuj(pl, jezyk),
+    languages: {
+      [KODY.pl.lang]: pl,
+      [KODY.en.lang]: lokalizuj(pl, 'en'),
+      'x-default': pl,
+    },
+  };
+}
 
 /**
  * Dyrektywy dla robotów.
@@ -116,11 +141,13 @@ export function metadataTresci({
   sciezka,
   tytul,
   opis,
+  jezyk,
 }: {
-  /** Pełna ścieżka z wiodącym ukośnikiem, np. `/pomoc/nowe-zlecenie`. */
+  /** Pełna ścieżka polska z wiodącym ukośnikiem, np. `/pomoc/nowe-zlecenie`. */
   sciezka: string;
   tytul: string;
   opis: string;
+  jezyk: Jezyk;
 }): Metadata {
   const pelnyTytul = tytul.includes(serwis.nazwa) ? tytul : `${tytul} · ${serwis.nazwa}`;
   const wIndeksie = !nieindeksowane.includes(sciezka);
@@ -128,16 +155,16 @@ export function metadataTresci({
   return {
     title: pelnyTytul,
     description: opis,
-    alternates: { canonical: sciezka },
+    alternates: adresy(sciezka, jezyk),
     robots: wIndeksie ? roboty : { index: false, follow: true },
     openGraph: {
       type: 'article',
-      locale: serwis.locale,
+      locale: KODY[jezyk].locale,
       siteName: serwis.nazwa,
-      url: sciezka,
+      url: lokalizuj(sciezka, jezyk),
       title: pelnyTytul,
       description: opis,
-      images: [obrazPodgladu],
+      images: [obrazPodgladu(jezyk)],
     },
     twitter: {
       card: 'summary_large_image',
@@ -154,8 +181,8 @@ export function metadataTresci({
  * Ta sama funkcja obsługuje strony pełne i szkielety — o tym, czy strona
  * trafia do indeksu, decyduje lista `nieindeksowane` w `content/seo.ts`.
  */
-export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
-  const page = pages[slug];
+export function pageMetadata(slug: string, jezyk: Jezyk, opcje: Opcje = {}): Metadata {
+  const page = pages[jezyk][slug];
   if (!page) throw new Error(`Brak opisu strony: ${slug}`);
 
   // Tytuł w wyniku wyszukiwania jest rozdzielony od nazwy strony: `seoTitle`
@@ -174,16 +201,17 @@ export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
   return {
     title: tytul,
     description: opis,
-    alternates: { canonical: sciezka },
+    alternates: adresy(sciezka, jezyk),
     robots: wIndeksie ? roboty : { index: false, follow: true },
     openGraph: {
       type: 'website',
-      locale: serwis.locale,
+      locale: KODY[jezyk].locale,
+      alternateLocale: KODY[jezyk === 'pl' ? 'en' : 'pl'].locale,
       siteName: serwis.nazwa,
-      url: sciezka,
+      url: lokalizuj(sciezka, jezyk),
       title: tytul,
       description: opisPodgladu,
-      images: [obrazPodgladu],
+      images: [obrazPodgladu(jezyk)],
     },
     twitter: {
       card: 'summary_large_image',
@@ -194,39 +222,51 @@ export function pageMetadata(slug: string, opcje: Opcje = {}): Metadata {
   };
 }
 
+/**
+ * `generateMetadata` dla podstrony z `pages` — jedna linijka w pliku strony:
+ *
+ *     export const generateMetadata = metadataPodstrony('cennik');
+ */
+export function metadataPodstrony(slug: string, opcje: Opcje = {}) {
+  return async ({ params }: ParametryJezyka): Promise<Metadata> =>
+    pageMetadata(slug, await jezykZParametrow(params), opcje);
+}
+
 /** Metadane strony głównej — tytuł bez przyrostka, bo sam niesie markę. */
-export function metadataStronyGlownej(): Metadata {
+export function metadataStronyGlownej(jezyk: Jezyk): Metadata {
+  const { tytul, opis, opisOg } = opisSerwisu[jezyk];
   return {
     metadataBase: new URL(serwis.url),
     title: {
-      default: serwis.tytul,
+      default: tytul,
       /** Podstrony podają pełny tytuł same, więc szablon zostawia go w spokoju. */
       template: '%s',
     },
-    description: serwis.opis,
+    description: opis,
     applicationName: serwis.nazwa,
     generator: undefined,
     referrer: 'origin-when-cross-origin',
     creator: serwis.nazwa,
     publisher: serwis.nazwa,
     category: 'business',
-    alternates: { canonical: '/' },
+    alternates: adresy('', jezyk),
     robots: roboty,
     formatDetection: { telephone: false, address: false, email: false },
     manifest: '/site.webmanifest',
     openGraph: {
       type: 'website',
-      locale: serwis.locale,
+      locale: KODY[jezyk].locale,
+      alternateLocale: KODY[jezyk === 'pl' ? 'en' : 'pl'].locale,
       siteName: serwis.nazwa,
-      url: '/',
-      title: serwis.tytul,
-      description: serwis.opisOg,
-      images: [obrazPodgladu],
+      url: lokalizuj('/', jezyk),
+      title: tytul,
+      description: opisOg,
+      images: [obrazPodgladu(jezyk)],
     },
     twitter: {
       card: 'summary_large_image',
-      title: serwis.tytul,
-      description: serwis.opisOg,
+      title: tytul,
+      description: opisOg,
       images: [serwis.ogImage],
     },
     /**

@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState, useSyncExternalStore } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
 
 import {
   odczytajZgode,
@@ -10,6 +12,38 @@ import {
   zgodaNaSerwerze,
   ZDARZENIE_OTWARCIA,
 } from './zgoda';
+
+const TEKSTY: Tlumaczenia<{
+  tytul: string;
+  opis: string;
+  odnosnik: string;
+  zgoda: string;
+  odmowa: string;
+  wybrane: string;
+  wlaczona: string;
+  niezbedne: string;
+}> = {
+  pl: {
+    tytul: 'Liczymy odwiedziny. Tylko za Twoją zgodą.',
+    opis: 'Chcemy wiedzieć, które strony są czytane — nic poza tym. Bez reklam, bez profilowania, bez sprzedawania danych.',
+    odnosnik: 'Co dokładnie zapisujemy',
+    zgoda: 'Zgadzam się',
+    odmowa: 'Tylko niezbędne',
+    wybrane: 'Teraz wybrane:',
+    wlaczona: 'analityka włączona',
+    niezbedne: 'tylko niezbędne',
+  },
+  en: {
+    tytul: 'We count visits. Only with your consent.',
+    opis: 'We want to know which pages get read — nothing more. No ads, no profiling, no selling data.',
+    odnosnik: 'What exactly we store',
+    zgoda: 'I agree',
+    odmowa: 'Essential only',
+    wybrane: 'Current choice:',
+    wlaczona: 'analytics on',
+    niezbedne: 'essential only',
+  },
+};
 
 /**
  * Wykrycie hydracji bez efektu.
@@ -35,6 +69,7 @@ const PRZED_HYDRACJA = () => false;
  * dalej. Bez decyzji licznik po prostu się nie ładuje.
  */
 export function BanerZgody() {
+  const t = TEKSTY[useJezyk()];
   // Decyzja czytana wprost z `localStorage`, nie przepisywana do stanu.
   // Dzięki temu „Teraz wybrane" nadąża też za zmianą w innej karcie.
   const wybor = useSyncExternalStore(subskrybujZgode, odczytajZgode, zgodaNaSerwerze);
@@ -77,17 +112,16 @@ export function BanerZgody() {
     >
       <div className="rounded-card border border-line bg-paper p-5 shadow-hero lg:p-6">
         <h2 id="zgoda-tytul" className="text-[15px] font-semibold text-ink">
-          Liczymy odwiedziny. Tylko za Twoją zgodą.
+          {t.tytul}
         </h2>
 
         <p id="zgoda-opis" className="mt-2 text-[14px] leading-relaxed text-muted">
-          Chcemy wiedzieć, które strony są czytane — nic poza tym. Bez reklam,
-          bez profilowania, bez sprzedawania danych.{' '}
+          {t.opis}{' '}
           <Link
             href="/prywatnosc#p-7"
             className="text-blue underline underline-offset-2 hover:text-blue-dark"
           >
-            Co dokładnie zapisujemy
+            {t.odnosnik}
           </Link>
           .
         </p>
@@ -98,20 +132,20 @@ export function BanerZgody() {
             onClick={() => zdecyduj('tak')}
             className="inline-flex h-10 flex-1 items-center justify-center rounded-btn bg-blue px-4 text-[14px] font-semibold text-white transition-colors hover:bg-blue-dark"
           >
-            Zgadzam się
+            {t.zgoda}
           </button>
           <button
             type="button"
             onClick={() => zdecyduj('nie')}
             className="inline-flex h-10 flex-1 items-center justify-center rounded-btn border border-line bg-white px-4 text-[14px] font-semibold text-ink transition-colors hover:border-muted"
           >
-            Tylko niezbędne
+            {t.odmowa}
           </button>
         </div>
 
         {wybor !== null && (
           <p className="mt-3 text-[12px] text-muted">
-            Teraz wybrane: {wybor === 'tak' ? 'analityka włączona' : 'tylko niezbędne'}.
+            {t.wybrane} {wybor === 'tak' ? t.wlaczona : t.niezbedne}.
           </p>
         )}
       </div>
