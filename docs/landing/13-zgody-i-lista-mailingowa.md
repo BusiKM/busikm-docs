@@ -43,6 +43,7 @@ podpisała. Przy każdym zapisie idzie więc do bazy:
 | `trescZgody` | pełne brzmienie z chwili kliknięcia |
 | `wersjaZgody` | numer wersji tego brzmienia |
 | `kanalZgody` | `email` — art. 398 PKE wymaga wskazania kanału |
+| `jezyk` | `pl` albo `en` — w jakim języku osoba widziała formularz i zgodę |
 | `createdAt` | czas serwera, wymuszony regułą |
 
 Reguły Firestore odrzucą dokument z `zgoda: true` bez kompletu tych pól,
@@ -51,6 +52,16 @@ i odwrotnie — zapis bez zgody nie może ich zawierać.
 **Zmiana brzmienia zgody = podniesienie `WERSJA_ZGODY`** w
 `src/content/zgoda.ts`. Poprawienie tekstu bez zmiany numeru sprawi, że stare
 zapisy zaczną wskazywać na słowa, których ich autorzy nigdy nie widzieli.
+
+Zgoda ma dwa brzmienia — polskie i angielskie (`TRESC_ZGODY.pl` / `.en`) —
+pod **wspólnym** numerem wersji. Dokładne słowa wskazuje para (wersja, język).
+Zmiana któregokolwiek z nich podnosi wersję dla obu. Treść zapisywana w bazie
+i wysyłana do Klaviyo zawsze pochodzi z `zgoda.ts` w języku strony — nigdy
+z dowolnego tekstu przysłanego przez przeglądarkę.
+
+**Pole `jezyk` wymaga nowych reguł Firestore.** Reguły trzeba wdrożyć
+(`firebase deploy --only firestore:rules`) **przed** wdrożeniem kodu, który
+je wysyła — w odwrotnej kolejności reguły odrzucą każdy zapis.
 
 ## Tagi
 
@@ -78,7 +89,8 @@ momentu wyrażenia zgody — a to właśnie ten moment trzeba umieć wykazać.
 się z `createdAt` w Firestore.
 
 Do profilu trafiają: `email`, `first_name` oraz właściwości `zrodlo`,
-`zgoda_wersja`, `zgoda_tresc`. Tag `zrodlo` służy do budowania segmentów.
+`zgoda_wersja`, `zgoda_tresc`, `zgoda_jezyk`. Tag `zrodlo` służy do budowania
+segmentów, `zgoda_jezyk` — do wysyłki w języku, w którym ktoś się zapisał.
 
 | Zmienna | Co to |
 |---|---|

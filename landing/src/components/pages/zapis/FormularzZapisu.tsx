@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState, useSyncExternalStore } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
@@ -10,6 +10,8 @@ import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
 import { TRESC_ZGODY } from '@/content/zgoda';
 import { odczytajWybor, opiszWybor } from '@/content/zainteresowanie';
 import { Wymagane } from '@/components/ui/Wymagane';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
 
 /**
  * Adres strony jako magazyn zewnętrzny.
@@ -39,6 +41,62 @@ const pole =
 
 type Stan = 'gotowy' | 'wysyłam' | 'zapisany' | 'błąd';
 
+const TEKSTY: Tlumaczenia<{
+  tematDemo: string;
+  tematKonto: string;
+  imiePole: string;
+  emailPole: string;
+  zapisane: (imie: string) => string;
+  wybranyPlan: string;
+  zmien: string;
+  imie: string;
+  imieWzor: string;
+  email: string;
+  emailWzor: string;
+  wymagane: string;
+  pulapka: string;
+  zapisuje: string;
+  blad: [string, string];
+  prywatnosc: string;
+}> = {
+  pl: {
+    tematDemo: 'powiadom mnie o demo',
+    tematKonto: 'powiadom mnie o zapisach',
+    imiePole: 'Imię',
+    emailPole: 'E-mail',
+    zapisane: (imie) => `Zapisane, ${imie}.`,
+    wybranyPlan: 'Wybrany plan:',
+    zmien: 'zmień',
+    imie: 'Imię',
+    imieWzor: 'Marek',
+    email: 'Adres e-mail',
+    emailWzor: 'marek@twojafirma.pl',
+    wymagane: 'pola wymagane',
+    pulapka: 'Nie wypełniaj tego pola',
+    zapisuje: 'Zapisuję…',
+    blad: ['Nie udało się zapisać. Napisz wprost na', '— ta droga działa zawsze.'],
+    prywatnosc: 'Polityka prywatności',
+  },
+  en: {
+    tematDemo: 'let me know about the demo',
+    tematKonto: 'let me know when sign-ups open',
+    imiePole: 'Name',
+    emailPole: 'Email',
+    zapisane: (imie) => `You’re on the list, ${imie}.`,
+    wybranyPlan: 'Selected plan:',
+    zmien: 'change',
+    imie: 'First name',
+    imieWzor: 'Mark',
+    email: 'Email address',
+    emailWzor: 'mark@yourcompany.com',
+    wymagane: 'required fields',
+    pulapka: 'Do not fill in this field',
+    zapisuje: 'Saving…',
+    blad: ['That didn’t work. Write to us directly at', '— that always works.'],
+    prywatnosc: 'Privacy policy',
+  },
+};
+
 /**
  * Zapis na listę — imię, adres i zgoda.
  *
@@ -56,6 +114,8 @@ type Stan = 'gotowy' | 'wysyłam' | 'zapisany' | 'błąd';
  * połknie adresu, nie mając gdzie go zapisać.
  */
 export function FormularzZapisu({ opis }: { opis: OpisListy }) {
+  const jezyk = useJezyk();
+  const t = TEKSTY[jezyk];
   const [imie, setImie] = useState('');
   const [mail, setMail] = useState('');
   const [zgoda, setZgoda] = useState(false);
@@ -71,8 +131,12 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
 
   const linkPocztowy = () =>
     `mailto:${firma.email}?subject=${encodeURIComponent(
-      `BusiKM · ${opis.lista === 'demo' ? 'powiadom mnie o demo' : 'powiadom mnie o zapisach'}`,
-    )}&body=${encodeURIComponent([imie && `Imię: ${imie}`, mail && `E-mail: ${mail}`].filter(Boolean).join('\n'))}`;
+      `BusiKM · ${opis.lista === 'demo' ? t.tematDemo : t.tematKonto}`,
+    )}&body=${encodeURIComponent(
+      [imie && `${t.imiePole}: ${imie}`, mail && `${t.emailPole}: ${mail}`]
+        .filter(Boolean)
+        .join('\n'),
+    )}`;
 
   const wyslij = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,6 +149,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
         lista: opis.lista,
         zrodlo: opis.zrodlo,
         zainteresowanie: wybor,
+        jezyk,
         pulapka,
       });
       setStan('zapisany');
@@ -100,7 +165,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
         className="flex flex-col gap-3 rounded-card border border-line bg-mist p-6 lg:p-8"
       >
         <div className="text-[19px] font-semibold lg:text-h3">
-          Zapisane, {imie.trim().split(/\s+/)[0]}.
+          {t.zapisane(imie.trim().split(/\s+/)[0])}
         </div>
         <p className="text-[16px] leading-relaxed text-muted lg:text-body">{opis.poZapisie}</p>
       </div>
@@ -116,13 +181,13 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       */}
       {wybor && (
         <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-btn border border-blue-soft-line bg-blue-soft px-4 py-3 text-[14px] lg:text-caption">
-          <span className="text-muted">Wybrany plan:</span>
-          <b>{opiszWybor(wybor)}</b>
+          <span className="text-muted">{t.wybranyPlan}</span>
+          <b>{opiszWybor(wybor, jezyk)}</b>
           <Link
             href="/cennik"
             className="ml-auto font-medium text-blue-dark underline-offset-2 hover:underline"
           >
-            zmień
+            {t.zmien}
           </Link>
         </div>
       )}
@@ -130,14 +195,14 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
         <label className="flex flex-col gap-2">
           <span className="text-[14px] font-medium lg:text-caption">
-            Imię
+            {t.imie}
             <Wymagane />
           </span>
           <input
             value={imie}
             onChange={(e) => setImie(e.target.value)}
             maxLength={LIMITY_ZAPISU.imie}
-            placeholder="Marek"
+            placeholder={t.imieWzor}
             autoComplete="given-name"
             required
             className={pole}
@@ -146,7 +211,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
 
         <label className="flex flex-col gap-2">
           <span className="text-[14px] font-medium lg:text-caption">
-            Adres e-mail
+            {t.email}
             <Wymagane />
           </span>
           <input
@@ -154,7 +219,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
             value={mail}
             onChange={(e) => setMail(e.target.value)}
             maxLength={LIMITY_ZAPISU.email}
-            placeholder="marek@twojafirma.pl"
+            placeholder={t.emailWzor}
             autoComplete="email"
             required
             className={pole}
@@ -165,13 +230,13 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
 
       {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
       <p className="text-[12px] text-muted">
-        <span aria-hidden className="text-red-ink">*</span> pola wymagane
+        <span aria-hidden className="text-red-ink">*</span> {t.wymagane}
       </p>
 
       {/* Pułapka na boty — człowiek tego pola nie zobaczy i nie zatabuluje. */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
-          Nie wypełniaj tego pola
+          {t.pulapka}
           <input
             tabIndex={-1}
             autoComplete="off"
@@ -195,7 +260,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
           className="mt-0.5 size-4.5 flex-none accent-blue"
         />
         <span>
-          {TRESC_ZGODY}
+          {TRESC_ZGODY[jezyk]}
           <Wymagane />
         </span>
       </label>
@@ -206,7 +271,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
           disabled={!kompletne || stan === 'wysyłam'}
           className="inline-flex h-13 items-center justify-center rounded-btn bg-blue px-7 text-[16px] font-semibold text-white transition-colors hover:bg-blue-dark disabled:cursor-not-allowed disabled:bg-line disabled:text-muted lg:h-14 lg:self-start lg:text-body"
         >
-          {stan === 'wysyłam' ? 'Zapisuję…' : opis.wezwanie}
+          {stan === 'wysyłam' ? t.zapisuje : opis.wezwanie}
         </button>
       ) : (
         <a
@@ -220,17 +285,17 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       <p aria-live="polite" className="text-[13px] leading-relaxed text-muted lg:text-caption">
         {stan === 'błąd' ? (
           <span className="text-ink">
-            Nie udało się zapisać. Napisz wprost na{' '}
+            {t.blad[0]}{' '}
             <a href={linkPocztowy()} className="text-blue">
               {firma.email}
             </a>{' '}
-            — ta droga działa zawsze.
+            {t.blad[1]}
           </span>
         ) : (
           <>
             {opis.obietnica}{' '}
             <Link href="/prywatnosc" className="text-blue">
-              Polityka prywatności
+              {t.prywatnosc}
             </Link>
             .
           </>

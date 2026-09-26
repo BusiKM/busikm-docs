@@ -1,11 +1,18 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const NAGLOWEK: Tlumaczenia<string> = {
+  pl: 'Drobiazgi, które widać dopiero w robocie.',
+  en: 'Small things you only notice once you’re using it.',
+};
 
 /**
  * „Drobiazgi, które widać dopiero w robocie" — siatka kafelków zamykająca
  * każdą podstronę, plus wiersz z odnośnikami do ról.
  */
 export function Drobiazgi({
-  naglowek = 'Drobiazgi, które widać dopiero w robocie.',
+  naglowek,
   kafelki,
   stopka,
   tone = 'ink',
@@ -17,12 +24,13 @@ export function Drobiazgi({
   tone?: 'paper' | 'mist' | 'ink';
 }) {
   const dark = tone === 'ink';
+  const tytul = naglowek ?? NAGLOWEK[biezacyJezyk()];
 
   return (
     <Section tone={tone}>
       <div className="flex flex-col gap-10 lg:gap-16">
         <h2 data-reveal className="text-h2-m font-semibold text-balance lg:text-h2">
-          {naglowek}
+          {tytul}
         </h2>
 
         <div data-reveal-group className="grid grid-cols-2 gap-2.5 lg:grid-cols-3 lg:gap-4">

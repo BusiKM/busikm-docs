@@ -1,3 +1,6 @@
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
 type Dokument = {
   numer: string;
   krotki: string;
@@ -58,6 +61,44 @@ const dokumenty: Dokument[] = [
   },
 ];
 
+/** Kwota, godzina wysyłki i status po angielsku — kolejność jak w `dokumenty`. */
+const DOKUMENTY_EN: readonly Pick<Dokument, 'kwota' | 'wyslano' | 'status'>[] = [
+  { kwota: '€3,900', wyslano: '3 Sep · 08:14', status: 'delivered' },
+  { kwota: '€2,650', wyslano: '2 Sep · 17:02', status: 'paid' },
+  { kwota: '− €120', wyslano: '1 Sep · 10:40', status: 'delivered' },
+  { kwota: '€1,800', wyslano: '1 Sep · 09:15', status: 'due 1 Oct' },
+  { kwota: '€1,000', wyslano: '28 Aug · 12:30', status: 'paid' },
+];
+
+const TEKSTY: Tlumaczenia<{
+  dokumenty: Dokument[];
+  naglowek: string;
+  ile: string;
+  kolumny: readonly [string, string, string, string];
+  akcje: string;
+  akcjeKrotko: string;
+  razem: string;
+}> = {
+  pl: {
+    dokumenty,
+    naglowek: 'Wystawione · wrzesień',
+    ile: '12 dokumentów',
+    kolumny: ['Numer', 'Kontrahent', 'Kwota', 'Status'],
+    akcje: 'Każdy wiersz: podgląd · pobierz ponownie · duplikat',
+    akcjeKrotko: 'Podgląd · duplikat',
+    razem: 'razem 9 230 €',
+  },
+  en: {
+    dokumenty: dokumenty.map((d, i) => ({ ...d, ...DOKUMENTY_EN[i] })),
+    naglowek: 'Issued · September',
+    ile: '12 documents',
+    kolumny: ['Number', 'Client', 'Amount', 'Status'],
+    akcje: 'Every row: preview · download again · duplicate',
+    akcjeKrotko: 'Preview · duplicate',
+    razem: 'total €9,230',
+  },
+};
+
 /**
  * Kolumny: numer, kontrahent, kwota, status. Godzina wysyłki idzie pod numer —
  * jako piąta kolumna zjadała tyle miejsca, że numery dokumentów się nie mieściły.
@@ -66,21 +107,22 @@ const kolumny = 'grid grid-cols-[1fr_74px_82px] gap-3 lg:grid-cols-[1fr_1.2fr_70
 
 /** Wystawione dokumenty miesiąca z datą wysyłki i stanem. */
 export function ListaDokumentow() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <div className="flex flex-col gap-2 rounded-card border border-line-dark bg-surface text-paper p-5 text-[12px] shadow-[0_30px_80px_rgba(0,0,0,.5)] lg:aspect-4/3 lg:p-8 lg:text-[13px]">
       <div className="flex items-center justify-between gap-3">
-        <b className="text-[16px] lg:text-[18px]">Wystawione · wrzesień</b>
-        <span className="flex-none text-ink-muted">12 dokumentów</span>
+        <b className="text-[16px] lg:text-[18px]">{t.naglowek}</b>
+        <span className="flex-none text-ink-muted">{t.ile}</span>
       </div>
 
       <div className={`${kolumny} border-b border-line-dark py-2.5 text-ink-muted`}>
-        <span>Numer</span>
-        <span className="hidden lg:block">Kontrahent</span>
-        <span className="text-right">Kwota</span>
-        <span className="text-right">Status</span>
+        <span>{t.kolumny[0]}</span>
+        <span className="hidden lg:block">{t.kolumny[1]}</span>
+        <span className="text-right">{t.kolumny[2]}</span>
+        <span className="text-right">{t.kolumny[3]}</span>
       </div>
 
-      {dokumenty.map((d) => (
+      {t.dokumenty.map((d) => (
         <div
           key={d.numer}
           className={`${kolumny} items-center border-b border-line-dark py-2 lg:py-2.5 ${
@@ -105,9 +147,9 @@ export function ListaDokumentow() {
       ))}
 
       <div className="mt-auto flex justify-between gap-4 pt-1 text-ink-muted">
-        <span className="hidden lg:block">Każdy wiersz: podgląd · pobierz ponownie · duplikat</span>
-        <span className="lg:hidden">Podgląd · duplikat</span>
-        <span className="flex-none">razem 9 230 €</span>
+        <span className="hidden lg:block">{t.akcje}</span>
+        <span className="lg:hidden">{t.akcjeKrotko}</span>
+        <span className="flex-none">{t.razem}</span>
       </div>
     </div>
   );

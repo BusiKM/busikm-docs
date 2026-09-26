@@ -21,8 +21,12 @@ const nextConfig: NextConfig = {
    * zrzucanie wszystkiego na stronę główną Google traktuje jak „miękkie 404"
    * i tak czy owak wyrzuca z indeksu — a przy okazji frustruje czytelnika,
    * który klikał w konkretny temat. Adresy bez odpowiednika (`/roadmapa`,
-   * `/technologia`, `/docs/*` poza stroną główną działu, `/en/*`) świadomie
+   * `/technologia`, `/docs/*` poza stroną główną działu) świadomie
    * zostają przy 404.
+   *
+   * `/en/*` to dziś nowa wersja angielska — obsługuje ją `src/proxy.ts`,
+   * a stare adresy angielskie z Astro, których nie ma w `i18n/trasy.ts`,
+   * dostają angielską stronę 404.
    */
   async redirects() {
     return [
@@ -63,7 +67,7 @@ const nextConfig: NextConfig = {
       { source: '/docs/bezpieczenstwo', destination: '/prywatnosc', permanent: true },
       { source: '/docs/funkcje-szczegolowo', destination: '/', permanent: true },
       // Bez odpowiednika i bez przekierowania: /docs/slownik, /roadmapa,
-      // /technologia, /g2v2-przygotowanie i cała gałąź /en/*. Roadmapa ma
+      // /technologia i /g2v2-przygotowanie. Roadmapa ma
       // wrócić pod tym samym adresem, więc 404 jest tu stanem przejściowym,
       // a nie decyzją.
     ];

@@ -2,29 +2,57 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { PierscienieCzasu } from '@/components/mockups/PierscienieCzasu';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek1: string;
+  naglowek2: string;
+  lead: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    eyebrow: 'Czas pracy i przerwy',
+    naglowek1: 'Wiesz, kiedy kierowca musi stanąć.',
+    naglowek2: 'Zanim stanie za późno.',
+    lead: 'Jazda, przerwy i odpoczynki liczą się same. Kierowca widzi to na telefonie, Ty na jednym ekranie.',
+    label: 'Czas pracy · desktop, tryb nocny',
+    note: 'Trzy pierścienie postępu (jazda, przerwa, odpoczynek) i lista kierowców ze statusem. Ten sam ekran co na stronie głównej.',
+  },
+  en: {
+    eyebrow: 'Working time and breaks',
+    naglowek1: 'You know when a driver has to stop.',
+    naglowek2: 'Before it’s too late.',
+    lead: 'Driving, breaks and rest count themselves. The driver sees it on the phone, you see it on one screen.',
+    label: 'Working time · desktop, dark mode',
+    note: 'Three progress rings (driving, break, rest) and a list of drivers with their status. The same screen as on the home page.',
+  },
+};
 
 /**
  * Nagłówek strony — ciemny. Nagłówek jest o kilka pikseli mniejszy niż na
  * pozostałych podstronach, bo przy 88 px pierwsza linia by się łamała.
  */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-ink px-6 pt-24 text-paper lg:px-12 lg:pt-40">
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow dark>Czas pracy i przerwy</Eyebrow>
+        <Eyebrow dark>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="text-display-m font-bold text-balance lg:text-[76px] lg:leading-[1.05] lg:tracking-[-0.03em]"
         >
-          Wiesz, kiedy kierowca musi stanąć. <br className="hidden lg:inline" />
-          Zanim stanie za późno.
+          {t.naglowek1} <br className="hidden lg:inline" />
+          {t.naglowek2}
         </h1>
         <p
           data-reveal
           className="max-w-[640px] text-lead-m text-pretty text-ink-muted lg:text-lead"
         >
-          Jazda, przerwy i odpoczynki liczą się same. Kierowca widzi to na telefonie,
-          Ty na jednym ekranie.
+          {t.lead}
         </p>
       </Container>
 
@@ -37,8 +65,8 @@ export function Hero() {
           <div className="relative">
             <MockupSlot
               file="mockup-czas-pracy-pierscienie-desktop.png"
-              label="Czas pracy · desktop, tryb nocny"
-              note="Trzy pierścienie postępu (jazda, przerwa, odpoczynek) i lista kierowców ze statusem. Ten sam ekran co na stronie głównej."
+              label={t.label}
+              note={t.note}
               ratio="4:3"
               dark
               noteClassName="mx-auto max-w-[600px]"

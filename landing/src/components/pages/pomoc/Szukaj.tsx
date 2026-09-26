@@ -1,12 +1,61 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
-import { artykuly, kategorie, pasujeDoFrazy, NAZWY_ROL } from '@/content/pomoc';
+import type { GrupaWyszukiwarki } from '@/content/pomoc';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
 
-const popularne = ['kierowca', 'faktura', 'eksport', 'paragon', 'przerwa'];
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek: string;
+  placeholder: string;
+  etykietaPola: string;
+  popularneEtykieta: string;
+  popularne: string[];
+  wyczysc: string;
+  startTytul: string;
+  startOpis: string;
+  startAkcja: string;
+  brak: (fraza: string) => string;
+}> = {
+  pl: {
+    eyebrow: 'Pomoc',
+    naglowek: 'W czym pomóc?',
+    placeholder: 'Wpisz, czego szukasz — np. faktura, przerwa, eksport',
+    etykietaPola: 'Szukaj w pomocy',
+    popularneEtykieta: 'Najczęściej szukane:',
+    popularne: ['kierowca', 'faktura', 'eksport', 'paragon', 'przerwa'],
+    wyczysc: 'Wyczyść',
+    startTytul: 'Dopiero zaczynasz?',
+    startOpis: 'Siedem kroków od konta do pierwszej faktury, do odhaczania po kolei.',
+    startAkcja: 'Przejdź listę →',
+    brak: (fraza) =>
+      `Nic nie pasuje do „${fraza}”. Napisz do nas — odpisujemy tego samego dnia roboczego.`,
+  },
+  en: {
+    eyebrow: 'Help',
+    naglowek: 'How can we help?',
+    placeholder: 'Type what you’re looking for — e.g. invoice, break, export',
+    etykietaPola: 'Search help',
+    popularneEtykieta: 'Most searched:',
+    popularne: ['driver', 'invoice', 'export', 'receipt', 'break'],
+    wyczysc: 'Clear',
+    startTytul: 'Just getting started?',
+    startOpis: 'Seven steps from account to first invoice, to tick off one by one.',
+    startAkcja: 'Go through the list →',
+    brak: (fraza) =>
+      `Nothing matches “${fraza}”. Write to us — we reply the same working day.`,
+  },
+};
+
+function pasujeDoFrazy(indeks: string, fraza: string): boolean {
+  const f = fraza.trim().toLowerCase();
+  if (!f) return true;
+  return indeks.includes(f);
+}
 
 function LupaIcon() {
   return (
@@ -34,19 +83,23 @@ function LupaIcon() {
  * pokazywania nagłówka nad niczym jest tu ważniejsze niż stabilność układu:
  * po wpisaniu „paragon" mają zostać dwa artykuły, a nie sześć nagłówków
  * i dwa artykuły.
+ *
+ * Artykuły przychodzą z serwera już w języku strony (`grupyWyszukiwarki`),
+ * razem z indeksem — do przeglądarki nie jedzie pełna treść instrukcji.
  */
-export function Szukaj() {
+export function Szukaj({ grupy }: { grupy: GrupaWyszukiwarki[] }) {
+  const t = TEKSTY[useJezyk()];
   const [fraza, setFraza] = useState('');
 
   const znalezione = useMemo(
     () =>
-      kategorie
-        .map((k) => ({
-          kategoria: k,
-          pozycje: artykuly.filter((a) => a.kategoria === k.id && pasujeDoFrazy(a, fraza)),
+      grupy
+        .map((g) => ({
+          kategoria: g.kategoria,
+          pozycje: g.pozycje.filter((a) => pasujeDoFrazy(a.indeks, fraza)),
         }))
         .filter((g) => g.pozycje.length > 0),
-    [fraza],
+    [grupy, fraza],
   );
 
   const razem = znalezione.reduce((suma, g) => suma + g.pozycje.length, 0);
@@ -55,9 +108,9 @@ export function Szukaj() {
     <section className="bg-paper px-6 pt-20 pb-24 lg:px-12 lg:pt-32 lg:pb-32">
       <Container className="flex flex-col gap-10 lg:gap-14">
         <div className="flex flex-col gap-5 lg:gap-6">
-          <Eyebrow>Pomoc</Eyebrow>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
           <h1 data-reveal className="text-display-m font-bold text-balance lg:text-display">
-            W czym pomóc?
+            {t.naglowek}
           </h1>
         </div>
 
@@ -68,15 +121,15 @@ export function Szukaj() {
               type="search"
               value={fraza}
               onChange={(e) => setFraza(e.target.value)}
-              placeholder="Wpisz, czego szukasz — np. faktura, przerwa, eksport"
-              aria-label="Szukaj w pomocy"
+              placeholder={t.placeholder}
+              aria-label={t.etykietaPola}
               className="h-16 w-full rounded-card border border-line bg-white pr-5 pl-14 text-[17px] shadow-card outline-none placeholder:text-muted focus:border-blue lg:h-22 lg:pl-18 lg:text-lead"
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-2 text-[14px] lg:text-caption">
-            <span className="text-muted">Najczęściej szukane:</span>
-            {popularne.map((p) => (
+            <span className="text-muted">{t.popularneEtykieta}</span>
+            {t.popularne.map((p) => (
               <button
                 key={p}
                 type="button"
@@ -92,7 +145,7 @@ export function Szukaj() {
                 onClick={() => setFraza('')}
                 className="cursor-pointer rounded-full px-3.5 py-2 text-muted transition-colors hover:text-ink"
               >
-                Wyczyść
+                {t.wyczysc}
               </button>
             )}
           </div>
@@ -106,14 +159,14 @@ export function Szukaj() {
           >
             <span className="flex flex-col gap-1.5">
               <span className="text-[19px] font-semibold tracking-[-0.01em] lg:text-[22px]">
-                Dopiero zaczynasz?
+                {t.startTytul}
               </span>
               <span className="text-[15px] leading-relaxed text-ink-muted lg:text-body">
-                Siedem kroków od konta do pierwszej faktury, do odhaczania po kolei.
+                {t.startOpis}
               </span>
             </span>
             <span className="text-[15px] font-semibold whitespace-nowrap lg:text-body">
-              Przejdź listę →
+              {t.startAkcja}
             </span>
           </Link>
         )}
@@ -140,7 +193,7 @@ export function Szukaj() {
                     </span>
                     <span className="text-[15px] leading-relaxed text-muted">{a.lead}</span>
                     <span className="mt-auto pt-1 text-[13px] text-muted">
-                      {a.role.map((r) => NAZWY_ROL[r]).join(' · ')}
+                      {a.role}
                     </span>
                   </Link>
                 ))}
@@ -150,8 +203,7 @@ export function Szukaj() {
 
           {razem === 0 && (
             <p className="text-[16px] leading-relaxed text-muted lg:text-body">
-              Nic nie pasuje do „{fraza}”. Napisz do nas — odpisujemy tego samego dnia
-              roboczego.
+              {t.brak(fraza)}
             </p>
           )}
         </div>

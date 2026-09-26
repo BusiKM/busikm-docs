@@ -1,19 +1,67 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
 
-const karty = [
-  {
-    kto: 'Tachograf',
-    czasownik: 'zapisuje',
-    punkty: ['Jest wymagany.', 'Rejestruje jazdę i postoje.', 'Zostaje w pojeździe.'],
-    nasza: false,
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+type Karta = { kto: string; czasownik: string; punkty: readonly string[]; nasza: boolean };
+
+const TEKSTY: Tlumaczenia<{
+  naglowek1: string;
+  naglowek2: string;
+  lead: React.ReactNode;
+  karty: readonly Karta[];
+}> = {
+  pl: {
+    naglowek1: 'Tachograf zapisuje.',
+    naglowek2: 'BusiKM pokazuje.',
+    lead: (
+      <>
+        Tachograf jest wymagany i robi swoje: rejestruje. BusiKM go nie zastępuje
+        i nie udaje. Jest po to, żeby kierowca <b className="text-paper">widział</b> na
+        ekranie, ile jeszcze może jechać i kiedy musi stanąć.
+      </>
+    ),
+    karty: [
+      {
+        kto: 'Tachograf',
+        czasownik: 'zapisuje',
+        punkty: ['Jest wymagany.', 'Rejestruje jazdę i postoje.', 'Zostaje w pojeździe.'],
+        nasza: false,
+      },
+      {
+        kto: 'BusiKM',
+        czasownik: 'pokazuje',
+        punkty: ['Ile jeszcze można jechać.', 'Kiedy trzeba stanąć.', 'Na ekranie kierowcy i u Ciebie.'],
+        nasza: true,
+      },
+    ],
   },
-  {
-    kto: 'BusiKM',
-    czasownik: 'pokazuje',
-    punkty: ['Ile jeszcze można jechać.', 'Kiedy trzeba stanąć.', 'Na ekranie kierowcy i u Ciebie.'],
-    nasza: true,
+  en: {
+    naglowek1: 'The tachograph records.',
+    naglowek2: 'BusiKM shows.',
+    lead: (
+      <>
+        The tachograph is required and does its job: it records. BusiKM doesn’t replace it
+        and doesn’t pretend to. It’s there so the driver can <b className="text-paper">see</b> on
+        screen how much longer they can drive and when they have to stop.
+      </>
+    ),
+    karty: [
+      {
+        kto: 'Tachograph',
+        czasownik: 'records',
+        punkty: ['It’s required.', 'It logs driving and stops.', 'It stays in the vehicle.'],
+        nasza: false,
+      },
+      {
+        kto: 'BusiKM',
+        czasownik: 'shows',
+        punkty: ['How much longer you can drive.', 'When you have to stop.', 'On the driver’s screen and on yours.'],
+        nasza: true,
+      },
+    ],
   },
-] as const;
+};
 
 /**
  * Najważniejsza sekcja tej strony. Rozbraja nieporozumienie, że BusiKM ma
@@ -21,26 +69,25 @@ const karty = [
  * zestawieniem dwóch czasowników.
  */
 export function Tachograf() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section tone="ink" spacing="py-28 lg:py-50">
       <div className="flex flex-col gap-12 lg:items-center lg:gap-24">
         <div className="flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
           <h2 data-reveal className="text-display-m font-bold text-balance lg:text-display">
-            Tachograf zapisuje. <br className="hidden lg:inline" />
-            BusiKM pokazuje.
+            {t.naglowek1} <br className="hidden lg:inline" />
+            {t.naglowek2}
           </h2>
           <p
             data-reveal
             className="max-w-[760px] text-lead-m text-pretty text-ink-muted lg:text-lead"
           >
-            Tachograf jest wymagany i robi swoje: rejestruje. BusiKM go nie zastępuje
-            i nie udaje. Jest po to, żeby kierowca <b className="text-paper">widział</b> na
-            ekranie, ile jeszcze może jechać i kiedy musi stanąć.
+            {t.lead}
           </p>
         </div>
 
         <div data-reveal-group className="grid w-full gap-2.5 lg:grid-cols-2 lg:gap-6">
-          {karty.map((k) => (
+          {t.karty.map((k) => (
             <div
               key={k.kto}
               data-reveal

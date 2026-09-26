@@ -1,4 +1,11 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const NAGLOWEK: Tlumaczenia<string> = {
+  pl: 'Czego już nie robisz.',
+  en: 'What you no longer do.',
+};
 
 /**
  * „Czego już nie robisz" — lista przekreślona, bez komentarza przy pozycjach.
@@ -6,7 +13,7 @@ import { Section } from '@/components/ui/Section';
  * podstawowego, na przygaszonych słowach.
  */
 export function PrzekreslonaLista({
-  naglowek = 'Czego już nie robisz.',
+  naglowek,
   rzeczy,
   tone = 'mist',
 }: {
@@ -15,12 +22,13 @@ export function PrzekreslonaLista({
   tone?: 'mist' | 'ink' | 'surface';
 }) {
   const dark = tone !== 'mist';
+  const tytul = naglowek ?? NAGLOWEK[biezacyJezyk()];
 
   return (
     <Section tone={tone}>
       <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-16">
         <h2 data-reveal className="text-h2-m font-semibold text-balance lg:text-h2">
-          {naglowek}
+          {tytul}
         </h2>
 
         <div data-reveal-group className="flex flex-col">

@@ -2,9 +2,38 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { MapaFloty } from '@/components/mockups/MapaFloty';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek1: string;
+  naglowek2: string;
+  lead: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    eyebrow: 'Trasy i mapa floty',
+    naglowek1: 'Widzisz, gdzie jest każdy bus.',
+    naglowek2: 'Bez dzwonienia.',
+    lead: 'Klient pyta o ładunek — odpowiadasz w pięć sekund, patrząc na jeden ekran.',
+    label: 'Mapa floty · desktop 1440',
+    note: 'Mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu. Ten sam ekran co na stronie głównej.',
+  },
+  en: {
+    eyebrow: 'Routes and fleet map',
+    naglowek1: 'You see where every van is.',
+    naglowek2: 'Without picking up the phone.',
+    lead: 'A client asks about their load — you answer in five seconds, looking at one screen.',
+    label: 'Fleet map · desktop 1440',
+    note: 'A map of Europe with routes and a bubble over the vehicle: driver, order, arrival time. The same screen as on the home page.',
+  },
+};
 
 /** Nagłówek strony — jasny, na siatce południków, z jedną trasą na ukos. */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-paper px-6 pt-24 lg:px-12 lg:pt-40">
       <div
@@ -36,19 +65,19 @@ export function Hero() {
       </svg>
 
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow>Trasy i mapa floty</Eyebrow>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="max-w-[1120px] text-display-m font-bold text-balance lg:text-display"
         >
-          Widzisz, gdzie jest każdy bus. <br className="hidden lg:inline" />
-          Bez dzwonienia.
+          {t.naglowek1} <br className="hidden lg:inline" />
+          {t.naglowek2}
         </h1>
         <p
           data-reveal
           className="max-w-[640px] text-lead-m text-pretty text-muted lg:text-lead"
         >
-          Klient pyta o ładunek — odpowiadasz w pięć sekund, patrząc na jeden ekran.
+          {t.lead}
         </p>
       </Container>
 
@@ -60,8 +89,8 @@ export function Hero() {
         <div data-reveal className="relative">
           <MockupSlot
             file="mockup-mapa-flota-desktop.png"
-            label="Mapa floty · desktop 1440"
-            note="Mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu. Ten sam ekran co na stronie głównej."
+            label={t.label}
+            note={t.note}
             ratio="16:10"
             noteClassName="mx-auto max-w-[600px]"
           >

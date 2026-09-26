@@ -1,0 +1,16 @@
+import { StronaDokumentu } from '@/components/pages/dokument/StronaDokumentu';
+import { metadataPodstrony } from '@/lib/metadata';
+import { jezykZParametrow, type ParametryJezyka } from '@/i18n/serwer';
+import { powierzenie, pozostaleDokumenty } from '@/content/dokumenty';
+
+export const generateMetadata = metadataPodstrony('powierzenie-danych');
+
+export default async function Page({ params }: ParametryJezyka) {
+  const jezyk = await jezykZParametrow(params);
+  return (
+    <StronaDokumentu
+      dokument={powierzenie[jezyk]}
+      pozostale={pozostaleDokumenty('/powierzenie-danych', jezyk)}
+    />
+  );
+}

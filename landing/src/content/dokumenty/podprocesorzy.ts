@@ -1,4 +1,5 @@
 import { firma } from '@/content/firma';
+import type { Tlumaczenia } from '@/i18n/jezyki';
 import type { Dokument } from '@/content/dokumenty/typy';
 
 /**
@@ -15,7 +16,7 @@ import type { Dokument } from '@/content/dokumenty/typy';
  * Rejestr jest zadaniem BKM-1971 w etapie 7 backlogu. Jeżeli stos zmieni się
  * przed uruchomieniem, ta lista idzie do aktualizacji razem z nim.
  */
-export const podprocesorzy: Dokument = {
+const pl: Dokument = {
   href: '/podprocesorzy',
   tytul: 'Podprocesorzy',
   obowiazujeOd: '1 września 2026',
@@ -187,3 +188,177 @@ export const podprocesorzy: Dokument = {
     },
   ],
 };
+
+/**
+ * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * strona mówi o tym wprost nad treścią.
+ */
+const en: Dokument = {
+  href: '/podprocesorzy',
+  tytul: 'Subprocessors',
+  obowiazujeOd: '1 September 2026',
+  wersja: 2,
+  ostatniaZmiana: '3 September 2026',
+  wSkrocie: [
+    'A subprocessor is a company that helps us provide the service — for example, by hosting servers or reading the text on a receipt.',
+    'We keep servers, databases, files and backups in Europe.',
+    'Two things require providers from outside Europe: receipt recognition and phone notifications. We say so plainly instead of hiding it.',
+    'We notify you by e-mail 30 days in advance of any change to the list.',
+  ],
+  paragrafy: [
+    {
+      numer: '1',
+      tytul: 'Who subprocessors are',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'A subprocessor is a further processor within the meaning of Art. 28(4) of the General Data Protection Regulation (GDPR) — a company to which we entrust part of the data processing so that we can provide the service. We could not operate without servers or a service that recognises text in a photo, so we use specialised providers instead of building these ourselves.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We contractually impose on each subprocessor the same data protection obligations that we owe to you. We are liable for their actions as for our own.',
+        },
+      ],
+    },
+    {
+      numer: '2',
+      tytul: 'List of subprocessors',
+      bloki: [
+        {
+          typ: 'tabela',
+          naglowki: ['Entity', 'What we use it for', 'What data', 'Where it processes data'],
+          wiersze: [
+            [
+              'Amazon Web Services',
+              'Servers, databases (PostgreSQL, Redis, MongoDB), files and backups',
+              'all data in the account',
+              'European Union (Frankfurt)',
+            ],
+            [
+              'Amazon SES',
+              'Sending e-mails: invitations with a code, invoices, deadline reminders',
+              'e-mail address, message content and attachments',
+              'European Union',
+            ],
+            [
+              'Mapbox',
+              'Route planning and converting addresses into coordinates',
+              'loading and unloading addresses, vehicle positions',
+              'European Union',
+            ],
+            [
+              'Google Cloud (Vision)',
+              'Recognising text in photos of receipts',
+              'photos of receipts and the amounts read from them',
+              'European Union, entity outside the EEA',
+            ],
+            [
+              'Stripe',
+              'Subscription payments and invoices for the service',
+              'company billing details, e-mail address',
+              'European Union (Ireland)',
+            ],
+            [
+              'Sentry',
+              'Application error reporting',
+              'user identifier, IP address, error context',
+              'European Union',
+            ],
+            [
+              'Apple (App Store, notifications)',
+              'Distribution of the driver app and delivery of notifications',
+              'device token, notification content',
+              'outside the EEA',
+            ],
+            [
+              'Google (Google Play, notifications)',
+              'Distribution of the driver app and delivery of notifications',
+              'device token, notification content',
+              'outside the EEA',
+            ],
+          ],
+          stopka:
+            'We collect service performance statistics using Grafana running on our own servers — it is not a separate subprocessor, because the data does not leave our infrastructure.',
+        },
+      ],
+    },
+    {
+      numer: '3',
+      tytul: 'Who is not a subprocessor',
+      bloki: [
+        {
+          typ: 'definicje',
+          wstep:
+            'The application also connects to systems that do not process data on our behalf — for completeness, we list them separately:',
+          pozycje: [
+            {
+              termin: 'National e-Invoicing System (Krajowy System e-Faktur, KSeF)',
+              opis: 'a system operated by Poland’s Ministry of Finance. We send invoices there on your instructions; the controller of data in KSeF is the public authority, not us.',
+            },
+            {
+              termin: 'National Bank of Poland (Narodowy Bank Polski)',
+              opis: 'a public exchange rate API. We only retrieve exchange rates, without transmitting any data.',
+            },
+            {
+              termin: 'VIES (European Commission)',
+              opis: 'verification of business partners’ VAT numbers. We transmit the company’s VAT number, not personal data.',
+            },
+            {
+              termin: 'Grafana',
+              opis: 'charts of service load and availability. It runs on our servers; the data does not reach the software vendor.',
+            },
+            {
+              termin: 'Contact form on the website',
+              opis: 'a message sent from busikm.pl is stored in a Firestore database (Google Ireland, European region), and the notification about it is delivered by Resend from servers in Ireland. These are not subprocessors within the meaning of this register: they concern data for which we are the controller, not data entrusted to us by clients. They are listed in the Privacy Policy.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      numer: '4',
+      tytul: 'Processing outside Europe',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'Servers, databases, files, backups, e-mail and payments operate within the European Union. Two things, however, require entities outside the European Economic Area: recognising text on receipts, and delivering notifications to the phone, which always goes through Apple or Google.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We safeguard the transfer with standard contractual clauses approved by the European Commission. We set receipt recognition to the provider’s European region. A notification contains the device token and a short message — never photos, documents or billing data.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If you would prefer photos of receipts not to leave Europe, write to us — we can switch your account to a recognition engine running on our own servers. Recognition is then slightly less accurate.',
+        },
+      ],
+    },
+    {
+      numer: '5',
+      tytul: 'Changes to the list',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We notify you by e-mail at least 30 days before any intended addition or replacement of a subprocessor. In the message, we give the name of the entity, the scope of processing and the place where the data is processed.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'During that time, you may raise a reasoned objection. We will try to find a solution — for example, by proposing a different provider. If that is not possible, you may terminate the agreement with effect from the date the change takes effect, at no cost.',
+        },
+        {
+          typ: 'akapit',
+          tresc: `Would you like to be notified of changes to this list even though you are not a client yet? Write to ${firma.email} and we will add you.`,
+        },
+      ],
+    },
+  ],
+};
+
+export const podprocesorzy: Tlumaczenia<Dokument> = { pl, en };

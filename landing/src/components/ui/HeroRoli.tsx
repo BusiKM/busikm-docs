@@ -2,6 +2,13 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { appLinks } from '@/content/navigation';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const PRZYCISKI: Tlumaczenia<{ trial: string; demo: string }> = {
+  pl: { trial: 'Wypróbuj 14 dni', demo: 'Zobacz demo' },
+  en: { trial: 'Try it free for 14 days', demo: 'See the demo' },
+};
 
 /**
  * Nagłówek strony roli — wyrównany do lewej, bez makiety pod spodem.
@@ -21,6 +28,7 @@ export function HeroRoli({
   tone?: 'paper' | 'ink';
 }) {
   const dark = tone === 'ink';
+  const t = PRZYCISKI[biezacyJezyk()];
 
   return (
     <section
@@ -55,10 +63,10 @@ export function HeroRoli({
         </p>
         <div data-reveal className="mt-2 flex flex-col gap-2.5 lg:flex-row lg:gap-3">
           <Button href={appLinks.trial} fullWidth className="lg:w-auto">
-            Wypróbuj 14 dni
+            {t.trial}
           </Button>
           <Button href={appLinks.demo} variant="secondary" fullWidth className="lg:w-auto">
-            Zobacz demo
+            {t.demo}
           </Button>
         </div>
       </Container>

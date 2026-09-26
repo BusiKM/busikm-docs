@@ -1,13 +1,33 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const liczby = [
-  { label: 'Przychód · wrzesień', value: '184 320 zł', mocna: false },
-  { label: 'Koszty', value: '121 840 zł', mocna: false },
-  { label: 'Zysk', value: '62 480 zł', mocna: true },
-] as const;
+type Liczba = { label: string; value: string; mocna: boolean };
+
+const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; liczby: readonly Liczba[] }> = {
+  pl: {
+    tytul: 'Zysk na pierwszym ekranie',
+    tresc: 'Przychód, koszty i zysk, na bieżąco.',
+    liczby: [
+      { label: 'Przychód · wrzesień', value: '184 320 zł', mocna: false },
+      { label: 'Koszty', value: '121 840 zł', mocna: false },
+      { label: 'Zysk', value: '62 480 zł', mocna: true },
+    ],
+  },
+  en: {
+    tytul: 'Profit on the first screen',
+    tresc: 'Revenue, costs and profit, as they happen.',
+    liczby: [
+      { label: 'Revenue · September', value: 'PLN 184,320', mocna: false },
+      { label: 'Costs', value: 'PLN 121,840', mocna: false },
+      { label: 'Profit', value: 'PLN 62,480', mocna: true },
+    ],
+  },
+};
 
 /** 01 — trzy liczby, które właściciel widzi zaraz po zalogowaniu. */
 export function ZyskNaPierwszymEkranie() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section>
       <div className="flex flex-col gap-10 lg:gap-16">
@@ -20,16 +40,16 @@ export function ZyskNaPierwszymEkranie() {
               01
             </div>
             <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-              Zysk na pierwszym ekranie
+              {t.tytul}
             </h2>
           </div>
           <p data-reveal className="text-lead-m text-muted lg:text-lead">
-            Przychód, koszty i zysk, na bieżąco.
+            {t.tresc}
           </p>
         </div>
 
         <div data-reveal-group className="grid gap-2.5 lg:grid-cols-3 lg:gap-4">
-          {liczby.map((l) => (
+          {t.liczby.map((l) => (
             <div
               key={l.label}
               data-reveal

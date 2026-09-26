@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 
 /** Przyciski wg projektu: 56 px na desktopie, 52 px na telefonie, promień 12 px. */
 

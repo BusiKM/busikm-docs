@@ -2,9 +2,38 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { ZlecenieIFaktura } from '@/components/mockups/faktury/ZlecenieIFaktura';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek1: string;
+  naglowek2: string;
+  lead: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    eyebrow: 'Zlecenia i faktury',
+    naglowek1: 'Ze zlecenia robi się faktura.',
+    naglowek2: 'Klient ma ją, zanim wrócisz do biura.',
+    lead: 'Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz. Niczego nie przepisujesz.',
+    label: 'Zlecenie → faktura · desktop 1440',
+    note: 'Zlecenie po lewej, faktura po prawej, między nimi strzałka i przycisk „Wystaw i wyślij”.',
+  },
+  en: {
+    eyebrow: 'Orders and invoices',
+    naglowek1: 'The order turns into an invoice.',
+    naglowek2: 'The client has it before you’re back at the office.',
+    lead: 'The driver finishes the job, you check the amount and send it. Nothing to retype.',
+    label: 'Order → invoice · desktop 1440',
+    note: 'The order on the left, the invoice on the right, an arrow between them and an “Issue and send” button.',
+  },
+};
 
 /** Nagłówek strony — jasny, na siatce, z pełnym oknem aplikacji pod spodem. */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-paper px-6 pt-24 lg:px-12 lg:pt-40">
       <div
@@ -13,19 +42,19 @@ export function Hero() {
       />
 
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow>Zlecenia i faktury</Eyebrow>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="max-w-[1080px] text-display-m font-bold text-balance lg:text-display"
         >
-          Ze zlecenia robi się faktura. <br className="hidden lg:inline" />
-          Klient ma ją, zanim wrócisz do biura.
+          {t.naglowek1} <br className="hidden lg:inline" />
+          {t.naglowek2}
         </h1>
         <p
           data-reveal
           className="max-w-[640px] text-lead-m text-pretty text-muted lg:text-lead"
         >
-          Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz. Niczego nie przepisujesz.
+          {t.lead}
         </p>
       </Container>
 
@@ -37,8 +66,8 @@ export function Hero() {
         <div data-reveal className="relative">
           <MockupSlot
             file="mockup-faktury-ekran-desktop.png"
-            label="Zlecenie → faktura · desktop 1440"
-            note="Zlecenie po lewej, faktura po prawej, między nimi strzałka i przycisk „Wystaw i wyślij”."
+            label={t.label}
+            note={t.note}
             ratio="16:10"
             noteClassName="mx-auto max-w-[600px]"
           >

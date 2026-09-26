@@ -1,17 +1,30 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const kategorie = [
-  'Paliwo',
-  'Opłaty drogowe',
-  'Hotel',
-  'Posiłek',
-  'Prom',
-  'Parking',
-  'Naprawa',
-] as const;
+const TEKSTY: Tlumaczenia<{
+  tytul: string;
+  tresc: string;
+  kategorie: readonly string[];
+  podpowiedz: string;
+}> = {
+  pl: {
+    tytul: 'Kategorie z życia',
+    tresc: 'Paliwo, opłaty drogowe, hotel, posiłek, prom, parking, naprawa.',
+    kategorie: ['Paliwo', 'Opłaty drogowe', 'Hotel', 'Posiłek', 'Prom', 'Parking', 'Naprawa'],
+    podpowiedz: 'podpowiedź po sprzedawcy',
+  },
+  en: {
+    tytul: 'Categories from real life',
+    tresc: 'Fuel, tolls, hotel, meals, ferry, parking, repairs.',
+    kategorie: ['Fuel', 'Tolls', 'Hotel', 'Meals', 'Ferry', 'Parking', 'Repairs'],
+    podpowiedz: 'suggested from the merchant',
+  },
+};
 
 /** 03 — kategorie jako pigułki, pierwsza wybrana. */
 export function Kategorie() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section>
       <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-20">
@@ -23,10 +36,10 @@ export function Kategorie() {
             03
           </div>
           <h2 data-reveal className="text-h2-m font-semibold text-balance lg:text-h2">
-            Kategorie z życia
+            {t.tytul}
           </h2>
           <p data-reveal className="text-[16px] leading-relaxed text-muted lg:text-body">
-            Paliwo, opłaty drogowe, hotel, posiłek, prom, parking, naprawa.
+            {t.tresc}
           </p>
         </div>
 
@@ -34,7 +47,7 @@ export function Kategorie() {
           data-reveal
           className="flex flex-wrap gap-2.5 text-[15px] font-medium lg:gap-3 lg:text-body"
         >
-          {kategorie.map((k, i) => (
+          {t.kategorie.map((k, i) => (
             <span
               key={k}
               className={`rounded-full px-5 py-3.5 lg:px-6 lg:py-4 ${
@@ -45,7 +58,7 @@ export function Kategorie() {
             </span>
           ))}
           <span className="rounded-full border border-dashed border-line px-5 py-3.5 text-muted lg:px-6 lg:py-4">
-            podpowiedź po sprzedawcy
+            {t.podpowiedz}
           </span>
         </div>
       </div>

@@ -26,6 +26,13 @@ rules_version = '2';
 // wszędzie tam, gdzie zgoda padła. To na nas spoczywa ciężar wykazania jej
 // treści — art. 7 ust. 1 RODO — a samo `true` nie dowodzi, pod czym ktoś się
 // podpisał.
+//
+// ── Język ───────────────────────────────────────────────────────────────────
+// `jezyk` ('pl' | 'en') to język formularza, a więc i brzmienia zgody, które
+// człowiek widział — `trescZgody` na stronie angielskiej jest po angielsku.
+// Pole jest opcjonalne tylko po to, żeby reguły dało się wdrożyć przed kodem:
+// stary kod go nie wysyła. Kolejność wdrożenia: najpierw te reguły, potem
+// kod — odwrotnie `hasOnly` odrzuci każdy nowy zapis.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -60,10 +67,14 @@ service cloud.firestore {
       : !('trescZgody' in d) && !('wersjaZgody' in d) && !('kanalZgody' in d);
   }
 
+  function poprawnyJezyk(d) {
+    return !('jezyk' in d) || d.jezyk in ['pl', 'en'];
+  }
+
   function poprawnaWiadomosc(d) {
     return d.keys().hasOnly(['imie', 'email', 'temat', 'tresc', 'zgoda',
                              'trescZgody', 'wersjaZgody', 'kanalZgody',
-                             'createdAt', 'source'])
+                             'jezyk', 'createdAt', 'source'])
       && d.keys().hasAll(['imie', 'email', 'temat', 'tresc', 'zgoda', 'createdAt'])
       && d.imie is string && d.imie.size() > 0 && d.imie.size() <= 120
       && d.email is string && d.email.size() <= 160 && d.email.matches('.+@.+[.].+')
@@ -71,6 +82,7 @@ service cloud.firestore {
       && d.temat in ['pytanie przed zakupem', 'pomoc techniczna', 'rozliczenia i faktury', 'coś innego']
       && d.zgoda is bool
       && dowodZgody(d)
+      && poprawnyJezyk(d)
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }
@@ -89,7 +101,7 @@ service cloud.firestore {
   function poprawnyZapis(d) {
     return d.keys().hasOnly(['imie', 'email', 'zrodlo', 'zgoda',
                              'trescZgody', 'wersjaZgody', 'kanalZgody',
-                             'plan', 'okres',
+                             'plan', 'okres', 'jezyk',
                              'createdAt', 'source'])
       && d.keys().hasAll(['imie', 'email', 'zrodlo', 'zgoda',
                           'trescZgody', 'wersjaZgody', 'kanalZgody', 'createdAt'])
@@ -100,6 +112,7 @@ service cloud.firestore {
       && d.zgoda == true
       && dowodZgody(d)
       && wyborZCennika(d)
+      && poprawnyJezyk(d)
       && d.createdAt == request.time
       && (!('source' in d) || d.source == 'busikm-landing');
   }

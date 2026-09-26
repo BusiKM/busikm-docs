@@ -19,6 +19,8 @@
  * „miesięcznie".
  */
 
+import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
+
 export const PLANY = ['start', 'firma'] as const;
 export const OKRESY = ['miesiecznie', 'rocznie'] as const;
 
@@ -30,27 +32,33 @@ export type Zainteresowanie = {
   okres: OkresId;
 };
 
-const NAZWY_PLANOW: Record<PlanId, string> = {
-  start: 'Start',
-  firma: 'Firma',
+/** Nazwy planów. „Firma" po angielsku to „Business" — „Start" zostaje. */
+const NAZWY_PLANOW: Tlumaczenia<Record<PlanId, string>> = {
+  pl: { start: 'Start', firma: 'Firma' },
+  en: { start: 'Start', firma: 'Business' },
 };
 
-const NAZWY_OKRESOW: Record<OkresId, string> = {
-  miesiecznie: 'miesięcznie',
-  rocznie: 'rocznie',
+const NAZWY_OKRESOW: Tlumaczenia<Record<OkresId, string>> = {
+  pl: { miesiecznie: 'miesięcznie', rocznie: 'rocznie' },
+  en: { miesiecznie: 'monthly', rocznie: 'yearly' },
 };
 
-/** Do pokazania człowiekowi i do powiadomienia: „Firma · rocznie". */
-export function opiszWybor({ plan, okres }: Zainteresowanie): string {
-  return `${NAZWY_PLANOW[plan]} · ${NAZWY_OKRESOW[okres]}`;
+/**
+ * Do pokazania człowiekowi i do powiadomienia: „Firma · rocznie".
+ *
+ * Język domyślnie polski — powiadomienia na naszą skrzynkę zostają po
+ * polsku, niezależnie od języka formularza.
+ */
+export function opiszWybor({ plan, okres }: Zainteresowanie, jezyk: Jezyk = 'pl'): string {
+  return `${NAZWY_PLANOW[jezyk][plan]} · ${NAZWY_OKRESOW[jezyk][okres]}`;
 }
 
-export function nazwaPlanu(plan: PlanId): string {
-  return NAZWY_PLANOW[plan];
+export function nazwaPlanu(plan: PlanId, jezyk: Jezyk = 'pl'): string {
+  return NAZWY_PLANOW[jezyk][plan];
 }
 
-export function nazwaOkresu(okres: OkresId): string {
-  return NAZWY_OKRESOW[okres];
+export function nazwaOkresu(okres: OkresId, jezyk: Jezyk = 'pl'): string {
+  return NAZWY_OKRESOW[jezyk][okres];
 }
 
 /** Adres, pod który prowadzi „Wypróbuj 14 dni" w cenniku. */

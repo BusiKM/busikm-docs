@@ -1,4 +1,6 @@
-import { serwis, trasy } from '@/content/seo';
+import { serwis, trasy, opisSerwisu } from '@/content/seo';
+import { KODY, type Jezyk } from '@/i18n/jezyki';
+import { lokalizuj } from '@/i18n/trasy';
 import { firma } from '@/content/firma';
 import { pages } from '@/content/pages';
 import { plans } from '@/content/cennik';
@@ -57,20 +59,20 @@ function organizacja() {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       email: firma.email,
-      availableLanguage: ['pl'],
+      availableLanguage: ['pl', 'en'],
       areaServed: 'PL',
     },
   };
 }
 
-function witryna() {
+function witryna(jezyk: Jezyk) {
   return {
     '@type': 'WebSite',
     '@id': ID_SERWIS,
     url: serwis.url,
     name: serwis.nazwa,
-    description: serwis.opis,
-    inLanguage: 'pl-PL',
+    description: opisSerwisu[jezyk].opis,
+    inLanguage: KODY[jezyk].lang,
     publisher: { '@id': ID_FIRMA },
   };
 }
@@ -82,45 +84,61 @@ function witryna() {
  * ceną w wyniku wyszukiwania a ceną na stronie to zgłoszenie „niezgodna
  * cena" i utrata wyniku rozszerzonego.
  */
-function aplikacja() {
-  const ceny = plans.map((p) => Number(p.monthly.replace(/\s/g, '')));
+const FUNKCJE: Record<Jezyk, string[]> = {
+  pl: [
+    'Automatyczna ewidencja przebiegu pojazdu (kilometrówka)',
+    'Ewidencja czasu pracy kierowcy i przerw',
+    'Zlecenia transportowe i faktury dla klientów',
+    'Mapa floty i planowanie tras',
+    'Odczyt paragonów ze zdjęcia',
+    'Rentowność zleceń i raporty kosztów',
+    'Komplet dokumentów dla biura rachunkowego',
+    'Pilnowanie terminów dokumentów i badań',
+    'Aplikacja mobilna dla kierowcy',
+  ],
+  en: [
+    'Automatic vehicle mileage log',
+    'Driver working time and break records',
+    'Transport orders and customer invoices',
+    'Fleet map and route planning',
+    'Receipt capture from a photo',
+    'Order profitability and cost reports',
+    'Complete document pack for the accounting office',
+    'Document and inspection deadline reminders',
+    'Mobile app for drivers',
+  ],
+};
+
+function aplikacja(jezyk: Jezyk) {
+  const ceny = plans[jezyk].map((p) => Number(p.monthly.replace(/\s/g, '')));
 
   return {
     '@type': 'SoftwareApplication',
     '@id': `${serwis.url}/#aplikacja`,
     name: serwis.nazwa,
     applicationCategory: 'BusinessApplication',
-    applicationSubCategory: 'Zarządzanie flotą i transportem',
+    applicationSubCategory:
+      jezyk === 'pl' ? 'Zarządzanie flotą i transportem' : 'Fleet and transport management',
     operatingSystem: 'Web, iOS, Android',
     url: serwis.url,
-    description: serwis.opis,
-    inLanguage: 'pl-PL',
+    description: opisSerwisu[jezyk].opis,
+    inLanguage: KODY[jezyk].lang,
     provider: { '@id': ID_FIRMA },
     screenshot: `${serwis.url}${serwis.ogImage}`,
-    featureList: [
-      'Automatyczna ewidencja przebiegu pojazdu (kilometrówka)',
-      'Ewidencja czasu pracy kierowcy i przerw',
-      'Zlecenia transportowe i faktury dla klientów',
-      'Mapa floty i planowanie tras',
-      'Odczyt paragonów ze zdjęcia',
-      'Rentowność zleceń i raporty kosztów',
-      'Komplet dokumentów dla biura rachunkowego',
-      'Pilnowanie terminów dokumentów i badań',
-      'Aplikacja mobilna dla kierowcy',
-    ],
+    featureList: FUNKCJE[jezyk],
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'PLN',
       lowPrice: String(Math.min(...ceny)),
       highPrice: String(Math.max(...ceny)),
-      offerCount: plans.length,
-      url: `${serwis.url}/cennik`,
-      offers: plans.map((p) => ({
+      offerCount: plans[jezyk].length,
+      url: `${serwis.url}${lokalizuj('/cennik', jezyk)}`,
+      offers: plans[jezyk].map((p) => ({
         '@type': 'Offer',
         name: p.name,
         price: p.monthly.replace(/\s/g, ''),
         priceCurrency: 'PLN',
-        url: `${serwis.url}/cennik`,
+        url: `${serwis.url}${lokalizuj('/cennik', jezyk)}`,
         availability: 'https://schema.org/InStock',
         priceSpecification: {
           '@type': 'UnitPriceSpecification',
@@ -138,18 +156,18 @@ function aplikacja() {
 }
 
 /** Graf strony głównej: firma + serwis + produkt. */
-export function grafStronyGlownej() {
+export function grafStronyGlownej(jezyk: Jezyk) {
   return {
     '@context': 'https://schema.org',
-    '@graph': [organizacja(), witryna(), aplikacja()],
+    '@graph': [organizacja(), witryna(jezyk), aplikacja(jezyk)],
   };
 }
 
 /** Sama firma i serwis — na podstronach, gdzie produkt nie jest tematem. */
-export function grafPodstawowy() {
+export function grafPodstawowy(jezyk: Jezyk) {
   return {
     '@context': 'https://schema.org',
-    '@graph': [organizacja(), witryna()],
+    '@graph': [organizacja(), witryna(jezyk)],
   };
 }
 
@@ -160,25 +178,30 @@ export function grafPodstawowy() {
  * i `/dla-kogo` to w nawigacji wyłącznie wyzwalacze menu, więc wskazanie
  * na nie prowadziłoby robota pod adres bez treści.
  */
-export function okruszki(sciezka: string) {
+export function okruszki(sciezka: string, jezyk: Jezyk) {
   const istnieje = new Set(trasy.map((t) => t.sciezka));
   const czlony = sciezka.split('/').filter(Boolean);
 
   type Okruch = { '@type': 'ListItem'; position: number; name: string; item: string };
   const elementy: Okruch[] = [
-    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: serwis.url },
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: jezyk === 'pl' ? 'Strona główna' : 'Home',
+      item: `${serwis.url}${lokalizuj('/', jezyk)}`.replace(/\/$/, ''),
+    },
   ];
 
   let biezaca = '';
   for (const czlon of czlony) {
     biezaca += `/${czlon}`;
     if (!istnieje.has(biezaca)) continue;
-    const strona = pages[biezaca.slice(1)];
+    const strona = pages[jezyk][biezaca.slice(1)];
     elementy.push({
       '@type': 'ListItem',
       position: elementy.length + 1,
       name: strona?.title ?? czlon,
-      item: `${serwis.url}${biezaca}`,
+      item: `${serwis.url}${lokalizuj(biezaca, jezyk)}`,
     });
   }
 

@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { Container } from '@/components/ui/Container';
 import { pages } from '@/content/pages';
+import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
  * Szkielet podstrony — etap 0.
@@ -12,17 +13,10 @@ import { pages } from '@/content/pages';
  * docs/landing/05-podstrony.md.
  */
 
-/**
- * Metadane podstrony.
- *
- * Właściwa budowa siedzi w `lib/metadata.ts` — tu zostaje tylko przekazanie
- * dalej, bo wszystkie podstrony importują tę nazwę stąd i nie ma powodu
- * przepisywać dwudziestu kilku plików.
- */
-export { pageMetadata } from '@/lib/metadata';
 
 export function PageShell({ slug }: { slug: string }) {
-  const page = pages[slug];
+  const jezyk = biezacyJezyk();
+  const page = pages[jezyk][slug];
   if (!page) throw new Error(`Brak opisu strony: ${slug}`);
 
   const [first, second] = page.heading.split('\n');
@@ -71,7 +65,7 @@ export function PageShell({ slug }: { slug: string }) {
                   data-reveal
                   className="font-mono text-[10.5px] tracking-[0.12em] text-muted uppercase lg:col-span-2"
                 >
-                  Co znajdzie się na tej stronie
+                  {jezyk === 'pl' ? 'Co znajdzie się na tej stronie' : 'What this page will cover'}
                 </div>
                 {page.outline.map((item) => (
                   <div
@@ -92,8 +86,9 @@ export function PageShell({ slug }: { slug: string }) {
               data-reveal
               className="mt-12 max-w-[60ch] rounded-card border border-dashed border-line bg-mist p-6 text-[15px] text-muted lg:mt-16"
             >
-              Ta strona czeka na projekt. Treść jest gotowa i opisana
-              w dokumentacji — dochodzi układ i makiety.
+              {jezyk === 'pl'
+                ? 'Ta strona czeka na projekt. Treść jest gotowa i opisana w dokumentacji — dochodzi układ i makiety.'
+                : 'This page is waiting for its design. The content is ready — layout and mockups are on the way.'}
             </p>
           </Container>
         </section>

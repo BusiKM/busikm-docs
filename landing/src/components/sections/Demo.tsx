@@ -1,21 +1,46 @@
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 
 import { Section } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { DemoMockup } from '@/components/mockups/DemoMockup';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  naglowek: string;
+  lead: string;
+  odnosnik: string;
+  label: string;
+  opis: string;
+}> = {
+  pl: {
+    naglowek: 'Demo przygotowujemy. Zostaw adres.',
+    lead: 'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Napiszemy w dniu, w którym ruszy — razem z 14 dniami bez opłat.',
+    odnosnik: 'Zapisz się po dostęp do demo',
+    label: 'Wejście do demo · desktop 1440',
+    opis: 'Demo od środka: pasek „to demo”, przełącznik roli (właściciel · dyspozytor · księgowa) i pulpit właściciela.',
+  },
+  en: {
+    naglowek: 'The demo is on its way. Leave your email.',
+    lead: 'The real app, filled with a sample transport company’s data. We’ll write to you the day it goes live — along with 14 days free.',
+    odnosnik: 'Sign up for demo access',
+    label: 'Demo entrance · desktop 1440',
+    opis: 'Inside the demo: a “this is a demo” bar, a role switch (owner · dispatcher · accountant) and the owner’s dashboard.',
+  },
+};
 
 /** 6.15 — demo. Ścieżka bez zobowiązań. */
 export function Demo() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section>
       <div className="flex flex-col gap-8 lg:gap-18">
         <div className="grid gap-5 lg:grid-cols-2 lg:items-end lg:gap-16">
           <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-            Demo przygotowujemy. Zostaw adres.
+            {t.naglowek}
           </h2>
           <p data-reveal className="text-[16px] leading-relaxed text-muted lg:text-body">
-            Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Napiszemy w dniu,
-            w którym ruszy — razem z 14 dniami bez opłat.
+            {t.lead}
           </p>
         </div>
 
@@ -39,13 +64,13 @@ export function Demo() {
         <div data-reveal className="mt-[5%] lg:mt-0">
           <Link
             href="/demo"
-            aria-label="Zapisz się po dostęp do demo"
+            aria-label={t.odnosnik}
             className="block cursor-pointer rounded-panel focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
           >
             <MockupSlot
               file="mockup-demo-ekran-desktop.png"
-              label="Wejście do demo · desktop 1440"
-              note="Demo od środka: pasek „to demo”, przełącznik roli (właściciel · dyspozytor · księgowa) i pulpit właściciela."
+              label={t.label}
+              note={t.opis}
               ratio="16:10"
               imageScale={1.15}
               noteClassName="lg:mx-auto lg:max-w-[600px]"

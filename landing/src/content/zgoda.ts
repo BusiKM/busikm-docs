@@ -1,4 +1,5 @@
 import { firma } from '@/content/firma';
+import type { Tlumaczenia } from '@/i18n/jezyki';
 
 /**
  * Zgoda marketingowa — jedno brzmienie dla wszystkich formularzy.
@@ -39,10 +40,25 @@ import { firma } from '@/content/firma';
 
 export const WERSJA_ZGODY = 2;
 
-export const TRESC_ZGODY =
-  `Zgadzam się na otrzymywanie od ${firma.nazwa} informacji o BusiKM na podany adres ` +
-  'e-mail — w tym o uruchomieniu demo i otwarciu zapisów. Zgodę wycofam odnośnikiem ' +
-  `w każdej wiadomości albo pisząc na ${firma.email}.`;
+/**
+ * Brzmienie w obu językach serwisu.
+ *
+ * Człowiek na stronie angielskiej widzi zgodę po angielsku i pod tym
+ * brzmieniem się podpisuje — więc to ono trafia do bazy, razem z polem
+ * `jezyk`. Brzmienie wskazuje para **(wersja, język)**: obie wersje
+ * językowe mówią to samo i dzielą numer. Zmiana którejkolwiek = nowa wersja
+ * dla obu, żeby numer nadal znaczył jedną treść.
+ */
+export const TRESC_ZGODY: Tlumaczenia<string> = {
+  pl:
+    `Zgadzam się na otrzymywanie od ${firma.nazwa} informacji o BusiKM na podany adres ` +
+    'e-mail — w tym o uruchomieniu demo i otwarciu zapisów. Zgodę wycofam odnośnikiem ' +
+    `w każdej wiadomości albo pisząc na ${firma.email}.`,
+  en:
+    `I agree to receive information about BusiKM from ${firma.nazwa} at the email ` +
+    'address I have given, including news of the demo launch and of sign-ups opening. ' +
+    `I can withdraw my consent via the link in any message or by writing to ${firma.email}.`,
+};
 
 /** Kanał, którego zgoda dotyczy. Art. 398 PKE wymaga wskazania go wprost. */
 export const KANAL_ZGODY = 'email';

@@ -1,13 +1,27 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { StoreBadges } from '@/components/ui/StoreBadges';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const rzeczy = [
-  'Swoje zlecenia',
-  'Swoją trasę',
-  'Swoje koszty',
-  'Swój czas pracy',
-  'Swoje dokumenty',
-];
+const TEKSTY: Tlumaczenia<{
+  naglowek: string;
+  rzeczy: string[];
+  puenta: string;
+  aplikacja: string;
+}> = {
+  pl: {
+    naglowek: 'Co widzisz w aplikacji.',
+    rzeczy: ['Swoje zlecenia', 'Swoją trasę', 'Swoje koszty', 'Swój czas pracy', 'Swoje dokumenty'],
+    puenta: 'Nic o innych kierowcach i nic o pieniądzach firmy.',
+    aplikacja: 'Aplikacja',
+  },
+  en: {
+    naglowek: 'What you see in the app.',
+    rzeczy: ['Your orders', 'Your route', 'Your costs', 'Your working time', 'Your documents'],
+    puenta: 'Nothing about other drivers and nothing about the company’s money.',
+    aplikacja: 'The app',
+  },
+};
 
 /**
  * Zakres w wersji dla kierowcy — jedna kolumna zamiast dwóch, bo pytanie
@@ -15,12 +29,14 @@ const rzeczy = [
  * widzi mnie". Odpowiedź stoi na końcu, wytłuszczona.
  */
 export function CoWidzisz() {
+  const t = TEKSTY[biezacyJezyk()];
+  const rzeczy = t.rzeczy;
   return (
     <Section tone="ink">
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
         <div className="flex flex-col gap-10 lg:gap-14">
           <h2 data-reveal className="text-h2-m font-semibold text-balance lg:text-h2">
-            Co widzisz w aplikacji.
+            {t.naglowek}
           </h2>
 
           <div data-reveal-group className="flex flex-col">
@@ -38,12 +54,12 @@ export function CoWidzisz() {
           </div>
 
           <p data-reveal className="text-lead-m font-semibold text-balance lg:text-lead">
-            Nic o innych kierowcach i nic o pieniądzach firmy.
+            {t.puenta}
           </p>
         </div>
 
         <div data-reveal className="flex flex-col gap-5 lg:mt-2 lg:gap-6">
-          <Eyebrow dark>Aplikacja</Eyebrow>
+          <Eyebrow dark>{t.aplikacja}</Eyebrow>
           <StoreBadges />
         </div>
       </div>

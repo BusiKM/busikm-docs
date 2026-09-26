@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { JsonLd } from './JsonLd';
 import { okruszki } from './schema';
+import { rozpoznaj } from '@/i18n/trasy';
 
 /**
  * Ścieżka okruszków dla wyszukiwarek — jeden komponent na cały serwis.
@@ -15,7 +16,9 @@ import { okruszki } from './schema';
  * zamiast surowego adresu czytelnik widzi „busikm.pl › Ile zostaje".
  */
 export function OkruszkiSeo() {
-  const sciezka = usePathname();
-  if (!sciezka || sciezka === '/') return null;
-  return <JsonLd dane={okruszki(sciezka)} />;
+  // Język z adresu, nie z kontekstu — ten komponent stoi w <head>, poza
+  // dostawcą języka.
+  const { jezyk, sciezkaPl } = rozpoznaj(usePathname() ?? '/');
+  if (!sciezkaPl) return null;
+  return <JsonLd dane={okruszki(sciezkaPl, jezyk)} />;
 }
