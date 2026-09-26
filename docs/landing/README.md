@@ -17,6 +17,7 @@ czym produkt był w czasach pilotażu.
 | [`07-prompt-claude-design.md`](07-prompt-claude-design.md) | **Gotowe prompty do wklejenia w Claude Design** — najpierw strona główna, potem podstrony | Ty, do skopiowania |
 | [`08-makiety-i-zdjecia.md`](08-makiety-i-zdjecia.md) | Ramki zastępcze w miejsce zrzutów, nazewnictwo plików, oprawa graficzna sekcji, sygnały „to jest dla transportu” | Claude Design, implementacja |
 | [`09-workflow-wdrozenia.md`](09-workflow-wdrozenia.md) | **Kolejność pracy** — od promptu w Claude Design po produkcję, z podziałem na fale i listą przekierowań | Ty i ja |
+| [`15-wersja-angielska.md`](15-wersja-angielska.md) | Wersja angielska: adresy `/en`, wykrywanie kraju i języka, przełącznik EN/PL, jak dodać nową podstronę w obu językach | Implementacja |
 
 ## Co wklejasz do Claude Design
 

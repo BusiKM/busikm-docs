@@ -2,6 +2,7 @@ import { getDb, firebaseGotowy } from '@/lib/firebase';
 import { LIMITY_ZAPISU, type Lista } from '@/content/zapisy';
 import { TRESC_ZGODY, WERSJA_ZGODY, KANAL_ZGODY, type Zrodlo } from '@/content/zgoda';
 import type { Zainteresowanie } from '@/content/zainteresowanie';
+import type { Jezyk } from '@/i18n/jezyki';
 
 export type Zapis = {
   imie: string;
@@ -14,6 +15,12 @@ export type Zapis = {
    * opcjonalne na całej drodze, aż po reguły Firestore.
    */
   zainteresowanie?: Zainteresowanie | null;
+  /**
+   * Język strony, na której człowiek się zapisał — a więc i brzmienia zgody,
+   * które miał przed oczami. Bez niego zapis z `/en/demo` wskazywałby na
+   * polskie słowa, których ta osoba nie widziała.
+   */
+  jezyk: Jezyk;
   /** Ukryte pole antyspamowe — musi zostać puste. */
   pulapka?: string;
 };
@@ -47,9 +54,10 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
     email: dane.email.trim().toLowerCase().slice(0, LIMITY_ZAPISU.email),
     zrodlo: dane.zrodlo,
     zgoda: true,
-    trescZgody: TRESC_ZGODY,
+    trescZgody: TRESC_ZGODY[dane.jezyk],
     wersjaZgody: WERSJA_ZGODY,
     kanalZgody: KANAL_ZGODY,
+    jezyk: dane.jezyk,
   };
 
   await addDoc(collection(db, `zapisy-${dane.lista}`), {
@@ -71,6 +79,9 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
         imie: oczyszczone.imie,
         email: oczyszczone.email,
         zrodlo: dane.zrodlo,
+        // Tylko język, nie tekst zgody — trasa bierze brzmienie z `content/zgoda`
+        // i nie zapisze do Klaviyo niczego, co przyszło z przeglądarki.
+        jezyk: dane.jezyk,
         ...(wybor ? { plan: wybor.plan, okres: wybor.okres } : {}),
       }),
     });

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Image from 'next/image';
+import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
  * Miejsce na zrzut z aplikacji — wg docs/landing/08-makiety-i-zdjecia.md
@@ -29,6 +30,19 @@ const DEV = process.env.NODE_ENV === 'development';
  */
 function imageSrc(file: string): string | null {
   if (file.includes('/') || file.includes('..')) return null;
+
+  // Wersja angielska szuka najpierw zrzutu `…-en.png`, a bez niego bierze
+  // polski. Aplikacja jest dziś po polsku, więc polski zrzut na stronie EN
+  // pokazuje prawdę — a rysowana makieta z notką „do podmiany" wyglądałaby
+  // na niedokończoną stronę.
+  if (biezacyJezyk() === 'en') {
+    const en = sciezkaZrzutu(file.replace(/(\.[a-z]+)$/, '-en$1'));
+    if (en) return en;
+  }
+  return sciezkaZrzutu(file);
+}
+
+function sciezkaZrzutu(file: string): string | null {
   try {
     const { mtimeMs } = fs.statSync(path.join(MOCKUPS_DIR, file));
     return DEV ? `/mockups/${file}?v=${Math.round(mtimeMs)}` : `/mockups/${file}`;
@@ -116,6 +130,7 @@ export function MockupSlot({
   caption,
 }: MockupSlotProps) {
   const src = imageSrc(file);
+  const doPodmiany = biezacyJezyk() === 'pl' ? 'Do podmiany' : 'To replace';
 
   const podpis = (brakuje: boolean) =>
     caption ? (
@@ -125,7 +140,7 @@ export function MockupSlot({
           <span
             className={`font-mono text-[10px] lg:text-[11px] ${dark ? 'text-ink-muted' : 'text-muted'}`}
           >
-            Do podmiany · {file} · {ratio}
+            {doPodmiany} · {file} · {ratio}
           </span>
         )}
       </div>
@@ -206,7 +221,7 @@ export function MockupSlot({
         } ${noteClassName}`}
       >
         <div className="font-semibold tracking-[0.06em] uppercase">
-          Do podmiany · {label}
+          {doPodmiany} · {label}
         </div>
         <div>{note}</div>
         <div className="flex flex-wrap justify-between gap-x-4">

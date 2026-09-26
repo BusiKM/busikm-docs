@@ -2,6 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { kotwicaRozdzialu } from '@/content/pomoc/typy';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
+
+const TEKSTY: Tlumaczenia<{ naglowek: string; liczba: (n: number) => string }> = {
+  pl: {
+    naglowek: 'W tym artykule',
+    liczba: (n) => `${n} ${n < 5 ? 'rozdziały' : 'rozdziałów'}`,
+  },
+  en: {
+    naglowek: 'In this article',
+    liczba: (n) => `${n} sections`,
+  },
+};
 
 /**
  * Spis rozdziałów artykułu — przyklejony na desktopie, składany na telefonie.
@@ -15,6 +28,7 @@ import { kotwicaRozdzialu } from '@/content/pomoc/typy';
  * jednej czynności, a nie punktami umowy.
  */
 export function SpisRozdzialow({ rozdzialy }: { rozdzialy: { tytul: string }[] }) {
+  const t = TEKSTY[useJezyk()];
   const [aktywny, setAktywny] = useState(rozdzialy[0]?.tytul ?? '');
   const [otwarty, setOtwarty] = useState(false);
 
@@ -69,15 +83,14 @@ export function SpisRozdzialow({ rozdzialy }: { rozdzialy: { tytul: string }[] }
         className="rounded-card border border-line bg-white lg:hidden"
       >
         <summary className="cursor-pointer list-none px-4 py-3.5 text-[15px] font-semibold">
-          W tym artykule · {rozdzialy.length}{' '}
-          {rozdzialy.length < 5 ? 'rozdziały' : 'rozdziałów'}
+          {t.naglowek} · {t.liczba(rozdzialy.length)}
         </summary>
         <div className="px-2 pb-3">{pozycje}</div>
       </details>
 
-      <nav aria-label="W tym artykule" className="hidden lg:sticky lg:top-28 lg:block">
+      <nav aria-label={t.naglowek} className="hidden lg:sticky lg:top-28 lg:block">
         <div className="mb-4 text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-          W tym artykule
+          {t.naglowek}
         </div>
         {pozycje}
       </nav>

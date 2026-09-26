@@ -2,9 +2,35 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { DyspozytorniaMockup } from '@/components/mockups/DyspozytorniaMockup';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  eyebrow: string;
+  naglowek: string;
+  lead: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    eyebrow: 'Dyspozytornia',
+    naglowek: 'Cały dzień pracy na jednym ekranie.',
+    lead: 'Zlecenia, mapa, kierowcy i rozmowa — obok siebie. Bez przełączania zakładek.',
+    label: 'Ekran dyspozytora · desktop 1440',
+    note: 'Pełnoekranowy pulpit, trzy kolumny: lista zleceń ze statusami, mapa z trasami, panel kierowcy z rozmową.',
+  },
+  en: {
+    eyebrow: 'Dispatch',
+    naglowek: 'A whole working day on one screen.',
+    lead: 'Orders, the map, drivers and messages — side by side. No switching tabs.',
+    label: 'Dispatcher screen · desktop 1440',
+    note: 'Full-screen dashboard in three columns: order list with statuses, map with routes, driver panel with messages.',
+  },
+};
 
 /** Nagłówek strony z pełnoekranowym pulpitem dyspozytora. */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-paper px-6 pt-24 lg:px-12 lg:pt-40">
       <div
@@ -13,15 +39,15 @@ export function Hero() {
       />
 
       <Container className="relative flex flex-col gap-6 lg:items-center lg:gap-8 lg:text-center">
-        <Eyebrow>Dyspozytornia</Eyebrow>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
         <h1
           data-reveal
           className="max-w-[980px] text-display-m font-bold text-balance lg:text-display"
         >
-          Cały dzień pracy na jednym ekranie.
+          {t.naglowek}
         </h1>
         <p data-reveal className="max-w-[640px] text-lead-m text-pretty text-muted lg:text-lead">
-          Zlecenia, mapa, kierowcy i rozmowa — obok siebie. Bez przełączania zakładek.
+          {t.lead}
         </p>
       </Container>
 
@@ -33,8 +59,8 @@ export function Hero() {
         <div data-reveal className="relative">
           <MockupSlot
             file="mockup-dyspozytornia-ekran-desktop.png"
-            label="Ekran dyspozytora · desktop 1440"
-            note="Pełnoekranowy pulpit, trzy kolumny: lista zleceń ze statusami, mapa z trasami, panel kierowcy z rozmową."
+            label={t.label}
+            note={t.note}
             ratio="16:10"
             noteClassName="mx-auto max-w-[600px]"
           >

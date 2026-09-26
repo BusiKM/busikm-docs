@@ -13,6 +13,7 @@
  */
 
 import type { Zrodlo } from '@/content/zgoda';
+import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
 
 export type Lista = 'demo' | 'konto';
 
@@ -33,34 +34,77 @@ export type OpisListy = {
   poZapisie: string;
 };
 
-export const listy: Record<Lista, OpisListy> = {
-  demo: {
-    lista: 'demo',
-    zrodlo: 'demo',
-    eyebrow: 'Demo',
-    naglowek: 'Demo przygotowujemy.',
-    lead: [
-      'Prawdziwa aplikacja z danymi przykładowej firmy transportowej.',
-      'Zapisz się na listę — napiszemy w dniu uruchomienia',
-      'i będziemy dzielić się tym, co nowego.',
-    ],
-    wezwanie: 'Zapisz się na listę',
-    obietnica: 'Pierwsza wiadomość w dniu uruchomienia demo. Później rzadko i tylko o BusiKM.',
-    poZapisie: 'Napiszemy w dniu, w którym demo ruszy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
+/** Pola nietekstowe — raz, wspólne dla obu języków. */
+const LISTY: Record<Lista, Pick<OpisListy, 'lista' | 'zrodlo'>> = {
+  demo: { lista: 'demo', zrodlo: 'demo' },
+  konto: { lista: 'konto', zrodlo: 'rejestracja' },
+};
+
+type TekstListy = Omit<OpisListy, 'lista' | 'zrodlo'>;
+
+const TEKSTY: Tlumaczenia<Record<Lista, TekstListy>> = {
+  pl: {
+    demo: {
+      eyebrow: 'Demo',
+      naglowek: 'Demo przygotowujemy.',
+      lead: [
+        'Prawdziwa aplikacja z danymi przykładowej firmy transportowej.',
+        'Zapisz się na listę — napiszemy w dniu uruchomienia',
+        'i będziemy dzielić się tym, co nowego.',
+      ],
+      wezwanie: 'Zapisz się na listę',
+      obietnica: 'Pierwsza wiadomość w dniu uruchomienia demo. Później rzadko i tylko o BusiKM.',
+      poZapisie: 'Napiszemy w dniu, w którym demo ruszy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
+    },
+    konto: {
+      eyebrow: 'Dostęp do aplikacji',
+      naglowek: 'Konta otwieramy wkrótce.',
+      lead: [
+        'Sprawdzamy BusiKM na prawdziwych trasach, w małej grupie firm.',
+        'Zapisz się na listę — napiszemy, gdy otworzymy zapisy.',
+      ],
+      wezwanie: 'Zapisz się na listę',
+      obietnica: 'Pierwsza wiadomość, gdy otworzymy zapisy. Później rzadko i tylko o BusiKM.',
+      poZapisie: 'Napiszemy, gdy otworzymy zapisy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
+    },
   },
-  konto: {
-    lista: 'konto',
-    zrodlo: 'rejestracja',
-    eyebrow: 'Dostęp do aplikacji',
-    naglowek: 'Konta otwieramy wkrótce.',
-    lead: [
-      'Sprawdzamy BusiKM na prawdziwych trasach, w małej grupie firm.',
-      'Zapisz się na listę — napiszemy, gdy otworzymy zapisy.',
-    ],
-    wezwanie: 'Zapisz się na listę',
-    obietnica: 'Pierwsza wiadomość, gdy otworzymy zapisy. Później rzadko i tylko o BusiKM.',
-    poZapisie: 'Napiszemy, gdy otworzymy zapisy. Zgodę wycofasz odnośnikiem w każdej wiadomości.',
+  en: {
+    demo: {
+      eyebrow: 'Demo',
+      naglowek: 'The demo is on its way.',
+      lead: [
+        'The real app, filled with data from a sample transport company.',
+        'Join the list — we’ll write on launch day',
+        'and keep you posted on what’s new.',
+      ],
+      wezwanie: 'Join the list',
+      obietnica: 'First email on the day the demo launches. After that, rarely and only about BusiKM.',
+      poZapisie: 'We’ll write on the day the demo goes live. You can withdraw consent via the link in any email.',
+    },
+    konto: {
+      eyebrow: 'App access',
+      naglowek: 'Accounts open soon.',
+      lead: [
+        'We’re testing BusiKM on real routes with a small group of companies.',
+        'Join the list — we’ll write when sign-ups open.',
+      ],
+      wezwanie: 'Join the list',
+      obietnica: 'First email when sign-ups open. After that, rarely and only about BusiKM.',
+      poZapisie: 'We’ll write when sign-ups open. You can withdraw consent via the link in any email.',
+    },
   },
+};
+
+function wJezyku(jezyk: Jezyk): Record<Lista, OpisListy> {
+  return {
+    demo: { ...LISTY.demo, ...TEKSTY[jezyk].demo },
+    konto: { ...LISTY.konto, ...TEKSTY[jezyk].konto },
+  };
+}
+
+export const listy: Tlumaczenia<Record<Lista, OpisListy>> = {
+  pl: wJezyku('pl'),
+  en: wJezyku('en'),
 };
 
 export const LIMITY_ZAPISU = { imie: 80, email: 160 } as const;

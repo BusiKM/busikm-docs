@@ -1,11 +1,53 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { linkProbny } from '@/content/zainteresowanie';
 import { Licznik } from '@/components/motion/Licznik';
 import { plans } from '@/content/cennik';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
+
+const TEKSTY: Tlumaczenia<{
+  naglowek: [string, string];
+  lead: string;
+  miesiecznie: string;
+  rocznie: string;
+  gratis: string;
+  okres: { rok: string; miesiac: string };
+  netto: string;
+  wyroznienie: string;
+  wezwanie: string;
+  stopka: string;
+}> = {
+  pl: {
+    naglowek: ['Płacisz za pojazdy.', 'Nie za ludzi.'],
+    lead: 'Kierowcy i pracownicy biura bez limitu. Przyczepy i naczepy nie liczą się do abonamentu.',
+    miesiecznie: 'Miesięcznie',
+    rocznie: 'Rocznie',
+    gratis: '2 miesiące gratis',
+    okres: { rok: 'rok', miesiac: 'mies.' },
+    netto: 'zł netto',
+    wyroznienie: 'Najczęściej wybierany',
+    wezwanie: 'Wypróbuj 14 dni',
+    stopka:
+      'Bez umowy na czas określony. Rezygnujesz jednym kliknięciem. Twoje dane pobierzesz zawsze — także po rezygnacji.',
+  },
+  en: {
+    naglowek: ['You pay for vehicles.', 'Not for people.'],
+    lead: 'Unlimited drivers and office staff. Trailers and semi-trailers don’t count towards your plan.',
+    miesiecznie: 'Monthly',
+    rocznie: 'Yearly',
+    gratis: '2 months free',
+    okres: { rok: 'year', miesiac: 'month' },
+    netto: 'net',
+    wyroznienie: 'Most popular',
+    wezwanie: 'Try 14 days free',
+    stopka:
+      'No fixed-term contract. Cancel in one click. You can always download your data — even after you cancel.',
+  },
+};
 
 /**
  * 6.18 — cennik. Przełącznik miesięcznie / rocznie, jak w projekcie.
@@ -20,8 +62,10 @@ export function Cennik({
   nadtytul?: string;
   jakoH1?: boolean;
 } = {}) {
+  const jezyk = useJezyk();
+  const t = TEKSTY[jezyk];
   const [yearly, setYearly] = useState(false);
-  const period = yearly ? 'rok' : 'mies.';
+  const period = yearly ? t.okres.rok : t.okres.miesiac;
 
   const tab = (active: boolean) =>
     `cursor-pointer rounded-[9px] px-4 py-2.5 text-[14px] font-semibold transition-colors lg:px-5 lg:text-[15px] ${
@@ -35,20 +79,19 @@ export function Cennik({
           {nadtytul && <Eyebrow>{nadtytul}</Eyebrow>}
           {jakoH1 ? (
             <h1 data-reveal className="text-display-m font-bold text-balance lg:text-display">
-              Płacisz za pojazdy. <br className="hidden lg:inline" />
-              Nie za ludzi.
+              {t.naglowek[0]} <br className="hidden lg:inline" />
+              {t.naglowek[1]}
             </h1>
           ) : (
             <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-              Płacisz za pojazdy. Nie za ludzi.
+              {t.naglowek.join(' ')}
             </h2>
           )}
           <p
             data-reveal
             className="max-w-[640px] text-lead-m text-pretty text-muted lg:text-lead"
           >
-            Kierowcy i pracownicy biura bez limitu. Przyczepy i naczepy nie liczą się
-            do abonamentu.
+            {t.lead}
           </p>
         </div>
 
@@ -58,14 +101,14 @@ export function Cennik({
         >
           <div className="inline-flex rounded-btn border border-line bg-mist p-1">
             <button type="button" onClick={() => setYearly(false)} className={tab(!yearly)}>
-              Miesięcznie
+              {t.miesiecznie}
             </button>
             <button type="button" onClick={() => setYearly(true)} className={tab(yearly)}>
-              Rocznie
+              {t.rocznie}
             </button>
           </div>
           <span className="rounded-full bg-blue-soft px-2.5 py-[5px] text-[13px] font-semibold text-blue-dark lg:px-3 lg:py-1.5 lg:text-caption">
-            2 miesiące gratis
+            {t.gratis}
           </span>
         </div>
 
@@ -73,7 +116,7 @@ export function Cennik({
           data-reveal-group
           className="grid w-full gap-2.5 lg:max-w-[880px] lg:grid-cols-2 lg:gap-6"
         >
-          {plans.map((plan) => (
+          {plans[jezyk].map((plan) => (
             <div
               key={plan.name}
               data-reveal
@@ -83,13 +126,17 @@ export function Cennik({
             >
               {plan.highlighted && (
                 <span className="absolute -top-3 left-7 rounded-full bg-blue px-2.5 py-1 text-[12px] font-semibold text-white lg:left-10 lg:px-3 lg:text-[13px]">
-                  Najczęściej wybierany
+                  {t.wyroznienie}
                 </span>
               )}
 
               <div className="flex flex-col gap-3">
                 <div className="text-[19px] font-semibold lg:text-[22px]">{plan.name}</div>
                 <div className="flex items-baseline gap-1.5 lg:gap-2">
+                  {/* Po angielsku waluta stoi przed kwotą: „PLN 149". */}
+                  {jezyk === 'en' && (
+                    <span className="text-[15px] text-muted lg:text-body">PLN</span>
+                  )}
                   {/* Kwota dolicza się od poprzedniej — patrz `Licznik`.
                       Liczby w `content/cennik.ts` są tekstem ze spacją
                       rozdzielającą tysiące, więc tutaj wracają na liczbę,
@@ -99,7 +146,7 @@ export function Cennik({
                     className="text-[40px] font-bold tracking-[-0.03em] lg:text-5xl"
                   />
                   <span className="text-[15px] text-muted lg:text-body">
-                    zł netto / {period}
+                    {t.netto} / {period}
                   </span>
                 </div>
               </div>
@@ -140,7 +187,7 @@ export function Cennik({
                     : 'border border-line text-ink hover:border-muted hover:text-ink'
                 }`}
               >
-                Wypróbuj 14 dni
+                {t.wezwanie}
               </Link>
             </div>
           ))}
@@ -150,8 +197,7 @@ export function Cennik({
           data-reveal
           className="max-w-[560px] text-[13px] leading-relaxed text-muted lg:text-center lg:text-caption"
         >
-          Bez umowy na czas określony. Rezygnujesz jednym kliknięciem. Twoje dane pobierzesz
-          zawsze — także po rezygnacji.
+          {t.stopka}
         </p>
       </div>
     </Section>

@@ -1,16 +1,53 @@
 import { Chrome } from '@/components/mockups/Chrome';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const kpi = [
-  { label: 'Przychód · wrzesień', value: '184 320 zł', short: '184 320', strong: false },
-  { label: 'Koszty', value: '121 840 zł', short: '121 840', strong: false },
-  { label: 'Zysk', value: '62 480 zł', short: '62 480', strong: true },
-];
+type Teksty = {
+  kpi: { label: string; value: string; short: string; strong: boolean }[];
+  orders: { route: string; who: string; status: string; tone: 'blue' | 'mist' | 'green' }[];
+  menu: string[];
+  okno: string;
+  naglowek: string;
+  trasa: string;
+  zleceniaDzis: string;
+};
 
-const orders = [
-  { route: 'Warszawa → Mediolan', who: 'WZ 4821K · Marek W.', status: 'W trasie', tone: 'blue' },
-  { route: 'Poznań → Rotterdam', who: 'PO 2093J · Tomasz L.', status: 'Załadunek', tone: 'mist' },
-  { route: 'Gdańsk → Hamburg', who: 'GD 7710R · Piotr K.', status: 'Rozliczone', tone: 'green' },
-] as const;
+const TEKSTY: Tlumaczenia<Teksty> = {
+  pl: {
+    kpi: [
+      { label: 'Przychód · wrzesień', value: '184 320 zł', short: '184 320', strong: false },
+      { label: 'Koszty', value: '121 840 zł', short: '121 840', strong: false },
+      { label: 'Zysk', value: '62 480 zł', short: '62 480', strong: true },
+    ],
+    orders: [
+      { route: 'Warszawa → Mediolan', who: 'WZ 4821K · Marek W.', status: 'W trasie', tone: 'blue' },
+      { route: 'Poznań → Rotterdam', who: 'PO 2093J · Tomasz L.', status: 'Załadunek', tone: 'mist' },
+      { route: 'Gdańsk → Hamburg', who: 'GD 7710R · Piotr K.', status: 'Rozliczone', tone: 'green' },
+    ],
+    menu: ['Pulpit', 'Zlecenia', 'Mapa', 'Kierowcy', 'Pojazdy', 'Koszty', 'Faktury', 'Księgowa'],
+    okno: 'app.busikm.pl · Pulpit · wrzesień 2026',
+    naglowek: 'Pulpit · wrzesień 2026',
+    trasa: 'Warszawa → Mediolan',
+    zleceniaDzis: 'Zlecenia dziś',
+  },
+  en: {
+    kpi: [
+      { label: 'Revenue · September', value: 'PLN 184,320', short: '184,320', strong: false },
+      { label: 'Costs', value: 'PLN 121,840', short: '121,840', strong: false },
+      { label: 'Profit', value: 'PLN 62,480', short: '62,480', strong: true },
+    ],
+    orders: [
+      { route: 'Warsaw → Milan', who: 'WZ 4821K · Marek W.', status: 'En route', tone: 'blue' },
+      { route: 'Poznań → Rotterdam', who: 'PO 2093J · Tomasz L.', status: 'Loading', tone: 'mist' },
+      { route: 'Gdańsk → Hamburg', who: 'GD 7710R · Piotr K.', status: 'Settled', tone: 'green' },
+    ],
+    menu: ['Dashboard', 'Orders', 'Map', 'Drivers', 'Vehicles', 'Costs', 'Invoices', 'Accountant'],
+    okno: 'app.busikm.pl · Dashboard · September 2026',
+    naglowek: 'Dashboard · September 2026',
+    trasa: 'Warsaw → Milan',
+    zleceniaDzis: 'Today’s orders',
+  },
+};
 
 const tones = {
   blue: 'bg-blue-soft text-blue-dark',
@@ -20,13 +57,15 @@ const tones = {
 
 /** Pulpit właściciela — bohater sekcji hero. */
 export function PulpitMockup() {
+  const t = TEKSTY[biezacyJezyk()];
+  const { kpi, orders } = t;
   return (
     <div className="overflow-hidden rounded-card border border-line bg-white shadow-hero lg:aspect-16/10 lg:rounded-panel">
-      <Chrome label="app.busikm.pl · Pulpit · wrzesień 2026" />
+      <Chrome label={t.okno} />
 
       <div className="grid h-[calc(100%-44px)] lg:grid-cols-[200px_1fr]">
         <div className="hidden flex-col gap-1.5 border-r border-line px-4 py-6 text-caption text-muted lg:flex">
-          {['Pulpit', 'Zlecenia', 'Mapa', 'Kierowcy', 'Pojazdy', 'Koszty', 'Faktury', 'Księgowa'].map(
+          {t.menu.map(
             (item, i) => (
               <div
                 key={item}
@@ -41,7 +80,7 @@ export function PulpitMockup() {
         </div>
 
         <div className="flex flex-col gap-3 p-4 text-[12px] lg:gap-6 lg:px-8 lg:py-7">
-          <div className="text-muted lg:hidden">Pulpit · wrzesień 2026</div>
+          <div className="text-muted lg:hidden">{t.naglowek}</div>
 
           <div className="grid grid-cols-3 gap-2 lg:gap-4">
             {kpi.map((k) => (
@@ -84,7 +123,7 @@ export function PulpitMockup() {
                 <circle cx="190" cy="138" r="7" fill="#fff" stroke="#0B5FFF" strokeWidth="3" />
               </svg>
               <div className="absolute top-2.5 left-2.5 rounded-md border border-line bg-white px-2 py-1 text-[11px] font-semibold lg:top-3.5 lg:left-3.5 lg:rounded-lg lg:px-2.5 lg:py-1.5 lg:text-[12px]">
-                Warszawa → Mediolan
+                {t.trasa}
               </div>
               <div className="absolute top-[44%] left-[48%] hidden rounded-lg border border-line bg-white px-2.5 py-1.5 text-[12px] lg:block">
                 <b>WZ 4821K</b> · Marek W. · 14:20
@@ -92,7 +131,7 @@ export function PulpitMockup() {
             </div>
 
             <div className="flex flex-col gap-1 rounded-btn border-line text-[12px] lg:gap-3 lg:rounded-card lg:border lg:px-5 lg:py-[18px] lg:text-[13px]">
-              <div className="hidden text-muted lg:block">Zlecenia dziś</div>
+              <div className="hidden text-muted lg:block">{t.zleceniaDzis}</div>
               {orders.map((o, i) => (
                 <div
                   key={o.route}

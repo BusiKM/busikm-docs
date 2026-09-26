@@ -31,13 +31,14 @@ Deploy: Vercel. **Root Directory projektu w Vercelu musi wskazywać na `landing/
 ## Architektura strony (`landing/`)
 
 - **Framework**: Next.js 16 (App Router, Turbopack) + React 19 + TypeScript 5.9 + Tailwind CSS 4 (przez `@tailwindcss/postcss`)
-- **Wejście**: `src/app/layout.tsx` (fonty przez `next/font/google`, metadata: title/description, favicony, manifest, OG) → `src/app/page.tsx` (kolejność sekcji landingu)
+- **Wejście**: `src/app/[lang]/layout.tsx` (fonty przez `next/font/google`, metadata: title/description, favicony, manifest, OG) → `src/app/[lang]/page.tsx` (kolejność sekcji landingu)
+- **Dwa języki**: polski pod adresami bez przedrostka (`/cennik`), angielski pod `/en` z angielskimi slugami (`/en/pricing`). Strony leżą w `src/app/[lang]/…` pod polskimi nazwami katalogów, `src/proxy.ts` przepisuje adres publiczny na wewnętrzny i wybiera język (ciasteczko z przełącznika EN/PL → kraj PL albo polska przeglądarka → reszta świata po angielsku; roboty bez przekierowań). Treść obok siebie w `Tlumaczenia<T>` (`{ pl, en }`), język przez `biezacyJezyk()` (serwer) / `useJezyk()` (klient), odnośniki przez `@/i18n/Link`. **Nowa podstrona = wpis w `src/i18n/trasy.ts`**, inaczej 404 w obu językach. Pełny opis: `docs/landing/15-wersja-angielska.md`
 - **Komponenty**:
   - `src/components/layout/` — Header (nawigacja + menu mobilne), Footer, Logo
   - `src/components/sections/` — Hero, HowItWorks, FeatureSection (wspólny szkielet sekcji A–F), Tachograph, DriverApp, OneInvoice, Pricing, Faq, FinalCta
   - `src/components/mockups/` — makiety produktu (DashboardMockup, DriveTimeRings, MileageTable, OrderCard, ReceiptCapture, ProfitCard, ExportPack, TachographCard, DriverPhones)
   - `src/components/ui/` — Button, Container, TechCaption
-- **Server Components domyślnie**; `'use client'` tylko tam, gdzie jest stan: `Header`, `Pricing`, `Faq`
+- **Server Components domyślnie**; `'use client'` tylko tam, gdzie jest stan (nagłówek, cennik, akordeony, formularze)
 - **Responsywność**: mobile-first, przełącznikiem na desktop jest breakpoint `lg:` (projekt powstał z artboardów 390 i 1440)
 - **Assety statyczne**: `landing/public/` — favicony i PWA (`favicon.*`, `apple-touch-icon.png`, `mask-icon.svg`, `site.webmanifest`, `web-app-manifest-*.png`), `logo/logo.svg`, `og-image/og-image.jpg`, `llms.txt`, pitch deck PDF, podpisy e-mail (`podpis-*.html`)
 - **Formularz kontaktowy**: `src/lib/firebase.ts` + `src/lib/wiadomosci.ts` → Firestore (kolekcja `wiadomosci`, reguły w `landing/firestore.rules`), powiadomienie mailem przez `src/app/api/powiadom/route.ts` (Resend). Bez zmiennych Firebase formularz cofa się do `mailto:` i nadal działa. Pełny opis i kroki uruchomienia: `docs/landing/11-formularz-kontaktowy.md`

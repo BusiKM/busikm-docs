@@ -1,4 +1,11 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const NAGLOWEK: Tlumaczenia<string> = {
+  pl: 'Twój dzień z BusiKM.',
+  en: 'Your day with BusiKM.',
+};
 
 export type PunktDnia = {
   /** Godzina albo „koniec" — pierwsza, duża linia w kolumnie po lewej. */
@@ -17,7 +24,7 @@ export type PunktDnia = {
  * kolumna godziny się zwęża, ale linia zostaje — to ona trzyma całość razem.
  */
 export function OsDnia({
-  naglowek = 'Twój dzień z BusiKM.',
+  naglowek,
   punkty,
   skala = 'godziny',
   tone = 'ink',
@@ -31,6 +38,7 @@ export function OsDnia({
    */
   skala?: 'godziny' | 'slowa';
 }) {
+  const tytul = naglowek ?? NAGLOWEK[biezacyJezyk()];
   const stopien =
     skala === 'slowa'
       ? 'text-[19px] leading-tight tracking-[-0.02em] lg:text-[28px]'
@@ -40,7 +48,7 @@ export function OsDnia({
     <Section tone={tone}>
       <div className="flex flex-col gap-12 lg:gap-24">
         <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-          {naglowek}
+          {tytul}
         </h2>
 
         <div

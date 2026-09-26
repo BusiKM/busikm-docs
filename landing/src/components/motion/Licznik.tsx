@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useJezyk } from '@/i18n/klient';
 
 /**
  * Licznik kwoty — cyfry przetaczają się przy zmianie okresu rozliczenia.
@@ -92,6 +93,7 @@ export function Licznik({
   wartosc: number;
   className?: string;
 }) {
+  const jezyk = useJezyk();
   const [biezaca, setBiezaca] = useState(wartosc);
   const zrodlo = useRef(wartosc);
   const uchwyt = useRef(0);
@@ -137,7 +139,7 @@ export function Licznik({
     <span
       className={`inline-flex items-baseline tabular-nums ${className}`}
       role="text"
-      aria-label={Math.round(wartosc).toLocaleString('pl-PL')}
+      aria-label={Math.round(wartosc).toLocaleString(jezyk === 'pl' ? 'pl-PL' : 'en-GB')}
     >
       {Array.from({ length: kolumny }, (_, idx) => {
         const poz = kolumny - 1 - idx;
@@ -146,7 +148,13 @@ export function Licznik({
         const zeSpacja = idx > 0 && (kolumny - idx) % 3 === 0;
         return (
           <span key={poz} className="inline-flex items-baseline">
-            {zeSpacja && <span aria-hidden className="inline-block" style={{ width: '0.24em' }} />}
+            {/* Po angielsku tysiące oddziela przecinek, nie spacja. */}
+            {zeSpacja &&
+              (jezyk === 'pl' ? (
+                <span aria-hidden className="inline-block" style={{ width: '0.24em' }} />
+              ) : (
+                <span aria-hidden>,</span>
+              ))}
             <Kolumna
               cyfra={Math.floor(biezaca / dzielnik) % 10}
               // Wiodące zero chowamy, dopóki kwota do niego nie dorośnie.

@@ -1,22 +1,44 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const steps = [
-  ['Dodajesz pojazd', '2 minuty', 'Numer rejestracyjny i tyle.'],
-  ['Zapraszasz kierowcę', '1 minuta', 'Dostaje kod. Wpisuje go w aplikacji i już jest w środku.'],
-  ['Kierowca rusza', 'od razu', 'Pierwsza trasa pojawia się u Ciebie tego samego dnia.'],
-] as const;
+const TEKSTY: Tlumaczenia<{
+  naglowek: string;
+  steps: readonly (readonly [string, string, string])[];
+  nota: string;
+}> = {
+  pl: {
+    naglowek: 'Pierwsza trasa jeszcze dziś.',
+    steps: [
+      ['Dodajesz pojazd', '2 minuty', 'Numer rejestracyjny i tyle.'],
+      ['Zapraszasz kierowcę', '1 minuta', 'Dostaje kod. Wpisuje go w aplikacji i już jest w środku.'],
+      ['Kierowca rusza', 'od razu', 'Pierwsza trasa pojawia się u Ciebie tego samego dnia.'],
+    ],
+    nota: 'Nie ma wdrożenia, szkolenia ani spotkania z handlowcem.',
+  },
+  en: {
+    naglowek: 'Your first route, today.',
+    steps: [
+      ['Add a van', '2 minutes', 'The registration number, and that’s it.'],
+      ['Invite a driver', '1 minute', 'They get a code. They enter it in the app and they’re in.'],
+      ['The driver sets off', 'straight away', 'The first route shows up at your end the same day.'],
+    ],
+    nota: 'No setup project, no training, no meeting with a salesperson.',
+  },
+};
 
 /** 6.16 — pierwszy dzień. */
 export function PierwszyDzien() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section tone="mist">
       <div className="flex flex-col gap-8 lg:gap-20">
         <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-          Pierwsza trasa jeszcze dziś.
+          {t.naglowek}
         </h2>
 
         <div data-reveal-group className="grid gap-2.5 lg:grid-cols-3 lg:gap-6">
-          {steps.map(([title, time, body]) => (
+          {t.steps.map(([title, time, body]) => (
             <div
               key={title}
               data-reveal
@@ -36,7 +58,7 @@ export function PierwszyDzien() {
         </div>
 
         <p data-reveal className="text-[13px] leading-relaxed text-muted lg:text-caption">
-          Nie ma wdrożenia, szkolenia ani spotkania z handlowcem.
+          {t.nota}
         </p>
       </div>
     </Section>

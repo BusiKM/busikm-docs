@@ -1,4 +1,5 @@
 import { firma } from '@/content/firma';
+import type { Tlumaczenia } from '@/i18n/jezyki';
 import type { Dokument } from '@/content/dokumenty/typy';
 
 /**
@@ -10,7 +11,7 @@ import type { Dokument } from '@/content/dokumenty/typy';
  * z lit. a–h. Brak choćby jednego elementu czyni umowę wadliwą, więc przed
  * publikacją musi to sprawdzić prawnik.
  */
-export const powierzenie: Dokument = {
+const pl: Dokument = {
   href: '/powierzenie-danych',
   tytul: 'Powierzenie danych',
   obowiazujeOd: '1 września 2026',
@@ -242,3 +243,241 @@ export const powierzenie: Dokument = {
     },
   ],
 };
+
+/**
+ * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * strona mówi o tym wprost nad treścią.
+ */
+const en: Dokument = {
+  href: '/powierzenie-danych',
+  tytul: 'Data Processing Agreement',
+  obowiazujeOd: '1 September 2026',
+  wersja: 1,
+  ostatniaZmiana: '1 September 2026',
+  wSkrocie: [
+    'You are the controller of your drivers’ and business partners’ data. We only process it — on your instructions.',
+    'We do nothing with it beyond what the service needs to work.',
+    'Our subcontractors are listed by name. We give 30 days’ notice of any change.',
+    'When the agreement ends, we return the data or delete it — you decide.',
+  ],
+  paragrafy: [
+    {
+      numer: '1',
+      tytul: 'What this document is',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc: `This document is an agreement on the processing of personal data within the meaning of Art. 28 of the General Data Protection Regulation (GDPR). You conclude it with ${firma.nazwa} at the moment you conclude the agreement for the provision of the BusiKM service. It forms an integral part of the Terms of Service and does not require a separate signature.`,
+        },
+        {
+          typ: 'definicje',
+          pozycje: [
+            {
+              termin: 'Controller',
+              opis: 'the Client, that is, the business that uses the service and enters data into it.',
+            },
+            {
+              termin: 'Processor',
+              opis: `${firma.nazwa}, that is, us.`,
+            },
+            {
+              termin: 'Subprocessor',
+              opis: 'a further processor that we use to provide the service. The list of subprocessors is in the Subprocessors document.',
+            },
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If your organisation requires a separate data processing agreement to be signed on its own template, write to us — we will agree its content individually.',
+        },
+      ],
+    },
+    {
+      numer: '2',
+      tytul: 'Subject matter, nature and purpose of processing',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'You entrust us with the processing of personal data solely for the purpose of providing the BusiKM service: managing orders, routes, working time, costs, documents and billing, and making them available to the persons to whom you have granted access.',
+        },
+        {
+          typ: 'lista',
+          wstep: 'Processing consists of performing the following operations on the data:',
+          punkty: [
+            'collection and recording — through the application’s forms and the driver app;',
+            'storage — on the servers of the subprocessors indicated on the list;',
+            'organisation, viewing and retrieval — for display and reporting purposes;',
+            'transmission — to recipients indicated by you, including clients and accounting;',
+            'erasure — on your instructions and after the agreement ends.',
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We do not use the entrusted data for our own purposes, including marketing and analytics, and we do not sell it.',
+        },
+      ],
+    },
+    {
+      numer: '3',
+      tytul: 'Duration',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We process the data for the term of the service agreement and for 30 days after it ends — so that you have time to download the data. After that period, we proceed in accordance with section 9.',
+        },
+      ],
+    },
+    {
+      numer: '4',
+      tytul: 'Type of data and categories of data subjects',
+      bloki: [
+        {
+          typ: 'tabela',
+          naglowki: ['Category of data subjects', 'What data', 'Where it comes from'],
+          wiersze: [
+            [
+              'Drivers',
+              'first name and surname, e-mail address, driving licence number and medical examination dates, vehicle position during an order, driving and break times, photos of documents; phone number, if you enter it',
+              'entered by you when sending the invitation, or by the driver in the app',
+            ],
+            [
+              'Office staff',
+              'first name and surname, e-mail address, role in the account',
+              'entered by you',
+            ],
+            [
+              'Contact persons at business partners',
+              'first name and surname, e-mail address, phone number, company details',
+              'entered by you or taken from documents',
+            ],
+          ],
+          stopka:
+            'You do not entrust us with special categories of data (Art. 9 GDPR) or data relating to criminal convictions. If you enter such data nonetheless, you do so at your own risk.',
+        },
+      ],
+    },
+    {
+      numer: '5',
+      tytul: 'Our obligations',
+      bloki: [
+        {
+          typ: 'lista',
+          wstep: 'We undertake that we:',
+          punkty: [
+            'process the data only on your documented instructions — your use of the application’s functions also constitutes an instruction;',
+            'will inform you before processing if the law imposes an obligation to process on us, unless the law prohibits this;',
+            'ensure that persons authorised to access the data are bound by confidentiality;',
+            'apply the security measures described in section 6;',
+            'assist you in fulfilling your obligation to respond to requests from data subjects;',
+            'assist you with data protection impact assessments and prior consultations with the supervisory authority, to the extent of the information available to us;',
+            'return or delete the data after the agreement ends, in accordance with section 9;',
+            'make available to you the information necessary to demonstrate compliance and allow audits under the terms of section 8.',
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If we consider that your instruction infringes the GDPR or other data protection provisions, we will inform you immediately.',
+        },
+      ],
+    },
+    {
+      numer: '6',
+      tytul: 'Security',
+      bloki: [
+        {
+          typ: 'lista',
+          wstep:
+            'We apply technical and organisational measures appropriate to the risk, in particular:',
+          punkty: [
+            'encryption of data in transit (TLS) and at rest;',
+            'role-based access control and two-factor authentication for administrative access;',
+            'separation of individual clients’ data;',
+            'backups made daily, stored in Europe and tested for restorability;',
+            'logging of access to production data and periodic review of permissions;',
+            'a procedure for handling personal data breaches.',
+          ],
+        },
+      ],
+    },
+    {
+      numer: '7',
+      tytul: 'Subprocessors',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'You give us general authorisation to engage subprocessors. We keep their current list — with the name, scope and country of processing — in the Subprocessors document.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We notify you by e-mail at least 30 days in advance of any intended addition or replacement of a subprocessor. During that time, you may raise a reasoned objection. If we cannot find a solution, you may terminate the agreement with effect from the date the change takes effect, at no cost.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We impose on each subprocessor the same data protection obligations that apply to us. We are liable to you for the actions of subprocessors as for our own.',
+        },
+      ],
+    },
+    {
+      numer: '8',
+      tytul: 'Breaches and audits',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We notify you of a breach of the entrusted data without undue delay, and no later than 24 hours after becoming aware of it. We provide a description of the breach, the categories and approximate number of data subjects and records concerned, the likely consequences and the measures we have taken.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'You have the right to audit the processing, including inspections, carried out by you or by an auditor mandated by you. You announce an audit 14 days in advance and carry it out during business hours, no more than once a year — unless the reason is an identified breach. Instead of an audit, we may present a current audit report from an independent party.',
+        },
+      ],
+    },
+    {
+      numer: '9',
+      tytul: 'What happens after the agreement ends',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'For 30 days after the agreement ends, you can access and download the data. After that period, we delete the data from production systems. The data disappears from backups as they are rotated, no later than after 90 days.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If you would rather receive the data than have it deleted, or you want us to delete it earlier — write to us, and we will do so and confirm that it has been done.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We may retain the data for longer only where required by law. In that case, we inform you of the legal basis and scope.',
+        },
+      ],
+    },
+    {
+      numer: '10',
+      tytul: 'Liability and contact',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'Each party is liable for damage caused by processing under the rules set out in Art. 82 GDPR.',
+        },
+        {
+          typ: 'akapit',
+          tresc: `Please send matters concerning data processing to ${firma.email}. The subject line “data processing agreement” is enough.`,
+        },
+      ],
+    },
+  ],
+};
+
+export const powierzenie: Tlumaczenia<Dokument> = { pl, en };

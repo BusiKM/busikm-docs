@@ -1,4 +1,5 @@
 import { firma } from '@/content/firma';
+import type { Tlumaczenia } from '@/i18n/jezyki';
 import type { Dokument } from '@/content/dokumenty/typy';
 
 /**
@@ -10,7 +11,7 @@ import type { Dokument } from '@/content/dokumenty/typy';
  * przeczytać prawnik: opisane zasady odpowiedzialności, SLA i rozliczeń mają
  * odpowiadać temu, co produkt naprawdę robi.
  */
-export const regulamin: Dokument = {
+const pl: Dokument = {
   href: '/regulamin',
   tytul: 'Regulamin',
   obowiazujeOd: '1 września 2026',
@@ -355,3 +356,353 @@ export const regulamin: Dokument = {
     },
   ],
 };
+
+/**
+ * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * strona mówi o tym wprost nad treścią.
+ */
+const en: Dokument = {
+  href: '/regulamin',
+  tytul: 'Terms of Service',
+  obowiazujeOd: '1 September 2026',
+  wersja: 1,
+  ostatniaZmiana: '1 September 2026',
+  wSkrocie: [
+    'You pay per vehicle, not per person. Drivers and office staff are unlimited.',
+    'You pay nothing for the first 14 days. You cancel with one click, with no notice period.',
+    'Your data is yours. You can download it at any time, including after you cancel.',
+    'The service is for businesses. We keep data in Europe and never sell it to anyone.',
+  ],
+  paragrafy: [
+    {
+      numer: '§ 1',
+      tytul: 'Who provides the service',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc: `The service is provided by ${firma.nazwa}, with its registered office in Szczecin, ${firma.ulica}, ${firma.miasto}, Poland, tax identification number (NIP) ${firma.nip}, statistical number (REGON) ${firma.regon}, National Court Register (KRS) number ${firma.krs}.`,
+        },
+        {
+          typ: 'akapit',
+          tresc: `Contact for all matters, including complaints: ${firma.email}. We respond on business days.`,
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'These Terms set out the rules for using the BusiKM service and constitute terms and conditions within the meaning of the Act of 18 July 2002 on the Provision of Electronic Services (ustawa o świadczeniu usług drogą elektroniczną). We make them available free of charge before the agreement is concluded, in a form that allows them to be downloaded and saved.',
+        },
+      ],
+    },
+    {
+      numer: '§ 2',
+      tytul: 'Definitions',
+      bloki: [
+        {
+          typ: 'definicje',
+          wstep: 'The terms used in these Terms have the following meanings:',
+          pozycje: [
+            {
+              termin: 'Service Provider',
+              opis: `${firma.nazwa}, referred to in § 1.`,
+            },
+            {
+              termin: 'Service',
+              opis: 'access to the BusiKM application in a web browser and to the BusiKM Driver mobile application, to the extent provided by the selected Plan.',
+            },
+            {
+              termin: 'Client',
+              opis: 'a business that has created an Account and uses the Service in connection with its business activity.',
+            },
+            {
+              termin: 'Account',
+              opis: 'the Client’s separate space within the Service, comprising its data, vehicles, orders and documents.',
+            },
+            {
+              termin: 'User',
+              opis: 'a person to whom the Client has granted access to the Account in one of the following roles: owner, dispatcher, accountant or driver.',
+            },
+            {
+              termin: 'Vehicle',
+              opis: 'a motor vehicle entered into the Account. Trailers and semi-trailers are not Vehicles within the meaning of these Terms and do not affect the amount of the fee.',
+            },
+            {
+              termin: 'Plan',
+              opis: 'a variant of the Service specified in the Price List, which determines the Vehicle limit and the scope of functions.',
+            },
+            {
+              termin: 'Trial Period',
+              opis: 'the first 14 days after the Account is created, during which the Service is free of charge.',
+            },
+            {
+              termin: 'Billing Period',
+              opis: 'a month or a year, as chosen by the Client when purchasing a Plan.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      numer: '§ 3',
+      tytul: 'Who the service is for',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'The Service is intended for businesses and is not directed at consumers. By creating an Account, the Client declares that it is concluding an agreement directly related to its business activity.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If the Client is a natural person conducting business activity and the agreement is not of a professional nature for that person, the consumer protection provisions apply to that person to the extent set out in the Act of 30 May 2014 on Consumer Rights (ustawa o prawach konsumenta) — in particular the right to withdraw from the agreement within 14 days.',
+        },
+      ],
+    },
+    {
+      numer: '§ 4',
+      tytul: 'Scope of the service and technical requirements',
+      bloki: [
+        {
+          typ: 'lista',
+          wstep:
+            'As part of the Service, to the extent provided by the selected Plan, the Client may:',
+          punkty: [
+            'manage transport orders and issue and send invoices, including to Poland’s national e-invoicing system (KSeF);',
+            'record routes, costs and working time through the BusiKM Driver application;',
+            'keep a register of vehicles, documents and their expiry dates;',
+            'prepare reports for accounting purposes in the formats specified in the Price List.',
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Accounting reports are generated for a selected calendar month. Once a month is closed, the data for that period cannot be changed.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Functions supporting the driver’s work, including driving time and break counters, are auxiliary in nature. They do not replace the tachograph or any other devices and documents required by law, and the Client remains responsible for fulfilling the obligations of a carrier.',
+        },
+        {
+          typ: 'lista',
+          wstep: 'To use the Service, the following are required:',
+          punkty: [
+            'a device with internet access and an up-to-date browser (Chrome, Safari, Firefox or Edge, in a version no more than two years old);',
+            'for the mobile application — a phone running iOS 15 or Android 10 or later;',
+            'an active e-mail address;',
+            'cookies and JavaScript enabled.',
+          ],
+        },
+      ],
+    },
+    {
+      numer: '§ 5',
+      tytul: 'Conclusion of the agreement, the account and users',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'The agreement is concluded when the Account is created, that is, when the registration form is completed and acceptance of these Terms is confirmed. We send confirmation of the conclusion of the agreement to the e-mail address provided during registration.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The Client grants and revokes Users’ access and determines their roles. The number of Users is unlimited and does not affect the amount of the fee. The Client is liable for the actions of Users as for its own.',
+        },
+        {
+          typ: 'lista',
+          wstep: 'The Client undertakes not to:',
+          punkty: [
+            'share login credentials with persons outside its organisation;',
+            'enter into the Service any unlawful content or data to which it has no legal title;',
+            'take any action that threatens the stability or security of the Service, including load testing and attempts to circumvent security measures;',
+            'copy, decompile or resell the Service without our consent.',
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'In the event of a material breach of the above rules, we may suspend access to the Account after first calling on the Client to cease the breach and setting a deadline of no less than 7 days. If the breach threatens the security of other clients’ data, the suspension may take effect immediately, with simultaneous notice to the Client.',
+        },
+      ],
+    },
+    {
+      numer: '§ 6',
+      tytul: 'Fees and billing',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'The Service is free of charge for the first 14 days. After that period, the Client chooses a Plan and pays in advance for the selected Billing Period. If the Client does not choose a Plan, the Account switches to read-only mode — the data remains available for download.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The fees are set out in the Price List available on the Service website. The fee depends on the number of Vehicles in the Account. Prices are given in Polish zloty (PLN) as net amounts; VAT at the applicable rate is added to the fee.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We issue an invoice automatically for each Billing Period and send it to the Client’s e-mail address. The Client consents to receiving invoices in electronic form.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The Plan may be changed in either direction at any time. The difference is settled pro rata to the number of days remaining until the end of the Billing Period. Increasing the number of Vehicles above the Plan limit results in a surcharge in accordance with the Price List from the next Billing Period.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'In the event of late payment, we send the Client a payment reminder by e-mail. If the delay exceeds 14 days from the reminder, we may switch the Account to read-only mode until the amount due is paid. The Client’s data then remains available for download.',
+        },
+      ],
+    },
+    {
+      numer: '§ 7',
+      tytul: 'Service availability',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We make every effort to keep the Service available without interruption. We announce planned maintenance at least 24 hours in advance and, where possible, carry it out outside the hours of 6:00–20:00 on business days.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We publish the current status of the Service and the history of outages on the /status page. We inform Clients by e-mail of any outage lasting longer than one hour.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The BusiKM Driver application works without network access: data is saved on the phone and sent once the connection is restored. An outage of the server side does not interrupt the recording of the route or working time.',
+        },
+      ],
+    },
+    {
+      numer: '§ 8',
+      tytul: 'Client data and ownership',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'Data entered into the Account remains the property of the Client. We do not use it for our own commercial purposes, we do not disclose it to third parties except in the cases described in the Privacy Policy and in the data processing agreement, and we do not sell it.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The Client may download its data at any time in formats that allow it to be read without our involvement, including after the agreement has been terminated.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The rights to the application, its code, its appearance and its trademarks belong to the Service Provider. The Client receives a non-exclusive, non-transferable licence to use the Service for the term of the agreement, solely for the purposes of its own business.',
+        },
+      ],
+    },
+    {
+      numer: '§ 9',
+      tytul: 'Liability',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We are liable for non-performance or improper performance of the agreement on general terms, subject to the limitations described below.',
+        },
+        {
+          typ: 'lista',
+          wstep: 'We are not liable for:',
+          punkty: [
+            'the consequences of the Client providing incorrect data, including incorrect rates, dates and client details;',
+            'decisions made by the Client on the basis of reports and calculations, which are auxiliary in nature;',
+            'interruptions resulting from failures on the side of the Client, its internet provider or its mobile network operator;',
+            'the operation of external systems, including the e-invoicing system, map providers and payment operators — except for the selection and supervision of those providers.',
+          ],
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'In relations with Clients who are neither consumers nor persons referred to in § 3(2), our liability is limited to the amount of fees paid by the Client in the twelve months preceding the event and does not cover lost profits. This limitation does not apply to damage caused intentionally.',
+        },
+      ],
+    },
+    {
+      numer: '§ 10',
+      tytul: 'Complaints',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc: `We accept complaints by e-mail at ${firma.email}. A complaint should include the Client’s name, a description of the problem and — where possible — the date and time of the event.`,
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We handle a complaint within 14 days of receiving it and, within the same period, send a response to the e-mail address from which the complaint was sent. If the matter requires a longer investigation, we notify the Client of this before the deadline expires and indicate the expected date of the response.',
+        },
+      ],
+    },
+    {
+      numer: '§ 11',
+      tytul: 'Termination of the agreement',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'The Client may terminate the agreement at any time, without giving a reason, in the Account settings. Termination takes effect at the end of the paid Billing Period; we do not apply a notice period or cancellation fees.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'A Client referred to in § 3(2) has the right to withdraw from the agreement within 14 days of its conclusion, without giving a reason. Starting to use the Service during the Trial Period does not deprive the Client of this right.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'We may terminate the agreement with one month’s notice and, in the event of a material breach of these Terms by the Client, with immediate effect after an unsuccessful call to cease the breach as described in § 5.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'After the agreement is terminated, the Client’s data remains available for download for 30 days. After that time, we delete it from production systems, and from backups — on the cycle described in the data processing agreement. At the Client’s written request, we delete the data earlier.',
+        },
+      ],
+    },
+    {
+      numer: '§ 12',
+      tytul: 'Amendments to the Terms',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'We notify the Client of any amendment to these Terms by e-mail at least 30 days before it takes effect, indicating what is changing. Previous versions remain available on the document page.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If the Client does not accept the amendment, it may terminate the agreement with effect from the day before the amendment takes effect. Using the Service after that date constitutes acceptance of the new version.',
+        },
+      ],
+    },
+    {
+      numer: '§ 13',
+      tytul: 'Final provisions',
+      bloki: [
+        {
+          typ: 'akapit',
+          tresc:
+            'The agreement is governed by Polish law. Disputes are resolved by the court having jurisdiction over the Service Provider’s registered office, unless a mandatory provision of law provides otherwise.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'The rules for processing personal data are described in the Privacy Policy. The rules under which the Client entrusts us with the processing of data for which it is the controller are described in the Data Processing Agreement document, which forms an integral part of the agreement.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If any provision of these Terms proves to be invalid, the remaining provisions remain in force, and the invalid provision is replaced by the provisions of law.',
+        },
+      ],
+    },
+  ],
+};
+
+export const regulamin: Tlumaczenia<Dokument> = { pl, en };

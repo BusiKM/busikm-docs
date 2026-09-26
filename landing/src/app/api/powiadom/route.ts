@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { firma } from '@/content/firma';
 import { tematy, LIMITY } from '@/lib/wiadomosci';
 import { zapiszWKlaviyo } from '@/lib/klaviyo';
+import { czyJezyk } from '@/i18n/jezyki';
 
 /**
  * Powiadomienie o nowej wiadomości z formularza kontaktowego.
@@ -51,6 +52,8 @@ export async function POST(request: Request) {
   const tresc = String(dane.tresc ?? '').slice(0, LIMITY.tresc);
   const temat = String(dane.temat ?? '');
   const zgoda = dane.zgoda === true;
+  // Język formularza — tylko z listy; brak albo nieznany to polski.
+  const jezyk = czyJezyk(dane.jezyk) ? dane.jezyk : 'pl';
 
   // Ta sama walidacja co w regułach Firestore — trasa jest publiczna,
   // więc nie zakładamy, że wywołał ją nasz własny formularz.
@@ -67,7 +70,7 @@ export async function POST(request: Request) {
   // Bez zgody adres nie ma czego szukać na liście — zostaje w bazie
   // wyłącznie po to, żeby dało się odpowiedzieć na pytanie.
   const klaviyo = zgoda
-    ? await zapiszWKlaviyo({ imie, email, zrodlo: 'formularz' })
+    ? await zapiszWKlaviyo({ imie, email, zrodlo: 'formularz', jezyk })
     : ({ ok: false, pominiete: 'bez zgody marketingowej' } as const);
 
   // Sprawdzenie klucza Resend dopiero tutaj, po Klaviyo. Odwrotna kolejność
@@ -91,6 +94,10 @@ export async function POST(request: Request) {
           <td><a href="mailto:${bezpiecznie(email)}" style="color:#0B5FFF">${bezpiecznie(email)}</a></td>
         </tr>
         <tr>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74;vertical-align:top">Język</td>
+          <td>${jezyk === 'en' ? 'angielski (EN) — odpowiedz po angielsku' : 'polski'}</td>
+        </tr>
+        <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74;vertical-align:top">Zgoda</td>
           <td>${zgoda ? `tak — dopisany do listy (${klaviyo.ok ? 'Klaviyo OK' : bezpiecznie('Klaviyo: ' + ('pominiete' in klaviyo ? klaviyo.pominiete : klaviyo.blad))})` : 'nie — sam kontakt, bez listy'}</td>
         </tr>
@@ -108,7 +115,7 @@ export async function POST(request: Request) {
         // Dzięki temu „Odpowiedz" w kliencie pocztowym trafia wprost do
         // osoby, która napisała, a nie do adresu nadawcy technicznego.
         reply_to: email,
-        subject: `BusiKM · ${temat} — ${imie}`,
+        subject: `BusiKM · ${temat}${jezyk === 'en' ? ' [EN]' : ''} — ${imie}`,
         html,
       }),
     });

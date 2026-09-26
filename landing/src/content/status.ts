@@ -11,28 +11,37 @@
  * zmienić z „sprawdzamy ręcznie" na prawdziwą częstotliwość.
  */
 
+import type { Tlumaczenia } from '@/i18n/jezyki';
+
 export type Stan = 'ok' | 'czesciowa' | 'przerwa';
 
+/*
+ * Każdy tekst stoi w obu językach naraz, w jednym obiekcie — przy przerwie
+ * zmieniasz jeden wpis i nie da się zapomnieć o wersji angielskiej.
+ */
+
 export type CzescUslugi = {
-  nazwa: string;
+  nazwa: Tlumaczenia<string>;
   /** Słowo obok nazwy — „działa", „przerwa", „zapisuje lokalnie". */
-  slowo: string;
+  slowo: Tlumaczenia<string>;
   ton: 'ok' | 'uwaga' | 'przerwa';
 };
 
 export type Zdarzenie = {
-  data: string;
-  czas: string;
+  /** Stały identyfikator wpisu, np. `2026-09-14`. */
+  id: string;
+  data: Tlumaczenia<string>;
+  czas: Tlumaczenia<string>;
   /** Co się stało. */
-  co: string;
+  co: Tlumaczenia<string>;
   /** Co zrobiliśmy. */
-  zrobione: string;
+  zrobione: Tlumaczenia<string>;
 };
 
-const naglowki: Record<Stan, string> = {
-  ok: 'Wszystko działa.',
-  czesciowa: 'Przerwa w części usługi.',
-  przerwa: 'Przerwa całkowita.',
+const naglowki: Record<Stan, Tlumaczenia<string>> = {
+  ok: { pl: 'Wszystko działa.', en: 'Everything is working.' },
+  czesciowa: { pl: 'Przerwa w części usługi.', en: 'Part of the service is down.' },
+  przerwa: { pl: 'Przerwa całkowita.', en: 'Full outage.' },
 };
 
 export const stan: Stan = 'ok';
@@ -40,13 +49,19 @@ export const stan: Stan = 'ok';
 export const naglowek = naglowki[stan];
 
 /** Zdanie pod nagłówkiem — dopisujemy je tylko wtedy, gdy coś nie działa. */
-export const nota: string | null = null;
+export const nota: Tlumaczenia<string> | null = null;
+
+const dziala = { pl: 'działa', en: 'working' };
 
 export const czesci: CzescUslugi[] = [
-  { nazwa: 'Aplikacja webowa', slowo: 'działa', ton: 'ok' },
-  { nazwa: 'Aplikacja kierowcy', slowo: 'działa', ton: 'ok' },
-  { nazwa: 'Wysyłka faktur', slowo: 'działa', ton: 'ok' },
-  { nazwa: 'Eksporty dla księgowej', slowo: 'działa', ton: 'ok' },
+  { nazwa: { pl: 'Aplikacja webowa', en: 'Web app' }, slowo: dziala, ton: 'ok' },
+  { nazwa: { pl: 'Aplikacja kierowcy', en: 'Driver app' }, slowo: dziala, ton: 'ok' },
+  { nazwa: { pl: 'Wysyłka faktur', en: 'Invoice sending' }, slowo: dziala, ton: 'ok' },
+  {
+    nazwa: { pl: 'Eksporty dla księgowej', en: 'Exports for your accountant' },
+    slowo: dziala,
+    ton: 'ok',
+  },
 ];
 
 /** Ostatnie dwanaście miesięcy. Pusta lista to prawdziwa odpowiedź, nie brak danych. */

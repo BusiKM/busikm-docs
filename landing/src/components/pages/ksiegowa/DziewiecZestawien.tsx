@@ -1,19 +1,47 @@
 import { Section } from '@/components/ui/Section';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
-const zestawienia = [
-  ['Sprzedaż', '42'],
-  ['Zakupy', '37'],
-  ['Koszty', '318'],
-  ['Przebieg', '7 pojazdów'],
-  ['Delegacje', '9 kierowców'],
-  ['Czas pracy', '9 kierowców'],
-  ['Kursy walut', '22 dni'],
-  ['Opłaty drogowe', '61'],
-  ['Korekty', '2'],
-] as const;
+const TEKSTY: Tlumaczenia<{
+  tytul: string;
+  tresc: string;
+  zestawienia: readonly (readonly [string, string])[];
+}> = {
+  pl: {
+    tytul: 'Dziewięć zestawień',
+    tresc: 'Sprzedaż, zakupy, koszty, przebieg, delegacje, czas pracy, kursy walut i pozostałe.',
+    zestawienia: [
+      ['Sprzedaż', '42'],
+      ['Zakupy', '37'],
+      ['Koszty', '318'],
+      ['Przebieg', '7 pojazdów'],
+      ['Delegacje', '9 kierowców'],
+      ['Czas pracy', '9 kierowców'],
+      ['Kursy walut', '22 dni'],
+      ['Opłaty drogowe', '61'],
+      ['Korekty', '2'],
+    ],
+  },
+  en: {
+    tytul: 'Nine reports',
+    tresc: 'Sales, purchases, costs, mileage, business trips, working time, exchange rates and the rest.',
+    zestawienia: [
+      ['Sales', '42'],
+      ['Purchases', '37'],
+      ['Costs', '318'],
+      ['Mileage', '7 vehicles'],
+      ['Business trips', '9 drivers'],
+      ['Working time', '9 drivers'],
+      ['Exchange rates', '22 days'],
+      ['Tolls', '61'],
+      ['Corrections', '2'],
+    ],
+  },
+};
 
 /** 03 — dziewięć zestawień jako siatka kafelków z licznikami. */
 export function DziewiecZestawien() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section tone="ink">
       <div className="flex flex-col gap-10 lg:gap-20">
@@ -26,17 +54,16 @@ export function DziewiecZestawien() {
               03
             </div>
             <h2 data-reveal className="text-h2-m font-bold text-balance lg:text-h1">
-              Dziewięć zestawień
+              {t.tytul}
             </h2>
           </div>
           <p data-reveal className="text-lead-m text-ink-muted lg:text-lead">
-            Sprzedaż, zakupy, koszty, przebieg, delegacje, czas pracy, kursy walut
-            i pozostałe.
+            {t.tresc}
           </p>
         </div>
 
         <div data-reveal-group className="grid grid-cols-2 gap-2.5 lg:grid-cols-3 lg:gap-4">
-          {zestawienia.map(([nazwa, licznik]) => (
+          {t.zestawienia.map(([nazwa, licznik]) => (
             <div
               key={nazwa}
               data-reveal

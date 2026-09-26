@@ -8,36 +8,47 @@
  */
 
 import { artykuly } from '@/content/pomoc';
+import type { Tlumaczenia } from '@/i18n/jezyki';
 
 /** Adres produkcyjny. Kanoniczne adresy i mapa strony budują się na nim. */
 export const serwis = {
   url: 'https://busikm.pl',
   nazwa: 'BusiKM',
-  /**
-   * Tytuł strony głównej w wyniku wyszukiwania.
-   *
-   * Nie jest to hasło z nagłówka. Nagłówek „Kierowca jedzie. Reszta dzieje
-   * się sama." sprzedaje komuś, kto już jest na stronie — ale nie zawiera
-   * ani jednego słowa, które ktoś wpisuje w Google. Tytuł prowadzi frazą,
-   * której szuka właściciel firmy transportowej, i dopiero potem podaje markę.
-   */
-  tytul: 'Program do zarządzania transportem busami · BusiKM',
-  opis:
-    'Ewidencja przebiegu pojazdu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm transportowych z busami 2,5–3,5 t. 14 dni za darmo.',
-  /**
-   * Krótsza wersja do podglądu w mediach społecznościowych. Wersja dla Google
-   * ma 150 znaków i gubi na telefonie całe „14 dni za darmo" — czyli jedyne
-   * wezwanie do działania w całym podglądzie.
-   */
-  opisOg:
-    'Ewidencja przebiegu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm z busami 2,5–3,5 t. 14 dni gratis.',
-  jezyk: 'pl',
-  locale: 'pl_PL',
   /** Obraz do podglądu w mediach społecznościowych — w `public/`. */
   ogImage: '/og-image/og-image.jpg',
   /** Znak firmowy dla danych strukturalnych. Google woli rastrowy, kwadratowy. */
   logo: '/web-app-manifest-512x512.png',
 } as const;
+
+/**
+ * Tytuł i opis strony głównej w obu językach.
+ *
+ * `tytul` to tytuł w wyniku wyszukiwania. Nie jest to hasło z nagłówka.
+ * Nagłówek „Kierowca jedzie. Reszta dzieje się sama." sprzedaje komuś, kto
+ * już jest na stronie — ale nie zawiera ani jednego słowa, które ktoś wpisuje
+ * w Google. Tytuł prowadzi frazą, której szuka właściciel firmy transportowej,
+ * i dopiero potem podaje markę.
+ *
+ * `opisOg` to krótsza wersja do podglądu w mediach społecznościowych. Wersja
+ * dla Google ma 150 znaków i gubi na telefonie całe „14 dni za darmo" — czyli
+ * jedyne wezwanie do działania w całym podglądzie.
+ */
+export const opisSerwisu: Tlumaczenia<{ tytul: string; opis: string; opisOg: string }> = {
+  pl: {
+    tytul: 'Program do zarządzania transportem busami · BusiKM',
+    opis:
+      'Ewidencja przebiegu pojazdu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm transportowych z busami 2,5–3,5 t. 14 dni za darmo.',
+    opisOg:
+      'Ewidencja przebiegu, czas pracy kierowców, zlecenia i faktury w jednym programie. Dla firm z busami 2,5–3,5 t. 14 dni gratis.',
+  },
+  en: {
+    tytul: 'Van fleet management software · BusiKM',
+    opis:
+      'Mileage log, driver working time, orders and invoices in one app. For transport companies running 2.5–3.5 t vans. 14 days free.',
+    opisOg:
+      'Mileage log, driver working time, orders and invoices in one app. For companies with 2.5–3.5 t vans. 14 days free.',
+  },
+};
 
 /**
  * Data ostatniej zmiany treści — trafia do `sitemap.xml` jako `lastmod`.

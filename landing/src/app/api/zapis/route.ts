@@ -4,6 +4,7 @@ import { firma } from '@/content/firma';
 import { LIMITY_ZAPISU } from '@/content/zapisy';
 import { zapiszWKlaviyo } from '@/lib/klaviyo';
 import type { Zrodlo } from '@/content/zgoda';
+import { czyJezyk } from '@/i18n/jezyki';
 import {
   poprawnyWybor,
   opiszWybor,
@@ -55,6 +56,10 @@ export async function POST(request: Request) {
   // spoza listy daje `null`, czyli po prostu „nie wiemy".
   const wybor = poprawnyWybor(dane.plan, dane.okres);
 
+  // Język formularza — tylko z listy. Nieznany albo brak (stary klient)
+  // to polski, bo tylko taka wersja istniała przed angielską.
+  const jezyk = czyJezyk(dane.jezyk) ? dane.jezyk : 'pl';
+
   const poprawny =
     imie.length > 0 &&
     /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) &&
@@ -67,7 +72,13 @@ export async function POST(request: Request) {
   // Klaviyo najpierw: to tam ląduje lista, z której kiedyś pójdzie wysyłka.
   // Powiadomienie na naszą skrzynkę jest wygodą, nie warunkiem — więc gdyby
   // trzeba było wybrać, które ma się udać, wybieramy zapis kontaktu.
-  const klaviyo = await zapiszWKlaviyo({ imie, email, zrodlo: zrodlo as Zrodlo, wybor });
+  const klaviyo = await zapiszWKlaviyo({
+    imie,
+    email,
+    zrodlo: zrodlo as Zrodlo,
+    wybor,
+    jezyk,
+  });
 
   if (!klucz) {
     return NextResponse.json({ ok: false, pominiete: 'brak RESEND_API_KEY', klaviyo }, { status: 200 });
@@ -94,6 +105,10 @@ export async function POST(request: Request) {
             : ''
         }
         <tr>
+          <td style="padding:4px 16px 4px 0;color:#6C6C74">Język</td>
+          <td>${jezyk === 'en' ? 'angielski (EN) — pisz po angielsku' : 'polski'}</td>
+        </tr>
+        <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Tag</td>
           <td><code>${bezpiecznie(zrodlo)}</code></td>
         </tr>
@@ -114,7 +129,7 @@ export async function POST(request: Request) {
         reply_to: email,
         // Plan w temacie, żeby dało się ocenić zgłoszenie bez otwierania.
         subject:
-          `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo}) — ${imie}` +
+          `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo})${jezyk === 'en' ? ' [EN]' : ''} — ${imie}` +
           (wybor ? ` · ${nazwaPlanu(wybor.plan)} ${nazwaOkresu(wybor.okres)}` : ''),
         html,
       }),

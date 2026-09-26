@@ -4,6 +4,47 @@ import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { TelefonyKierowcy } from '@/components/mockups/TelefonyKierowcy';
 import { appLinks } from '@/content/navigation';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  nadtytul: string;
+  tytul: React.ReactNode;
+  lead: string;
+  proba: string;
+  demo: string;
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    nadtytul: 'Dla kierowcy',
+    tytul: (
+      <>
+        Rusz. <br />
+        Resztą zajmuje się telefon.
+      </>
+    ),
+    lead: 'Jedna aplikacja na cały dzień. Nawigacja w środku, paragon zdjęciem, przerwa z wyprzedzeniem.',
+    proba: 'Wypróbuj 14 dni',
+    demo: 'Zobacz demo',
+    label: 'Dwa telefony pod kątem · tryb nocny',
+    note: 'Lewy (−8°): nawigacja. Prawy (+5°, z przodu): „Rozpocznij trasę”. Poświata i kąty zostają po podmianie.',
+  },
+  en: {
+    nadtytul: 'For drivers',
+    tytul: (
+      <>
+        Go. <br />
+        Your phone does the rest.
+      </>
+    ),
+    lead: 'One app for the whole day. Navigation built in, receipts by photo, breaks flagged in advance.',
+    proba: 'Try 14 days free',
+    demo: 'See the demo',
+    label: 'Two phones at an angle · dark mode',
+    note: 'Left (−8°): navigation. Right (+5°, in front): “Start route”. The glow and angles stay after the swap.',
+  },
+};
 
 /**
  * Nagłówek strony kierowcy — ciemny i większy niż na pozostałych stronach ról:
@@ -11,27 +52,26 @@ import { appLinks } from '@/content/navigation';
  * tu częścią przekazu. Telefony stoją pod spodem, na pełną szerokość.
  */
 export function Hero() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <section className="relative overflow-hidden bg-ink px-6 pt-24 text-paper lg:px-12 lg:pt-40">
       <Container className="relative flex flex-col gap-6 lg:gap-8">
-        <Eyebrow dark>Dla kierowcy</Eyebrow>
+        <Eyebrow dark>{t.nadtytul}</Eyebrow>
         <h1
           data-reveal
           className="text-[46px] leading-[1.02] font-bold tracking-[-0.03em] text-balance lg:text-[96px] lg:leading-[1.05]"
         >
-          Rusz. <br />
-          Resztą zajmuje się telefon.
+          {t.tytul}
         </h1>
         <p data-reveal className="max-w-[640px] text-lead-m text-pretty text-ink-muted lg:text-lead">
-          Jedna aplikacja na cały dzień. Nawigacja w środku, paragon zdjęciem, przerwa
-          z wyprzedzeniem.
+          {t.lead}
         </p>
         <div data-reveal className="mt-2 flex flex-col gap-2.5 lg:flex-row lg:gap-3">
           <Button href={appLinks.trial} fullWidth className="lg:w-auto">
-            Wypróbuj 14 dni
+            {t.proba}
           </Button>
           <Button href={appLinks.demo} variant="secondaryDark" fullWidth className="lg:w-auto">
-            Zobacz demo
+            {t.demo}
           </Button>
         </div>
       </Container>
@@ -40,8 +80,8 @@ export function Hero() {
         <div data-reveal className="relative w-full lg:max-w-[820px]">
           <MockupSlot
             file="mockup-kierowca-telefony-phone.png"
-            label="Dwa telefony pod kątem · tryb nocny"
-            note="Lewy (−8°): nawigacja. Prawy (+5°, z przodu): „Rozpocznij trasę”. Poświata i kąty zostają po podmianie."
+            label={t.label}
+            note={t.note}
             ratio="2 × 9:19.5"
             box="16:10"
             imageScale={1.35}

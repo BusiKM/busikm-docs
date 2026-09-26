@@ -2,21 +2,51 @@ import { Section } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
 import { PodgladTrasy } from '@/components/mockups/dyspozytornia/PodgladTrasy';
 
-const bloki = [
-  [
-    '04',
-    'Trasa układa się sama',
-    'System proponuje przejazd i bierze pod uwagę, co dzieje się na drodze.',
-  ],
-  [
-    '05',
-    'Zmiana w trakcie jazdy',
-    'Klient przesuwa rozładunek, na trasie robi się korek — poprawiasz u siebie, kierowca ma nową wersję od razu.',
-  ],
-] as const;
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
+
+const TEKSTY: Tlumaczenia<{
+  bloki: readonly (readonly [string, string, string])[];
+  label: string;
+  note: string;
+}> = {
+  pl: {
+    bloki: [
+      [
+        '04',
+        'Trasa układa się sama',
+        'System proponuje przejazd i bierze pod uwagę, co dzieje się na drodze.',
+      ],
+      [
+        '05',
+        'Zmiana w trakcie jazdy',
+        'Klient przesuwa rozładunek, na trasie robi się korek — poprawiasz u siebie, kierowca ma nową wersję od razu.',
+      ],
+    ],
+    label: 'Podgląd trasy z korkiem · desktop',
+    note: 'Stara trasa kreskowana, nowa niebieska, znacznik korka, dymek z nową godziną dojazdu.',
+  },
+  en: {
+    bloki: [
+      [
+        '04',
+        'The route plans itself',
+        'The system suggests a route and takes into account what’s happening on the road.',
+      ],
+      [
+        '05',
+        'Changes mid-run',
+        'The client moves the unloading, a jam builds up on the route — you fix it on your side, and the driver has the new version straight away.',
+      ],
+    ],
+    label: 'Route view with a traffic jam · desktop',
+    note: 'Old route dashed, new one in blue, a traffic jam marker, a bubble with the new arrival time.',
+  },
+};
 
 /** 04 i 05 — dwa bloki tekstu obok jednej makiety trasy. */
 export function TrasaIZmiana() {
+  const t = TEKSTY[biezacyJezyk()];
   return (
     <Section>
       <div
@@ -47,7 +77,7 @@ export function TrasaIZmiana() {
 
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
         <div className="flex flex-col gap-8 lg:gap-14">
-          {bloki.map(([numer, tytul, tresc], i) => (
+          {t.bloki.map(([numer, tytul, tresc], i) => (
             <div
               key={numer}
               data-reveal
@@ -67,8 +97,8 @@ export function TrasaIZmiana() {
         <div data-reveal>
           <MockupSlot
             file="mockup-dyspozytornia-trasa-desktop.png"
-            label="Podgląd trasy z korkiem · desktop"
-            note="Stara trasa kreskowana, nowa niebieska, znacznik korka, dymek z nową godziną dojazdu."
+            label={t.label}
+            note={t.note}
             ratio="4:3"
             noteClassName="bg-paper/80"
           >

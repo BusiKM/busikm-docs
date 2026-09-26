@@ -1,14 +1,48 @@
-import Link from 'next/link';
+import Link from '@/i18n/Link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { SpisTresci } from '@/components/pages/dokument/SpisTresci';
+import { OdnosnikPolski } from '@/components/pages/dokument/OdnosnikPolski';
 import { firma } from '@/content/firma';
 import { kotwica, type Blok, type Dokument } from '@/content/dokumenty/typy';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { biezacyJezyk } from '@/i18n/serwer';
 
 /** Szerokość wiersza pilnowana w znakach, nie w pikselach — tak się to czyta. */
 const KOLUMNA = 'max-w-[62ch]';
+
+const TEKSTY: Tlumaczenia<{
+  etykieta: string;
+  obowiazuje: (od: string, wersja: number) => string;
+  wSkrocie: string;
+  zastrzezenie: string;
+  ostatniaZmiana: string;
+  pozostale: string;
+  pytanie: string;
+}> = {
+  pl: {
+    etykieta: 'Dokument',
+    obowiazuje: (od, wersja) => `Obowiązuje od ${od} · wersja ${wersja}`,
+    wSkrocie: 'W skrócie',
+    zastrzezenie:
+      'To streszczenie ułatwia czytanie, ale nie zastępuje dokumentu. Wiążąca jest treść poniżej.',
+    ostatniaZmiana: 'Ostatnia zmiana:',
+    pozostale: 'Pozostałe dokumenty:',
+    pytanie: 'Masz pytanie do tego dokumentu? Napisz:',
+  },
+  en: {
+    etykieta: 'Document',
+    obowiazuje: (od, wersja) => `In force from ${od} · version ${wersja}`,
+    wSkrocie: 'In short',
+    zastrzezenie:
+      'This summary makes the document easier to read but does not replace it. The full document is binding — in its Polish version.',
+    ostatniaZmiana: 'Last updated:',
+    pozostale: 'Other documents:',
+    pytanie: 'Have a question about this document? Write to:',
+  },
+};
 
 function Tresc({ blok }: { blok: Blok }) {
   if (blok.typ === 'akapit') {
@@ -97,36 +131,50 @@ export function StronaDokumentu({
   dokument: Dokument;
   pozostale: { href: string; tytul: string }[];
 }) {
+  const jezyk = biezacyJezyk();
+  const t = TEKSTY[jezyk];
+
   return (
     <>
       <Header />
       <main className="bg-paper px-6 pt-16 pb-20 lg:px-12 lg:pt-24 lg:pb-28">
         <Container className="flex flex-col gap-10 lg:gap-14">
           <div className="flex flex-col gap-4 lg:gap-5">
-            <Eyebrow>Dokument</Eyebrow>
+            <Eyebrow>{t.etykieta}</Eyebrow>
             <h1 className="text-h1-m font-bold text-balance lg:text-h1">{dokument.tytul}</h1>
             <p className="text-[14px] text-muted lg:text-caption">
-              Obowiązuje od {dokument.obowiazujeOd} · wersja {dokument.wersja}
+              {t.obowiazuje(dokument.obowiazujeOd, dokument.wersja)}
             </p>
+            {jezyk === 'en' && (
+              // Tłumaczenie nie jest dokumentem wiążącym — mówimy to przed
+              // treścią, nie w stopce, i dajemy drogę do oryginału.
+              <p
+                role="note"
+                className={`${KOLUMNA} rounded-card border border-line bg-white px-5 py-4 text-[15px] leading-relaxed text-pretty lg:text-body`}
+              >
+                This is an English translation provided for convenience. The Polish version is
+                legally binding. In case of any discrepancy, the Polish version prevails.{' '}
+                <OdnosnikPolski sciezkaPl={dokument.href}>Read the Polish version</OdnosnikPolski>.
+              </p>
+            )}
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-16">
             <SpisTresci paragrafy={dokument.paragrafy} />
 
             <div className="flex min-w-0 flex-col gap-10 lg:gap-14">
-              <div className={`${KOLUMNA} flex flex-col gap-3.5 rounded-card bg-blue-soft p-6 lg:p-8`}>
+              <div
+                className={`${KOLUMNA} flex flex-col gap-3.5 rounded-card bg-blue-soft p-6 lg:p-8`}
+              >
                 <div className="text-[12px] font-medium tracking-[0.1em] text-blue-dark uppercase">
-                  W skrócie
+                  {t.wSkrocie}
                 </div>
                 <ul className="flex flex-col gap-2 text-[16px] leading-relaxed text-pretty lg:text-body">
                   {dokument.wSkrocie.map((z) => (
                     <li key={z}>{z}</li>
                   ))}
                 </ul>
-                <p className="text-[13px] text-muted lg:text-caption">
-                  To streszczenie ułatwia czytanie, ale nie zastępuje dokumentu. Wiążąca jest
-                  treść poniżej.
-                </p>
+                <p className="text-[13px] text-muted lg:text-caption">{t.zastrzezenie}</p>
               </div>
 
               <div className="flex min-w-0 flex-col gap-12 lg:gap-16">
@@ -154,9 +202,11 @@ export function StronaDokumentu({
               </div>
 
               <div className="flex flex-col gap-4 border-t border-line pt-8 text-[15px] text-muted lg:text-body">
-                <p>Ostatnia zmiana: {dokument.ostatniaZmiana}</p>
+                <p>
+                  {t.ostatniaZmiana} {dokument.ostatniaZmiana}
+                </p>
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  Pozostałe dokumenty:
+                  {t.pozostale}
                   {pozostale.map((d, i) => (
                     <span key={d.href} className="flex items-center gap-2">
                       <Link href={d.href} className="text-blue">
@@ -167,7 +217,7 @@ export function StronaDokumentu({
                   ))}
                 </p>
                 <p>
-                  Masz pytanie do tego dokumentu? Napisz:{' '}
+                  {t.pytanie}{' '}
                   <a href={`mailto:${firma.email}`} className="text-blue">
                     {firma.email}
                   </a>

@@ -2,6 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { kotwica, type Paragraf } from '@/content/dokumenty/typy';
+import type { Tlumaczenia } from '@/i18n/jezyki';
+import { useJezyk } from '@/i18n/klient';
+
+const TEKSTY: Tlumaczenia<{ spis: string; liczba: (n: number) => string }> = {
+  pl: {
+    spis: 'Spis treści',
+    liczba: (n) => `${n} ${n === 1 ? 'punkt' : n < 5 ? 'punkty' : 'punktów'}`,
+  },
+  en: {
+    spis: 'Contents',
+    liczba: (n) => `${n} ${n === 1 ? 'section' : 'sections'}`,
+  },
+};
 
 /**
  * Spis treści — przyklejony na desktopie, składany na telefonie.
@@ -12,6 +25,7 @@ import { kotwica, type Paragraf } from '@/content/dokumenty/typy';
 export function SpisTresci({ paragrafy }: { paragrafy: Paragraf[] }) {
   const [aktywny, setAktywny] = useState(paragrafy[0]?.numer ?? '');
   const [otwarty, setOtwarty] = useState(false);
+  const t = TEKSTY[useJezyk()];
 
   useEffect(() => {
     // Mapa budowana w środku: zależy wyłącznie od `paragrafy`, a tworzona
@@ -68,15 +82,14 @@ export function SpisTresci({ paragrafy }: { paragrafy: Paragraf[] }) {
         className="rounded-card border border-line bg-white lg:hidden"
       >
         <summary className="cursor-pointer list-none px-4 py-3.5 text-[15px] font-semibold">
-          Spis treści · {paragrafy.length}{' '}
-          {paragrafy.length === 1 ? 'punkt' : paragrafy.length < 5 ? 'punkty' : 'punktów'}
+          {t.spis} · {t.liczba(paragrafy.length)}
         </summary>
         <div className="px-2 pb-3">{pozycje}</div>
       </details>
 
-      <nav aria-label="Spis treści" className="hidden lg:sticky lg:top-28 lg:block">
+      <nav aria-label={t.spis} className="hidden lg:sticky lg:top-28 lg:block">
         <div className="mb-4 text-[12px] font-medium tracking-[0.1em] text-muted uppercase">
-          Spis treści
+          {t.spis}
         </div>
         {pozycje}
       </nav>
