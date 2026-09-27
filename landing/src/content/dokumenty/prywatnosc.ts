@@ -15,8 +15,8 @@ const pl: Dokument = {
   href: '/prywatnosc',
   tytul: 'Polityka prywatności',
   obowiazujeOd: '1 września 2026',
-  wersja: 3,
-  ostatniaZmiana: '3 września 2026',
+  wersja: 4,
+  ostatniaZmiana: '27 września 2026',
   wSkrocie: [
     'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
     'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
@@ -265,8 +265,8 @@ const en: Dokument = {
   href: '/prywatnosc',
   tytul: 'Privacy Policy',
   obowiazujeOd: '1 September 2026',
-  wersja: 3,
-  ostatniaZmiana: '3 September 2026',
+  wersja: 4,
+  ostatniaZmiana: '27 September 2026',
   wSkrocie: [
     'We keep your data in Europe and never sell it to anyone.',
     'We collect only what the service needs to work and what we need to issue an invoice.',
