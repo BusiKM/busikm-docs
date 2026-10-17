@@ -1,0 +1,183 @@
+{
+  "capture": {
+    "role": "owner",
+    "theme": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "views": [
+      {
+        "id": "hero-pulpit",
+        "path": "/",
+        "settleMs": 3000
+      },
+      {
+        "id": "dyspozytornia-ekran",
+        "path": "/dispatch/",
+        "settleMs": 3000,
+        "role": "dispatcher",
+        "actions": [
+          {
+            "type": "click",
+            "selector": "main >> text=/K.ln.{1,3}Kalisz sp/ >> nth=0"
+          },
+          {
+            "type": "wait",
+            "ms": 2000
+          }
+        ]
+      },
+      {
+        "id": "dyspozytornia-zlecenie",
+        "path": "/orders/26375/",
+        "settleMs": 3000
+      },
+      {
+        "id": "dyspozytornia-trasa",
+        "path": "/orders/26376/?tab=route",
+        "settleMs": 3000
+      },
+      {
+        "id": "faktury-ekran",
+        "path": "/invoices/23325/",
+        "settleMs": 3000
+      },
+      {
+        "id": "faktury-wysylka",
+        "path": "/invoices/23325/",
+        "settleMs": 3000,
+        "actions": [
+          {
+            "type": "click",
+            "selector": "button:has-text(\"Wyślij klientowi\")"
+          },
+          {
+            "type": "wait",
+            "ms": 1200
+          }
+        ]
+      },
+      {
+        "id": "faktury-historia",
+        "path": "/invoices/",
+        "settleMs": 3000,
+        "theme": "dark"
+      },
+      {
+        "id": "faktury-zlecenie",
+        "path": "/orders/26370/?tab=financials",
+        "settleMs": 3000
+      },
+      {
+        "id": "zysk-karta",
+        "path": "/orders/26375/?tab=financials",
+        "settleMs": 3000
+      },
+      {
+        "id": "zysk-tabela",
+        "path": "/reports/orders/",
+        "settleMs": 3000
+      },
+      {
+        "id": "zysk-porownanie",
+        "path": "/reports/",
+        "settleMs": 3000,
+        "theme": "dark"
+      },
+      {
+        "id": "mapa-flota",
+        "path": "/dispatch/",
+        "settleMs": 3000
+      },
+      {
+        "id": "czas-pracy-pierscienie",
+        "path": "/drivers/aetr/",
+        "settleMs": 3000
+      },
+      {
+        "id": "czas-karta",
+        "path": "/drivers/517/compliance/",
+        "settleMs": 3000
+      },
+      {
+        "id": "ksiegowa-eksport",
+        "path": "/settlements/exports/",
+        "settleMs": 3000,
+        "role": "accountant"
+      },
+      {
+        "id": "ksiegowa-walidacja",
+        "path": "/settlements/",
+        "settleMs": 3000,
+        "role": "accountant"
+      },
+      {
+        "id": "ksiegowa-diety",
+        "path": "/settlements/payroll/",
+        "settleMs": 3000,
+        "role": "accountant",
+        "actions": [
+          {
+            "type": "click",
+            "selector": "tr:has-text(\"Kamiński Krzysztof\") >> visible=true >> nth=0"
+          },
+          {
+            "type": "wait",
+            "ms": 1500
+          }
+        ]
+      },
+      {
+        "id": "dokumenty-terminy",
+        "path": "/documents/",
+        "settleMs": 3000
+      },
+      {
+        "id": "dokumenty-status",
+        "path": "/compliance/",
+        "settleMs": 3000
+      },
+      {
+        "id": "koszty-lista",
+        "path": "/costs/",
+        "settleMs": 3000
+      },
+      {
+        "id": "koszty-kurs",
+        "path": "/settings/exchange-rates/",
+        "settleMs": 3000,
+        "theme": "dark"
+      },
+      {
+        "id": "trasy-przeliczenie",
+        "path": "/orders/26376/?tab=route",
+        "settleMs": 3000,
+        "actions": [
+          {
+            "type": "click",
+            "selector": "main >> text=Zmień trasę"
+          },
+          {
+            "type": "wait",
+            "ms": 2500
+          }
+        ]
+      },
+      {
+        "id": "trasy-lista",
+        "path": "/trips/",
+        "settleMs": 4000,
+        "theme": "dark",
+        "waitFor": "table tbody tr"
+      },
+      {
+        "id": "demo-ekran",
+        "path": "/",
+        "settleMs": 3000,
+        "theme": "dark"
+      }
+    ]
+  }
+}

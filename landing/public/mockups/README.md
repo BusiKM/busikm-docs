@@ -72,3 +72,21 @@ rejestracyjne, co w projekcie (`Warszawa → Mediolan`, `WZ 4821K`, `Marek W.`).
 | `mockup-demo-wejscie-desktop.png` | desktop 16:10 | Pulpit demo z paskiem „To jest demo” u góry |
 
 Podstrony trzymają ten sam schemat. Pełna lista powstaje razem z projektami.
+
+## Odświeżenie zrzutów desktop z aplikacji v2
+
+Zrzuty desktop pochodzą z lokalnie uruchomionego busikm-web na danych demo
+(`seed_demo_company`) i są wkładane w tę samą ramkę MacBooka. Gdy aplikacja
+się zmieni, cały komplet odświeża się w dwóch krokach:
+
+1. W repo `busikm-video` skopiuj `landing/scripts/mockupy/zrzuty-v2.json`
+   do `videos/_landing-mockupy.json` i uruchom
+   `npm run capture -- _landing-mockupy` (wymaga busikm-web na :3000,
+   backendu na :8001 i hasła kont demo w `.env`). Lista widoków mówi, który
+   ekran aplikacji trafia do której makiety — `id` to nazwa pliku bez
+   `mockup-` i `-desktop`.
+2. Tutaj:
+   `python3 scripts/mockupy/wstaw-w-ramke.py scripts/mockupy/ramka-macbook.png ../../busikm-video/public/captures/_landing-mockupy public/mockups`
+
+Makiety z dopiskiem „tryb nocny” w etykiecie są robione w ciemnym motywie
+aplikacji (`"theme": "dark"` w widoku), reszta w jasnym.

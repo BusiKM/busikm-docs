@@ -25,10 +25,10 @@ const TEKSTY: Tlumaczenia<{
       'Koszty w obcych walutach przeliczone po kursie z dnia',
     ],
     eyebrow: 'Zostaje',
-    kwota: '6 009 zł',
-    podpis: 'z 3 900 € frachtu. Liczba zmieni się, gdy Marek doda kolejny paragon.',
+    kwota: '4 011 zł',
+    podpis: 'z 1 110 € frachtu. Liczba zmieni się, gdy Adam doda kolejny paragon.',
     label: 'Karta zysku · desktop, tryb nocny',
-    opis: 'Karta zlecenia Warszawa → Mediolan, rozbicie kosztów w wierszach, zysk na dole, obok mały wykres dzienny.',
+    opis: 'Karta zlecenia Wrocław → Antwerpen, zakładka Finanse: fracht, koszty kursu w wierszach, obok wynik i marża.',
   },
   en: {
     tytul1: 'You know what you keep.',
@@ -40,10 +40,10 @@ const TEKSTY: Tlumaczenia<{
       'Foreign-currency costs converted at the day’s rate',
     ],
     eyebrow: 'You keep',
-    kwota: 'PLN 6,009',
-    podpis: 'out of €3,900 freight. The figure will change when Marek adds another receipt.',
+    kwota: 'PLN 4,011',
+    podpis: 'out of €1,110 freight. The figure will change when Adam adds another receipt.',
     label: 'Profit card · desktop, night mode',
-    opis: 'Order card Warsaw → Milan, costs broken down line by line, profit at the bottom, a small daily chart alongside.',
+    opis: 'Order card Wrocław → Antwerp, Finance tab: freight, run costs line by line, result and margin alongside.',
   },
 };
 
