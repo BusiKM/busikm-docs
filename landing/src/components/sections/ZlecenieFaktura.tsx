@@ -56,27 +56,16 @@ export function ZlecenieFaktura() {
         </div>
 
         {/*
-          Odstęp u góry tylko na telefonie. Powiększenie działa w obie strony,
-          więc przy skali 1,9 zrzut wychodzi ponad swoje pudło o 110 px.
-          Sam monitor zaczyna się jednak niżej — nad nim jest pusty margines
-          pliku — i wystarcza `mt-20`, czyli 80 px, żeby nie nachodził
-          na listę powyżej.
+          Zrzut v2 stoi w tej samej ramce laptopa co reszta strony i wypełnia
+          szerokość kadru, więc nie potrzebuje powiększenia. Poprzedni plik
+          był monitorem na kwadratowym płótnie — stąd dawne skale 1,5 i 1,9.
         */}
-        <div data-reveal className="mt-20 lg:order-1 lg:mt-0">
+        <div data-reveal className="lg:order-1">
           <MockupSlot
             file="mockup-faktury-zlecenie-desktop.png"
             label={t.label}
             note={t.opis}
             ratio="4:3"
-            imageScale={1.5}
-            // Na telefonie zrzut wychodzi poza kolumnę tekstu, aż na pełną
-            // szerokość ekranu — inaczej pulpit jest nieczytelnie mały.
-            //
-            // 1,9 wyliczone tak, żeby nic nie zostało ucięte. Sama ramka
-            // monitora zajmuje 58% szerokości kadru — reszta to podstawka
-            // i pusty margines pliku — więc przy pudle 327 px daje to 361 px
-            // z 375 dostępnych, czyli po 7 px zapasu z każdej strony.
-            imageScaleTelefon={1.9}
           >
             <ZlecenieFakturaMockup />
           </MockupSlot>
