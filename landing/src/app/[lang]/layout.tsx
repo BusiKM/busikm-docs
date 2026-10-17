@@ -4,6 +4,7 @@ import { RevealObserver } from '@/components/motion/RevealObserver';
 import { PowrotNaGore } from '@/components/layout/PowrotNaGore';
 import { Analytics } from '@/components/analytics/Analytics';
 import { BanerZgody } from '@/components/analytics/BanerZgody';
+import { MetaPixel } from '@/components/analytics/MetaPixel';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { grafStronyGlownej } from '@/components/seo/schema';
 import { OkruszkiSeo } from '@/components/seo/OkruszkiSeo';
@@ -96,6 +97,7 @@ export default async function RootLayout({
           <RevealObserver />
           <BanerZgody />
           <Analytics />
+          <MetaPixel />
         </DostawcaJezyka>
       </body>
     </html>

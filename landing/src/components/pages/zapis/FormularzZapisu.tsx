@@ -6,6 +6,7 @@ import Link from '@/i18n/Link';
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { zapiszNaListe } from '@/lib/zapisy';
+import { zdarzenieMeta } from '@/lib/meta';
 import { LIMITY_ZAPISU, type OpisListy } from '@/content/zapisy';
 import { TRESC_ZGODY } from '@/content/zgoda';
 import { odczytajWybor, opiszWybor } from '@/content/zainteresowanie';
@@ -152,6 +153,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
         jezyk,
         pulapka,
       });
+      zdarzenieMeta('Lead', { content_name: opis.zrodlo });
       setStan('zapisany');
     } catch {
       setStan('błąd');

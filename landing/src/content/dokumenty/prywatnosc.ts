@@ -15,12 +15,12 @@ const pl: Dokument = {
   href: '/prywatnosc',
   tytul: 'Polityka prywatności',
   obowiazujeOd: '1 września 2026',
-  wersja: 4,
-  ostatniaZmiana: '27 września 2026',
+  wersja: 5,
+  ostatniaZmiana: '17 października 2026',
   wSkrocie: [
     'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
     'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
-    'Na stronie używamy plików cookie potrzebnych do jej działania. Analityczne włączamy dopiero za Twoją zgodą.',
+    'Na stronie używamy plików cookie potrzebnych do jej działania. Analityczne i reklamowe (piksel Meta) włączamy dopiero za Twoją zgodą, osobno dla każdego celu.',
     'Zapisując się na listę, zgadzasz się na wiadomości o BusiKM. Zgodę wycofasz odnośnikiem w każdej z nich — zapisujemy jej treść i datę, żeby dało się wykazać, pod czym się podpisałeś.',
     'Masz prawo wglądu, poprawienia, usunięcia i przeniesienia swoich danych. Napisz, a zrobimy to.',
   ],
@@ -100,6 +100,12 @@ const pl: Dokument = {
               'art. 6 ust. 1 lit. a RODO — Twoja zgoda',
               'do cofnięcia zgody, nie dłużej niż 14 miesięcy',
             ],
+            [
+              'Pomiar i kierowanie reklam BusiKM na Facebooku i Instagramie (piksel Meta)',
+              'identyfikator przeglądarki zapisany w pliku _fbp, adres IP, dane o przeglądarce i urządzeniu, odwiedzone strony, zdarzenia na stronie (zapis na listę, wysłanie formularza kontaktowego)',
+              'art. 6 ust. 1 lit. a RODO - Twoja zgoda, wraz z art. 399 Prawa komunikacji elektronicznej',
+              'do cofnięcia zgody; plik _fbp wygasa po 90 dniach, a grupy odbiorców reklam przechowujemy nie dłużej niż 180 dni',
+            ],
           ],
         },
       ],
@@ -125,6 +131,7 @@ const pl: Dokument = {
           punkty: [
 'dostawców, którzy pomagają nam świadczyć usługę — Amazon Web Services (serwery, bazy, pliki), Amazon SES (poczta), Stripe (płatności), Mapbox (trasy), Google Cloud Vision (odczyt paragonów), Sentry (błędy) oraz Apple i Google (dostarczanie powiadomień). Pełną listę z zakresem przetwarzania prowadzimy w dokumencie Podprocesorzy;',
             'dostawców obsługujących formularze na stronie — Google Ireland (baza Firestore, w której zapisujemy wiadomość, region europejski) i Resend (dostarczenie powiadomienia na naszą skrzynkę, region irlandzki). Dotyczy to wyłącznie danych, które sam wpiszesz — w formularzu kontaktowym albo zapisując się na powiadomienie o uruchomieniu;',
+            'Meta Platforms Ireland Limited (Merrion Road, Dublin 4, Irlandia) - wyłącznie jeżeli zgodzisz się na reklamę. W zakresie zbierania danych pikselem i przekazania ich do Mety jesteśmy z Metą współadministratorami; dalej Meta przetwarza dane jako odrębny administrator, na zasadach swojej polityki prywatności (facebook.com/privacy/policy);',
             'biura rachunkowego i doradców, w zakresie niezbędnym do rozliczeń;',
             'organów publicznych, jeżeli obowiązek wynika z przepisów.',
           ],
@@ -132,7 +139,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Z każdym dostawcą, który przetwarza dane w naszym imieniu, mamy zawartą umowę powierzenia. Nie sprzedajemy danych i nie udostępniamy ich do celów marketingowych osób trzecich.',
+            'Z każdym dostawcą, który przetwarza dane w naszym imieniu, mamy zawartą umowę powierzenia. Nie sprzedajemy danych. Do Mety trafiają tylko dane z piksela i tylko po Twojej zgodzie na reklamę.',
         },
       ],
     },
@@ -149,6 +156,11 @@ const pl: Dokument = {
           typ: 'akapit',
           tresc:
             'Dwie rzeczy wymagają podmiotów spoza EOG: rozpoznawanie tekstu ze zdjęć paragonów oraz dostarczanie powiadomień do telefonu kierowcy, które zawsze przechodzi przez Apple albo Google. Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską, a usługę rozpoznawania ustawiamy na region europejski dostawcy. Szczegóły opisuje dokument Podprocesorzy.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'Jeżeli zgodzisz się na reklamę, dane z piksela Meta mogą trafić do Meta Platforms, Inc. w Stanach Zjednoczonych. Transfer opiera się na decyzji Komisji Europejskiej w sprawie Ram ochrony danych UE-USA (EU-US Data Privacy Framework), w których Meta uczestniczy, a uzupełniająco na standardowych klauzulach umownych.',
         },
       ],
     },
@@ -187,7 +199,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Pliki cookie to małe pliki zapisywane w Twojej przeglądarce. Używamy ich w dwóch celach.',
+            'Pliki cookie to małe pliki zapisywane w Twojej przeglądarce. Używamy ich w trzech celach.',
         },
         {
           typ: 'definicje',
@@ -202,6 +214,11 @@ const pl: Dokument = {
               opis:
                 'liczą odwiedziny i pokazują, które strony są czytane. Włączamy je dopiero po Twojej zgodzie i możesz ją cofnąć w każdej chwili. Wygasają po 14 miesiącach.',
             },
+            {
+              termin: 'Reklamowe',
+              opis:
+                'plik _fbp piksela Meta. Pozwala sprawdzić, czy reklama BusiKM na Facebooku lub Instagramie przyprowadziła kogoś na stronę, i pokazać reklamy osobom, które już nas odwiedziły. Włączamy go dopiero po Twojej osobnej zgodzie na reklamę i możesz ją cofnąć w każdej chwili. Wygasa po 90 dniach.',
+            },
           ],
         },
         {
@@ -212,7 +229,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Nie używamy plików cookie do reklamy ani do profilowania w celach marketingowych. Zgodę na analitykę wyrażasz w okienku, które pokazuje się przy pierwszej wizycie — a cofasz odnośnikiem „Ustawienia cookie" na dole każdej strony. Do czasu zgody licznik odwiedzin w ogóle się nie ładuje.',
+            'Zgodę na analitykę i na reklamę wyrażasz osobno w okienku, które pokazuje się przy pierwszej wizycie, a cofasz odnośnikiem „Ustawienia cookie" na dole każdej strony. Do czasu zgody ani licznik odwiedzin, ani piksel Meta w ogóle się nie ładują. Piksel nie zbiera automatycznie kliknięć ani treści strony: wysyłamy tylko odsłony stron oraz informację, że ktoś zapisał się na listę albo wysłał formularz, bez Twojego imienia i adresu e-mail.',
         },
       ],
     },
@@ -265,12 +282,12 @@ const en: Dokument = {
   href: '/prywatnosc',
   tytul: 'Privacy Policy',
   obowiazujeOd: '1 September 2026',
-  wersja: 4,
-  ostatniaZmiana: '27 September 2026',
+  wersja: 5,
+  ostatniaZmiana: '17 October 2026',
   wSkrocie: [
     'We keep your data in Europe and never sell it to anyone.',
     'We collect only what the service needs to work and what we need to issue an invoice.',
-    'On the website we use the cookies it needs to work. We switch on analytics cookies only with your consent.',
+    'On the website we use the cookies it needs to work. We switch on analytics and advertising cookies (the Meta pixel) only with your consent, separately for each purpose.',
     'By joining the list, you agree to receive messages about BusiKM. You can withdraw consent using the link in any of them — we record its wording and date so that we can show what you agreed to.',
     'You have the right to access, correct, erase and port your data. Write to us and we will do it.',
   ],
@@ -350,6 +367,12 @@ const en: Dokument = {
               'Art. 6(1)(a) GDPR — your consent',
               'until consent is withdrawn, no longer than 14 months',
             ],
+            [
+              'Measuring and targeting BusiKM ads on Facebook and Instagram (Meta pixel)',
+              'browser identifier stored in the _fbp cookie, IP address, browser and device data, pages visited, events on the website (joining the list, sending the contact form)',
+              'Art. 6(1)(a) GDPR - your consent, together with Art. 399 of the Electronic Communications Law',
+              'until consent is withdrawn; the _fbp cookie expires after 90 days, and we keep ad audiences for no longer than 180 days',
+            ],
           ],
         },
       ],
@@ -375,6 +398,7 @@ const en: Dokument = {
           punkty: [
             'providers who help us deliver the service — Amazon Web Services (servers, databases, files), Amazon SES (e-mail), Stripe (payments), Mapbox (routes), Google Cloud Vision (reading receipts), Sentry (errors) and Apple and Google (delivering notifications). We keep the full list, with the scope of processing, in the Subprocessors document;',
             'providers operating the forms on the website — Google Ireland (the Firestore database in which we store the message, European region) and Resend (delivering the notification to our mailbox, Irish region). This applies only to data that you enter yourself — in the contact form or when signing up to be notified of the launch;',
+            'Meta Platforms Ireland Limited (Merrion Road, Dublin 4, Ireland) - only if you consent to advertising. We and Meta are joint controllers for collecting data with the pixel and transmitting it to Meta; after that, Meta processes the data as a separate controller under its own privacy policy (facebook.com/privacy/policy);',
             'our accounting office and advisers, to the extent necessary for billing and accounting;',
             'public authorities, where required by law.',
           ],
@@ -382,7 +406,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'We have a data processing agreement in place with every provider that processes data on our behalf. We do not sell data and do not share it for third parties’ marketing purposes.',
+            'We have a data processing agreement in place with every provider that processes data on our behalf. We do not sell data. Only pixel data goes to Meta, and only after you consent to advertising.',
         },
       ],
     },
@@ -399,6 +423,11 @@ const en: Dokument = {
           typ: 'akapit',
           tresc:
             'Two things require entities outside the EEA: recognising text in photos of receipts, and delivering notifications to the driver’s phone, which always goes through Apple or Google. We safeguard the transfer with standard contractual clauses approved by the European Commission, and we set the recognition service to the provider’s European region. Details are set out in the Subprocessors document.',
+        },
+        {
+          typ: 'akapit',
+          tresc:
+            'If you consent to advertising, data from the Meta pixel may be transferred to Meta Platforms, Inc. in the United States. The transfer relies on the European Commission decision on the EU-US Data Privacy Framework, in which Meta participates, and additionally on standard contractual clauses.',
         },
       ],
     },
@@ -436,7 +465,7 @@ const en: Dokument = {
       bloki: [
         {
           typ: 'akapit',
-          tresc: 'Cookies are small files stored in your browser. We use them for two purposes.',
+          tresc: 'Cookies are small files stored in your browser. We use them for three purposes.',
         },
         {
           typ: 'definicje',
@@ -449,6 +478,10 @@ const en: Dokument = {
               termin: 'Analytics',
               opis: 'they count visits and show which pages are read. We switch them on only after you consent, and you can withdraw consent at any time. They expire after 14 months.',
             },
+            {
+              termin: 'Advertising',
+              opis: 'the _fbp cookie of the Meta pixel. It lets us check whether a BusiKM ad on Facebook or Instagram brought someone to the website, and show ads to people who have already visited us. We switch it on only after your separate consent to advertising, and you can withdraw consent at any time. It expires after 90 days.',
+            },
           ],
         },
         {
@@ -459,7 +492,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'We do not use cookies for advertising or for marketing profiling. You give consent to analytics in the window that appears on your first visit — and withdraw it using the “Cookie settings” link at the bottom of every page. Until you consent, the visit counter is not loaded at all.',
+            'You give consent to analytics and to advertising separately in the window that appears on your first visit, and withdraw it using the “Cookie settings” link at the bottom of every page. Until you consent, neither the visit counter nor the Meta pixel is loaded at all. The pixel does not automatically collect clicks or page content: we send only page views and the fact that someone joined the list or sent the form, without your name or e-mail address.',
         },
       ],
     },
