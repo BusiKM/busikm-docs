@@ -6,6 +6,7 @@ import Link from '@/i18n/Link';
 import { firma } from '@/content/firma';
 import { firebaseGotowy } from '@/lib/firebase';
 import { wyslijWiadomosc, tematy, LIMITY, type Temat } from '@/lib/wiadomosci';
+import { zdarzenieMeta } from '@/lib/meta';
 import { TRESC_ZGODY } from '@/content/zgoda';
 import { Wymagane } from '@/components/ui/Wymagane';
 import type { Tlumaczenia } from '@/i18n/jezyki';
@@ -150,6 +151,7 @@ export function Formularz() {
         jezyk,
         pulapka,
       });
+      zdarzenieMeta('Contact');
       setStan('wysłane');
       setImie('');
       setMail('');
