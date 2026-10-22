@@ -17,13 +17,13 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; liczba: (n: number) => string }> =
 };
 
 /**
- * Spis rozdziałów artykułu — przyklejony na desktopie, składany na telefonie.
+ * Spis rozdziałów artykułu – przyklejony na desktopie, składany na telefonie.
  *
  * Instrukcja czyta się inaczej niż tekst ciągły: człowiek szuka jednego
  * rozdziału, robi to, co tam napisano, i wraca po następny. Dlatego spis
  * zostaje na ekranie, a aktywna pozycja idzie z obserwatora przecięć.
  *
- * Ten sam wzorzec, co w dokumentach prawnych — z jedną różnicą: tam
+ * Ten sam wzorzec, co w dokumentach prawnych – z jedną różnicą: tam
  * numerujemy paragrafy, tu nie ma czego numerować, bo rozdziały są etapami
  * jednej czynności, a nie punktami umowy.
  */

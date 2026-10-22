@@ -13,32 +13,32 @@ const liczniki = [
 const TEKSTY: Tlumaczenia<{
   naglowek: string;
   lead: string;
-  /** Nazwa i opis każdego licznika — kolejność jak w `liczniki`. */
+  /** Nazwa i opis każdego licznika – kolejność jak w `liczniki`. */
   opisy: readonly (readonly [string, string])[];
 }> = {
   pl: {
     naglowek: 'Liczniki idą same',
-    lead: 'Jazda, przerwa, odpoczynek, dyspozycyjność. Nikt nic nie zapisuje w zeszycie.',
+    lead: 'Jazda, przerwa, odpoczynek, praca. Status zmienia się sam według etapu zlecenia. Nikt nic nie zapisuje w zeszycie.',
     opisy: [
       ['Jazda', 'z 9:00 limitu dziennego'],
       ['Przerwa', 'do następnej przerwy'],
       ['Odpoczynek', 'wykonany w nocy'],
-      ['Dyspozycyjność', 'załadunek i oczekiwanie'],
+      ['Praca', 'załadunek, rozładunek, oczekiwanie'],
     ],
   },
   en: {
     naglowek: 'The counters run themselves',
-    lead: 'Driving, break, rest, availability. Nobody writes anything down in a notebook.',
+    lead: 'Driving, break, rest, other work. The status changes by itself with each stage of the order. Nobody writes anything down in a notebook.',
     opisy: [
       ['Driving', 'of the 9:00 daily limit'],
       ['Break', 'until the next break'],
       ['Rest', 'taken overnight'],
-      ['Availability', 'loading and waiting'],
+      ['Other work', 'loading, unloading, waiting'],
     ],
   },
 };
 
-/** 01 — cztery liczniki, które chodzą same. */
+/** 01 – cztery liczniki, które chodzą same. */
 export function Liczniki() {
   const t = TEKSTY[biezacyJezyk()];
   return (

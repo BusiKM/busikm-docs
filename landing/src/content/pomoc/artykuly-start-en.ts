@@ -1,11 +1,11 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Pierwsze kroki — wersja angielska. Slugi i `powiazane` zostają polskie,
+ * Pierwsze kroki – wersja angielska. Slugi i `powiazane` zostają polskie,
  * adresy angielskie wylicza `i18n/trasy.ts`.
  *
  * Aplikacja jest dziś tylko po polsku, więc przy pierwszym wystąpieniu
- * przycisku w artykule w nawiasie stoi jego polska etykieta — po niej
+ * przycisku w artykule w nawiasie stoi jego polska etykieta – po niej
  * czytelnik znajdzie go na ekranie.
  */
 export const artykulyStartEn: Artykul[] = [
@@ -13,49 +13,51 @@ export const artykulyStartEn: Artykul[] = [
     slug: 'zakladamy-konto',
     kategoria: 'start',
     tytul: 'How to create an account',
-    lead: 'We set up accounts after a short call — and that’s a choice, not a missing button.',
+    lead: 'You start with your tax ID (NIP) and we fetch the rest of the company details from the register. For now we open accounts for people on the list.',
     role: ['wlasciciel'],
-    czas: 'A thirty-minute call, account the same day',
+    czas: 'Five minutes, including confirming your email',
+    zanim: ['Your company’s tax ID (NIP)', 'An email address for the confirmation'],
     rozdzialy: [
       {
-        tytul: 'Why a call',
+        tytul: 'Where things stand',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'On the call we match the plan to the size of your fleet and set up the company with you: vehicles, drivers and the export to your accounting software. After the call you get a sign-up link.',
+              'We’re testing BusiKM on real routes with a small group of companies. Join the list on the “Sign in” page and we’ll write when we open an account for you.',
           },
           {
-            typ: 'akapit',
+            typ: 'wkrotce',
             tresc:
-              'A first day with an empty system usually means an hour of clicking through settings nobody warned you about. We’d rather go through that hour with you once than leave you with a sign-up form and a hope.',
+              'Sign-up for everyone and a demo you can explore on your own are coming soon. Until then, the website puts you on a list rather than creating an account.',
           },
         ],
       },
       {
-        tytul: 'How to book it',
+        tytul: 'Signing up step by step',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Write to us or book a call',
-                opis: 'The address and the form are on the contact page. We reply the same working day.',
+                tytul: 'Enter your company’s tax ID (NIP)',
+                opis: 'We fetch the name and address from the register. If something isn’t there, you fill in the company details yourself.',
               },
               {
-                tytul: 'Have three things ready for the call',
-                opis: 'Your company’s NIP (Polish tax ID), the number of vehicles and the name of the accounting software your accountant uses.',
+                tytul: 'Enter your details',
+                opis: 'First name, last name and email. The confirmation goes to that address.',
               },
+              { tytul: 'Set a password' },
               {
-                tytul: 'Open the sign-up link',
-                opis: 'There you set a password and go straight into the owner account.',
+                tytul: 'Confirm your email address',
+                opis: 'Click the link in the email. Your account is active and the 14-day trial – no card needed – has started.',
               },
             ],
           },
           {
-            typ: 'wkrotce',
+            typ: 'uwaga',
             tresc:
-              'Sign-up without a call and a self-service demo are planned. They don’t exist yet — on the website you join a notification list, you don’t create an account.',
+              'The trial is available once per company. If a company with that NIP already has a BusiKM account, sign-up tells you straight away and shows you what to do next.',
           },
         ],
       },
@@ -67,15 +69,11 @@ export const artykulyStartEn: Artykul[] = [
     slug: 'dane-firmy',
     kategoria: 'start',
     tytul: 'Company details and setup',
-    lead: 'Fill it in once — every invoice and every export takes its data from here.',
+    lead: 'Fill it in once – every invoice and every export takes its data from here.',
     role: ['wlasciciel', 'ksiegowa'],
-    gdzie: 'Settings → Company → Company details (Ustawienia → Firma → Dane firmy)',
-    czas: 'Fifteen minutes',
-    zanim: [
-      'NIP, REGON and the address from the company register',
-      'The company bank account number',
-      'The name of your accounting software',
-    ],
+    gdzie: 'Settings → Company details (Ustawienia → Dane firmy)',
+    czas: 'A quarter of an hour',
+    zanim: ['Your business bank account number', 'The accounting software your accounting office uses'],
     rozdzialy: [
       {
         tytul: 'What to fill in straight away',
@@ -85,44 +83,44 @@ export const artykulyStartEn: Artykul[] = [
             kroki: [
               {
                 tytul: 'Go to Settings → Company details (Ustawienia → Dane firmy)',
-                opis: 'Only Company name * (Nazwa firmy *) is required. The form accepts the rest as optional, but without it your invoices will be incomplete.',
+                opis: 'Some of it is already filled in from the register when you signed up. Check it – we print it on invoices, CMRs and the exports for your accountant.',
               },
               {
-                tytul: 'Fill in the registration details',
-                opis: 'NIP (tax ID), REGON (business ID), KRS (court register number), street and number, city, postcode, country. The full name goes on invoices, the short name on lists inside the system.',
+                tytul: 'Complete the registration details',
+                opis: 'Company name, short name, NIP, REGON, KRS and registered address. Add the full name for JPK if it differs from the company name.',
               },
               {
-                tytul: 'Set your tax status',
-                opis: 'VAT payer (Płatnik VAT) and — for transport within the EU — EU VAT (VAT EU) and EU VAT prefix (Prefix EU VAT).',
+                tytul: 'Add your EU VAT number if you invoice companies in the EU',
+                opis: 'The EU VAT prefix is needed on invoices for companies in other EU countries.',
               },
               {
-                tytul: 'Enter the bank account',
-                opis: 'The IBAN and SWIFT / BIC are printed on the invoice. Without them your client has nowhere to send the money.',
+                tytul: 'Add a bank account',
+                opis: 'Settings → Bank accounts (Konta bankowe). The number is printed on the invoice – without it your client has nowhere to pay.',
               },
               {
-                tytul: 'Choose the Accounting system (System księgowy) and the Company code in FK (Symbol firmy w FK)',
-                opis: 'The options are Insert GT, Comarch ERP Optima and Symfonia FK. This decides the file format your accountant receives.',
+                tytul: 'Choose your accounting software',
+                opis: 'Settings → Accounting software (Program księgowy): Insert GT (also Rachmistrz), Comarch Optima, Symfonia, or another program with a CSV file. Insert GT also needs the company symbol used in the program. This is also where you pick your tax office and the JPK details.',
               },
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'Enter your transport licence number now, even if you don’t need it today. During a roadside check people hunt for it in a hurry — here it sits in one place with everything else.',
+              'Add your transport licence and its certified copies straight away in Settings → Licence and copies (Licencja i wypisy), even if you don’t need them today. At a roadside check people hunt for them in a rush – here they sit in one place.',
           },
         ],
       },
       {
-        tytul: 'Monthly targets',
+        tytul: 'Company goals',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'At the bottom of the form there are three fields: monthly revenue target, monthly cost target and monthly profit target, all in PLN (Cel miesięczny przychodu / kosztów / zysku). The dashboard then shows how far you are from the target instead of a bare figure.',
+              'In Settings → Company goals (Cele firmy) you set monthly revenue, costs and profit, plus a minimum margin per order. The dashboard then shows how much of the goal you’ve reached, and orders below the margin are flagged in Reports and on the order list.',
           },
           {
             typ: 'akapit',
-            tresc: 'You can leave them empty — the dashboard just won’t draw the progress bars.',
+            tresc: 'You can leave the goals empty – the dashboard simply won’t show them.',
           },
         ],
       },
@@ -133,11 +131,11 @@ export const artykulyStartEn: Artykul[] = [
             typ: 'lista',
             wstep: 'You’ll come back to these once you start invoicing and settling up:',
             punkty: [
-              'Branding and invoices (Branding i faktury) — your logo and the look of documents sent to clients.',
-              'Mileage rates (Stawki kilometrówki) — the per-kilometre rates used to calculate the mileage log.',
-              'Exchange rates (Kursy walut) — NBP (National Bank of Poland) rates, with the option to enter your own.',
-              'Alert thresholds (Progi alertów) — how many days before a deadline the system should warn you.',
-              'KSeF — the connection to KSeF, Poland’s national e-invoicing system.',
+              'Logo on documents (Logo na dokumentach) – your logo on invoices and documents for clients.',
+              'Invoices (Faktury) – invoice numbering and the default payment term.',
+              'KSeF – the connection to Poland’s National e-Invoicing System.',
+              'Deadline reminders (Przypomnienia o terminach) – we remind you 60, 30, 14 and 3 days before a document expires.',
+              'Statutory rates (Stawki z przepisów) – allowances, mileage rates and NBP exchange rates, for reference.',
             ],
           },
         ],
@@ -150,45 +148,46 @@ export const artykulyStartEn: Artykul[] = [
     slug: 'dodajemy-pojazd',
     kategoria: 'start',
     tytul: 'How to add a vehicle',
-    lead: 'No vehicle means no kilometres, no fuel costs and no mileage log. It’s the first thing to do after the company details.',
+    lead: 'No vehicle means no kilometres, no fuel costs and no mileage log. A photo of the registration certificate is enough.',
     role: ['wlasciciel', 'dyspozytor'],
-    gdzie: 'Vehicles → New vehicle (Pojazdy → Nowy pojazd)',
-    czas: 'Five minutes per vehicle',
-    zanim: [
-      'The registration certificate — VIN, year of manufacture, gross vehicle weight',
-      'Today’s odometer reading',
-    ],
+    gdzie: 'Vehicles → Add vehicle (Pojazdy → Dodaj pojazd)',
+    czas: 'Three minutes per vehicle',
+    zanim: ['The registration certificate – photos of all pages or a PDF', 'Today’s odometer reading'],
     rozdzialy: [
       {
-        tytul: 'Filling in the form',
+        tytul: 'Three steps of the wizard',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Go to Vehicles (Pojazdy) and click New vehicle (Nowy pojazd)' },
+              { tytul: 'Go to Vehicles and click Add vehicle (Dodaj pojazd)' },
               {
-                tytul: 'Enter the identification details',
-                opis: 'Registration number *, VIN *, make *, model *, year of manufacture *, vehicle type *. An asterisk means the form won’t save without it.',
+                tytul: 'From the certificate (Z dowodu)',
+                opis: 'Upload a photo of the registration certificate – you can pick several photos at once. AI reads the registration number, VIN, make, model, year and weights, and you check the fields against the certificate. You can also type the details in yourself.',
               },
               {
-                tytul: 'Add the technical details',
-                opis: 'Fuel type *, gross vehicle weight (DMC, kg), engine capacity (cm³), power (kW), Euro emission standard. The gross weight decides which rules apply to the vehicle.',
+                tytul: 'How you use it (Jak używasz)',
+                opis: 'Who owns the vehicle (bought, leased or rented), where it drives, who the default driver is and today’s odometer reading. Among other things, this decides the VAT deduction – with full deduction you enter the date the VAT-26 form was filed.',
               },
               {
-                tytul: 'Set the Starting odometer (Licznik początkowy, km) and the Log start date (Data startu ewidencji)',
-                opis: 'This is your zero point. The whole mileage log is counted from this date and this reading — enter the reading from the day you start working in BusiKM, not the day you bought the vehicle.',
+                tytul: 'Deadlines (Terminy)',
+                opis: 'We work out the roadworthiness test date from the certificate. Upload the insurance policy – we read the OC, AC and NNW dates from the document.',
               },
               {
-                tytul: 'Fill in the VAT-26 filing date (Data zgłoszenia VAT-26) if the vehicle has been registered for it',
-                opis: 'VAT-26 is the Polish tax form for vehicles used solely for business, with full VAT deduction.',
+                tytul: 'Click Add vehicle',
+                opis: 'The vehicle is available for assigning orders straight away. You can change everything later on the vehicle card.',
               },
-              { tytul: 'Save (Zapisz)' },
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'You can’t freely correct the starting odometer after a month of work — the whole mileage would be recalculated. Check the reading before you save.',
+              'Today’s odometer reading is the starting point – servicing and mileage count from it. Enter the reading from the day you start working in BusiKM, not from the day you bought the vehicle.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'We check the registration number and VIN against your fleet, so the same vehicle can’t be added twice. Trailers and semi-trailers don’t count towards your plan’s vehicle limit.',
           },
         ],
       },
@@ -198,17 +197,15 @@ export const artykulyStartEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Once saved, open the vehicle card and add its documents with their expiry dates. From then on the system keeps track of the deadlines for you.',
+              'Add further documents on the vehicle card, in the Deadlines and documents tab (Terminy i dokumenty). A photo or a PDF is enough – we read the type, number and dates, and you check them.',
           },
           {
-            typ: 'tabela',
-            naglowki: ['Category', 'What goes in it'],
-            wiersze: [
-              ['Registration certificate', 'Registration certificate, certified copy of the licence'],
-              ['Insurance', 'Third-party liability (OC), comprehensive (AC), personal accident (NNW), GAP, green card'],
-              ['Inspections and tachograph', 'Roadworthiness test, tachograph certificate and calibration, emission standard'],
-              ['Specialist certificates', 'ATP, vehicle ADR'],
-              ['Licences and leasing', 'Transport licence, lease agreement'],
+            typ: 'lista',
+            wstep: 'For a vehicle we keep track of, among others:',
+            punkty: [
+              'the registration certificate and the lease agreement,',
+              'OC and AC insurance and the green card,',
+              'the roadworthiness test and the tachograph calibration.',
             ],
           },
         ],

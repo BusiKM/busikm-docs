@@ -59,12 +59,12 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Kolumny: data, trasa, km, czas. Kierowca i pojazd idą pod trasę — osobną
+ * Kolumny: data, trasa, km, czas. Kierowca i pojazd idą pod trasę – osobną
  * kolumną w karcie 4:3 na pół szerokości ucinały się do „Marek W. · WZ 4…".
  */
 const kolumny = 'grid grid-cols-[44px_1fr_52px_52px] gap-2.5 lg:grid-cols-[60px_1fr_64px_60px]';
 
-/** Historia przejazdów z filtrami — także tych bez zlecenia. */
+/** Historia przejazdów z filtrami – także tych bez zlecenia. */
 export function ListaTras() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -1,60 +1,66 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Pierwsze kroki — od zdobycia konta do firmy gotowej do pracy.
+ * Pierwsze kroki – od zdobycia konta do firmy gotowej do pracy.
  *
  * Kolejność nie jest przypadkowa: bez danych firmy nie wystawisz faktury,
  * bez pojazdu nie policzysz kilometrów, bez kierowcy nie ma czego przydzielać.
  * Dlatego artykuły idą w tej samej kolejności, co realna konfiguracja.
+ *
+ * Publiczna rejestracja jeszcze nie jest otwarta (strona `/zaloguj` zbiera
+ * zapisy), więc artykuł o koncie opisuje, jak rejestracja wygląda, i mówi
+ * wprost, że dziś konta dostają osoby z listy.
  */
 export const artykulyStart: Artykul[] = [
   {
     slug: 'zakladamy-konto',
     kategoria: 'start',
     tytul: 'Jak założyć konto',
-    lead: 'Konta zakładamy po krótkiej rozmowie — i to jest wybór, nie brak przycisku.',
+    lead: 'Zaczynasz od NIP-u, resztę danych firmy pobieramy z rejestru. Na razie konta otwieramy osobom z listy.',
     role: ['wlasciciel'],
-    czas: 'Rozmowa trzydzieści minut, konto tego samego dnia',
+    czas: 'Pięć minut, razem z potwierdzeniem maila',
+    zanim: ['NIP firmy', 'Adres e-mail, na który przyjdzie potwierdzenie'],
     rozdzialy: [
       {
-        tytul: 'Dlaczego przez rozmowę',
+        tytul: 'Na czym stoimy',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'Podczas rozmowy dobieramy plan do wielkości floty i konfigurujemy firmę razem z Tobą: pojazdy, kierowców i eksport do Twojego programu księgowego. Po rozmowie dostajesz link do rejestracji.',
+              'BusiKM sprawdzamy na prawdziwych trasach, w małej grupie firm. Zapisz się na listę na stronie „Zaloguj się” – napiszemy, gdy otworzymy konto dla Ciebie.',
           },
           {
-            typ: 'akapit',
+            typ: 'wkrotce',
             tresc:
-              'Pierwszy dzień z pustym systemem to zwykle godzina klikania w ustawieniach, o których nikt nie uprzedził. Wolimy tę godzinę przejść z Tobą raz, niż zostawić Cię z formularzem rejestracji i nadzieją.',
+              'Rejestracja dla wszystkich i demo do samodzielnego obejrzenia ruszą wkrótce. Do tego czasu na stronie zapisujesz się na listę, a nie zakładasz konto.',
           },
         ],
       },
       {
-        tytul: 'Jak się umówić',
+        tytul: 'Rejestracja krok po kroku',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Napisz do nas albo umów rozmowę',
-                opis: 'Adres i formularz są na stronie kontaktowej. Odpisujemy tego samego dnia roboczego.',
+                tytul: 'Wpisz NIP firmy',
+                opis: 'Nazwę i adres pobierzemy z rejestru. Jeśli czegoś nie znajdziemy, uzupełnisz dane firmy ręcznie.',
               },
               {
-                tytul: 'Przygotuj trzy rzeczy na rozmowę',
-                opis: 'NIP firmy, liczbę pojazdów i nazwę programu księgowego, z którego korzysta Twoja księgowa.',
+                tytul: 'Podaj swoje dane',
+                opis: 'Imię, nazwisko i e-mail. Na ten adres przyjdzie potwierdzenie.',
               },
+              { tytul: 'Ustaw hasło' },
               {
-                tytul: 'Odbierz link do rejestracji',
-                opis: 'Ustawiasz na nim hasło i wchodzisz do konta właściciela.',
+                tytul: 'Potwierdź adres e-mail',
+                opis: 'Klikasz odnośnik z maila. Konto jest aktywne, a 14 dni próby – bez karty – już trwa.',
               },
             ],
           },
           {
-            typ: 'wkrotce',
+            typ: 'uwaga',
             tresc:
-              'Rejestracja bez rozmowy i demo do samodzielnego kliknięcia są w planach. Dziś jeszcze ich nie ma — na stronie zapisujesz się na powiadomienie, a nie zakładasz konto.',
+              'Okres próbny przysługuje raz na firmę. Jeśli firma o tym NIP-ie ma już konto w BusiKM, rejestracja powie to od razu i pokaże, co dalej.',
           },
         ],
       },
@@ -68,9 +74,9 @@ export const artykulyStart: Artykul[] = [
     tytul: 'Dane firmy i konfiguracja',
     lead: 'Jedno wypełnienie, z którego bierze się każda faktura i każdy eksport.',
     role: ['wlasciciel', 'ksiegowa'],
-    gdzie: 'Ustawienia → Firma → Dane firmy',
+    gdzie: 'Ustawienia → Dane firmy',
     czas: 'Kwadrans',
-    zanim: ['NIP, REGON i adres z rejestru', 'Numer konta firmowego', 'Nazwa programu księgowego'],
+    zanim: ['Numer konta firmowego', 'Nazwa programu księgowego, z którego korzysta biuro'],
     rozdzialy: [
       {
         tytul: 'Co uzupełnić od razu',
@@ -80,44 +86,44 @@ export const artykulyStart: Artykul[] = [
             kroki: [
               {
                 tytul: 'Wejdź w Ustawienia → Dane firmy',
-                opis: 'Obowiązkowa jest tylko Nazwa firmy *. Reszta pól jest opcjonalna po stronie formularza, ale bez nich faktura będzie niepełna.',
+                opis: 'Część danych jest już wpisana z rejestru przy zakładaniu konta. Sprawdź je – drukujemy je na fakturach, CMR i w eksportach dla księgowej.',
               },
               {
                 tytul: 'Uzupełnij dane rejestrowe',
-                opis: 'NIP, REGON, KRS, Ulica i numer, Miasto, Kod pocztowy, Kraj. Nazwa pełna trafia na fakturę, Nazwa skrócona na listy w systemie.',
+                opis: 'Nazwa firmy, Nazwa skrócona, NIP, REGON, KRS i adres siedziby. Pełną nazwę do JPK wpisz, gdy różni się od nazwy firmy.',
               },
               {
-                tytul: 'Ustaw status podatkowy',
-                opis: 'Płatnik VAT oraz — przy przewozach wewnątrzwspólnotowych — VAT EU i Prefix EU VAT.',
+                tytul: 'Dopisz numer VAT UE, jeśli wystawiasz faktury firmom z Unii',
+                opis: 'Prefiks VAT UE jest potrzebny przy fakturach dla firm z innych krajów UE.',
               },
               {
-                tytul: 'Wpisz konto bankowe',
-                opis: 'Numer IBAN i SWIFT / BIC drukują się na fakturze. Bez nich klient nie ma na co przelać.',
+                tytul: 'Dodaj konto bankowe',
+                opis: 'Ustawienia → Konta bankowe. Numer drukuje się na fakturze – bez niego klient nie ma na co przelać.',
               },
               {
-                tytul: 'Wskaż System księgowy i Symbol firmy w FK',
-                opis: 'Do wyboru Insert GT, Comarch ERP Optima i Symfonia FK. Od tego zależy format pliku, który dostanie księgowa.',
+                tytul: 'Wskaż program księgowy',
+                opis: 'Ustawienia → Program księgowy: Insert GT (także Rachmistrz), Comarch Optima, Symfonia albo inny program z plikiem CSV. Insert GT wymaga też symbolu firmy w programie. W tym samym miejscu wybierasz urząd skarbowy i dane do JPK.',
               },
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'Numer licencji transportowej wpisz od razu, nawet jeśli dziś nie jest potrzebny. Przy kontroli szuka się go w pośpiechu, a tu leży w jednym miejscu razem z resztą.',
+              'Licencję transportową i wypisy dodaj od razu w Ustawienia → Licencja i wypisy, nawet jeśli dziś nie są potrzebne. Przy kontroli szuka się ich w pośpiechu, a tu leżą w jednym miejscu.',
           },
         ],
       },
       {
-        tytul: 'Cele miesięczne',
+        tytul: 'Cele firmy',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'Na dole formularza są trzy pola: Cel miesięczny przychodu (zł), Cel miesięczny kosztów (zł) i Cel miesięczny zysku (zł). Pulpit pokazuje wtedy, ile brakuje do celu, zamiast samej surowej kwoty.',
+              'W Ustawienia → Cele firmy wpiszesz przychód, koszty i zysk w miesiącu oraz próg marży zlecenia. Pulpit pokazuje wtedy, ile z celu już masz, a zlecenia z niższą marżą oznaczamy w Raportach i na liście zleceń.',
           },
           {
             typ: 'akapit',
-            tresc: 'Można je zostawić puste — pulpit po prostu nie narysuje pasków postępu.',
+            tresc: 'Cele możesz zostawić puste – pulpit po prostu ich nie pokaże.',
           },
         ],
       },
@@ -128,11 +134,11 @@ export const artykulyStart: Artykul[] = [
             typ: 'lista',
             wstep: 'Do tych wrócisz, gdy zaczniesz wystawiać i rozliczać:',
             punkty: [
-              'Branding i faktury — logo i wygląd dokumentów wysyłanych klientom.',
-              'Stawki kilometrówki — stawki za kilometr, z których liczy się ewidencja przebiegu.',
-              'Kursy walut — kursy NBP z możliwością własnego wpisu.',
-              'Progi alertów — na ile dni przed terminem system ma ostrzegać.',
-              'KSeF — połączenie z Krajowym Systemem e-Faktur.',
+              'Logo na dokumentach – logo na fakturach i dokumentach dla klientów.',
+              'Faktury – numeracja faktur i domyślny termin płatności.',
+              'KSeF – połączenie z Krajowym Systemem e-Faktur.',
+              'Przypomnienia o terminach – przypominamy 60, 30, 14 i 3 dni przed terminem dokumentu.',
+              'Stawki z przepisów – diety, kilometrówka i kursy NBP, do podglądu.',
             ],
           },
         ],
@@ -145,42 +151,46 @@ export const artykulyStart: Artykul[] = [
     slug: 'dodajemy-pojazd',
     kategoria: 'start',
     tytul: 'Jak dodać pojazd',
-    lead: 'Bez pojazdu nie ma kilometrów, kosztów paliwa ani ewidencji przebiegu. To pierwsza rzecz po danych firmy.',
+    lead: 'Bez pojazdu nie ma kilometrów, kosztów paliwa ani ewidencji przebiegu. Wystarczy zdjęcie dowodu rejestracyjnego.',
     role: ['wlasciciel', 'dyspozytor'],
-    gdzie: 'Pojazdy → Nowy pojazd',
-    czas: 'Pięć minut na pojazd',
-    zanim: ['Dowód rejestracyjny — VIN, rok produkcji, DMC', 'Stan licznika na dziś'],
+    gdzie: 'Pojazdy → Dodaj pojazd',
+    czas: 'Trzy minuty na pojazd',
+    zanim: ['Dowód rejestracyjny – zdjęcia wszystkich stron albo PDF', 'Stan licznika na dziś'],
     rozdzialy: [
       {
-        tytul: 'Wypełnienie formularza',
+        tytul: 'Trzy kroki kreatora',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Pojazdy i kliknij Nowy pojazd' },
+              { tytul: 'Wejdź w Pojazdy i kliknij Dodaj pojazd' },
               {
-                tytul: 'Wpisz dane identyfikacyjne',
-                opis: 'Numer rejestracyjny *, VIN *, Marka *, Model *, Rok produkcji *, Typ pojazdu *. Gwiazdka znaczy, że bez tego formularz się nie zapisze.',
+                tytul: 'Z dowodu',
+                opis: 'Wgraj zdjęcie dowodu rejestracyjnego – możesz wybrać kilka zdjęć naraz. AI odczyta numer rejestracyjny, VIN, markę, model, rok i masy, a Ty sprawdzasz pola z dowodem. Dane możesz też przepisać ręcznie.',
               },
               {
-                tytul: 'Podaj dane techniczne',
-                opis: 'Rodzaj paliwa *, DMC (kg), Pojemność (cm³), Moc (kW), Norma Euro. DMC decyduje o tym, które przepisy dotyczą pojazdu.',
+                tytul: 'Jak używasz',
+                opis: 'Czyje jest auto (kupione, leasing albo najem), gdzie jeździ, kto jest kierowcą domyślnym i jaki jest licznik dziś. Od tego zależy między innymi odliczenie VAT – przy pełnym odliczeniu podajesz datę złożenia VAT-26.',
               },
               {
-                tytul: 'Ustaw Licznik początkowy (km) i Datę startu ewidencji',
-                opis: 'To punkt zerowy. Od tej daty i tego stanu licznika liczy się cała ewidencja przebiegu — wpisz stan z dnia, w którym zaczynacie pracę w BusiKM, a nie z dnia zakupu pojazdu.',
+                tytul: 'Terminy',
+                opis: 'Termin badania technicznego policzymy z dowodu. Wgraj polisę – daty OC, AC i NNW odczytamy z dokumentu.',
               },
               {
-                tytul: 'Wypełnij Datę zgłoszenia VAT-26, jeśli pojazd jest zgłoszony',
-                opis: 'Dotyczy pojazdów używanych wyłącznie do działalności, przy pełnym odliczeniu VAT.',
+                tytul: 'Kliknij Dodaj pojazd',
+                opis: 'Auto pojawi się przy przypisywaniu zleceń od razu. Wszystko zmienisz później w karcie auta.',
               },
-              { tytul: 'Zapisz' },
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'Licznika początkowego nie poprawia się bezkarnie po miesiącu pracy — przeliczyłby się cały przebieg. Sprawdź stan przed zapisaniem.',
+              'Licznik dziś to punkt startowy – od niego liczymy serwis i przebieg. Wpisz stan z dnia, w którym zaczynacie pracę w BusiKM, a nie z dnia zakupu auta.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Numer i VIN sprawdzamy w Twojej flocie, więc ten sam pojazd nie doda się dwa razy. Przyczepy i naczepy nie liczą się do limitu pojazdów w planie.',
           },
         ],
       },
@@ -190,17 +200,15 @@ export const artykulyStart: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Po zapisaniu wejdź w kartę pojazdu i dodaj dokumenty z datami ważności. Wtedy system zacznie pilnować terminów za Ciebie.',
+              'Kolejne dokumenty dodasz w karcie pojazdu, w zakładce Terminy i dokumenty. Wystarczy zdjęcie albo PDF – rodzaj, numer i daty odczytamy, a Ty je sprawdzasz.',
           },
           {
-            typ: 'tabela',
-            naglowki: ['Kategoria', 'Co się w niej mieści'],
-            wiersze: [
-              ['Dowód rejestracyjny', 'Dowód rejestracyjny, wypis z licencji'],
-              ['Ubezpieczenia', 'OC, AC, NNW, GAP, zielona karta'],
-              ['Przeglądy i tachograf', 'Badanie techniczne, świadectwo i kalibracja tachografu, norma emisji'],
-              ['Certyfikaty specjalistyczne', 'ATP, ADR pojazdu'],
-              ['Licencje i leasing', 'Licencja transportowa, umowa leasingu'],
+            typ: 'lista',
+            wstep: 'Przy pojeździe pilnujemy między innymi:',
+            punkty: [
+              'dowodu rejestracyjnego i umowy leasingu,',
+              'polisy OC, AC i zielonej karty,',
+              'badania technicznego i legalizacji tachografu.',
             ],
           },
         ],

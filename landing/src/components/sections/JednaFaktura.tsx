@@ -36,7 +36,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** 6.17 — co to zastępuje. Bez nazw konkurencji i bez cudzych cen. */
+/** 6.17 – co to zastępuje. Bez nazw konkurencji i bez cudzych cen. */
 export function JednaFaktura() {
   const t = TEKSTY[biezacyJezyk()];
   const paid = t.paid;
@@ -77,7 +77,7 @@ export function JednaFaktura() {
             <PlynaceKsztalty />
 
             {/*
-              Przyciemnienie tylko pod tekstem — nadtytuł u góry i zdanie
+              Przyciemnienie tylko pod tekstem – nadtytuł u góry i zdanie
               u dołu. Środek karty zostaje odsłonięty, więc animacja ma gdzie
               grać. Bez tego jaśniejsza bryła podjeżdża pod litery i zbija
               kontrast poniżej progu; sprawdzane pomiarem pikseli.

@@ -26,7 +26,7 @@ const TEKSTY: Tlumaczenia<{
     tytul1: 'Cztery osoby. Jeden system.',
     tytul2: 'Każdy widzi swoje.',
     label: 'Cztery kadry · 3× przeglądarka + 1× telefon',
-    note: 'Właściciel: pulpit z zyskiem i marżą. Dyspozytor: trzy kolumny. Księgowa: komplet za miesiąc. Kierowca: nawigacja i przycisk „Rusz”.',
+    note: 'Właściciel: pulpit z zyskiem i marżą. Dyspozytor: trzy kolumny. Księgowa: komplet za miesiąc. Kierowca: ekran „Dziś” z kursem Wrocław → Milano i wyborem nawigacji.',
     role: [
       {
         name: 'Właściciel',
@@ -50,7 +50,7 @@ const TEKSTY: Tlumaczenia<{
         name: 'Kierowca',
         device: 'telefon',
         title: 'Rusz. Resztą zajmuje się telefon.',
-        body: 'Zlecenie, nawigacja, przerwy i koszty w jednej aplikacji.',
+        body: 'Zlecenie, trasa, przerwy i paragony w jednej aplikacji. Nawigacja otwiera się jednym dotknięciem.',
       },
     ],
   },
@@ -59,7 +59,7 @@ const TEKSTY: Tlumaczenia<{
     tytul1: 'Four people. One system.',
     tytul2: 'Each sees what’s theirs.',
     label: 'Four frames · 3× browser + 1× phone',
-    note: 'Owner: dashboard with profit and margin. Dispatcher: three columns. Accountant: the month’s full set. Driver: navigation and the “Go” button.',
+    note: 'Owner: dashboard with profit and margin. Dispatcher: three columns. Accountant: the month’s full set. Driver: the “Today” screen with the Wrocław → Milan job and the navigation picker.',
     role: [
       {
         name: 'Owner',
@@ -82,8 +82,8 @@ const TEKSTY: Tlumaczenia<{
       {
         name: 'Driver',
         device: 'phone',
-        title: 'Tap Go. The phone does the rest.',
-        body: 'Order, navigation, breaks and costs in one app.',
+        title: 'Just drive. The phone does the rest.',
+        body: 'Order, route, breaks and receipts in one app. Navigation opens in one tap.',
       },
     ],
   },
@@ -108,7 +108,7 @@ function slot(
       box="16:10"
       imageScale={imageScale}
       // Telefon w pudle 16:10 ogranicza wysokość, więc po bokach zostaje
-      // pusty margines pliku — powiększenie działa tu także na telefonie,
+      // pusty margines pliku – powiększenie działa tu także na telefonie,
       // a bez niego zrzut wychodzi znacząco mniejszy niż sąsiednie ekrany.
       imageScaleTelefon={imageScale}
       dark
@@ -156,7 +156,7 @@ function roles(t: (typeof TEKSTY)['pl']): Role[] {
   ];
 }
 
-/** 6.3 — cztery role. Zakładki podmieniają ekran obok. */
+/** 6.3 – cztery role. Zakładki podmieniają ekran obok. */
 export function CzteryOsoby() {
   const jezyk = biezacyJezyk();
   const t = TEKSTY[jezyk];

@@ -14,7 +14,7 @@ import { podprocesorzy } from '@/content/dokumenty/podprocesorzy';
 export const dokumenty = [regulamin, prywatnosc, powierzenie, podprocesorzy];
 
 /**
- * Pozostałe trzy dokumenty — do wypisania na dole każdego z nich. `href`
+ * Pozostałe trzy dokumenty – do wypisania na dole każdego z nich. `href`
  * zostaje polski: odnośnik sam zamienia go na angielski.
  */
 export function pozostaleDokumenty(href: string, jezyk: Jezyk = 'pl') {

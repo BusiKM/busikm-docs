@@ -13,29 +13,29 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Nic nie wygaśnie po cichu.',
-    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat i mówi wcześniej — Tobie i kierowcy.',
+    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat i przypomina wcześniej – Tobie i dyspozytorowi.',
     bullets: [
-      'Wszystko w jednym miejscu — pojazdy, firma, kierowcy',
-      'Przypomnienie na długo przed terminem, Tobie i kierowcy',
+      'Wszystko w jednym miejscu – pojazdy, firma, kierowcy',
+      'Przypomnienia 60, 30, 14 i 3 dni przed terminem',
       'Jeden ekran pokazuje, co wymaga uwagi w tym miesiącu',
     ],
     label: 'Dokumenty i terminy · desktop',
-    opis: 'Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach. Amber tylko tu.',
+    opis: 'Dokumenty: u góry liczniki – po terminie, brakuje, kończą się w 30 dni, w porządku – niżej lista z datą ważności i stanem każdego dokumentu.',
   },
   en: {
     naglowek: 'Nothing expires quietly.',
-    lead: 'Insurance, vehicle inspection, transport licence, driving licence, drivers’ medicals. The system keeps track of the dates and tells you early — you and the driver.',
+    lead: 'Insurance, vehicle inspection, transport licence, driving licence, drivers’ medicals. The system keeps track of the dates and reminds you early – you and the dispatcher.',
     bullets: [
-      'Everything in one place — vans, company, drivers',
-      'A reminder well before the deadline, for you and the driver',
+      'Everything in one place – vans, company, drivers',
+      'Reminders 60, 30, 14 and 3 days before the deadline',
       'One screen shows what needs attention this month',
     ],
     label: 'Documents and deadlines · desktop',
-    opis: 'A list of documents sorted by days until expiry, bars in three colours. Amber only here.',
+    opis: 'Documents: counters at the top – overdue, missing, expiring within 30 days, in order – and below, a list with each document’s expiry date and status.',
   },
 };
 
-/** 6.13 — dokumenty i terminy. Jedyne miejsce na stronie z kolorem amber. */
+/** 6.13 – dokumenty i terminy. Jedyne miejsce na stronie z kolorem amber. */
 export function DokumentyITerminy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -12,25 +12,25 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Jeden ekran zamiast czterech okien',
-    lead: 'Po lewej zlecenia, w środku mapa, po prawej kierowca. Wszystko widać naraz.',
+    lead: 'Po lewej kolejka zleceń, obok mapa floty, pod spodem plan floty. Nad nimi liczniki: kto w trasie, ile załadunków i rozładunków dziś, co czeka na przypisanie, które auta są wolne.',
     kolumny: [
-      ['Po lewej', 'Zlecenia'],
-      ['W środku', 'Mapa'],
-      ['Po prawej', 'Kierowca'],
+      ['Po lewej', 'Kolejka'],
+      ['Obok', 'Mapa floty'],
+      ['Pod spodem', 'Plan floty'],
     ],
   },
   en: {
     naglowek: 'One screen instead of four windows',
-    lead: 'Orders on the left, the map in the middle, the driver on the right. Everything in view at once.',
+    lead: 'The order queue on the left, the fleet map beside it, the fleet plan underneath. Above them, counters: who is on the road, how many loadings and unloadings today, what’s waiting to be assigned, which vans are free.',
     kolumny: [
-      ['On the left', 'Orders'],
-      ['In the middle', 'Map'],
-      ['On the right', 'Driver'],
+      ['On the left', 'Queue'],
+      ['Beside it', 'Fleet map'],
+      ['Underneath', 'Fleet plan'],
     ],
   },
 };
 
-/** 01 — trzy kolumny jednego ekranu, każda jako osobna karta. */
+/** 01 – trzy kolumny jednego ekranu, każda jako osobna karta. */
 export function JedenEkran() {
   const t = TEKSTY[biezacyJezyk()];
   return (

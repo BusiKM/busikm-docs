@@ -17,34 +17,34 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul1: 'Wiesz, kiedy kierowca musi stanąć.',
     tytul2: 'Zanim stanie za późno.',
-    lead: 'Jazda, przerwy i odpoczynki liczą się same. Kierowca dostaje przypomnienie wcześniej, nie po fakcie. Ty widzisz to samo, ze swojego biura.',
+    lead: 'Jazda, przerwy i odpoczynki liczą się same. Kierowca dostaje przypomnienie 15 minut przed przerwą, nie po fakcie. Ty widzisz to samo, ze swojego biura.',
     bullets: [
-      'Liczniki działają też bez zasięgu',
+      'Przerwę zapisze bez zasięgu – dojdzie, gdy wróci sygnał',
       'Miesięczna karta czasu pracy do wydruku',
       'Dni w każdym kraju liczone z trasy, nie z notatek',
     ],
     tacho: 'Tachograf zapisuje. BusiKM pokazuje.',
-    tachoOpis: 'Tachograf jest wymagany i robi swoje — rejestruje. BusiKM go nie zastępuje i nie udaje. Jest po to, żeby kierowca widział na ekranie, ile jeszcze może jechać i kiedy musi stanąć. Wcześniej, a nie po fakcie.',
-    label: 'Czas pracy · desktop, tryb nocny',
-    opis: 'Trzy pierścienie postępu (jazda, przerwa, odpoczynek), obok lista kierowców ze statusem: w normie · przerwa za 40 min · odpoczynek.',
+    tachoOpis: 'Tachograf jest wymagany i robi swoje – rejestruje. BusiKM go nie zastępuje i nie udaje. Jest po to, żeby kierowca widział na ekranie, ile jeszcze może jechać i kiedy musi stanąć. Wcześniej, a nie po fakcie.',
+    label: 'Kierowcy, zakładka „Czas pracy” · desktop',
+    opis: 'Lista kierowców z kolumnami: teraz, jazda dziś, do przerwy, tydzień, dwa tygodnie, powrót do domu i stan „W normie”; u góry kafle „W trasie teraz”, „Blisko limitu” i „Naruszenia”.',
   },
   en: {
     tytul1: 'You know when the driver has to stop.',
     tytul2: 'Before it’s too late.',
-    lead: 'Driving, breaks and rest periods add up by themselves. The driver gets a reminder in advance, not after the fact. You see the same thing from your office.',
+    lead: 'Driving, breaks and rest periods add up by themselves. The driver gets a reminder 15 minutes before a break is due, not after the fact. You see the same thing from your office.',
     bullets: [
-      'The counters keep running without signal',
+      'Breaks logged with no signal – they go through once it’s back',
       'A monthly working-time sheet, ready to print',
       'Days in each country counted from the route, not from notes',
     ],
     tacho: 'The tachograph records. BusiKM shows.',
-    tachoOpis: 'The tachograph is required and does its job — it records. BusiKM doesn’t replace it and doesn’t pretend to. It’s there so the driver can see on screen how much longer they can drive and when they have to stop. Ahead of time, not after the fact.',
-    label: 'Working time · desktop, night mode',
-    opis: 'Three progress rings (driving, break, rest), next to a list of drivers with their status: within limits · break in 40 min · resting.',
+    tachoOpis: 'The tachograph is required and does its job – it records. BusiKM doesn’t replace it and doesn’t pretend to. It’s there so the driver can see on screen how much longer they can drive and when they have to stop. Ahead of time, not after the fact.',
+    label: 'Drivers, “Working time” tab · desktop',
+    opis: 'A list of drivers with columns for now, driving today, time to break, week, two weeks, home time and a “Within limits” status; tiles at the top for “On the road now”, “Close to the limit” and “Infringements”.',
   },
 };
 
-/** 6.10 — czas pracy. Na dole rozgraniczenie: tachograf zapisuje, BusiKM pokazuje. */
+/** 6.10 – czas pracy. Na dole rozgraniczenie: tachograf zapisuje, BusiKM pokazuje. */
 export function CzasPracy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

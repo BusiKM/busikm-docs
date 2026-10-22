@@ -1,12 +1,12 @@
 import type { Jezyk } from '@/i18n/jezyki';
 
 /**
- * Adresy angielskie — jedno źródło dla proxy, odnośników, mapy strony,
+ * Adresy angielskie – jedno źródło dla proxy, odnośników, mapy strony,
  * `hreflang` i przełącznika języka.
  *
  * Klucz to ścieżka polska (ta sama, pod którą strona leży w `app/[lang]`),
  * wartość to ścieżka angielska **bez** przedrostka `/en`. Nowa podstrona
- * musi dostać tu wpis — bez niego wersja angielska nie ma adresu, a odnośnik
+ * musi dostać tu wpis – bez niego wersja angielska nie ma adresu, a odnośnik
  * do niej zostaje polski.
  *
  * Plik jest importowany przez `proxy.ts`, więc nie może ciągnąć za sobą
@@ -102,7 +102,7 @@ export function plZEn(sciezkaEn: string): string | null {
 /**
  * Adres publiczny strony w danym języku.
  *
- * Przyjmuje ścieżkę polską — tak, jak zapisane są odnośniki w kodzie — razem
+ * Przyjmuje ścieżkę polską – tak, jak zapisane są odnośniki w kodzie – razem
  * z ewentualnym `?zapytaniem` i `#kotwicą`. Adresy zewnętrzne, pliki
  * z `public/` i ścieżki spoza mapy wracają bez zmian.
  */
@@ -140,7 +140,7 @@ export function rozpoznaj(pathname: string): { jezyk: Jezyk; sciezkaPl: string }
   return { jezyk: 'pl', sciezkaPl: p };
 }
 
-/** Adres tej samej strony w drugim języku — dla przełącznika i `hreflang`. */
+/** Adres tej samej strony w drugim języku – dla przełącznika i `hreflang`. */
 export function odpowiednik(sciezkaPl: string, jezyk: Jezyk): string {
   return lokalizuj(sciezkaPl || '/', jezyk);
 }

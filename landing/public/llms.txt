@@ -1,17 +1,17 @@
-# BusiKM — program do zarządzania transportem busami 2,5–3,5 t
+# BusiKM – program do zarządzania transportem busami 2,5–3,5 t
 
 > Ten plik jest streszczeniem serwisu busikm.pl dla modeli językowych.
 > Wszystko poniżej ma pokrycie w treści strony. Jeśli czegoś tu nie ma,
-> znaczy to, że produkt tego nie robi — nie że zapomnieliśmy dopisać.
+> znaczy to, że produkt tego nie robi – nie że zapomnieliśmy dopisać.
 
 ## Czym jest BusiKM
 
 Program dla firm transportowych jeżdżących busami o DMC 2,5–3,5 t, w transporcie
 krajowym i międzynarodowym. To osobny segment niż floty ciężarowe: inne pojazdy,
-inne zlecenia, inna skala firmy — najczęściej od jednego do kilkunastu busów.
+inne zlecenia, inna skala firmy – najczęściej od jednego do kilkunastu busów.
 
-Zamiast kilku narzędzi obok siebie (Excel, WhatsApp, nawigacja, teczka
-z paragonami) BusiKM trzyma w jednym miejscu zlecenia, trasy, czas pracy
+Zamiast kilku narzędzi obok siebie (Excel, WhatsApp, teczka z paragonami)
+BusiKM trzyma w jednym miejscu zlecenia, trasy, czas pracy
 kierowców, koszty, faktury i komplet dokumentów dla księgowej. Kierowca ma
 aplikację na telefonie, biuro pracuje w przeglądarce.
 
@@ -19,86 +19,106 @@ Hasło ze strony: „Kierowca jedzie. Reszta dzieje się sama."
 
 ## Cztery role
 
-1. **Właściciel** (przeglądarka) — zysk, koszty i cała flota na jednym ekranie.
+1. **Właściciel** (przeglądarka) – zysk, koszty i cała flota na jednym ekranie.
    Widzi, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.
-2. **Dyspozytor** (przeglądarka) — zlecenia, mapa floty i kierowcy obok siebie.
+2. **Dyspozytor** (przeglądarka) – zlecenia, mapa floty i kierowcy obok siebie.
    Zmiana w trakcie jazdy trafia do kierowcy od razu.
-3. **Księgowa** (przeglądarka) — komplet dokumentów za miesiąc jednym
+3. **Księgowa** (przeglądarka) – komplet dokumentów za miesiąc jednym
    przyciskiem, w formacie do wczytania.
-4. **Kierowca** (telefon, iOS i Android) — jeden przycisk „rusz", nawigacja,
-   przerwy i koszty w tej samej aplikacji.
+4. **Kierowca** (telefon, iOS i Android) – zdjęcie licznika i „Zacznij dzień”,
+   zlecenia, przerwy i koszty w tej samej aplikacji. Nawigację otwiera jednym
+   dotknięciem w Apple Maps, Google Maps albo Waze.
 
-W małej firmie jedna osoba nosi dwie role — widok przełącza się jednym
-kliknięciem.
+W małej firmie właściciel bywa też dyspozytorem – konto właściciela widzi
+wszystko.
 
 ## Co robi
 
-- **Zlecenia i faktury** — ze zlecenia robi się faktura jednym kliknięciem,
-  klient dostaje ją mailem, widać kto jeszcze nie zapłacił.
-- **Dyspozytornia** — zlecenia, mapa i kierowcy na jednym ekranie, trasa
-  układa się sama.
-- **Trasy i mapa floty** — pozycja każdego busa na żywo, trasa zapisuje się
-  sama i zamienia w gotową ewidencję przebiegu pojazdu.
-- **Czas pracy i przerwy** — liczniki jazdy, przerw i odpoczynków idą same,
-  także bez zasięgu; kierowca dostaje przypomnienie, zanim będzie za późno;
-  miesięczna karta do wydruku i zestawienie dni w każdym kraju.
-- **Koszty i paragony** — kierowca robi zdjęcie paragonu, system odczytuje
-  kwotę, datę i walutę; koszty w obcych walutach przeliczają się same.
-- **Ile zostaje (rentowność)** — przychód, koszty i zysk na każdym kursie
+- **Zlecenia i faktury** – faktura powstaje z danych zlecenia i jednym
+  przyciskiem idzie do KSeF; wysyłkę do klienta zlecasz od razu, a mail
+  z PDF i kodem QR wychodzi, gdy KSeF nada numer. Widać, kto jeszcze nie
+  zapłacił, a przypomnienia o płatności wysyłasz z listy.
+- **Dyspozytornia** – kolejka zleceń i mapa floty obok siebie; system ustawia
+  kolejność postojów, liczy kilometry i czas, a godzina dojazdu odświeża się
+  z pozycji auta.
+- **Trasy i mapa floty** – trasa zapisuje się sama i zamienia w gotową
+  ewidencję przebiegu pojazdu. Mapa floty na żywo jest w planie Firma.
+- **Czas pracy i przerwy** – czas jazdy i przerwy liczy serwer; kierowca
+  dostaje przypomnienie 15 minut przed przerwą, a przerwę zapisze też bez
+  zasięgu (dojdzie, gdy wróci sygnał).
+- **Koszty i paragony** – kierowca robi zdjęcie paragonu, wybiera rodzaj
+  kosztu i zlecenie; kwotę, datę i sprzedawcę odczytuje AI po stronie
+  serwera. Koszty w obcych walutach przeliczają się kursem NBP.
+- **Ile zostaje (rentowność)** – przychód, koszty i zysk na każdym kursie
   z osobna, marża liczona na bieżąco.
-- **Dane dla księgowej** — komplet zestawień za miesiąc jednym przyciskiem:
-  przebieg, koszty, faktury sprzedaży i zakupu.
-- **Dokumenty i terminy** — przeglądy, ubezpieczenia, badania kierowców
-  i uprawnienia w jednym miejscu, z przypomnieniem przed wygaśnięciem.
-- **Aplikacja kierowcy** — nawigacja w środku aplikacji, koszt jednym
-  przyciskiem, przerwa jednym tapnięciem, praca bez zasięgu, sześć języków,
-  tryb nocny. Kierowca wchodzi kodem z maila, nie zakłada konta.
+- **Dane dla księgowej** – „Pobierz paczkę dla biura”: dekrety FK, rejestry
+  VAT, płace i diety, delegacje i ewidencje przebiegu za miesiąc w jednym
+  pliku ZIP; po zamknięciu miesiąca także JPK_V7M.
+- **Dokumenty i terminy** – przeglądy, ubezpieczenia, badania kierowców
+  i uprawnienia w jednym miejscu; przypomnienie 60, 30, 14 i 3 dni przed
+  terminem.
+- **Aplikacja kierowcy** – iPhone i Android, po polsku. Kierowca dostaje
+  mailem kod zaproszenia, w aplikacji wybiera „Mam zaproszenie”, wpisuje
+  e-mail i kod, potem ustawia hasło. Nawigacja zewnętrzna (Apple Maps,
+  Google Maps, Waze), koszt ze zdjęcia, przerwa jednym tapnięciem.
+  Aplikacji nie ma jeszcze publicznie w App Store i Google Play – odnośnik
+  do pobrania kierowca dostaje w zaproszeniu.
 
 ## Eksport do księgowości
 
-Zestawienia wychodzą w formatach, które wczytają: **Insert (EPP)**,
-**Comarch ERP Optima**, **Symfonia FK** — albo zwykły arkusz kalkulacyjny.
-Faktury można wysłać do **KSeF**; administratorem danych w KSeF jest
+Dekrety wychodzą w formatach, które programy księgowe wczytają:
+**Insert GT (EPP)**, **Comarch Optima (XML)**, **Symfonia (TXT + szablon AMS)**
+– albo **Excel**. Do tego pliki **JPK_FA**, **JPK_V7M** i **JPK_PKPIR**.
+Faktury sprzedaży idą przez **KSeF**; administratorem danych w KSeF jest
 Ministerstwo Finansów, nie BusiKM.
 
 ## Czego BusiKM nie robi
 
 - **Nie zastępuje tachografu.** Tachograf zapisuje, BusiKM pokazuje. To dwa
   osobne urządzenia i dwa osobne obowiązki.
-- Nie prowadzi księgowości — przygotowuje dane dla osoby, która ją prowadzi.
-- Nie wysyła SMS-ów. Wszystko idzie mailem.
+- Nie prowadzi księgowości – przygotowuje dane dla osoby, która ją prowadzi.
+- Nie wysyła SMS-ów – powiadomienia idą mailem i w aplikacji.
 
 ## Cennik
 
 Płacisz za pojazdy. Kierowcy i pracownicy biura bez limitu. Przyczepy
 i naczepy nie liczą się do abonamentu.
 
-- **Start** — 149 zł netto miesięcznie (1 490 zł rocznie), do 3 pojazdów.
-  Zlecenia i dyspozytornia, mapa i trasy, czas pracy, koszty i paragony,
-  faktury dla klientów, aplikacja dla kierowców.
-- **Firma** — 299 zł netto miesięcznie (2 990 zł rocznie), do 10 pojazdów,
-  każdy kolejny +29 zł. Wszystko ze Start, a do tego komplet dla księgowej,
-  zestawienia sprzedaży i zakupów, rentowność zleceń, raporty kosztów floty.
+Ceny są końcowe: MOVGRANTO jest zwolniona z VAT (art. 113 ustawy o VAT),
+na fakturze stawka „zw.”. Nic się do nich nie dolicza.
 
-Pierwsze 14 dni bez opłaty, bez umowy na czas określony, rezygnacja jednym
-kliknięciem. Faktura przychodzi automatycznie na maila co miesiąc.
+- **Start** – 149 zł miesięcznie (1 490 zł rocznie), do 3 pojazdów.
+  Zlecenia i dyspozytornia, trasy i ewidencja przebiegu, czas pracy, koszty
+  i paragony, faktury dla klientów, aplikacja dla kierowców.
+- **Firma** – 299 zł miesięcznie (2 990 zł rocznie), 10 pojazdów w cenie,
+  każdy kolejny +29 zł, do 50 pojazdów. Większa flota – napisz. Wszystko
+  ze Start, a do tego mapa floty na żywo, komplet dla księgowej, zestawienia
+  sprzedaży i zakupów, rentowność zleceń, raporty kosztów floty.
+
+Pierwsze 14 dni bez opłaty i bez karty, bez umowy na czas określony.
+Płatność kartą przez Stripe; rezygnacja w ustawieniach, dostęp do końca
+opłaconego okresu. Faktura przychodzi automatycznie na maila po każdej
+opłacie.
 
 ## Demo
 
-Pod adresem busikm.pl/demo działa prawdziwa aplikacja z danymi przykładowej
-firmy transportowej. Bez zakładania konta i bez podawania czegokolwiek.
-Dane wracają do porządku każdej nocy.
+Demo jest w przygotowaniu. Strona busikm.pl/demo zbiera zapisy – osoby
+z listy dostaną wiadomość w dniu uruchomienia. Demo będzie przykładową firmą
+transportową: wchodzi się bez konta, wybiera rolę (właściciel, dyspozytor
+albo księgowa) i ogląda wszystko w trybie tylko do odczytu.
+
+Publiczna rejestracja też jeszcze nie jest otwarta – busikm.pl/zaloguj
+zbiera zapisy na konta.
 
 ## Dane i prywatność
 
-Serwery, bazy i kopie zapasowe stoją w Unii Europejskiej (AWS, region
-Frankfurt). Kopia zapasowa codziennie. Po rezygnacji dane można pobrać
-w całości. Każda zmiana ma autora i godzinę.
+Serwery w Europie (DigitalOcean, Frankfurt). Kopia codziennie, zaszyfrowana,
+u drugiego dostawcy. Po rezygnacji konto zostaje do odczytu – można pobrać
+faktury, ewidencje przebiegu, zestawienia i eksporty. Każda zmiana ma autora
+i godzinę.
 
-Dwa wyjątki od „wszystko w Europie", opisane wprost w rejestrze
-podprocesorów: odczyt zdjęć paragonów korzysta z Google Cloud Vision,
-a powiadomienia w telefonie idą przez Apple i Google. Pełna lista
-dostawców: busikm.pl/podprocesorzy
+Wyjątki – odczyt dokumentów przez AI i powiadomienia w telefonie – opisujemy
+w rejestrze podprocesorów. Pełna lista dostawców: busikm.pl/podprocesorzy
 
 Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 
@@ -107,7 +127,7 @@ Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 - Backend: Django + DRF + Celery + PostgreSQL + MongoDB + Redis
 - Aplikacja mobilna: React Native + Expo (iOS, Android)
 - Panel webowy i strona: Next.js 16 + Tailwind CSS
-- Infrastruktura docelowa: AWS, Amazon SES, Mapbox, Stripe, Sentry
+- Infrastruktura: DigitalOcean (Frankfurt), poczta przez Amazon SES, Mapbox, Stripe, Sentry
 
 ## Strona
 
@@ -132,7 +152,7 @@ Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 ## Firma
 
 MOVGRANTO Sp. z o.o., ul. Władysława Łokietka 5/2, 70-254 Szczecin.
-NIP 5993238990, REGON 382452281, KRS 0000767899. Kontakt: kontakt@busikm.pl —
+NIP 5993238990, REGON 382452281, KRS 0000767899. Kontakt: kontakt@busikm.pl –
 odpisujemy tego samego dnia roboczego.
 
 ---
@@ -144,34 +164,44 @@ BusiKM is transport management software for companies running vans of
 segment from heavy-truck fleets: smaller vehicles, different jobs, and
 companies that usually run between one and a dozen vans.
 
-Instead of several tools side by side — spreadsheets, chat apps, a separate
-navigation app, a bag of receipts — BusiKM keeps orders, routes, driver
+Instead of several tools side by side – spreadsheets, chat apps, a bag of
+receipts – BusiKM keeps orders, routes, driver
 working time, costs, invoices and the monthly accounting pack in one place.
-Drivers use a phone app (iOS and Android, six languages, works offline);
-the office works in a browser.
+Drivers use a phone app (iOS and Android, in Polish; breaks can be logged
+without signal); the office works in a browser. Navigation opens in Apple
+Maps, Google Maps or Waze. The driver app is not yet publicly available on
+the App Store or Google Play – drivers get a download link in their
+invitation email, together with an invitation code.
 
-Four roles: owner, dispatcher, accountant and driver. In a small company one
-person wears two hats and switches views with a single click.
+Four roles: owner, dispatcher, accountant and driver. In a small company the
+owner is often the dispatcher too – the owner’s account sees everything.
 
-What it does: turns an order into an invoice, shows every van on a live map,
-counts driving time and breaks on its own, reads receipts from a photo,
-calculates profit per job, and exports the month to Polish accounting systems
-(Insert EPP, Comarch ERP Optima, Symfonia FK) or a plain spreadsheet. Invoices
-can be filed to KSeF, the Polish national e-invoicing system.
+What it does: turns an order into an invoice and files it to KSeF, the Polish
+national e-invoicing system, records routes as a mileage log, counts driving
+time and breaks, reads receipts from a photo with AI, calculates profit per
+job, and exports the month to Polish accounting software – Insert GT (EPP),
+Comarch Optima (XML), Symfonia (TXT + AMS) – or Excel, plus JPK_FA, JPK_V7M
+and JPK_PKPIR files. The live fleet map is part of the Firma plan. It does
+not send text messages – notifications go by email and in the app.
 
-What it does not do: it is **not a replacement for a tachograph** — the
+What it does not do: it is **not a replacement for a tachograph** – the
 tachograph records, BusiKM presents. It does not do the bookkeeping; it
 prepares the data for whoever does.
 
-Pricing: Start 149 PLN net per month (up to 3 vehicles), Firma 299 PLN net
-per month (up to 10 vehicles, +29 PLN each additional). Drivers and office
-staff are not counted. First 14 days free, no fixed-term contract.
+Pricing (final prices – MOVGRANTO is VAT-exempt, invoices show the “zw.”
+rate): Start 149 PLN per month (up to 3 vehicles), Firma 299 PLN per month
+(10 vehicles included, +29 PLN for each additional one, up to 50; larger
+fleets – get in touch). Drivers and office staff are not counted. First
+14 days free with no card, no fixed-term contract.
 
-A live demo with sample company data runs at busikm.pl/demo — no account
-and no details required.
+The demo is still being prepared. busikm.pl/demo collects sign-ups; the demo
+will be a sample transport company you enter without an account, choosing a
+role (owner, dispatcher or accountant), read-only. Public sign-up is not open
+yet either – busikm.pl/zaloguj collects sign-ups for accounts.
 
-Data is stored in the EU (AWS, Frankfurt). Two documented exceptions: receipt
-OCR uses Google Cloud Vision, and push notifications go through Apple and
-Google. Full list: busikm.pl/podprocesorzy
+Servers are in Europe (DigitalOcean, Frankfurt). A daily backup, encrypted,
+with a second provider. Exceptions – AI reading of documents and phone
+notifications – are described in the subprocessor register:
+busikm.pl/podprocesorzy
 
 Operated by MOVGRANTO Sp. z o.o., Szczecin, Poland. Contact: kontakt@busikm.pl

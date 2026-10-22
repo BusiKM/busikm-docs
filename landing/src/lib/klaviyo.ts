@@ -4,23 +4,23 @@ import type { Jezyk } from '@/i18n/jezyki';
 /**
  * Zapis profilu na listę w Klaviyo.
  *
- * Wołane po stronie serwera, z tras `/api/zapis` i `/api/powiadom` — klucz
+ * Wołane po stronie serwera, z tras `/api/zapis` i `/api/powiadom` – klucz
  * Klaviyo jest prywatny i nigdy nie może trafić do przeglądarki.
  *
  * ## Dlaczego dwa wywołania, a nie jedno
  *
  * Wygodniej byłoby wysłać wszystko naraz, ale Klaviyo na to nie pozwala.
  * Punkt `profile-subscription-bulk-create-jobs` przyjmuje **wyłącznie adres
- * i subskrypcję** — na `first_name` odpowiada `400 'first_name' is not
+ * i subskrypcję** – na `first_name` odpowiada `400 'first_name' is not
  * a valid field for the resource 'profile'`, na `properties` tak samo.
  * Sprawdzone na żywym API, nie wyczytane z dokumentacji.
  *
  * Stąd podział:
  *
- * 1. `POST /api/profile-import` — imię i właściwości. Idempotentny:
+ * 1. `POST /api/profile-import` – imię i właściwości. Idempotentny:
  *    ten sam adres drugi raz zwraca to samo `id` i aktualizuje pola,
  *    zamiast tworzyć duplikat. Sprawdzone.
- * 2. `POST /api/profile-subscription-bulk-create-jobs` — zgoda i lista.
+ * 2. `POST /api/profile-subscription-bulk-create-jobs` – zgoda i lista.
  *    To jedyny punkt, który zapisuje **moment wyrażenia zgody**, a właśnie
  *    ten moment trzeba umieć wykazać.
  *
@@ -29,7 +29,7 @@ import type { Jezyk } from '@/i18n/jezyki';
  *
  * Daty zgody **nie podajemy** i to też wyszło z API: przy `historical_import:
  * false` Klaviyo odpowiada `Non-historical email subscription cannot have
- * consented_at timestamp`. Sam stempluje moment wywołania — a że wołamy je
+ * consented_at timestamp`. Sam stempluje moment wywołania – a że wołamy je
  * zaraz po zapisie, data i tak zgadza się z `createdAt` w Firestore.
  * `consented_at` wolno podać wyłącznie przy imporcie zgód zebranych wcześniej
  * gdzie indziej.
@@ -37,12 +37,12 @@ import type { Jezyk } from '@/i18n/jezyki';
  * ## Odpowiedzialność za wypis
  *
  * Wypisu nie obsługujemy sami i to jest decyzja, nie brak. Klaviyo dokleja
- * odnośnik do każdej wysyłki i prowadzi listę wykluczeń — własny mechanizm
+ * odnośnik do każdej wysyłki i prowadzi listę wykluczeń – własny mechanizm
  * oznaczałby dwa źródła prawdy o tym, kto jest wypisany, i wcześniej czy
  * później wysyłkę do kogoś, kto się wypisał gdzie indziej.
  *
  * Zostaje jedna luka: ktoś, do kogo pierwsza wiadomość pójdzie za kilka
- * miesięcy, nie ma w co kliknąć. Dlatego treść zgody podaje też adres —
+ * miesięcy, nie ma w co kliknąć. Dlatego treść zgody podaje też adres –
  * i dlatego wycofanie zgłoszone mailem trzeba **ręcznie** nanieść w Klaviyo.
  *
  * ## Brak konfiguracji nie jest awarią
@@ -64,14 +64,14 @@ export async function zapiszWKlaviyo(dane: {
   email: string;
   zrodlo: Zrodlo;
   /**
-   * Plan i okres wybrane w cenniku — jeśli człowiek przyszedł stamtąd.
+   * Plan i okres wybrane w cenniku – jeśli człowiek przyszedł stamtąd.
    * Osobne właściwości, nie jeden sklejony tekst: w Klaviyo segment buduje
    * się porównaniem wartości, więc `plan == 'firma'` ma działać bez
    * dopasowywania wzorców.
    */
   wybor?: { plan: string; okres: string } | null;
   /**
-   * Język formularza. Brzmienie zgody bierzemy stąd — z `content/zgoda` —
+   * Język formularza. Brzmienie zgody bierzemy stąd – z `content/zgoda` –
    * a nie z tego, co przysłała przeglądarka: trasa jest publiczna, więc
    * dowolny tekst z zewnątrz nie może udawać zgody.
    */
@@ -91,7 +91,7 @@ export async function zapiszWKlaviyo(dane: {
   };
 
   try {
-    // 1. Imię i tag. Idempotentne — ten sam adres aktualizuje istniejący
+    // 1. Imię i tag. Idempotentne – ten sam adres aktualizuje istniejący
     //    profil zamiast tworzyć drugi.
     const profil = await fetch('https://a.klaviyo.com/api/profile-import', {
       method: 'POST',
@@ -120,7 +120,7 @@ export async function zapiszWKlaviyo(dane: {
       return { ok: false, blad: `profil ${profil.status} ${(await profil.text()).slice(0, 250)}` };
     }
 
-    // 2. Zgoda i przypisanie do listy. Punkt asynchroniczny — 202 znaczy
+    // 2. Zgoda i przypisanie do listy. Punkt asynchroniczny – 202 znaczy
     //    „przyjęte do wykonania".
     const subskrypcja = await fetch(
       'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs',

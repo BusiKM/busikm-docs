@@ -17,7 +17,7 @@ const podpowiedzi = [
 const TEKSTY: Tlumaczenia<{
   naglowek: string;
   podpowiedzi: string;
-  /** Liczba zleceń — kolejność jak w `podpowiedzi`. */
+  /** Liczba zleceń – kolejność jak w `podpowiedzi`. */
   ile: readonly string[];
   stopka: string;
 }> = {

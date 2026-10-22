@@ -73,7 +73,7 @@ const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; grupy: readonly Grupa[
   },
 };
 
-/** 01 — trzy szuflady, które stały się jedną listą. */
+/** 01 – trzy szuflady, które stały się jedną listą. */
 export function WJednymMiejscu() {
   const t = TEKSTY[biezacyJezyk()];
   return (

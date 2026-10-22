@@ -8,7 +8,7 @@ import {
   KartaZamkniecie,
 } from '@/components/mockups/dyspozytor/KartyOsi';
 
-/** Dzień dyspozytora — pięć punktów, od przyjęcia zlecenia po zamknięcie dnia. */
+/** Dzień dyspozytora – pięć punktów, od przyjęcia zlecenia po zamknięcie dnia. */
 export const dzienDyspozytora: Tlumaczenia<PunktDnia[]> = {
   pl: [
     {
@@ -21,19 +21,19 @@ export const dzienDyspozytora: Tlumaczenia<PunktDnia[]> = {
     {
       godzina: '7:05',
       pora: 'przypisujesz kierowcę',
-      tresc: 'System podpowiada, kto ma wolne godziny i kto jest najbliżej. Decydujesz Ty.',
+      tresc: 'System podpowiada, które auto i kierowca zdążą: dojazd, odpoczynek, ładowność, dokumenty. Decydujesz Ty.',
       karta: <KartaKierowcy />,
     },
     {
       godzina: '7:06',
       pora: 'trasa układa się sama',
-      tresc: 'Z ruchem na drodze. Kierowca ma ją w telefonie, nie przepisuje adresu.',
+      tresc: 'System ustawia kolejność postojów, liczy kilometry i czas. Kierowca ma trasę w telefonie, nie przepisuje adresu.',
       karta: <KartaTrasa />,
     },
     {
       godzina: '13:20',
       pora: 'coś się zmienia',
-      tresc: 'Korek pod Bolzano. Poprawiasz trasę u siebie, kierowca widzi nową wersję od razu.',
+      tresc: 'Kurs może się spóźnić – widzisz to w kolejce „Wymaga reakcji”. Jednym kliknięciem powiadamiasz klienta albo piszesz do kierowcy.',
       karta: <KartaKorek />,
     },
     {
@@ -54,19 +54,19 @@ export const dzienDyspozytora: Tlumaczenia<PunktDnia[]> = {
     {
       godzina: '7:05',
       pora: 'you assign a driver',
-      tresc: 'The system suggests who has hours left and who is closest. You decide.',
+      tresc: 'The system suggests which van and driver will make it: approach time, rest, payload, documents. You decide.',
       karta: <KartaKierowcy />,
     },
     {
       godzina: '7:06',
       pora: 'the route plans itself',
-      tresc: 'With live traffic. The driver has it on their phone and doesn’t retype the address.',
+      tresc: 'The system puts the stops in order and works out the kilometres and time. The driver has the route on their phone and doesn’t retype the address.',
       karta: <KartaTrasa />,
     },
     {
       godzina: '13:20',
       pora: 'something changes',
-      tresc: 'A jam near Bolzano. You adjust the route on your side, and the driver sees the new version straight away.',
+      tresc: 'A run may arrive late – you see it in the “Needs action” queue. One click to notify the client or message the driver.',
       karta: <KartaKorek />,
     },
     {

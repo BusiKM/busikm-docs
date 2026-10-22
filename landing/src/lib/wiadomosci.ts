@@ -24,33 +24,33 @@ export type Wiadomosc = {
   temat: Temat;
   tresc: string;
   /**
-   * Zgoda marketingowa — tutaj **nieobowiązkowa**, inaczej niż na stronach
+   * Zgoda marketingowa – tutaj **nieobowiązkowa**, inaczej niż na stronach
    * zapisu. Usługą jest odpowiedź na pytanie, więc uzależnianie jej od zgody
    * byłoby warunkowaniem zakazanym przez art. 7 ust. 4 RODO.
    */
   zgoda: boolean;
-  /** Język formularza — i brzmienia zgody, jeśli padła. */
+  /** Język formularza – i brzmienia zgody, jeśli padła. */
   jezyk: Jezyk;
-  /** Ukryte pole antyspamowe — musi zostać puste. */
+  /** Ukryte pole antyspamowe – musi zostać puste. */
   pulapka?: string;
 };
 
 export const LIMITY = { imie: 120, email: 160, tresc: 4000 } as const;
 
 /**
- * Zapisuje wiadomość w kolekcji `wiadomosci` i — najlepszym staraniem —
+ * Zapisuje wiadomość w kolekcji `wiadomosci` i – najlepszym staraniem –
  * wysyła powiadomienie na skrzynkę.
  *
  * Kolejność jest celowa: najpierw zapis, potem mail. Gdyby poszło odwrotnie
  * i mail by przeszedł, a zapis nie, wiadomość istniałaby wyłącznie w cudzej
- * skrzynce. Odwrotnie jest bezpiecznie — nieudane powiadomienie zostawia
+ * skrzynce. Odwrotnie jest bezpiecznie – nieudane powiadomienie zostawia
  * zgłoszenie w bazie i da się je odzyskać.
  */
 export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
-  // Bot wypełnił ukryte pole — udajemy sukces i nic nie zapisujemy.
+  // Bot wypełnił ukryte pole – udajemy sukces i nic nie zapisujemy.
   if (dane.pulapka) return;
 
-  // SDK pobierane dopiero teraz — patrz `lib/firebase.ts`. Oba importy
+  // SDK pobierane dopiero teraz – patrz `lib/firebase.ts`. Oba importy
   // równolegle, bo i tak lecą z tej samej paczki.
   const [db, { addDoc, collection, serverTimestamp }] = await Promise.all([
     getDb(),
@@ -65,7 +65,7 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
     tresc: dane.tresc.trim().slice(0, LIMITY.tresc),
     zgoda: dane.zgoda,
     jezyk: dane.jezyk,
-    // Brzmienie zapisujemy tylko wtedy, gdy zgoda faktycznie padła — pusty
+    // Brzmienie zapisujemy tylko wtedy, gdy zgoda faktycznie padła – pusty
     // dowód przy braku zgody byłby mylący przy późniejszym eksporcie.
     ...(dane.zgoda
       ? { trescZgody: TRESC_ZGODY[dane.jezyk], wersjaZgody: WERSJA_ZGODY, kanalZgody: KANAL_ZGODY }
@@ -78,7 +78,7 @@ export async function wyslijWiadomosc(dane: Wiadomosc): Promise<void> {
     source: 'busikm-landing',
   });
 
-  // Powiadomienie nie blokuje sukcesu — wiadomość jest już zapisana.
+  // Powiadomienie nie blokuje sukcesu – wiadomość jest już zapisana.
   try {
     await fetch('/api/powiadom', {
       method: 'POST',

@@ -40,7 +40,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Koszty, których nikt nie fotografuje — a i tak wchodzą do marży. */
+/** Koszty, których nikt nie fotografuje – a i tak wchodzą do marży. */
 export function KosztyFirmowe() {
   const t = TEKSTY[biezacyJezyk()];
   return (

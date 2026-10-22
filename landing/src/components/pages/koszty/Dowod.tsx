@@ -19,7 +19,7 @@ const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; label: string; note: s
   },
 };
 
-/** 05 — lista kosztów miesiąca na pełną szerokość, z miniaturą przy każdym wierszu. */
+/** 05 – lista kosztów miesiąca na pełną szerokość, z miniaturą przy każdym wierszu. */
 export function Dowod() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -1,5 +1,5 @@
 /**
- * Dane rejestrowe spółki. Jedno źródło — stopka i strona kontaktu biorą je stąd,
+ * Dane rejestrowe spółki. Jedno źródło – stopka i strona kontaktu biorą je stąd,
  * żeby nie rozjechały się przy pierwszej zmianie.
  */
 export const firma = {

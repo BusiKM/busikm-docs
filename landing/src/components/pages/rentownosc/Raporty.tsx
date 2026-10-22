@@ -25,7 +25,7 @@ const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; raporty: readonly Rapo
   },
 };
 
-/** 06 — ta sama marża pokrojona na trzy sposoby. */
+/** 06 – ta sama marża pokrojona na trzy sposoby. */
 export function Raporty() {
   const t = TEKSTY[biezacyJezyk()];
   return (

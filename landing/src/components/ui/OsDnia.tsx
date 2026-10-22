@@ -8,20 +8,20 @@ const NAGLOWEK: Tlumaczenia<string> = {
 };
 
 export type PunktDnia = {
-  /** Godzina albo „koniec" — pierwsza, duża linia w kolumnie po lewej. */
+  /** Godzina albo „koniec" – pierwsza, duża linia w kolumnie po lewej. */
   godzina: React.ReactNode;
   /** Druga linia, wersalikami: pora dnia, zakres dat albo nic. */
   pora?: string;
   tresc: string;
-  /** Drobna karta obok treści — ilustracja tego jednego momentu. */
+  /** Drobna karta obok treści – ilustracja tego jednego momentu. */
   karta?: React.ReactNode;
 };
 
 /**
- * Serce strony roli — jeden dzień na osi czasu.
+ * Serce strony roli – jeden dzień na osi czasu.
  *
  * Trzy kolumny: godzina, linia z kropką, treść z drobną kartą obok. Na telefonie
- * kolumna godziny się zwęża, ale linia zostaje — to ona trzyma całość razem.
+ * kolumna godziny się zwęża, ale linia zostaje – to ona trzyma całość razem.
  */
 export function OsDnia({
   naglowek,

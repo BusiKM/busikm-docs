@@ -35,7 +35,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Kolor niesie tu znaczenie — to jedyne takie miejsce poza dokumentami. */
+/** Kolor niesie tu znaczenie – to jedyne takie miejsce poza dokumentami. */
 const kropki: Record<'ok' | 'uwaga' | 'przerwa', string> = {
   ok: 'bg-green shadow-[0_0_0_10px_rgba(48,209,88,.16)]',
   uwaga: 'bg-amber shadow-[0_0_0_10px_rgba(255,149,0,.16)]',
@@ -51,7 +51,7 @@ const male: Record<'ok' | 'uwaga' | 'przerwa', string> = {
 const tonStanu = stan === 'ok' ? 'ok' : stan === 'czesciowa' ? 'uwaga' : 'przerwa';
 
 /**
- * Status usługi — wg projektu „BusiKM Status" z Claude Design
+ * Status usługi – wg projektu „BusiKM Status" z Claude Design
  * (design/22-status). Treść: docs/landing/05, rozdział C8.
  *
  * Najprostsza strona serwisu: jedno pytanie, jedna odpowiedź, widoczna

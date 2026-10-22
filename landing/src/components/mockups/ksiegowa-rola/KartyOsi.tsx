@@ -2,7 +2,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Pięć drobnych kart przy osi miesiąca księgowej. Nie są makietami do podmiany —
+ * Pięć drobnych kart przy osi miesiąca księgowej. Nie są makietami do podmiany –
  * to ilustracje przy punktach osi.
  */
 
@@ -78,7 +78,7 @@ const TEKSTY: Tlumaczenia<{
 const ramka =
   'rounded-2xl border border-line-dark bg-surface p-4 text-[11px] text-paper lg:p-4.5';
 
-/** przez cały miesiąc — dane wpadają same. */
+/** przez cały miesiąc – dane wpadają same. */
 export function KartaWpada() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -93,7 +93,7 @@ export function KartaWpada() {
   );
 }
 
-/** ostatni tydzień — lista sprawdzenia mówi, czego brakuje. */
+/** ostatni tydzień – lista sprawdzenia mówi, czego brakuje. */
 export function KartaSprawdzenie() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -113,7 +113,7 @@ export function KartaSprawdzenie() {
   );
 }
 
-/** pierwszy dzień po — wybierasz miesiąc i klikasz raz. */
+/** pierwszy dzień po – wybierasz miesiąc i klikasz raz. */
 export function KartaPobierz() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -133,7 +133,7 @@ export function KartaPobierz() {
   );
 }
 
-/** wczytujesz — w formacie swojego programu. */
+/** wczytujesz – w formacie swojego programu. */
 export function KartaFormat() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -153,7 +153,7 @@ export function KartaFormat() {
   );
 }
 
-/** zamykasz miesiąc — po zamknięciu nikt nie zmieni danych wstecz. */
+/** zamykasz miesiąc – po zamknięciu nikt nie zmieni danych wstecz. */
 export function KartaZamkniecie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

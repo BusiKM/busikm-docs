@@ -8,7 +8,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Stopka — nawigacja, dane rejestrowe i pasek prawny.
+ * Stopka – nawigacja, dane rejestrowe i pasek prawny.
  *
  * Układ w trzech warstwach, od najbardziej do najmniej użytecznej:
  * kolumny z odnośnikami, potem kto stoi za serwisem, na końcu drobny druk
@@ -17,7 +17,7 @@ import { biezacyJezyk } from '@/i18n/serwer';
  *
  * Dokumenty prawne zeszły z kolumn do paska dolnego. W kolumnie stały
  * jako czwarty równorzędny dział, choć nikt nie przegląda stopki w
- * poszukiwaniu rozdziału o powierzeniu danych — sięga po nie wtedy, gdy
+ * poszukiwaniu rozdziału o powierzeniu danych – sięga po nie wtedy, gdy
  * ich potrzebuje, a wtedy szuka ich właśnie u dołu.
  */
 
@@ -27,7 +27,7 @@ import { biezacyJezyk } from '@/i18n/serwer';
  * Trzy zdania, które prostują to, co najłatwiej sobie dopowiedzieć: że cena
  * z cennika to kwota na fakturze, że BusiKM zdejmuje obowiązek tachografu
  * i że „w chmurze" znaczy gdziekolwiek. Wszystkie mają pokrycie w treści
- * serwisu — nie dopisuj tu niczego, czego nie ma na stronach.
+ * serwisu – nie dopisuj tu niczego, czego nie ma na stronach.
  */
 const TEKSTY: Tlumaczenia<{
   domu: string;
@@ -37,9 +37,9 @@ const TEKSTY: Tlumaczenia<{
   odpowiedz: string;
 }> = {
   pl: {
-    domu: 'BusiKM — strona główna',
+    domu: 'BusiKM – strona główna',
     drobnyDruk: [
-      'Ceny w cenniku są netto — do faktury doliczamy VAT.',
+      'Ceny w cenniku są końcowe – sprzedawca jest zwolniony z VAT, na fakturze stawka „zw.”.',
       'BusiKM nie zastępuje tachografu. Tachograf zapisuje, BusiKM pokazuje.',
       'Serwery, bazy i kopie zapasowe stoją w Unii Europejskiej.',
     ],
@@ -48,13 +48,13 @@ const TEKSTY: Tlumaczenia<{
     odpowiedz: 'Odpisujemy tego samego dnia roboczego',
   },
   en: {
-    domu: 'BusiKM — home',
+    domu: 'BusiKM – home',
     drobnyDruk: [
-      'Prices are net — VAT is added to the invoice.',
+      'Prices are final – the seller is VAT-exempt, so the invoice shows no VAT.',
       'BusiKM does not replace the tachograph. The tachograph records, BusiKM shows.',
       'Servers, databases and backups are located in the European Union.',
     ],
-    // Nazwa sądu po polsku w nawiasie — tak brzmi w KRS i tak da się ją sprawdzić.
+    // Nazwa sądu po polsku w nawiasie – tak brzmi w KRS i tak da się ją sprawdzić.
     sad: `District Court in Szczecin, Commercial Division of the National Court Register (${firma.sad})`,
     kapital: `Share capital PLN 5,000`,
     odpowiedz: 'We reply the same business day',
@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         {/* Kto stoi za serwisem. Dane rejestrowe spółki z ograniczoną
-            odpowiedzialnością muszą być dostępne na stronie — art. 206
+            odpowiedzialnością muszą być dostępne na stronie – art. 206
             Kodeksu spółek handlowych. */}
         <div className="flex flex-col gap-2.5 border-t border-line-dark pt-10 text-[13px] leading-relaxed text-ink-muted lg:text-caption">
           <div className="flex flex-col gap-x-3 gap-y-0.5 lg:flex-row lg:flex-wrap lg:items-baseline">

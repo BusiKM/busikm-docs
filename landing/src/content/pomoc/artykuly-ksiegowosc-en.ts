@@ -1,17 +1,18 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Rozliczenia — wersja angielska. Ta sama zasada co w polskiej: sekcję
- * Rozliczenia widzi księgowy, nie właściciel, i instrukcja mówi to wprost.
+ * Rozliczenia – wersja angielska. Ta sama zasada co w polskiej: Rozliczenia
+ * i Raporty widzą właściciel i księgowa, dyspozytor nie, i instrukcja mówi
+ * to wprost.
  */
 export const artykulyKsiegowoscEn: Artykul[] = [
   {
     slug: 'przejazdy-i-kilometrowka',
     kategoria: 'ksiegowosc',
     tytul: 'Trips and the mileage log',
-    lead: 'Routes are recorded from the driver’s phone. Your job is to confirm what was business travel.',
+    lead: 'Routes are recorded from the driver’s phone. The driver confirms them, the owner approves them, and the mileage log builds itself.',
     role: ['wlasciciel', 'ksiegowa'],
-    gdzie: 'Trips (Przejazdy)',
+    gdzie: 'Settlements → Mileage log (Rozliczenia → Ewidencja przebiegu)',
     czas: 'A few minutes a week',
     rozdzialy: [
       {
@@ -20,51 +21,53 @@ export const artykulyKsiegowoscEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The driver app records the route from the phone’s location and the order stages. Nobody copies kilometres from the odometer into a notebook — the trip appears on the list by itself, with the date, the route and the distance.',
+              'The driver app records the route from “Start the day” (Zacznij dzień) to the final odometer reading. Nobody copies kilometres from the odometer into a notebook – the trip appears on its own, with the date and distance.',
           },
           {
             typ: 'akapit',
             tresc:
-              'You can also add a trip by hand, when the phone was off or the vehicle was driven by someone without the app.',
+              'You can also add a trip by hand with New trip (Nowa trasa) when the phone was switched off. You reach the trip list from the mileage log (Trasy pojazdu) or from the vehicle card, in the Mileage and trips tab (Przebieg i przejazdy).',
           },
         ],
       },
       {
-        tytul: 'Confirming',
+        tytul: 'Confirming and approving',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Go to Trips (Przejazdy) and set the filter to the month' },
               {
-                tytul: 'Check the Trip type (Typ trasy)',
-                opis: 'Business (Służbowa) or Private (Prywatna). A business trip needs a Trip purpose * (Cel trasy): delivery of goods, empty run, vehicle service, technical run or other.',
+                tytul: 'The driver confirms their trips',
+                opis: 'Until then the trip has the status Waiting for driver (Oczekuje na kierowcę).',
               },
               {
-                tytul: 'Confirm the trip',
-                opis: 'You can tick several rows and use Confirm selected (Potwierdź zaznaczone). Rejecting is here too — with a reason.',
+                tytul: 'Check the trip type and purpose',
+                opis: 'Business (Służbowa) or Private (Prywatna). Purpose: delivery of goods, empty run, vehicle service, technical run or other. You fix a wrong classification with Change classification (Zmień klasyfikację) – until the FK export.',
+              },
+              {
+                tytul: 'The owner confirms or rejects the trip',
+                opis: 'Several at once: tick the trips and click Confirm selected (Potwierdź zaznaczone).',
+              },
+              {
+                tytul: 'Approve the vehicle’s mileage log',
+                opis: 'In Settlements → Mileage log the owner or the accountant clicks Approve log (Zatwierdź ewidencję). If drivers are behind with confirming, Remind drivers (Przypomnij kierowcom) sends them a reminder. You can download the finished log as PDF.',
               },
             ],
           },
           {
-            typ: 'akapit',
-            tresc:
-              'You can switch a wrongly classified trip between business and private until it’s exported — use reclassify in the trip details.',
-          },
-          {
             typ: 'uwaga',
             tresc:
-              'Once a trip is confirmed it can no longer be edited or deleted. That’s deliberate: the mileage log is meant to record what happened, not be a document you can fix after the fact. The owner can undo a confirmation.',
+              'The mileage log is needed to deduct 100% VAT on a vehicle registered on the VAT-26 form. A vehicle with private kilometres deducts 50%.',
           },
         ],
       },
       {
-        tytul: 'Rates per kilometre',
+        tytul: 'Mileage rates',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'The rates the mileage log uses live in Settings → Mileage rates (Ustawienia → Stawki kilometrówki). They change by government regulation, so they have effective dates — an old month is calculated at the old rate and stays that way.',
+              'Mileage rates, allowances and NBP exchange rates are in Settings → Statutory rates (Stawki z przepisów). They’re for reference only – we take them from the regulations.',
           },
         ],
       },
@@ -76,62 +79,55 @@ export const artykulyKsiegowoscEn: Artykul[] = [
     slug: 'zamkniecie-miesiaca',
     kategoria: 'ksiegowosc',
     tytul: 'Closing the month',
-    lead: 'A summary per vehicle, recalculate, approve. Only then export.',
+    lead: 'Six steps, each with a link to what’s missing. At the end you close the month and download the final files.',
     role: ['ksiegowa', 'wlasciciel'],
-    gdzie: 'Reports → Monthly summaries (Raporty → Miesięczne podsumowania)',
-    czas: 'Fifteen minutes a month',
-    zanim: ['All trips for the month confirmed', 'Costs approved or rejected'],
+    gdzie: 'Settlements → Month (Rozliczenia → Miesiąc)',
+    czas: 'A quarter of an hour a month, when everything is up to date',
+    zanim: ['An approved mileage log for every vehicle', 'Approved driver payroll and allowances'],
     rozdzialy: [
       {
-        tytul: 'Three moves',
+        tytul: 'Six steps',
         bloki: [
+          {
+            typ: 'akapit',
+            tresc:
+              'The counter shows how many steps are done. You can do them in any order – each one takes you to where you sort it out.',
+          },
           {
             typ: 'kroki',
             kroki: [
-              {
-                tytul: 'Create a summary',
-                opis: 'You give the year, month and vehicle. One summary covers one vehicle in one month.',
-              },
-              {
-                tytul: 'Click Recalculate (Przelicz)',
-                opis: 'The system gathers trips, costs and kilometres for the period. You can recalculate as many times as you like until the summary is approved.',
-              },
-              {
-                tytul: 'Click Approve (Zatwierdź)',
-                opis: 'Approving closes the month for that vehicle.',
-              },
+              { tytul: 'Sales invoices' },
+              { tytul: 'Costs', opis: 'With a list of costs missing a document.' },
+              { tytul: 'Mileage log', opis: 'How many vehicles have an approved log.' },
+              { tytul: 'Payroll and allowances', opis: 'How many driver settlements are approved.' },
+              { tytul: 'Tax returns', opis: 'What’s due to be filed.' },
+              { tytul: 'Close the month and download the files' },
             ],
           },
         ],
       },
       {
-        tytul: 'When approval won’t go through',
+        tytul: 'What blocks closing',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'The system won’t let you approve a month that still has unconfirmed or incomplete trips. Go back to Trips, complete them and recalculate.',
+              'You can’t close the month until payroll and the mileage log are approved. Costs without a document don’t block it – they stay on the list of gaps.',
           },
           {
             typ: 'akapit',
             tresc:
-              'When you know what you’re doing and want to close despite the warnings, there’s Approve despite warnings (Zatwierdź mimo ostrzeżeń). Use it deliberately — the gaps don’t disappear, they just stop blocking you.',
+              'Closing locks changes to the month’s invoices, trips, payroll and advances, and the files for the accounting office become final. The owner or the accountant closes the month.',
           },
         ],
       },
       {
-        tytul: 'Statuses',
+        tytul: 'Reopening',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Status', 'What it means'],
-            wiersze: [
-              ['Draft (Wersja robocza)', 'Created, not yet recalculated, or being corrected'],
-              ['To approve (Do zatwierdzenia)', 'Recalculated, waiting for a decision'],
-              ['Approved (Zatwierdzone)', 'Month closed, ready to export'],
-              ['Exported (Wyeksportowane)', 'Sent to the accounting software'],
-              ['Locked (Zablokowane)', 'Closed for good — nothing will change any more'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'If something needs fixing, click Reopen the month (Otwórz ponownie) and say why. The reason goes into the company history, and the Previous months section shows when and why the month was reopened.',
           },
         ],
       },
@@ -143,13 +139,13 @@ export const artykulyKsiegowoscEn: Artykul[] = [
     slug: 'eksport-dla-ksiegowej',
     kategoria: 'ksiegowosc',
     tytul: 'Export to accounting software',
-    lead: 'One file, in a format your accountant can import without retyping.',
-    role: ['ksiegowa'],
-    gdzie: 'Settlements → FK export (Rozliczenia → Eksport FK)',
+    lead: 'One pack per month, in a format your accountant can import without retyping.',
+    role: ['ksiegowa', 'wlasciciel'],
+    gdzie: 'Settlements → Exports (Rozliczenia → Eksporty)',
     czas: 'Two minutes',
     zanim: [
-      'An approved monthly summary',
-      'The Accounting system set in the company details',
+      'Accounting software set in Settings → Accounting software (Program księgowy)',
+      'A closed month – if the files are to be final',
     ],
     rozdzialy: [
       {
@@ -158,71 +154,61 @@ export const artykulyKsiegowoscEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The Settlements section (Rozliczenia) is visible to the accountant — an owner who uses an accounting office doesn’t generate files for the tax office. If you’re looking for FK export (Eksport FK; FK is the ledger in your accounting software) and can’t see it, it means you’re signed in as the owner, not that the feature is missing.',
+              'The owner and the accountant see the exports. The dispatcher doesn’t have Settlements in their menu.',
           },
         ],
       },
       {
-        tytul: 'Generating the file',
+        tytul: 'The office pack',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Go to Settlements → FK export' },
+              { tytul: 'Go to Settlements → Exports' },
               {
-                tytul: 'Choose the Accounting system (System księgowy)',
-                opis: 'Insert GT, Comarch ERP Optima or Symfonia FK. The setting from your company details is suggested automatically.',
+                tytul: 'Click Download the office pack (Pobierz paczkę dla biura)',
+                opis: 'You get one ZIP file: FK accounting entries in the format of the program set in settings, registers, payroll and business trips.',
               },
               {
-                tytul: 'Pick the Data range (Zakres danych)',
-                opis: 'Revenue + costs, revenue only, or costs only.',
+                tytul: 'Check whether the version is final',
+                opis: 'Before the month is closed, the pack is a working version. After closing it’s final and also includes JPK_V7M – provided the company is an active VAT payer.',
               },
-              { tytul: 'Enter the Year * and Month *' },
-              {
-                tytul: 'Check the preview',
-                opis: 'Before you download the file you see the number of invoices, the number of expenses and the file size. Zero records means the month isn’t closed or the range is wrong.',
-              },
-              { tytul: 'Click Export (Eksportuj)' },
             ],
           },
         ],
       },
       {
-        tytul: 'Formats and limits',
+        tytul: 'Individual files',
         bloki: [
           {
             typ: 'tabela',
-            naglowki: ['System', 'What you get'],
+            naglowki: ['File', 'What you get'],
             wiersze: [
-              ['Insert GT', 'EPP (EDI++ 1.05.1), Windows-1250 — invoices, mileage log, clients'],
-              ['Comarch ERP Optima', 'XML in Comarch format, UTF-8'],
-              ['Symfonia FK', 'Semicolon-separated TXT, optionally with an AMS template'],
+              ['FK accounting entries', 'Comarch Optima (XML), Insert GT (EPP) or Symfonia (TXT with an AMS template)'],
+              ['VAT registers', 'Excel or PDF'],
+              ['Payroll and allowances', 'Excel or CSV'],
+              ['Driver business trips', 'ZIP'],
+              ['Mileage logs', 'ZIP'],
+              ['KPiR summary, JPK_PKPIR', 'For tax on the revenue and expense ledger: Excel, CSV, XML'],
+              ['EU VAT refund (VAT-REF)', 'A summary for the application'],
+              ['JPK_FA', 'XML, only when the tax office asks for it'],
+              ['JPK_V7M', 'After the month is closed'],
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'If the accounting office uses a different program, choose “Other program” (Inny program) in Settings → Accounting software – you get a CSV file.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'On your first import into Symfonia, tick “Include AMS template” (Dołącz szablon AMS) — without it the program doesn’t know how to arrange the columns. In later months you don’t need it.',
+              'You can generate FK entries at most three times a month per program – enough for the proper version and two corrections. The office pack isn’t subject to this limit. FK entries are for completed months, not the current one.',
           },
           {
             typ: 'akapit',
             tresc:
-              'The limit is three exports a month per company. That’s enough for the real one and two corrections, and it stops the same month being sent ten times by accident.',
-          },
-          {
-            typ: 'akapit',
-            tresc:
-              'Every file you generate stays in Export history (Historia eksportów) — with its date, format and size. You can download it again when your accountant loses the email.',
-          },
-        ],
-      },
-      {
-        tytul: 'JPK_FA',
-        bloki: [
-          {
-            typ: 'akapit',
-            tresc:
-              'The JPK_FA file (the invoice data file the Polish tax office can request) is generated in Settlements → JPK_FA — the same way, on a separate screen with its own preview before download.',
+              'Every file stays in the file history (Historia plików). You can download it again for 30 days.',
           },
         ],
       },
@@ -234,55 +220,50 @@ export const artykulyKsiegowoscEn: Artykul[] = [
     slug: 'raporty-i-ewidencje',
     kategoria: 'ksiegowosc',
     tytul: 'Reports',
-    lead: 'Eleven ready-made reports. Each answers one question you’re asking yourself anyway.',
+    lead: 'Seven tabs. Each one shows one thing you end up asking about anyway.',
     role: ['wlasciciel', 'ksiegowa'],
     gdzie: 'Reports (Raporty)',
     rozdzialy: [
       {
-        tytul: 'Finance',
+        tytul: 'Tabs',
         bloki: [
           {
             typ: 'tabela',
-            naglowki: ['Report', 'Answers the question'],
+            naglowki: ['Tab', 'What it shows'],
             wiersze: [
-              ['What am I earning on? (Na czym zarabiam?)', 'Which orders and clients bring profit, and which just turnover'],
-              ['Where does revenue come from? (Skąd przychody?)', 'Broken down by client and currency'],
-              ['Where does the money go? (Gdzie wydaję pieniądze?)', 'Cost structure — where the margin leaks away'],
+              ['Result (Wynik)', 'Revenue, costs and what you keep'],
+              ['Clients (Klienci)', 'Which clients you make money on'],
+              ['Orders and routes (Zlecenia i trasy)', 'Which orders bring profit and which only turnover'],
+              ['Fleet (Flota)', 'What each vehicle costs'],
+              ['Drivers (Kierowcy)', 'Drivers’ work – only the owner sees this tab'],
+              ['Costs (Koszty)', 'Where the money goes'],
+              ['Receivables (Należności)', 'Who hasn’t paid yet'],
             ],
           },
         ],
       },
       {
-        tytul: 'Fleet',
+        tytul: 'Period and comparison',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Report', 'Answers the question'],
-            wiersze: [
-              ['What does my fleet cost? (Co kosztuje moja flota?)', 'Fuel, servicing, insurance, broken down by vehicle'],
-              ['Which vehicle is cheapest? (Który pojazd jest najtańszy?)', 'Cost per kilometre — the one to replace stands out at once'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'You choose a month, quarter, year or your own range and compare it with the previous period or the same period a year ago. Revenue can be counted from invoices or from orders.',
           },
         ],
       },
       {
-        tytul: 'For the accountant and the tax office',
+        tytul: 'Downloading',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Report', 'What it’s for'],
-            wiersze: [
-              ['Mileage log printout (Wydruk ewidencji km)', 'A log in the Ministry of Finance format, PDF for printing'],
-              ['KPiR data (Dane do KPiR)', 'A summary for the accounting office for the KPiR (Polish revenue and expense ledger)'],
-              ['Driver business trips (Delegacje kierowców)', 'Trips with per diems and flat-rate allowances'],
-              ['Monthly PITs (Miesięczne PIT-y)', 'Data for employee income tax (PIT) settlements'],
-              ['EU VAT refund (Zwrot VAT z UE)', 'The annual claim for VAT on fuel and motorways, per country'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'Under the Download button (Pobierz): a printable PDF, Excel (XLSX) or CSV of the current tab, and a Monthly report (PDF) with all the tabs for the month in one file.',
           },
           {
             typ: 'akapit',
             tresc:
-              'You can download reports as PDF or CSV — depending on whether they’re for printing or for a spreadsheet.',
+              'The mileage log as PDF and the files for the tax office are in Settlements, not in Reports.',
           },
         ],
       },

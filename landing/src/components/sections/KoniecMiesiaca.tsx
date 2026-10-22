@@ -16,32 +16,32 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul1: 'Księgowa dostaje komplet.',
     tytul2: 'Jednym przyciskiem.',
-    lead: 'Wybiera miesiąc, klika raz i ma wszystko: sprzedaż, koszty, przebieg, delegacje i czas pracy. W formacie, który wczyta do programu, którego już używa.',
+    lead: 'Wybiera miesiąc, klika „Pobierz paczkę dla biura” i ma wszystko: dekrety do FK, rejestry VAT, płace i diety, delegacje, ewidencje przebiegu i JPK. W formacie, który wczyta do programu, którego już używa.',
     bullets: [
-      'Insert, Comarch Optima, Symfonia albo zwykły arkusz',
-      'System sam mówi, czego brakuje',
-      'Zamyka miesiąc i nikt nie zmienia już danych wstecz',
+      'Comarch Optima, Insert GT, Symfonia albo Excel',
+      'Pięć kroków miesiąca, przy każdym braku odnośnik',
+      'Zamknięty miesiąc blokuje zmiany wstecz',
     ],
     nota: 'Księgowa może być z zewnątrz. Zapraszasz ją mailem, dostaje własny dostęp.',
-    label: 'Eksport dla księgowej · desktop, tryb nocny',
-    opis: 'Lista dziewięciu zestawień z licznikami, u góry duży przycisk „Pobierz komplet za sierpień” i wybór formatu. Stos arkuszy w perspektywie zostaje.',
+    label: 'Rozliczenia → Eksporty · desktop',
+    opis: 'Rozliczenia, zakładka Eksporty: dekrety do FK z wyborem programu (Comarch Optima, Insert GT, Symfonia), rejestry VAT, lista płac i diety, delegacje kierowców, ewidencje przebiegu, zwrot VAT z UE i JPK_FA, u góry przycisk „Pobierz paczkę dla biura”.',
   },
   en: {
     tytul1: 'Your accountant gets the full set.',
     tytul2: 'With one button.',
-    lead: 'They pick the month, click once and have everything: sales, costs, mileage, business trips and working time. In a format they can load into the software they already use.',
+    lead: 'They pick the month, click “Download the package for the office” and have everything: ledger entries, VAT registers, payroll and allowances, business trips, mileage logs and JPK files. In a format they can load into the software they already use.',
     bullets: [
-      'Insert, Comarch Optima, Symfonia or a plain spreadsheet',
-      'The system tells you what’s missing',
-      'They close the month and nobody can change the data after the fact',
+      'Comarch Optima, Insert GT, Symfonia or Excel',
+      'Five month-end steps, each gap with a link to fix it',
+      'A closed month locks changes after the fact',
     ],
     nota: 'Your accountant can be external. You invite them by email and they get their own login.',
-    label: 'Export for the accountant · desktop, night mode',
-    opis: 'A list of nine reports with counters, a large “Download the full set for August” button at the top and a format picker. The stack of sheets in perspective stays.',
+    label: 'Settlements → Exports · desktop',
+    opis: 'Settlements, Exports tab: ledger entries with a choice of software (Comarch Optima, Insert GT, Symfonia), VAT registers, payroll and allowances, drivers’ business trips, mileage logs, EU VAT refund and JPK_FA, with a “Download the package for the office” button at the top.',
   },
 };
 
-/** 6.12 — komplet dla księgowej. */
+/** 6.12 – komplet dla księgowej. */
 export function KoniecMiesiaca() {
   const t = TEKSTY[biezacyJezyk()];
   return (

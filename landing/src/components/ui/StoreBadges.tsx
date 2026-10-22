@@ -2,10 +2,12 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Odznaki App Store i Google Play — prawdziwe znaki sklepów.
+ * Odznaki App Store i Google Play – prawdziwe znaki sklepów.
  *
- * Aplikacja nie jest jeszcze opublikowana, więc odznaki nie prowadzą nigdzie.
- * Gdy pojawi się w sklepach, wystarczy podać adresy w `stores`.
+ * Aplikacja nie jest jeszcze publicznie w sklepach, więc odznaki mówią
+ * „Wkrótce” i nie prowadzą nigdzie. Kierowca dostaje odnośnik do pobrania
+ * w mailu z zaproszeniem. Gdy aplikacja trafi do sklepów, podaj adresy
+ * w `stores` i zmień `lead` z powrotem na „Pobierz w / z”.
  */
 
 const APPLE =
@@ -37,8 +39,8 @@ function GooglePlayMark({ className = '' }: { className?: string }) {
 }
 
 const stores = [
-  { lead: { pl: 'Pobierz w', en: 'Download on the' }, name: 'App Store', href: null as string | null },
-  { lead: { pl: 'Pobierz z', en: 'Get it on' }, name: 'Google Play', href: null as string | null },
+  { lead: { pl: 'Wkrótce w', en: 'Coming soon to the' }, name: 'App Store', href: null as string | null },
+  { lead: { pl: 'Wkrótce w', en: 'Coming soon to' }, name: 'Google Play', href: null as string | null },
 ] satisfies { lead: Tlumaczenia<string>; name: string; href: string | null }[];
 
 export function StoreBadges() {

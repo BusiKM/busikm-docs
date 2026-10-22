@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Płynące kształty — tło karty „Z BusiKM" na stronie głównej.
+ * Płynące kształty – tło karty „Z BusiKM" na stronie głównej.
  *
  * Pięć miękkich brył dryfuje po ciemnym tle, zmieniając kształt i przenikając
  * się nawzajem. Rysowane na canvasie 2D, bez żadnej biblioteki.
@@ -11,13 +11,13 @@ import { useEffect, useRef } from 'react';
  * ## Paleta
  *
  * Świadomie **poza systemem znaczeń**. W BusiKM bursztyn znaczy „dokument
- * zaraz wygaśnie", czerwień „przerwa w usłudze", zieleń „gotowe" — użycie
+ * zaraz wygaśnie", czerwień „przerwa w usłudze", zieleń „gotowe" – użycie
  * ich do dekoracji odebrałoby im to znaczenie wszędzie indziej. Zostaje
  * niebieski marki jako kotwica plus fiolet i morski, których nie ma nigdzie
  * poza tą kartą.
  *
  * Kolory są nasycone, bo czytelność tekstu załatwia osobne przyciemnienie
- * w miejscach, gdzie tekst faktycznie leży — góra i dół karty. Środek
+ * w miejscach, gdzie tekst faktycznie leży – góra i dół karty. Środek
  * zostaje w pełni odsłonięty. Sprawdzane pomiarem wyrenderowanych pikseli
  * w kilkudziesięciu klatkach, nie na oko.
  *
@@ -35,12 +35,12 @@ import { useEffect, useRef } from 'react';
  */
 
 type Bryla = {
-  /** Środek w ułamkach szerokości i wysokości — układ trzyma się przy zmianie rozmiaru. */
+  /** Środek w ułamkach szerokości i wysokości – układ trzyma się przy zmianie rozmiaru. */
   x: number;
   y: number;
   /** Promień jako ułamek krótszego boku. */
   r: number;
-  /** Ile wypustek ma kontur — stąd „różne kształty", a nie pięć kółek. */
+  /** Ile wypustek ma kontur – stąd „różne kształty", a nie pięć kółek. */
   loby: number;
   /** Jak mocno kontur faluje. */
   amplituda: number;
@@ -60,7 +60,7 @@ const BRYLY: Bryla[] = [
 
 /** Ile razy mniejsze płótno robocze. Wyżej = taniej i bardziej miękko. */
 const SKALA = 3;
-/** Tło karty — ten sam `--color-ink`, co reszta ciemnych sekcji. */
+/** Tło karty – ten sam `--color-ink`, co reszta ciemnych sekcji. */
 const TLO = '#0A0A0B';
 
 function rysuj(
@@ -79,7 +79,7 @@ function rysuj(
   robocze.fillRect(0, 0, rw, rh);
 
   // `lighter` sumuje kanały, więc nachodzące bryły rozjaśniają się w miejscu
-  // przecięcia — stąd wrażenie przenikania, a nie nakładania kartek.
+  // przecięcia – stąd wrażenie przenikania, a nie nakładania kartek.
   robocze.globalCompositeOperation = 'lighter';
 
   for (const b of BRYLY) {
@@ -92,7 +92,7 @@ function rysuj(
     const KROKI = 72;
     for (let i = 0; i <= KROKI; i++) {
       const kat = (i / KROKI) * Math.PI * 2;
-      // Dwa nakładające się sinusy o różnych okresach — kontur faluje
+      // Dwa nakładające się sinusy o różnych okresach – kontur faluje
       // nieregularnie i nie wraca do tej samej formy.
       const fala =
         1 +
@@ -106,7 +106,7 @@ function rysuj(
     }
     robocze.closePath();
 
-    // Rdzeń pełnym kolorem, dopiero zewnętrzna trzecia część wygasa —
+    // Rdzeń pełnym kolorem, dopiero zewnętrzna trzecia część wygasa –
     // inaczej przy `lighter` bryła jest ledwo widoczną poświatą zamiast
     // wyraźnym kształtem.
     const g = robocze.createRadialGradient(cx, cy, 0, cx, cy, promien);
@@ -136,7 +136,7 @@ export function PlynaceKsztalty({ className = '' }: { className?: string }) {
     const robocze = document.createElement('canvas').getContext('2d', { alpha: false });
     if (!robocze) return;
 
-    // Piksele urządzenia ograniczone do 2 — na telefonach z DPR 3 i 4 dalsze
+    // Piksele urządzenia ograniczone do 2 – na telefonach z DPR 3 i 4 dalsze
     // zagęszczanie nic nie wnosi, a kosztuje wprost proporcjonalnie.
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0;
@@ -178,7 +178,7 @@ export function PlynaceKsztalty({ className = '' }: { className?: string }) {
     const ro = new ResizeObserver(wymiaruj);
     ro.observe(canvas);
 
-    // Poza ekranem nie ma po co liczyć — karta stoi w połowie strony.
+    // Poza ekranem nie ma po co liczyć – karta stoi w połowie strony.
     const io = new IntersectionObserver(
       ([w]) => {
         widoczna = w.isIntersecting;
@@ -219,7 +219,7 @@ export function PlynaceKsztalty({ className = '' }: { className?: string }) {
       ref={ref}
       aria-hidden
       className={`absolute inset-0 size-full ${className}`}
-      // Płótno jest dekoracją — bez tego zabrałoby kliknięcia odnośnikom,
+      // Płótno jest dekoracją – bez tego zabrałoby kliknięcia odnośnikom,
       // gdyby kiedyś w karcie takie się pojawiły.
       style={{ pointerEvents: 'none' }}
     />

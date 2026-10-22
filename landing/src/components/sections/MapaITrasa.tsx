@@ -16,24 +16,24 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul1: 'Klient pyta, gdzie jest ładunek.',
     tytul2: 'Odpowiadasz w pięć sekund.',
-    lead: 'Każdy bus na mapie, na żywo. Klikasz — widzisz kierowcę, zlecenie i o której będzie na miejscu.',
+    lead: 'Każdy bus na mapie, na żywo. Klikasz – widzisz kierowcę, zlecenie i o której będzie na miejscu.',
     label: 'Mapa floty · desktop 1440',
-    opis: 'Mapa Europy z linią trasy i trzema znacznikami pojazdów, jeden dymek z numerem rejestracyjnym, kierowcą i godziną dojazdu.',
+    opis: 'Dyspozytornia: mapa Europy ze znacznikami aut i filtrami „Wszystkie”, „W trasie”, „Wolne”, „Serwis”, obok kolejka kursów, nad nimi liczniki dnia.',
     trasa: 'Trasa układa się sama.',
-    trasaOpis: 'System proponuje przejazd i bierze pod uwagę, co się dzieje na drodze. Coś się zmienia w trakcie — poprawiasz trasę u siebie, a kierowca ma nową wersję w telefonie w tej samej chwili.',
+    trasaOpis: 'Wpisujesz punkty – system ustawia kolejność postojów, liczy kilometry i czas. Godzina dojazdu odświeża się z pozycji auta. Coś się zmienia – wybierasz u siebie inny wariant trasy, a kierowca widzi go w aplikacji.',
   },
   en: {
     tytul1: 'A client asks where the load is.',
     tytul2: 'You answer in five seconds.',
-    lead: 'Every van on the map, live. One click — you see the driver, the order and when they’ll get there.',
+    lead: 'Every van on the map, live. One click – you see the driver, the order and when they’ll get there.',
     label: 'Fleet map · desktop 1440',
-    opis: 'A map of Europe with a route line and three vehicle markers, one bubble with the registration number, driver and arrival time.',
+    opis: 'Dispatch: a map of Europe with vehicle markers and “All”, “On the road”, “Free”, “Service” filters, the run queue alongside, the day’s counters above.',
     trasa: 'The route plans itself.',
-    trasaOpis: 'The system suggests the route and takes into account what’s happening on the road. Something changes on the way — you adjust the route at your end, and the driver has the new version on the phone the same moment.',
+    trasaOpis: 'You enter the stops – the system puts them in order and works out the kilometres and time. The arrival time updates from the van’s position. Something changes – you pick another route option at your end, and the driver sees it in the app.',
   },
 };
 
-/** 6.9 — mapa floty. Tło sekcji: siatka i jedna trasa na ukos. */
+/** 6.9 – mapa floty. Tło sekcji: siatka i jedna trasa na ukos. */
 export function MapaITrasa() {
   const t = TEKSTY[biezacyJezyk()];
   return (

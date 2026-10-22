@@ -18,45 +18,45 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     kafelki: [
-      ['Pulpit z zyskiem', 'trzy liczby i mapa, tak jak widzi to właściciel'],
-      ['Dyspozytornia', 'zlecenia, mapa i kierowca obok siebie'],
+      ['Pulpit właściciela', '„Do zrobienia”, „Dziś” i wynik miesiąca'],
+      ['Dyspozytornia', 'kolejka zleceń i mapa floty obok siebie'],
       ['Zlecenie z fakturą', 'jak jedno robi się drugim'],
-      ['Komplet dla księgowej', 'dziewięć zestawień, jeden przycisk'],
+      ['Komplet dla księgowej', 'eksporty i paczka dla biura jednym przyciskiem'],
     ],
-    mockupLabel: 'Wejście do demo · desktop 1440',
+    mockupLabel: 'Demo · pulpit właściciela · desktop, tryb nocny',
     mockupNota:
-      'Demo od środka: pasek „to demo”, przełącznik roli i pulpit właściciela. Ten sam ekran co na stronie głównej.',
+      'Pulpit właściciela na danych przykładowej firmy: „Do zrobienia” z listą spraw i „Dziś” z kursami w trasie.',
     coZobaczysz: 'Co zobaczysz w środku',
-    przelacznik: 'Przełącznik roli: właściciel · dyspozytor · księgowa',
+    przelacznik: 'Wybór roli przy wejściu: właściciel · dyspozytor · księgowa',
     przelacznikOpis:
-      'W minutę zobaczysz trzy różne stanowiska pracy. Dane wracają do porządku każdej nocy, więc niczego nie zepsujesz.',
+      'Wybierasz rolę i oglądasz jej stanowisko pracy na danych przykładowej firmy transportowej. Demo jest tylko do odczytu, więc niczego nie zepsujesz.',
   },
   en: {
     kafelki: [
-      ['Dashboard with profit', 'three numbers and a map, the way the owner sees it'],
-      ['Dispatch', 'orders, map and driver side by side'],
+      ['Owner’s dashboard', '“To do”, “Today” and the month’s result'],
+      ['Dispatch', 'the order queue and fleet map side by side'],
       ['Order to invoice', 'how one turns into the other'],
-      ['Full pack for your accountant', 'nine reports, one button'],
+      ['Full pack for your accountant', 'exports and the package for the office in one click'],
     ],
-    mockupLabel: 'Demo entry · desktop 1440',
+    mockupLabel: 'Demo · owner’s dashboard · desktop, night mode',
     mockupNota:
-      'Inside the demo: the “this is a demo” bar, the role switcher and the owner’s dashboard. The same screen as on the home page.',
+      'The owner’s dashboard on a sample company’s data: “To do” with a list of tasks and “Today” with the runs on the road.',
     coZobaczysz: 'What you’ll see inside',
-    przelacznik: 'Role switcher: owner · dispatcher · accountant',
+    przelacznik: 'Pick a role when you enter: owner · dispatcher · accountant',
     przelacznikOpis:
-      'In a minute you’ll see three different workstations. The data resets every night, so you can’t break anything.',
+      'You pick a role and look around its workspace on a sample transport company’s data. The demo is read-only, so you can’t break anything.',
   },
 };
 
 /**
- * Demo — wczesny dostęp.
+ * Demo – wczesny dostęp.
  *
  * Do czasu etapu 5 backlogu (BKM-1778 i BKM-1780) demo nie istnieje: nie ma
  * ani firmy demonstracyjnej w trybie tylko do odczytu, ani nocnego resetu,
  * ani wejścia. Strona mówi to wprost i zbiera adres, zamiast obiecywać
  * kliknięcie prowadzące donikąd.
  *
- * Kafelki „co zobaczysz" zostają — opisują to, co demo pokaże, a nie to,
+ * Kafelki „co zobaczysz" zostają – opisują to, co demo pokaże, a nie to,
  * co rzekomo już działa. Makieta też, z tego samego powodu.
  */
 export default async function Page({ params }: ParametryJezyka) {

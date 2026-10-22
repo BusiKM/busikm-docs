@@ -34,7 +34,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     pytania: [
       [
         'Co, gdy paragon jest zmięty albo wyblakły?',
-        'Kierowca poprawia kwotę ręcznie. Zdjęcie i tak zostaje przy koszcie.',
+        'Kierowca robi zdjęcie jeszcze raz. Jeśli odczyt i tak się nie zgadza, biuro zadaje pytanie w aplikacji, a kierowca poprawia. Zdjęcie zostaje przy koszcie.',
       ],
       ['Czy kierowca widzi koszty całej firmy?', 'Nie. Widzi tylko to, co sam dodał.'],
       [
@@ -43,10 +43,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
     ],
     drobiazgi: [
-      'Paragon dodany bez zasięgu czeka w telefonie',
-      'Ten sam paragon nie wejdzie dwa razy',
+      'Paragon dodany bez zasięgu czeka w kolejce „Do wysłania”',
+      'Biuro pyta w aplikacji, kierowca poprawia',
       'Koszt widać u właściciela od razu',
-      'Podpowiedź kategorii po sprzedawcy',
+      'Kierowca widzi swój zwrot za koszty z własnej kieszeni',
       'Filtr kosztów po pojeździe',
       'Zdjęcia wychodzą razem z zestawieniem',
     ],
@@ -70,7 +70,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     pytania: [
       [
         'What if the receipt is crumpled or faded?',
-        'The driver corrects the amount by hand. The photo stays with the cost either way.',
+        'The driver takes the photo again. If the reading still doesn’t match, the office asks in the app and the driver corrects it. The photo stays with the cost.',
       ],
       ['Can the driver see the whole company’s costs?', 'No. Only what they added themselves.'],
       [
@@ -79,10 +79,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
     ],
     drobiazgi: [
-      'A receipt added with no signal waits on the phone',
-      'The same receipt can’t go in twice',
+      'A receipt added with no signal waits in the “To send” queue',
+      'The office asks in the app, the driver corrects it',
       'The owner sees the cost straight away',
-      'Category suggested from the merchant',
+      'Drivers see the refund due for costs they paid themselves',
       'Filter costs by vehicle',
       'Photos go out with the report',
     ],
@@ -105,7 +105,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 };
 
 /**
- * Koszty i paragony — podstrona wg projektu „BusiKM Koszty i paragony"
+ * Koszty i paragony – podstrona wg projektu „BusiKM Koszty i paragony"
  * z Claude Design (design/09-koszty-i-paragony). Treść: docs/landing/05, rozdział A6.
  */
 export default async function Page({ params }: ParametryJezyka) {

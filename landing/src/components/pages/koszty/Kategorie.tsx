@@ -10,19 +10,21 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     tytul: 'Kategorie z życia',
-    tresc: 'Paliwo, opłaty drogowe, hotel, posiłek, prom, parking, naprawa.',
-    kategorie: ['Paliwo', 'Opłaty drogowe', 'Hotel', 'Posiłek', 'Prom', 'Parking', 'Naprawa'],
-    podpowiedz: 'podpowiedź po sprzedawcy',
+    tresc:
+      'Na start paliwo, parking, opłaty drogowe, mycie i inne. Listę rodzajów dla kierowców ustalasz Ty – dochodzą m.in. hotel kierowcy, prom, serwis i naprawy.',
+    kategorie: ['Paliwo', 'Parking', 'Opłaty drogowe', 'Mycie', 'Hotel kierowcy', 'Prom', 'Serwis i naprawy'],
+    podpowiedz: 'lista ustalana przez firmę',
   },
   en: {
     tytul: 'Categories from real life',
-    tresc: 'Fuel, tolls, hotel, meals, ferry, parking, repairs.',
-    kategorie: ['Fuel', 'Tolls', 'Hotel', 'Meals', 'Ferry', 'Parking', 'Repairs'],
-    podpowiedz: 'suggested from the merchant',
+    tresc:
+      'Out of the box: fuel, parking, tolls, vehicle wash and other. You decide which types your drivers can pick – add driver hotels, ferries, servicing and repairs, and more.',
+    kategorie: ['Fuel', 'Parking', 'Tolls', 'Vehicle wash', 'Driver hotel', 'Ferry', 'Servicing and repairs'],
+    podpowiedz: 'list set by your company',
   },
 };
 
-/** 03 — kategorie jako pigułki, pierwsza wybrana. */
+/** 03 – kategorie jako pigułki, pierwsza wybrana. */
 export function Kategorie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

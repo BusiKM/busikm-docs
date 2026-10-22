@@ -18,19 +18,19 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   pl: {
     zamkniecie: {
       tytul: 'Zamknięcie miesiąca',
-      tresc: 'Po zamknięciu nikt nie zmienia danych wstecz.',
+      tresc: 'Zamknięty miesiąc blokuje zmiany w fakturach, trasach, płacach i zaliczkach. Otworzysz go tylko z podaniem powodu – zostaje ślad.',
       zamkniety: ['Lipiec 2026', 'zamknięty · 4.08, Ewa M.'],
       otwarty: ['Sierpień 2026', 'otwarty'],
       przycisk: 'Zamknij sierpień',
     },
     historia: {
       tytul: 'Historia pobrań',
-      tresc: 'Każdy plik można pobrać ponownie.',
+      tresc: 'Pliki z ostatnich 30 dni pobierzesz ponownie.',
       pliki: [
-        'komplet-2026-08.optima',
-        'komplet-2026-07.optima',
-        'diety-2026-07.xlsx',
-        'komplet-2026-06.optima',
+        'paczka-dla-biura-2026-09-robocza.zip',
+        'paczka-dla-biura-2026-08-ostateczna.zip',
+        'lista-plac-2026-08.xlsx',
+        'jpk-fa_2026-08-01_2026-08-31.xml',
       ],
       pobierz: 'pobierz ↓',
     },
@@ -38,26 +38,26 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   en: {
     zamkniecie: {
       tytul: 'Month-end close',
-      tresc: 'Once a month is closed, nobody changes the data after the fact.',
+      tresc: 'A closed month locks changes to invoices, trips, payroll and advances. You can reopen it only by giving a reason – and that leaves a trace.',
       zamkniety: ['July 2026', 'closed · 4 Aug, Ewa M.'],
       otwarty: ['August 2026', 'open'],
       przycisk: 'Close August',
     },
     historia: {
       tytul: 'Download history',
-      tresc: 'Every file can be downloaded again.',
+      tresc: 'Files from the last 30 days can be downloaded again.',
       pliki: [
-        'full-set-2026-08.optima',
-        'full-set-2026-07.optima',
-        'per-diems-2026-07.xlsx',
-        'full-set-2026-06.optima',
+        'office-package-2026-09-draft.zip',
+        'office-package-2026-08-final.zip',
+        'payroll-2026-08.xlsx',
+        'jpk-fa_2026-08-01_2026-08-31.xml',
       ],
       pobierz: 'download ↓',
     },
   },
 };
 
-/** 05 i 06 — dwie karty na ciemnym. */
+/** 05 i 06 – dwie karty na ciemnym. */
 export function ZamkniecieIHistoria() {
   const { zamkniecie, historia } = TEKSTY[biezacyJezyk()];
   const { pliki } = historia;

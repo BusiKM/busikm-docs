@@ -7,7 +7,7 @@ import type { Dokument } from '@/content/dokumenty/typy';
  *
  * ⚠️ SZKIC DO PRZEGLĄDU PRAWNEGO. Treść oparta na standardzie polskich usług
  * SaaS B2B i na wymogach ustawy o świadczeniu usług drogą elektroniczną
- * (art. 8 ust. 3 — obowiązkowe elementy regulaminu). Przed publikacją musi to
+ * (art. 8 ust. 3 – obowiązkowe elementy regulaminu). Przed publikacją musi to
  * przeczytać prawnik: opisane zasady odpowiedzialności, SLA i rozliczeń mają
  * odpowiadać temu, co produkt naprawdę robi.
  */
@@ -106,7 +106,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Jeżeli Klient jest osobą fizyczną prowadzącą działalność gospodarczą, a umowa nie ma dla niej charakteru zawodowego, stosuje się do niej przepisy o ochronie konsumentów w zakresie wskazanym w ustawie o prawach konsumenta — w szczególności prawo odstąpienia od umowy w terminie 14 dni.',
+            'Jeżeli Klient jest osobą fizyczną prowadzącą działalność gospodarczą, a umowa nie ma dla niej charakteru zawodowego, stosuje się do niej przepisy o ochronie konsumentów w zakresie wskazanym w ustawie o prawach konsumenta – w szczególności prawo odstąpienia od umowy w terminie 14 dni.',
         },
       ],
     },
@@ -139,7 +139,7 @@ const pl: Dokument = {
           wstep: 'Do korzystania z Usługi potrzebne są:',
           punkty: [
             'urządzenie z dostępem do internetu i aktualną przeglądarką (Chrome, Safari, Firefox lub Edge w wersji nie starszej niż dwa lata wstecz);',
-            'w przypadku aplikacji mobilnej — telefon z systemem iOS 15 lub Android 10 albo nowszym;',
+            'w przypadku aplikacji mobilnej – telefon z systemem iOS 15 lub Android 10 albo nowszym;',
             'aktywny adres e-mail;',
             'włączona obsługa plików cookie i JavaScript.',
           ],
@@ -184,7 +184,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Przez pierwsze 14 dni Usługa jest bezpłatna. Po tym okresie Klient wybiera Plan i płaci z góry za wybrany Okres rozliczeniowy. Jeżeli Klient nie wybierze Planu, Konto przechodzi w tryb tylko do odczytu — dane pozostają dostępne do pobrania.',
+            'Przez pierwsze 14 dni Usługa jest bezpłatna. Po tym okresie Klient wybiera Plan i płaci z góry za wybrany Okres rozliczeniowy. Jeżeli Klient nie wybierze Planu, Konto przechodzi w tryb tylko do odczytu – dane pozostają dostępne do pobrania.',
         },
         {
           typ: 'akapit',
@@ -266,7 +266,7 @@ const pl: Dokument = {
             'skutki podania przez Klienta nieprawidłowych danych, w tym błędnych stawek, terminów i danych kontrahentów;',
             'decyzje podjęte przez Klienta na podstawie zestawień i wyliczeń, które mają charakter pomocniczy;',
             'przerwy wynikające z awarii po stronie Klienta, jego dostawcy internetu lub operatora sieci komórkowej;',
-            'działanie systemów zewnętrznych, w tym systemu e-faktur, dostawców map i operatorów płatności — poza doborem i nadzorem nad tymi dostawcami.',
+            'działanie systemów zewnętrznych, w tym systemu e-faktur, dostawców map i operatorów płatności – poza doborem i nadzorem nad tymi dostawcami.',
           ],
         },
         {
@@ -282,7 +282,7 @@ const pl: Dokument = {
       bloki: [
         {
           typ: 'akapit',
-          tresc: `Reklamacje przyjmujemy mailem na adres ${firma.email}. Reklamacja powinna zawierać nazwę Klienta, opis problemu oraz — jeżeli to możliwe — datę i godzinę zdarzenia.`,
+          tresc: `Reklamacje przyjmujemy mailem na adres ${firma.email}. Reklamacja powinna zawierać nazwę Klienta, opis problemu oraz – jeżeli to możliwe – datę i godzinę zdarzenia.`,
         },
         {
           typ: 'akapit',
@@ -308,12 +308,12 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Możemy rozwiązać umowę z zachowaniem miesięcznego okresu wypowiedzenia, a w razie istotnego naruszenia Regulaminu przez Klienta — ze skutkiem natychmiastowym, po bezskutecznym wezwaniu opisanym w § 5.',
+            'Możemy rozwiązać umowę z zachowaniem miesięcznego okresu wypowiedzenia, a w razie istotnego naruszenia Regulaminu przez Klienta – ze skutkiem natychmiastowym, po bezskutecznym wezwaniu opisanym w § 5.',
         },
         {
           typ: 'akapit',
           tresc:
-            'Po rozwiązaniu umowy dane Klienta pozostają dostępne do pobrania przez 30 dni. Po tym czasie usuwamy je z systemów produkcyjnych, a z kopii zapasowych — w cyklu opisanym w umowie powierzenia. Na pisemne żądanie Klienta usuwamy dane wcześniej.',
+            'Po rozwiązaniu umowy dane Klienta pozostają dostępne do pobrania przez 30 dni. Po tym czasie usuwamy je z systemów produkcyjnych, a z kopii zapasowych – w cyklu opisanym w umowie powierzenia. Na pisemne żądanie Klienta usuwamy dane wcześniej.',
         },
       ],
     },
@@ -358,7 +358,7 @@ const pl: Dokument = {
 };
 
 /**
- * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * Tłumaczenie angielskie – dla wygody czytelnika. Wiążąca jest wersja polska;
  * strona mówi o tym wprost nad treścią.
  */
 const en: Dokument = {
@@ -453,7 +453,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'If the Client is a natural person conducting business activity and the agreement is not of a professional nature for that person, the consumer protection provisions apply to that person to the extent set out in the Act of 30 May 2014 on Consumer Rights (ustawa o prawach konsumenta) — in particular the right to withdraw from the agreement within 14 days.',
+            'If the Client is a natural person conducting business activity and the agreement is not of a professional nature for that person, the consumer protection provisions apply to that person to the extent set out in the Act of 30 May 2014 on Consumer Rights (ustawa o prawach konsumenta) – in particular the right to withdraw from the agreement within 14 days.',
         },
       ],
     },
@@ -487,7 +487,7 @@ const en: Dokument = {
           wstep: 'To use the Service, the following are required:',
           punkty: [
             'a device with internet access and an up-to-date browser (Chrome, Safari, Firefox or Edge, in a version no more than two years old);',
-            'for the mobile application — a phone running iOS 15 or Android 10 or later;',
+            'for the mobile application – a phone running iOS 15 or Android 10 or later;',
             'an active e-mail address;',
             'cookies and JavaScript enabled.',
           ],
@@ -532,7 +532,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'The Service is free of charge for the first 14 days. After that period, the Client chooses a Plan and pays in advance for the selected Billing Period. If the Client does not choose a Plan, the Account switches to read-only mode — the data remains available for download.',
+            'The Service is free of charge for the first 14 days. After that period, the Client chooses a Plan and pays in advance for the selected Billing Period. If the Client does not choose a Plan, the Account switches to read-only mode – the data remains available for download.',
         },
         {
           typ: 'akapit',
@@ -614,7 +614,7 @@ const en: Dokument = {
             'the consequences of the Client providing incorrect data, including incorrect rates, dates and client details;',
             'decisions made by the Client on the basis of reports and calculations, which are auxiliary in nature;',
             'interruptions resulting from failures on the side of the Client, its internet provider or its mobile network operator;',
-            'the operation of external systems, including the e-invoicing system, map providers and payment operators — except for the selection and supervision of those providers.',
+            'the operation of external systems, including the e-invoicing system, map providers and payment operators – except for the selection and supervision of those providers.',
           ],
         },
         {
@@ -630,7 +630,7 @@ const en: Dokument = {
       bloki: [
         {
           typ: 'akapit',
-          tresc: `We accept complaints by e-mail at ${firma.email}. A complaint should include the Client’s name, a description of the problem and — where possible — the date and time of the event.`,
+          tresc: `We accept complaints by e-mail at ${firma.email}. A complaint should include the Client’s name, a description of the problem and – where possible – the date and time of the event.`,
         },
         {
           typ: 'akapit',
@@ -661,7 +661,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'After the agreement is terminated, the Client’s data remains available for download for 30 days. After that time, we delete it from production systems, and from backups — on the cycle described in the data processing agreement. At the Client’s written request, we delete the data earlier.',
+            'After the agreement is terminated, the Client’s data remains available for download for 30 days. After that time, we delete it from production systems, and from backups – on the cycle described in the data processing agreement. At the Client’s written request, we delete the data earlier.',
         },
       ],
     },

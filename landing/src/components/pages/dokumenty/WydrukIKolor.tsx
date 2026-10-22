@@ -85,7 +85,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
 };
 
-/** 05 + 06 — wydruk i jedyne miejsce w serwisie z kolorem ostrzegawczym. */
+/** 05 + 06 – wydruk i jedyne miejsce w serwisie z kolorem ostrzegawczym. */
 export function WydrukIKolor() {
   const { wydruk, kolor } = TEKSTY[biezacyJezyk()];
   return (

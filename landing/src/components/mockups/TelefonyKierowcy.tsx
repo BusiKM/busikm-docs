@@ -53,7 +53,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Dwa telefony pod kątem, w trybie nocnym — nawigacja i dodawanie kosztu. */
+/** Dwa telefony pod kątem, w trybie nocnym – nawigacja i dodawanie kosztu. */
 export function TelefonyKierowcy() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -63,7 +63,7 @@ export function TelefonyKierowcy() {
         className="absolute bottom-0 left-[20%] right-[20%] h-25 bg-blue opacity-40 blur-[60px] lg:bottom-5 lg:left-[15%] lg:right-[15%] lg:h-35 lg:blur-[90px]"
       />
 
-      {/* lewy — nawigacja */}
+      {/* lewy – nawigacja */}
       <div className="absolute top-[30px] left-0 h-[390px] w-45 rotate-[-8deg] rounded-[30px] border border-[#2A2A30] bg-black p-[7px] shadow-[0_30px_60px_rgba(0,0,0,.6)] lg:top-15 lg:left-10 lg:h-[585px] lg:w-[270px] lg:rounded-[44px] lg:p-2.5 lg:shadow-[0_40px_80px_rgba(0,0,0,.6)]">
         <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-surface text-[10px] lg:rounded-[36px] lg:text-[12px]">
           <div className="flex justify-between px-3 pt-3.5 text-ink-muted lg:px-4.5 lg:pt-5.5">
@@ -113,7 +113,7 @@ export function TelefonyKierowcy() {
         </div>
       </div>
 
-      {/* prawy — dodawanie kosztu */}
+      {/* prawy – dodawanie kosztu */}
       <div className="absolute top-0 right-0 z-2 h-[390px] w-45 rotate-[5deg] rounded-[30px] border border-[#2A2A30] bg-black p-[7px] shadow-[0_40px_70px_rgba(0,0,0,.7)] lg:top-5 lg:right-5 lg:h-[585px] lg:w-[270px] lg:rounded-[44px] lg:p-2.5 lg:shadow-[0_50px_100px_rgba(0,0,0,.7)]">
         <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-surface text-[10px] lg:rounded-[36px] lg:text-[12px]">
           <div className="flex justify-between px-3 pt-3.5 text-ink-muted lg:px-4.5 lg:pt-5.5">

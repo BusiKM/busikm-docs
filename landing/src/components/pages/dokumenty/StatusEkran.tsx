@@ -19,7 +19,7 @@ const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; label: string; note: s
   },
 };
 
-/** 04 — ekran statusu na pełną szerokość. */
+/** 04 – ekran statusu na pełną szerokość. */
 export function StatusEkran() {
   const t = TEKSTY[biezacyJezyk()];
   return (

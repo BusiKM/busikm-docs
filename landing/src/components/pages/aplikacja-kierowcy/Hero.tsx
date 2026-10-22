@@ -25,55 +25,55 @@ const TEKSTY: Tlumaczenia<{
   jeden: { label: string; note: string };
 }> = {
   pl: {
-    licznikPrzedStartem: 'Licznik przed startem',
+    licznikPrzedStartem: 'Licznik na start dnia',
     licznik: '184 210 km',
     zdjecieLicznika: 'zdjęcie licznika',
-    trasa: 'Warszawa → Mediolan',
+    trasa: 'Wrocław → Milano',
     gotowe: 'gotowe',
-    rozpocznij: 'Rozpocznij trasę',
+    rozpocznij: 'Zacznij dzień',
     zlecenia: 'Zlecenia',
     dzis: 'Dziś',
     zaladunek: 'Załadunek 06:00',
-    dodajKoszt: 'Dodaj koszt',
+    dodajKoszt: 'Dodaj paragon',
     kwota: 'Kwota',
-    kwotaWartosc: '103,30 €',
+    kwotaWartosc: '612,40 zł',
     eyebrow: 'BusiKM Kierowca · iPhone i Android',
     naglowek1: 'Cały dzień pracy w jednej aplikacji.',
     naglowek2: 'Bez wpisywania czegokolwiek w trasie.',
-    lead: 'Kierowca dostaje kod, wpisuje go raz i jest w środku. Reszta to trzy przyciski.',
+    lead: 'Kierowca dostaje kod mailem, ustawia hasło i jest w środku. Dalej prowadzi go jeden przycisk na każdy etap dnia.',
     trzy: {
-      label: 'Trzy ekrany startu trasy · telefon, tryb nocny',
-      note: 'Od lewej: lista zleceń na dziś, licznik przed startem z przyciskiem „Rozpocznij trasę”, dodawanie kosztu ze zdjęciem paragonu.',
+      label: 'Trzy ekrany aplikacji kierowcy · telefon, tryb nocny',
+      note: 'Od lewej: „Czas pracy” z trzema wskaźnikami, „Dziś” z kursem Wrocław → Milano i przyciskiem „Jestem na rozładunku”, „Moje koszty” z przyciskiem „Dodaj paragon”.',
     },
     jeden: {
-      label: 'Start trasy · telefon, tryb nocny',
-      note: 'Licznik przed startem, miejsce na zdjęcie licznika i przycisk „Rozpocznij trasę”.',
+      label: 'Ekran „Dziś” · telefon, tryb nocny',
+      note: 'Kurs Wrocław → Milano „W trasie”: załadunek i rozładunek, przyciski „Nawiguj”, „Zadzwoń” i „Czat”, „Nie mogę kontynuować”, niżej „Trasa bez zlecenia”.',
     },
   },
   en: {
-    licznikPrzedStartem: 'Odometer before the start',
+    licznikPrzedStartem: 'Odometer at the start of the day',
     licznik: '184,210 km',
     zdjecieLicznika: 'odometer photo',
-    trasa: 'Warsaw → Milan',
+    trasa: 'Wrocław → Milan',
     gotowe: 'ready',
-    rozpocznij: 'Start route',
+    rozpocznij: 'Start the day',
     zlecenia: 'Orders',
     dzis: 'Today',
     zaladunek: 'Loading 06:00',
-    dodajKoszt: 'Add cost',
+    dodajKoszt: 'Add receipt',
     kwota: 'Amount',
-    kwotaWartosc: '€103.30',
+    kwotaWartosc: 'PLN 612.40',
     eyebrow: 'BusiKM Driver · iPhone and Android',
     naglowek1: 'A whole working day in one app.',
     naglowek2: 'Nothing to type on the road.',
-    lead: 'The driver gets a code, enters it once and they’re in. The rest is three buttons.',
+    lead: 'The driver gets a code by email, sets a password and they’re in. From then on, one button takes them through each stage of the day.',
     trzy: {
-      label: 'Three route-start screens · phone, dark mode',
-      note: 'From the left: today’s orders, the odometer before the start with a “Start route” button, adding a cost with a receipt photo.',
+      label: 'Three driver app screens · phone, dark mode',
+      note: 'From the left: “Working time” with three gauges, “Today” with the Wrocław → Milan job and an “At unloading” button, “My costs” with an “Add receipt” button.',
     },
     jeden: {
-      label: 'Route start · phone, dark mode',
-      note: 'Odometer before the start, a space for the odometer photo and a “Start route” button.',
+      label: '“Today” screen · phone, dark mode',
+      note: 'The Wrocław → Milan job “On the road”: loading and unloading, “Navigate”, “Call” and “Chat” buttons, “I can’t continue”, and “Trip without an order” below.',
     },
   },
 };
@@ -99,7 +99,7 @@ function TelefonUciety({
   );
 }
 
-/** Środkowy telefon — jedyny, który mieści się sensownie na wąskim ekranie. */
+/** Środkowy telefon – jedyny, który mieści się sensownie na wąskim ekranie. */
 const telefonSrodkowy = (t: Teksty) => (
         <TelefonUciety className="z-2 h-[260px] w-[220px] shadow-[0_-20px_80px_rgba(0,0,0,.5)] lg:h-[500px] lg:w-[280px]">
           <div className="flex flex-col gap-3.5 px-4 pt-5 lg:px-5 lg:pt-6 lg:text-[13px]">
@@ -127,7 +127,7 @@ const telefonSrodkowy = (t: Teksty) => (
         </TelefonUciety>
 );
 
-/** Komplet trzech telefonów — układ na szerokie ekrany. */
+/** Komplet trzech telefonów – układ na szerokie ekrany. */
 const telefony = (t: Teksty) => (
   <>
 
@@ -188,7 +188,7 @@ const telefony = (t: Teksty) => (
   </>
 );
 
-/** Nagłówek strony — ciemny, z telefonami u dołu. */
+/** Nagłówek strony – ciemny, z telefonami u dołu. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -237,7 +237,7 @@ export function Hero() {
         jeden. Ten sam obraz w obu miejscach znaczyłby albo trzy telefony
         ściśnięte do 375 px, albo jeden zgubiony na szerokim ekranie.
 
-        Do czasu wrzucenia plików stoją tu rysowane makiety — `MockupSlot`
+        Do czasu wrzucenia plików stoją tu rysowane makiety – `MockupSlot`
         podmienia je sam, gdy plik pojawi się w `public/mockups/`.
       */}
       <div className="relative mt-16 lg:mt-24">
@@ -247,13 +247,13 @@ export function Hero() {
         />
 
         {/*
-          Bez powiększenia i z ograniczoną szerokością — inaczej niż pozostałe
+          Bez powiększenia i z ograniczoną szerokością – inaczej niż pozostałe
           zrzuty telefonu na tej stronie.
 
           Tamte mają telefon zajmujący 30% szerokości kadru i bez powiększenia
           wychodzą jak miniaturki. Ten jest wykadrowany ciasno: treść zajmuje
           91% szerokości i 90% wysokości, więc każde powiększenie wypycha go
-          poza ekran — przy 1,35 wychodziło 374 px.
+          poza ekran – przy 1,35 wychodziło 374 px.
 
           Szerokość ograniczona, bo pełna kolumna daje przy proporcjach 4:3
           ponad tysiąc pikseli wysokości i sam nagłówek strony znika z ekranu.
@@ -274,7 +274,7 @@ export function Hero() {
         </div>
 
         {/*
-          Telefon wychodzi zza dolnej krawędzi sekcji — tak jak rysowane
+          Telefon wychodzi zza dolnej krawędzi sekcji – tak jak rysowane
           makiety, które tu wcześniej stały.
         
           Nie trzeba do tego żadnego przycinania: przy skali 2 zrzut wystaje

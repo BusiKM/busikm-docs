@@ -50,7 +50,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       'Przypomnienie mailem i w aplikacji',
       'Termin przesuwasz jednym kliknięciem po odnowieniu',
       'Historia poprzednich polis i przeglądów',
-      'Dokumenty pojazdu widoczne dla kierowcy w trasie',
+      'Dokumenty zlecenia (CMR, WZ) pod ręką kierowcy w trasie',
       'Lista do wydruku na jedną stronę',
     ],
     przypomnienie: {
@@ -59,9 +59,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     },
     kierowca: {
       tytul: 'Kierowca też dostaje swoje',
-      tresc: 'O jego prawie jazdy i badaniach przypominamy jemu, nie tylko Tobie.',
-      label: 'Dokumenty kierowcy · telefon, tryb nocny',
-      note: 'Telefon kierowcy z jego dokumentami i najbliższym terminem badania u góry.',
+      tresc:
+        'W „Moich dokumentach” ma prawo jazdy, świadectwo kwalifikacji, badania lekarskie i psychologiczne oraz kartę kierowcy, każdy z datą ważności. O terminach przypominamy jemu, nie tylko Tobie.',
+      label: 'Moje dokumenty · telefon, tryb nocny',
+      note: 'Ekran „Moje dokumenty” z kompletem ważnych dokumentów: badania lekarskie, kwalifikacja zawodowa, karta kierowcy, badania psychotechniczne i prawo jazdy, każdy z datą „Ważny do”.',
     },
     ktoUzywa: 'Kto tego używa:',
     wlascicielLink: 'Właściciel →',
@@ -88,7 +89,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       'Reminders by email and in the app',
       'Move the deadline with one click after a renewal',
       'History of past policies and inspections',
-      'Vehicle documents visible to the driver on the road',
+      'Order documents (CMR, delivery notes) to hand for the driver on the road',
       'A printable list on a single page',
     ],
     przypomnienie: {
@@ -97,9 +98,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     },
     kierowca: {
       tytul: 'The driver gets theirs too',
-      tresc: 'We remind them about their driving licence and medical checks — not just you.',
-      label: 'Driver’s documents · phone, dark mode',
-      note: 'The driver’s phone with their documents and the next medical check at the top.',
+      tresc:
+        'In “My documents” they keep their driving licence, driver CPC, medical and psychological checks and tachograph card, each with its expiry date. We remind them about the deadlines, not just you.',
+      label: 'My documents · phone, dark mode',
+      note: 'The “My documents” screen with a full set of valid documents: medical check, professional qualification, tachograph card, psychological assessment and driving licence, each with a “Valid until” date.',
     },
     ktoUzywa: 'Who uses it:',
     wlascicielLink: 'Owner →',
@@ -109,10 +111,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 };
 
 /**
- * Dokumenty i terminy — podstrona wg projektu „BusiKM Dokumenty i terminy"
+ * Dokumenty i terminy – podstrona wg projektu „BusiKM Dokumenty i terminy"
  * z Claude Design (design/10-dokumenty-i-terminy). Treść: docs/landing/05, rozdział A9.
  *
- * Jedyna strona w serwisie, na której wolno użyć koloru `amber` — i tylko dla
+ * Jedyna strona w serwisie, na której wolno użyć koloru `amber` – i tylko dla
  * dokumentu, który zaraz wygaśnie.
  */
 export default async function Page({ params }: ParametryJezyka) {
@@ -146,7 +148,7 @@ export default async function Page({ params }: ParametryJezyka) {
               ratio="9:19.5"
               box="6:7"
               // Zrzut ma szeroki kadr 4:3 z telefonem zajmującym 30% jego
-              // szerokości — bez powiększenia wychodzi na 158 px w kolumnie
+              // szerokości – bez powiększenia wychodzi na 158 px w kolumnie
               // mającej 520. Ta sama wartość, co przy pozostałych telefonach.
               imageScale={1.8}
               imageScaleTelefon={1.8}

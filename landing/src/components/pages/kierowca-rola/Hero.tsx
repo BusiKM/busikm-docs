@@ -24,11 +24,11 @@ const TEKSTY: Tlumaczenia<{
         Resztą zajmuje się telefon.
       </>
     ),
-    lead: 'Jedna aplikacja na cały dzień. Nawigacja w środku, paragon zdjęciem, przerwa z wyprzedzeniem.',
+    lead: 'Jedna aplikacja na cały dzień. Nawigacja jednym dotknięciem, paragon zdjęciem, przerwa z wyprzedzeniem.',
     proba: 'Wypróbuj 14 dni',
     demo: 'Zobacz demo',
     label: 'Dwa telefony pod kątem · tryb nocny',
-    note: 'Lewy (−8°): nawigacja. Prawy (+5°, z przodu): „Rozpocznij trasę”. Poświata i kąty zostają po podmianie.',
+    note: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: „Czas pracy” z trzema wskaźnikami i przyciskami „Przerwa” i „Odpoczynek”.',
   },
   en: {
     nadtytul: 'For drivers',
@@ -38,16 +38,16 @@ const TEKSTY: Tlumaczenia<{
         Your phone does the rest.
       </>
     ),
-    lead: 'One app for the whole day. Navigation built in, receipts by photo, breaks flagged in advance.',
+    lead: 'One app for the whole day. Navigation in one tap, receipts by photo, breaks flagged in advance.',
     proba: 'Try 14 days free',
     demo: 'See the demo',
     label: 'Two phones at an angle · dark mode',
-    note: 'Left (−8°): navigation. Right (+5°, in front): “Start route”. The glow and angles stay after the swap.',
+    note: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: “Working time” with three gauges and the “Break” and “Rest” buttons.',
   },
 };
 
 /**
- * Nagłówek strony kierowcy — ciemny i większy niż na pozostałych stronach ról:
+ * Nagłówek strony kierowcy – ciemny i większy niż na pozostałych stronach ról:
  * 96 px zamiast 88, bo to jedyna strona pisana do kierowcy i typografia jest
  * tu częścią przekazu. Telefony stoją pod spodem, na pełną szerokość.
  */
@@ -87,7 +87,7 @@ export function Hero() {
             imageScale={1.35}
             // Na telefonie mocniej niż na desktopie. Zrzut ma proporcje 4:3,
             // więc w pudle 16:10 ogranicza go wysokość i zostaje pusty
-            // margines pliku — poza ekran wychodzi sam ten margines. Same
+            // margines pliku – poza ekran wychodzi sam ten margines. Same
             // telefony zajmują 66% szerokości kadru, więc przy 1,35 wychodziły
             // na wąskim ekranie zbyt małe jak na hero, w którym są treścią.
             //

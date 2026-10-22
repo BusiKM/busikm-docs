@@ -61,7 +61,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 /**
  * Demo od środka: pasek „to demo", przełącznik roli i pulpit właściciela.
  *
- * Przełącznik roli jest tu najważniejszy — to on w minutę pokazuje trzy różne
+ * Przełącznik roli jest tu najważniejszy – to on w minutę pokazuje trzy różne
  * stanowiska pracy, i to on jest głównym argumentem strony `/demo`.
  */
 export function DemoMockup() {

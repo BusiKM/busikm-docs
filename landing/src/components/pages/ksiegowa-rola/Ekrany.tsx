@@ -20,19 +20,19 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis] }> = {
     naglowek: 'Trzy ekrany, które widzisz co miesiąc.',
     opisy: [
       {
-        label: 'Centrum eksportów · desktop, tryb nocny',
-        note: 'Lista dziewięciu zestawień z licznikami, przycisk „Pobierz komplet” i wybór formatu.',
-        caption: 'Centrum eksportów',
+        label: 'Rozliczenia → Eksporty · desktop',
+        note: 'Dekrety do FK z wyborem programu, rejestry VAT, płace i diety, delegacje, ewidencje przebiegu, VAT-REF i JPK_FA, u góry „Pobierz paczkę dla biura”.',
+        caption: 'Eksporty',
       },
       {
-        label: 'Walidacja przed eksportem · desktop',
-        note: 'Lista zestawień ze statusem komplet / do uzupełnienia i krótkim opisem braku.',
-        caption: 'Sprawdzenie przed eksportem',
+        label: 'Zamknięcie miesiąca · desktop',
+        note: 'Kroki miesiąca – faktury, koszty, przebieg, płace i diety, deklaracje – z przejściem do braku, obok najbliższe terminy i zamknięte miesiące.',
+        caption: 'Zamknięcie miesiąca',
       },
       {
-        label: 'Rozliczenie kierowcy z dietami · desktop',
-        note: 'Dni za granicą, diety, do wypłaty; tabela krajów ze stawkami.',
-        caption: 'Rozliczenie kierowców',
+        label: 'Płace i diety · desktop',
+        note: 'Rozliczenie Krzysztofa Kamińskiego za wrzesień: kalendarz dni w Niemczech, wynagrodzenie, diety i noclegi, kwota do rozliczenia.',
+        caption: 'Płace i diety',
       },
     ],
   },
@@ -40,26 +40,26 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis] }> = {
     naglowek: 'Three screens you see every month.',
     opisy: [
       {
-        label: 'Export centre · desktop, dark mode',
-        note: 'A list of nine reports with counters, a “Download all” button and a choice of format.',
-        caption: 'Export centre',
+        label: 'Settlements → Exports · desktop',
+        note: 'Ledger entries with a choice of software, VAT registers, payroll and allowances, business trips, mileage logs, VAT-REF and JPK_FA, with “Download the package for the office” at the top.',
+        caption: 'Exports',
       },
       {
-        label: 'Pre-export check · desktop',
-        note: 'Reports marked complete / needs attention, with a short note on what’s missing.',
-        caption: 'Check before export',
+        label: 'Month-end close · desktop',
+        note: 'Month-end steps – invoices, costs, mileage, payroll and allowances, tax returns – each linking to what’s missing, with upcoming deadlines and closed months alongside.',
+        caption: 'Month-end close',
       },
       {
-        label: 'Driver settlement with allowances · desktop',
-        note: 'Days abroad, daily allowances, amount to pay; a table of countries with their rates.',
-        caption: 'Driver settlements',
+        label: 'Payroll and allowances · desktop',
+        note: 'Krzysztof Kamiński’s September settlement: a calendar of days in Germany, pay, per diems and overnight allowances, the total to settle.',
+        caption: 'Payroll and allowances',
       },
     ],
   },
 };
 
 /**
- * Trzy ekrany księgowej — wszystkie narysowane przy podstronie „Dane dla
+ * Trzy ekrany księgowej – wszystkie narysowane przy podstronie „Dane dla
  * księgowej", więc nazwy plików są dokładnie te same. Trzy w rzędzie, bo każdy
  * jest kwadratowy i żaden nie jest ważniejszy od pozostałych.
  */

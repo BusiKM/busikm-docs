@@ -31,7 +31,7 @@ const TEKSTY: Tlumaczenia<{
     pytania: [
       [
         'Czy kierowca musi coś włączać?',
-        'Nie. Trasa nagrywa się od przycisku „Rozpocznij trasę”, telefon może zostać w kieszeni.',
+        'Nie. Trasa zapisuje się od „Zacznij dzień” do licznika końcowego przy „Zakończ dzień”. Telefon może zostać w kieszeni.',
       ],
       [
         'Co, gdy telefon straci zasięg?',
@@ -39,7 +39,7 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'Czy to śledzenie kierowcy po godzinach?',
-        'Nie. Nagrywa się trasa zlecenia, między „Rozpocznij” a „Zakończ”. Po zakończeniu pozycja nie jest zbierana.',
+        'Nie. Zapis trwa od „Zacznij dzień” do „Zakończ dzień”, a na prywatną przerwę kierowca może go wstrzymać. Po zakończeniu dnia pozycja nie jest zbierana.',
       ],
     ],
     naglowekPytan: 'Trzy pytania',
@@ -47,22 +47,22 @@ const TEKSTY: Tlumaczenia<{
       'Ostatnia znana pozycja zostaje po utracie zasięgu',
       'Filtr po kierowcy i po pojeździe',
       'Kilometry z trasy, nie z licznika przepisanego ręcznie',
-      'Postoje dłuższe niż 15 minut zaznaczone',
+      'Ślad przejazdu do odtworzenia',
       'Podgląd trasy z dowolnego dnia',
       'Mapa w trybie nocnym',
     ],
     przeliczenie: {
       tytul: 'Trasa układa się sama',
       tresc:
-        'System proponuje przejazd i bierze pod uwagę, co się dzieje na drodze. Korek, wypadek, zamknięty odcinek — trasa przelicza się, a kierowca dostaje nową wersję w telefonie w tej samej chwili.',
-      label: 'Trasa przeliczona · desktop',
-      note: 'Stara i nowa wersja obok siebie, znacznik korka, różnica w czasie dojazdu.',
+        'Wpisujesz punkty – system ustawia kolejność postojów, liczy kilometry i czas. Godzina dojazdu odświeża się z pozycji auta. Gdy chcesz inaczej, klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Możesz też omijać płatne drogi, autostrady i promy. Nową trasę widzi kierowca w aplikacji i klient na stronie śledzenia.',
+      label: 'Wybór trasy · desktop',
+      note: 'Zlecenie Olsztyn → München, „Wybierz trasę”: dwa warianty na mapie – najszybsza 11 h 53 min, 1167 km, i bez płatnych dróg 12 h 10 min, 1294 km – oraz przyciski omijania: płatne drogi, autostrady, promy.',
     },
     historia: {
       tytul: 'Historia tras',
-      tresc: 'Każdy przejazd zapisany: kilometry, czas, postoje. Do sprawdzenia po miesiącu i po roku.',
+      tresc: 'Każdy przejazd zapisany: kilometry, czas i ślad do odtworzenia. Filtrujesz po kierowcy i pojeździe, sprawdzasz po miesiącu i po roku.',
       label: 'Lista tras z filtrami · desktop, tryb nocny',
-      note: 'Filtry: data, kierowca, pojazd. Kolumny: trasa, kilometry, czas.',
+      note: 'Trasy: filtry statusu, kierowcy, pojazdu, roku i miesiąca. Kolumny: data, kierowca, pojazd, dystans i stan potwierdzenia przez kierowcę i właściciela.',
     },
     ktoUzywa: 'Kto tego używa:',
     link1: 'Dyspozytor →',
@@ -72,7 +72,7 @@ const TEKSTY: Tlumaczenia<{
     pytania: [
       [
         'Does the driver have to switch anything on?',
-        'No. The route records from the “Start route” button, and the phone can stay in their pocket.',
+        'No. The route records from “Start the day” to the final odometer reading at “End the day”. The phone can stay in their pocket.',
       ],
       [
         'What if the phone loses signal?',
@@ -80,7 +80,7 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'Is this tracking the driver after hours?',
-        'No. Only the route of the order is recorded, between “Start” and “Finish”. Once it’s finished, no position is collected.',
+        'No. Recording runs from “Start the day” to “End the day”, and the driver can pause it for a private break. Once the day is over, no position is collected.',
       ],
     ],
     naglowekPytan: 'Three questions',
@@ -88,22 +88,22 @@ const TEKSTY: Tlumaczenia<{
       'Last known position stays after signal is lost',
       'Filter by driver and by vehicle',
       'Kilometres from the route, not an odometer copied by hand',
-      'Stops longer than 15 minutes marked',
+      'A replayable trace of every trip',
       'Route view for any day',
       'Map in dark mode',
     ],
     przeliczenie: {
       tytul: 'The route plans itself',
       tresc:
-        'The system suggests a route and takes into account what’s happening on the road. A jam, an accident, a closed section — the route recalculates, and the driver gets the new version on their phone the same moment.',
-      label: 'Recalculated route · desktop',
-      note: 'Old and new version side by side, a traffic jam marker, the difference in arrival time.',
+        'You enter the stops – the system puts them in order and works out the kilometres and time. The arrival time updates from the van’s position. Want it different? Click “Change route” and pick an option: fastest or no toll roads. You can also avoid toll roads, motorways and ferries. The driver sees the new route in the app, the client on the tracking page.',
+      label: 'Choosing a route · desktop',
+      note: 'Order Olsztyn → München, “Choose route”: two options on the map – fastest at 11 h 53 min, 1,167 km, and no toll roads at 12 h 10 min, 1,294 km – plus avoid buttons: toll roads, motorways, ferries.',
     },
     historia: {
       tytul: 'Route history',
-      tresc: 'Every run on record: kilometres, time, stops. There to check a month or a year later.',
+      tresc: 'Every trip on record: kilometres, time and a trace you can replay. Filter by driver and vehicle, and check it a month or a year later.',
       label: 'Route list with filters · desktop, dark mode',
-      note: 'Filters: date, driver, vehicle. Columns: route, kilometres, time.',
+      note: 'Trips: filters for status, driver, vehicle, year and month. Columns: date, driver, vehicle, distance and confirmation by the driver and the owner.',
     },
     ktoUzywa: 'Who uses it:',
     link1: 'Dispatcher →',
@@ -112,7 +112,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Trasy i mapa floty — podstrona wg projektu „BusiKM Trasy i mapa floty"
+ * Trasy i mapa floty – podstrona wg projektu „BusiKM Trasy i mapa floty"
  * z Claude Design (design/07-trasy-i-mapa). Treść: docs/landing/05, rozdział A3.
  */
 export default async function Page({ params }: ParametryJezyka) {

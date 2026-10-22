@@ -1,13 +1,13 @@
 import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
 
 /**
- * Nawigacja — jedno źródło dla paska, menu mobilnego i stopki.
+ * Nawigacja – jedno źródło dla paska, menu mobilnego i stopki.
  * Treść wg docs/landing/03-architektura-informacji.md.
  *
- * Wszystkie odnośniki są polskie — na stronie angielskiej zamienia je
+ * Wszystkie odnośniki są polskie – na stronie angielskiej zamienia je
  * `i18n/Link` (albo `lokalizuj`). Teksty idą w obu językach.
  *
- * Każda pozycja niesie korzyść (`label`) i zdanie wyjaśnienia (`benefit`) —
+ * Każda pozycja niesie korzyść (`label`) i zdanie wyjaśnienia (`benefit`) –
  * nawigacja ma sprzedawać, nie wypisywać nazwy modułów.
  */
 
@@ -15,12 +15,12 @@ export type NavLeaf = {
   href: string;
   label: string;
   benefit: string;
-  /** Gdzie ta rola pracuje — nadtytuł na karcie w menu „Dla kogo". */
+  /** Gdzie ta rola pracuje – nadtytuł na karcie w menu „Dla kogo". */
   device?: string;
 };
 
 export type NavGroup = {
-  /** Nagłówek kolumny w menu — szary, wersalikami. */
+  /** Nagłówek kolumny w menu – szary, wersalikami. */
   heading: string;
   items: NavLeaf[];
 };
@@ -31,7 +31,7 @@ export type NavEntry =
       kind: 'mega';
       label: string;
       /**
-       * Prefiks działu — służy wyłącznie do podświetlenia pozycji, gdy
+       * Prefiks działu – służy wyłącznie do podświetlenia pozycji, gdy
        * czytelnik jest na którejś z jej podstron. Sama pozycja nigdzie
        * nie prowadzi: jest tylko wyzwalaczem menu.
        */
@@ -40,7 +40,7 @@ export type NavEntry =
       promo?: { href: string; label: string; benefit: string };
       /** Wąskie menu w jednej kolumnie zamiast pełnej szerokości. */
       compact?: boolean;
-      /** Karty zamiast listy — układ z arkusza „Dla kogo". */
+      /** Karty zamiast listy – układ z arkusza „Dla kogo". */
       cards?: boolean;
     };
 
@@ -64,7 +64,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/co-robi/aplikacja-kierowcy',
             label: 'Aplikacja kierowcy',
-            benefit: 'Nawigacja, trasa i koszty w jednej aplikacji',
+            benefit: 'Zlecenia, przerwy i koszty w jednej aplikacji',
           },
           {
             href: '/co-robi/trasy-i-mapa',
@@ -89,7 +89,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/co-robi/zlecenia-i-faktury',
             label: 'Zlecenia i faktury',
-            benefit: 'Ze zlecenia robi się faktura. Klient dostaje ją od razu',
+            benefit: 'Ze zlecenia robi się faktura. Do KSeF jednym przyciskiem',
           },
           {
             href: '/co-robi/rentownosc',
@@ -144,7 +144,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/dla-kogo/kierowca',
             label: 'Kierowca',
-            benefit: 'Jeden przycisk: rusz. Resztą zajmuje się telefon',
+            benefit: '„Zacznij dzień” i w drogę. Resztą zajmuje się telefon',
             device: 'Telefon',
           },
         ],
@@ -162,7 +162,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       { href: '/status', label: 'Status usługi', benefit: 'Czy wszystko działa' },
     ],
     rolesNote:
-      'W małej firmie jedna osoba nosi dwie role. Przełączasz widok jednym kliknięciem.',
+      'W małej firmie właściciel bywa też dyspozytorem – konto właściciela widzi wszystko.',
     stopka: {
       firma: 'Firma',
       prawne: 'Prawne',
@@ -186,7 +186,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       demo: {
         href: '/demo',
         label: 'Zobacz demo',
-        benefit: 'Przygotowujemy je — zostaw adres, damy znać',
+        benefit: 'Przygotowujemy je – zostaw adres, damy znać',
       },
       login: { href: '/zaloguj', label: 'Zaloguj się', benefit: 'Konta otwieramy wkrótce' },
     },
@@ -199,7 +199,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/co-robi/aplikacja-kierowcy',
             label: 'Driver app',
-            benefit: 'Navigation, route and costs in one app',
+            benefit: 'Orders, breaks and costs in one app',
           },
           {
             href: '/co-robi/trasy-i-mapa',
@@ -224,7 +224,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/co-robi/zlecenia-i-faktury',
             label: 'Orders and invoices',
-            benefit: 'An order turns into an invoice. The client gets it right away',
+            benefit: 'An order turns into an invoice. Off to KSeF in one click',
           },
           {
             href: '/co-robi/rentownosc',
@@ -279,7 +279,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/dla-kogo/kierowca',
             label: 'Driver',
-            benefit: 'One button: go. The phone handles the rest',
+            benefit: '“Start the day” and go. The phone handles the rest',
             device: 'Phone',
           },
         ],
@@ -297,7 +297,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       { href: '/status', label: 'Service status', benefit: 'Is everything working' },
     ],
     rolesNote:
-      'In a small company one person often wears two hats. Switch views with one click.',
+      'In a small company the owner is often the dispatcher too – the owner’s account sees everything.',
     stopka: {
       firma: 'Company',
       prawne: 'Legal',
@@ -321,7 +321,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       demo: {
         href: '/demo',
         label: 'See the demo',
-        benefit: 'We’re building it — leave your email and we’ll let you know',
+        benefit: 'We’re building it – leave your email and we’ll let you know',
       },
       login: { href: '/zaloguj', label: 'Sign in', benefit: 'Accounts open soon' },
     },
@@ -329,11 +329,11 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 };
 
 /**
- * Adresy aplikacji — w jednym miejscu, bo część nie jest jeszcze docelowa.
+ * Adresy aplikacji – w jednym miejscu, bo część nie jest jeszcze docelowa.
  *
  * `login` prowadzi na własną stronę, nie do aplikacji. Publicznej
  * rejestracji jeszcze nie ma (BKM-1858, etap 2 backlogu), a wersja testowa
- * na stagingu wpuszcza wyłącznie firmy z grupy testowej — odesłanie tam
+ * na stagingu wpuszcza wyłącznie firmy z grupy testowej – odesłanie tam
  * wszystkich kończyłoby się ekranem logowania, na którym nikt się nie
  * zaloguje. `/zaloguj` mówi, na czym stoimy, zbiera adres i zostawia wyjście
  * osobom, które konto testowe już mają.
@@ -347,23 +347,23 @@ export const appLinks = {
 } as const;
 
 /**
- * Menu na telefonie — jedna lista sekcji, każda w tym samym rytmie.
+ * Menu na telefonie – jedna lista sekcji, każda w tym samym rytmie.
  *
  * Wcześniej ten sam panel mieszał trzy wzorce: „Co robi" jako lista
  * z opisami, „Dla kogo" jako pigułki bez opisów, a Cennik, Pomoc i Zaloguj
  * jako rząd samych napisów. Przy okazji **cztery podstrony Pomocy nie miały
- * na telefonie żadnej drogi wejścia** — pozycja prowadziła prosto na
+ * na telefonie żadnej drogi wejścia** – pozycja prowadziła prosto na
  * `/pomoc`, a Pierwsze kroki, Kontakt i Status usługi były osiągalne
  * wyłącznie ze stopki.
  *
  * Sekcje z rozwijanych menu budują się same, więc nowa podstrona dopisana
  * do `navigation` pojawi się tu bez ruszania nagłówka. Pozycje bez
- * rozwinięcia (dziś Cennik) też się dobierają — brakujący opis dokłada
+ * rozwinięcia (dziś Cennik) też się dobierają – brakujący opis dokłada
  * `opisyPozycji`.
  */
 export type SekcjaMenu = { heading: string; items: NavLeaf[] };
 
-/** Nawigacja w danym języku — pasek, menu mobilne i stopka. */
+/** Nawigacja w danym języku – pasek, menu mobilne i stopka. */
 export function nawigacja(jezyk: Jezyk) {
   const t = TEKSTY[jezyk];
 
@@ -409,10 +409,10 @@ export function nawigacja(jezyk: Jezyk) {
     coRobi: t.coRobi,
     dlaKogo: t.dlaKogo,
     navigation,
-    /** Nota pod menu „Dla kogo" — role są zbiorem, nie wyborem. */
+    /** Nota pod menu „Dla kogo" – role są zbiorem, nie wyborem. */
     rolesNote: t.rolesNote,
     menuMobilne,
-    /** Kolumny stopki — bez dokumentów prawnych, te mają własny pasek na dole. */
+    /** Kolumny stopki – bez dokumentów prawnych, te mają własny pasek na dole. */
     kolumnyStopki: [
       { heading: t.menu.coRobi, items: t.coRobi.flatMap((g) => g.items) },
       { heading: t.menu.dlaKogo, items: t.dlaKogo[0].items },

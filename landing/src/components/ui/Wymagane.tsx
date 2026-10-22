@@ -2,7 +2,7 @@
  * Gwiazdka przy polu wymaganym.
  *
  * `aria-hidden`, bo czytnik ekranu i tak ogłosi „wymagane" z atrybutu
- * `required` na samym polu — przeczytana na głos gwiazdka byłaby drugim,
+ * `required` na samym polu – przeczytana na głos gwiazdka byłaby drugim,
  * mniej zrozumiałym komunikatem o tym samym.
  *
  * Kolor to `red-ink`, nie systemowy `red`: ten drugi ma na jasnym tle 3,4:1

@@ -21,7 +21,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       przypomnienie: 'Przypomnimy Ci 30 dni przed. Szefowi też.',
     },
     pozycje: [
-      { co: 'Prawo jazdy · C1', kiedy: 'do 2029', stan: 'ważne' },
+      { co: 'Prawo jazdy · B', kiedy: 'do 2029', stan: 'ważne' },
       { co: 'Badania psychologiczne', kiedy: 'do 2028', stan: 'ważne' },
       { co: 'Kod 95', kiedy: 'do 2028', stan: 'ważne' },
       { co: 'Dokumenty pojazdu', kiedy: 'PO 2093J · do wglądu w trasie', stan: '→', odnosnik: true },
@@ -37,7 +37,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       przypomnienie: 'We’ll remind you 30 days before. Your boss too.',
     },
     pozycje: [
-      { co: 'Driving licence · C1', kiedy: 'until 2029', stan: 'valid' },
+      { co: 'Driving licence · B', kiedy: 'until 2029', stan: 'valid' },
       { co: 'Psychological test', kiedy: 'until 2028', stan: 'valid' },
       { co: 'Code 95 (Driver CPC)', kiedy: 'until 2028', stan: 'valid' },
       { co: 'Vehicle documents', kiedy: 'PO 2093J · ready for roadside checks', stan: '→', odnosnik: true },
@@ -46,7 +46,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
 };
 
-/** Dokumenty kierowcy w jego telefonie — z najbliższym terminem u góry. */
+/** Dokumenty kierowcy w jego telefonie – z najbliższym terminem u góry. */
 export function TelefonKierowcy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

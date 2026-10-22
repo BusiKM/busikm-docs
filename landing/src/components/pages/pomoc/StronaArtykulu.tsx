@@ -53,11 +53,11 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Szerokość wiersza pilnowana w znakach — tak się mierzy czytelność. */
+/** Szerokość wiersza pilnowana w znakach – tak się mierzy czytelność. */
 const KOLUMNA = 'max-w-[62ch]';
 
 /**
- * Kroki — ponumerowana lista z pionową kreską łączącą.
+ * Kroki – ponumerowana lista z pionową kreską łączącą.
  *
  * Numer w kółku, a nie sam `<ol>` z kropką: instrukcję czyta się z ekranu
  * telefonu w połowie wykonanej czynności i trzeba móc na pierwszy rzut oka
@@ -65,7 +65,7 @@ const KOLUMNA = 'max-w-[62ch]';
  * kolejność, a nie zbiór równorzędnych opcji.
  *
  * Kreska wychodzi z kółka i kończy się na następnym, więc rysuje ją każdy
- * element oprócz ostatniego — `last:before:hidden`.
+ * element oprócz ostatniego – `last:before:hidden`.
  */
 function Kroki({ kroki }: { kroki: { tytul: string; opis?: string }[] }) {
   return (
@@ -89,10 +89,10 @@ function Kroki({ kroki }: { kroki: { tytul: string; opis?: string }[] }) {
 }
 
 /**
- * Wyróżnienie — uwaga albo zapowiedź.
+ * Wyróżnienie – uwaga albo zapowiedź.
  *
  * Dwa warianty, bo mówią o czym innym. „Uwaga" ostrzega przed czymś, co jest
- * i co da się zepsuć. „Jeszcze tego nie ma" mówi o czymś, czego nie ma —
+ * i co da się zepsuć. „Jeszcze tego nie ma" mówi o czymś, czego nie ma –
  * i musi wyglądać inaczej, żeby nikt nie szukał opisanego przycisku.
  */
 function Wyroznienie({ typ, tresc }: { typ: 'uwaga' | 'wkrotce'; tresc: string }) {
@@ -146,7 +146,7 @@ function Tresc({ blok }: { blok: Blok }) {
     return <Wyroznienie typ={blok.typ} tresc={blok.tresc} />;
   }
 
-  // Tabela. Własny kontener z przewijaniem — na telefonie szeroka tabela ma
+  // Tabela. Własny kontener z przewijaniem – na telefonie szeroka tabela ma
   // jechać w poziomie sama, a nie ciągnąć za sobą całej strony.
   return (
     <div className="-mx-6 overflow-x-auto px-6 lg:mx-0 lg:px-0">
@@ -179,7 +179,7 @@ function Tresc({ blok }: { blok: Blok }) {
   );
 }
 
-/** Etykieta w pasku pod tytułem — rola, miejsce w aplikacji, czas. */
+/** Etykieta w pasku pod tytułem – rola, miejsce w aplikacji, czas. */
 function Znacznik({ etykieta, wartosc }: { etykieta: string; wartosc: string }) {
   return (
     <div className="flex flex-col gap-1">
@@ -192,12 +192,12 @@ function Znacznik({ etykieta, wartosc }: { etykieta: string; wartosc: string }) 
 }
 
 /**
- * Strona artykułu pomocy — jeden układ na wszystkie instrukcje.
+ * Strona artykułu pomocy – jeden układ na wszystkie instrukcje.
  *
  * Kolejność na ekranie jest kolejnością pytań, które zadaje ktoś, kto tu
  * trafił: co to da (lead), czy to o mnie (role), gdzie tego szukać (ścieżka
  * w aplikacji), ile zajmie (czas), co przygotować (zanim), jak to zrobić
- * (rozdziały). Dopiero na końcu — dokąd dalej.
+ * (rozdziały). Dopiero na końcu – dokąd dalej.
  */
 export function StronaArtykulu({ artykul }: { artykul: Artykul }) {
   const jezyk = biezacyJezyk();

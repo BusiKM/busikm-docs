@@ -13,7 +13,7 @@ type Krok = {
   czas: string;
   /**
    * Przycisk stoi tylko przy kroku, który da się zrobić z tej strony. Pozostałe
-   * wymagają zalogowania, więc przycisk z ich nazwą prowadziłby donikąd —
+   * wymagają zalogowania, więc przycisk z ich nazwą prowadziłby donikąd –
    * mówi o tym zdanie pod listą.
    */
   akcja?: { label: string; href: string };
@@ -42,20 +42,21 @@ const kroki: Tlumaczenia<Krok[]> = {
   pl: [
     {
       tytul: 'Załóż konto',
-      tresc: 'Adres e-mail i nazwa firmy. Reszta danych potem.',
+      tresc:
+        'Zaczynasz od NIP-u – nazwę i adres firmy pobierzemy z rejestru. Potem imię, e-mail i hasło. Konta otwieramy na razie osobom z listy – zapisz się, a damy znać.',
       czas: '2 minuty',
-      akcja: { label: 'Załóż konto', href: appLinks.trial },
+      akcja: { label: 'Zapisz się na listę', href: appLinks.login },
     },
     {
       tytul: 'Dodaj pierwszy pojazd',
       tresc:
-        'Numer rejestracyjny i to wszystko. Ubezpieczenie i przegląd dopiszesz, kiedy będziesz miał pod ręką.',
+        'Zdjęcie dowodu rejestracyjnego – numer, marka, model i rok wpiszą się same. Możesz też przepisać je ręcznie. Polisę dodasz, kiedy będziesz miał ją pod ręką.',
       czas: '1 minuta',
     },
     {
       tytul: 'Zaproś kierowcę',
       tresc:
-        'Wpisujesz imię i adres e-mail, kierowca dostaje kod. Instaluje aplikację i ustawia własne hasło.',
+        'Dodajesz kierowcę w module Kierowcy, a on dostaje mailem kod zaproszenia i odnośnik do aplikacji. W aplikacji wybiera „Mam zaproszenie”, wpisuje e-mail i kod, ustawia hasło.',
       czas: '2 minuty',
     },
     {
@@ -66,7 +67,7 @@ const kroki: Tlumaczenia<Krok[]> = {
     {
       tytul: 'Kierowca rusza',
       tresc:
-        'Zdjęcie licznika, „Rozpocznij trasę”. Od tego momentu trasa, czas pracy i koszty zapisują się same.',
+        'Zdjęcie licznika i „Zacznij dzień”. Od tego momentu trasa, czas pracy i koszty zapisują się same.',
       czas: 'po jego stronie',
     },
     {
@@ -77,27 +78,29 @@ const kroki: Tlumaczenia<Krok[]> = {
     },
     {
       tytul: 'Wystaw fakturę',
-      tresc: 'Ze zlecenia, jednym kliknięciem. Plik idzie na mail klienta i do systemu e-faktur.',
+      tresc:
+        'Ze zlecenia, jednym przyciskiem do KSeF. Wysyłkę do klienta zlecasz od razu – PDF z kodem QR pójdzie na jego mail, gdy KSeF nada numer.',
       czas: 'minuta',
     },
   ],
   en: [
     {
       tytul: 'Create an account',
-      tresc: 'An email address and your company name. The rest of the details can wait.',
+      tresc:
+        'You start with your tax ID (NIP) – we fetch the company name and address from the register. Then your name, email and password. For now we open accounts for people on the list – join it and we’ll let you know.',
       czas: '2 minutes',
-      akcja: { label: 'Create an account', href: appLinks.trial },
+      akcja: { label: 'Join the list', href: appLinks.login },
     },
     {
       tytul: 'Add your first vehicle',
       tresc:
-        'The registration number, and that’s it. Add the insurance and inspection dates when you have them to hand.',
+        'A photo of the registration certificate – the number, make, model and year fill themselves in. You can also type them in. Add the insurance policy when you have it to hand.',
       czas: '1 minute',
     },
     {
       tytul: 'Invite a driver',
       tresc:
-        'You enter a name and an email address, the driver gets a code. They install the app and set their own password.',
+        'You add the driver in the Drivers module and they get an invitation code by email, with a link to the app. In the app they tap “I have an invitation” (Mam zaproszenie), enter their email and the code, and set a password.',
       czas: '2 minutes',
     },
     {
@@ -108,7 +111,7 @@ const kroki: Tlumaczenia<Krok[]> = {
     {
       tytul: 'The driver sets off',
       tresc:
-        'A photo of the odometer, then “Start route” (Rozpocznij trasę). From then on the route, working time and costs record themselves.',
+        'A photo of the odometer, then “Start the day” (Zacznij dzień). From then on the route, working time and costs record themselves.',
       czas: 'on their side',
     },
     {
@@ -120,14 +123,14 @@ const kroki: Tlumaczenia<Krok[]> = {
     {
       tytul: 'Issue the invoice',
       tresc:
-        'From the order, in one click. The file goes to your client’s inbox and to KSeF, Poland’s national e-invoicing system.',
+        'From the order, with one button to KSeF, Poland’s national e-invoicing system. You send it to the client straight away – the PDF with a QR code goes to their inbox once KSeF assigns the number.',
       czas: '1 minute',
     },
   ],
 };
 
 /**
- * Siedem kroków jako lista do odhaczania, nie artykuł — to ten sam materiał,
+ * Siedem kroków jako lista do odhaczania, nie artykuł – to ten sam materiał,
  * którego używa checklista w aplikacji. Odhaczenie żyje w tej karcie i niczego
  * nie zapisuje; służy do trzymania miejsca w trakcie czytania.
  */

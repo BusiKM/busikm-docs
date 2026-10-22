@@ -8,7 +8,7 @@ export type Role = {
   device: string;
   title: string;
   body: string;
-  /** Ekran roli — składany po stronie serwera, bo sięga do plików makiet. */
+  /** Ekran roli – składany po stronie serwera, bo sięga do plików makiet. */
   screen: React.ReactNode;
 };
 
@@ -27,7 +27,7 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
         poniżej szerokości swojej treści. Zakładki mają `flex-none`, więc ich
         łączna szerokość rozpychała tę kolumnę do 407 px przy ekranie 375 px.
         Kontener zakładek dostawał wtedy całą tę szerokość i jego
-        `overflow-x-auto` nie miał czego przewijać — „Kierowca" był po prostu
+        `overflow-x-auto` nie miał czego przewijać – „Kierowca" był po prostu
         ucięty przez przodka i nie dało się do niego dotrzeć.
       */}
       <div className="flex min-w-0 flex-col gap-6 lg:gap-10">
@@ -37,12 +37,12 @@ export function RoleTabs({ roles }: { roles: Role[] }) {
           /*
             Cztery równe kolumny zamiast przewijanej listy. Przewijanie było
             tu ślepym zaułkiem: „Kierowca" wystawał poza ekran i nic nie
-            podpowiadało, że da się go przesunąć — wyglądało to na uciętą
+            podpowiadało, że da się go przesunąć – wyglądało to na uciętą
             treść, a nie na listę do przewinięcia.
 
             Zmierzone przy 320 px: na cztery komórki zostaje po 68 px,
             a najszerszy napis („Dyspozytor") ma 73 px przy 13 px pisma
-            i 67 px przy 12 px. Stąd stopniowanie — 11 px na najwęższych
+            i 67 px przy 12 px. Stąd stopniowanie – 11 px na najwęższych
             ekranach, 12 px od 360 px, 13 px od 640 px. Na desktopie bez
             zmian: kolumna z pełnym rozmiarem i nazwą urządzenia obok.
           */

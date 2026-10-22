@@ -28,7 +28,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
   pl: {
     nadtytul: 'Dla dyspozytora',
     tytul: 'Cały dzień pracy na jednym ekranie.',
-    lead: 'Zlecenia, mapa i kierowca obok siebie. Bez przeskakiwania między oknami i bez dzwonienia trzy razy dziennie.',
+    lead: 'Kolejka zleceń i mapa floty obok siebie, a do kierowcy piszesz jednym kliknięciem. Bez przeskakiwania między oknami i bez dzwonienia trzy razy dziennie.',
     nieRobisz: [
       'dzwonisz do kierowcy trzy razy dziennie',
       'przepisujesz adres do nawigacji',
@@ -43,7 +43,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
           pozycje: [
             'Wszystkie zlecenia',
             'Całą flotę',
-            'Kierowców i ich czas pracy',
+            'Kierowców i ile jazdy im zostało',
             'Trasy i koszty kursu',
           ],
         },
@@ -63,18 +63,18 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       ],
       [
         'Ilu kierowców udźwignie jeden ekran?',
-        'Tylu, ilu masz. Lista filtruje się po statusie: jedzie, na przerwie, dostępny.',
+        'Tylu, ilu masz. Mapa filtruje auta: wszystkie, w trasie, wolne, serwis.',
       ],
       [
         'Co, gdy kierowca nie odbiera?',
-        'Widzisz jego ostatnią pozycję z godziną i piszesz wiadomość w aplikacji. Odczyta, gdy stanie.',
+        'Widzisz ostatnią pozycję auta i piszesz w czacie zlecenia. Kierowca odczyta w aplikacji, gdy stanie.',
       ],
     ],
   },
   en: {
     nadtytul: 'For dispatchers',
     tytul: 'A whole working day on one screen.',
-    lead: 'Orders, the map and the driver side by side. No jumping between windows and no calling three times a day.',
+    lead: 'The order queue and the fleet map side by side, and you message a driver in one click. No jumping between windows and no calling three times a day.',
     nieRobisz: [
       'call the driver three times a day',
       'copy the address into the satnav',
@@ -86,7 +86,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       kolumny: [
         {
           nadtytul: 'You see',
-          pozycje: ['All orders', 'The whole fleet', 'Drivers and their working time', 'Routes and job costs'],
+          pozycje: ['All orders', 'The whole fleet', 'Drivers and how much driving time they have left', 'Routes and job costs'],
         },
         {
           nadtytul: 'You don’t see',
@@ -104,18 +104,18 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       ],
       [
         'How many drivers can one screen handle?',
-        'As many as you have. The list filters by status: driving, on a break, available.',
+        'As many as you have. The map filters vans: all, on the road, free, in service.',
       ],
       [
         'What if a driver doesn’t answer?',
-        'You see their last position with the time and send a message in the app. They’ll read it when they stop.',
+        'You see the van’s last position and write in the order chat. The driver reads it in the app when they stop.',
       ],
     ],
   },
 };
 
 /**
- * Dyspozytor — strona roli wg projektu „BusiKM Dla dyspozytora" z Claude Design
+ * Dyspozytor – strona roli wg projektu „BusiKM Dla dyspozytora" z Claude Design
  * (design/12-dyspozytor). Treść: docs/landing/05, rozdział B2.
  */
 export default async function Page({ params }: ParametryJezyka) {

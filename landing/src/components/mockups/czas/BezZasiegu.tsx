@@ -35,7 +35,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Pasek dnia z luką w zasięgu — i dowód, że luka też się policzyła. */
+/** Pasek dnia z luką w zasięgu – i dowód, że luka też się policzyła. */
 export function BezZasiegu() {
   const t = TEKSTY[biezacyJezyk()];
   return (

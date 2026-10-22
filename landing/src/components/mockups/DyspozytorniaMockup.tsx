@@ -64,7 +64,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
 };
 
-/** Ekran dyspozytora — zlecenia, mapa i rozmowa obok siebie. */
+/** Ekran dyspozytora – zlecenia, mapa i rozmowa obok siebie. */
 export function DyspozytorniaMockup() {
   const t = TEKSTY[biezacyJezyk()];
   return (

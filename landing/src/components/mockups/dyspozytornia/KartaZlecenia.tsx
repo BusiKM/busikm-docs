@@ -1,7 +1,7 @@
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
-/** Pozycja stawki w `wiersze` — pogrubiona. */
+/** Pozycja stawki w `wiersze` – pogrubiona. */
 const STAWKA = 1;
 
 const TEKSTY: Tlumaczenia<{

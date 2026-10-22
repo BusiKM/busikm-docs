@@ -15,7 +15,7 @@ const TEKSTY: Tlumaczenia<{
       'Załadunek gotowy, ruszam 06:10.',
       'Jedź. Rozładunek jutro 08:00.',
       'Tankowanie pod Brnem, paragon dodany.',
-      'Korek na A22, trasa poprawiona. Masz nową w telefonie.',
+      'Rozładunek przesunięty na 15:30, zmieniłam w zleceniu. Masz w aplikacji.',
       'Widzę. Dzięki.',
     ],
     pole: 'Napisz do kierowcy…',
@@ -26,14 +26,14 @@ const TEKSTY: Tlumaczenia<{
       'Loaded, leaving at 06:10.',
       'Go ahead. Unloading tomorrow 08:00.',
       'Filled up near Brno, receipt added.',
-      'Jam on the A22, route updated. The new one’s on your phone.',
+      'Unloading moved to 15:30, I’ve updated the order. It’s in your app.',
       'Got it. Thanks.',
     ],
     pole: 'Message the driver…',
   },
 };
 
-/** Rozmowa z kierowcą wewnątrz dyspozytorni. */
+/** Czat zlecenia z kierowcą – otwiera go „Napisz” w dyspozytorni. */
 export function Rozmowa() {
   const t = TEKSTY[biezacyJezyk()];
   return (

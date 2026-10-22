@@ -6,10 +6,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { pytaniaIOdpowiedzi } from '@/components/seo/schema';
 
 /**
- * Pytania w akordeonie — ten sam układ na stronie głównej i na podstronach.
+ * Pytania w akordeonie – ten sam układ na stronie głównej i na podstronach.
  * Domyślnie wszystkie zamknięte.
  *
- * Przy okazji wystawia te same pytania jako dane strukturalne — skoro
+ * Przy okazji wystawia te same pytania jako dane strukturalne – skoro
  * odpowiedzi i tak stoją w kodzie strony, opisanie ich robotowi nic nie
  * kosztuje. Znacznik jest tu, a nie na dwudziestu stronach osobno, żeby
  * treść widoczna i treść dla wyszukiwarki nie mogły się rozjechać.

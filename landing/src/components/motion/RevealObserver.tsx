@@ -4,20 +4,20 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 /**
- * Wejście treści przy przewijaniu — poziom 1 z docs/landing/06-animacje.md.
+ * Wejście treści przy przewijaniu – poziom 1 z docs/landing/06-animacje.md.
  *
  * Obserwuje `[data-reveal]`, nadaje `.is-visible` i przestaje obserwować.
  * Kaskadę w grupie ustawia zmienna `--i` nadawana dzieciom `[data-reveal-group]`.
  *
  * Stan ukryty włącza się wyłącznie wtedy, gdy JavaScript wystartował
- * (atrybut `data-reveal="on"` ustawiany skryptem w `layout.tsx`) — bez niego
+ * (atrybut `data-reveal="on"` ustawiany skryptem w `layout.tsx`) – bez niego
  * strona jest w całości widoczna.
  *
  * Dwie rzeczy, bez których treść potrafi zostać niewidoczna:
  *
  * 1. Obserwator startuje na nowo przy każdej zmianie adresu. Komponent siedzi
  *    w głównym układzie, który przy przejściu między stronami nie jest
- *    montowany ponownie — bez `pathname` w zależnościach nowa strona nigdy
+ *    montowany ponownie – bez `pathname` w zależnościach nowa strona nigdy
  *    nie trafiłaby pod obserwację i zostałaby przy `opacity: 0`.
  * 2. Węzły dokładane później (strumieniowanie, Suspense) łapie
  *    `MutationObserver`.

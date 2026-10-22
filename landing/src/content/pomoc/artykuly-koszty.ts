@@ -1,32 +1,32 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
-/** Koszty, flota i terminy — to, co pilnuje się w tle i mści przy kontroli. */
+/** Koszty, flota i terminy – to, co pilnuje się w tle i mści przy kontroli. */
 export const artykulyKoszty: Artykul[] = [
   {
     slug: 'koszty-w-biurze',
     kategoria: 'koszty',
-    tytul: 'Akceptacja kosztów',
-    lead: 'Kierowcy wrzucają paragony z trasy, Ty decydujesz, co wchodzi w koszty firmy.',
+    tytul: 'Sprawdzanie kosztów',
+    lead: 'Kompletny koszt liczy się sam. Ty zajmujesz się tylko tym, czego brakuje albo co wymaga sprawdzenia.',
     role: ['wlasciciel', 'ksiegowa'],
     gdzie: 'Koszty',
     czas: 'Kilkanaście minut tygodniowo',
     rozdzialy: [
       {
-        tytul: 'Cztery stany kosztu',
+        tytul: 'Stany kosztu',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'Nad listą są zakładki, które są jednocześnie ścieżką dokumentu. Licznik przy „Koszty" w menu pokazuje, ile czeka na Twoją decyzję.',
+              'Nie ma osobnej akceptacji: koszt z kompletem danych od razu jest Gotowy i wchodzi do wyniku. Zakładki nad listą pokazują, gdzie jest każdy dokument, a licznik przy „Koszty” w menu – ile czeka na Ciebie.',
           },
           {
             typ: 'tabela',
             naglowki: ['Zakładka', 'Co to znaczy'],
             wiersze: [
-              ['Do akceptacji', 'Kierowca dodał, nikt jeszcze nie sprawdził'],
-              ['Zaakceptowane', 'Sprawdzone i uznane za koszt firmy'],
-              ['Zaksięgowane', 'Poszło do księgowej w eksporcie'],
-              ['Odrzucone', 'Nie jest kosztem firmy — z powodem odrzucenia'],
+              ['Do uzupełnienia', 'Czegoś brakuje albo coś trzeba sprawdzić – np. kwoty, rodzaju kosztu, możliwego duplikatu'],
+              ['Gotowe', 'Komplet danych, koszt liczy się w wyniku'],
+              ['Zaksięgowane', 'Poszło do księgowej'],
+              ['Do zwrotu kierowcom', 'Kierowca zapłacił z własnych pieniędzy'],
             ],
           },
         ],
@@ -37,26 +37,29 @@ export const artykulyKoszty: Artykul[] = [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Otwórz zakładkę Do akceptacji' },
+              { tytul: 'Otwórz zakładkę Do uzupełnienia' },
               {
-                tytul: 'Wejdź w Szczegóły',
-                opis: 'Obok danych zobaczysz zdjęcie dokumentu — to, które zrobił kierowca. Nie musisz szukać papieru.',
+                tytul: 'Otwórz koszt',
+                opis: 'Obok kwot i danych widzisz zdjęcie dokumentu – to, które zrobił kierowca. Nie musisz szukać papieru.',
               },
               {
-                tytul: 'Porównaj odczytane pola ze zdjęciem',
-                opis: 'Sprzedawca, NIP, Numer dokumentu, Data wystawienia, Kwota netto, VAT %. Przy paragonie ze skanu warto rzucić okiem, bo pogniecione wydruki czyta się gorzej.',
+                tytul: 'Rozstrzygnij, czego brakuje',
+                opis: 'Na górze jest karta dla każdego powodu, z gotowymi przyciskami – na przykład Zapisz z pojazdem, Kwota się zgadza, Popraw kwotę albo To ten sam, zostaw jeden.',
               },
               {
-                tytul: 'Sprawdź Kategoria * i VAT do odliczenia',
-                opis: 'Kategoria decyduje, w którym miejscu koszt pojawi się w raportach. Odliczenie VAT zależy od tego, jak używany jest pojazd.',
+                tytul: 'Gdy coś jest niejasne, kliknij Zapytaj kierowcę',
+                opis: 'Pytanie trafia do jego aplikacji, a przy koszcie ze zlecenia także do czatu zlecenia. Kierowca odpowiada albo robi zdjęcie jeszcze raz.',
               },
-              { tytul: 'Zaakceptuj albo odrzuć' },
+              {
+                tytul: 'Prywatny zakup usuń przyciskiem To nie koszt firmy',
+                opis: 'Z podaniem powodu. Usunięte koszty znajdziesz w filtrze Usunięte i możesz je przywrócić.',
+              },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Przy większej liczbie dokumentów zaznacz kilka wierszy naraz i użyj akcji zbiorczej — koniec miesiąca robi się wtedy w jednym posiedzeniu.',
+              'Przy większej liczbie dokumentów zaznacz kilka wierszy i zmień rodzaj, przypisz pojazd albo zlecenie wszystkim naraz.',
           },
         ],
       },
@@ -66,15 +69,37 @@ export const artykulyKoszty: Artykul[] = [
           {
             typ: 'lista',
             punkty: [
-              'Z telefonu kierowcy — zdjęcie paragonu na trasie.',
-              'Z wpisu w biurze — gdy dokument przyszedł pocztą albo mailem.',
-              'Ze skanu w Skanuj OCR — wrzucasz plik, system odczytuje pola.',
+              'Od kierowców – zdjęcie paragonu z aplikacji, w trasie.',
+              'Z KSeF – faktury kosztowe pobieramy codziennie o 6:00, nie musisz ich dodawać.',
+              'Z maila – faktury przesłane na adres Twojej firmy w BusiKM.',
+              'Z karty paliwowej – faktura zbiorcza dzielona na tankowania.',
+              'Dodane w biurze – w Koszty → Dodaj koszt wgrywasz pliki albo wpisujesz koszt bez pliku.',
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Sprzedawcę, kwoty, stawkę VAT i datę odczytuje AI, a BusiKM sprawdza wynik. Każdy plik to osobny koszt.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Koszt w obcej walucie przelicza się kursem NBP z dnia poprzedzającego wystawienie dokumentu. Nikt nie przepisuje kursów z tabel.',
+              'Koszt w obcej walucie przelicza się kursem NBP z dnia przed datą wystawienia dokumentu. Gdy kursu brakuje, koszt trafia do uzupełnienia z prośbą o wpisanie kursu.',
+          },
+        ],
+      },
+      {
+        tytul: 'Zamknięcie miesiąca kosztów',
+        bloki: [
+          {
+            typ: 'akapit',
+            tresc:
+              'Przycisk Miesiąc nad listą prowadzi do zestawienia miesiąca. Zamkniesz go, gdy nic nie zostało do uzupełnienia – zwroty kierowcom nie blokują. Po zamknięciu koszty z tego miesiąca są tylko do odczytu, a dokument, który dojdzie później, trafia na listę Po zamknięciu.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Miesiąc zamyka księgowa, a właściciel – gdy firma nie ma księgowej w BusiKM. Ponowne otwarcie wymaga podania powodu i zostaje w historii.',
           },
         ],
       },
@@ -86,7 +111,7 @@ export const artykulyKoszty: Artykul[] = [
     slug: 'dokumenty-i-terminy',
     kategoria: 'koszty',
     tytul: 'Dokumenty i terminy',
-    lead: 'OC, przegląd, badania kierowcy i karta tachografu w jednym miejscu — z ostrzeżeniem, zanim wygasną.',
+    lead: 'OC, przegląd, badania kierowcy i karta kierowcy w jednym miejscu – z przypomnieniem, zanim wygasną.',
     role: ['wlasciciel', 'dyspozytor'],
     gdzie: 'Dokumenty',
     czas: 'Godzina raz, potem samo pilnuje',
@@ -98,50 +123,59 @@ export const artykulyKoszty: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Wejdź w kartę pojazdu albo kierowcy',
-                opis: 'Dokumenty wisi przy tym, czego dotyczą — nie ma jednego worka na wszystko.',
-              },
-              { tytul: 'Dodaj dokument' },
-              {
-                tytul: 'Wybierz Typ dokumentu *',
-                opis: 'Od typu zależy kategoria i sposób przypominania.',
+                tytul: 'Wejdź w Dokumenty i kliknij Dodaj dokument',
+                opis: 'Możesz też dodać go w karcie pojazdu (Terminy i dokumenty) albo kierowcy (Dokumenty i uprawnienia).',
               },
               {
-                tytul: 'Wgraj plik i wpisz datę ważności',
-                opis: 'Plik przeciągasz na pole albo wybierasz z dysku. Data ważności jest sednem — bez niej dokument leży, ale nikt o nim nie przypomni.',
+                tytul: 'Wgraj zdjęcie albo PDF',
+                opis: 'Rodzaj, numer, daty i to, czego dokument dotyczy, odczytamy. Ty sprawdzasz.',
               },
+              {
+                tytul: 'Sprawdź pole Ważny do',
+                opis: 'To sedno – bez daty dokument leży, ale nikt o nim nie przypomni.',
+              },
+              { tytul: 'Kliknij Zapisz dokument' },
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Po odnowieniu polisy otwierasz dokument i klikasz Dodaj nową wersję – poprzednia zostaje w historii.',
           },
         ],
       },
       {
-        tytul: 'Co system pilnuje',
+        tytul: 'Co pilnujemy',
         bloki: [
           {
             typ: 'tabela',
             naglowki: ['Przy pojeździe', 'Przy kierowcy'],
             wiersze: [
-              ['Dowód rejestracyjny, wypis z licencji', 'Prawo jazdy z kategoriami'],
-              ['OC, AC, NNW, GAP, zielona karta', 'Kwalifikacja zawodowa (CPC), kod 95'],
-              ['Badanie techniczne, tachograf, kalibracja', 'Badania lekarskie i psychologiczne'],
-              ['ATP, ADR pojazdu', 'ADR, HACCP, szkolenia'],
-              ['Licencja transportowa, leasing', 'Karta tachografu, KRK, umowa'],
+              ['Dowód rejestracyjny, umowa leasingu', 'Prawo jazdy'],
+              ['Polisa OC, polisa AC, zielona karta', 'Kod 95'],
+              ['Badanie techniczne', 'Badania lekarskie i psychotesty'],
+              ['Legalizacja tachografu', 'Karta kierowcy'],
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Ekran Dokumenty pokazuje trzy grupy: Wygasłe, Wygasają w 30 dni i Wygasa dzisiaj — z podziałem na Firma, Pojazdy i Kierowcy. Do tego przychodzi powiadomienie na telefon i mailem.',
+              'Przy firmie: licencja wspólnotowa i wypisy, zezwolenie na wykonywanie zawodu przewoźnika, certyfikat kompetencji zawodowych, zabezpieczenie finansowe, polisa OCP i odpis z KRS.',
           },
           {
             typ: 'akapit',
             tresc:
-              'Ile dni wcześniej mają iść ostrzeżenia, ustawisz w Ustawienia → Progi alertów.',
+              'Ekran Dokumenty pokazuje, co jest po terminie, czego brakuje i co kończy się w ciągu 30 dni – osobno dla firmy, pojazdów i kierowców. Pobierz komplet przygotuje zestaw dla klienta albo na kontrolę auta.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Przypominamy 60, 30, 14 i 3 dni przed terminem oraz w dniu terminu – w aplikacji i mailem, właścicielowi i dyspozytorowi. Mail przychodzi raz dziennie rano, tylko gdy coś się zmieniło. Kanały ustawisz w Ustawienia → Powiadomienia.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Najdroższa data w firmie transportowej to ta, o której nikt nie wiedział. Wgraj dokumenty raz — kolejny raz to już tylko podmiana pliku po odnowieniu polisy.',
+              'Najdroższa data w firmie transportowej to ta, o której nikt nie wiedział. Wgraj dokumenty raz – kolejny raz to już tylko nowa wersja po odnowieniu polisy.',
           },
         ],
       },

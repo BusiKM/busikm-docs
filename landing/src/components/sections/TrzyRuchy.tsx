@@ -9,11 +9,11 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     naglowek: 'Trzy ruchy. Reszta dzieje się bez Ciebie.',
     steps: [
-      ['01', 'Kierowca rusza', 'Włącza trasę w telefonie. Robi zdjęcie licznika. Tyle.'],
+      ['01', 'Kierowca rusza', 'Robi zdjęcie licznika i klika „Zacznij dzień”. Tyle.'],
       [
         '02',
         'Dane same lecą',
-        'Trasa, kilometry, czas pracy, paragony. Wszystko ląduje u Ciebie — nawet wtedy, gdy kierowca nie ma zasięgu.',
+        'Trasa, kilometry, czas pracy, paragony. Wszystko ląduje u Ciebie – nawet wtedy, gdy kierowca nie ma zasięgu.',
       ],
       [
         '03',
@@ -25,11 +25,11 @@ const TEKSTY: Tlumaczenia<{
   en: {
     naglowek: 'Three moves. The rest happens without you.',
     steps: [
-      ['01', 'The driver sets off', 'Starts the route on the phone. Snaps the odometer. That’s it.'],
+      ['01', 'The driver sets off', 'Snaps the odometer and taps “Start the day”. That’s it.'],
       [
         '02',
         'The data sends itself',
-        'Route, kilometres, working time, receipts. It all lands with you — even when the driver has no signal.',
+        'Route, kilometres, working time, receipts. It all lands with you – even when the driver has no signal.',
       ],
       [
         '03',
@@ -40,7 +40,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** 6.4 — trzy ruchy. */
+/** 6.4 – trzy ruchy. */
 export function TrzyRuchy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

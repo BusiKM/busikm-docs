@@ -46,31 +46,31 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     ],
     naglowekPytan: 'Trzy pytania',
     nawigacja: {
-      tytul: 'Nawigacja jest w środku',
+      tytul: 'Nawigacja jednym dotknięciem',
       tresc:
-        'Trasa ze zlecenia prowadzi go od razu, w tej samej aplikacji. Nie przeskakuje między nawigacją a resztą, nie przepisuje adresu z jednej aplikacji do drugiej. Zmieniasz trasę u siebie — on ma nową wersję w telefonie w tej samej chwili.',
-      label: 'Nawigacja · telefon, tryb nocny',
-      note: 'Nawigacja z trasą, u góry następny manewr i godzina dojazdu, u dołu karta zlecenia.',
+        'Ekran zlecenia pokazuje trasę i godzinę z BusiKM. Jedno dotknięcie i trasa otwiera się w Apple Maps, Google Maps albo Waze. Kierowca wybiera raz, zmienia w ustawieniach. Działa z CarPlay i Android Auto. Nic nie przepisuje, a BusiKM zapisuje przejazd w tle.',
+      label: 'Wybór nawigacji · telefon, tryb nocny',
+      note: 'Ekran „Dziś” z kursem Wrocław → Milano, a na nim plansza „Czym nawigujesz?” z wyborem Apple Maps, Google Maps albo Waze.',
     },
     koszt: {
-      tytul: 'Koszt dodaje jednym przyciskiem',
+      tytul: 'Paragon dodaje jednym przyciskiem',
       tresc:
-        'Zatankował, pstryknął paragon i jedzie dalej. Kwota, data i sprzedawca wpisują się same, koszt trafia do tego zlecenia i tego pojazdu.',
-      label: 'Dodawanie kosztu · telefon, tryb nocny',
-      note: 'Zdjęcie paragonu u góry, pod nim rozpoznane pola (kwota, data, rodzaj, zlecenie, pojazd), przycisk „Zapisz”.',
+        'Zatankował, dotknął „Dodaj” i pstryknął paragon. Wybiera rodzaj kosztu, czym zapłacił i zlecenie, potem „Wyślij paragon” i jedzie dalej. Kwotę, datę i sprzedawcę BusiKM odczyta sam.',
+      label: 'Moje koszty · telefon, tryb nocny',
+      note: 'Ekran „Moje koszty”: zwrot dla kierowcy, liczniki „Biuro pyta”, „Do uzupełnienia”, „Gotowe” i „Zaksięgowane”, przycisk „Dodaj paragon” i lista paragonów z miesiąca.',
     },
     czas: {
-      tytul: 'Przerwa i powrót jednym tapnięciem',
-      tresc: 'Aplikacja przypomina o obowiązkowej przerwie zanim będzie za późno, nie po fakcie.',
-      label: 'Licznik czasu pracy · telefon, tryb nocny',
-      note: 'Duży pierścień jazdy, przypomnienie o przerwie u góry, jeden przycisk „Przerwa” u dołu.',
+      tytul: 'Przerwa i odpoczynek jednym tapnięciem',
+      tresc: 'Aplikacja przypomina o obowiązkowej przerwie 15 minut wcześniej, nie po fakcie. Na ekranie „Czas pracy” kierowca widzi jazdę ciągłą, dzienną i tydzień, a przerwę albo odpoczynek zapisuje jednym przyciskiem.',
+      label: 'Czas pracy · telefon, tryb nocny',
+      note: 'Ekran „Czas pracy”: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
     },
     wysylka: {
       tytul: 'Działa bez zasięgu',
       tresc:
-        'Tunel, góry, terminal promowy, parking pod granicą. Wszystko zapisuje się w telefonie i dosyła, gdy wróci sygnał. Kierowca ma ekran „Do wysłania” i widzi, co jeszcze czeka.',
+        'Tunel, góry, terminal promowy, parking pod granicą. Paragony, zdjęcia i przerwy czekają w telefonie i wysyłają się, gdy wróci sygnał. Kierowca ma ekran „Do wysłania” i widzi, co jeszcze czeka.',
       label: 'Ekran „Do wysłania” · telefon, tryb nocny',
-      note: 'Lista rzeczy czekających na sygnał (punkty trasy, paragon, przerwa), jedna już wysłana.',
+      note: 'Ekran „Do wysłania” z komunikatem „Wszystko wysłane”: wszystkie dane dotarły do serwera.',
     },
   },
   en: {
@@ -90,41 +90,41 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     ],
     naglowekPytan: 'Three questions',
     nawigacja: {
-      tytul: 'Navigation is built in',
+      tytul: 'Navigation in one tap',
       tresc:
-        'The route from the order guides them straight away, in the same app. No jumping between a sat nav and everything else, no copying addresses from one app to another. Change the route on your side and the new version is on their phone the same moment.',
-      label: 'Navigation · phone, dark mode',
-      note: 'Navigation with the route: next turn and arrival time at the top, the order card at the bottom.',
+        'The order screen shows the route and the time from BusiKM. One tap and the route opens in Apple Maps, Google Maps or Waze. The driver picks one once and can change it in the settings. It works with CarPlay and Android Auto. Nothing to retype, and BusiKM logs the trip in the background.',
+      label: 'Choosing navigation · phone, dark mode',
+      note: 'The “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” sheet offering Apple Maps, Google Maps or Waze.',
     },
     koszt: {
-      tytul: 'A cost takes one button',
+      tytul: 'A receipt takes one button',
       tresc:
-        'Fill up, snap the receipt, drive on. Amount, date and seller fill themselves in, and the cost lands on that order and that vehicle.',
-      label: 'Adding a cost · phone, dark mode',
-      note: 'Receipt photo at the top, recognised fields below (amount, date, type, order, vehicle), a “Save” button.',
+        'Fill up, tap “Add”, snap the receipt. Pick the cost type, how it was paid and the order, hit “Send receipt” and drive on. BusiKM reads the amount, date and seller itself.',
+      label: 'My costs · phone, dark mode',
+      note: 'The “My costs” screen: the driver’s refund, counters for “Office asks”, “To complete”, “Ready” and “Booked”, an “Add receipt” button and the month’s receipts.',
     },
     czas: {
-      tytul: 'Break and back in one tap',
-      tresc: 'The app reminds them about the required break before it’s too late, not after the fact.',
-      label: 'Working time counter · phone, dark mode',
-      note: 'A large driving ring, a break reminder at the top, a single “Break” button at the bottom.',
+      tytul: 'Break or rest in one tap',
+      tresc: 'The app reminds them about the required break 15 minutes ahead, not after the fact. On the “Working time” screen the driver sees continuous, daily and weekly driving, and logs a break or a rest with one button.',
+      label: 'Working time · phone, dark mode',
+      note: 'The “Working time” screen: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
     },
     wysylka: {
       tytul: 'Works with no signal',
       tresc:
-        'A tunnel, the mountains, a ferry terminal, a car park by the border. Everything is saved on the phone and sent once the signal is back. The driver has a “To send” screen and sees what’s still waiting.',
+        'A tunnel, the mountains, a ferry terminal, a car park by the border. Receipts, photos and breaks wait on the phone and go out once the signal is back. The driver has a “To send” screen and sees what’s still waiting.',
       label: '“To send” screen · phone, dark mode',
-      note: 'A list of items waiting for signal (route points, a receipt, a break), one already sent.',
+      note: 'The “To send” screen showing “All sent”: every piece of data has reached the server.',
     },
   },
 };
 
-/** Ekran telefonu w ramce do podmiany — powtarza się cztery razy. */
+/** Ekran telefonu w ramce do podmiany – powtarza się cztery razy. */
 /**
  * Powiększenie zrzutów telefonu na tej stronie.
  *
  * Wszystkie pliki mają ten sam kształt: kadr 4:3, a w nim telefon zajmujący
- * 30% szerokości i 81% wysokości — reszta to pusty margines. W pudle 6:7
+ * 30% szerokości i 81% wysokości – reszta to pusty margines. W pudle 6:7
  * ogranicza je szerokość, więc bez powiększenia telefon wychodzi szeroki
  * na 156 px w kolumnie mającej 520 i wygląda jak miniaturka.
  *
@@ -160,7 +160,7 @@ function Slot({
       box="6:7"
       imageScale={imageScale}
       // Telefon zajmuje 30% szerokości kadru, więc nawet przy 1,8 zostaje
-      // mnóstwo zapasu — powiększenie działa tu także na telefonie.
+      // mnóstwo zapasu – powiększenie działa tu także na telefonie.
       imageScaleTelefon={imageScale}
       dark={dark}
     >
@@ -170,7 +170,7 @@ function Slot({
 }
 
 /**
- * Aplikacja kierowcy — podstrona wg projektu „BusiKM Aplikacja kierowcy"
+ * Aplikacja kierowcy – podstrona wg projektu „BusiKM Aplikacja kierowcy"
  * z Claude Design (design/02-aplikacja-kierowcy). Treść: docs/landing/05, rozdział A1.
  */
 export default async function Page({ params }: ParametryJezyka) {

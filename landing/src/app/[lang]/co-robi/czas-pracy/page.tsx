@@ -42,17 +42,17 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'Skąd system wie, że kierowca jedzie?',
-        'Z trasy, która nagrywa się w telefonie od przycisku „Rozpocznij trasę”.',
+        'Z trasy, która zapisuje się w telefonie od przycisku „Zacznij dzień”, i z etapu zlecenia. Status zmienia się sam, a przerwę czy odpoczynek kierowca zapisuje jednym przyciskiem.',
       ],
       [
-        'Co, gdy kierowca zapomni zakończyć trasę?',
-        'Aplikacja mu przypomni, a Ty możesz poprawić godzinę ręcznie, z podanym powodem.',
+        'Czy liczniki działają też w kraju?',
+        'Przy przewozie międzynarodowym aplikacja pokazuje liczniki według przepisów UE: jazdę ciągłą, dzienną, tydzień i dwa tygodnie. W kraju pokazuje dzienny czas pracy i odpoczynek.',
       ],
     ],
     naglowekPytan: 'Trzy pytania',
     drobiazgi: [
-      'Licznik widoczny na ekranie blokady',
-      'Sygnał dźwiękowy przed przerwą',
+      'Przerwy zapisane bez zasięgu dochodzą później',
+      'Powiadomienie 15 minut przed przerwą',
       'Ręczna korekta z podanym powodem',
       'Podgląd tygodnia i miesiąca',
       'Status kierowcy widoczny w dyspozytorni',
@@ -65,7 +65,8 @@ const TEKSTY: Tlumaczenia<{
     },
     zasieg: {
       tytul: 'Działa bez zasięgu',
-      tresc: 'Liczniki chodzą w telefonie. Dane dosyłają się, gdy wróci sygnał.',
+      tresc:
+        'Liczniki liczy serwer. Bez sieci telefon pokazuje ostatni stan, a przerwy i odpoczynki zapisane bez zasięgu czekają w kolejce i dochodzą, gdy wróci sygnał.',
     },
     karta: {
       tytul: 'Miesięczna karta do wydruku',
@@ -89,17 +90,17 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'How does the system know the driver is driving?',
-        'From the route, which records on the phone from the “Start route” button.',
+        'From the route, which records on the phone from the moment they start the day, and from the stage the order is at. The status changes by itself, and the driver logs a break or a rest with one button.',
       ],
       [
-        'What if the driver forgets to finish the route?',
-        'The app reminds them, and you can correct the time by hand, with a reason given.',
+        'Do the counters work on domestic jobs too?',
+        'On international jobs the app shows counters under the EU rules: continuous driving, daily, weekly and two-weekly. On domestic jobs it shows daily working time and rest.',
       ],
     ],
     naglowekPytan: 'Three questions',
     drobiazgi: [
-      'Counter visible on the lock screen',
-      'Sound alert before a break',
+      'Breaks logged with no signal go through later',
+      'A notification 15 minutes before a break',
       'Manual correction with a reason given',
       'Week and month view',
       'Driver status visible in Dispatch',
@@ -112,7 +113,8 @@ const TEKSTY: Tlumaczenia<{
     },
     zasieg: {
       tytul: 'Works with no signal',
-      tresc: 'The counters run on the phone. Data is sent once the signal is back.',
+      tresc:
+        'The server does the counting. With no network the phone shows the last known state, and breaks and rest logged with no signal wait in a queue until it’s back.',
     },
     karta: {
       tytul: 'A monthly sheet to print',
@@ -131,10 +133,10 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Czas pracy i przerwy — podstrona wg projektu „BusiKM Czas pracy i przerwy"
+ * Czas pracy i przerwy – podstrona wg projektu „BusiKM Czas pracy i przerwy"
  * z Claude Design (design/08-czas-pracy). Treść: docs/landing/05, rozdział A4.
  *
- * Na tej stronie nie ma ani jednego numeru rozporządzenia ani kwoty kary —
+ * Na tej stronie nie ma ani jednego numeru rozporządzenia ani kwoty kary –
  * reguła z docs/landing/02.
  */
 export default async function Page({ params }: ParametryJezyka) {

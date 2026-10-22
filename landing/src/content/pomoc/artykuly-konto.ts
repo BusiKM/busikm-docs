@@ -1,14 +1,14 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
-/** Konto, zespół, uprawnienia i bezpieczeństwo. */
+/** Konto, zespół, uprawnienia, bezpieczeństwo i płatności. */
 export const artykulyKonto: Artykul[] = [
   {
     slug: 'zespol-i-role',
     kategoria: 'konto',
     tytul: 'Zespół i uprawnienia',
-    lead: 'Kto co widzi i skąd się bierze w systemie — księgowego zapraszasz z ustawień, kierowcę z modułu Kierowcy.',
+    lead: 'Kto co widzi i skąd się bierze w systemie – osoby z biura zapraszasz z ustawień, kierowcę dodajesz w module Kierowcy.',
     role: ['wlasciciel'],
-    gdzie: 'Ustawienia → Firma → Zespół',
+    gdzie: 'Ustawienia → Zespół i dostęp',
     rozdzialy: [
       {
         tytul: 'Role',
@@ -17,42 +17,41 @@ export const artykulyKonto: Artykul[] = [
             typ: 'tabela',
             naglowki: ['Rola', 'Co robi'],
             wiersze: [
-              ['Właściciel', 'Widzi całość: zlecenia, faktury, koszty, flotę, raporty, ustawienia'],
-              ['Księgowy', 'Faktury, koszty, raporty, eksporty FK i JPK_FA, wynagrodzenia'],
-              ['Dyspozytor', 'Zlecenia, dyspozytornia, przydzielanie kierowców'],
-              ['Kierowca', 'Własne zlecenia, przejazdy, paragony i dokumenty — w aplikacji na telefonie'],
+              ['Właściciel', 'Wszystko, także konta bankowe, zespół, plan i KSeF'],
+              ['Księgowa', 'Faktury, koszty, rozliczenia i dane firmy; konta, plan i flotę tylko ogląda'],
+              ['Dyspozytor', 'Zlecenia, dyspozytornia, auta i kierowcy, bez kwot i faktur'],
+              ['Kierowca', 'Tylko aplikacja na telefonie; dodajesz go w module Kierowcy'],
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Jedna osoba może mieć kilka ról naraz. W małej firmie właściciel jest zwykle też dyspozytorem i nikt nie zakłada sobie drugiego konta, żeby ułożyć trasę.',
+              'Każda osoba ma jedną rolę. W małej firmie właściciel jest zwykle też dyspozytorem – jego konto ma dostęp do wszystkiego, więc nie potrzebuje drugiego.',
           },
           {
             typ: 'uwaga',
-            tresc:
-              'Zestawienie Rozliczenia — eksport FK, JPK_FA, wynagrodzenia — jest widoczne dla księgowego, nie dla właściciela. Właściciel z biurem rachunkowym nie generuje plików do urzędu, więc menu nie zaśmieca mu się przyciskami, których nie użyje.',
+            tresc: 'Zespół i dostęp widzi tylko właściciel.',
           },
         ],
       },
       {
-        tytul: 'Zaproszenie księgowego',
+        tytul: 'Zaproszenie do zespołu',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Ustawienia → Zespół' },
-              { tytul: 'Kliknij Zaproś księgowego' },
+              { tytul: 'Wejdź w Ustawienia → Zespół i dostęp' },
+              { tytul: 'Kliknij Zaproś osobę' },
               {
-                tytul: 'Podaj adres e-mail i wyślij zaproszenie',
-                opis: 'Księgowy dostaje mail z linkiem aktywacyjnym. Po akceptacji dołącza do firmy z rolą Księgowy i dostępem do faktur, raportów i eksportów FK.',
+                tytul: 'Podaj adres e-mail i wybierz rolę',
+                opis: 'Księgowa, Dyspozytor albo Właściciel. Wyślemy e-mail z linkiem do ustawienia hasła. Link działa 7 dni.',
               },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Na liście zespołu widzisz właściciela i księgowych. Kierowcami zarządzasz osobno — w module Kierowcy.',
+              'Zaproszenia, których nikt jeszcze nie przyjął, widzisz na tej samej stronie, w sekcji Zaproszenia czekające na przyjęcie. Kierowców tu nie ma – dodajesz ich w module Kierowcy, a zaproszenie do aplikacji wychodzi na końcu kreatora.',
           },
         ],
       },
@@ -62,15 +61,15 @@ export const artykulyKonto: Artykul[] = [
           {
             typ: 'lista',
             punkty: [
-              'Rolę przełączasz między właścicielem a księgowym — to jedyna para, którą wymienia się w ustawieniach zespołu.',
-              'Konto księgowego dezaktywujesz z tej samej listy, gdy współpraca się kończy.',
-              'Kierowcę odłączasz od firmy w jego karcie w module Kierowcy.',
+              'Rolę zmieniasz przy osobie na liście. Zmiana działa od razu, bez ponownego logowania, i zapisuje się w Historii zmian.',
+              'Gdy współpraca się kończy, kliknij Odbierz dostęp. Osoba nie zaloguje się do firmy, a dostęp przywrócisz jednym kliknięciem.',
+              'Kierowcami zarządzasz w module Kierowcy.',
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'Dezaktywacja odbiera dostęp, ale nie kasuje historii. Faktury i eksporty zrobione przez tę osobę zostają — tak jak powinny, bo są dokumentami firmy.',
+              'Odebranie dostępu nie kasuje historii. Zmiany zrobione przez tę osobę zostają – tak jak powinny, bo dotyczą dokumentów firmy.',
           },
         ],
       },
@@ -81,10 +80,10 @@ export const artykulyKonto: Artykul[] = [
   {
     slug: 'bezpieczenstwo-konta',
     kategoria: 'konto',
-    tytul: 'Hasło, weryfikacja dwuetapowa i sesje',
+    tytul: 'Hasło, kod z telefonu i zalogowane urządzenia',
     lead: 'Trzy rzeczy do zrobienia raz, po których nikt nie wejdzie na Twoje konto z cudzego laptopa.',
     role: ['wlasciciel', 'ksiegowa', 'dyspozytor'],
-    gdzie: 'Ustawienia → Konto → Bezpieczeństwo',
+    gdzie: 'Ustawienia → Logowanie i bezpieczeństwo',
     czas: 'Pięć minut',
     rozdzialy: [
       {
@@ -93,52 +92,49 @@ export const artykulyKonto: Artykul[] = [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Ustawienia → Bezpieczeństwo' },
-              { tytul: 'W sekcji Hasło podaj obecne i nowe' },
-              { tytul: 'Kliknij Zmień hasło' },
+              { tytul: 'Wejdź w Ustawienia → Logowanie i bezpieczeństwo' },
+              { tytul: 'W sekcji Hasło kliknij Zmień hasło' },
+              { tytul: 'Podaj obecne i nowe hasło' },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Po zmianie hasła inne urządzenia zostają wylogowane. To zamierzone — jeśli zmieniasz hasło dlatego, że coś Cię zaniepokoiło, telefon w cudzej kieszeni ma stracić dostęp od razu.',
+              'Po zmianie wylogujemy Cię na innych urządzeniach. To zamierzone – jeśli zmieniasz hasło dlatego, że coś Cię zaniepokoiło, telefon w cudzej kieszeni ma stracić dostęp od razu.',
           },
         ],
       },
       {
-        tytul: 'Weryfikacja dwuetapowa',
+        tytul: 'Kod z telefonu przy logowaniu',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
+              { tytul: 'W sekcji Kod z telefonu przy logowaniu włącz ochronę' },
               {
-                tytul: 'W sekcji Dwuetapowa weryfikacja włącz ochronę',
-                opis: 'Pojawi się kod QR.',
-              },
-              {
-                tytul: 'Zeskanuj kod aplikacją uwierzytelniającą',
-                opis: 'Google Authenticator, 1Password, Authy — dowolna, która generuje sześciocyfrowe kody.',
+                tytul: 'Połącz konto z aplikacją uwierzytelniającą',
+                opis: 'Google Authenticator, 1Password, Authy – dowolna, która generuje sześciocyfrowe kody.',
               },
               {
                 tytul: 'Przepisz kod z aplikacji, żeby potwierdzić',
-                opis: 'Od tej chwili logowanie prosi o kod obok hasła.',
+                opis: 'Od tej chwili przy logowaniu po haśle wpisujesz 6 cyfr z aplikacji na telefonie.',
               },
             ],
           },
           {
             typ: 'uwaga',
             tresc:
-              'Konto właściciela ma dostęp do faktur, kontrahentów i danych kierowców. Weryfikacja dwuetapowa kosztuje pięć minut raz — a jest różnicą między wykradzionym hasłem a wykradzioną firmą.',
+              'Konto właściciela ma dostęp do faktur, kontrahentów i danych kierowców. Kod z telefonu kosztuje pięć minut raz – a jest różnicą między wykradzionym hasłem a wykradzioną firmą.',
           },
         ],
       },
       {
-        tytul: 'Aktywne sesje',
+        tytul: 'Urządzenia z aktywnym logowaniem',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'Lista Aktywne sesje pokazuje, gdzie jesteś zalogowany — z urządzeniem i adresem. Pojedynczą pozycję kończysz przyciskiem Wyloguj sesję, wszystkie inne naraz — Wyloguj inne urządzenia.',
+              'Lista pokazuje, na jakich urządzeniach jesteś zalogowany. Przyciskiem Wyloguj inne urządzenia zamykasz wszystkie pozostałe naraz.',
           },
           {
             typ: 'akapit',
@@ -154,10 +150,10 @@ export const artykulyKonto: Artykul[] = [
   {
     slug: 'plan-i-rezygnacja',
     kategoria: 'konto',
-    tytul: 'Plan, faktury za BusiKM i rezygnacja',
-    lead: 'Co możesz sprawdzić sam, a co dziś załatwiamy mailem.',
+    tytul: 'Plan, płatność, faktury za BusiKM i rezygnacja',
+    lead: 'Plan, kartę, faktury i rezygnację załatwiasz sam, w ustawieniach – bez pisania do nas.',
     role: ['wlasciciel'],
-    gdzie: 'Ustawienia → Firma → Subskrypcja',
+    gdzie: 'Ustawienia → Plan i płatności',
     rozdzialy: [
       {
         tytul: 'Sprawdzenie planu',
@@ -165,27 +161,58 @@ export const artykulyKonto: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'W Ustawienia → Subskrypcja widzisz swój bieżący plan, limity pojazdów i kierowców oraz to, co obejmuje. Plan zależy od wielkości floty.',
+              'W Ustawienia → Plan i płatności widzisz plan firmy, do kiedy jest ważny i jego stan: okres próbny, aktywny albo wygasły. Plan zależy od liczby pojazdów – kierowcy i osoby z biura są bez limitu.',
+          },
+          {
+            typ: 'lista',
+            punkty: [
+              'Start – do 3 pojazdów.',
+              'Firma – 10 pojazdów w cenie, każdy kolejny +29 zł, do 50. Większa flota – napisz do nas.',
+            ],
+          },
+          {
+            typ: 'uwaga',
+            tresc:
+              'Plan, kartę i faktury za BusiKM zmienia właściciel firmy. Pozostali widzą tylko, jaki plan ma firma.',
           },
         ],
       },
       {
-        tytul: 'Zmiana planu',
+        tytul: 'Wybór planu i płatność',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Ustawienia → Subskrypcja' },
+              { tytul: 'Wejdź w Ustawienia → Plan i płatności' },
               {
-                tytul: 'Kliknij Wybierz plan przy tym, który Cię interesuje',
-                opis: 'Otworzy się wiadomość do nas z wpisanym tematem. Odpowiadamy tego samego dnia roboczego i przestawiamy plan.',
+                tytul: 'W sekcji Zmień plan kliknij Wybierz plan',
+                opis: 'Start albo Firma, płatność miesięczna albo roczna.',
+              },
+              {
+                tytul: 'Podaj kartę na stronie płatności Stripe',
+                opis: 'Dane karty wpisujesz u operatora płatności, nie w BusiKM. Jeśli trwa okres próbny, karta zostaje zapisana, a pierwsza opłata schodzi dopiero po jego końcu.',
               },
             ],
           },
           {
-            typ: 'wkrotce',
+            typ: 'akapit',
             tresc:
-              'Płatność kartą i zmiana planu jednym kliknięciem są w budowie. Dziś zmiana planu i faktury za BusiKM idą przez nas — dlatego przycisk otwiera maila, a nie płatność.',
+              'Fakturę za każdą opłatę dostajesz mailem, ze stawką VAT „zw.” – MOVGRANTO jest zwolniona z VAT, więc cena z cennika jest ceną końcową.',
+          },
+        ],
+      },
+      {
+        tytul: 'Zmiana planu, karty i pobranie faktur',
+        bloki: [
+          {
+            typ: 'kroki',
+            kroki: [
+              { tytul: 'Wejdź w Ustawienia → Plan i płatności' },
+              {
+                tytul: 'Kliknij Otwórz panel płatności',
+                opis: 'Otworzy się panel Stripe. Zmienisz w nim plan i kartę, a faktury za BusiKM pobierzesz w PDF.',
+              },
+            ],
           },
         ],
       },
@@ -193,14 +220,24 @@ export const artykulyKonto: Artykul[] = [
         tytul: 'Rezygnacja i dane',
         bloki: [
           {
-            typ: 'akapit',
-            tresc:
-              'Rezygnację zgłaszasz mailem. Przed zamknięciem konta pobierz to, co ma zostać u Ciebie: faktury w PDF, eksporty FK z historii i raporty za wszystkie miesiące.',
+            typ: 'kroki',
+            kroki: [
+              { tytul: 'Wejdź w Ustawienia → Plan i płatności i kliknij Otwórz panel płatności' },
+              {
+                tytul: 'Zakończ subskrypcję',
+                opis: 'Rezygnacja działa na koniec opłaconego okresu, bez zwrotu za jego niewykorzystaną część. Do tego czasu możesz ją wycofać.',
+              },
+            ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Komplet danych z konta pobierzesz też w Ustawienia → Eksport RODO. To Twoje dane i wychodzą z nami tak samo łatwo, jak weszły.',
+              'Do końca opłaconego okresu pracujesz normalnie. Potem konto zostaje do odczytu: przeglądasz dane i pobierasz faktury, ewidencje przebiegu, zestawienia i eksporty.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Swoje dane osobowe pobierzesz w Ustawienia → Twoje dane osobowe. To Twoje dane i wychodzą z nami tak samo łatwo, jak weszły.',
           },
         ],
       },

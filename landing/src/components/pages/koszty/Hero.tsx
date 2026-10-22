@@ -15,20 +15,20 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     eyebrow: 'Koszty i paragony',
     tytul: ['Reklamówka paragonów.', 'Do wyrzucenia.'],
-    lead: 'Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca wpisują się same.',
-    label: 'Koszt z paragonu · telefon, tryb nocny',
-    note: 'Telefon w perspektywie ze zdjęciem paragonu i wypełnionym formularzem; obok „odklejony” panel z rozpoznanymi polami. Ten sam ekran co na stronie głównej.',
+    lead: 'Kierowca robi zdjęcie na stacji, wybiera rodzaj kosztu i zlecenie. Kwotę, datę i sprzedawcę BusiKM odczyta sam.',
+    label: 'Moje koszty · telefon, tryb nocny',
+    note: 'Ekran „Moje koszty”: zwrot dla kierowcy, liczniki „Biuro pyta”, „Do uzupełnienia”, „Gotowe” i „Zaksięgowane”, przycisk „Dodaj paragon” i lista paragonów z miesiąca. Ten sam ekran co na stronie głównej.',
   },
   en: {
     eyebrow: 'Costs and receipts',
     tytul: ['The carrier bag of receipts.', 'Bin it.'],
-    lead: 'The driver takes a photo at the fuel station. Amount, date and merchant fill themselves in.',
-    label: 'Cost from a receipt · phone, dark mode',
-    note: 'Phone in perspective with a photo of the receipt and the completed form; beside it, a “peeled-off” panel with the recognised fields. The same screen as on the home page.',
+    lead: 'The driver takes a photo at the fuel station and picks the cost type and the order. BusiKM reads the amount, date and merchant itself.',
+    label: 'My costs · phone, dark mode',
+    note: 'The “My costs” screen: the driver’s refund, counters for “Office asks”, “To complete”, “Ready” and “Booked”, an “Add receipt” button and the month’s receipts. The same screen as on the home page.',
   },
 };
 
-/** Nagłówek strony — jasny, z telefonem w perspektywie i odklejonym panelem pól. */
+/** Nagłówek strony – jasny, z telefonem w perspektywie i odklejonym panelem pól. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (
