@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/Button';
+import { appLinks } from '@/content/navigation';
 
 import { Section } from '@/components/ui/Section';
 import type { Tlumaczenia } from '@/i18n/jezyki';
@@ -10,14 +11,14 @@ const TEKSTY: Tlumaczenia<{
   odnosnik: string;
 }> = {
   pl: {
-    naglowek: 'Demo przygotowujemy. Zostaw adres.',
-    lead: 'Prawdziwa aplikacja z danymi przykładowej firmy transportowej. Przy wejściu wybierasz rolę: właściciel, dyspozytor albo księgowa. Demo jest tylko do odczytu. Napiszemy w dniu, w którym ruszy – razem z 14 dniami bez opłat.',
-    odnosnik: 'Zapisz się po dostęp do demo',
+    naglowek: 'Zobacz BusiKM od środka. Bez konta.',
+    lead: 'Prawdziwa aplikacja na danych przykładowej firmy transportowej. Przy wejściu wybierasz rolę – właściciel, dyspozytor albo księgowa – i klikasz, ile chcesz. Demo jest tylko do odczytu, więc niczego nie zepsujesz.',
+    odnosnik: 'Wejdź do demo',
   },
   en: {
-    naglowek: 'The demo is on its way. Leave your email.',
-    lead: 'The real app, filled with a sample transport company’s data. When you enter, you pick a role: owner, dispatcher or accountant. The demo is read-only. We’ll write to you the day it goes live – along with 14 days free.',
-    odnosnik: 'Sign up for demo access',
+    naglowek: 'See BusiKM from the inside. No account.',
+    lead: 'The real app, on a sample transport company’s data. When you enter, you pick a role – owner, dispatcher or accountant – and click around as much as you like. The demo is read-only, so you can’t break anything.',
+    odnosnik: 'Enter the demo',
   },
 };
 
@@ -39,11 +40,11 @@ export function Demo() {
         {/*
           Dawniej stał tu duży zrzut pulpitu owinięty w odnośnik do /demo.
           Wyglądał jak obraz do powiększenia, a przenosił do formularza
-          zapisu – czytelnik klikał, żeby zobaczyć ekran, i lądował gdzie
-          indziej. Pulpit widać już w hero, więc tu wystarcza jasny przycisk.
+          zapisu. Pulpit widać już w hero, więc tu wystarcza jasny przycisk –
+          prosto do demo w aplikacji.
         */}
         <div data-reveal>
-          <Button href="/demo" fullWidth className="lg:w-auto">
+          <Button href={appLinks.demo} fullWidth className="lg:w-auto">
             {t.odnosnik}
           </Button>
         </div>

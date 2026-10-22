@@ -285,14 +285,14 @@ const strony = {
 
   demo: {
     eyebrow: 'Demo',
-    heading: 'Demo przygotowujemy.\nZostaw adres.',
-    lead: 'Przykładowa firma transportowa, wejście bez konta i wybór roli. Napiszemy w dniu uruchomienia.',
+    heading: 'Zobacz BusiKM od środka.\nBez konta.',
+    lead: 'Przykładowa firma transportowa, wejście bez konta i wybór roli. Tylko do odczytu.',
     title: 'Demo BusiKM',
-    seoTitle: 'Demo BusiKM – zapisz się po wczesny dostęp',
+    seoTitle: 'Demo BusiKM – zobacz aplikację bez zakładania konta',
     description:
-      'Przygotowujemy demo: przykładowa firma transportowa, bez konta, jako właściciel, dyspozytor albo księgowa. Zostaw adres – napiszemy w dniu uruchomienia.',
+      'Demo BusiKM na danych przykładowej firmy transportowej: wejdź bez konta jako właściciel, dyspozytor albo księgowa i kliknij wszystko. Tylko do odczytu.',
     opisOg:
-      'Przygotowujemy demo z przykładową firmą transportową, bez zakładania konta. Zostaw adres – napiszemy w dniu uruchomienia.',
+      'Demo BusiKM z przykładową firmą transportową – bez zakładania konta, tylko do odczytu.',
   },
 
   zaloguj: {
@@ -634,14 +634,14 @@ const stronyEn: Record<keyof typeof strony, PageSpec> = {
 
   demo: {
     eyebrow: 'Demo',
-    heading: 'We’re preparing the demo.\nLeave your email.',
-    lead: 'A sample transport company, no account needed, pick your role. We’ll write on launch day.',
+    heading: 'See BusiKM from the inside.\nNo account.',
+    lead: 'A sample transport company, no account needed, pick your role. Read-only.',
     title: 'BusiKM demo',
-    seoTitle: 'BusiKM demo – sign up for early access',
+    seoTitle: 'BusiKM demo – see the app without signing up',
     description:
-      'We’re preparing a demo: a sample transport company, no account, seen as the owner, dispatcher or accountant. Leave your email – we’ll write on launch day.',
+      'The BusiKM demo on a sample transport company’s data: walk in without an account as the owner, dispatcher or accountant and click everything. Read-only.',
     opisOg:
-      'We’re preparing a demo with a sample transport company, no account needed. Leave your email – we’ll write on launch day.',
+      'The BusiKM demo with a sample transport company – no account needed, read-only.',
   },
 
   zaloguj: {

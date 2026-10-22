@@ -153,7 +153,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     menu: { coRobi: 'Co robi', dlaKogo: 'Dla kogo', cennik: 'Cennik', pomoc: 'Pomoc' },
     promo: {
       label: 'Zobacz demo',
-      benefit: 'Przygotowujemy je. Zostaw adres, a damy znać w dniu uruchomienia.',
+      benefit: 'Wejdź bez konta i zobacz aplikację na danych przykładowej firmy.',
     },
     pomoc: [
       { href: '/pomoc', label: 'Centrum pomocy', benefit: 'Odpowiedzi na najczęstsze pytania' },
@@ -186,7 +186,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       demo: {
         href: '/demo',
         label: 'Zobacz demo',
-        benefit: 'Przygotowujemy je – zostaw adres, damy znać',
+        benefit: 'Bez konta, tylko do odczytu – właściciel, dyspozytor albo księgowa',
       },
       login: { href: '/zaloguj', label: 'Zaloguj się', benefit: 'Konta otwieramy wkrótce' },
     },
@@ -288,7 +288,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     menu: { coRobi: 'Features', dlaKogo: 'Who it’s for', cennik: 'Pricing', pomoc: 'Help' },
     promo: {
       label: 'See the demo',
-      benefit: 'We’re building it. Leave your email and we’ll let you know on launch day.',
+      benefit: 'Walk in without an account and see the app on a sample company’s data.',
     },
     pomoc: [
       { href: '/pomoc', label: 'Help centre', benefit: 'Answers to the most common questions' },
@@ -321,12 +321,26 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       demo: {
         href: '/demo',
         label: 'See the demo',
-        benefit: 'We’re building it – leave your email and we’ll let you know',
+        benefit: 'No account, read-only – owner, dispatcher or accountant',
       },
       login: { href: '/zaloguj', label: 'Sign in', benefit: 'Accounts open soon' },
     },
   },
 };
+
+/**
+ * Wejście do demo w aplikacji – przykładowa firma, wybór roli przy wejściu,
+ * tylko do odczytu, sesja na godzinę.
+ *
+ * Adres pochodzi ze zmiennej `NEXT_PUBLIC_DEMO_URL` (Vercel → Environment
+ * Variables), żeby przejście demo ze stagingu na produkcję było zmianą jednej
+ * wartości, bez commita. Domyślnie staging – tam demo rusza najpierw.
+ *
+ * `appLinks.demo` prowadzi prosto do aplikacji (przyciski „Zobacz demo”),
+ * a pozycje menu `/demo` – na stronę landingu, która mówi, czego się
+ * spodziewać, i ma ten sam przycisk.
+ */
+export const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || 'https://staging.busikm.pl/demo/';
 
 /**
  * Adresy aplikacji – w jednym miejscu, bo część nie jest jeszcze docelowa.
@@ -342,9 +356,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
  */
 export const appLinks = {
   trial: '/cennik',
-  demo: '/demo',
+  demo: DEMO_URL,
   login: '/zaloguj',
 } as const;
+
 
 /**
  * Menu na telefonie – jedna lista sekcji, każda w tym samym rytmie.

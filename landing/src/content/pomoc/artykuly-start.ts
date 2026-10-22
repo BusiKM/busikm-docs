@@ -32,7 +32,7 @@ export const artykulyStart: Artykul[] = [
           {
             typ: 'wkrotce',
             tresc:
-              'Rejestracja dla wszystkich i demo do samodzielnego obejrzenia ruszą wkrótce. Do tego czasu na stronie zapisujesz się na listę, a nie zakładasz konto.',
+              'Demo obejrzysz już teraz, bez konta – przycisk Zobacz demo na stronie. Rejestracja dla wszystkich ruszy wkrótce; do tego czasu na stronie zapisujesz się na listę, a nie zakładasz konto.',
           },
         ],
       },

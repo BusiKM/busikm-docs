@@ -29,7 +29,7 @@ export const artykulyStartEn: Artykul[] = [
           {
             typ: 'wkrotce',
             tresc:
-              'Sign-up for everyone and a demo you can explore on your own are coming soon. Until then, the website puts you on a list rather than creating an account.',
+              'You can explore the demo right now, no account needed – use the See the demo button on the website. Sign-up for everyone is coming soon; until then, the website puts you on a list rather than creating an account.',
           },
         ],
       },

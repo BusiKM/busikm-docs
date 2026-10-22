@@ -102,10 +102,10 @@ opłacie.
 
 ## Demo
 
-Demo jest w przygotowaniu. Strona busikm.pl/demo zbiera zapisy – osoby
-z listy dostaną wiadomość w dniu uruchomienia. Demo będzie przykładową firmą
-transportową: wchodzi się bez konta, wybiera rolę (właściciel, dyspozytor
-albo księgowa) i ogląda wszystko w trybie tylko do odczytu.
+Demo działa w aplikacji: https://staging.busikm.pl/demo/ (strona
+busikm.pl/demo opisuje je i prowadzi dalej). To przykładowa firma
+transportowa – wchodzi się bez konta, wybiera rolę (właściciel, dyspozytor
+albo księgowa) i ogląda wszystko w trybie tylko do odczytu, w sesji na godzinę.
 
 Publiczna rejestracja też jeszcze nie jest otwarta – busikm.pl/zaloguj
 zbiera zapisy na konta.
@@ -194,9 +194,10 @@ rate): Start 149 PLN per month (up to 3 vehicles), Firma 299 PLN per month
 fleets – get in touch). Drivers and office staff are not counted. First
 14 days free with no card, no fixed-term contract.
 
-The demo is still being prepared. busikm.pl/demo collects sign-ups; the demo
-will be a sample transport company you enter without an account, choosing a
-role (owner, dispatcher or accountant), read-only. Public sign-up is not open
+The demo is live in the app at https://staging.busikm.pl/demo/ (busikm.pl/demo
+describes it and links there): a sample transport company you enter without an
+account, choosing a role (owner, dispatcher or accountant), read-only, in a
+one-hour session. Public sign-up is not open
 yet either – busikm.pl/zaloguj collects sign-ups for accounts.
 
 Servers are in Europe (DigitalOcean, Frankfurt). A daily backup, encrypted,

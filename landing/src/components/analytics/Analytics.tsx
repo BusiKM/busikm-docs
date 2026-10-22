@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
 import { odczytajZgode, subskrybujZgode, zgodaNaSerwerze } from './zgoda';
+import { DEMO_URL } from '@/content/navigation';
 
 /**
  * Google Analytics 4 – ładowany dopiero po zgodzie.
@@ -55,6 +56,28 @@ function OdslonyStron() {
   return null;
 }
 
+/**
+ * Wejścia do demo – zdarzenie `demo_open` przy kliknięciu w odnośnik do demo
+ * w aplikacji, z informacją, z której strony przyszło.
+ *
+ * Jeden nasłuch na dokumencie zamiast kodu w każdym przycisku: odnośników do
+ * demo jest kilkanaście (nagłówek, hero, strony ról, sekcja demo, 404)
+ * i każdy nowy liczy się sam. Rusza tylko po zgodzie, razem z resztą GA4.
+ */
+function WejsciaDoDemo() {
+  useEffect(() => {
+    const naKlik = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.('a[href]');
+      if (!a || !window.gtag) return;
+      if (!a.getAttribute('href')?.startsWith(DEMO_URL)) return;
+      window.gtag('event', 'demo_open', { page_path: window.location.pathname });
+    };
+    document.addEventListener('click', naKlik, { capture: true });
+    return () => document.removeEventListener('click', naKlik, { capture: true });
+  }, []);
+  return null;
+}
+
 export function Analytics() {
   // Zgoda mieszka w `localStorage`, poza Reactem. Czytana wprost ze źródła,
   // nie przepisywana do stanu efektem – inaczej każde wejście na stronę
@@ -95,6 +118,7 @@ export function Analytics() {
       <Suspense fallback={null}>
         <OdslonyStron />
       </Suspense>
+      <WejsciaDoDemo />
     </>
   );
 }
