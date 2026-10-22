@@ -15,14 +15,14 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     eyebrow: 'Dokumenty i terminy',
     tytul: 'Nic nie wygaśnie po cichu.',
-    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat i mówi wcześniej – Tobie i kierowcy.',
+    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania. System pilnuje dat i przypomina wcześniej – Tobie i dyspozytorowi. Kierowca widzi swoje terminy w aplikacji.',
     label: 'Dokumenty i terminy · desktop',
     note: 'Lista dokumentów posortowana po dniach do końca ważności, paski w trzech kolorach, jeden wiersz w kolorze ostrzegawczym. Ten sam ekran co na stronie głównej.',
   },
   en: {
     eyebrow: 'Documents and deadlines',
     tytul: 'Nothing expires quietly.',
-    lead: 'Insurance, roadworthiness test, operator licence, driving licence, medical checks. BusiKM watches the dates and warns you early – you and the driver.',
+    lead: 'Insurance, roadworthiness test, operator licence, driving licence, medical checks. BusiKM watches the dates and reminds you early – you and the dispatcher. Drivers see their own deadlines in the app.',
     label: 'Documents and deadlines · desktop',
     note: 'Document list sorted by days to expiry, bars in three colours, one row in the warning colour. The same screen as on the home page.',
   },

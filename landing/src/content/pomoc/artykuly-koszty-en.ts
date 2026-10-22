@@ -170,7 +170,7 @@ export const artykulyKosztyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'We send reminders 60, 30, 14 and 3 days before the deadline and on the day itself – in the app and by email, to the owner and the dispatcher. The email comes once a day in the morning, only when something has changed. You choose the channels in Settings → Notifications (Powiadomienia).',
+              'We send reminders 60, 30, 14 and 3 days before the deadline – in the app and by email. The owner and the dispatcher hear about vehicle and driver documents, the owner and the accountant about company documents. The email comes once a day in the morning, only when something has changed. You choose the channels in Settings → Notifications (Powiadomienia).',
           },
           {
             typ: 'uwaga',

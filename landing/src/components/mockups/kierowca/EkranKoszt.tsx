@@ -15,13 +15,13 @@ const TEKSTY: Tlumaczenia<{
   zapisz: string;
 }> = {
   pl: {
-    naglowek: 'Dodaj koszt',
+    naglowek: 'Dodaj paragon',
     pola: [
       ['Kwota', '103,30 € · 442 zł'],
       ['Data', '2.09.2026'],
       ['Rodzaj', 'Paliwo'],
       ['Zlecenie', 'Warszawa → Mediolan'],
-      ['Pojazd', 'WZ 4821K'],
+      ['Zapłacono', 'Karta firmowa'],
     ],
     diesel: 'Diesel 78,4 l',
     dieselKwota: '96,20 €',
@@ -29,16 +29,16 @@ const TEKSTY: Tlumaczenia<{
     razem: 'RAZEM',
     suma: '103,30 €',
     rozpoznane: 'rozpoznane',
-    zapisz: 'Zapisz',
+    zapisz: 'Wyślij paragon',
   },
   en: {
-    naglowek: 'Add cost',
+    naglowek: 'Add receipt',
     pola: [
       ['Amount', '€103.30 · PLN 442'],
       ['Date', '2 Sep 2026'],
       ['Type', 'Fuel'],
       ['Order', 'Warsaw → Milan'],
-      ['Vehicle', 'WZ 4821K'],
+      ['Paid with', 'Company card'],
     ],
     diesel: 'Diesel 78.4 l',
     dieselKwota: '€96.20',
@@ -46,7 +46,7 @@ const TEKSTY: Tlumaczenia<{
     razem: 'TOTAL',
     suma: '€103.30',
     rozpoznane: 'recognised',
-    zapisz: 'Save',
+    zapisz: 'Send receipt',
   },
 };
 

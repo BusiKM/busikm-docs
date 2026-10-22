@@ -18,8 +18,8 @@ const TEKSTY: Tlumaczenia<{
     tytul2: 'Jednym przyciskiem.',
     lead: 'Wybiera miesiąc, klika „Pobierz paczkę dla biura” i ma wszystko: dekrety do FK, rejestry VAT, płace i diety, delegacje, ewidencje przebiegu i JPK. W formacie, który wczyta do programu, którego już używa.',
     bullets: [
-      'Comarch Optima, Insert GT, Symfonia albo Excel',
-      'Pięć kroków miesiąca, przy każdym braku odnośnik',
+      'Comarch Optima, Insert GT, Symfonia albo CSV – rejestry i płace też w Excelu',
+      'Sześć kroków miesiąca, przy każdym braku odnośnik',
       'Zamknięty miesiąc blokuje zmiany wstecz',
     ],
     nota: 'Księgowa może być z zewnątrz. Zapraszasz ją mailem, dostaje własny dostęp.',
@@ -31,8 +31,8 @@ const TEKSTY: Tlumaczenia<{
     tytul2: 'With one button.',
     lead: 'They pick the month, click “Download the package for the office” and have everything: ledger entries, VAT registers, payroll and allowances, business trips, mileage logs and JPK files. In a format they can load into the software they already use.',
     bullets: [
-      'Comarch Optima, Insert GT, Symfonia or Excel',
-      'Five month-end steps, each gap with a link to fix it',
+      'Comarch Optima, Insert GT, Symfonia or CSV – registers and payroll in Excel too',
+      'Six month-end steps, each gap with a link to fix it',
       'A closed month locks changes after the fact',
     ],
     nota: 'Your accountant can be external. You invite them by email and they get their own login.',

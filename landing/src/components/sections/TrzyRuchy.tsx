@@ -9,7 +9,7 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     naglowek: 'Trzy ruchy. Reszta dzieje się bez Ciebie.',
     steps: [
-      ['01', 'Kierowca rusza', 'Robi zdjęcie licznika i klika „Zacznij dzień”. Tyle.'],
+      ['01', 'Kierowca rusza', 'Klika „Zacznij dzień”, robi zdjęcie licznika i jedzie. Tyle.'],
       [
         '02',
         'Dane same lecą',
@@ -25,7 +25,7 @@ const TEKSTY: Tlumaczenia<{
   en: {
     naglowek: 'Three moves. The rest happens without you.',
     steps: [
-      ['01', 'The driver sets off', 'Snaps the odometer and taps “Start the day”. That’s it.'],
+      ['01', 'The driver sets off', 'Taps “Start the day”, snaps the odometer and drives off. That’s it.'],
       [
         '02',
         'The data sends itself',

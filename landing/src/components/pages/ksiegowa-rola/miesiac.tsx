@@ -35,7 +35,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '24–31',
-      tresc: 'Otwierasz pięć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje. Przy braku masz odnośnik prosto do niego.',
+      tresc: 'Otwierasz sześć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje i zamknięcie z plikami. Przy braku masz odnośnik prosto do niego.',
       karta: <KartaSprawdzenie />,
     },
     {
@@ -90,7 +90,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '24–31',
-      tresc: 'You open the five month-end steps: invoices, costs, mileage, payroll and allowances, tax returns. Any gap comes with a link straight to it.',
+      tresc: 'You open the six month-end steps: invoices, costs, mileage, payroll and allowances, tax returns, and closing with the files. Any gap comes with a link straight to it.',
       karta: <KartaSprawdzenie />,
     },
     {

@@ -19,9 +19,10 @@ Hasło ze strony: „Kierowca jedzie. Reszta dzieje się sama."
 
 ## Cztery role
 
-1. **Właściciel** (przeglądarka) – zysk, koszty i cała flota na jednym ekranie.
-   Widzi, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.
-2. **Dyspozytor** (przeglądarka) – zlecenia, mapa floty i kierowcy obok siebie.
+1. **Właściciel** (przeglądarka) – na pierwszym ekranie to, co pilne dziś, niżej
+   przychód, koszty i wynik. Widzi, ile zostaje z każdego kursu, bez czekania
+   na koniec miesiąca.
+2. **Dyspozytor** (przeglądarka) – kolejka zleceń i mapa floty obok siebie.
    Zmiana w trakcie jazdy trafia do kierowcy od razu.
 3. **Księgowa** (przeglądarka) – komplet dokumentów za miesiąc jednym
    przyciskiem, w formacie do wczytania.
@@ -68,7 +69,7 @@ wszystko.
 
 Dekrety wychodzą w formatach, które programy księgowe wczytają:
 **Insert GT (EPP)**, **Comarch Optima (XML)**, **Symfonia (TXT + szablon AMS)**
-– albo **Excel**. Do tego pliki **JPK_FA**, **JPK_V7M** i **JPK_PKPIR**.
+– albo **CSV** dla innego programu. Rejestry VAT i płace także w **Excelu**. Do tego pliki **JPK_FA**, **JPK_V7M** i **JPK_PKPIR**.
 Faktury sprzedaży idą przez **KSeF**; administratorem danych w KSeF jest
 Ministerstwo Finansów, nie BusiKM.
 
@@ -91,7 +92,7 @@ na fakturze stawka „zw.”. Nic się do nich nie dolicza.
   Zlecenia i dyspozytornia, trasy i ewidencja przebiegu, czas pracy, koszty
   i paragony, faktury dla klientów, aplikacja dla kierowców.
 - **Firma** – 299 zł miesięcznie (2 990 zł rocznie), 10 pojazdów w cenie,
-  każdy kolejny +29 zł, do 50 pojazdów. Większa flota – napisz. Wszystko
+  +29 zł/mies. za każdy kolejny (także w planie rocznym), do 50 pojazdów. Większa flota – napisz. Wszystko
   ze Start, a do tego mapa floty na żywo, komplet dla księgowej, zestawienia
   sprzedaży i zakupów, rentowność zleceń, raporty kosztów floty.
 
@@ -180,8 +181,9 @@ What it does: turns an order into an invoice and files it to KSeF, the Polish
 national e-invoicing system, records routes as a mileage log, counts driving
 time and breaks, reads receipts from a photo with AI, calculates profit per
 job, and exports the month to Polish accounting software – Insert GT (EPP),
-Comarch Optima (XML), Symfonia (TXT + AMS) – or Excel, plus JPK_FA, JPK_V7M
-and JPK_PKPIR files. The live fleet map is part of the Firma plan. It does
+Comarch Optima (XML), Symfonia (TXT + AMS) – or CSV for another program;
+VAT registers and payroll in Excel too. Plus JPK_FA, JPK_V7M and JPK_PKPIR
+files. The live fleet map is part of the Firma plan. It does
 not send text messages – notifications go by email and in the app.
 
 What it does not do: it is **not a replacement for a tachograph** – the
@@ -190,7 +192,8 @@ prepares the data for whoever does.
 
 Pricing (final prices – MOVGRANTO is VAT-exempt, invoices show the “zw.”
 rate): Start 149 PLN per month (up to 3 vehicles), Firma 299 PLN per month
-(10 vehicles included, +29 PLN for each additional one, up to 50; larger
+(10 vehicles included, +29 PLN per month for each additional one, also on
+the yearly plan, up to 50; larger
 fleets – get in touch). Drivers and office staff are not counted. First
 14 days free with no card, no fixed-term contract.
 

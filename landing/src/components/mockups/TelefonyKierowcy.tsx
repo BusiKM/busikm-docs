@@ -23,15 +23,15 @@ const TEKSTY: Tlumaczenia<{
     rozladunek: 'Rozładunek: Via Tortona 12 · 08:00',
     nawiguj: 'Nawiguj',
     koszt: 'Koszt',
-    dodajKoszt: 'Dodaj koszt',
+    dodajKoszt: 'Dodaj paragon',
     razem: 'RAZEM',
     pola: [
       ['Kwota', '103,30 €', '103,30 € · 442 zł'],
       ['Rodzaj', 'Paliwo', 'Paliwo'],
-      ['Pojazd', 'WZ 4821K', 'WZ 4821K'],
+      ['Zapłacono', 'Karta firmowa', 'Karta firmowa'],
     ],
     zlecenie: 'Zlecenie',
-    zapisz: 'Zapisz',
+    zapisz: 'Wyślij paragon',
   },
   en: {
     potem: 'Brenner, then A22',
@@ -41,19 +41,19 @@ const TEKSTY: Tlumaczenia<{
     rozladunek: 'Unloading: Via Tortona 12 · 08:00',
     nawiguj: 'Navigate',
     koszt: 'Cost',
-    dodajKoszt: 'Add cost',
+    dodajKoszt: 'Add receipt',
     razem: 'TOTAL',
     pola: [
       ['Amount', '€103.30', '€103.30 · PLN 442'],
       ['Type', 'Fuel', 'Fuel'],
-      ['Vehicle', 'WZ 4821K', 'WZ 4821K'],
+      ['Paid with', 'Company card', 'Company card'],
     ],
     zlecenie: 'Order',
-    zapisz: 'Save',
+    zapisz: 'Send receipt',
   },
 };
 
-/** Dwa telefony pod kątem, w trybie nocnym – nawigacja i dodawanie kosztu. */
+/** Dwa telefony pod kątem, w trybie nocnym – nawigacja i dodawanie paragonu. */
 export function TelefonyKierowcy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

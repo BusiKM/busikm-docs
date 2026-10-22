@@ -30,7 +30,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** 01 – trzy kolumny jednego ekranu, każda jako osobna karta. */
+/** 01 – trzy części jednego ekranu (kolejka, mapa floty, plan floty), każda jako osobna karta. */
 export function JedenEkran() {
   const t = TEKSTY[biezacyJezyk()];
   return (

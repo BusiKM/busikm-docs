@@ -56,7 +56,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     ],
     walidacja: {
       tytul: 'System sam mówi, czego brakuje',
-      tresc: 'Pięć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje. Przy każdym widać, co jest gotowe, a przy braku – odnośnik prosto tam, gdzie go uzupełnisz.',
+      tresc: 'Sześć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje i zamknięcie z pobraniem plików. Przy każdym widać, co jest gotowe, a przy braku – odnośnik prosto tam, gdzie go uzupełnisz.',
       label: 'Zamknięcie miesiąca · desktop',
       note: 'Rozliczenia, zakładka Miesiąc: zamknięcie września krok po kroku – faktury sprzedaży, koszty, ewidencja przebiegu, płace i diety, deklaracje – przy każdym kroku przejście do braku, obok najbliższe terminy JPK_V7M i VAT-UE oraz zamknięte poprzednie miesiące.',
     },
@@ -99,7 +99,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     ],
     walidacja: {
       tytul: 'It tells you what’s missing',
-      tresc: 'Five month-end steps: invoices, costs, mileage, payroll and allowances, tax returns. Each shows what’s ready, and any gap comes with a link straight to where you fix it.',
+      tresc: 'Six month-end steps: invoices, costs, mileage, payroll and allowances, tax returns, and closing with the file download. Each shows what’s ready, and any gap comes with a link straight to where you fix it.',
       label: 'Month-end close · desktop',
       note: 'Settlements, Month tab: closing September step by step – sales invoices, costs, mileage log, payroll and allowances, tax returns – each step linking to what’s missing, with the next JPK_V7M and VAT-UE deadlines and previous closed months alongside.',
     },

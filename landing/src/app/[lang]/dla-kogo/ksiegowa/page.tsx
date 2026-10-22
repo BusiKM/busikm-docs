@@ -67,7 +67,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       ],
       [
         'Co, gdy w danych czegoś brakuje?',
-        'Zobaczysz to przed pobraniem, w pięciu krokach miesiąca. Przy każdym braku masz odnośnik prosto do miejsca, w którym go uzupełnisz.',
+        'Zobaczysz to przed pobraniem, w sześciu krokach miesiąca. Przy każdym braku masz odnośnik prosto do miejsca, w którym go uzupełnisz.',
       ],
     ],
   },
@@ -112,7 +112,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       ],
       [
         'What if something is missing from the data?',
-        'You’ll see it before you download, in the five month-end steps. Every gap comes with a link straight to where you fill it in.',
+        'You’ll see it before you download, in the six month-end steps. Every gap comes with a link straight to where you fill it in.',
       ],
     ],
   },

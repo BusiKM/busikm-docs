@@ -17,7 +17,7 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul1: 'Wiesz, kiedy kierowca musi stanąć.',
     tytul2: 'Zanim stanie za późno.',
-    lead: 'Jazda, przerwy i odpoczynki liczą się same. Kierowca dostaje przypomnienie 15 minut przed przerwą, nie po fakcie. Ty widzisz to samo, ze swojego biura.',
+    lead: 'Jazda i praca liczą się same, przerwę kierowca włącza jednym przyciskiem. Kierowca dostaje przypomnienie 15 minut przed przerwą, nie po fakcie. Ty widzisz to samo, ze swojego biura.',
     bullets: [
       'Przerwę zapisze bez zasięgu – dojdzie, gdy wróci sygnał',
       'Miesięczna karta czasu pracy do wydruku',
@@ -31,7 +31,7 @@ const TEKSTY: Tlumaczenia<{
   en: {
     tytul1: 'You know when the driver has to stop.',
     tytul2: 'Before it’s too late.',
-    lead: 'Driving, breaks and rest periods add up by themselves. The driver gets a reminder 15 minutes before a break is due, not after the fact. You see the same thing from your office.',
+    lead: 'Driving and work time count themselves; the driver starts a break with one tap. The driver gets a reminder 15 minutes before a break is due, not after the fact. You see the same thing from your office.',
     bullets: [
       'Breaks logged with no signal – they go through once it’s back',
       'A monthly working-time sheet, ready to print',

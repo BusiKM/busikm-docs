@@ -25,7 +25,7 @@ const TEKSTY: Tlumaczenia<{
   jeden: { label: string; note: string };
 }> = {
   pl: {
-    licznikPrzedStartem: 'Licznik na start dnia',
+    licznikPrzedStartem: 'Licznik na start',
     licznik: '184 210 km',
     zdjecieLicznika: 'zdjęcie licznika',
     trasa: 'Wrocław → Milano',
@@ -39,11 +39,11 @@ const TEKSTY: Tlumaczenia<{
     kwotaWartosc: '612,40 zł',
     eyebrow: 'BusiKM Kierowca · iPhone i Android',
     naglowek1: 'Cały dzień pracy w jednej aplikacji.',
-    naglowek2: 'Bez wpisywania czegokolwiek w trasie.',
+    naglowek2: 'Prawie bez wpisywania w trasie.',
     lead: 'Kierowca dostaje kod mailem, ustawia hasło i jest w środku. Dalej prowadzi go jeden przycisk na każdy etap dnia.',
     trzy: {
       label: 'Trzy ekrany aplikacji kierowcy · telefon, tryb nocny',
-      note: 'Od lewej: „Czas pracy” z trzema wskaźnikami, „Dziś” z kursem Wrocław → Milano i przyciskiem „Jestem na rozładunku”, „Moje koszty” z przyciskiem „Dodaj paragon”.',
+      note: 'Od lewej: „Czas pracy” z trzema wskaźnikami (przewóz międzynarodowy), „Dziś” z kursem Wrocław → Milano i przyciskiem „Jestem na rozładunku”, „Moje koszty” z przyciskiem „Dodaj paragon”.',
     },
     jeden: {
       label: 'Ekran „Dziś” · telefon, tryb nocny',
@@ -51,7 +51,7 @@ const TEKSTY: Tlumaczenia<{
     },
   },
   en: {
-    licznikPrzedStartem: 'Odometer at the start of the day',
+    licznikPrzedStartem: 'Odometer at start',
     licznik: '184,210 km',
     zdjecieLicznika: 'odometer photo',
     trasa: 'Wrocław → Milan',
@@ -65,11 +65,11 @@ const TEKSTY: Tlumaczenia<{
     kwotaWartosc: 'PLN 612.40',
     eyebrow: 'BusiKM Driver · iPhone and Android',
     naglowek1: 'A whole working day in one app.',
-    naglowek2: 'Nothing to type on the road.',
+    naglowek2: 'Hardly any typing on the road.',
     lead: 'The driver gets a code by email, sets a password and they’re in. From then on, one button takes them through each stage of the day.',
     trzy: {
       label: 'Three driver app screens · phone, dark mode',
-      note: 'From the left: “Working time” with three gauges, “Today” with the Wrocław → Milan job and an “At unloading” button, “My costs” with an “Add receipt” button.',
+      note: 'From the left: “Working time” with three gauges (international transport), “Today” with the Wrocław → Milan job and an “At unloading” button, “My costs” with an “Add receipt” button.',
     },
     jeden: {
       label: '“Today” screen · phone, dark mode',

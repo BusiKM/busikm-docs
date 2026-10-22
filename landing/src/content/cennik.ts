@@ -62,7 +62,7 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
     firma: {
       name: 'Firma',
       specs: [
-        ['Pojazdy', '10 w cenie, każdy kolejny +29 zł, do 50'],
+        ['Pojazdy', '10 w cenie, +29 zł/mies. za każdy kolejny, do 50'],
         ['Kierowcy', 'bez limitu'],
         ['Pracownicy biura', 'bez limitu'],
       ],
@@ -96,7 +96,7 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
     firma: {
       name: 'Business',
       specs: [
-        ['Vehicles', '10 included, then +PLN 29 each, up to 50'],
+        ['Vehicles', '10 included, +PLN 29/month for each extra one, up to 50'],
         ['Drivers', 'unlimited'],
         ['Office staff', 'unlimited'],
       ],

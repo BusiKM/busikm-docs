@@ -149,7 +149,7 @@ export const artykulyStartEn: Artykul[] = [
     kategoria: 'start',
     tytul: 'How to add a vehicle',
     lead: 'No vehicle means no kilometres, no fuel costs and no mileage log. A photo of the registration certificate is enough.',
-    role: ['wlasciciel', 'dyspozytor'],
+    role: ['wlasciciel'],
     gdzie: 'Vehicles → Add vehicle (Pojazdy → Dodaj pojazd)',
     czas: 'Three minutes per vehicle',
     zanim: ['The registration certificate – photos of all pages or a PDF', 'Today’s odometer reading'],

@@ -41,7 +41,7 @@ const TEKSTY: Tlumaczenia<{
     drobnyDruk: [
       'Ceny w cenniku są końcowe – sprzedawca jest zwolniony z VAT, na fakturze stawka „zw.”.',
       'BusiKM nie zastępuje tachografu. Tachograf zapisuje, BusiKM pokazuje.',
-      'Serwery, bazy i kopie zapasowe stoją w Unii Europejskiej.',
+      'Serwery i bazy stoją w UE (Frankfurt), kopia zaszyfrowana u drugiego dostawcy.',
     ],
     sad: firma.sad,
     kapital: `Kapitał zakładowy ${firma.kapital}`,
@@ -52,10 +52,10 @@ const TEKSTY: Tlumaczenia<{
     drobnyDruk: [
       'Prices are final – the seller is VAT-exempt, so the invoice shows no VAT.',
       'BusiKM does not replace the tachograph. The tachograph records, BusiKM shows.',
-      'Servers, databases and backups are located in the European Union.',
+      'Servers and databases are in the EU (Frankfurt), with an encrypted backup at a second provider.',
     ],
     // Nazwa sądu po polsku w nawiasie – tak brzmi w KRS i tak da się ją sprawdzić.
-    sad: `District Court in Szczecin, Commercial Division of the National Court Register (${firma.sad})`,
+    sad: `District Court for Szczecin-Centrum in Szczecin, 13th Commercial Division of the National Court Register (${firma.sad})`,
     kapital: `Share capital PLN 5,000`,
     odpowiedz: 'We reply the same business day',
   },

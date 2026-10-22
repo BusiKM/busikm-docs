@@ -11,7 +11,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 export const dzienKierowcy: Tlumaczenia<PunktDnia[]> = {
   pl: [
     { godzina: '6:00', tresc: 'Zlecenie jest w telefonie. Wiesz, gdzie i o której.' },
-    { godzina: '6:05', tresc: 'Zdjęcie licznika, „Zacznij dzień”. Tyle.' },
+    { godzina: '6:05', tresc: 'Klikasz „Zacznij dzień”, robisz zdjęcie licznika i jedziesz.' },
     { godzina: '6:06', tresc: 'Nawigacja otwiera się jednym dotknięciem.' },
     { godzina: '11:38', tresc: 'Tankujesz. Pstrykasz paragon. Jedziesz dalej.' },
     { godzina: '13:20', tresc: 'Telefon mówi: za 15 minut przerwa. Nie po fakcie.' },
@@ -19,7 +19,7 @@ export const dzienKierowcy: Tlumaczenia<PunktDnia[]> = {
   ],
   en: [
     { godzina: '6:00', tresc: 'The order is on your phone. You know where and when.' },
-    { godzina: '6:05', tresc: 'Photo of the odometer, start the day. That’s it.' },
+    { godzina: '6:05', tresc: 'Tap “Start the day”, snap the odometer and drive off.' },
     { godzina: '6:06', tresc: 'Navigation opens in one tap.' },
     { godzina: '11:38', tresc: 'You fill up. Snap the receipt. Drive on.' },
     { godzina: '13:20', tresc: 'Your phone says: break in 15 minutes. Not after the fact.' },

@@ -17,7 +17,7 @@ export const firma = {
    * odpowiedzialnością podaje w pismach, zamówieniach handlowych **i na
    * swoich stronach internetowych**.
    */
-  sad: 'Sąd Rejonowy w Szczecinie, Wydział Gospodarczy KRS',
+  sad: 'Sąd Rejonowy Szczecin-Centrum w Szczecinie, XIII Wydział Gospodarczy KRS',
   kapital: '5 000 zł',
   email: 'kontakt@busikm.pl',
 } as const;

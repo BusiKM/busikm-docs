@@ -216,9 +216,9 @@ const strony = {
     outline: [
       'Wszystko w jednym miejscu',
       'Przypomnienie z wyprzedzeniem',
-      'Przypomnienie dla właściciela i dyspozytora',
+      'Przypomnienie dla właściciela, dyspozytora i księgowej',
       'Jeden ekran statusu',
-      'Wydruk listy',
+      'Pobierz komplet',
     ],
   },
 
@@ -238,7 +238,7 @@ const strony = {
     title: 'BusiKM dla właściciela',
     seoTitle: 'BusiKM dla właściciela firmy transportowej',
     description:
-      'Zysk, koszty i cała flota na jednym ekranie. Wiesz, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.',
+      'Na pierwszym ekranie to, co pilne dziś, niżej przychód, koszty i wynik. Wiesz, ile zostaje z każdego kursu, bez czekania na koniec miesiąca.',
   },
 
   'dla-kogo/dyspozytor': {
@@ -564,9 +564,9 @@ const stronyEn: Record<keyof typeof strony, PageSpec> = {
     outline: [
       'Everything in one place',
       'A reminder well in advance',
-      'A reminder for the owner and dispatcher',
+      'A reminder for the owner, dispatcher and accountant',
       'One status screen',
-      'Printable list',
+      'Download the full set',
     ],
   },
 
@@ -587,7 +587,7 @@ const stronyEn: Record<keyof typeof strony, PageSpec> = {
     title: 'BusiKM for owners',
     seoTitle: 'Van fleet software for transport company owners',
     description:
-      'Profit, costs and the whole fleet on one screen. You know what you keep from every job, without waiting for the end of the month.',
+      'The first screen shows what’s urgent today, with revenue, costs and result below. You know what you keep from every job, without waiting for the end of the month.',
   },
 
   'dla-kogo/dyspozytor': {

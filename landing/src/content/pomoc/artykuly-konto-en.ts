@@ -167,7 +167,7 @@ export const artykulyKontoEn: Artykul[] = [
             typ: 'lista',
             punkty: [
               'Start – up to 3 vehicles.',
-              'Business (Firma) – 10 vehicles included, then +PLN 29 each, up to 50. Larger fleet – write to us.',
+              'Business (Firma) – 10 vehicles included, +PLN 29/month for each extra one, up to 50. Larger fleet – write to us.',
             ],
           },
           {

@@ -28,14 +28,14 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; qa: readonly (readonly [string, st
       ],
       [
         'Ile trwa uruchomienie?',
-        'Dodajesz pojazd, zapraszasz kierowcę, kierowca instaluje aplikację. Pierwsza trasa pojawia się u Ciebie tego samego dnia.',
+        'Dodajesz pojazd, zapraszasz kierowcę, kierowca instaluje aplikację. Pierwsza trasa pojawia się u Ciebie tego samego dnia. Klientów wczytasz z pliku CSV – nie przepisujesz kartoteki.',
       ],
       [
         'Czy dyspozytor widzi, ile zarabiam?',
         'Nie musi. Pieniądze widzi właściciel i osoba od rozliczeń.',
       ],
       ['Czy przyczepa liczy się jako pojazd?', 'Nie. Płacisz tylko za pojazdy napędzane.'],
-      ['Co z danymi, gdy zrezygnuję?', 'Zostają Twoje. Pobierzesz je w komplecie.'],
+      ['Co z danymi, gdy zrezygnuję?', 'Zostają Twoje. Konto zostaje do odczytu – pobierasz faktury, ewidencje i eksporty.'],
     ],
   },
   en: {
@@ -63,14 +63,14 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; qa: readonly (readonly [string, st
       ],
       [
         'How long does it take to get started?',
-        'You add a van, invite a driver, the driver installs the app. The first route shows up at your end the same day.',
+        'You add a van, invite a driver, the driver installs the app. The first route shows up at your end the same day. You load your clients from a CSV file – no retyping the client list.',
       ],
       [
         'Can the dispatcher see how much I earn?',
         'They don’t need to. The money is visible to the owner and whoever handles the accounts.',
       ],
       ['Does a trailer count as a vehicle?', 'No. You only pay for powered vehicles.'],
-      ['What happens to my data if I cancel?', 'It stays yours. You can download all of it.'],
+      ['What happens to my data if I cancel?', 'It stays yours. The account stays read-only – you download invoices, logs and exports.'],
     ],
   },
 };

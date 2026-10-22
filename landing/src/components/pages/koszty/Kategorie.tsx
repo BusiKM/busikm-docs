@@ -11,14 +11,14 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul: 'Kategorie z życia',
     tresc:
-      'Na start paliwo, parking, opłaty drogowe, mycie i inne. Listę rodzajów dla kierowców ustalasz Ty – dochodzą m.in. hotel kierowcy, prom, serwis i naprawy.',
+      'Na start: paliwo, parking, opłaty drogowe, mycie, hotel kierowcy, prom, serwis i naprawy, opłata za załadunek lub rozładunek i inne. Listę rodzajów dla kierowców zmieniasz w ustawieniach.',
     kategorie: ['Paliwo', 'Parking', 'Opłaty drogowe', 'Mycie', 'Hotel kierowcy', 'Prom', 'Serwis i naprawy'],
     podpowiedz: 'lista ustalana przez firmę',
   },
   en: {
     tytul: 'Categories from real life',
     tresc:
-      'Out of the box: fuel, parking, tolls, vehicle wash and other. You decide which types your drivers can pick – add driver hotels, ferries, servicing and repairs, and more.',
+      'Out of the box: fuel, parking, tolls, vehicle wash, driver hotel, ferry, servicing and repairs, loading or unloading fees and other. You can change the list your drivers pick from in the settings.',
     kategorie: ['Fuel', 'Parking', 'Tolls', 'Vehicle wash', 'Driver hotel', 'Ferry', 'Servicing and repairs'],
     podpowiedz: 'list set by your company',
   },

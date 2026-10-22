@@ -16,7 +16,7 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Cały dzień pracy na jednym ekranie.',
     lead: 'Kolejka zleceń i mapa floty obok siebie, pod spodem plan floty. Do kierowcy piszesz jednym kliknięciem, bez szukania numeru w telefonie. Przypisujesz auto, a system podpowiada, kto zdąży na załadunek.',
     bullets: [
-      'Zlecenie od przyjęcia po rozliczenie',
+      'Przy przyjmowaniu zlecenia widzisz, czy zdążysz – z przerwami i odpoczynkami',
       'Podpowiedź, które auto i kierowca zdążą',
       '„Napisz” na karcie kursu otwiera czat zlecenia',
     ],
@@ -28,7 +28,7 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'The whole working day on one screen.',
     lead: 'The order queue and the fleet map side by side, with the fleet plan underneath. You message a driver in one click, no hunting for a number in your phone. You assign a van, and the system tells you who will make the pickup.',
     bullets: [
-      'An order from booking to settlement',
+      'When you take an order, you see whether you’ll make it – breaks and rest included',
       'A hint on which van and driver will make it',
       '“Message” on a run opens the order chat',
     ],

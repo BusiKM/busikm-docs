@@ -51,7 +51,7 @@ const TEKSTY: Tlumaczenia<{
       'Numeracja ciągła, bez luk',
       'Termin płatności z karty klienta',
       'Przypomnienia o płatności – Ty klikasz „Wyślij”',
-      'Podgląd przed wysyłką',
+      'CMR wypełnia się sam z danych zlecenia',
       'PDF z kodem QR z KSeF',
       'PDF wyślesz ponownie jednym kliknięciem',
     ],
@@ -65,11 +65,11 @@ const TEKSTY: Tlumaczenia<{
     kontrahenci: {
       tytul: 'Kontrahenci w jednym miejscu',
       tresc:
-        'Raz wprowadzony klient podpowiada się przy każdym następnym zleceniu – z adresem, NIP-em i terminem płatności.',
+        'Wpisujesz NIP albo numer VAT z UE – nazwa i adres wpisują się same z GUS i VIES. Co noc sprawdzamy status VAT i rachunek na Białej Liście, a klient podpowiada się przy każdym kolejnym zleceniu.',
     },
     historia: {
-      tytul: 'Historia',
-      tresc: 'Wszystkie faktury na jednej liście: co czeka na KSeF, co jest do zapłaty, co po terminie. Każdy dokument do podejrzenia i pobrania ponownie.',
+      tytul: 'Kto nie zapłacił',
+      tresc: 'Widzisz, kto zalega, ile dni i ile wpłynie w najbliższych tygodniach. Odsetki i rekompensatę 40 € BusiKM policzy sam. Przypomnienie albo notę wysyłasz jednym kliknięciem.',
       label: 'Lista faktur · desktop, tryb nocny',
       note: 'Faktury: liczniki – do zapłaty, po terminie, zapłacone, KSeF – zakładki od szkiców po korekty, w tabeli termin płatności, stan płatności i status w KSeF.',
     },
@@ -97,7 +97,7 @@ const TEKSTY: Tlumaczenia<{
       'Continuous numbering, no gaps',
       'Payment term taken from the client card',
       'Payment reminders – you click “Send”',
-      'Preview before sending',
+      'The CMR fills itself in from the order details',
       'PDF with the KSeF QR code',
       'Resend the PDF in one click',
     ],
@@ -111,11 +111,11 @@ const TEKSTY: Tlumaczenia<{
     kontrahenci: {
       tytul: 'Clients in one place',
       tresc:
-        'Enter a client once and they’re suggested on every order after that – with address, tax number and payment term.',
+        'You type in the Polish tax number (NIP) or an EU VAT number – the name and address fill in by themselves from the Polish business register (GUS) and VIES. Every night we check the VAT status and the bank account on the Polish VAT White List, and the client is suggested on every order after that.',
     },
     historia: {
-      tytul: 'History',
-      tresc: 'All invoices on one list: what’s waiting for KSeF, what’s due, what’s overdue. Every document ready to view and download again.',
+      tytul: 'Who hasn’t paid',
+      tresc: 'You see who owes you, how many days late, and how much is coming in over the next few weeks. BusiKM works out the interest and the €40 compensation itself. You send a reminder or a debit note in one click.',
       label: 'Invoice list · desktop, dark mode',
       note: 'Invoices: counters – due, overdue, paid, KSeF – tabs from drafts to corrections, and a table with payment terms, payment status and KSeF status.',
     },

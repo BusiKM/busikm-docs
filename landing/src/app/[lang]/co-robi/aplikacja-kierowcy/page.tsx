@@ -61,9 +61,9 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     },
     czas: {
       tytul: 'Przerwa i odpoczynek jednym tapnięciem',
-      tresc: 'Aplikacja przypomina o obowiązkowej przerwie 15 minut wcześniej, nie po fakcie. Na ekranie „Czas pracy” kierowca widzi jazdę ciągłą, dzienną i tydzień, a przerwę albo odpoczynek zapisuje jednym przyciskiem.',
+      tresc: 'Przy przewozie międzynarodowym aplikacja przypomina o obowiązkowej przerwie 15 minut wcześniej, nie po fakcie, a na ekranie „Czas pracy” kierowca widzi jazdę ciągłą, dzienną i tydzień. Przerwę albo odpoczynek zapisuje jednym przyciskiem.',
       label: 'Czas pracy · telefon, tryb nocny',
-      note: 'Ekran „Czas pracy”: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
+      note: 'Ekran „Czas pracy” przy przewozie międzynarodowym: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
     },
     wysylka: {
       tytul: 'Działa bez zasięgu',
@@ -105,9 +105,9 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     },
     czas: {
       tytul: 'Break or rest in one tap',
-      tresc: 'The app reminds them about the required break 15 minutes ahead, not after the fact. On the “Working time” screen the driver sees continuous, daily and weekly driving, and logs a break or a rest with one button.',
+      tresc: 'On international jobs the app reminds them about the required break 15 minutes ahead, not after the fact, and the “Working time” screen shows continuous, daily and weekly driving. The driver logs a break or a rest with one button.',
       label: 'Working time · phone, dark mode',
-      note: 'The “Working time” screen: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
+      note: 'The “Working time” screen for international transport: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
     },
     wysylka: {
       tytul: 'Works with no signal',

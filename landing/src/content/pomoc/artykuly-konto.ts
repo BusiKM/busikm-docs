@@ -167,7 +167,7 @@ export const artykulyKonto: Artykul[] = [
             typ: 'lista',
             punkty: [
               'Start – do 3 pojazdów.',
-              'Firma – 10 pojazdów w cenie, każdy kolejny +29 zł, do 50. Większa flota – napisz do nas.',
+              'Firma – 10 pojazdów w cenie, +29 zł/mies. za każdy kolejny, do 50. Większa flota – napisz do nas.',
             ],
           },
           {

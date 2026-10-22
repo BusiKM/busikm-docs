@@ -43,7 +43,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Kierowca dostaje e-mail z 8-znakowym kodem zaproszenia, np. K7QM-4RTZ. W aplikacji BusiKM Kierowca wybiera Mam zaproszenie, wpisuje e-mail i kod, a potem imię, nazwisko i własne hasło. Do tego czasu widnieje na Twojej liście jako zaproszony.',
+              'Kierowca dostaje e-mail z 8-znakowym kodem zaproszenia, np. K7QM-4RTZ. W aplikacji BusiKM Kierowca wybiera Mam zaproszenie, wpisuje e-mail i kod, a potem ustawia własne hasło (imię i nazwisko – tylko jeśli ich nie wpisałeś). Do tego czasu widnieje na Twojej liście jako zaproszony.',
           },
           {
             typ: 'uwaga',
@@ -98,8 +98,8 @@ export const artykulyKierowcy: Artykul[] = [
                 opis: 'Adres, na który przyszło zaproszenie, i 8-znakowy kod z maila, np. K7QM-4RTZ. Wybierz Dalej, sprawdź nazwę firmy i wybierz Dołączam.',
               },
               {
-                tytul: 'Wpisz imię, nazwisko i hasło',
-                opis: 'Hasło wymyśl sam – nikt w firmie go nie zobaczy. Na koniec wybierz Załóż konto i wejdź.',
+                tytul: 'Ustaw własne hasło',
+                opis: 'Hasło wymyśl sam – nikt w firmie go nie zobaczy. Imię i nazwisko wpisujesz tylko wtedy, gdy szef ich nie wpisał. Na koniec wybierz Załóż konto i wejdź.',
               },
               {
                 tytul: 'Zgódź się na dostęp do lokalizacji i powiadomień',
@@ -110,7 +110,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'uwaga',
             tresc:
-              'Lokalizację ustaw na „Zawsze", nie „Podczas używania aplikacji". Przy tym drugim ustawieniu telefon przestaje zapisywać trasę, gdy schowasz aplikację – a właśnie wtedy jedziesz.',
+              'Zgódź się na lokalizację podczas używania aplikacji. Na iPhonie po pierwszym kursie wybierz jeszcze „Zawsze" – trasa zapisze się nawet, gdy system zamknie aplikację.',
           },
           {
             typ: 'akapit',
@@ -190,8 +190,8 @@ export const artykulyKierowcy: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Zrób zdjęcie licznika i wybierz Zacznij dzień',
-                opis: 'Od tej chwili trasa zapisuje się w tle, a kilometry liczą się same.',
+                tytul: 'Wybierz Zacznij dzień i zrób zdjęcie licznika',
+                opis: 'Otworzy się ekran Licznik na start. Stan licznika odczyta się sam ze zdjęcia – sprawdź go i wybierz Potwierdź i rozpocznij. Od tej chwili trasa zapisuje się w tle, a kilometry liczą się same.',
               },
               {
                 tytul: 'Wybierz Nawiguj',
@@ -201,16 +201,17 @@ export const artykulyKierowcy: Artykul[] = [
                 tytul: 'Na miejscu wybierz Jestem na załadunku',
                 opis: 'Część statusów zmienia się sama, gdy dojedziesz na miejsce.',
               },
+              { tytul: 'Wybierz Zacznij załadunek' },
+              { tytul: 'Podaj wagę załadowaną i wybierz Zapisz wagę' },
               {
-                tytul: 'Wybierz Zacznij załadunek i zrób zdjęcia towaru',
-                opis: 'Zdjęcia wysyłają się w tle – nie musisz czekać, aż się prześlą, ani mieć zasięgu w tej chwili.',
+                tytul: 'Zbierz podpis nadawcy na e-CMR',
+                opis: 'Podpis jest zawsze wymagany. Nadawca rysuje go palcem na ekranie.',
               },
-              { tytul: 'Podaj wagę i wybierz Zapisz wagę' },
               {
-                tytul: 'Zbierz podpis nadawcy na e-CMR, jeśli zleceniodawca go wymaga',
-                opis: 'Podpis rysuje się palcem na ekranie.',
+                tytul: 'Dodaj plombę i zdjęcia towaru, jeśli trzeba',
+                opis: 'To opcjonalne. Zdjęcia – do dwóch – wysyłają się w tle. Nie musisz czekać, aż się prześlą, ani mieć zasięgu w tej chwili.',
               },
-              { tytul: 'Wybierz Dokończ załadunek' },
+              { tytul: 'Wybierz Zakończ załadunek i potwierdź Tak, zakończ' },
             ],
           },
           {
@@ -231,7 +232,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Na miejscu wybierz Jestem na rozładunku, potem Zacznij rozładunek. Dalej tak samo jak przy załadunku: zdjęcia, dane odbiorcy, podpis odbiorcy na e-CMR i potwierdzenie. Po nim zlecenie jest zamknięte, a dyspozytor widzi to od razu.',
+              'Na miejscu wybierz Jestem na rozładunku, potem Zacznij rozładunek. Wpisz nazwisko odbiorcy, zbierz jego podpis na e-CMR i wybierz Zakończ rozładunek. Otworzy się ekran Licznik na koniec: zrób zdjęcie licznika i wybierz Potwierdź i zakończ. Dyspozytor widzi to od razu. Potem wybierz Rozpocznij powrót do bazy, a na miejscu Jestem w bazie.',
           },
           {
             typ: 'uwaga',
@@ -246,7 +247,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Na ekranie Dziś, pod kursem, jest „Nie mogę kontynuować". Zgłaszasz nim awarię, korek albo zamknięty załadunek – zgłoszenie trafia do biura w czacie zlecenia, bez telefonu.',
+              'Na ekranie Dziś, pod kursem, jest „Nie mogę kontynuować". Wybierasz powód: Awaria auta, Wypadek, Choroba, Odbiorca zamknięty albo Inny powód. Kurs się wstrzymuje, a biuro dostaje powiadomienie – bez telefonu. Opóźnienie, na przykład korek, zgłaszasz przyciskiem Zgłoś w szczegółach zlecenia.',
           },
         ],
       },
@@ -279,7 +280,7 @@ export const artykulyKierowcy: Artykul[] = [
               },
               {
                 tytul: 'Wybierz rodzaj kosztu',
-                opis: 'Listę ustala firma. Na start są paliwo, parking, opłaty drogowe, mycie pojazdu i inne.',
+                opis: 'Na start są paliwo, parking, opłaty drogowe, mycie, hotel kierowcy, prom, serwis i naprawy, opłata za załadunek lub rozładunek i inne. Listę zmienia firma.',
               },
               {
                 tytul: 'Wybierz, czym zapłacono',
@@ -322,7 +323,7 @@ export const artykulyKierowcy: Artykul[] = [
     slug: 'czas-pracy-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Czas pracy, przerwy i odpoczynek',
-    lead: 'Liczniki idą same. Telefon przypomina o przerwie 15 minut wcześniej, zanim stanie się obowiązkowa.',
+    lead: 'Jazda i praca zapisują się same, przerwę i odpoczynek włączasz jednym przyciskiem. Przy przewozie międzynarodowym telefon przypomina o przerwie 15 minut wcześniej.',
     role: ['kierowca', 'wlasciciel'],
     gdzie: 'Aplikacja BusiKM Kierowca → Ja → Czas pracy',
     rozdzialy: [
@@ -332,11 +333,11 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Jazda, praca, przerwa i odpoczynek zmieniają się automatycznie na podstawie tego, co robi pojazd i na jakim etapie jest zlecenie. Kierowca nie musi niczego przełączać.',
+              'Jazda i praca zmieniają się same według etapu zlecenia. Przerwę i odpoczynek zapisujesz sam przyciskami Przerwa i Odpoczynek.',
           },
           {
             typ: 'lista',
-            wstep: 'Na ekranie Czas pracy widzisz:',
+            wstep: 'Przy przewozie międzynarodowym ekran Czas pracy pokazuje:',
             punkty: [
               'Trzy wskaźniki: jazdę ciągłą, dzienną i tydzień – każdy z limitem, do którego się zbliżasz.',
               'Pasek Dwa tygodnie.',
@@ -347,12 +348,12 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Liczniki według przepisów UE pokazują się przy przewozie międzynarodowym. W kraju aplikacja pokazuje dzienny czas pracy i odpoczynek.',
+              'W kraju ekran nazywa się Mój czas pracy i pokazuje podsumowanie miesiąca: czas pracy wobec normy, jazdę, dni pracy, nadgodziny, porę nocną i nieobecności. Pod spodem jest zasada: do 8 h pracy na dobę i co najmniej 11 h odpoczynku.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Liczniki liczy serwer. Bez sieci telefon pokazuje ostatni znany stan, a przerwy i odpoczynki zapisane bez zasięgu czekają w kolejce i dochodzą, gdy wróci sygnał.',
+              'Liczniki liczy serwer. Bez sieci ostatni znany stan widzisz na ekranie Dziś, na pasku przerwy – sam ekran Czas pracy pobiera dane z serwera i odświeży się, gdy wróci sieć. Przerwy i odpoczynki zapisane bez zasięgu czekają w kolejce i dochodzą, gdy wróci sygnał.',
           },
         ],
       },
@@ -362,7 +363,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Gdy trzeba coś dopisać – na przykład pracę bez jazdy – służy do tego Zarejestruj ręcznie z przyciskami Przerwa i Odpoczynek.',
+              'Przerwę i odpoczynek zapisujesz w sekcji Zarejestruj ręcznie – są tam tylko dwa przyciski: Przerwa i Odpoczynek. Jazdę i pracę aplikacja zapisuje sama według etapu zlecenia.',
           },
           {
             typ: 'kroki',

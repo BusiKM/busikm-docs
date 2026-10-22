@@ -9,7 +9,7 @@ import { useJezyk } from '@/i18n/klient';
 
 const MAX = 25;
 
-/** Start do trzech pojazdów, dalej Firma; powyżej dziesięciu każdy kolejny +29 zł, do 50. */
+/** Start do trzech pojazdów, dalej Firma; powyżej dziesięciu +29 zł/mies. za każdy kolejny, do 50. */
 function wylicz(pojazdy: number) {
   const plan: PlanId = pojazdy <= 3 ? 'start' : 'firma';
   const ponad = Math.max(0, pojazdy - 10);

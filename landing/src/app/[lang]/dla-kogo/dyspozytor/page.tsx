@@ -44,7 +44,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
             'Wszystkie zlecenia',
             'Całą flotę',
             'Kierowców i ile jazdy im zostało',
-            'Trasy i koszty kursu',
+            'Trasy i dokumenty kursu',
           ],
         },
         {
@@ -59,7 +59,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
     pytania: [
       [
         'Czy zobaczę, ile firma zarabia?',
-        'Nie. Widzisz koszty kursu, żeby prowadzić dzień, ale wynik firmy zostaje u właściciela.',
+        'Nie. Koszt do zlecenia dodasz, ale kwot, wyniku i marży nie widzisz.',
       ],
       [
         'Ilu kierowców udźwignie jeden ekran?',
@@ -86,7 +86,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       kolumny: [
         {
           nadtytul: 'You see',
-          pozycje: ['All orders', 'The whole fleet', 'Drivers and how much driving time they have left', 'Routes and job costs'],
+          pozycje: ['All orders', 'The whole fleet', 'Drivers and how much driving time they have left', 'Routes and job documents'],
         },
         {
           nadtytul: 'You don’t see',
@@ -100,7 +100,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
     pytania: [
       [
         'Will I see how much the company earns?',
-        'No. You see job costs so you can run the day, but the company’s result stays with the owner.',
+        'No. You can add a cost to an order, but you don’t see amounts, results or margins.',
       ],
       [
         'How many drivers can one screen handle?',

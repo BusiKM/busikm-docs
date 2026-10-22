@@ -27,13 +27,13 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     odhacz: (nr, tytul) => `Odhacz krok ${nr}: ${tytul}`,
     stan: (zrobione, wszystkie) =>
-      `Odhaczone: ${zrobione} z ${wszystkie} · ta sama lista jest w aplikacji po zalogowaniu, razem z przyciskiem do każdego kroku`,
+      `Odhaczone: ${zrobione} z ${wszystkie} · Po zalogowaniu pulpit prowadzi Cię przez pierwsze kroki, z przyciskiem do każdego.`,
     wyczysc: 'wyczyść',
   },
   en: {
     odhacz: (nr, tytul) => `Tick off step ${nr}: ${tytul}`,
     stan: (zrobione, wszystkie) =>
-      `Ticked off: ${zrobione} of ${wszystkie} · the same list is in the app once you sign in, with a button for each step`,
+      `Ticked off: ${zrobione} of ${wszystkie} · Once you sign in, the dashboard walks you through the first steps, with a button for each.`,
     wyczysc: 'clear',
   },
 };

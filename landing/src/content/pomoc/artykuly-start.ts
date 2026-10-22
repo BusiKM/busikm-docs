@@ -152,7 +152,7 @@ export const artykulyStart: Artykul[] = [
     kategoria: 'start',
     tytul: 'Jak dodać pojazd',
     lead: 'Bez pojazdu nie ma kilometrów, kosztów paliwa ani ewidencji przebiegu. Wystarczy zdjęcie dowodu rejestracyjnego.',
-    role: ['wlasciciel', 'dyspozytor'],
+    role: ['wlasciciel'],
     gdzie: 'Pojazdy → Dodaj pojazd',
     czas: 'Trzy minuty na pojazd',
     zanim: ['Dowód rejestracyjny – zdjęcia wszystkich stron albo PDF', 'Stan licznika na dziś'],

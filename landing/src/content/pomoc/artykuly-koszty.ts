@@ -170,7 +170,7 @@ export const artykulyKoszty: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Przypominamy 60, 30, 14 i 3 dni przed terminem oraz w dniu terminu – w aplikacji i mailem, właścicielowi i dyspozytorowi. Mail przychodzi raz dziennie rano, tylko gdy coś się zmieniło. Kanały ustawisz w Ustawienia → Powiadomienia.',
+              'Przypominamy 60, 30, 14 i 3 dni przed terminem – w aplikacji i mailem. O dokumentach pojazdów i kierowców dowiadują się właściciel i dyspozytor, o dokumentach firmy – właściciel i księgowa. Mail przychodzi raz dziennie rano, tylko gdy coś się zmieniło. Kanały ustawisz w Ustawienia → Powiadomienia.',
           },
           {
             typ: 'uwaga',

@@ -52,7 +52,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis, Opis] }>
       },
       {
         label: 'Czas pracy · telefon, tryb nocny',
-        note: 'Trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
+        note: 'Przy przewozie międzynarodowym: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
         caption: 'Przerwa',
       },
     ],
@@ -77,7 +77,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis, Opis] }>
       },
       {
         label: 'Working time · phone, dark mode',
-        note: 'Three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
+        note: 'For international transport: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
         caption: 'Break',
       },
     ],

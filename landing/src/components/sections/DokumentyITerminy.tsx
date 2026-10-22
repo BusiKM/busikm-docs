@@ -13,7 +13,7 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Nic nie wygaśnie po cichu.',
-    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat i przypomina wcześniej – Tobie i dyspozytorowi.',
+    lead: 'Ubezpieczenie, przegląd, licencja, prawo jazdy, badania kierowców. System pilnuje dat i przypomina wcześniej – Tobie i dyspozytorowi, a o dokumentach firmy – Tobie i księgowej.',
     bullets: [
       'Wszystko w jednym miejscu – pojazdy, firma, kierowcy',
       'Przypomnienia 60, 30, 14 i 3 dni przed terminem',
@@ -24,7 +24,7 @@ const TEKSTY: Tlumaczenia<{
   },
   en: {
     naglowek: 'Nothing expires quietly.',
-    lead: 'Insurance, vehicle inspection, transport licence, driving licence, drivers’ medicals. The system keeps track of the dates and reminds you early – you and the dispatcher.',
+    lead: 'Insurance, vehicle inspection, transport licence, driving licence, drivers’ medicals. The system keeps track of the dates and reminds you early – you and the dispatcher, and for company documents, you and your accountant.',
     bullets: [
       'Everything in one place – vans, company, drivers',
       'Reminders 60, 30, 14 and 3 days before the deadline',

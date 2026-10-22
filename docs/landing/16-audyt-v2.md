@@ -119,3 +119,30 @@ Zostało do decyzji prawnej (nie zmieniane):
   tylko zapasowe.
 - Macierz planów w backendzie nie blokuje rentowności i zestawień w planie
   Start, a cennik pokazuje je jako funkcje planu Firma.
+
+## 8. Runda 2 (22.10.2026)
+
+Ponowna weryfikacja po nowych commitach web, mobile i backendu. Cennik zgodny
+(ceny końcowe, 149/299 zł, rok = 10 miesięcy, Firma do 50, +29 zł/mies. także
+przy planie rocznym). Poprawione m.in.: kolejność startu dnia („Zacznij dzień”,
+potem zdjęcie licznika), automatycznie zmienia się tylko jazda i praca,
+„Mój czas pracy” w kraju, kroki załadunku i rozładunku, powody „Nie mogę
+kontynuować”, 9 rodzajów kosztów na start, odbiorcy przypomnień o dokumentach,
+dyspozytor bez kosztów kursu, strona śledzenia bez mapy, sześć kroków miesiąca,
+sąd rejestrowy w stopce, dekrety bez Excela.
+
+Dopisane funkcje (wybór właściciela): windykacja i należności, faktury kosztowe
+z KSeF i z maila, karty paliwowe na auta, klient po NIP-ie (GUS, VIES, Biała
+Lista), „czy zdążysz” przy przyjmowaniu zlecenia, oddanie kursu podwykonawcy,
+CMR ze zlecenia, licznik odczytywany ze zdjęcia, przypomnienie o zgraniu karty
+(28 dni) i tachografu (90 dni), klienci z pliku CSV.
+
+Przed publikacją do potwierdzenia: poczta `in.busikm.pl` (adres kosztów firmy)
+działa na produkcji; zmiana planu w portalu Stripe włączona na produkcji
+(strona mówi „w obie strony, proporcjonalnie”).
+
+Do zgłoszenia zespołom:
+- web: przycisk „Zamknij sierpnia” (zła forma, `MonthDialogs.tsx:77`);
+- web/Stripe: płacący klient nie ma dziś samoobsługowej zmiany planu;
+- mobile: przerwa zapisana bez sieci kończy się komunikatem błędu
+  (`app/driver/aetr/index.tsx:158-173`).

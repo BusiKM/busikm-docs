@@ -18,7 +18,7 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Liczniki idą same',
-    lead: 'Jazda, przerwa, odpoczynek, praca. Status zmienia się sam według etapu zlecenia. Nikt nic nie zapisuje w zeszycie.',
+    lead: 'Jazda i praca zmieniają się same według etapu zlecenia. Przerwę i odpoczynek kierowca zapisuje jednym przyciskiem. Nikt nic nie zapisuje w zeszycie.',
     opisy: [
       ['Jazda', 'z 9:00 limitu dziennego'],
       ['Przerwa', 'do następnej przerwy'],
@@ -28,7 +28,7 @@ const TEKSTY: Tlumaczenia<{
   },
   en: {
     naglowek: 'The counters run themselves',
-    lead: 'Driving, break, rest, other work. The status changes by itself with each stage of the order. Nobody writes anything down in a notebook.',
+    lead: 'Driving and other work switch by themselves with each stage of the order. Breaks and rest the driver logs with one button. Nobody writes anything down in a notebook.',
     opisy: [
       ['Driving', 'of the 9:00 daily limit'],
       ['Break', 'until the next break'],

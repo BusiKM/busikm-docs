@@ -54,7 +54,7 @@ const TEKSTY: Tlumaczenia<{
     przeliczenie: {
       tytul: 'Trasa układa się sama',
       tresc:
-        'Wpisujesz punkty – system ustawia kolejność postojów, liczy kilometry i czas. Godzina dojazdu odświeża się z pozycji auta. Gdy chcesz inaczej, klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Możesz też omijać płatne drogi, autostrady i promy. Nową trasę widzi kierowca w aplikacji i klient na stronie śledzenia.',
+        'Wpisujesz punkty – system ustawia kolejność postojów, liczy kilometry i czas. Godzina dojazdu odświeża się z pozycji auta. Gdy chcesz inaczej, klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Możesz też omijać płatne drogi, autostrady i promy. Nową trasę widzi kierowca w aplikacji, a klient na stronie śledzenia widzi nową godzinę dojazdu.',
       label: 'Wybór trasy · desktop',
       note: 'Zlecenie Olsztyn → München, „Wybierz trasę”: dwa warianty na mapie – najszybsza 11 h 53 min, 1167 km, i bez płatnych dróg 12 h 10 min, 1294 km – oraz przyciski omijania: płatne drogi, autostrady, promy.',
     },
@@ -95,7 +95,7 @@ const TEKSTY: Tlumaczenia<{
     przeliczenie: {
       tytul: 'The route plans itself',
       tresc:
-        'You enter the stops – the system puts them in order and works out the kilometres and time. The arrival time updates from the van’s position. Want it different? Click “Change route” and pick an option: fastest or no toll roads. You can also avoid toll roads, motorways and ferries. The driver sees the new route in the app, the client on the tracking page.',
+        'You enter the stops – the system puts them in order and works out the kilometres and time. The arrival time updates from the van’s position. Want it different? Click “Change route” and pick an option: fastest or no toll roads. You can also avoid toll roads, motorways and ferries. The driver sees the new route in the app, and the client sees the new arrival time on the tracking page.',
       label: 'Choosing a route · desktop',
       note: 'Order Olsztyn → München, “Choose route”: two options on the map – fastest at 11 h 53 min, 1,167 km, and no toll roads at 12 h 10 min, 1,294 km – plus avoid buttons: toll roads, motorways, ferries.',
     },

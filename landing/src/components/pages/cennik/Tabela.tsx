@@ -16,7 +16,7 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Co jest w którym planie.',
     plany: ['Start', 'Firma'],
     parametry: [
-      ['Pojazdy', 'do 3', '10 w cenie, każdy kolejny +29 zł, do 50'],
+      ['Pojazdy', 'do 3', '10 w cenie, +29 zł/mies. za każdy kolejny, do 50'],
       ['Kierowcy', 'bez limitu', 'bez limitu'],
       ['Pracownicy biura', 'bez limitu', 'bez limitu'],
     ],
@@ -42,7 +42,7 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'What’s in each plan.',
     plany: ['Start', 'Business'],
     parametry: [
-      ['Vehicles', 'up to 3', '10 included, then +PLN 29 each, up to 50'],
+      ['Vehicles', 'up to 3', '10 included, +PLN 29/month for each extra one, up to 50'],
       ['Drivers', 'unlimited', 'unlimited'],
       ['Office staff', 'unlimited', 'unlimited'],
     ],

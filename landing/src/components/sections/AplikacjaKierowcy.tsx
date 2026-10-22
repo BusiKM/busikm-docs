@@ -38,14 +38,14 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Cały dzień pracy w jednej aplikacji.',
     lead: 'Kierowca dostaje kod mailem, wpisuje go w aplikacji, ustawia hasło i jest w środku. Nie dzwoni do Ciebie z pytaniem, jak się zalogować.',
     label: 'Aplikacja kierowcy · telefon, tryb nocny',
-    opis: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: ekran „Czas pracy” z trzema wskaźnikami, paskiem „Dwa tygodnie” i przyciskami „Przerwa” i „Odpoczynek”.',
+    opis: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: ekran „Czas pracy” przy przewozie międzynarodowym – trzy wskaźniki, pasek „Dwa tygodnie” i przyciski „Przerwa” i „Odpoczynek”.',
   },
   en: {
     eyebrow: 'BusiKM Driver · iPhone and Android',
     naglowek: 'The whole working day in one app.',
     lead: 'The driver gets a code by email, types it into the app, sets a password and they’re in. No calling you to ask how to log in.',
     label: 'Driver app · phone, night mode',
-    opis: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: the “Working time” screen with three gauges, a “Two weeks” bar and the “Break” and “Rest” buttons.',
+    opis: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: the “Working time” screen for international transport – three gauges, a “Two weeks” bar and the “Break” and “Rest” buttons.',
   },
 };
 

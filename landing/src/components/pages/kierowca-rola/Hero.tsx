@@ -28,7 +28,7 @@ const TEKSTY: Tlumaczenia<{
     proba: 'Wypróbuj 14 dni',
     demo: 'Zobacz demo',
     label: 'Dwa telefony pod kątem · tryb nocny',
-    note: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: „Czas pracy” z trzema wskaźnikami i przyciskami „Przerwa” i „Odpoczynek”.',
+    note: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: „Czas pracy” przy przewozie międzynarodowym – trzy wskaźniki i przyciski „Przerwa” i „Odpoczynek”.',
   },
   en: {
     nadtytul: 'For drivers',
@@ -42,7 +42,7 @@ const TEKSTY: Tlumaczenia<{
     proba: 'Try 14 days free',
     demo: 'See the demo',
     label: 'Two phones at an angle · dark mode',
-    note: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: “Working time” with three gauges and the “Break” and “Rest” buttons.',
+    note: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: “Working time” for international transport – three gauges and the “Break” and “Rest” buttons.',
   },
 };
 

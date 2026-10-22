@@ -20,7 +20,7 @@ const TEKSTY: Tlumaczenia<{
       [
         '05',
         'Zmiana trasy',
-        'Klient przesuwa rozładunek albo nie chcesz płatnych dróg – klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Nową trasę widzi kierowca w aplikacji i klient na stronie śledzenia.',
+        'Klient przesuwa rozładunek albo nie chcesz płatnych dróg – klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Nową trasę widzi kierowca w aplikacji, a klient na stronie śledzenia widzi nową godzinę dojazdu.',
       ],
     ],
     label: 'Trasa i śledzenie · desktop',
@@ -36,7 +36,7 @@ const TEKSTY: Tlumaczenia<{
       [
         '05',
         'Changing the route',
-        'The client moves the unloading, or you’d rather skip toll roads – you click “Change route” and pick an option: fastest or no toll roads. The driver sees the new route in the app, the client on the tracking page.',
+        'The client moves the unloading, or you’d rather skip toll roads – you click “Change route” and pick an option: fastest or no toll roads. The driver sees the new route in the app, and the client sees the new arrival time on the tracking page.',
       ],
     ],
     label: 'Route and tracking · desktop',

@@ -8,7 +8,7 @@ type Teksty = {
   tytul: string;
   najblizszy: { co: string; ile: string; wazne: string; przypomnienie: string };
   pozycje: readonly Pozycja[];
-  zakladki: readonly [string, string, string, string];
+  zakladki: readonly [string, string, string, string, string];
 };
 
 const TEKSTY: Tlumaczenia<Teksty> = {
@@ -18,15 +18,15 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       co: 'Badania lekarskie',
       ile: '41 dni',
       wazne: 'Ważne do 13.10.2026',
-      przypomnienie: 'Przypomnimy Ci 30 dni przed. Szefowi też.',
+      przypomnienie: 'Termin widzisz na ekranie Dziś. Szef dostaje przypomnienie.',
     },
     pozycje: [
       { co: 'Prawo jazdy · B', kiedy: 'do 2029', stan: 'ważne' },
-      { co: 'Badania psychologiczne', kiedy: 'do 2028', stan: 'ważne' },
+      { co: 'Karta kierowcy', kiedy: 'do 2028', stan: 'ważne' },
       { co: 'Kod 95', kiedy: 'do 2028', stan: 'ważne' },
-      { co: 'Dokumenty pojazdu', kiedy: 'PO 2093J · do wglądu w trasie', stan: '→', odnosnik: true },
+      { co: 'Dokumenty zlecenia', kiedy: 'CMR i WZ · do wglądu w trasie', stan: '→', odnosnik: true },
     ],
-    zakladki: ['Zlecenia', 'Trasa', 'Koszty', 'Dokumenty'],
+    zakladki: ['Dziś', 'Zlecenia', 'Dodaj', 'Czat', 'Ja'],
   },
   en: {
     tytul: 'My documents',
@@ -34,15 +34,15 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       co: 'Medical check',
       ile: '41 days',
       wazne: 'Valid until 13 Oct 2026',
-      przypomnienie: 'We’ll remind you 30 days before. Your boss too.',
+      przypomnienie: 'You see the deadline on the Today screen. Your boss gets a reminder.',
     },
     pozycje: [
       { co: 'Driving licence · B', kiedy: 'until 2029', stan: 'valid' },
-      { co: 'Psychological test', kiedy: 'until 2028', stan: 'valid' },
+      { co: 'Driver card', kiedy: 'until 2028', stan: 'valid' },
       { co: 'Code 95 (Driver CPC)', kiedy: 'until 2028', stan: 'valid' },
-      { co: 'Vehicle documents', kiedy: 'PO 2093J · ready for roadside checks', stan: '→', odnosnik: true },
+      { co: 'Order documents', kiedy: 'CMR and delivery note · ready for checks', stan: '→', odnosnik: true },
     ],
-    zakladki: ['Orders', 'Route', 'Costs', 'Documents'],
+    zakladki: ['Today', 'Orders', 'Add', 'Chat', 'Me'],
   },
 };
 
@@ -87,10 +87,10 @@ export function TelefonKierowcy() {
       </div>
 
       <div className="mt-auto flex justify-around border-t border-line-dark px-2 pt-3.5 pb-5 text-[10px] text-ink-muted lg:text-[11px]">
-        {t.zakladki.slice(0, 3).map((z) => (
+        {t.zakladki.slice(0, 4).map((z) => (
           <span key={z}>{z}</span>
         ))}
-        <span className="text-paper">{t.zakladki[3]}</span>
+        <span className="text-paper">{t.zakladki[4]}</span>
       </div>
     </Telefon>
   );

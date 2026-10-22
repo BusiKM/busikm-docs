@@ -26,7 +26,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis] }> = {
       },
       {
         label: 'Zamknięcie miesiąca · desktop',
-        note: 'Kroki miesiąca – faktury, koszty, przebieg, płace i diety, deklaracje – z przejściem do braku, obok najbliższe terminy i zamknięte miesiące.',
+        note: 'Kroki miesiąca – faktury, koszty, przebieg, płace i diety, deklaracje, zamknięcie – z przejściem do braku, obok najbliższe terminy i zamknięte miesiące.',
         caption: 'Zamknięcie miesiąca',
       },
       {
@@ -46,7 +46,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis] }> = {
       },
       {
         label: 'Month-end close · desktop',
-        note: 'Month-end steps – invoices, costs, mileage, payroll and allowances, tax returns – each linking to what’s missing, with upcoming deadlines and closed months alongside.',
+        note: 'Month-end steps – invoices, costs, mileage, payroll and allowances, tax returns, closing – each linking to what’s missing, with upcoming deadlines and closed months alongside.',
         caption: 'Month-end close',
       },
       {

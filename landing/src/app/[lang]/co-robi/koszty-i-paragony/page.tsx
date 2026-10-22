@@ -39,7 +39,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ['Czy kierowca widzi koszty całej firmy?', 'Nie. Widzi tylko to, co sam dodał.'],
       [
         'Czy paliwo z karty flotowej też wchodzi?',
-        'Tak, jako koszt firmowy. Tego nie trzeba fotografować.',
+        'Tak. Wgrywasz listę tankowań z ORLEN, DKV, E100 czy Shell, a BusiKM rozdziela paliwo na auta. Paragon kierowcy z tankowania kartą nie liczy się drugi raz.',
       ],
     ],
     drobiazgi: [
@@ -58,8 +58,8 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       note: 'Kwota w euro i w złotych, kurs, data przeliczenia, zapisane przy dokumencie.',
     },
     firmowe: {
-      tytul: 'Koszty firmowe też',
-      tresc: 'Leasing, ubezpieczenie, serwis. Nie tylko to, co w trasie.',
+      tytul: 'Faktury od dostawców wpadają same',
+      tresc: 'Z KSeF pobieramy je codziennie, resztę przesyłasz mailem na adres kosztów firmy. BusiKM odczyta kwotę i sprzedawcę, a rodzaj kosztu, który raz wybierzesz, zapamięta dla tego sprzedawcy.',
     },
     ktoUzywa: 'Kto tego używa:',
     kierowca: 'Kierowca →',
@@ -75,7 +75,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ['Can the driver see the whole company’s costs?', 'No. Only what they added themselves.'],
       [
         'Does fuel paid with a fleet card count too?',
-        'Yes, as a company cost. There’s nothing to photograph.',
+        'Yes. You upload the list of fill-ups from ORLEN, DKV, E100 or Shell, and BusiKM splits the fuel across your vans. A driver’s receipt for a card fill-up isn’t counted twice.',
       ],
     ],
     drobiazgi: [
@@ -94,8 +94,8 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       note: 'Amount in euro and in złoty, the rate and the conversion date, saved with the document.',
     },
     firmowe: {
-      tytul: 'Company costs too',
-      tresc: 'Leasing, insurance, servicing. Not just what happens on the road.',
+      tytul: 'Supplier invoices arrive by themselves',
+      tresc: 'We fetch them from KSeF every day, and you forward the rest to your company’s costs email address. BusiKM reads the amount and the seller, and remembers the cost type you pick for that seller next time.',
     },
     ktoUzywa: 'Who uses it:',
     kierowca: 'Driver →',

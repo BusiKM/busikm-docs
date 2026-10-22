@@ -126,7 +126,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/dla-kogo/wlasciciel',
             label: 'Właściciel',
-            benefit: 'Zysk, koszty i cała flota na jednym ekranie',
+            benefit: 'Co pilne dziś, a niżej przychód, koszty i wynik',
             device: 'Przeglądarka',
           },
           {
@@ -261,7 +261,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
           {
             href: '/dla-kogo/wlasciciel',
             label: 'Owner',
-            benefit: 'Profit, costs and the whole fleet on one screen',
+            benefit: 'What’s urgent today, then revenue, costs and result',
             device: 'Browser',
           },
           {

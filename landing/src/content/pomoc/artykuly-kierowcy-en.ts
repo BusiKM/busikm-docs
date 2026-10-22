@@ -43,7 +43,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The driver gets an email with an 8-character invitation code, such as K7QM-4RTZ. In the BusiKM Driver app they choose I have an invitation (Mam zaproszenie), enter their email and the code, then their first name, last name and their own password. Until then they show on your list as invited.',
+              'The driver gets an email with an 8-character invitation code, such as K7QM-4RTZ. In the BusiKM Driver app they choose I have an invitation (Mam zaproszenie), enter their email and the code, then set their own password (and their first and last name, only if you haven’t entered them). Until then they show on your list as invited.',
           },
           {
             typ: 'uwaga',
@@ -98,8 +98,8 @@ export const artykulyKierowcyEn: Artykul[] = [
                 opis: 'The address the invitation came to and the 8-character code from the email, such as K7QM-4RTZ. Choose Next (Dalej), check the company name and choose I’m joining (Dołączam).',
               },
               {
-                tytul: 'Enter your first name, last name and a password',
-                opis: 'Make the password up yourself – nobody in the company will see it. Finish with Create account and sign in (Załóż konto i wejdź).',
+                tytul: 'Set your own password',
+                opis: 'Make the password up yourself – nobody in the company will see it. You only enter your first and last name if your boss hasn’t. Finish with Create account and sign in (Załóż konto i wejdź).',
               },
               {
                 tytul: 'Allow access to location and notifications',
@@ -110,7 +110,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'uwaga',
             tresc:
-              'Set location to “Always”, not “While using the app”. With the second setting the phone stops recording the route when you put the app in the background – which is exactly when you’re driving.',
+              'Allow location while using the app. On an iPhone, after your first job, also choose “Always” – the route then records even when the system closes the app.',
           },
           {
             typ: 'akapit',
@@ -192,8 +192,8 @@ export const artykulyKierowcyEn: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Take a photo of the odometer and choose Start the day (Zacznij dzień)',
-                opis: 'From then on the route records in the background and the kilometres count themselves.',
+                tytul: 'Choose Start the day (Zacznij dzień) and take a photo of the odometer',
+                opis: 'The Odometer at start (Licznik na start) screen opens. The reading fills itself in from the photo – check it and choose Confirm and start (Potwierdź i rozpocznij). From then on the route records in the background and the kilometres count themselves.',
               },
               {
                 tytul: 'Choose Navigate (Nawiguj)',
@@ -203,16 +203,17 @@ export const artykulyKierowcyEn: Artykul[] = [
                 tytul: 'When you arrive, choose At loading (Jestem na załadunku)',
                 opis: 'Some statuses change by themselves once you get there.',
               },
+              { tytul: 'Choose Start loading (Zacznij załadunek)' },
+              { tytul: 'Enter the loaded weight and choose Save weight (Zapisz wagę)' },
               {
-                tytul: 'Choose Start loading (Zacznij załadunek) and take photos of the goods',
-                opis: 'Photos upload in the background – you don’t have to wait for them or have signal right then.',
+                tytul: 'Collect the sender’s signature on the e-CMR',
+                opis: 'The signature is always required. The sender draws it with a finger on the screen.',
               },
-              { tytul: 'Enter the weight and choose Save weight (Zapisz wagę)' },
               {
-                tytul: 'Collect the sender’s signature on the e-CMR if the client requires one',
-                opis: 'The signature is drawn with a finger on the screen.',
+                tytul: 'Add a seal and photos of the goods if needed',
+                opis: 'This is optional. Photos – up to two – upload in the background. You don’t have to wait for them or have signal right then.',
               },
-              { tytul: 'Choose Finish loading (Dokończ załadunek)' },
+              { tytul: 'Choose Finish loading (Zakończ załadunek) and confirm with Yes, finish (Tak, zakończ)' },
             ],
           },
           {
@@ -233,7 +234,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'When you arrive, choose At unloading (Jestem na rozładunku), then Start unloading (Zacznij rozładunek). From there it works just like loading: photos, recipient details, the recipient’s signature on the e-CMR and confirmation. After that the order is closed, and the dispatcher sees it straight away.',
+              'When you arrive, choose At unloading (Jestem na rozładunku), then Start unloading (Zacznij rozładunek). Enter the recipient’s name, collect their signature on the e-CMR and choose Finish unloading (Zakończ rozładunek). The Odometer at end (Licznik na koniec) screen opens: take a photo of the odometer and choose Confirm and finish (Potwierdź i zakończ). The dispatcher sees it straight away. Then choose Start return to base (Rozpocznij powrót do bazy), and once you’re there, At base (Jestem w bazie).',
           },
           {
             typ: 'uwaga',
@@ -248,7 +249,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'On the Today screen, below the job, there’s “I can’t continue” (Nie mogę kontynuować). Use it to report a breakdown, a traffic jam or a closed loading point – the report goes to the office in the order chat, without a phone call.',
+              'On the Today screen, below the job, there’s “I can’t continue” (Nie mogę kontynuować). You pick a reason: Vehicle breakdown, Accident, Illness, Recipient closed or Other reason. The job is put on hold and the office gets a notification – no phone call needed. A delay, such as a traffic jam, you report with the Report (Zgłoś) button in the order details.',
           },
         ],
       },
@@ -281,7 +282,7 @@ export const artykulyKierowcyEn: Artykul[] = [
               },
               {
                 tytul: 'Choose the cost type (Rodzaj kosztu)',
-                opis: 'Your company sets the list. Out of the box it has fuel, parking, tolls, vehicle wash and other.',
+                opis: 'Out of the box it has fuel, parking, tolls, vehicle wash, driver hotel, ferry, servicing and repairs, loading or unloading fees and other. Your company can change the list.',
               },
               {
                 tytul: 'Choose how it was paid (Czym zapłacono?)',
@@ -324,7 +325,7 @@ export const artykulyKierowcyEn: Artykul[] = [
     slug: 'czas-pracy-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Working time, breaks and rest',
-    lead: 'The counters run by themselves. The phone reminds you 15 minutes before a break becomes mandatory.',
+    lead: 'Driving and other work log themselves, and you switch on a break or rest with one button. On international jobs the phone reminds you 15 minutes before a break is due.',
     role: ['kierowca', 'wlasciciel'],
     gdzie: 'BusiKM Driver app → Me → Working time (BusiKM Kierowca → Ja → Czas pracy)',
     rozdzialy: [
@@ -334,11 +335,11 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Driving, other work, breaks and rest switch automatically, based on what the vehicle is doing and which stage the order is at. The driver doesn’t have to switch anything.',
+              'Driving and other work switch by themselves with each stage of the order. Breaks and rest you log yourself with the Break (Przerwa) and Rest (Odpoczynek) buttons.',
           },
           {
             typ: 'lista',
-            wstep: 'On the Working time (Czas pracy) screen you see:',
+            wstep: 'On international jobs the Working time (Czas pracy) screen shows:',
             punkty: [
               'Three gauges: continuous driving, daily and weekly – each with the limit you’re getting close to.',
               'A Two weeks (Dwa tygodnie) bar.',
@@ -349,12 +350,12 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Counters under the EU drivers’ hours rules appear on international jobs. On domestic jobs the app shows daily working time and rest.',
+              'On domestic jobs the screen is called My working time (Mój czas pracy) and shows a summary of the month: working time against the norm, driving, working days, overtime, night time and absences. Below it is the rule: up to 8 h of work a day and at least 11 h of rest.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'The server does the counting. With no network the phone shows the last known state, and breaks and rest logged with no signal wait in a queue and go through once it’s back.',
+              'The server does the counting. With no network you see the last known state on the Today screen, in the break bar – the Working time screen itself loads its data from the server and refreshes once the network is back. Breaks and rest logged with no signal wait in a queue and go through once it’s back.',
           },
         ],
       },
@@ -364,7 +365,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'When you need to add something – work without driving, for example – use Record manually (Zarejestruj ręcznie) with the Break (Przerwa) and Rest (Odpoczynek) buttons.',
+              'You log breaks and rest in the Record manually (Zarejestruj ręcznie) section – it has just two buttons: Break (Przerwa) and Rest (Odpoczynek). Driving and other work the app logs by itself with each stage of the order.',
           },
           {
             typ: 'kroki',
