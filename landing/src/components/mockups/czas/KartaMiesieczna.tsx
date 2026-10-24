@@ -29,7 +29,7 @@ const TEKSTY: Tlumaczenia<{
       { dzien: '1.08', trasa: 'Warszawa → Berlin', skrot: 'WAW → BER', jazda: '7:10', praca: '8:45', odp: '11:00', kraje: 'PL · DE' },
       { dzien: '2.08', trasa: 'Berlin → Rotterdam', skrot: 'BER → RTM', jazda: '6:40', praca: '8:10', odp: '11:30', kraje: 'DE · NL' },
       { dzien: '3.08', trasa: 'Rotterdam → Poznań', skrot: 'RTM → POZ', jazda: '8:50', praca: '9:30', odp: '9:00', kraje: 'NL · DE · PL' },
-      { dzien: '4.08', trasa: 'odpoczynek tygodniowy', skrot: 'odpoczynek', jazda: '—', praca: '—', odp: '24:00', kraje: 'PL', wolne: true },
+      { dzien: '4.08', trasa: 'odpoczynek tygodniowy', skrot: 'odpoczynek', jazda: '–', praca: '–', odp: '24:00', kraje: 'PL', wolne: true },
       { dzien: '5.08', trasa: 'Poznań → Wiedeń', skrot: 'POZ → VIE', jazda: '7:05', praca: '8:20', odp: '11:00', kraje: 'PL · CZ · AT', tylkoDesktop: true },
     ],
     naglowek: 'Karta czasu pracy · sierpień 2026',
@@ -46,7 +46,7 @@ const TEKSTY: Tlumaczenia<{
       { dzien: '1 Aug', trasa: 'Warsaw → Berlin', skrot: 'WAW → BER', jazda: '7:10', praca: '8:45', odp: '11:00', kraje: 'PL · DE' },
       { dzien: '2 Aug', trasa: 'Berlin → Rotterdam', skrot: 'BER → RTM', jazda: '6:40', praca: '8:10', odp: '11:30', kraje: 'DE · NL' },
       { dzien: '3 Aug', trasa: 'Rotterdam → Poznań', skrot: 'RTM → POZ', jazda: '8:50', praca: '9:30', odp: '9:00', kraje: 'NL · DE · PL' },
-      { dzien: '4 Aug', trasa: 'weekly rest', skrot: 'rest', jazda: '—', praca: '—', odp: '24:00', kraje: 'PL', wolne: true },
+      { dzien: '4 Aug', trasa: 'weekly rest', skrot: 'rest', jazda: '–', praca: '–', odp: '24:00', kraje: 'PL', wolne: true },
       { dzien: '5 Aug', trasa: 'Poznań → Vienna', skrot: 'POZ → VIE', jazda: '7:05', praca: '8:20', odp: '11:00', kraje: 'PL · CZ · AT', tylkoDesktop: true },
     ],
     naglowek: 'Working time sheet · August 2026',
@@ -61,11 +61,11 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /* Kolumny stałe policzone pod najdłuższą wartość, żeby na trasę zostało
-   miejsce — przy 56 px na godzinę wychodziło „Rotterdam → Poz…". */
+   miejsce – przy 56 px na godzinę wychodziło „Rotterdam → Poz…". */
 const kolumny =
   'grid grid-cols-[36px_1fr_42px_46px] gap-2 lg:grid-cols-[36px_1fr_44px_44px_48px_76px]';
 
-/** Karta czasu pracy do wydruku — jasna, bo to wydruk, nie ekran. */
+/** Karta czasu pracy do wydruku – jasna, bo to wydruk, nie ekran. */
 export function KartaMiesieczna() {
   const t = TEKSTY[biezacyJezyk()];
   return (

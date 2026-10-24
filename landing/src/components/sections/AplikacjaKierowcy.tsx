@@ -9,19 +9,19 @@ type Punkt = readonly [string, string];
 
 const PUNKTY: Tlumaczenia<readonly Punkt[]> = {
   pl: [
-    ['Nawigacja jest w środku', 'Trasa ze zlecenia prowadzi go od razu. Nie przeskakuje między aplikacjami'],
-    ['Koszt jednym przyciskiem', 'Zatankował, pstryknął, jedzie dalej'],
+    ['Nawigacja jednym dotknięciem', 'Trasa ze zlecenia otwiera się w Apple Maps, Google Maps albo Waze. Nic nie przepisuje'],
+    ['Paragon jednym przyciskiem', 'Zatankował, pstryknął, jedzie dalej. Kwotę BusiKM odczyta sam'],
     ['Działa bez zasięgu', 'Tunel, góry, terminal promowy. Wszystko dośle, gdy złapie sygnał'],
     ['Widzi, co czeka na wysłanie', 'Żadnego zgadywania, czy dane doszły'],
-    ['Sześć języków', 'Kierowca czyta w swoim języku, nie w Twoim'],
+    ['Działa z CarPlay i Android Auto', 'Trasa na ekranie w kabinie, BusiKM zapisuje przejazd w tle'],
     ['Tryb nocny', 'O trzeciej nad ranem ekran nie razi w oczy'],
   ],
   en: [
-    ['Navigation built in', 'The route from the order guides them straight away. No jumping between apps'],
-    ['A cost in one tap', 'Filled up, snapped the receipt, back on the road'],
+    ['Navigation in one tap', 'The route from the order opens in Apple Maps, Google Maps or Waze. Nothing to retype'],
+    ['A receipt in one tap', 'Filled up, snapped the receipt, back on the road. BusiKM reads the amount itself'],
     ['Works without signal', 'Tunnel, mountains, ferry terminal. It all goes through once there’s signal again'],
     ['Sees what’s waiting to send', 'No guessing whether the data got through'],
-    ['Six languages', 'The driver reads in their language, not yours'],
+    ['Works with CarPlay and Android Auto', 'The route on the dashboard screen, while BusiKM logs the trip in the background'],
     ['Night mode', 'At three in the morning the screen doesn’t dazzle'],
   ],
 };
@@ -36,20 +36,20 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     eyebrow: 'BusiKM Kierowca · iPhone i Android',
     naglowek: 'Cały dzień pracy w jednej aplikacji.',
-    lead: 'Kierowca dostaje kod, wpisuje go raz i jest w środku. Nie zakłada konta, nie wymyśla hasła, nie dzwoni do Ciebie z pytaniem, jak się zalogować.',
+    lead: 'Kierowca dostaje kod mailem, wpisuje go w aplikacji, ustawia hasło i jest w środku. Nie dzwoni do Ciebie z pytaniem, jak się zalogować.',
     label: 'Aplikacja kierowcy · telefon, tryb nocny',
-    opis: 'Lewy (−8°): nawigacja z trasą i kartą zlecenia u dołu. Prawy (+5°, z przodu): dodawanie kosztu ze zdjęciem paragonu.',
+    opis: 'Lewy: ekran „Dziś” z kursem Wrocław → Milano i wyborem „Czym nawigujesz?” (Apple Maps, Google Maps, Waze). Prawy: ekran „Czas pracy” przy przewozie międzynarodowym – trzy wskaźniki, pasek „Dwa tygodnie” i przyciski „Przerwa” i „Odpoczynek”.',
   },
   en: {
     eyebrow: 'BusiKM Driver · iPhone and Android',
     naglowek: 'The whole working day in one app.',
-    lead: 'The driver gets a code, enters it once and they’re in. No account to set up, no password to think up, no calling you to ask how to log in.',
+    lead: 'The driver gets a code by email, types it into the app, sets a password and they’re in. No calling you to ask how to log in.',
     label: 'Driver app · phone, night mode',
-    opis: 'Left (−8°): navigation with the route and the order card at the bottom. Right (+5°, in front): adding a cost with a photo of the receipt.',
+    opis: 'Left: the “Today” screen with the Wrocław → Milan job and the “What do you navigate with?” picker (Apple Maps, Google Maps, Waze). Right: the “Working time” screen for international transport – three gauges, a “Two weeks” bar and the “Break” and “Rest” buttons.',
   },
 };
 
-/** 6.6 — aplikacja kierowcy. Sekcja, która zdejmuje obiekcję „on tego nie ruszy". */
+/** 6.6 – aplikacja kierowcy. Sekcja, która zdejmuje obiekcję „on tego nie ruszy". */
 export function AplikacjaKierowcy() {
   const jezyk = biezacyJezyk();
   const t = TEKSTY[jezyk];
@@ -126,7 +126,7 @@ export function AplikacjaKierowcy() {
             label={t.label}
             note={t.opis}
             ratio="4:3"
-            // Dwa telefony zajmują 67% szerokości kadru — reszta to pusty
+            // Dwa telefony zajmują 67% szerokości kadru – reszta to pusty
             // margines pliku. Powiększenie mieści się w kolumnie właśnie
             // dlatego, że widoczna treść jest węższa od pudła.
             imageScale={1.55}

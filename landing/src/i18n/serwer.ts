@@ -3,14 +3,14 @@ import { notFound } from 'next/navigation';
 import { czyJezyk, JEZYK_DOMYSLNY, type Jezyk } from '@/i18n/jezyki';
 
 /**
- * Język bieżącego renderu — dla komponentów serwerowych.
+ * Język bieżącego renderu – dla komponentów serwerowych.
  *
  * Komponent serwerowy nie ma dostępu do kontekstu Reacta, a przekazywanie
  * `jezyk` w propsach przez kilkadziesiąt poziomów zamieniłoby każdy plik
  * w listę parametrów. `cache()` daje jeden obiekt na render: układ i strona
  * zapisują w nim język z adresu, a każdy komponent niżej go czyta.
  *
- * **Układ i strona muszą ustawić język obie** — Next renderuje je niezależnie
+ * **Układ i strona muszą ustawić język obie** – Next renderuje je niezależnie
  * i żadne nie ma gwarancji, że drugie zdążyło pierwsze. Robi to
  * `jezykZParametrow`, wołane na początku każdej strony i układu.
  */

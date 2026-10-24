@@ -13,43 +13,43 @@ type Teksty = {
 const TEKSTY: Tlumaczenia<Teksty> = {
   pl: {
     punkty: [
-      ['01', 'Zdjęcie zamiast wpisywania', 'Pstryka paragon, formularz wypełnia się sam. Poprawia tylko wtedy, gdy coś się nie zgadza.'],
-      ['02', 'Trafia tam, gdzie trzeba', 'Do tego zlecenia, tego pojazdu, tego kierowcy. Bez segregowania wieczorem przy stole.'],
+      ['01', 'Zdjęcie zamiast wpisywania', 'Pstryka paragon, wybiera rodzaj kosztu, czym zapłacił i zlecenie. Kwotę, datę, NIP i sprzedawcę BusiKM odczyta sam po wysłaniu. Poprawia tylko wtedy, gdy biuro o coś zapyta.'],
+      ['02', 'Trafia tam, gdzie trzeba', 'Do tego zlecenia i tego kierowcy. Bez segregowania wieczorem przy stole.'],
     ],
     pola: [
-      ['Kwota', '151,50 €'],
-      ['Sprzedawca', 'Shell'],
       ['Rodzaj', 'Paliwo'],
+      ['Zapłacono', 'Karta firmowa'],
+      ['Zlecenie', 'Poznań → Rotterdam'],
     ],
-    pstryk: { kiedy: '11:38 · stacja Shell, Rotterdam', puenta: 'Pstryk.' },
-    formularz: { kiedy: '11:38 · formularz', puenta: 'Wypełnia się samo.' },
+    pstryk: { kiedy: '11:38 · stacja Orlen, Świecko', puenta: 'Pstryk.' },
+    formularz: { kiedy: '11:38 · „Wyślij paragon”', puenta: 'Trzy wybory i gotowe.' },
     uCiebie: {
       kiedy: '11:39 · u Ciebie',
-      wiersze: ['Zlecenie · Poznań → Rotterdam', 'Pojazd · PO 2093J', 'Kierowca · Tomasz L.'],
-      puenta: 'Już tam, gdzie trzeba.',
+      wiersze: ['Kwota · 612,40 zł', 'Sprzedawca · Orlen', 'Kierowca · Tomasz L.'],
+      puenta: 'Odczytane i już tam, gdzie trzeba.',
     },
   },
   en: {
     punkty: [
-      ['01', 'A photo instead of typing', 'The driver snaps the receipt and the form fills itself in. They only step in if something doesn’t match.'],
-      ['02', 'It lands where it belongs', 'On the right order, the right van, the right driver. No sorting paper at the kitchen table at night.'],
+      ['01', 'A photo instead of typing', 'The driver snaps the receipt and picks the cost type, how it was paid and the order. BusiKM reads the amount, date, tax ID and merchant itself once it’s sent. They only step in if the office has a question.'],
+      ['02', 'It lands where it belongs', 'On the right order and the right driver. No sorting paper at the kitchen table at night.'],
     ],
     pola: [
-      ['Amount', '€151.50'],
-      ['Merchant', 'Shell'],
       ['Type', 'Fuel'],
+      ['Paid with', 'Company card'],
+      ['Order', 'Poznań → Rotterdam'],
     ],
-    pstryk: { kiedy: '11:38 · Shell station, Rotterdam', puenta: 'Snap.' },
-    formularz: { kiedy: '11:38 · form', puenta: 'Fills itself in.' },
+    pstryk: { kiedy: '11:38 · Orlen station, Świecko', puenta: 'Snap.' },
+    formularz: { kiedy: '11:38 · “Send receipt”', puenta: 'Three taps and done.' },
     uCiebie: {
       kiedy: '11:39 · on your screen',
-      wiersze: ['Order · Poznań → Rotterdam', 'Vehicle · PO 2093J', 'Driver · Tomasz L.'],
-      puenta: 'Already where it belongs.',
+      wiersze: ['Amount · PLN 612.40', 'Merchant · Orlen', 'Driver · Tomasz L.'],
+      puenta: 'Read and already where it belongs.',
     },
   },
 };
 
-/** 01 + 02 — droga paragonu w trzech kadrach: pstryk, formularz, Twój ekran. */
+/** 01 + 02 – droga paragonu w trzech kadrach: pstryk, formularz, Twój ekran. */
 export function TrzyKroki() {
   const t = TEKSTY[biezacyJezyk()];
   return (

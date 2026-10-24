@@ -49,7 +49,7 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'Czy mogę być dyspozytorem i właścicielem naraz?',
-        'Tak, i tak jest najczęściej. Przełączasz widok jednym kliknięciem.',
+        'Tak, i tak jest najczęściej. Dyspozytornię masz w menu, obok pulpitu i faktur.',
       ],
       [
         'Ilu dyspozytorów mogę dodać?',
@@ -58,34 +58,34 @@ const TEKSTY: Tlumaczenia<{
     ],
     naglowekPytan: 'Trzy pytania',
     drobiazgi: [
-      'Zlecenie z pliku klienta',
-      'Podpowiedź wolnego kierowcy',
+      'Plik zlecenia dołączony do kursu',
+      'Podpowiedź, kto zdąży',
       'Historia zleceń z filtrami',
-      'Wysyłka zlecenia na telefon',
-      'Statusy widoczne u klienta',
-      'Dwa zlecenia na jednym przejeździe',
+      'Oddajesz kurs podwykonawcy – widzisz marżę i czy ma ważne OCP',
+      'Link śledzenia dla klienta',
+      'Doładunek po drodze',
     ],
-    statusy: ['przyjęte', 'w drodze', 'rozładunek', 'dostarczone'],
+    statusy: ['przyjęte', 'przypisane', 'w trasie', 'dostarczone'],
     zlecenie: {
       tytul: 'Zlecenie od przyjęcia po rozliczenie',
       tresc:
-        'Zleceniodawca, załadunek, rozładunek, terminy, stawka. Status widać na liście: przyjęte, w drodze, rozładunek, dostarczone.',
+        'Zleceniodawca, załadunek, rozładunek, terminy, stawka. Pasek u góry karty pokazuje, gdzie jest kurs: przyjęte, przypisane, załadowane, w trasie, dostarczone, zafakturowane.',
       label: 'Karta zlecenia · desktop',
-      note: 'Zleceniodawca, załadunek, rozładunek, stawka, kierowca i pojazd; pasek statusów u dołu.',
+      note: 'Zlecenie Wrocław → Milano, zakładka Przegląd: pasek etapów, postoje z mapą, kierowca i auto z przyciskami „Zadzwoń” i „Napisz”, fracht i marża.',
     },
     przypisanie: {
-      tytul: 'Kierowca i pojazd w dwie sekundy',
-      tresc: 'Przypisujesz, a system podpowiada, kto ma ważne uprawnienia i wolny czas pracy.',
+      tytul: 'Przypisujesz auto, które zdąży',
+      tresc: 'System podpowiada, które auto i kierowca zdążą na załadunek: dojazd, odpoczynek i czas jazdy, ładowność, ważne dokumenty. Przy reszcie pisze, dlaczego nie.',
     },
     rozmowa: {
-      tytul: 'Rozmowa bez wychodzenia z ekranu',
+      tytul: 'Do kierowcy piszesz jednym kliknięciem',
       tresc:
-        'Piszesz do kierowcy stąd. Nie szukasz numeru, nie dzwonisz, nie tłumaczysz przez telefon, gdzie ma skręcić.',
+        '„Napisz” na karcie kursu otwiera czat zlecenia. Nie szukasz numeru, a cała rozmowa zostaje przy kursie. Wolisz zadzwonić – obok jest „Zadzwoń”.',
     },
     stanowisko: {
       tytul: 'Dyspozytor to osobne stanowisko',
       tresc:
-        'Ma własny dostęp. Widzi to, czego potrzebuje do prowadzenia tras — nie musi widzieć rozliczeń firmy. W małej firmie właściciel przełącza się na ten widok jednym kliknięciem.',
+        'Ma własny dostęp. Widzi to, czego potrzebuje do prowadzenia tras – nie widzi faktur, kosztów firmy ani raportów. W małej firmie właściciel otwiera dyspozytornię z menu, bo ma ją u siebie.',
     },
     ktoUzywa: 'Kto tego używa:',
     dyspozytor: 'Dyspozytor →',
@@ -99,7 +99,7 @@ const TEKSTY: Tlumaczenia<{
       ],
       [
         'Can I be the dispatcher and the owner at once?',
-        'Yes, and that’s the most common set-up. You switch views with one click.',
+        'Yes, and that’s the most common set-up. Dispatch sits in your menu, next to the dashboard and invoices.',
       ],
       [
         'How many dispatchers can I add?',
@@ -108,34 +108,34 @@ const TEKSTY: Tlumaczenia<{
     ],
     naglowekPytan: 'Three questions',
     drobiazgi: [
-      'Order from the client’s file',
-      'Suggests a free driver',
+      'The client’s order file attached to the run',
+      'A hint on who will make it',
       'Order history with filters',
-      'Order sent to the driver’s phone',
-      'Statuses the client can see',
-      'Two orders on one run',
+      'You hand a run to a subcontractor – you see the margin and whether their carrier’s insurance (OCP) is valid',
+      'A tracking link for the client',
+      'An extra pickup on the way',
     ],
-    statusy: ['accepted', 'on the road', 'unloading', 'delivered'],
+    statusy: ['accepted', 'assigned', 'on the road', 'delivered'],
     zlecenie: {
       tytul: 'An order from acceptance to settlement',
       tresc:
-        'Client, loading, unloading, deadlines, rate. The status shows on the list: accepted, on the road, unloading, delivered.',
+        'Client, loading, unloading, deadlines, rate. The bar at the top of the card shows where the run is: accepted, assigned, loaded, on the road, delivered, invoiced.',
       label: 'Order card · desktop',
-      note: 'Client, loading, unloading, rate, driver and vehicle; status bar at the bottom.',
+      note: 'Order Wrocław → Milano, Overview tab: progress bar, stops with a map, driver and van with “Call” and “Message” buttons, freight and margin.',
     },
     przypisanie: {
-      tytul: 'Driver and van in two seconds',
-      tresc: 'You assign, and the system suggests who has a valid licence and working time left.',
+      tytul: 'You assign a van that will make it',
+      tresc: 'The system suggests which van and driver will make the pickup: approach time, rest and driving time, payload, valid documents. For the rest it says why not.',
     },
     rozmowa: {
-      tytul: 'Talk without leaving the screen',
+      tytul: 'Message the driver in one click',
       tresc:
-        'You message the driver from here. No looking up numbers, no calls, no explaining over the phone where to turn.',
+        '“Message” on the run card opens the order chat. No looking up numbers, and the whole conversation stays with the run. Rather call? “Call” is right next to it.',
     },
     stanowisko: {
       tytul: 'Dispatcher is a role of its own',
       tresc:
-        'They get their own access. They see what they need to run routes — not the company’s accounts. In a small firm the owner switches to this view with one click.',
+        'They get their own access. They see what they need to run routes – not invoices, company costs or reports. In a small firm the owner opens dispatch from the menu, because it’s there for them too.',
     },
     ktoUzywa: 'Who uses it:',
     dyspozytor: 'Dispatcher →',
@@ -144,7 +144,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Dyspozytornia — podstrona wg projektu „BusiKM Dyspozytornia" z Claude Design
+ * Dyspozytornia – podstrona wg projektu „BusiKM Dyspozytornia" z Claude Design
  * (design/03-dyspozytornia). Treść: docs/landing/05, rozdział A2.
  */
 export default async function Page({ params }: ParametryJezyka) {

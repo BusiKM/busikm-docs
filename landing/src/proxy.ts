@@ -7,14 +7,14 @@ import { lokalizuj, plZEn, znanaSciezkaPl } from '@/i18n/trasy';
  *
  * Adresy publiczne: `/cennik` (polski) i `/en/pricing` (angielski).
  * Strony leżą w `app/[lang]/…` pod polskimi nazwami katalogów, więc tu
- * `/cennik` staje się `/pl/cennik`, a `/en/pricing` — `/en/cennik`.
+ * `/cennik` staje się `/pl/cennik`, a `/en/pricing` – `/en/cennik`.
  *
  * Który język dostaje czytelnik:
- * 1. Wybór z przełącznika EN/PL (ciasteczko) — zawsze wygrywa.
+ * 1. Wybór z przełącznika EN/PL (ciasteczko) – zawsze wygrywa.
  * 2. Bez wyboru: polski, gdy wchodzi z Polski albo gdy pierwszym językiem
  *    przeglądarki jest polski. Każdy inny kraj i język → angielski.
  * 3. Roboty (Google, podglądy linków, Lighthouse) nie są przekierowywane
- *    wcale. Google indeksuje z USA — przekierowanie odcięłoby mu polską
+ *    wcale. Google indeksuje z USA – przekierowanie odcięłoby mu polską
  *    wersję, a o istnieniu obu i tak dowiaduje się z `hreflang`.
  */
 
@@ -22,14 +22,14 @@ const ROBOT =
   /bot|crawl|spider|slurp|lighthouse|headless|facebookexternalhit|embedly|preview|whatsapp|telegram|skype|linkedin|pinterest|vercel|curl|wget|python|node-fetch|axios|go-http/i;
 
 function wykryj(req: NextRequest): Jezyk {
-  // Nagłówek Vercela. Lokalnie go nie ma — wtedy decyduje sama przeglądarka.
+  // Nagłówek Vercela. Lokalnie go nie ma – wtedy decyduje sama przeglądarka.
   const kraj = req.headers.get('x-vercel-ip-country')?.toUpperCase();
   if (kraj === 'PL') return 'pl';
 
   const pierwszy = req.headers.get('accept-language')?.split(',')[0]?.trim().toLowerCase();
   if (pierwszy?.startsWith('pl')) return 'pl';
 
-  // Nic nie wiemy (brak kraju i języka) — zostajemy przy polskim.
+  // Nic nie wiemy (brak kraju i języka) – zostajemy przy polskim.
   if (!kraj && !pierwszy) return 'pl';
   return 'en';
 }
@@ -38,7 +38,7 @@ function przekieruj(req: NextRequest, sciezka: string) {
   const url = req.nextUrl.clone();
   url.pathname = sciezka;
   const odp = NextResponse.redirect(url, 307);
-  // Przekierowanie zależy od kraju i ciasteczka — nie może trafić do cache.
+  // Przekierowanie zależy od kraju i ciasteczka – nie może trafić do cache.
   odp.headers.set('Cache-Control', 'private, no-store');
   odp.headers.set('Vary', 'Cookie, Accept-Language');
   return odp;
@@ -47,7 +47,7 @@ function przekieruj(req: NextRequest, sciezka: string) {
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Postać wewnętrzna nie jest adresem publicznym — `/pl/cennik` → `/cennik`.
+  // Postać wewnętrzna nie jest adresem publicznym – `/pl/cennik` → `/cennik`.
   if (pathname === '/pl' || pathname.startsWith('/pl/')) {
     return przekieruj(req, pathname.slice(3) || '/');
   }
@@ -59,7 +59,7 @@ export function proxy(req: NextRequest) {
   let sciezkaPl: string | null;
   if (naEn) {
     sciezkaPl = plZEn(reszta);
-    // `/en/cennik` — polski slug pod angielskim przedrostkiem. Prowadzimy
+    // `/en/cennik` – polski slug pod angielskim przedrostkiem. Prowadzimy
     // pod właściwy adres zamiast dublować stronę.
     if (sciezkaPl === null && znanaSciezkaPl(reszta)) {
       return przekieruj(req, lokalizuj(reszta, 'en'));

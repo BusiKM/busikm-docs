@@ -5,7 +5,7 @@ import { serwis, zablokowane } from '@/content/seo';
  * `robots.txt` generowany z kodu.
  *
  * Wcześniej leżał statycznie w `public/` i wskazywał na `sitemap-index.xml`
- * — plik z czasów Astro, którego w Next już nie ma. Robot dostawał 404
+ * – plik z czasów Astro, którego w Next już nie ma. Robot dostawał 404
  * zamiast mapy strony. Teraz adres mapy bierze się z tego samego miejsca,
  * co ona sama, więc nie ma jak się rozjechać.
  *

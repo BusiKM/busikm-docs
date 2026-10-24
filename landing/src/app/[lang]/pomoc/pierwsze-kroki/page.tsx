@@ -41,7 +41,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Pierwsze kroki — wg projektu „BusiKM Pierwsze kroki" z Claude Design
+ * Pierwsze kroki – wg projektu „BusiKM Pierwsze kroki" z Claude Design
  * (design/20-pierwsze-kroki). Treść: docs/landing/05, rozdział C6.
  *
  * To ten sam materiał, którego używa checklista w aplikacji, więc wygląda

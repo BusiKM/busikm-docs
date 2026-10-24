@@ -49,7 +49,7 @@ export function Adres() {
       setSkopiowane(true);
       setTimeout(() => setSkopiowane(false), 1800);
     } catch {
-      /* Bez schowka zostaje zaznaczenie myszą — adres i tak jest na wierzchu. */
+      /* Bez schowka zostaje zaznaczenie myszą – adres i tak jest na wierzchu. */
     }
   };
 

@@ -1,5 +1,5 @@
 /**
- * Dane rejestrowe spółki. Jedno źródło — stopka i strona kontaktu biorą je stąd,
+ * Dane rejestrowe spółki. Jedno źródło – stopka i strona kontaktu biorą je stąd,
  * żeby nie rozjechały się przy pierwszej zmianie.
  */
 export const firma = {
@@ -17,7 +17,7 @@ export const firma = {
    * odpowiedzialnością podaje w pismach, zamówieniach handlowych **i na
    * swoich stronach internetowych**.
    */
-  sad: 'Sąd Rejonowy w Szczecinie, Wydział Gospodarczy KRS',
+  sad: 'Sąd Rejonowy Szczecin-Centrum w Szczecinie, XIII Wydział Gospodarczy KRS',
   kapital: '5 000 zł',
   email: 'kontakt@busikm.pl',
 } as const;

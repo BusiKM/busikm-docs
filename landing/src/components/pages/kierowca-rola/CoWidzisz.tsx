@@ -11,20 +11,20 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Co widzisz w aplikacji.',
-    rzeczy: ['Swoje zlecenia', 'Swoją trasę', 'Swoje koszty', 'Swój czas pracy', 'Swoje dokumenty'],
+    rzeczy: ['Swoje zlecenia', 'Swoją trasę', 'Swoje koszty', 'Swój czas pracy', 'Swoje dokumenty', 'Swoje urlopy'],
     puenta: 'Nic o innych kierowcach i nic o pieniądzach firmy.',
     aplikacja: 'Aplikacja',
   },
   en: {
     naglowek: 'What you see in the app.',
-    rzeczy: ['Your orders', 'Your route', 'Your costs', 'Your working time', 'Your documents'],
+    rzeczy: ['Your orders', 'Your route', 'Your costs', 'Your working time', 'Your documents', 'Your leave'],
     puenta: 'Nothing about other drivers and nothing about the company’s money.',
     aplikacja: 'The app',
   },
 };
 
 /**
- * Zakres w wersji dla kierowcy — jedna kolumna zamiast dwóch, bo pytanie
+ * Zakres w wersji dla kierowcy – jedna kolumna zamiast dwóch, bo pytanie
  * brzmi inaczej niż u pozostałych ról: nie „co widzę", tylko „czy szef
  * widzi mnie". Odpowiedź stoi na końcu, wytłuszczona.
  */

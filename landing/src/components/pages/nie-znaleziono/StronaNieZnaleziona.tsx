@@ -12,7 +12,7 @@ import { biezacyJezyk } from '@/i18n/serwer';
 /**
  * Strona 404.
  *
- * Bez tego pliku Next pokazuje własną — po angielsku, bez nagłówka, stopki
+ * Bez tego pliku Next pokazuje własną – po angielsku, bez nagłówka, stopki
  * i stylu serwisu.
  *
  * Odnośniki niżej to nie mapa całego serwisu, tylko cztery miejsca, do
@@ -34,7 +34,7 @@ const TEKSTY: Tlumaczenia<{
     tytul: 'Nie ma takiej strony · BusiKM',
     blad: 'Błąd 404',
     naglowek: 'Tej strony tu nie ma.',
-    lead: 'Może w odnośniku zgubiła się literówka, a może adres się zmienił. Jeśli trafiłeś tu z naszej strony — napisz, poprawimy.',
+    lead: 'Może w odnośniku zgubiła się literówka, a może adres się zmienił. Jeśli trafiłeś tu z naszej strony – napisz, poprawimy.',
     wroc: 'Wróć na stronę główną',
     demo: 'Zobacz demo',
     moze: 'Może szukasz jednego z tych miejsc',
@@ -44,16 +44,16 @@ const TEKSTY: Tlumaczenia<{
         label: 'Dyspozytornia',
         opis: 'Zlecenia, mapa i kierowcy na jednym ekranie',
       },
-      { href: '/cennik', label: 'Cennik', opis: 'Dwa plany, od 149 zł netto miesięcznie' },
+      { href: '/cennik', label: 'Cennik', opis: 'Dwa plany, od 149 zł miesięcznie, cena końcowa' },
       { href: '/pomoc', label: 'Centrum pomocy', opis: 'Odpowiedzi na najczęstsze pytania' },
-      { href: '/kontakt', label: 'Kontakt', opis: 'Napisz — odpisujemy tego samego dnia' },
+      { href: '/kontakt', label: 'Kontakt', opis: 'Napisz – odpisujemy tego samego dnia' },
     ],
   },
   en: {
     tytul: 'Page not found · BusiKM',
     blad: 'Error 404',
     naglowek: 'This page isn’t here.',
-    lead: 'Maybe the link has a typo, or the address has changed. If you got here from our site — let us know and we’ll fix it.',
+    lead: 'Maybe the link has a typo, or the address has changed. If you got here from our site – let us know and we’ll fix it.',
     wroc: 'Back to the home page',
     demo: 'See the demo',
     moze: 'Maybe you’re looking for one of these',
@@ -63,9 +63,9 @@ const TEKSTY: Tlumaczenia<{
         label: 'Dispatch',
         opis: 'Orders, map and drivers on one screen',
       },
-      { href: '/cennik', label: 'Pricing', opis: 'Two plans, from PLN 149 net per month' },
+      { href: '/cennik', label: 'Pricing', opis: 'Two plans, from PLN 149 a month, final price' },
       { href: '/pomoc', label: 'Help centre', opis: 'Answers to the most common questions' },
-      { href: '/kontakt', label: 'Contact', opis: 'Write to us — we reply the same day' },
+      { href: '/kontakt', label: 'Contact', opis: 'Write to us – we reply the same day' },
     ],
   },
 };

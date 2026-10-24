@@ -18,7 +18,7 @@ import {
  * Ta sama zasada, co przy formularzu kontaktowym: wysyłka po zapisie do bazy,
  * najlepszym staraniem, błąd nie wywraca formularza.
  *
- * Trasa jest publiczna, więc powtarza walidację z reguł Firestore — nie
+ * Trasa jest publiczna, więc powtarza walidację z reguł Firestore – nie
  * zakłada, że wywołał ją nasz formularz.
  */
 
@@ -52,11 +52,11 @@ export async function POST(request: Request) {
   const zrodlo = String(dane.zrodlo ?? '');
 
   // Wybór z cennika przechodzi tę samą walidację, co w przeglądarce. Trasa
-  // jest publiczna i nie zakłada, że wywołał ją nasz formularz — cokolwiek
+  // jest publiczna i nie zakłada, że wywołał ją nasz formularz – cokolwiek
   // spoza listy daje `null`, czyli po prostu „nie wiemy".
   const wybor = poprawnyWybor(dane.plan, dane.okres);
 
-  // Język formularza — tylko z listy. Nieznany albo brak (stary klient)
+  // Język formularza – tylko z listy. Nieznany albo brak (stary klient)
   // to polski, bo tylko taka wersja istniała przed angielską.
   const jezyk = czyJezyk(dane.jezyk) ? dane.jezyk : 'pl';
 
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
   }
 
   // Klaviyo najpierw: to tam ląduje lista, z której kiedyś pójdzie wysyłka.
-  // Powiadomienie na naszą skrzynkę jest wygodą, nie warunkiem — więc gdyby
+  // Powiadomienie na naszą skrzynkę jest wygodą, nie warunkiem – więc gdyby
   // trzeba było wybrać, które ma się udać, wybieramy zapis kontaktu.
   const klaviyo = await zapiszWKlaviyo({
     imie,
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
 
   const html = `
     <div style="font-family:system-ui,-apple-system,sans-serif;color:#0A0A0B;line-height:1.6">
-      <h2 style="margin:0 0 4px;font-size:18px">Nowy zapis — ${bezpiecznie(ETYKIETY[zrodlo] ?? zrodlo)}</h2>
+      <h2 style="margin:0 0 4px;font-size:18px">Nowy zapis – ${bezpiecznie(ETYKIETY[zrodlo] ?? zrodlo)}</h2>
       <table style="border-collapse:collapse;font-size:14px;margin-top:16px">
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Imię</td>
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
         }
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Język</td>
-          <td>${jezyk === 'en' ? 'angielski (EN) — pisz po angielsku' : 'polski'}</td>
+          <td>${jezyk === 'en' ? 'angielski (EN) – pisz po angielsku' : 'polski'}</td>
         </tr>
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Tag</td>
@@ -114,7 +114,7 @@ export async function POST(request: Request) {
         </tr>
         <tr>
           <td style="padding:4px 16px 4px 0;color:#6C6C74">Klaviyo</td>
-          <td>${klaviyo.ok ? 'zapisany' : bezpiecznie('nie — ' + ('pominiete' in klaviyo ? klaviyo.pominiete : klaviyo.blad))}</td>
+          <td>${klaviyo.ok ? 'zapisany' : bezpiecznie('nie – ' + ('pominiete' in klaviyo ? klaviyo.pominiete : klaviyo.blad))}</td>
         </tr>
       </table>
     </div>`;
@@ -129,7 +129,7 @@ export async function POST(request: Request) {
         reply_to: email,
         // Plan w temacie, żeby dało się ocenić zgłoszenie bez otwierania.
         subject:
-          `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo})${jezyk === 'en' ? ' [EN]' : ''} — ${imie}` +
+          `BusiKM · zapis na listę (${ETYKIETY[zrodlo] ?? zrodlo})${jezyk === 'en' ? ' [EN]' : ''} – ${imie}` +
           (wybor ? ` · ${nazwaPlanu(wybor.plan)} ${nazwaOkresu(wybor.okres)}` : ''),
         html,
       }),

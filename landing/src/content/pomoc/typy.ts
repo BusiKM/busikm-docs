@@ -1,16 +1,16 @@
 /**
- * Kształt artykułu pomocy. Treść siedzi w danych, układ w komponencie —
+ * Kształt artykułu pomocy. Treść siedzi w danych, układ w komponencie –
  * dopisanie instrukcji to dopisanie obiektu, nie pisanie JSX.
  *
  * ## Zasada nadrzędna: opisujemy to, co aplikacja robi dziś
  *
  * Instrukcja, która każe kliknąć nieistniejący przycisk, jest gorsza niż jej
- * brak — czytelnik traci czas i zaufanie. Dlatego każdy krok w tych plikach
+ * brak – czytelnik traci czas i zaufanie. Dlatego każdy krok w tych plikach
  * ma pokrycie w kodzie aplikacji, a nazwy przycisków są przepisane z
  * interfejsu, nie wymyślone.
  *
  * Rzeczy zaplanowane, ale niezbudowane, opisujemy wyłącznie w bloku
- * `wkrotce` — i mówimy wprost, że jeszcze ich nie ma.
+ * `wkrotce` – i mówimy wprost, że jeszcze ich nie ma.
  */
 
 import type { Tlumaczenia } from '@/i18n/jezyki';
@@ -34,7 +34,7 @@ export const NAZWY_ROL: Tlumaczenia<Record<Rola, string>> = {
 
 export type Blok =
   | { typ: 'akapit'; tresc: string }
-  /** Ponumerowane kroki — sedno każdej instrukcji. */
+  /** Ponumerowane kroki – sedno każdej instrukcji. */
   | { typ: 'kroki'; kroki: { tytul: string; opis?: string }[] }
   | { typ: 'lista'; wstep?: string; punkty: string[] }
   /** Wyróżnione ostrzeżenie albo rzecz łatwa do przeoczenia. */
@@ -55,7 +55,7 @@ export type Artykul = {
   tytul: string;
   /** Jedno zdanie: co czytelnik będzie umiał po przeczytaniu. */
   lead: string;
-  /** Kto to robi — pokazujemy jako etykiety pod tytułem. */
+  /** Kto to robi – pokazujemy jako etykiety pod tytułem. */
   role: Rola[];
   /** Ścieżka w aplikacji, np. „Kierowcy → Zaproś kierowcę". */
   gdzie?: string;
@@ -177,7 +177,7 @@ export const kategorie: Tlumaczenia<Kategoria[]> = {
 /**
  * Kotwica z tytułu rozdziału.
  *
- * Tytuły są po polsku, więc same znaki diakrytyczne trzeba zdjąć — inaczej
+ * Tytuły są po polsku, więc same znaki diakrytyczne trzeba zdjąć – inaczej
  * adres z „Wysłanie zaproszenia" wygląda w pasku jak ciąg procentów.
  * `normalize('NFD')` rozkłada literę na znak podstawowy i znak łączący,
  * a wyrażenie usuwa te drugie. Apostrof z tytułów angielskich („What’s…")

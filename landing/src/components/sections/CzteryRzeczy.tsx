@@ -23,7 +23,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; items: readonly (readonly [string,
   },
 };
 
-/** 6.2 — co znika z dnia. Zdanie przekreślone i zdanie po nim. */
+/** 6.2 – co znika z dnia. Zdanie przekreślone i zdanie po nim. */
 export function CzteryRzeczy() {
   const t = TEKSTY[biezacyJezyk()];
   return (

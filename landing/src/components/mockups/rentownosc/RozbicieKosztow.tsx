@@ -11,7 +11,7 @@ type Pozycja = {
 
 type Teksty = { trasa: string; razem: string; pozycje: Pozycja[] };
 
-/** Udziały sumują się do 100 — pasek nad listą dzieli się dokładnie tak. */
+/** Udziały sumują się do 100 – pasek nad listą dzieli się dokładnie tak. */
 const TEKSTY: Tlumaczenia<Teksty> = {
   pl: {
     trasa: 'Koszty · Warszawa → Mediolan',

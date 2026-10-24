@@ -33,7 +33,7 @@ const plexMono = IBM_Plex_Mono({
  *
  * Bez `dynamicParams = false`: ustawienie z układu obejmuje całe drzewo,
  * także trasę-łapacz nieznanych adresów, i Next zgłaszał wtedy 404 przed
- * układem — strona błędu wychodziła bez nagłówka, stopki i `<html lang>`.
+ * układem – strona błędu wychodziła bez nagłówka, stopki i `<html lang>`.
  * Obcy kod języka i tak nie przejdzie: `proxy.ts` nigdy go nie tworzy,
  * a `jezykZParametrow` odpowiada na niego 404.
  */
@@ -83,7 +83,7 @@ export default async function RootLayout({
       </head>
       <body>
         {/* Włącza stan ukryty dla [data-reveal] zanim przeglądarka odmaluje
-            treść — dzięki temu nic nie mruga. Bez JavaScriptu i przy prośbie
+            treść – dzięki temu nic nie mruga. Bez JavaScriptu i przy prośbie
             o mniej ruchu strona jest po prostu widoczna. */}
         <script
           dangerouslySetInnerHTML={{

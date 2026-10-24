@@ -12,7 +12,7 @@ import { lokalizuj } from '@/i18n/trasy';
  * Budowanie metadanych stron.
  *
  * Next scala metadane warstwowo, ale **płytko**: gdy podstrona poda własny
- * obiekt `openGraph`, ten z `layout.tsx` przepada w całości — razem z obrazem,
+ * obiekt `openGraph`, ten z `layout.tsx` przepada w całości – razem z obrazem,
  * nazwą serwisu, językiem i typem. Dlatego każda podstrona dostaje tu pełny
  * `openGraph` i `twitter`, a nie tylko tytuł z opisem.
  */
@@ -21,11 +21,11 @@ import { lokalizuj } from '@/i18n/trasy';
  * Wymiary obrazu podglądu, odczytane z samego pliku.
  *
  * Czytamy je zamiast wpisywać na sztywno, bo obraz OG powstaje w Figmie
- * i bywa podmieniany — a Facebook i LinkedIn ufają `og:image:width`
+ * i bywa podmieniany – a Facebook i LinkedIn ufają `og:image:width`
  * bardziej niż samemu plikowi, więc rozjazd psuje kadrowanie kafelka.
  *
  * PNG trzyma wymiary w nagłówku IHDR na stałych pozycjach. JPEG wymaga
- * przejścia po segmentach aż do ramki SOF — dlatego dwie ścieżki.
+ * przejścia po segmentach aż do ramki SOF – dlatego dwie ścieżki.
  */
 function wymiaryObrazu(plik: string): { width: number; height: number } | null {
   try {
@@ -38,7 +38,7 @@ function wymiaryObrazu(plik: string): { width: number; height: number } | null {
     }
 
     // JPEG: po 0xFFD8 idą segmenty `FF <znacznik> <długość>`. Wymiary niesie
-    // ramka SOF — wszystkie warianty poza 0xC4 (tablice Huffmana), 0xC8
+    // ramka SOF – wszystkie warianty poza 0xC4 (tablice Huffmana), 0xC8
     // (rozszerzenie JPEG) i 0xCC (kodowanie arytmetyczne).
     if (b.length > 4 && b.readUInt16BE(0) === 0xffd8) {
       let i = 2;
@@ -58,7 +58,7 @@ function wymiaryObrazu(plik: string): { width: number; height: number } | null {
       }
     }
   } catch {
-    /* pusto — obsługa niżej */
+    /* pusto – obsługa niżej */
   }
   return null;
 }
@@ -67,7 +67,7 @@ const obraz = wymiaryObrazu(serwis.ogImage);
 
 if (!obraz) {
   // Lepiej zatrzymać budowanie niż wypuścić stronę z podglądem, którego nie
-  // ma albo którego wymiary są zmyślone — błąd zobaczymy w logu wdrożenia,
+  // ma albo którego wymiary są zmyślone – błąd zobaczymy w logu wdrożenia,
   // a nie dopiero w kafelku wklejonym na LinkedInie.
   throw new Error(
     `Nie udało się odczytać wymiarów obrazu podglądu: public${serwis.ogImage}`,
@@ -88,7 +88,7 @@ export function obrazPodgladu(jezyk: Jezyk) {
  * Adres kanoniczny i wersje językowe strony.
  *
  * Każda wersja wskazuje siebie jako kanoniczną i obie siebie nawzajem przez
- * `hreflang` — tak Google wie, że `/cennik` i `/en/pricing` to ta sama strona
+ * `hreflang` – tak Google wie, że `/cennik` i `/en/pricing` to ta sama strona
  * w dwóch językach, a nie dwie kopie tej samej treści. `x-default` to polski,
  * bo to wersja podstawowa serwisu.
  */
@@ -108,7 +108,7 @@ function adresy(sciezkaPl: string, jezyk: Jezyk): Metadata['alternates'] {
  * Dyrektywy dla robotów.
  *
  * `max-image-preview: large` decyduje o tym, czy Google pokaże przy wyniku
- * duży obrazek, czy miniaturę — bez tego domyślnie dostajemy miniaturę.
+ * duży obrazek, czy miniaturę – bez tego domyślnie dostajemy miniaturę.
  * `max-snippet: -1` zdejmuje limit długości opisu w wyniku.
  */
 const roboty = {
@@ -132,7 +132,7 @@ type Opcje = {
 /**
  * Metadane strony, której nie ma w `pages`.
  *
- * Artykuły pomocy żyją w treści, nie w mapie podstron — jest ich kilkanaście
+ * Artykuły pomocy żyją w treści, nie w mapie podstron – jest ich kilkanaście
  * i rosną. Powielanie ich opisów w `content/pages.ts` znaczyłoby, że każdy
  * nowy artykuł trzeba dopisać w dwóch miejscach, a zapomnienie o drugim widać
  * dopiero w wyniku wyszukiwania.
@@ -178,7 +178,7 @@ export function metadataTresci({
 /**
  * Metadane podstrony na podstawie jej ścieżki (bez wiodącego ukośnika).
  *
- * Ta sama funkcja obsługuje strony pełne i szkielety — o tym, czy strona
+ * Ta sama funkcja obsługuje strony pełne i szkielety – o tym, czy strona
  * trafia do indeksu, decyduje lista `nieindeksowane` w `content/seo.ts`.
  */
 export function pageMetadata(slug: string, jezyk: Jezyk, opcje: Opcje = {}): Metadata {
@@ -187,13 +187,13 @@ export function pageMetadata(slug: string, jezyk: Jezyk, opcje: Opcje = {}): Met
 
   // Tytuł w wyniku wyszukiwania jest rozdzielony od nazwy strony: `seoTitle`
   // mówi językiem zapytań, `title` zostaje krótką nazwą do okruszków i menu.
-  // Gdy `seoTitle` nie ma, doklejamy markę — chyba że nazwa już ją niesie
+  // Gdy `seoTitle` nie ma, doklejamy markę – chyba że nazwa już ją niesie
   // („BusiKM dla kierowcy"), bo powtórzenie zjada limit ~60 znaków.
   const nazwa = page.seoTitle ?? page.title;
   const zMarka = nazwa.includes(serwis.nazwa);
   const tytul = opcje.tytul ?? (zMarka ? nazwa : `${nazwa} · ${serwis.nazwa}`);
   const opis = opcje.opis ?? page.description;
-  // Podgląd społecznościowy ucina wcześniej niż wyszukiwarka — patrz `opisOg`.
+  // Podgląd społecznościowy ucina wcześniej niż wyszukiwarka – patrz `opisOg`.
   const opisPodgladu = page.opisOg ?? opis;
   const sciezka = `/${slug}`;
   const wIndeksie = !nieindeksowane.includes(sciezka);
@@ -223,7 +223,7 @@ export function pageMetadata(slug: string, jezyk: Jezyk, opcje: Opcje = {}): Met
 }
 
 /**
- * `generateMetadata` dla podstrony z `pages` — jedna linijka w pliku strony:
+ * `generateMetadata` dla podstrony z `pages` – jedna linijka w pliku strony:
  *
  *     export const generateMetadata = metadataPodstrony('cennik');
  */
@@ -232,7 +232,7 @@ export function metadataPodstrony(slug: string, opcje: Opcje = {}) {
     pageMetadata(slug, await jezykZParametrow(params), opcje);
 }
 
-/** Metadane strony głównej — tytuł bez przyrostka, bo sam niesie markę. */
+/** Metadane strony głównej – tytuł bez przyrostka, bo sam niesie markę. */
 export function metadataStronyGlownej(jezyk: Jezyk): Metadata {
   const { tytul, opis, opisOg } = opisSerwisu[jezyk];
   return {
@@ -271,7 +271,7 @@ export function metadataStronyGlownej(jezyk: Jezyk): Metadata {
     },
     /**
      * Kod z Google Search Console. Trzymany w zmiennej środowiskowej, bo
-     * dochodzi dopiero przy pierwszej weryfikacji domeny — bez niego
+     * dochodzi dopiero przy pierwszej weryfikacji domeny – bez niego
      * Next po prostu nie wypisze znacznika.
      */
     verification: process.env.GOOGLE_SITE_VERIFICATION

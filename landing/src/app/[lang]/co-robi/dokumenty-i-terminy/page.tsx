@@ -38,7 +38,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
       [
         'Czy przypomnienie przyjdzie mailem?',
-        'Tak, mailem i w aplikacji. Kierowca dostaje swoje na telefon.',
+        'Tak, mailem i w aplikacji – Tobie i dyspozytorowi, a o dokumentach firmy Tobie i księgowej. Kierowca widzi swoje terminy w aplikacji: na ekranie „Dziś” i w „Moich dokumentach”.',
       ],
       [
         'Co, gdy dokument dotyczy tylko jednego pojazdu?',
@@ -50,18 +50,19 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       'Przypomnienie mailem i w aplikacji',
       'Termin przesuwasz jednym kliknięciem po odnowieniu',
       'Historia poprzednich polis i przeglądów',
-      'Dokumenty pojazdu widoczne dla kierowcy w trasie',
-      'Lista do wydruku na jedną stronę',
+      'Dokumenty zlecenia (CMR, WZ) pod ręką kierowcy w trasie',
+      'Przypomnienie o zgraniu karty kierowcy co 28 dni i tachografu co 90',
     ],
     przypomnienie: {
       tytul: 'Przypomnienie z wyprzedzeniem',
       tresc: 'Na długo przed terminem, nie dzień po. Sam ustawiasz, ile dni wcześniej.',
     },
     kierowca: {
-      tytul: 'Kierowca też dostaje swoje',
-      tresc: 'O jego prawie jazdy i badaniach przypominamy jemu, nie tylko Tobie.',
-      label: 'Dokumenty kierowcy · telefon, tryb nocny',
-      note: 'Telefon kierowcy z jego dokumentami i najbliższym terminem badania u góry.',
+      tytul: 'Kierowca też widzi swoje',
+      tresc:
+        'W „Moich dokumentach” ma prawo jazdy, świadectwo kwalifikacji, badania lekarskie i psychologiczne oraz kartę kierowcy, każdy z datą ważności. Gdy termin się zbliża, widzi komunikat na ekranie „Dziś”.',
+      label: 'Moje dokumenty · telefon, tryb nocny',
+      note: 'Ekran „Moje dokumenty” z kompletem ważnych dokumentów: badania lekarskie, kwalifikacja zawodowa, karta kierowcy, badania psychotechniczne i prawo jazdy, każdy z datą „Ważny do”.',
     },
     ktoUzywa: 'Kto tego używa:',
     wlascicielLink: 'Właściciel →',
@@ -76,7 +77,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
       [
         'Will the reminder come by email?',
-        'Yes, by email and in the app. The driver gets theirs on the phone.',
+        'Yes, by email and in the app – to you and the dispatcher, and for company documents to you and your accountant. Drivers see their own deadlines in the app: on the “Today” screen and in “My documents”.',
       ],
       [
         'What if a document only applies to one vehicle?',
@@ -88,18 +89,19 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       'Reminders by email and in the app',
       'Move the deadline with one click after a renewal',
       'History of past policies and inspections',
-      'Vehicle documents visible to the driver on the road',
-      'A printable list on a single page',
+      'Order documents (CMR, delivery notes) to hand for the driver on the road',
+      'Reminders to download the driver card every 28 days and the tachograph every 90',
     ],
     przypomnienie: {
       tytul: 'Reminders well ahead',
       tresc: 'Long before the deadline, not the day after. You decide how many days ahead.',
     },
     kierowca: {
-      tytul: 'The driver gets theirs too',
-      tresc: 'We remind them about their driving licence and medical checks — not just you.',
-      label: 'Driver’s documents · phone, dark mode',
-      note: 'The driver’s phone with their documents and the next medical check at the top.',
+      tytul: 'The driver sees theirs too',
+      tresc:
+        'In “My documents” they keep their driving licence, driver CPC, medical and psychological checks and tachograph card, each with its expiry date. When a deadline gets close, they see a message on the “Today” screen.',
+      label: 'My documents · phone, dark mode',
+      note: 'The “My documents” screen with a full set of valid documents: medical check, professional qualification, tachograph card, psychological assessment and driving licence, each with a “Valid until” date.',
     },
     ktoUzywa: 'Who uses it:',
     wlascicielLink: 'Owner →',
@@ -109,10 +111,10 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 };
 
 /**
- * Dokumenty i terminy — podstrona wg projektu „BusiKM Dokumenty i terminy"
+ * Dokumenty i terminy – podstrona wg projektu „BusiKM Dokumenty i terminy"
  * z Claude Design (design/10-dokumenty-i-terminy). Treść: docs/landing/05, rozdział A9.
  *
- * Jedyna strona w serwisie, na której wolno użyć koloru `amber` — i tylko dla
+ * Jedyna strona w serwisie, na której wolno użyć koloru `amber` – i tylko dla
  * dokumentu, który zaraz wygaśnie.
  */
 export default async function Page({ params }: ParametryJezyka) {
@@ -146,7 +148,7 @@ export default async function Page({ params }: ParametryJezyka) {
               ratio="9:19.5"
               box="6:7"
               // Zrzut ma szeroki kadr 4:3 z telefonem zajmującym 30% jego
-              // szerokości — bez powiększenia wychodzi na 158 px w kolumnie
+              // szerokości – bez powiększenia wychodzi na 158 px w kolumnie
               // mającej 520. Ta sama wartość, co przy pozostałych telefonach.
               imageScale={1.8}
               imageScaleTelefon={1.8}

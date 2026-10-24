@@ -14,30 +14,30 @@ const TEKSTY: Tlumaczenia<{
   nagrywa: string;
 }> = {
   pl: {
-    naglowek: 'Rusza jednym przyciskiem',
+    naglowek: 'Zaczyna dzień jednym przyciskiem',
     tresc:
-      'Zdjęcie licznika, przycisk „Rozpocznij trasę” i jedzie. Telefon może zostać w kieszeni, ekran wyłączony. Trasa nagrywa się sama.',
-    licznikPrzedStartem: 'Licznik przed startem',
+      'Klika „Zacznij dzień” i robi zdjęcie licznika – stan odczyta się sam, wystarczy go potwierdzić. Potem jedzie. Dalej „Jestem na załadunku”, „Jestem na rozładunku” – część statusów zmienia się sama, gdy dojedzie na miejsce. Telefon może zostać w kieszeni, trasa zapisuje się sama. A gdy coś stanie na drodze, „Nie mogę kontynuować” zgłasza problem do biura.',
+    licznikPrzedStartem: 'Licznik na start',
     licznik: '184 210 km',
-    zdjecie: 'zdjęcie licznika · zrobione',
-    rozpocznij: 'Rozpocznij trasę',
+    zdjecie: 'zdjęcie licznika · stan odczytany',
+    rozpocznij: 'Potwierdź i rozpocznij',
     pigulki: ['ekran wyłączony', 'telefon w kieszeni'],
-    nagrywa: 'trasa nagrywa się',
+    nagrywa: 'trasa zapisuje się',
   },
   en: {
-    naglowek: 'Off with one button',
+    naglowek: 'The day starts with one button',
     tresc:
-      'A photo of the odometer, the “Start route” button, and off they go. The phone can stay in their pocket with the screen off. The route records itself.',
-    licznikPrzedStartem: 'Odometer before the start',
+      'They tap “Start the day” and snap the odometer – the reading fills itself in, they just confirm it. Then off they go. Next, “At loading”, “At unloading” – some statuses change by themselves when they arrive. The phone can stay in their pocket and the route records itself. And if something goes wrong on the road, “I can’t continue” reports it to the office.',
+    licznikPrzedStartem: 'Odometer at start',
     licznik: '184,210 km',
-    zdjecie: 'odometer photo · taken',
-    rozpocznij: 'Start route',
+    zdjecie: 'odometer photo · reading filled in',
+    rozpocznij: 'Confirm and start',
     pigulki: ['screen off', 'phone in pocket'],
     nagrywa: 'route recording',
   },
 };
 
-/** 03 — rusza jednym przyciskiem. Karta licznika zamiast telefonu. */
+/** 03 – rusza jednym przyciskiem. Karta licznika zamiast telefonu. */
 export function Rusza() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -7,12 +7,12 @@ import { jezykZParametrow } from '@/i18n/serwer';
 /**
  * Artykuły pomocy pod `/pomoc/<slug>`.
  *
- * Trasa dynamiczna, ale strony powstają przy budowaniu — `generateStaticParams`
+ * Trasa dynamiczna, ale strony powstają przy budowaniu – `generateStaticParams`
  * wylicza je z listy artykułów, więc każda jest zwykłym plikiem HTML.
  * `dynamicParams = false` zamyka furtkę: adres spoza listy dostaje 404, a nie
  * pustą stronę wygenerowaną w locie.
  *
- * `/pomoc/pierwsze-kroki` ma własny plik i wygrywa z tą trasą — Next stawia
+ * `/pomoc/pierwsze-kroki` ma własny plik i wygrywa z tą trasą – Next stawia
  * segment statyczny przed dynamicznym. To celowe: tamta strona jest listą do
  * odhaczania z paskiem postępu, a nie artykułem.
  */

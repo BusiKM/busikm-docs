@@ -2,14 +2,14 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Koszty jednego kursu — razem 2 496 € przy frachcie 3 900 €, czyli marża 36%.
+ * Koszty jednego kursu – razem 2 496 € przy frachcie 3 900 €, czyli marża 36%.
  *
  * Największą pozycją jest kierowca, nie paliwo. Tak to wygląda w transporcie
  * busami: pięć dni pracy człowieka kosztuje więcej niż tankowanie. Bez tej
  * pozycji rozbicie kosztów wyglądałoby optymistycznie w sposób, który każdy
  * przewoźnik rozpozna jako nieprawdziwy.
  *
- * Kilometraż jest liczony w obie strony (3 280 km), bo pojazd musi wrócić —
+ * Kilometraż jest liczony w obie strony (3 280 km), bo pojazd musi wrócić –
  * sama trasa Warszawa → Mediolan to 1 640 km.
  */
 type Teksty = {
@@ -64,7 +64,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 /**
  * Karta jednego zlecenia z rozbiciem kosztów i zyskiem na dole.
  *
- * Stoi w dwóch miejscach — w sekcji „Ile zostaje" na stronie głównej i w
+ * Stoi w dwóch miejscach – w sekcji „Ile zostaje" na stronie głównej i w
  * nagłówku podstrony o rentowności. Oba miejsca czekają na ten sam zrzut
  * (`mockup-zysk-karta-desktop.png`), więc rysowana wersja musi być jedna:
  * dwie różne liczby zysku dla tego samego kursu przeczyłyby sobie nawzajem.

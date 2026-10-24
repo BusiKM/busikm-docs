@@ -15,36 +15,36 @@ const TEKSTY: Tlumaczenia<{
       [
         '04',
         'Trasa układa się sama',
-        'System proponuje przejazd i bierze pod uwagę, co dzieje się na drodze.',
+        'Wpisujesz punkty – system ustawia kolejność postojów, liczy kilometry i czas. Godzina dojazdu odświeża się z pozycji auta.',
       ],
       [
         '05',
-        'Zmiana w trakcie jazdy',
-        'Klient przesuwa rozładunek, na trasie robi się korek — poprawiasz u siebie, kierowca ma nową wersję od razu.',
+        'Zmiana trasy',
+        'Klient przesuwa rozładunek albo nie chcesz płatnych dróg – klikasz „Zmień trasę” i wybierasz wariant: najszybszy albo bez płatnych dróg. Nową trasę widzi kierowca w aplikacji, a klient na stronie śledzenia widzi nową godzinę dojazdu.',
       ],
     ],
-    label: 'Podgląd trasy z korkiem · desktop',
-    note: 'Stara trasa kreskowana, nowa niebieska, znacznik korka, dymek z nową godziną dojazdu.',
+    label: 'Trasa i śledzenie · desktop',
+    note: 'Zlecenie Olsztyn → München, zakładka Trasa i śledzenie: ostrzeżenie o spóźnieniu, trasa najszybsza 1167 km z przyciskiem „Zmień trasę”, auto na mapie, czas dojazdu i przebieg kursu.',
   },
   en: {
     bloki: [
       [
         '04',
         'The route plans itself',
-        'The system suggests a route and takes into account what’s happening on the road.',
+        'You enter the stops – the system puts them in order and works out the kilometres and time. The arrival time updates from the van’s position.',
       ],
       [
         '05',
-        'Changes mid-run',
-        'The client moves the unloading, a jam builds up on the route — you fix it on your side, and the driver has the new version straight away.',
+        'Changing the route',
+        'The client moves the unloading, or you’d rather skip toll roads – you click “Change route” and pick an option: fastest or no toll roads. The driver sees the new route in the app, and the client sees the new arrival time on the tracking page.',
       ],
     ],
-    label: 'Route view with a traffic jam · desktop',
-    note: 'Old route dashed, new one in blue, a traffic jam marker, a bubble with the new arrival time.',
+    label: 'Route and tracking · desktop',
+    note: 'Order Olsztyn → München, Route and tracking tab: a late-arrival warning, the fastest route of 1,167 km with a “Change route” button, the van on the map, arrival time and the run’s timeline.',
   },
 };
 
-/** 04 i 05 — dwa bloki tekstu obok jednej makiety trasy. */
+/** 04 i 05 – dwa bloki tekstu obok jednej makiety trasy. */
 export function TrasaIZmiana() {
   const t = TEKSTY[biezacyJezyk()];
   return (

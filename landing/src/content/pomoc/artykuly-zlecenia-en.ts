@@ -1,51 +1,51 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
-/** Zlecenia, dyspozytornia, kontrahenci i faktury — wersja angielska. */
+/** Zlecenia, dyspozytornia, kontrahenci i faktury – wersja angielska. */
 export const artykulyZleceniaEn: Artykul[] = [
   {
     slug: 'nowe-zlecenie',
     kategoria: 'zlecenia',
     tytul: 'How to create an order',
-    lead: 'A five-step wizard. The draft saves itself, so stopping to take a phone call doesn’t wipe anything.',
+    lead: 'Four steps in the wizard. The draft saves itself on this device, so stopping to take a call doesn’t lose anything.',
     role: ['dyspozytor', 'wlasciciel'],
     gdzie: 'Orders → New order (Zlecenia → Nowe zlecenie)',
     czas: 'Five minutes the first time, two after that',
     zanim: [
-      'The client in your database — or the details to add them',
+      'The client in your database – or the details to add them',
       'Loading and unloading addresses',
       'The agreed freight rate',
     ],
     rozdzialy: [
       {
-        tytul: 'The five wizard steps',
+        tytul: 'Four steps of the wizard',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'At the top you see “Step X of 5” (Krok X z 5). You move between steps with Back (Wstecz) and Next (Dalej) — nothing gets lost on the way, because the form saves a draft in the browser.',
+              'At the bottom you see “Step X of 4” (Krok X z 4). You move between steps with Back (Wstecz) and Next (Dalej), and you can change everything later. The draft is saved in the browser on this device and disappears once you create the order.',
           },
           {
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Parties (Kontrahenci)',
-                opis: 'Sender *, recipient *, payer and external reference — the number the order goes by at the client’s end. The payer is often someone other than the sender, and that’s normal.',
-              },
-              {
-                tytul: 'Cargo (Ładunek)',
-                opis: 'Cargo description *, weight (kg) *, number of pallets, volume (m³), cargo value with its currency.',
+                tytul: 'Client (Klient)',
+                opis: 'Who is ordering the transport: Client, Payer and the client’s order number. The payer is sometimes someone other than the client, and that’s normal. Under Start faster (Zacznij szybciej) you can start from a previous order.',
               },
               {
                 tytul: 'Route (Trasa)',
-                opis: 'From address * and To address * with city, postcode and country, plus the time windows: loading date from/to and delivery date from/to. With several stops you add further legs, each with a type and planned times.',
+                opis: 'Stops in driving order. Each is a loading (Załadunek) or unloading (Rozładunek), with an address, day and time window, reference number and contact on site.',
               },
               {
-                tytul: 'Billing (Rozliczenie)',
-                opis: 'Freight amount * and currency *, VAT (%), extra charges, payment method and payment term (days) *. This is also where you add instructions for the client and internal notes — the latter stay inside the company.',
+                tytul: 'Load (Ładunek)',
+                opis: 'Load description, weight (kg), EUR pallets, loading metres (LDM), volume (m³) and goods value. Plus controlled temperature, dangerous goods (ADR) and pallet exchange, where they apply.',
               },
               {
-                tytul: 'Summary (Podsumowanie)',
-                opis: 'A last look at the whole thing. You confirm with Create order (Utwórz zlecenie).',
+                tytul: 'Price and terms (Cena i warunki)',
+                opis: 'Net freight and currency, payment term (days) from the client card and payment method. This is also where you add notes for the driver – they see them in the app – and an internal note that only the office sees.',
+              },
+              {
+                tytul: 'Create order (Utwórz zlecenie)',
+                opis: 'Or straight away Create and assign a driver (Utwórz i przypisz kierowcę) – you go directly to assigning in Dispatch.',
               },
             ],
           },
@@ -57,12 +57,17 @@ export const artykulyZleceniaEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'A new order lands on the list without a driver. You assign one from the order list or from Dispatch (Dyspozytornia) — the driver gets a notification on their phone and sees the order in the “To accept” (Do akceptacji) section.',
+              'You assign the driver and vehicle in Dispatch (Przypisz) or on the order card (Przypisz kierowcę). The panel shows who will make the loading in time and marks the recommended vehicle. Assign and notify (Przypisz i powiadom) sends the job to the driver’s app, with the route and time windows.',
           },
           {
             typ: 'akapit',
             tresc:
-              'To assign several orders at once, tick the rows on the list and use a bulk action — handy when you’re planning a whole day.',
+              'The driver accepts the order in the app or rejects it with a reason. Until then the list shows “Waiting for driver” (Czeka na kierowcę). With no answer for 4 hours, the order goes back to drafts without a driver.',
+          },
+          {
+            typ: 'uwaga',
+            tresc:
+              'If no vehicle can make it in time, hand the job to a carrier – in the last step of the wizard (Oddaj przewoźnikowi) or from the order card.',
           },
         ],
       },
@@ -74,7 +79,7 @@ export const artykulyZleceniaEn: Artykul[] = [
     slug: 'dyspozytornia',
     kategoria: 'zlecenia',
     tytul: 'Dispatch day to day',
-    lead: 'The map, active orders and messages in one window — instead of ringing round the drivers.',
+    lead: 'The queue, the fleet map and the fleet plan in one place – instead of phoning round the drivers.',
     role: ['dyspozytor', 'wlasciciel'],
     gdzie: 'Dispatch (Dyspozytornia)',
     rozdzialy: [
@@ -83,39 +88,45 @@ export const artykulyZleceniaEn: Artykul[] = [
         bloki: [
           {
             typ: 'lista',
-            wstep: 'At the top, four counters tell you whether the day is going to plan:',
+            wstep: 'At the top, counters that tell you whether the day is going to plan:',
             punkty: [
-              'Active orders (Aktywne zlecenia) — everything happening right now.',
-              'New today (Nowe dziś) — how many have come in since the morning.',
-              'In transit (W transporcie) — vehicles on the road.',
-              'ETA at risk (Zagrożone ETA) — the ones that won’t make their time window. Deal with these first.',
+              'Loadings today and unloadings today.',
+              'On the road – vehicles under way.',
+              'To assign – jobs without a driver.',
+              'Free vehicles.',
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Below the counters are three tabs: Overview (Przegląd) with the order list, Tracking with the vehicle map, and Messages (Wiadomości). Clicking an order opens a side panel with the details — the map stays visible.',
+              'Below the counters is the queue with the tabs Needs attention (Wymaga reakcji – start here), To assign and On the road, and next to it the fleet map with the filter All, On the road, Free and Service. Further down is the fleet plan for 3 days or a week. On a phone you switch between List, Map and Fleet plan.',
+          },
+          {
+            typ: 'uwaga',
+            tresc: 'The live fleet map is part of the Business plan.',
           },
         ],
       },
       {
-        tytul: 'Responding to a delay',
+        tytul: 'Dealing with a delay',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Open the ETA at risk counter' },
               {
-                tytul: 'Open the order and check where the vehicle is',
-                opis: 'You see where the driver is and how late they’re running against the window.',
+                tytul: 'Check the Needs attention tab',
+                opis: 'A delay shows up there on its own: “will be N min late”, with the arrival time and the end of the unloading window. We work out the arrival time from the vehicle’s position.',
               },
               {
-                tytul: 'Message the driver in the Messages tab',
-                opis: 'The message reaches the app on their phone. You don’t have to ring someone who’s driving.',
+                tytul: 'Click Notify client (Powiadom klienta)',
+                opis: 'The email goes to the address on the client card. Better that the client hears it from you two hours early than from their warehouse after the fact.',
               },
               {
-                tytul: 'Warn the client',
-                opis: 'Better they hear it from you two hours early than from their own warehouse after the fact.',
+                tytul: 'Message the driver',
+                opis: 'Reply (Odpowiedz) opens the chat on the order card. The message reaches the app on their phone – no need to call someone who’s driving.',
+              },
+              {
+                tytul: 'Change the time slot if needed',
               },
             ],
           },
@@ -129,10 +140,10 @@ export const artykulyZleceniaEn: Artykul[] = [
     slug: 'kontrahenci',
     kategoria: 'zlecenia',
     tytul: 'Adding a client',
-    lead: 'Enter a client once and they’re suggested in orders and invoices, with their own currency and payment term.',
+    lead: 'Enter a client once and they’re suggested in orders and invoices, with their own currency and payment terms.',
     role: ['dyspozytor', 'wlasciciel', 'ksiegowa'],
-    gdzie: 'Clients → New client (Kontrahenci → Nowy kontrahent)',
-    czas: 'Three minutes',
+    gdzie: 'Clients → Add client (Kontrahenci → Dodaj kontrahenta)',
+    czas: 'Two minutes',
     rozdzialy: [
       {
         tytul: 'Company details',
@@ -140,39 +151,53 @@ export const artykulyZleceniaEn: Artykul[] = [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Go to Clients (Kontrahenci) and click New client (Nowy kontrahent)' },
+              { tytul: 'Go to Clients and click Add client (Dodaj kontrahenta)' },
               {
-                tytul: 'Enter the Company name * and NIP (tax ID)',
-                opis: 'For a client in the EU, click Check VAT in VIES (Sprawdź VAT w VIES) — the system confirms the number in the EU database before you issue an invoice without VAT.',
+                tytul: 'Choose the type of company',
+                opis: 'A company from Poland, a company from the EU, or no tax ID.',
               },
               {
-                tytul: 'Fill in the address',
-                opis: 'Street and number, city, postcode, country.',
+                tytul: 'Enter the tax ID and click Fetch details (Pobierz dane)',
+                opis: 'We check a Polish NIP in the GUS register and on the Ministry of Finance white list, and an EU VAT number in VIES. You also see the VAT status. If the register isn’t responding, choose I’ll type it in (Wpiszę ręcznie).',
               },
               {
-                tytul: 'Tick the roles',
-                opis: 'Sender (Nadawca), Recipient (Odbiorca), Payer (Płatnik) — one company can be all three. This decides where it’s suggested in the order wizard.',
+                tytul: 'Mark what you do together',
+                opis: 'Client, Carrier or Supplier. For a carrier you also add the OCP policy and licence.',
               },
+              {
+                tytul: 'Add a contact person',
+                opis: 'Optional – who picks up the phone when there’s a problem at loading.',
+              },
+              { tytul: 'Click Save client (Zapisz kontrahenta)' },
             ],
+          },
+          {
+            typ: 'uwaga',
+            tresc:
+              'If the company is already in BusiKM, the form spots it – the client won’t be created twice.',
           },
         ],
       },
       {
-        tytul: 'Payment terms',
+        tytul: 'Billing terms',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'Default currency * and Default payment term (days) * then go into every invoice for this client. Set them once instead of correcting them every month.',
+              'The payment term (30 days by default) and the currency – based on the company’s country, which you can change – are then suggested on invoices. Set them once instead of correcting them every month.',
           },
           {
             typ: 'lista',
             wstep: 'Also worth filling in:',
             punkty: [
-              'Billing email — where the invoice goes, usually not the same as the sales contact.',
-              'Contact person and phone — who picks up when there’s a problem at loading.',
-              'Collective invoice (Faktura zbiorcza) — when the client wants one invoice a month instead of ten.',
+              'Invoice email – where the invoice goes, usually different from the sales contact.',
+              'A contact person with a phone number – for when something goes wrong on site.',
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'If the client wants one invoice for many orders, click Collective invoice (Faktura zbiorcza) in the client preview on the list.',
           },
         ],
       },
@@ -184,13 +209,14 @@ export const artykulyZleceniaEn: Artykul[] = [
     slug: 'faktura-za-zlecenie',
     kategoria: 'zlecenia',
     tytul: 'Issuing an invoice',
-    lead: 'From a closed order to a PDF in your client’s inbox.',
+    lead: 'From a delivered order to an invoice in KSeF and a PDF in your client’s inbox.',
     role: ['wlasciciel', 'ksiegowa'],
-    gdzie: 'Sales invoices → New invoice (Faktury sprzedaży → Nowa faktura)',
+    gdzie: 'Invoices → New invoice (Faktury → Nowa faktura)',
     czas: 'A few minutes',
     zanim: [
-      'Company details filled in, including the bank account',
-      'The client with their NIP (tax ID) in your database',
+      'Complete company details, including the bank account',
+      'The client in your database, with a tax ID',
+      'A KSeF connection in Settings → KSeF',
     ],
     rozdzialy: [
       {
@@ -200,57 +226,65 @@ export const artykulyZleceniaEn: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Go to Sales invoices (Faktury sprzedaży)',
-                opis: 'If there are orders without an invoice, a bar at the top of the list tells you — it’s the quickest way to issue one.',
-              },
-              { tytul: 'Click New invoice (Nowa faktura)' },
-              {
-                tytul: 'Choose the Invoice type * and the Client *',
-                opis: 'The rest of the client’s details fill in by themselves, including their currency and payment term.',
+                tytul: 'Go to Invoices and click New invoice (Nowa faktura)',
+                opis: 'Or on the order card choose Issue invoice (Wystaw fakturę) – a draft is created from the order data.',
               },
               {
-                tytul: 'Set the dates',
-                opis: 'Issue date *, sale date and payment due date *. You can give the due date in days — the date works itself out.',
+                tytul: 'Choose From orders (Ze zleceń)',
+                opis: 'You tick the delivered orders and the client, route, freight, currency and exchange rate carry over by themselves. You can also choose a blank sales invoice, an advance invoice, a pro forma for prepayment or an invoice settling advances.',
               },
               {
-                tytul: 'Add the Invoice items (Pozycje faktury)',
-                opis: 'Service name, quantity, price and VAT rate. The net total and gross total update as you go, under the table.',
+                tytul: 'Check the transaction type and VAT',
+                opis: 'Client from Poland, company from another EU country, company outside the EU, transport from or to outside the EU, or domestic reverse charge.',
               },
               {
-                tytul: 'With a foreign currency, check the rate',
-                opis: 'Currency *, rate to PLN, NBP table and NBP rate date fill in from the NBP (National Bank of Poland) rate for the day before the issue date. You can override them if your contract says otherwise.',
+                tytul: 'Check the dates',
+                opis: 'The sale date defaults to the day the order was completed. The payment term counts from the issue date, and the number of days comes from the client card.',
               },
               {
-                tytul: 'Add notes if needed',
-                opis: 'Notes visible on the invoice go on the document. Internal notes, not visible to the client, stay with you.',
+                tytul: 'For a foreign currency, check the rate',
+                opis: 'We take the NBP rate from the last working day before the sale date. You can enter a different one if the contract says otherwise.',
               },
-              { tytul: 'Save invoice (Zapisz fakturę)' },
+              {
+                tytul: 'Click Issue and send to KSeF (Wystaw i wyślij do KSeF)',
+                opis: 'The invoice gets its number and goes straight to KSeF. Without a KSeF connection the button is called Issue invoice (Wystaw fakturę). If it isn’t ready, keep it as a draft.',
+              },
             ],
           },
         ],
       },
       {
-        tytul: 'Sending and payment',
+        tytul: 'Sending to the client and payment',
         bloki: [
           {
+            typ: 'akapit',
+            tresc:
+              'On the invoice, click Send to client (Wyślij klientowi). For an invoice in KSeF you choose Send once numbered (Wyślij po nadaniu numeru) – the email with the PDF and QR code goes out as soon as KSeF assigns the number. The address comes from the client card.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'The invoice card shows its path: Issued, In KSeF, With the client, Paid.',
+          },
+          {
             typ: 'lista',
-            wstep: 'From the invoice list, under the action button on each row:',
+            wstep: 'On the invoice, in the buttons and the More actions menu (Więcej akcji):',
             punkty: [
-              'Download PDF (Pobierz PDF) — a document ready to print.',
-              'Send email (Wyślij email) — with a CC field and your own subject line if you want to change the default.',
-              'Mark as paid (Oznacz zapłaconą) — once the transfer has arrived.',
-              'Cancel invoice (Anuluj fakturę) — with a reason.',
+              'Record payment (Zarejestruj wpłatę) – amount, date and payment method.',
+              'Resend PDF (Wyślij ponownie PDF) – when the client has lost the email.',
+              'Issue a correction (Wystaw korektę) – an invoice in KSeF can’t be cancelled or deleted; you change it with a correction.',
+              'Duplicate as a new invoice (Powiel jako nową fakturę) – when the next one is almost the same.',
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'The tabs above the list filter what matters most: Receivables (Należności), Paid (Opłacona), Overdue (Po terminie), Cancelled (Anulowana). “Overdue” is this week’s list of calls to make.',
+              'The tabs above the list filter what matters most: Drafts, To send to KSeF, To be paid, Overdue, Paid and Corrections. “Overdue” is your list of calls to make this week.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'You send payment reminders from the same list — no writing an email from scratch or hunting for who you’ve already reminded.',
+              'We put payment reminders together every day – 3 days before the due date and 7 and 14 days after it. Nothing goes out on its own: you review them under the Reminders button (Przypomnienia) on the invoice list and send the ones you tick.',
           },
         ],
       },
@@ -260,7 +294,7 @@ export const artykulyZleceniaEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'When a client wants one invoice for many orders, use collective mode: you pick the client and the period, the system lists the orders not yet invoiced, and you confirm the summary.',
+              'When a client wants one invoice for many orders, choose New invoice → From orders and tick the orders, or click Collective invoice (Faktura zbiorcza) in the client preview. With several clients at once you choose whether there’s one invoice per client and currency, or a separate one for each order.',
           },
         ],
       },

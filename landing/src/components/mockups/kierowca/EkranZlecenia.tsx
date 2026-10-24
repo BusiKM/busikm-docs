@@ -13,7 +13,7 @@ const TEKSTY: Tlumaczenia<{
   zaladunek2: string;
   zakonczone: string;
   historia: readonly (readonly [string, string])[];
-  zakladki: readonly [string, string, string, string];
+  zakladki: readonly [string, string, string, string, string];
 }> = {
   pl: {
     dzis: 'Dziś',
@@ -29,7 +29,7 @@ const TEKSTY: Tlumaczenia<{
       ['Poznań → Berlin', 'rozliczone'],
       ['Warszawa → Poznań', 'rozliczone'],
     ],
-    zakladki: ['Zlecenia', 'Trasa', 'Koszty', 'Czas'],
+    zakladki: ['Dziś', 'Zlecenia', 'Dodaj', 'Czat', 'Ja'],
   },
   en: {
     dzis: 'Today',
@@ -45,7 +45,7 @@ const TEKSTY: Tlumaczenia<{
       ['Poznań → Berlin', 'settled'],
       ['Warsaw → Poznań', 'settled'],
     ],
-    zakladki: ['Orders', 'Route', 'Costs', 'Time'],
+    zakladki: ['Today', 'Orders', 'Add', 'Chat', 'Me'],
   },
 };
 
@@ -103,6 +103,7 @@ export function EkranZlecenia() {
         <span>{t.zakladki[1]}</span>
         <span>{t.zakladki[2]}</span>
         <span>{t.zakladki[3]}</span>
+        <span>{t.zakladki[4]}</span>
       </div>
     </Telefon>
   );

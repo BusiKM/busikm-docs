@@ -1,7 +1,7 @@
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
-/** Cztery ekrany do sekcji „Cztery osoby" — jeden na rolę. */
+/** Cztery ekrany do sekcji „Cztery osoby" – jeden na rolę. */
 
 type Teksty = {
   wlasciciel: {

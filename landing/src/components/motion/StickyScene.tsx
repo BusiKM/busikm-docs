@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 type StickySceneProps = {
-  /** Ile taktów ma scena — tyle razy podmienia się treść. */
+  /** Ile taktów ma scena – tyle razy podmienia się treść. */
   beats: number;
   /** Renderuje treść dla aktywnego taktu. */
   children: (active: number) => React.ReactNode;
@@ -11,13 +11,13 @@ type StickySceneProps = {
 };
 
 /**
- * Scena przyklejona — poziom 3 z docs/landing/06-animacje.md.
+ * Scena przyklejona – poziom 3 z docs/landing/06-animacje.md.
  *
  * Sekcja trzyma się ekranu przez `beats` taktów przewijania, a w środku
  * podmienia się treść. Używamy jej dokładnie trzy razy na stronie głównej:
  * „Cztery osoby", „Aplikacja kierowcy", „Trzy ruchy".
  *
- * Poniżej `lg` i przy `prefers-reduced-motion` scena wyłącza się sama —
+ * Poniżej `lg` i przy `prefers-reduced-motion` scena wyłącza się sama –
  * takty lecą jeden pod drugim jako zwykłe sekcje. Przewijania nie
  * przechwytujemy nigdy.
  */

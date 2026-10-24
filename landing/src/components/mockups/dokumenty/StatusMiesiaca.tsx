@@ -97,7 +97,7 @@ export function StatusMiesiaca() {
         </div>
 
         {/* Karty mają wysokość treści i stoją w pionowym środku kadru. Rozciągnięte
-            na całą wysokość zostawiały w środku po 280 px pustki — a to, że dwie
+            na całą wysokość zostawiały w środku po 280 px pustki – a to, że dwie
             kolumny mają po jednej pozycji, jest tu sensem, nie usterką. */}
         <div className="flex flex-1 items-center">
           <div className="grid w-full gap-2.5 lg:grid-cols-3 lg:gap-4">

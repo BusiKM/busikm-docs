@@ -11,13 +11,13 @@ import { biezacyJezyk } from '@/i18n/serwer';
  * Powiększenie zrzutów w tym rzędzie.
  *
  * Wszystkie cztery pliki mają ten sam kształt: kadr 4:3, a w nim telefon
- * zajmujący 30% szerokości. Kafle są wąskie — przy pudle 152 px telefon
+ * zajmujący 30% szerokości. Kafle są wąskie – przy pudle 152 px telefon
  * wychodzi bez powiększenia szeroki na 46 px i nie widać z niego nic.
  * Trójka daje mu 137 px, czyli prawie całą szerokość kafla.
  *
  * Wartość wspólna, nie wpisywana przy każdym ekranie: pliki są jednakowe,
  * więc skala przy jednym z czterech znaczyła wyłącznie tyle, że o pozostałych
- * zapomniano — i tak właśnie było.
+ * zapomniano – i tak właśnie było.
  */
 const POWIEKSZENIE = 3;
 
@@ -36,23 +36,23 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis, Opis] }>
     naglowek: 'Cztery ekrany. Cały dzień.',
     opisy: [
       {
-        label: 'Lista zleceń dnia · telefon, tryb nocny',
-        note: 'Zlecenia dnia ze statusami, godzina i miejsce załadunku.',
-        caption: 'Zlecenia dnia',
+        label: 'Zlecenia · telefon, tryb nocny',
+        note: 'Lista „Zlecenia” z zakładkami Aktywne, Oczekujące i Zakończone, kurs Wrocław → Milano „W trasie”.',
+        caption: 'Zlecenia',
       },
       {
-        label: 'Nawigacja · telefon, tryb nocny',
-        note: 'Trasa z kartą zlecenia u dołu, godzina dojazdu.',
+        label: 'Wybór nawigacji · telefon, tryb nocny',
+        note: 'Plansza „Czym nawigujesz?”: Apple Maps, Google Maps albo Waze.',
         caption: 'Nawigacja',
       },
       {
-        label: 'Dodawanie kosztu · telefon, tryb nocny',
-        note: 'Zdjęcie paragonu i pola rozpoznane automatycznie.',
+        label: 'Moje koszty · telefon, tryb nocny',
+        note: 'Paragony z miesiąca ze statusami i przycisk „Dodaj paragon”.',
         caption: 'Paragon',
       },
       {
         label: 'Czas pracy · telefon, tryb nocny',
-        note: 'Przypomnienie o przerwie u góry, pierścień jazdy, przycisk „Przerwa”.',
+        note: 'Przy przewozie międzynarodowym: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
         caption: 'Przerwa',
       },
     ],
@@ -61,30 +61,30 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; opisy: [Opis, Opis, Opis, Opis] }>
     naglowek: 'Four screens. The whole day.',
     opisy: [
       {
-        label: 'Today’s orders · phone, dark mode',
-        note: 'Today’s orders with their status, loading time and place.',
-        caption: 'Today’s orders',
+        label: 'Orders · phone, dark mode',
+        note: 'The “Orders” list with Active, Pending and Finished tabs, and the Wrocław → Milan job “On the road”.',
+        caption: 'Orders',
       },
       {
-        label: 'Navigation · phone, dark mode',
-        note: 'The route with the order card at the bottom and the arrival time.',
+        label: 'Choosing navigation · phone, dark mode',
+        note: 'The “What do you navigate with?” sheet: Apple Maps, Google Maps or Waze.',
         caption: 'Navigation',
       },
       {
-        label: 'Adding a cost · phone, dark mode',
-        note: 'A photo of the receipt and fields filled in automatically.',
+        label: 'My costs · phone, dark mode',
+        note: 'The month’s receipts with their status and an “Add receipt” button.',
         caption: 'Receipt',
       },
       {
         label: 'Working time · phone, dark mode',
-        note: 'Break reminder at the top, driving ring, “Break” button.',
+        note: 'For international transport: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
         caption: 'Break',
       },
     ],
   },
 };
 
-/** Cztery telefony w rzędzie — cały dzień kierowcy na czterech ekranach. */
+/** Cztery telefony w rzędzie – cały dzień kierowcy na czterech ekranach. */
 export function Ekrany() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -104,7 +104,7 @@ export function Ekrany() {
                 ratio="9:19.5"
                 box="9:19.5"
                 imageScale={POWIEKSZENIE}
-                // Telefon to 30% kadru, a kafle są wąskie — powiększenie
+                // Telefon to 30% kadru, a kafle są wąskie – powiększenie
                 // mieści się w nich również na telefonie.
                 imageScaleTelefon={POWIEKSZENIE}
                 dark

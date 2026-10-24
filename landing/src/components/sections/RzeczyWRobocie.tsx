@@ -7,10 +7,10 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; tiles: readonly (readonly [string,
     naglowek: 'Rzeczy, które widać dopiero w robocie.',
     tiles: [
       ['Tryb nocny', 'W telefonie kierowcy i w przeglądarce. Oczy podziękują'],
-      ['Sześć języków', 'Kierowca z Ukrainy, Rumunii czy Mołdawii czyta w swoim'],
+      ['Klient śledzi przesyłkę', 'Wysyłasz link, klient widzi etap, miejsca i godzinę dojazdu. Bez logowania'],
       ['Bez zasięgu też działa', 'Dane czekają w telefonie i dosyłają się same'],
       ['System sam się odzywa', 'Powiadomienie, gdy coś wymaga uwagi. Nie musisz zaglądać'],
-      ['Nic nie instalujesz', 'Otwierasz w przeglądarce, na laptopie i na telefonie'],
+      ['Biuro bez instalacji', 'Biuro pracuje w przeglądarce, kierowca w aplikacji na telefonie'],
       ['Na starcie nie przytłacza', 'Widzisz tylko to, co potrzebne. Reszta z czasem'],
       ['Widać, kto co zmienił', 'Każda zmiana ma autora i godzinę'],
       ['Serwery w Europie', 'Dane zostają Twoje, także po rezygnacji'],
@@ -20,10 +20,10 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; tiles: readonly (readonly [string,
     naglowek: 'Things you only notice once it’s working.',
     tiles: [
       ['Night mode', 'On the driver’s phone and in the browser. Your eyes will thank you'],
-      ['Six languages', 'A driver from Ukraine, Romania or Moldova reads in their own'],
+      ['Clients track their delivery', 'You send a link, the client sees the stage, the places and the arrival time. No login needed'],
       ['Works without signal too', 'Data waits on the phone and sends itself later'],
       ['The system speaks up', 'A notification when something needs attention. No need to keep checking'],
-      ['Nothing to install', 'Open it in the browser, on a laptop or a phone'],
+      ['No install for the office', 'The office works in the browser, the driver in the phone app'],
       ['Not overwhelming at the start', 'You see only what you need. The rest comes with time'],
       ['See who changed what', 'Every change has an author and a time'],
       ['Servers in Europe', 'Your data stays yours, even after you cancel'],
@@ -31,7 +31,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; tiles: readonly (readonly [string,
   },
 };
 
-/** 6.14 — drobiazgi, które widać dopiero w użyciu. */
+/** 6.14 – drobiazgi, które widać dopiero w użyciu. */
 export function RzeczyWRobocie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

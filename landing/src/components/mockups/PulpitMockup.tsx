@@ -55,7 +55,7 @@ const tones = {
   green: 'bg-green/14 text-green-ink',
 } as const;
 
-/** Pulpit właściciela — bohater sekcji hero. */
+/** Pulpit właściciela – bohater sekcji hero. */
 export function PulpitMockup() {
   const t = TEKSTY[biezacyJezyk()];
   const { kpi, orders } = t;

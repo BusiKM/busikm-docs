@@ -60,15 +60,15 @@ const TEKSTY: Tlumaczenia<Tresc> = {
     pytania: [
       [
         'Czy muszę siedzieć w tym cały dzień?',
-        'Nie. Rano trzy liczby na pulpicie, resztę robi dyspozytor i kierowcy.',
+        'Nie. Rano zaglądasz do „Do zrobienia” na pulpicie, resztę robi dyspozytor i kierowcy.',
       ],
       [
         'Prowadzę firmę sam, bez dyspozytora.',
-        'Wtedy masz obie role na jednym koncie. Nic nie dopłacasz, bo płacisz za pojazdy, nie za ludzi.',
+        'Wtedy dyspozytornię masz u siebie w menu. Nic nie dopłacasz, bo płacisz za pojazdy, nie za ludzi.',
       ],
       [
         'Czy zobaczę, ile zarobiłem, zanim skończy się miesiąc?',
-        'Tak, na bieżąco. Marża każdego kursu przelicza się, gdy kierowca doda paragon.',
+        'Tak, na bieżąco. Marża kursu przelicza się, gdy paragon od kierowcy ma komplet danych.',
       ],
     ],
   },
@@ -107,22 +107,22 @@ const TEKSTY: Tlumaczenia<Tresc> = {
     pytania: [
       [
         'Do I have to sit in front of it all day?',
-        'No. Three figures on the dashboard in the morning; the dispatcher and drivers do the rest.',
+        'No. In the morning you check “To do” on the dashboard; the dispatcher and drivers do the rest.',
       ],
       [
         'I run the company alone, with no dispatcher.',
-        'Then you have both roles on one account. You pay nothing extra, because you pay for vehicles, not people.',
+        'Then dispatch is right there in your menu. You pay nothing extra, because you pay for vehicles, not people.',
       ],
       [
         'Will I see what I’ve earned before the month ends?',
-        'Yes, as it happens. The margin on each job recalculates when a driver adds a receipt.',
+        'Yes, as it happens. The margin on a job recalculates once the driver’s receipt has all its details.',
       ],
     ],
   },
 };
 
 /**
- * Właściciel — strona roli wg projektu „BusiKM Dla właściciela" z Claude Design
+ * Właściciel – strona roli wg projektu „BusiKM Dla właściciela" z Claude Design
  * (design/11-wlasciciel). Treść: docs/landing/05, rozdział B1.
  */
 export default async function Page({ params }: ParametryJezyka) {

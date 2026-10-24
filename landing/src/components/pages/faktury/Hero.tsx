@@ -17,21 +17,21 @@ const TEKSTY: Tlumaczenia<{
     eyebrow: 'Zlecenia i faktury',
     naglowek1: 'Ze zlecenia robi się faktura.',
     naglowek2: 'Klient ma ją, zanim wrócisz do biura.',
-    lead: 'Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz. Niczego nie przepisujesz.',
-    label: 'Zlecenie → faktura · desktop 1440',
-    note: 'Zlecenie po lewej, faktura po prawej, między nimi strzałka i przycisk „Wystaw i wyślij”.',
+    lead: 'Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz do KSeF. Mail z PDF do klienta zlecasz od razu – wyjdzie po nadaniu numeru. Niczego nie przepisujesz.',
+    label: 'Karta faktury · desktop 1440',
+    note: 'Faktura FV/031/10/2026: droga wystawiona → w KSeF → u klienta → zapłacona, windykacja z odsetkami, przypomnieniem i notą obciążeniową, obok numer KSeF z plikiem XML i kodem QR oraz stan płatności.',
   },
   en: {
     eyebrow: 'Orders and invoices',
     naglowek1: 'The order turns into an invoice.',
     naglowek2: 'The client has it before you’re back at the office.',
-    lead: 'The driver finishes the job, you check the amount and send it. Nothing to retype.',
-    label: 'Order → invoice · desktop 1440',
-    note: 'The order on the left, the invoice on the right, an arrow between them and an “Issue and send” button.',
+    lead: 'The driver finishes the job, you check the amount and send it to KSeF. You schedule the email with the PDF right away – it goes out once KSeF assigns a number. Nothing to retype.',
+    label: 'Invoice card · desktop 1440',
+    note: 'Invoice FV/031/10/2026: its path issued → in KSeF → with the client → paid, debt collection with interest, a reminder and a debit note, alongside the KSeF number with the XML file and QR code, and the payment status.',
   },
 };
 
-/** Nagłówek strony — jasny, na siatce, z pełnym oknem aplikacji pod spodem. */
+/** Nagłówek strony – jasny, na siatce, z pełnym oknem aplikacji pod spodem. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (

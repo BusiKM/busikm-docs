@@ -24,7 +24,7 @@ const TEKSTY: Tlumaczenia<{ eyebrow: string; naglowek: [string, string]; lead: s
 };
 
 /**
- * Kontakt — wg projektu „BusiKM Kontakt" z Claude Design (design/21-kontakt).
+ * Kontakt – wg projektu „BusiKM Kontakt" z Claude Design (design/21-kontakt).
  * Treść: docs/landing/05, rozdział C7.
  *
  * Bez numeru telefonu, dopóki nie ma kogoś, kto go odbierze. Zamiast tego

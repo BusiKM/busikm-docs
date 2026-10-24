@@ -1,9 +1,9 @@
 /**
- * Dane dla wyszukiwarek — jedno źródło.
+ * Dane dla wyszukiwarek – jedno źródło.
  *
  * Wszystko, co dotyczy widoczności strony w Google, wychodzi stąd: adresy
  * kanoniczne, mapa strony, dane strukturalne i metadane podstron. Jeżeli
- * dochodzi nowa podstrona, dopisujesz ją w `trasy` — inaczej nie trafi
+ * dochodzi nowa podstrona, dopisujesz ją w `trasy` – inaczej nie trafi
  * do `sitemap.xml`.
  */
 
@@ -14,7 +14,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 export const serwis = {
   url: 'https://busikm.pl',
   nazwa: 'BusiKM',
-  /** Obraz do podglądu w mediach społecznościowych — w `public/`. */
+  /** Obraz do podglądu w mediach społecznościowych – w `public/`. */
   ogImage: '/og-image/og-image.jpg',
   /** Znak firmowy dla danych strukturalnych. Google woli rastrowy, kwadratowy. */
   logo: '/web-app-manifest-512x512.png',
@@ -25,12 +25,12 @@ export const serwis = {
  *
  * `tytul` to tytuł w wyniku wyszukiwania. Nie jest to hasło z nagłówka.
  * Nagłówek „Kierowca jedzie. Reszta dzieje się sama." sprzedaje komuś, kto
- * już jest na stronie — ale nie zawiera ani jednego słowa, które ktoś wpisuje
+ * już jest na stronie – ale nie zawiera ani jednego słowa, które ktoś wpisuje
  * w Google. Tytuł prowadzi frazą, której szuka właściciel firmy transportowej,
  * i dopiero potem podaje markę.
  *
  * `opisOg` to krótsza wersja do podglądu w mediach społecznościowych. Wersja
- * dla Google ma 150 znaków i gubi na telefonie całe „14 dni za darmo" — czyli
+ * dla Google ma 150 znaków i gubi na telefonie całe „14 dni za darmo" – czyli
  * jedyne wezwanie do działania w całym podglądzie.
  */
 export const opisSerwisu: Tlumaczenia<{ tytul: string; opis: string; opisOg: string }> = {
@@ -51,14 +51,14 @@ export const opisSerwisu: Tlumaczenia<{ tytul: string; opis: string; opisOg: str
 };
 
 /**
- * Data ostatniej zmiany treści — trafia do `sitemap.xml` jako `lastmod`.
+ * Data ostatniej zmiany treści – trafia do `sitemap.xml` jako `lastmod`.
  *
  * Trzymana ręcznie, bo alternatywy kłamią: data budowania zmienia się przy
  * każdym wdrożeniu, a czas pliku po `git clone` na Vercelu jest czasem
  * klonowania, nie edycji. Google ignoruje `lastmod`, któremu przestaje ufać,
  * więc lepiej mieć datę rzadszą i prawdziwą.
  *
- * Aktualizuj przy istotnej zmianie treści strony — nie przy poprawce literówki.
+ * Aktualizuj przy istotnej zmianie treści strony – nie przy poprawce literówki.
  */
 const ZMIENIONO = '2026-09-03';
 
@@ -75,7 +75,7 @@ export type Trasa = {
 
 /**
  * Strony wystawione wyszukiwarkom. Kolejność jest kolejnością w `sitemap.xml`
- * — od najważniejszej.
+ * – od najważniejszej.
  */
 export const trasy: Trasa[] = [
   { sciezka: '', priorytet: 1, czestotliwosc: 'weekly' },
@@ -102,7 +102,7 @@ export const trasy: Trasa[] = [
   { sciezka: '/pomoc', priorytet: 0.6, czestotliwosc: 'monthly' },
   { sciezka: '/pomoc/pierwsze-kroki', priorytet: 0.6, czestotliwosc: 'monthly' },
   // Artykuły pomocy dopisują się same. Wypisywanie ich tutaj znaczyłoby, że
-  // nowa instrukcja trafia do serwisu, ale nie do mapy strony — i nikt tego
+  // nowa instrukcja trafia do serwisu, ale nie do mapy strony – i nikt tego
   // nie zauważy, bo strona działa.
   ...artykuly.map(
     (a): Trasa => ({ sciezka: `/pomoc/${a.slug}`, priorytet: 0.5, czestotliwosc: 'monthly' }),
@@ -122,7 +122,7 @@ export const dataZmiany = (t: Trasa) => new Date(t.zmieniono ?? ZMIENIONO);
  * Strony wyłączone z indeksu.
  *
  * `/dla-kogo` to szkielet z jednym zdaniem „ta strona czeka na projekt", do
- * którego nie prowadzi już żaden odnośnik — pozycja w menu jest wyłącznie
+ * którego nie prowadzi już żaden odnośnik – pozycja w menu jest wyłącznie
  * wyzwalaczem. Wpuszczenie jej do indeksu dołożyłoby serwisowi pustą stronę,
  * a Google liczy takie do oceny całości.
  */
@@ -132,7 +132,7 @@ export const nieindeksowane = ['/dla-kogo'];
  * Ścieżki, których roboty nie mają po co odwiedzać.
  *
  * Świadomie **nie ma tu `/_next/`**. Google renderuje stronę tak jak
- * przeglądarka i potrzebuje do tego skryptów oraz arkuszy — zablokowanie
+ * przeglądarka i potrzebuje do tego skryptów oraz arkuszy – zablokowanie
  * katalogu z zasobami to klasyczny sposób na to, żeby robot zobaczył
  * pustą stronę zamiast treści.
  */

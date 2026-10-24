@@ -3,13 +3,16 @@ import { Section } from '@/components/ui/Section';
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
-/** Czy termin jest daleko — kolor zielony. Kolejność jak w `dokumenty` niżej. */
+/** Czy termin jest daleko – kolor zielony. Kolejność jak w `dokumenty` niżej. */
 const DALEKO = [false, false, false, true] as const;
 
 const TEKSTY: Tlumaczenia<{
   trasa: { naglowek: string; tresc: string };
   bezZlecenia: string;
   przejazd: string;
+  /** Rodzaj trasy bez zlecenia – dwie pigułki przed przyciskiem startu. */
+  sluzbowa: string;
+  prywatna: string;
   potwierdz: string;
   dok: { naglowek: string; tresc: string };
   dokumenty: readonly (readonly [string, string])[];
@@ -17,44 +20,52 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     trasa: {
       naglowek: 'Trasa poza zleceniem',
-      tresc: 'Dojazd do bazy, przejazd do serwisu też się liczy. Start, stop, potwierdzenie.',
+      tresc:
+        'Dojazd do bazy i przejazd do serwisu też się liczą. „Trasa bez zlecenia”: służbowa albo prywatna, „Rozpocznij trasę” i „Zakończ trasę”. Na prywatną przerwę zapis trasy wstrzymasz jednym przyciskiem.',
     },
-    bezZlecenia: 'Przejazd bez zlecenia',
-    przejazd: 'Mediolan → serwis, Bergamo',
-    potwierdz: 'Potwierdź',
+    bezZlecenia: 'Trasa bez zlecenia',
+    przejazd: 'Milano → serwis, Bergamo',
+    sluzbowa: 'Służbowa',
+    prywatna: 'Prywatna',
+    potwierdz: 'Rozpocznij trasę',
     dok: {
       naglowek: 'Jego dokumenty w telefonie',
-      tresc: 'Prawo jazdy, badania, uprawnienia. Aplikacja przypomina o terminach jemu i Tobie.',
+      tresc:
+        '„Moje dokumenty”: prawo jazdy, świadectwo kwalifikacji, badania, karta kierowcy – każdy z datą ważności. Gdy termin się zbliża, kierowca widzi to na ekranie „Dziś”, a Ty i dyspozytor dostajecie przypomnienie. Do tego dokumenty zlecenia, CMR i WZ, pod ręką w trasie.',
     },
     dokumenty: [
-      ['Prawo jazdy · C1', '3 lata'],
+      ['Prawo jazdy · B', '3 lata'],
       ['Badania lekarskie', '41 dni'],
-      ['Badania psychologiczne', '41 dni'],
-      ['Kod 95', '2 lata'],
+      ['Karta kierowcy', '41 dni'],
+      ['Świadectwo kwalifikacji', '2 lata'],
     ],
   },
   en: {
     trasa: {
       naglowek: 'Trips outside an order',
-      tresc: 'Driving to the depot or over to the garage counts too. Start, stop, confirm.',
+      tresc:
+        'Driving to the depot or over to the garage counts too. “Trip without an order”: business or private, then start the trip and finish it. For a private break, one button pauses route recording.',
     },
     bezZlecenia: 'Trip without an order',
     przejazd: 'Milan → garage, Bergamo',
-    potwierdz: 'Confirm',
+    sluzbowa: 'Business',
+    prywatna: 'Private',
+    potwierdz: 'Start trip',
     dok: {
       naglowek: 'Their documents on the phone',
-      tresc: 'Driving licence, medicals, qualifications. The app reminds both of you when they’re due.',
+      tresc:
+        '“My documents”: driving licence, driver CPC, medicals and the tachograph card – each with its expiry date. When a deadline gets close, the driver sees it on the “Today” screen, and you and the dispatcher get a reminder. Plus the order documents, CMR and delivery notes, to hand on the road.',
     },
     dokumenty: [
-      ['Driving licence · C1', '3 years'],
+      ['Driving licence · B', '3 years'],
       ['Medical check', '41 days'],
-      ['Psychological assessment', '41 days'],
-      ['Code 95 (driver CPC)', '2 years'],
+      ['Driver card', '41 days'],
+      ['Driver CPC (Code 95)', '2 years'],
     ],
   },
 };
 
-/** 07 i 08 — dwie karty obok siebie. */
+/** 07 i 08 – dwie karty obok siebie. */
 export function TrasaIDokumenty() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -86,8 +97,8 @@ export function TrasaIDokumenty() {
               <b>48 km</b>
             </div>
             <div className="flex gap-2.5">
-              <span className="flex-1 rounded-xl bg-surface-2 py-3.5 text-center">Start</span>
-              <span className="flex-1 rounded-xl bg-surface-2 py-3.5 text-center">Stop</span>
+              <span className="flex-1 rounded-xl bg-surface-2 py-3.5 text-center">{t.sluzbowa}</span>
+              <span className="flex-1 rounded-xl bg-surface-2 py-3.5 text-center">{t.prywatna}</span>
               <span className="flex-1 rounded-xl bg-blue py-3.5 text-center font-semibold text-white">
                 {t.potwierdz}
               </span>

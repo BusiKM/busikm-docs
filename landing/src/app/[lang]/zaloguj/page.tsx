@@ -18,38 +18,38 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     etapy: [
       ['Teraz', 'MVP sprawdzamy na prawdziwych trasach, w małej grupie firm'],
-      ['Potem', 'otwieramy zapisy — pierwsze 14 dni bez opłat'],
+      ['Potem', 'otwieramy zapisy – pierwsze 14 dni bez opłat'],
       ['Dalej', 'aplikacja kierowcy w App Store i Google Play'],
     ],
     kontoTestowe: 'Masz już konto testowe?',
     zalogujTestowo: 'Zaloguj się w wersji testowej →',
     mockupLabel: 'Pulpit właściciela · desktop 1440',
     mockupNota:
-      'Pulpit po zalogowaniu: trzy liczby u góry, mapa z trasą i lista zleceń ze statusami.',
+      'Pulpit po zalogowaniu: na górze to, co wymaga uwagi dziś, niżej przychód, koszty i wynik.',
   },
   en: {
     etapy: [
       ['Now', 'we’re testing the MVP on real routes with a small group of companies'],
-      ['Next', 'sign-ups open — the first 14 days free'],
+      ['Next', 'sign-ups open – the first 14 days free'],
       ['Later', 'the driver app on the App Store and Google Play'],
     ],
     kontoTestowe: 'Already have a test account?',
     zalogujTestowo: 'Sign in to the test version →',
     mockupLabel: 'Owner’s dashboard · desktop 1440',
     mockupNota:
-      'The dashboard after signing in: three numbers at the top, a map with the route and a list of orders with their status.',
+      'The dashboard after signing in: what needs your attention today at the top, with revenue, costs and result below.',
   },
 };
 
 /**
- * Dostęp do aplikacji — wczesny dostęp.
+ * Dostęp do aplikacji – wczesny dostęp.
  *
  * Tu trafia każdy, kto kliknie „Zaloguj się". Publicznej rejestracji jeszcze
  * nie ma (BKM-1858, etap 2 backlogu), więc zamiast prowadzić na ekran
  * logowania, na którym nikt się nie zaloguje, strona mówi, na czym stoimy,
  * i zbiera adres.
  *
- * Osoby z kontem testowym mają wyjście pod formularzem — one wiedzą, po co
+ * Osoby z kontem testowym mają wyjście pod formularzem – one wiedzą, po co
  * przyszły, i nie potrzebują całego ekranu dla siebie.
  */
 export default async function Page({ params }: ParametryJezyka) {

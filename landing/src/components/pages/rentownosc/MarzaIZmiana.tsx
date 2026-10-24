@@ -11,23 +11,23 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     punkty: [
-      ['02', 'Marża na każdym zleceniu', 'Nie raz na kwartał, tylko od razu.'],
-      ['03', 'Liczba zmienia się w trakcie', 'Kierowca dodaje paragon, marża przelicza się sama.'],
+      ['02', 'Marża na każdym zleceniu', 'Nie raz na kwartał, tylko od razu. W raportach widzisz też marżę według kierunku.'],
+      ['03', 'Liczba zmienia się w trakcie', 'Kierowca dodaje paragon – gdy ma komplet danych, marża przelicza się sama.'],
     ],
-    label: 'Tabela zleceń po marży · desktop 1440, tryb nocny',
-    note: 'Zlecenia posortowane po marży, wyróżniony wiersz z przeliczoną marżą po dodaniu paragonu, zlecenie na minusie na dole.',
+    label: 'Raporty → Zlecenia i trasy · desktop 1440',
+    note: 'Raporty, zakładka Zlecenia i trasy: liczba zleceń, średni zysk z kursu, puste kilometry, zlecenia poniżej progu marży, wykres marży według kraju rozładunku i zleceń według przedziału marży.',
   },
   en: {
     punkty: [
-      ['02', 'The margin on every order', 'Not once a quarter. Right away.'],
-      ['03', 'The number moves as you go', 'The driver adds a receipt and the margin recalculates itself.'],
+      ['02', 'The margin on every order', 'Not once a quarter. Right away. Reports also show the margin by destination.'],
+      ['03', 'The number moves as you go', 'The driver adds a receipt – once it has all its details, the margin recalculates itself.'],
     ],
-    label: 'Orders by margin · desktop 1440, dark mode',
-    note: 'Orders sorted by margin, a highlighted row with the margin recalculated after a receipt was added, the loss-making order at the bottom.',
+    label: 'Reports → Orders and routes · desktop 1440',
+    note: 'Reports, Orders and routes tab: number of orders, average profit per run, empty kilometres, orders below the margin threshold, a chart of margin by unloading country and orders by margin band.',
   },
 };
 
-/** 02 + 03 — dwa punkty nad jedną tabelą, bo mówią o tej samej liście. */
+/** 02 + 03 – dwa punkty nad jedną tabelą, bo mówią o tej samej liście. */
 export function MarzaIZmiana() {
   const t = TEKSTY[biezacyJezyk()];
   return (

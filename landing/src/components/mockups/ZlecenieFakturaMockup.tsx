@@ -61,7 +61,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Ze zlecenia powstaje faktura — dwie karty i strzałka między nimi. */
+/** Ze zlecenia powstaje faktura – dwie karty i strzałka między nimi. */
 export function ZlecenieFakturaMockup() {
   const t = TEKSTY[biezacyJezyk()];
   return (

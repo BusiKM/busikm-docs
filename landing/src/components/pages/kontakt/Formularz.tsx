@@ -18,7 +18,7 @@ const pole =
 type Stan = 'gotowy' | 'wysyłam' | 'wysłane' | 'błąd';
 
 const TEKSTY: Tlumaczenia<{
-  /** Etykiety tematów. Do bazy idzie klucz — polski, jak w `lib/wiadomosci`. */
+  /** Etykiety tematów. Do bazy idzie klucz – polski, jak w `lib/wiadomosci`. */
   tematy: Record<Temat, string>;
   poszla: string;
   odpowiadamy: [string, string];
@@ -63,9 +63,9 @@ const TEKSTY: Tlumaczenia<{
     pulapka: 'Nie wypełniaj tego pola',
     wysylam: 'Wysyłam…',
     wyslij: 'Wyślij wiadomość',
-    blad: ['Nie udało się wysłać. Napisz wprost na', '— ta droga działa zawsze.'],
+    blad: ['Nie udało się wysłać. Napisz wprost na', '– ta droga działa zawsze.'],
     daneTylko:
-      'Odpowiadamy na podany adres. Twoje dane wykorzystujemy wyłącznie do odpowiedzi na tę wiadomość —',
+      'Odpowiadamy na podany adres. Twoje dane wykorzystujemy wyłącznie do odpowiedzi na tę wiadomość –',
     prywatnosc: 'polityka prywatności',
     pocztowy:
       'Otworzy się Twój program pocztowy z gotową wiadomością. Odpowiadamy na ten sam adres, z którego piszesz.',
@@ -94,9 +94,9 @@ const TEKSTY: Tlumaczenia<{
     pulapka: 'Do not fill in this field',
     wysylam: 'Sending…',
     wyslij: 'Send message',
-    blad: ['That didn’t send. Write to us directly at', '— that always works.'],
+    blad: ['That didn’t send. Write to us directly at', '– that always works.'],
     daneTylko:
-      'We reply to the address you gave. We use your details only to answer this message —',
+      'We reply to the address you gave. We use your details only to answer this message –',
     prywatnosc: 'privacy policy',
     pocztowy:
       'Your email app will open with the message ready. We reply to the address you write from.',
@@ -110,7 +110,7 @@ const TEKSTY: Tlumaczenia<{
  * `/api/powiadom` wysyła powiadomienie na skrzynkę. Ten sam układ, co
  * w movgranto-homepage.
  *
- * **Bez konfiguracji Firebase formularz cofa się do `mailto:`** — otwiera
+ * **Bez konfiguracji Firebase formularz cofa się do `mailto:`** – otwiera
  * pocztę czytelnika z gotową treścią. To celowe: przy pracy lokalnej,
  * w podglądach gałęzi i gdyby konfiguracja kiedykolwiek zniknęła,
  * formularz nadal działa. Nigdy nie połknie wiadomości i nie powie
@@ -130,7 +130,7 @@ export function Formularz() {
   const kompletne = imie.trim() && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail) && tresc.trim();
 
   const linkPocztowy = () => {
-    const podpis = [imie && `— ${imie}`, mail].filter(Boolean).join('\n');
+    const podpis = [imie && `– ${imie}`, mail].filter(Boolean).join('\n');
     const body = [tresc, podpis].filter(Boolean).join('\n\n');
     return `mailto:${firma.email}?subject=${encodeURIComponent(
       `BusiKM · ${t.tematy[tematy[temat]]}`,
@@ -258,7 +258,7 @@ export function Formularz() {
       </label>
 
 
-      {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
+      {/* Znaczenie gwiazdki musi być wyjaśnione – WCAG 3.3.2. */}
       <p className="text-[12px] text-muted">
         <span aria-hidden className="text-red-ink">*</span> {t.wymagane}
       </p>
@@ -282,7 +282,7 @@ export function Formularz() {
 
       {/*
         Zgoda **nieobowiązkowa** i to jest tu istotne. Usługą jest odpowiedź
-        na pytanie — uzależnienie jej od zgody marketingowej byłoby
+        na pytanie – uzależnienie jej od zgody marketingowej byłoby
         warunkowaniem zakazanym przez art. 7 ust. 4 RODO. Na stronach zapisu
         jest odwrotnie, bo tam usługą jest sama lista.
       */}

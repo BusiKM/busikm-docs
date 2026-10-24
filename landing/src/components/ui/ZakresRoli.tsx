@@ -2,9 +2,9 @@ import { Section, Eyebrow } from '@/components/ui/Section';
 
 export type KolumnaZakresu = {
   nadtytul: string;
-  /** Jedno mocne zdanie zamiast listy — tak wygląda strona właściciela. */
+  /** Jedno mocne zdanie zamiast listy – tak wygląda strona właściciela. */
   tytul?: string;
-  /** Albo lista rzeczy — tak wygląda strona dyspozytora i księgowej. */
+  /** Albo lista rzeczy – tak wygląda strona dyspozytora i księgowej. */
   pozycje?: readonly string[];
   tresc?: string;
   /** Przygaszona kolumna „nie widzisz". */
@@ -12,7 +12,7 @@ export type KolumnaZakresu = {
 };
 
 /**
- * Zakres dostępu, po ludzku — dwie kolumny zamiast tabeli uprawnień.
+ * Zakres dostępu, po ludzku – dwie kolumny zamiast tabeli uprawnień.
  *
  * Kolumna może być mocnym zdaniem albo listą; strony ról używają obu form,
  * zależnie od tego, czy zakres da się streścić jednym słowem.
@@ -24,7 +24,7 @@ export function ZakresRoli({
 }: {
   naglowek: string;
   kolumny: readonly [KolumnaZakresu, KolumnaZakresu];
-  /** Zdanie na niebieskim tle pod kolumnami — gdy rola ma wyjątek do dopowiedzenia. */
+  /** Zdanie na niebieskim tle pod kolumnami – gdy rola ma wyjątek do dopowiedzenia. */
   nota?: string;
 }) {
   return (

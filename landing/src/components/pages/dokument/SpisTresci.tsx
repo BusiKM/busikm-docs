@@ -17,7 +17,7 @@ const TEKSTY: Tlumaczenia<{ spis: string; liczba: (n: number) => string }> = {
 };
 
 /**
- * Spis treści — przyklejony na desktopie, składany na telefonie.
+ * Spis treści – przyklejony na desktopie, składany na telefonie.
  *
  * Aktywna pozycja idzie z obserwatora przecięć: dokument prawny czyta się
  * długo i łatwo zgubić miejsce, w którym się jest.

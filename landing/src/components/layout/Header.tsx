@@ -12,7 +12,7 @@ import { useJezyk } from '@/i18n/klient';
 import { lokalizuj, rozpoznaj } from '@/i18n/trasy';
 
 /**
- * Pasek nawigacji — wg artboardu „BusiKM Nawigacja" (pięć stanów).
+ * Pasek nawigacji – wg artboardu „BusiKM Nawigacja" (pięć stanów).
  *
  * 72 px na desktopie, 64 px na telefonie. Tło białe z rozmyciem; po przewinięciu
  * 24 px dochodzi cień. Przy otwartym menu pasek staje się kryjący, aktywna
@@ -21,7 +21,7 @@ import { lokalizuj, rozpoznaj } from '@/i18n/trasy';
 
 const CARET = '▾';
 
-/** Do tej wysokości pasek jest zawsze widoczny — jesteśmy jeszcze przy górze. */
+/** Do tej wysokości pasek jest zawsze widoczny – jesteśmy jeszcze przy górze. */
 const PRZY_GORZE = 80;
 /**
  * Mniejsze ruchy ignorujemy.
@@ -44,7 +44,7 @@ const TEKSTY: Tlumaczenia<{
   kafle: [string, string, string];
 }> = {
   pl: {
-    domu: 'BusiKM — strona główna',
+    domu: 'BusiKM – strona główna',
     glowna: 'Główna',
     zaloguj: 'Zaloguj się',
     demo: 'Zobacz demo',
@@ -55,7 +55,7 @@ const TEKSTY: Tlumaczenia<{
     kafle: ['Przychód', 'Koszty', 'Zysk'],
   },
   en: {
-    domu: 'BusiKM — home',
+    domu: 'BusiKM – home',
     glowna: 'Main',
     zaloguj: 'Sign in',
     demo: 'See the demo',
@@ -67,7 +67,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Znak logowania — prosta sylwetka, bez wypełnienia. */
+/** Znak logowania – prosta sylwetka, bez wypełnienia. */
 function UserIcon({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -90,7 +90,7 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** Miniatura pulpitu w kaflu „Zobacz demo" — prosto z projektu. */
+/** Miniatura pulpitu w kaflu „Zobacz demo" – prosto z projektu. */
 function DemoPreview({ jezyk }: { jezyk: Jezyk }) {
   const t = TEKSTY[jezyk];
   return (
@@ -119,7 +119,7 @@ export function Header() {
   const jezyk = useJezyk();
   const t = TEKSTY[jezyk];
   const { coRobi, dlaKogo, menuMobilne, navigation, rolesNote } = nawigacja(jezyk);
-  // Ścieżka polska — odnośniki w nawigacji są zapisane po polsku, więc
+  // Ścieżka polska – odnośniki w nawigacji są zapisane po polsku, więc
   // podświetlenie porównuje je z nią, niezależnie od języka adresu.
   const pathname = rozpoznaj(usePathname() ?? '/').sciezkaPl || '/';
   const [scrolled, setScrolled] = useState(false);
@@ -132,7 +132,7 @@ export function Header() {
   /**
    * Pasek chowa się przy przewijaniu w dół i wraca przy przewijaniu w górę.
    *
-   * Czytanie w dół to ruch kciuka w górę — wtedy pasek nie jest potrzebny
+   * Czytanie w dół to ruch kciuka w górę – wtedy pasek nie jest potrzebny
    * i oddaje miejsce treści. Ruch kciuka w dół, czyli powrót w górę strony,
    * zwykle znaczy „szukam nawigacji", więc pasek wraca od razu, bez czekania
    * na dojechanie na samą górę.
@@ -173,12 +173,12 @@ export function Header() {
   }, []);
 
   /**
-   * Kliknięcie w odnośnik zamyka menu — także gdy prowadzi tam, gdzie
+   * Kliknięcie w odnośnik zamyka menu – także gdy prowadzi tam, gdzie
    * już jesteśmy.
    *
    * Reset przy zmianie adresu (niżej) tego nie łapie, bo przy odnośniku do
    * bieżącej strony adres się nie zmienia. Menu zostawało wtedy otwarte,
-   * a razem z nim blokada przewijania — czyli gorzej niż przed poprawką,
+   * a razem z nim blokada przewijania – czyli gorzej niż przed poprawką,
    * bo strona wracała na górę i zastawała człowieka w otwartym panelu.
    */
   const zamknijPoKliknieciu = (e: React.MouseEvent) => {
@@ -189,7 +189,7 @@ export function Header() {
   };
 
   // Zmiana adresu zamyka menu. Poprawka stanu w trakcie renderu, a nie
-  // w efekcie — React obsługuje ten wzorzec osobno: przerywa render
+  // w efekcie – React obsługuje ten wzorzec osobno: przerywa render
   // i powtarza go z nową wartością, zanim cokolwiek trafi na ekran.
   // Przez efekt otwarte menu mignęłoby jeszcze na nowej stronie.
   const [poprzedniaSciezka, setPoprzedniaSciezka] = useState(pathname);
@@ -229,7 +229,7 @@ export function Header() {
    * Otwarte menu zatrzymuje pasek na miejscu.
    *
    * Panel na telefonie zaczyna się tuż pod paskiem i jest do niego
-   * przypięty, a krzyżyk zamykający siedzi w samym pasku — schowanie go
+   * przypięty, a krzyżyk zamykający siedzi w samym pasku – schowanie go
    * zabrałoby jedyne wyjście z otwartego menu.
    */
   const schowany = zjechal && !mobileOpen && !openMega;
@@ -245,7 +245,7 @@ export function Header() {
         ref={headerRef}
         onMouseLeave={() => setOpenMega(null)}
         /*
-          Wejście klawiaturą wyciąga schowany pasek z powrotem — inaczej
+          Wejście klawiaturą wyciąga schowany pasek z powrotem – inaczej
           ogniskowanie trafiałoby w odnośniki stojące poza ekranem.
 
           Tym razem jest to bezpieczne, w odróżnieniu od poprzedniej wersji
@@ -259,7 +259,7 @@ export function Header() {
           `translate`, nie `transform`. Tailwind 4 nie składa już `transform`,
           tylko ustawia osobne właściwości, więc `-translate-y-full` daje
           `translate: 0 -100%`. Animowanie `transform` nie robiło tu
-          niczego — pasek przeskakiwał w jednej klatce. Zmierzone.
+          niczego – pasek przeskakiwał w jednej klatce. Zmierzone.
         */
         className={`sticky top-0 z-40 border-b border-line transition-[translate,background-color,box-shadow] duration-300 ease-out ${
           schowany ? '-translate-y-full' : 'translate-y-0'
@@ -353,7 +353,7 @@ export function Header() {
                 duży „Zobacz demo". Dwa te same wezwania na jednym ekranie
                 zabierały miejsce przy 375 px i nie dodawały niczego.
 
-                Wraca w listwie zwartej po przewinięciu — tam treściowy
+                Wraca w listwie zwartej po przewinięciu – tam treściowy
                 przycisk jest już poza ekranem i wezwanie ma po co być.
 
                 Na desktopie zostaje: pasek jest szeroki, a przycisk siedzi
@@ -500,7 +500,7 @@ export function Header() {
 
               Bez przypiętej stopki z przyciskami. Zasłaniała ostatnie wiersze
               listy (widać to było na „Ile zostaje"), a te same wezwania stoją
-              teraz w sekcji „Zacznij" — w tym samym rytmie, co reszta. */}
+              teraz w sekcji „Zacznij" – w tym samym rytmie, co reszta. */}
           <nav
             aria-label={t.menu}
             className="flex flex-1 flex-col gap-8 overflow-y-auto px-5 pt-6 pb-12"

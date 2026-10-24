@@ -34,44 +34,44 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     pytania: [
       [
-        'Czy muszę korzystać z e-faktur?',
-        'Wysyłka na mail działa tak jak dotąd. E-faktura jest drugim kanałem — włączasz ją wtedy, kiedy chcesz.',
+        'Czy faktura musi iść przez KSeF?',
+        'Tak. Faktury idą przez KSeF, a BusiKM wysyła je za Ciebie. Gdy KSeF nie działa, wystawiasz w trybie offline, a system dośle fakturę później.',
       ],
       [
         'Co, jeśli klient chce faktury w euro?',
-        'Wystawiasz w euro. Kurs i data przeliczenia zostają na dokumencie.',
+        'Wystawiasz w euro. Kurs NBP z dnia przed datą sprzedaży zostaje zapisany na dokumencie.',
       ],
       [
         'Czy faktura trafia od razu do księgowej?',
-        'Tak, wchodzi do zestawienia sprzedaży za ten miesiąc. Księgowa nie musi o nią prosić.',
+        'Tak, trafia do rejestru VAT sprzedaży za ten miesiąc. Księgowa widzi ją w BusiKM i nie musi o nią prosić.',
       ],
     ],
     naglowekPytan: 'Trzy pytania',
     drobiazgi: [
       'Numeracja ciągła, bez luk',
-      'Termin płatności liczony od wysyłki',
-      'Przypomnienie o zaległej płatności',
-      'Podgląd przed wysyłką',
-      'Ten sam dokument w PDF i w e-fakturze',
-      'Duplikat na życzenie klienta',
+      'Termin płatności z karty klienta',
+      'Przypomnienia o płatności – Ty klikasz „Wyślij”',
+      'CMR wypełnia się sam z danych zlecenia',
+      'PDF z kodem QR z KSeF',
+      'PDF wyślesz ponownie jednym kliknięciem',
     ],
     wysylka: {
-      tytul: 'Wysyłka jednym kliknięciem',
+      tytul: 'Jednym przyciskiem do KSeF',
       tresc:
-        'Plik idzie na mail klienta i do systemu e-faktur w tej samej chwili. Widzisz, że doszło.',
-      label: 'Okno wysyłki · desktop',
-      note: 'Mail klienta, załącznik PDF, przełącznik e-faktury, status „dostarczone”.',
+        'Klikasz „Wystaw i wyślij do KSeF”. Wysyłkę do klienta zlecasz od razu – PDF z kodem QR wyjdzie mailem, razem z CMR, gdy KSeF nada numer. Na fakturze widzisz drogę: wystawiona, w KSeF, u klienta, zapłacona. Chcesz wysłać jeszcze raz albo na inny adres – masz „Wyślij klientowi”.',
+      label: 'Okno „Wyślij klientowi” · desktop',
+      note: 'Wysyłka FV/031/10/2026: adres z karty klienta, temat i treść z numerem KSeF, obok podgląd maila z załącznikiem PDF i przycisk „Wyślij”.',
     },
     kontrahenci: {
       tytul: 'Kontrahenci w jednym miejscu',
       tresc:
-        'Raz wprowadzony klient podpowiada się przy każdym następnym zleceniu, z adresem i numerem.',
+        'Wpisujesz NIP albo numer VAT z UE – nazwa i adres wpisują się same z GUS i VIES. Co noc sprawdzamy status VAT i rachunek na Białej Liście, a klient podpowiada się przy każdym kolejnym zleceniu.',
     },
     historia: {
-      tytul: 'Historia',
-      tresc: 'Co, komu i kiedy wysłano. Każdy dokument do podejrzenia i pobrania ponownie.',
-      label: 'Lista dokumentów · desktop, tryb nocny',
-      note: 'Wystawione dokumenty z datami wysyłki i statusem: dostarczone, zapłacone, termin.',
+      tytul: 'Kto nie zapłacił',
+      tresc: 'Widzisz, kto zalega, ile dni i ile wpłynie w najbliższych tygodniach. Odsetki i rekompensatę 40 € BusiKM policzy sam. Przypomnienie albo notę wysyłasz jednym kliknięciem.',
+      label: 'Lista faktur · desktop, tryb nocny',
+      note: 'Faktury: liczniki – do zapłaty, po terminie, zapłacone, KSeF – zakładki od szkiców po korekty, w tabeli termin płatności, stan płatności i status w KSeF.',
     },
     ktoUzywa: 'Kto tego używa:',
     link1: 'Właściciel →',
@@ -80,44 +80,44 @@ const TEKSTY: Tlumaczenia<{
   en: {
     pytania: [
       [
-        'Do I have to use e-invoices?',
-        'Sending by email works just as before. The e-invoice is a second channel — you switch it on when you want to.',
+        'Does the invoice have to go through KSeF?',
+        'Yes. Invoices go through KSeF, and BusiKM sends them for you. If KSeF is down, you issue in offline mode and the system sends the invoice later.',
       ],
       [
         'What if a client wants an invoice in euros?',
-        'You issue it in euros. The exchange rate and conversion date stay on the document.',
+        'You issue it in euros. The NBP rate from the day before the date of sale is saved on the document.',
       ],
       [
         'Does the invoice go straight to my accountant?',
-        'Yes, it goes into that month’s sales summary. Your accountant doesn’t have to ask for it.',
+        'Yes, it goes into that month’s sales VAT register. Your accountant sees it in BusiKM and doesn’t have to ask for it.',
       ],
     ],
     naglowekPytan: 'Three questions',
     drobiazgi: [
       'Continuous numbering, no gaps',
-      'Payment term counted from sending',
-      'Reminder about an overdue payment',
-      'Preview before sending',
-      'The same document as PDF and e-invoice',
-      'A duplicate when the client asks',
+      'Payment term taken from the client card',
+      'Payment reminders – you click “Send”',
+      'The CMR fills itself in from the order details',
+      'PDF with the KSeF QR code',
+      'Resend the PDF in one click',
     ],
     wysylka: {
-      tytul: 'Sent in one click',
+      tytul: 'One button to KSeF',
       tresc:
-        'The file goes to the client’s email and to the e-invoicing system at the same moment. You can see it arrived.',
-      label: 'Send window · desktop',
-      note: 'Client email, PDF attachment, e-invoice toggle, “delivered” status.',
+        'You click “Issue and send to KSeF”. You schedule the email to the client straight away – the PDF with a QR code goes out, along with the CMR, as soon as KSeF assigns a number. On the invoice you see its path: issued, in KSeF, with the client, paid. Want to send it again or to another address? There’s “Send to client”.',
+      label: '“Send to client” window · desktop',
+      note: 'Sending FV/031/10/2026: the address from the client card, a subject and message with the KSeF number, and a preview of the email with the PDF attached and a “Send” button.',
     },
     kontrahenci: {
       tytul: 'Clients in one place',
       tresc:
-        'Enter a client once and they’re suggested on every order after that, with address and tax number.',
+        'You type in the Polish tax number (NIP) or an EU VAT number – the name and address fill in by themselves from the Polish business register (GUS) and VIES. Every night we check the VAT status and the bank account on the Polish VAT White List, and the client is suggested on every order after that.',
     },
     historia: {
-      tytul: 'History',
-      tresc: 'What was sent, to whom and when. Every document ready to view and download again.',
-      label: 'Document list · desktop, dark mode',
-      note: 'Issued documents with sending dates and status: delivered, paid, due.',
+      tytul: 'Who hasn’t paid',
+      tresc: 'You see who owes you, how many days late, and how much is coming in over the next few weeks. BusiKM works out the interest and the €40 compensation itself. You send a reminder or a debit note in one click.',
+      label: 'Invoice list · desktop, dark mode',
+      note: 'Invoices: counters – due, overdue, paid, KSeF – tabs from drafts to corrections, and a table with payment terms, payment status and KSeF status.',
     },
     ktoUzywa: 'Who uses it:',
     link1: 'Owner →',
@@ -126,7 +126,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Zlecenia i faktury — podstrona wg projektu „BusiKM Zlecenia i faktury"
+ * Zlecenia i faktury – podstrona wg projektu „BusiKM Zlecenia i faktury"
  * z Claude Design (design/06-zlecenia-i-faktury). Treść: docs/landing/05, rozdział A5.
  */
 export default async function Page({ params }: ParametryJezyka) {

@@ -13,29 +13,29 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Reklamówka paragonów. Do wyrzucenia.',
-    lead: 'Kierowca robi zdjęcie na stacji. Kwota, data i sprzedawca wpisują się same, a koszt trafia do właściwego zlecenia i właściwego pojazdu.',
+    lead: 'Kierowca robi zdjęcie na stacji, wybiera rodzaj kosztu i zlecenie. Kwotę, datę i sprzedawcę BusiKM odczyta sam, a koszt trafia do właściwego zlecenia.',
     bullets: [
       'Paliwo, opłaty drogowe, hotel, prom, parking, naprawa',
-      'Obca waluta przeliczona automatycznie',
-      'Zdjęcie zostaje jako dowód',
+      'Koszt w obcej walucie przeliczony po kursie z dnia',
+      'Faktury z KSeF i z maila wpadają same',
     ],
-    label: 'Koszt z paragonu · telefon',
-    opis: 'Telefon ze zdjęciem paragonu (perspektywa), obok „odklejony” panel z rozpoznanymi polami podświetlonymi na zielono.',
+    label: 'Moje koszty · telefon, tryb nocny',
+    opis: 'Ekran „Moje koszty”: zwrot dla kierowcy, liczniki „Biuro pyta”, „Do uzupełnienia”, „Gotowe” i „Zaksięgowane”, przycisk „Dodaj paragon” i lista paragonów z miesiąca.',
   },
   en: {
     naglowek: 'A carrier bag of receipts. Straight in the bin.',
-    lead: 'The driver takes a photo at the fuel station. The amount, date and seller fill themselves in, and the cost goes to the right order and the right van.',
+    lead: 'The driver takes a photo at the fuel station and picks the cost type and the order. BusiKM reads the amount, date and seller itself, and the cost goes to the right order.',
     bullets: [
       'Fuel, tolls, hotel, ferry, parking, repairs',
-      'Foreign currency converted automatically',
-      'The photo stays on file as proof',
+      'Foreign-currency costs converted at the day’s rate',
+      'Invoices from KSeF and email arrive by themselves',
     ],
-    label: 'Cost from a receipt · phone',
-    opis: 'A phone with a photo of a receipt (in perspective), next to it a “peeled-off” panel with the recognised fields highlighted in green.',
+    label: 'My costs · phone, dark mode',
+    opis: 'The “My costs” screen: the driver’s refund, counters for “Office asks”, “To complete”, “Ready” and “Booked”, an “Add receipt” button and the month’s receipts.',
   },
 };
 
-/** 6.11 — koszty i paragony. */
+/** 6.11 – koszty i paragony. */
 export function KosztyIParagony() {
   const t = TEKSTY[biezacyJezyk()];
   return (

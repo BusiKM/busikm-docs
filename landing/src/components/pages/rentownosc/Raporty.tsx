@@ -7,25 +7,25 @@ type Raport = { tytul: string; wiersze: readonly (readonly [string, string])[] }
 const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; raporty: readonly Raport[] }> = {
   pl: {
     tytul: 'Raporty',
-    tresc: 'Per pojazd, per kierowca, per kraj.',
+    tresc: 'Flota: koszt na kilometr i dni pracy każdego auta. Kierowcy: zysk z ich tras w złotych – to widzi tylko właściciel. Kierunki: marża według kraju rozładunku.',
     raporty: [
-      { tytul: 'Per pojazd', wiersze: [['WZ 4821K', '34%'], ['PO 2093J', '29%'], ['GD 7710R', '27%']] },
-      { tytul: 'Per kierowca', wiersze: [['Marek W.', '35%'], ['Piotr K.', '31%'], ['Tomasz L.', '26%']] },
-      { tytul: 'Per kraj', wiersze: [['Niemcy', '33%'], ['Włochy', '36%'], ['Czechy', '19%']] },
+      { tytul: 'Flota', wiersze: [['WZ 4821K', '0,92 zł/km · 22 dni'], ['PO 2093J', '1,04 zł/km · 20 dni'], ['GD 7710R', '1,11 zł/km · 18 dni']] },
+      { tytul: 'Kierowcy', wiersze: [['Marek W.', '18 400 zł'], ['Piotr K.', '15 900 zł'], ['Tomasz L.', '12 300 zł']] },
+      { tytul: 'Kierunki', wiersze: [['Niemcy', '33%'], ['Włochy', '36%'], ['Czechy', '19%']] },
     ],
   },
   en: {
     tytul: 'Reports',
-    tresc: 'By vehicle, by driver, by country.',
+    tresc: 'Fleet: cost per kilometre and working days for each van. Drivers: profit from their routes in złoty – only the owner sees this. Destinations: margin by unloading country.',
     raporty: [
-      { tytul: 'By vehicle', wiersze: [['WZ 4821K', '34%'], ['PO 2093J', '29%'], ['GD 7710R', '27%']] },
-      { tytul: 'By driver', wiersze: [['Marek W.', '35%'], ['Piotr K.', '31%'], ['Tomasz L.', '26%']] },
-      { tytul: 'By country', wiersze: [['Germany', '33%'], ['Italy', '36%'], ['Czechia', '19%']] },
+      { tytul: 'Fleet', wiersze: [['WZ 4821K', 'PLN 0.92/km · 22 days'], ['PO 2093J', 'PLN 1.04/km · 20 days'], ['GD 7710R', 'PLN 1.11/km · 18 days']] },
+      { tytul: 'Drivers', wiersze: [['Marek W.', 'PLN 18,400'], ['Piotr K.', 'PLN 15,900'], ['Tomasz L.', 'PLN 12,300']] },
+      { tytul: 'Destinations', wiersze: [['Germany', '33%'], ['Italy', '36%'], ['Czechia', '19%']] },
     ],
   },
 };
 
-/** 06 — ta sama marża pokrojona na trzy sposoby. */
+/** 06 – trzy raporty: koszt auta, zysk kierowcy, marża kierunku. */
 export function Raporty() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -57,13 +57,13 @@ export function Raporty() {
             >
               <div className="text-[17px] font-semibold">{r.tytul}</div>
               <div className="flex flex-col">
-                {r.wiersze.map(([co, marza]) => (
+                {r.wiersze.map(([co, wartosc]) => (
                   <div
                     key={co}
                     className="flex justify-between gap-3 border-t border-line py-2"
                   >
                     <span>{co}</span>
-                    <b>{marza}</b>
+                    <b>{wartosc}</b>
                   </div>
                 ))}
               </div>

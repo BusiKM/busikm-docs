@@ -41,7 +41,7 @@ function odcinki(kierowca: string) {
 }
 
 /**
- * Licznik czasu — najmocniejszy argument tej strony: cała ścieżka to około
+ * Licznik czasu – najmocniejszy argument tej strony: cała ścieżka to około
  * dziesięciu minut pracy właściciela. Piąty odcinek jest przerywany, bo nie
  * jest jego pracą.
  */
