@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 /**
  * Zrzut aplikacji w pudle makiety z podglądem na cały ekran.
@@ -34,12 +34,21 @@ export function Makieta({
   laptop?: boolean;
 }) {
   const okno = useRef<HTMLDialogElement>(null);
+  // Obraz w pełnej rozdzielczości trafia do dokumentu dopiero po pierwszym
+  // otwarciu. Ukryty <dialog> nie wstrzymuje pobierania <img>, więc bez tego
+  // każda makieta ściągała się dwa razy – raz zoptymalizowana na stronie,
+  // raz jako pełny PNG – i strona główna ważyła prawie 8 MB (Lighthouse w CI).
+  const [otwierany, setOtwierany] = useState(false);
+  const otworz = () => {
+    setOtwierany(true);
+    okno.current?.showModal();
+  };
 
   return (
     <>
       <button
         type="button"
-        onClick={() => okno.current?.showModal()}
+        onClick={otworz}
         aria-label={`${etykietaPowieksz}: ${alt}`}
         className="group absolute inset-0 block cursor-zoom-in"
         style={{ containerType: 'size' }}
@@ -69,8 +78,10 @@ export function Makieta({
         className="m-auto cursor-zoom-out max-h-[94vh] max-w-[96vw] overflow-visible bg-transparent p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-sm"
       >
         <div className="relative">
-          {/* eslint-disable-next-line @next/next/no-img-element -- pełna rozdzielczość pliku, bez optymalizatora */}
-          <img src={src} alt={alt} className="block max-h-[94vh] w-auto max-w-[96vw] object-contain" />
+          {otwierany && (
+            // eslint-disable-next-line @next/next/no-img-element -- pełna rozdzielczość pliku, bez optymalizatora
+            <img src={src} alt={alt} className="block max-h-[94vh] w-auto max-w-[96vw] object-contain" />
+          )}
           <button
             type="button"
             onClick={() => okno.current?.close()}
