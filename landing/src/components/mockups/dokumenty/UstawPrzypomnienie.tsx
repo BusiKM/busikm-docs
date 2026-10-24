@@ -1,7 +1,7 @@
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
-/** Który z okresów jest wybrany — trzeci, 30 dni. */
+/** Który z okresów jest wybrany – trzeci, 30 dni. */
 const WYBRANY = 2;
 
 type Teksty = {
@@ -38,7 +38,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
 };
 
-/** Ile dni wcześniej przypomnieć — z osią czasu pod spodem. */
+/** Ile dni wcześniej przypomnieć – z osią czasu pod spodem. */
 export function UstawPrzypomnienie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -16,7 +16,8 @@ const TEKSTY: Tlumaczenia<{
   rocznie: string;
   gratis: string;
   okres: { rok: string; miesiac: string };
-  netto: string;
+  /** Dopisek przy kwocie, przed okresem. Ceny są końcowe – nie ma „netto”. */
+  waluta: string;
   wyroznienie: string;
   wezwanie: string;
   stopka: string;
@@ -28,11 +29,11 @@ const TEKSTY: Tlumaczenia<{
     rocznie: 'Rocznie',
     gratis: '2 miesiące gratis',
     okres: { rok: 'rok', miesiac: 'mies.' },
-    netto: 'zł netto',
+    waluta: 'zł',
     wyroznienie: 'Najczęściej wybierany',
     wezwanie: 'Wypróbuj 14 dni',
     stopka:
-      'Bez umowy na czas określony. Rezygnujesz jednym kliknięciem. Twoje dane pobierzesz zawsze — także po rezygnacji.',
+      'Ceny końcowe, bez VAT – MOVGRANTO jest zwolniona z VAT, na fakturze stawka „zw.”. Więcej niż 50 pojazdów – napisz. Bez umowy na czas określony. Po rezygnacji konto zostaje do odczytu: pobierzesz faktury, ewidencje i eksporty.',
   },
   en: {
     naglowek: ['You pay for vehicles.', 'Not for people.'],
@@ -41,18 +42,18 @@ const TEKSTY: Tlumaczenia<{
     rocznie: 'Yearly',
     gratis: '2 months free',
     okres: { rok: 'year', miesiac: 'month' },
-    netto: 'net',
+    waluta: '',
     wyroznienie: 'Most popular',
     wezwanie: 'Try 14 days free',
     stopka:
-      'No fixed-term contract. Cancel in one click. You can always download your data — even after you cancel.',
+      'Final prices, no VAT on top – MOVGRANTO is VAT-exempt, so the invoice shows the “zw.” (exempt) rate. More than 50 vehicles – get in touch. No fixed-term contract. After you cancel, your account stays read-only: you can still download invoices, mileage logs and exports.',
   },
 };
 
 /**
- * 6.18 — cennik. Przełącznik miesięcznie / rocznie, jak w projekcie.
+ * 6.18 – cennik. Przełącznik miesięcznie / rocznie, jak w projekcie.
  *
- * Ta sama sekcja otwiera stronę `/cennik` — tam dostaje nadtytuł i nagłówek
+ * Ta sama sekcja otwiera stronę `/cennik` – tam dostaje nadtytuł i nagłówek
  * pierwszego stopnia, bo jest nagłówkiem strony, a nie jedną z sekcji.
  */
 export function Cennik({
@@ -137,7 +138,7 @@ export function Cennik({
                   {jezyk === 'en' && (
                     <span className="text-[15px] text-muted lg:text-body">PLN</span>
                   )}
-                  {/* Kwota dolicza się od poprzedniej — patrz `Licznik`.
+                  {/* Kwota dolicza się od poprzedniej – patrz `Licznik`.
                       Liczby w `content/cennik.ts` są tekstem ze spacją
                       rozdzielającą tysiące, więc tutaj wracają na liczbę,
                       a separator dokłada z powrotem licznik. */}
@@ -146,7 +147,7 @@ export function Cennik({
                     className="text-[40px] font-bold tracking-[-0.03em] lg:text-5xl"
                   />
                   <span className="text-[15px] text-muted lg:text-body">
-                    {t.netto} / {period}
+                    {t.waluta ? `${t.waluta} / ${period}` : `/ ${period}`}
                   </span>
                 </div>
               </div>

@@ -30,7 +30,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Mapa floty na żywo — trzy pojazdy i dymek z godziną dojazdu. */
+/** Mapa floty na żywo – trzy pojazdy i dymek z godziną dojazdu. */
 export function MapaFloty() {
   const t = TEKSTY[biezacyJezyk()];
   return (

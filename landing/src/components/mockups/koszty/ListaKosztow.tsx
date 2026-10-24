@@ -9,7 +9,7 @@ type Koszt = {
   pojazd: string;
   zlecenie: string;
   kwota: string;
-  /** Koszt firmowy nie ma zdjęcia — miniatura zostaje pusta. */
+  /** Koszt firmowy nie ma zdjęcia – miniatura zostaje pusta. */
   bezZdjecia?: boolean;
   tylkoDesktop?: boolean;
 };
@@ -37,7 +37,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       { data: '2.09', sprzedawca: 'ASFINAG · A13', kategoria: 'Opłaty drogowe', pojazd: 'WZ 4821K · Marek W.', zlecenie: 'Warszawa → Mediolan', kwota: '112,40 zł' },
       { data: '2.09', sprzedawca: 'Hotel Brenner Nord', kategoria: 'Hotel', pojazd: 'WZ 4821K · Marek W.', zlecenie: 'Warszawa → Mediolan', kwota: '333,84 zł', tylkoDesktop: true },
       { data: '1.09', sprzedawca: 'Stena Line · Gdynia', kategoria: 'Prom', pojazd: 'GD 7710R · Piotr K.', zlecenie: 'Gdańsk → Hamburg', kwota: '1 240,00 zł', tylkoDesktop: true },
-      { data: '1.09', sprzedawca: 'Leasing · rata 9/36', kategoria: 'Koszt firmowy', pojazd: 'PO 2093J', zlecenie: '—', kwota: '2 890,00 zł', bezZdjecia: true },
+      { data: '1.09', sprzedawca: 'Leasing · rata 9/36', kategoria: 'Koszt firmowy', pojazd: 'PO 2093J', zlecenie: '–', kwota: '2 890,00 zł', bezZdjecia: true },
     ],
     stopka: 'Miniatura = zdjęcie paragonu. Klikasz i widzisz oryginał.',
   },
@@ -53,7 +53,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       { data: '2 Sep', sprzedawca: 'ASFINAG · A13', kategoria: 'Tolls', pojazd: 'WZ 4821K · Marek W.', zlecenie: 'Warsaw → Milan', kwota: 'PLN 112.40' },
       { data: '2 Sep', sprzedawca: 'Hotel Brenner Nord', kategoria: 'Hotel', pojazd: 'WZ 4821K · Marek W.', zlecenie: 'Warsaw → Milan', kwota: 'PLN 333.84', tylkoDesktop: true },
       { data: '1 Sep', sprzedawca: 'Stena Line · Gdynia', kategoria: 'Ferry', pojazd: 'GD 7710R · Piotr K.', zlecenie: 'Gdańsk → Hamburg', kwota: 'PLN 1,240.00', tylkoDesktop: true },
-      { data: '1 Sep', sprzedawca: 'Lease · instalment 9/36', kategoria: 'Company cost', pojazd: 'PO 2093J', zlecenie: '—', kwota: 'PLN 2,890.00', bezZdjecia: true },
+      { data: '1 Sep', sprzedawca: 'Lease · instalment 9/36', kategoria: 'Company cost', pojazd: 'PO 2093J', zlecenie: '–', kwota: 'PLN 2,890.00', bezZdjecia: true },
     ],
     stopka: 'Thumbnail = photo of the receipt. Click it to see the original.',
   },

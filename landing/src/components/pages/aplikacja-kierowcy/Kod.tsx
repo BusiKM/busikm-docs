@@ -15,30 +15,30 @@ const TEKSTY: Tlumaczenia<{
   wpisz: string;
 }> = {
   pl: {
-    naglowek: 'Wchodzi kodem, nie zakłada konta',
+    naglowek: 'Wchodzi kodem z maila',
     tresc:
-      'Wysyłasz zaproszenie, kierowca dostaje kod, ustawia własne hasło. Nie dzwoni do Ciebie z pytaniem, jaki ma login.',
-    label: 'Lista zleceń · telefon, tryb nocny',
-    note: 'Ekran po wejściu kodem: „Dziś” z dwoma zleceniami, poniżej zakończone, pasek zakładek u dołu.',
+      'Wysyłasz zaproszenie, kierowca dostaje mailem kod. W aplikacji wybiera „Mam zaproszenie”, wpisuje e-mail i kod, potem własne hasło – imię i nazwisko tylko wtedy, gdy ich nie wpisałeś. Następnym razem loguje się e-mailem i hasłem. Nie dzwoni do Ciebie z pytaniem, jaki ma login.',
+    label: 'Zlecenia · telefon, tryb nocny',
+    note: 'Lista „Zlecenia” z zakładkami Aktywne, Oczekujące i Zakończone: kurs Wrocław → Milano „W trasie”, pasek zakładek u dołu.',
     mail: 'E-mail · BusiKM',
-    powitanie: 'Marek, Twój kod do BusiKM:',
-    kod: '482 190',
-    wpisz: 'Wpisz go raz w aplikacji.',
+    powitanie: 'Marek, Twój kod zaproszenia do BusiKM:',
+    kod: 'K7QM-4RTZ',
+    wpisz: 'W aplikacji wybierz „Mam zaproszenie”.',
   },
   en: {
-    naglowek: 'In with a code, no account to set up',
+    naglowek: 'In with a code from the email',
     tresc:
-      'You send an invite, the driver gets a code and sets their own password. No calls to you asking what their login is.',
-    label: 'Order list · phone, dark mode',
-    note: 'The screen after signing in with the code: “Today” with two orders, finished ones below, tab bar at the bottom.',
+      'You send an invite and the driver gets a code by email. In the app they choose “I have an invitation”, enter their email and the code, then their own password – and their name only if you haven’t entered it. After that they sign in with email and password. No calls to you asking what their login is.',
+    label: 'Orders · phone, dark mode',
+    note: 'The “Orders” list with Active, Pending and Finished tabs: the Wrocław → Milan job “On the road”, tab bar at the bottom.',
     mail: 'Email · BusiKM',
-    powitanie: 'Marek, your BusiKM code:',
-    kod: '482 190',
-    wpisz: 'Enter it once in the app.',
+    powitanie: 'Marek, your BusiKM invitation code:',
+    kod: 'K7QM-4RTZ',
+    wpisz: 'In the app, choose “I have an invitation”.',
   },
 };
 
-/** 01 — wchodzi kodem. Mail z kodem, strzałka, ekran z listą zleceń. */
+/** 01 – wchodzi kodem. Mail z kodem, strzałka, ekran z listą zleceń. */
 export function Kod() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -66,7 +66,7 @@ export function Kod() {
             note={t.note}
             ratio="9:19.5"
             box="6:7"
-            // Ta sama wartość, co w blokach niżej — pliki mają identyczny
+            // Ta sama wartość, co w blokach niżej – pliki mają identyczny
             // kadr, w którym telefon zajmuje 30% szerokości. Bez tego wychodzi
             // szeroki na 156 px w kolumnie mającej 520.
             imageScale={1.8}

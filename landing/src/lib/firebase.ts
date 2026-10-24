@@ -1,11 +1,11 @@
 import type { Firestore } from 'firebase/firestore';
 
 /**
- * Połączenie z Firebase — ten sam układ, co w movgranto-homepage.
+ * Połączenie z Firebase – ten sam układ, co w movgranto-homepage.
  *
  * Klucze są publiczne z założenia: klient Firebase i tak wysyła je
  * w przeglądarce. Tym, co faktycznie chroni bazę, są reguły w
- * `firestore.rules` — pozwalają wyłącznie zapisać wiadomość i to tylko
+ * `firestore.rules` – pozwalają wyłącznie zapisać wiadomość i to tylko
  * taką, która przejdzie walidację. Odczytu, edycji ani kasowania nie ma
  * nikt poza konsolą i Admin SDK.
  *
@@ -16,12 +16,12 @@ import type { Firestore } from 'firebase/firestore';
  * ## Dlaczego SDK ładuje się dopiero przy wysyłce
  *
  * Klient Firebase waży kilkaset kilobajtów i przy zwykłym imporcie wchodził
- * do paczki każdej strony z formularzem — `/kontakt` wysyłał przez to 1,2 MB
+ * do paczki każdej strony z formularzem – `/kontakt` wysyłał przez to 1,2 MB
  * skryptów, choć odwiedzający najczęściej tylko czyta i wychodzi.
  *
  * Dlatego `getDb()` jest asynchroniczne i sięga po SDK przez `import()`
  * dopiero w momencie zapisu. `firebaseGotowy` zostaje synchroniczne, bo to
- * samo sprawdzenie zmiennych środowiskowych — formularz musi w trakcie
+ * samo sprawdzenie zmiennych środowiskowych – formularz musi w trakcie
  * renderu wiedzieć, czy pokazać przycisk wysyłki, czy cofnąć się do
  * `mailto:`, i nie ma po co czekać na pobranie biblioteki.
  */

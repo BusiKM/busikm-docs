@@ -8,7 +8,7 @@ const kandydaci = [
   { kto: 'Piotr K.', pojazd: 'GD 7710R', wariant: 'off' },
 ] as const;
 
-/** Stan i etykieta każdego kandydata — kolejność jak w `kandydaci`. */
+/** Stan i etykieta każdego kandydata – kolejność jak w `kandydaci`. */
 const TEKSTY: Tlumaczenia<{
   naglowek: string;
   termin: string;

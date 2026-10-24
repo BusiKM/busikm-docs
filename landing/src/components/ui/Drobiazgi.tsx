@@ -8,7 +8,7 @@ const NAGLOWEK: Tlumaczenia<string> = {
 };
 
 /**
- * „Drobiazgi, które widać dopiero w robocie" — siatka kafelków zamykająca
+ * „Drobiazgi, które widać dopiero w robocie" – siatka kafelków zamykająca
  * każdą podstronę, plus wiersz z odnośnikami do ról.
  */
 export function Drobiazgi({
@@ -19,7 +19,7 @@ export function Drobiazgi({
 }: {
   naglowek?: string;
   kafelki: readonly string[];
-  /** Wiersz pod siatką — zwykle „Kto tego używa". */
+  /** Wiersz pod siatką – zwykle „Kto tego używa". */
   stopka?: React.ReactNode;
   tone?: 'paper' | 'mist' | 'ink';
 }) {

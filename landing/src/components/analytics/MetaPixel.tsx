@@ -7,13 +7,13 @@ import Script from 'next/script';
 import { odczytajZgodeMarketingowa, subskrybujZgode, zgodaNaSerwerze } from './zgoda';
 
 /**
- * Piksel Meta — ładowany dopiero po zgodzie na reklamę.
+ * Piksel Meta – ładowany dopiero po zgodzie na reklamę.
  *
  * Identyfikator siedzi w `NEXT_PUBLIC_META_PIXEL_ID`. Bez niego komponent nie
  * robi nic, więc lokalnie i w podglądach na Vercelu nic nie trafia do Mety.
  *
  * `autoConfig` wyłączony: piksel nie zbiera sam kliknięć ani treści strony,
- * wysyłamy tylko to, co wpisaliśmy w kod — odsłony i zapis na listę.
+ * wysyłamy tylko to, co wpisaliśmy w kod – odsłony i zapis na listę.
  */
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
@@ -25,7 +25,7 @@ declare global {
 }
 
 /**
- * Odsłony przy przechodzeniu między stronami — ta sama zasada co w GA4:
+ * Odsłony przy przechodzeniu między stronami – ta sama zasada co w GA4:
  * pierwszą wysyła skrypt startowy, tutaj tylko kolejne przejścia.
  */
 function OdslonyStron() {

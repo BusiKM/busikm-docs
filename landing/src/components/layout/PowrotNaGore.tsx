@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
  * ## Co naprawia
  *
  * W App Routerze odnośnik prowadzący do bieżącej trasy nie wywołuje
- * nawigacji — router widzi ten sam adres i nie robi nic. Nie ma więc czego
+ * nawigacji – router widzi ten sam adres i nie robi nic. Nie ma więc czego
  * przewijać: klikasz znak BusiKM będąc na stronie głównej i strona stoi
  * w miejscu, jakby przycisk był martwy.
  *
@@ -20,7 +20,7 @@ import { usePathname } from 'next/navigation';
  *
  * Sam nagłówek ma ponad dwadzieścia odnośników, do tego stopka i treść stron.
  * Doklejanie obsługi do każdego z osobna znaczyłoby, że pierwszy dopisany
- * później odnośnik znów będzie martwy — a nikt tego nie zauważy, bo usterka
+ * później odnośnik znów będzie martwy – a nikt tego nie zauważy, bo usterka
  * objawia się wyłącznie na stronie, na której się już jest.
  *
  * Jeden nasłuch w fazie bąbelkowania obsługuje wszystkie, także te dopisane
@@ -31,16 +31,16 @@ import { usePathname } from 'next/navigation';
  * Nie sprawdzamy `defaultPrevented` na wejściu i to jest istotne: Next `Link`
  * wywołuje `preventDefault()` we własnym uchwycie na elemencie, a ten biegnie
  * przed nasłuchem na `document`. Wycofanie się w tym miejscu blokowałoby
- * poprawkę dokładnie tam, gdzie jest potrzebna — przy każdym odnośniku Nexta.
+ * poprawkę dokładnie tam, gdzie jest potrzebna – przy każdym odnośniku Nexta.
  *
  * Odpuszczamy wszystko, co nie jest zwykłym przejściem wewnątrz serwisu:
  * kliknięcia z modyfikatorem (otwarcie w nowej karcie), środkowy przycisk,
- * `target="_blank"`, adresy zewnętrzne, `mailto:` i `tel:` oraz kotwice —
+ * `target="_blank"`, adresy zewnętrzne, `mailto:` i `tel:` oraz kotwice –
  * te ostatnie mają własny cel i przewijanie na górę byłoby ich zaprzeczeniem.
  *
  * Sposób przewijania zostawiamy CSS-owi: `scroll-behavior` w `globals.css`
  * jest płynne, a przy wyłączonym ruchu w systemie natychmiastowe. Dlatego
- * `scrollTo` nie dostaje tu `behavior` — inaczej nadpisałoby tę decyzję.
+ * `scrollTo` nie dostaje tu `behavior` – inaczej nadpisałoby tę decyzję.
  */
 export function PowrotNaGore() {
   const pathname = usePathname();
@@ -73,7 +73,7 @@ export function PowrotNaGore() {
       if (window.scrollY === 0) return;
 
       // `preventDefault` tylko wtedy, gdy nikt nas nie uprzedził. Next `Link`
-      // robi to sam w uchwycie na elemencie i po swojemu nic nie przewija —
+      // robi to sam w uchwycie na elemencie i po swojemu nic nie przewija –
       // nam zostaje samo przewinięcie. Przy zwykłym `<a>` musimy zatrzymać
       // przeładowanie strony, bo inaczej byłby to zwykły powrót na górę
       // okupiony pełnym odświeżeniem.

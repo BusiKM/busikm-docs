@@ -70,7 +70,7 @@ const TEKSTY: Tlumaczenia<{
  *
  * Baner nie może trafić do HTML-a budowanego statycznie: mrugnąłby przy
  * każdym wejściu każdemu, kto już zdecydował. Na serwerze migawka mówi więc
- * „jeszcze nie", a po hydracji „już" — i dopiero wtedy widoczność w ogóle
+ * „jeszcze nie", a po hydracji „już" – i dopiero wtedy widoczność w ogóle
  * wchodzi w grę. Nic tu nie subskrybujemy, bo hydracja zdarza się raz.
  */
 const BEZ_ZMIAN = () => () => {};
@@ -81,13 +81,13 @@ const PRZED_HYDRACJA = () => false;
  * Pytanie o zgodę na analitykę i reklamę.
  *
  * Baner jest obowiązkowy, bo licznik odwiedzin i piksel Meta zapisują
- * ciasteczka, a te — inaczej niż niezbędne — wymagają zgody (art. 399 Prawa
+ * ciasteczka, a te – inaczej niż niezbędne – wymagają zgody (art. 399 Prawa
  * komunikacji elektronicznej i RODO). „Zgadzam się na wszystko" i „Tylko
  * niezbędne" są równorzędne, bo zgoda ma być dobrowolna: „odrzuć" schowane
  * albo wyszarzone to najczęściej kwestionowany wzorzec. „Wybiorę sam"
  * pozwala zgodzić się na jeden cel bez drugiego.
  *
- * Baner nie blokuje strony — nie jest modalny, można go zignorować i czytać
+ * Baner nie blokuje strony – nie jest modalny, można go zignorować i czytać
  * dalej. Bez decyzji ani licznik, ani piksel się nie ładują.
  */
 export function BanerZgody() {
@@ -102,7 +102,7 @@ export function BanerZgody() {
   );
   const poHydracji = useSyncExternalStore(BEZ_ZMIAN, PO_HYDRACJI, PRZED_HYDRACJA);
 
-  /** Otwarcie z odnośnika „Ustawienia cookie" — pokazuje baner mimo decyzji. */
+  /** Otwarcie z odnośnika „Ustawienia cookie" – pokazuje baner mimo decyzji. */
   const [wymuszony, setWymuszony] = useState(false);
   const [zamkniety, setZamkniety] = useState(false);
   /** Rozwinięte przełączniki „Wybiorę sam" i ich robocze położenie. */
@@ -136,7 +136,7 @@ export function BanerZgody() {
     setZamkniety(true);
     setSzczegoly(false);
     // Wycofanie zgody musi usunąć skrypt z pamięci, a nie tylko przestać
-    // go zasilać — samo odmontowanie komponentu nie cofa tego, co gtag
+    // go zasilać – samo odmontowanie komponentu nie cofa tego, co gtag
     // albo fbq zdążyły podpiąć do `window`.
     if (cofnieta) window.location.reload();
   };

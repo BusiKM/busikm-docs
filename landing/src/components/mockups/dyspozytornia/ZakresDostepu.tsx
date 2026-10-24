@@ -18,10 +18,10 @@ const TEKSTY: Tlumaczenia<{
     dyspozytor: 'Dyspozytor',
     zakres: [
       'Zlecenia, mapa, kierowcy',
-      'Rozmowa z kierowcą',
+      'Czat z kierowcą w zleceniu',
       'Dokumenty i terminy',
       'Przychód, koszty, zysk',
-      'Faktury i komplet dla księgowej',
+      'Faktury i paczka dla biura',
     ],
     widzi: 'widzi',
     nieWidzi: 'nie widzi',
@@ -32,17 +32,17 @@ const TEKSTY: Tlumaczenia<{
     dyspozytor: 'Dispatcher',
     zakres: [
       'Orders, map, drivers',
-      'Messages with drivers',
+      'Chat with drivers on each order',
       'Documents and deadlines',
       'Revenue, costs, profit',
-      'Invoices and the accountant’s pack',
+      'Invoices and the accounting pack',
     ],
     widzi: 'sees',
     nieWidzi: 'doesn’t see',
   },
 };
 
-/** Co dyspozytor widzi, a czego nie — przełącznik widoku. */
+/** Co dyspozytor widzi, a czego nie – przełącznik widoku. */
 export function ZakresDostepu() {
   const t = TEKSTY[biezacyJezyk()];
   return (

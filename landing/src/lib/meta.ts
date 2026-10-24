@@ -1,8 +1,8 @@
 /**
  * Zdarzenia dla piksela Meta.
  *
- * Wołamy je po udanej akcji na stronie. Jeżeli piksela nie ma — brak zgody
- * na reklamę albo brak identyfikatora — `window.fbq` nie istnieje i funkcja
+ * Wołamy je po udanej akcji na stronie. Jeżeli piksela nie ma – brak zgody
+ * na reklamę albo brak identyfikatora – `window.fbq` nie istnieje i funkcja
  * po prostu nic nie robi. Dzięki temu formularze nie muszą znać stanu zgody.
  *
  * Nie przekazujemy tu żadnych danych osobowych (imienia ani e-maila),

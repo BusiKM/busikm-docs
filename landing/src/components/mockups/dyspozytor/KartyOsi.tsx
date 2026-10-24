@@ -2,7 +2,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Pięć drobnych kart przy osi dnia dyspozytora. Nie są makietami do podmiany —
+ * Pięć drobnych kart przy osi dnia dyspozytora. Nie są makietami do podmiany –
  * to ilustracje przy punktach osi.
  */
 
@@ -32,9 +32,9 @@ const TEKSTY: Tlumaczenia<{
     ],
     trasa: 'Łódź → Praga',
     wTelefonie: 'w telefonie Jana S. · 07:06',
-    korek: 'Korek · A22, Bolzano',
-    dojazd: 'Dojazd',
-    nowaWersja: 'kierowca ma nową wersję · 13:21',
+    korek: 'Spóźni się · Bolzano → Mediolan',
+    dojazd: 'Na miejscu ok.',
+    nowaWersja: 'klient powiadomiony · 13:21',
     zamkniecie: [
       ['Marek W.', 'Bolzano · kończy 19:30'],
       ['Tomasz L.', 'rozładowany · Rotterdam'],
@@ -52,9 +52,9 @@ const TEKSTY: Tlumaczenia<{
     ],
     trasa: 'Łódź → Prague',
     wTelefonie: 'on Jan S.’s phone · 07:06',
-    korek: 'Traffic jam · A22, Bolzano',
-    dojazd: 'Arrival',
-    nowaWersja: 'driver has the new version · 13:21',
+    korek: 'Running late · Bolzano → Milan',
+    dojazd: 'Arrives around',
+    nowaWersja: 'client notified · 13:21',
     zamkniecie: [
       ['Marek W.', 'Bolzano · finishes 19:30'],
       ['Tomasz L.', 'unloaded · Rotterdam'],
@@ -66,7 +66,7 @@ const TEKSTY: Tlumaczenia<{
 const ramka =
   'rounded-2xl border border-line-dark bg-surface p-4 text-[11px] text-paper lg:p-4.5';
 
-/** 6:40 — kontrahent podpowiada się po trzech literach. */
+/** 6:40 – kontrahent podpowiada się po trzech literach. */
 export function KartaKontrahent() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -92,7 +92,7 @@ export function KartaKontrahent() {
   );
 }
 
-/** 7:05 — kto ma wolne godziny i kto jest najbliżej. */
+/** 7:05 – kto ma wolne godziny i kto jest najbliżej. */
 export function KartaKierowcy() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -117,7 +117,7 @@ export function KartaKierowcy() {
   );
 }
 
-/** 7:06 — trasa gotowa i już w telefonie kierowcy. */
+/** 7:06 – trasa gotowa i już w telefonie kierowcy. */
 export function KartaTrasa() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -140,26 +140,26 @@ export function KartaTrasa() {
   );
 }
 
-/** 13:20 — korek i przeliczona godzina dojazdu. */
+/** 13:20 – opóźnienie w kolejce „Wymaga reakcji” i powiadomiony klient. */
 export function KartaKorek() {
   const t = TEKSTY[biezacyJezyk()];
   return (
     <div className={`${ramka} flex flex-col gap-2.5`}>
       <div className="flex justify-between gap-3">
         <span className="truncate">{t.korek}</span>
-        <span className="flex-none text-ink-muted">14 km</span>
+        <span className="flex-none text-paper">+43 min</span>
       </div>
       <div className="flex items-end gap-3 border-t border-line-dark pt-2.5">
         <span className="text-ink-muted">{t.dojazd}</span>
-        <span className="text-ink-muted line-through">08:40</span>
-        <b className="text-[15px]">08:05</b>
+        <span className="text-ink-muted line-through">18:53</span>
+        <b className="text-[15px]">19:37</b>
       </div>
       <div className="text-green">{t.nowaWersja}</div>
     </div>
   );
 }
 
-/** 17:00 — kto gdzie kończy i kto rusza jutro. */
+/** 17:00 – kto gdzie kończy i kto rusza jutro. */
 export function KartaZamkniecie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

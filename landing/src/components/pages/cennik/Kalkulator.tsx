@@ -9,7 +9,7 @@ import { useJezyk } from '@/i18n/klient';
 
 const MAX = 25;
 
-/** Start do trzech pojazdów, dalej Firma; powyżej dziesięciu każdy kolejny +29 zł. */
+/** Start do trzech pojazdów, dalej Firma; powyżej dziesięciu +29 zł/mies. za każdy kolejny, do 50. */
 function wylicz(pojazdy: number) {
   const plan: PlanId = pojazdy <= 3 ? 'start' : 'firma';
   const ponad = Math.max(0, pojazdy - 10);
@@ -37,7 +37,7 @@ const TEKSTY: Tlumaczenia<{
       return 'pojazdów';
     },
     koniecStart: '3 · koniec Start',
-    koniecFirma: '10 · koniec Firma',
+    koniecFirma: '10 · w cenie Firma',
     zaplacisz: 'Zapłacisz miesięcznie',
     kwota: (n) => `${n} zł`,
     dopisek: (ponad) => `299 + ${ponad} × 29 zł`,
@@ -49,7 +49,7 @@ const TEKSTY: Tlumaczenia<{
     pytanie: 'How many vehicles do you have?',
     odmiana: (n) => (n === 1 ? 'vehicle' : 'vehicles'),
     koniecStart: '3 · Start ends',
-    koniecFirma: '10 · Business ends',
+    koniecFirma: '10 · included in Business',
     zaplacisz: 'You pay per month',
     kwota: (n) => `PLN ${n}`,
     dopisek: (ponad) => `PLN 299 + ${ponad} × PLN 29`,
@@ -125,11 +125,11 @@ export function Kalkulator() {
           <p className="text-[16px] leading-relaxed text-ink-muted lg:text-body">
             {jezyk === 'pl' ? (
               <>
-                netto · plan <b className="text-paper">{nazwaPlanu(plan, jezyk)}</b>
+                cena końcowa, bez VAT · plan <b className="text-paper">{nazwaPlanu(plan, jezyk)}</b>
               </>
             ) : (
               <>
-                net · <b className="text-paper">{nazwaPlanu(plan, jezyk)}</b> plan
+                final price, no VAT · <b className="text-paper">{nazwaPlanu(plan, jezyk)}</b> plan
               </>
             )}
             {dopisek && <> · {dopisek}</>}
@@ -137,7 +137,7 @@ export function Kalkulator() {
           <p className="text-lead-m font-semibold text-balance lg:text-lead">{t.puenta}</p>
 
           <div className="mt-2 flex flex-col gap-2.5">
-            {/* Kalkulator wie, do którego planu doszedł suwak — niech ta
+            {/* Kalkulator wie, do którego planu doszedł suwak – niech ta
                 wiedza jedzie dalej. Okres miesięczny, bo taką kwotę pokazuje. */}
             <Button href={linkProbny({ plan, okres: 'miesiecznie' })} fullWidth>
               {t.wezwanie}

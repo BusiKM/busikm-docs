@@ -25,7 +25,7 @@ import { FinalCta } from '@/components/sections/FinalCta';
 import { jezykZParametrow, type ParametryJezyka } from '@/i18n/serwer';
 
 /**
- * Strona główna — 22 sekcje wg projektu (plus film właściciela pod hero) „BusiKM Desktop 1440" / „BusiKM Telefon 390"
+ * Strona główna – 22 sekcje wg projektu (plus film właściciela pod hero) „BusiKM Desktop 1440" / „BusiKM Telefon 390"
  * z Claude Design. Treść i kolejność: docs/landing/04-homepage.md.
  */
 export default async function Home({ params }: ParametryJezyka) {

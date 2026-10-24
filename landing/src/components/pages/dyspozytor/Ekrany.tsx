@@ -13,42 +13,42 @@ const TEKSTY: Tlumaczenia<{ naglowek: string; ekran: Opis; zlecenie: Opis; trasa
     naglowek: 'Trzy ekrany, które widzisz codziennie.',
     ekran: {
       label: 'Dyspozytornia · desktop 1440',
-      note: 'Trzy kolumny: lista zleceń, mapa, panel kierowcy z rozmową.',
+      note: 'Liczniki dnia, kolejka z zakładkami „Wymaga reakcji”, „Do przypisania” i „W trasie”, obok mapa floty z filtrami, niżej plan floty.',
       caption: 'Dyspozytornia',
     },
     zlecenie: {
       label: 'Karta zlecenia · desktop',
-      note: 'Zlecenie z przypisanym kierowcą i pojazdem, podpowiedź kto ma wolne godziny.',
-      caption: 'Karta zlecenia z przypisaniem',
+      note: 'Zlecenie Wrocław → Milano, zakładka Przegląd: pasek etapów, postoje z mapą, kierowca i auto z przyciskami „Zadzwoń” i „Napisz”.',
+      caption: 'Karta zlecenia',
     },
     trasa: {
-      label: 'Podgląd trasy · desktop',
-      note: 'Trasa z możliwością zmiany w trakcie jazdy, kierowca dostaje nową wersję od razu.',
-      caption: 'Trasa i zmiana w trakcie',
+      label: 'Trasa i śledzenie · desktop',
+      note: 'Zlecenie Olsztyn → München: ostrzeżenie o spóźnieniu, trasa z przyciskiem „Zmień trasę”, auto na mapie i czas dojazdu z pozycji auta.',
+      caption: 'Trasa i śledzenie',
     },
   },
   en: {
     naglowek: 'Three screens you see every day.',
     ekran: {
       label: 'Dispatch · desktop 1440',
-      note: 'Three columns: order list, map, driver panel with chat.',
+      note: 'The day’s counters, the queue with “Needs action”, “To assign” and “On the road” tabs, the fleet map with filters beside it, the fleet plan below.',
       caption: 'Dispatch',
     },
     zlecenie: {
       label: 'Order card · desktop',
-      note: 'An order with its assigned driver and vehicle, and a hint on who has hours left.',
-      caption: 'Order card with assignment',
+      note: 'Order Wrocław → Milano, Overview tab: progress bar, stops with a map, driver and van with “Call” and “Message” buttons.',
+      caption: 'Order card',
     },
     trasa: {
-      label: 'Route preview · desktop',
-      note: 'A route you can change mid-journey; the driver gets the new version straight away.',
-      caption: 'Route and changes on the go',
+      label: 'Route and tracking · desktop',
+      note: 'Order Olsztyn → München: a late-arrival warning, the route with a “Change route” button, the van on the map and the arrival time from its position.',
+      caption: 'Route and tracking',
     },
   },
 };
 
 /**
- * Trzy ekrany dyspozytora — wszystkie narysowane przy podstronie
+ * Trzy ekrany dyspozytora – wszystkie narysowane przy podstronie
  * „Dyspozytornia", więc nazwy plików są dokładnie te same.
  *
  * Główny ekran idzie na pełną szerokość, bo to on jest obietnicą tej strony:

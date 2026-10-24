@@ -15,30 +15,30 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     tytul1: 'Ze zlecenia robi się faktura.',
     tytul2: 'Klient ma ją, zanim wrócisz do biura.',
-    lead: 'Zlecenie i faktura to jedno. Kierowca kończy kurs, Ty sprawdzasz kwotę i wysyłasz — plik na mail klienta i zgłoszenie do systemu e-faktur, jednym kliknięciem. Nic nie przepisujesz.',
+    lead: 'Zlecenie i faktura to jedno. Kierowca kończy kurs, Ty sprawdzasz kwotę i klikasz „Wystaw i wyślij do KSeF”. Wysyłkę do klienta zlecasz od razu, a PDF z kodem QR wychodzi mailem, gdy KSeF nada numer. Nic nie przepisujesz.',
     bullets: [
       'Faktura powstaje z danych zlecenia',
-      'Wysyłka do klienta i do systemu e-faktur jednym kliknięciem',
-      'Korekty i zaliczki tą samą ścieżką',
+      'KSeF jednym przyciskiem, mail do klienta po nadaniu numeru',
+      'Zaliczki, korekty i faktura zbiorcza z kilku zleceń',
     ],
     label: 'Zlecenie i faktura · desktop',
-    opis: 'Karta zlecenia po lewej, faktura po prawej, strzałka między nimi, przycisk „Wyślij”, znaczniki: mail, e-faktura.',
+    opis: 'Zlecenie Radom → Köln, zakładka Finanse: fracht w euro przeliczony po kursie NBP, koszty kursu, wynik i marża, obok faktura FV/029/10/2026 ze statusem „W KSeF” i przyciskiem „Wyślij klientowi”.',
   },
   en: {
     tytul1: 'The order becomes the invoice.',
     tytul2: 'Your client has it before you’re back at the office.',
-    lead: 'The order and the invoice are one and the same. The driver finishes the job, you check the amount and send it — a file to the client’s inbox and a submission to KSeF, Poland’s national e-invoicing system, in one click. Nothing to retype.',
+    lead: 'The order and the invoice are one and the same. The driver finishes the job, you check the amount and click “Issue and send to KSeF”, Poland’s national e-invoicing system. You schedule the email to the client straight away, and the PDF with a QR code goes out once KSeF assigns a number. Nothing to retype.',
     bullets: [
       'The invoice is built from the order data',
-      'Sent to the client and to KSeF in one click',
-      'Corrections and advance invoices go the same way',
+      'KSeF in one click, the client’s email once the number is in',
+      'Advance invoices, corrections and one invoice for several orders',
     ],
     label: 'Order and invoice · desktop',
-    opis: 'Order card on the left, invoice on the right, an arrow between them, a “Send” button, tags: email, e-invoice.',
+    opis: 'Order Radom → Köln, Finance tab: freight in euros converted at the NBP rate, run costs, result and margin, next to invoice FV/029/10/2026 marked “In KSeF” with a “Send to client” button.',
   },
 };
 
-/** 6.7 — ze zlecenia robi się faktura. */
+/** 6.7 – ze zlecenia robi się faktura. */
 export function ZlecenieFaktura() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -58,7 +58,7 @@ export function ZlecenieFaktura() {
         {/*
           Zrzut v2 stoi w tej samej ramce laptopa co reszta strony i wypełnia
           szerokość kadru, więc nie potrzebuje powiększenia. Poprzedni plik
-          był monitorem na kwadratowym płótnie — stąd dawne skale 1,5 i 1,9.
+          był monitorem na kwadratowym płótnie – stąd dawne skale 1,5 i 1,9.
         */}
         <div data-reveal className="lg:order-1">
           <MockupSlot

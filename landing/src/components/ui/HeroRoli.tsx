@@ -11,7 +11,7 @@ const PRZYCISKI: Tlumaczenia<{ trial: string; demo: string }> = {
 };
 
 /**
- * Nagłówek strony roli — wyrównany do lewej, bez makiety pod spodem.
+ * Nagłówek strony roli – wyrównany do lewej, bez makiety pod spodem.
  *
  * Podstrony obszarowe otwierają się wyśrodkowanym nagłówkiem i dużym ekranem;
  * strona roli zaczyna od słów i od razu przechodzi w oś dnia.

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 /**
  * Film w pętli bez dźwięku, który rusza dopiero, gdy czytelnik do niego
  * dojedzie, i zatrzymuje się, gdy go minie. Dźwięk i pełny ekran zostają
- * w natywnych kontrolkach — przeglądarka i tak nie pozwoli wystartować
+ * w natywnych kontrolkach – przeglądarka i tak nie pozwoli wystartować
  * z dźwiękiem bez kliknięcia.
  *
  * Przy `prefers-reduced-motion` film sam nie rusza; stoi na kadrze

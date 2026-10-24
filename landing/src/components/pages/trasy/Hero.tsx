@@ -17,21 +17,21 @@ const TEKSTY: Tlumaczenia<{
     eyebrow: 'Trasy i mapa floty',
     naglowek1: 'Widzisz, gdzie jest każdy bus.',
     naglowek2: 'Bez dzwonienia.',
-    lead: 'Klient pyta o ładunek — odpowiadasz w pięć sekund, patrząc na jeden ekran.',
+    lead: 'Klient pyta o ładunek – odpowiadasz w pięć sekund, patrząc na jeden ekran.',
     label: 'Mapa floty · desktop 1440',
-    note: 'Mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu. Ten sam ekran co na stronie głównej.',
+    note: 'Dyspozytornia: mapa Europy ze znacznikami aut i filtrami „Wszystkie”, „W trasie”, „Wolne”, „Serwis”, obok kolejka kursów, nad nimi liczniki dnia.',
   },
   en: {
     eyebrow: 'Routes and fleet map',
     naglowek1: 'You see where every van is.',
     naglowek2: 'Without picking up the phone.',
-    lead: 'A client asks about their load — you answer in five seconds, looking at one screen.',
+    lead: 'A client asks about their load – you answer in five seconds, looking at one screen.',
     label: 'Fleet map · desktop 1440',
-    note: 'A map of Europe with routes and a bubble over the vehicle: driver, order, arrival time. The same screen as on the home page.',
+    note: 'Dispatch: a map of Europe with vehicle markers and “All”, “On the road”, “Free”, “Service” filters, the run queue alongside, the day’s counters above.',
   },
 };
 
-/** Nagłówek strony — jasny, na siatce południków, z jedną trasą na ukos. */
+/** Nagłówek strony – jasny, na siatce południków, z jedną trasą na ukos. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -41,7 +41,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(10,10,11,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(10,10,11,.045)_1px,transparent_1px)] bg-size-[100px_100px] lg:bg-size-[160px_160px]"
       />
       {/* Trasa przecinająca sekcję na ukos. Wysokość ograniczona, żeby krzywa
-          nie rozciągnęła się na całą — bardzo wysoką — sekcję. */}
+          nie rozciągnęła się na całą – bardzo wysoką – sekcję. */}
       <svg
         viewBox="0 0 1440 1400"
         preserveAspectRatio="xMidYMin slice"

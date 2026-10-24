@@ -8,7 +8,7 @@ const NAGLOWEK: Tlumaczenia<string> = {
 };
 
 /**
- * „Czego już nie robisz" — lista przekreślona, bez komentarza przy pozycjach.
+ * „Czego już nie robisz" – lista przekreślona, bez komentarza przy pozycjach.
  * Przekreślenie ma być czytelne, nie dekoracyjne: grube i w kolorze tekstu
  * podstawowego, na przygaszonych słowach.
  */

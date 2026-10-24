@@ -3,7 +3,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import type { Dokument } from '@/content/dokumenty/typy';
 
 /**
- * Rejestr podprocesorów — stos docelowy na produkcji.
+ * Rejestr podprocesorów – stos docelowy na produkcji.
  *
  * ⚠️ SZKIC DO PRZEGLĄDU PRAWNEGO. Lista jest listą stanu docelowego, nie
  * bieżącego: produkt jest w budowie, a staging chodzi na Railway. Decyzja
@@ -11,7 +11,7 @@ import type { Dokument } from '@/content/dokumenty/typy';
  * pliki, kopie), Amazon SES do poczty, Google Cloud Vision do rozpoznawania
  * paragonów, Mapbox do tras, Stripe do płatności, Sentry i Grafana do
  * obserwowalności, sklepy Apple i Google do dystrybucji aplikacji i dostarczania
- * powiadomień. SMS-ów nie ma i nie będzie — kod zaproszenia idzie mailem.
+ * powiadomień. SMS-ów nie ma i nie będzie – kod zaproszenia idzie mailem.
  *
  * Rejestr jest zadaniem BKM-1971 w etapie 7 backlogu. Jeżeli stos zmieni się
  * przed uruchomieniem, ta lista idzie do aktualizacji razem z nim.
@@ -23,7 +23,7 @@ const pl: Dokument = {
   wersja: 2,
   ostatniaZmiana: '3 września 2026',
   wSkrocie: [
-    'Podprocesor to firma, która pomaga nam świadczyć usługę — na przykład trzyma serwery albo rozpoznaje tekst z paragonu.',
+    'Podprocesor to firma, która pomaga nam świadczyć usługę – na przykład trzyma serwery albo rozpoznaje tekst z paragonu.',
     'Serwery, bazy danych, pliki i kopie zapasowe trzymamy w Europie.',
     'Dwie rzeczy wymagają dostawców spoza Europy: rozpoznawanie paragonów i powiadomienia w telefonie. Piszemy o tym wprost, zamiast to chować.',
     'O każdej zmianie na liście uprzedzamy mailem 30 dni wcześniej.',
@@ -36,7 +36,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Podprocesor to dalszy podmiot przetwarzający w rozumieniu art. 28 ust. 4 RODO — firma, której powierzamy część przetwarzania danych, żeby móc świadczyć usługę. Nie moglibyśmy działać bez serwerów czy usługi rozpoznającej tekst ze zdjęcia, więc korzystamy z wyspecjalizowanych dostawców zamiast budować to samodzielnie.',
+            'Podprocesor to dalszy podmiot przetwarzający w rozumieniu art. 28 ust. 4 RODO – firma, której powierzamy część przetwarzania danych, żeby móc świadczyć usługę. Nie moglibyśmy działać bez serwerów czy usługi rozpoznającej tekst ze zdjęcia, więc korzystamy z wyspecjalizowanych dostawców zamiast budować to samodzielnie.',
         },
         {
           typ: 'akapit',
@@ -103,7 +103,7 @@ const pl: Dokument = {
             ],
           ],
           stopka:
-            'Statystyki działania usługi zbieramy narzędziem Grafana uruchomionym na naszych własnych serwerach — nie jest to osobny podprocesor, bo dane nie opuszczają naszej infrastruktury.',
+            'Statystyki działania usługi zbieramy narzędziem Grafana uruchomionym na naszych własnych serwerach – nie jest to osobny podprocesor, bo dane nie opuszczają naszej infrastruktury.',
         },
       ],
     },
@@ -114,7 +114,7 @@ const pl: Dokument = {
         {
           typ: 'definicje',
           wstep:
-            'Aplikacja łączy się też z systemami, które nie przetwarzają danych w naszym imieniu — dla porządku wymieniamy je osobno:',
+            'Aplikacja łączy się też z systemami, które nie przetwarzają danych w naszym imieniu – dla porządku wymieniamy je osobno:',
           pozycje: [
             {
               termin: 'Krajowy System e-Faktur',
@@ -157,12 +157,12 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską. Rozpoznawanie paragonów ustawiamy na region europejski dostawcy. Powiadomienie zawiera token urządzenia i krótką treść — nigdy zdjęć, dokumentów ani danych rozliczeniowych.',
+            'Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską. Rozpoznawanie paragonów ustawiamy na region europejski dostawcy. Powiadomienie zawiera token urządzenia i krótką treść – nigdy zdjęć, dokumentów ani danych rozliczeniowych.',
         },
         {
           typ: 'akapit',
           tresc:
-            'Jeżeli wolisz, żeby zdjęcia paragonów nie opuszczały Europy, napisz do nas — możemy przełączyć Twoje konto na silnik rozpoznawania działający na naszych serwerach. Odczyt jest wtedy nieco mniej dokładny.',
+            'Jeżeli wolisz, żeby zdjęcia paragonów nie opuszczały Europy, napisz do nas – możemy przełączyć Twoje konto na silnik rozpoznawania działający na naszych serwerach. Odczyt jest wtedy nieco mniej dokładny.',
         },
       ],
     },
@@ -178,7 +178,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'W tym czasie możesz zgłosić uzasadniony sprzeciw. Postaramy się znaleźć rozwiązanie — na przykład wskazać innego dostawcę. Jeżeli się nie uda, możesz rozwiązać umowę ze skutkiem na dzień wejścia zmiany w życie, bez ponoszenia kosztów.',
+            'W tym czasie możesz zgłosić uzasadniony sprzeciw. Postaramy się znaleźć rozwiązanie – na przykład wskazać innego dostawcę. Jeżeli się nie uda, możesz rozwiązać umowę ze skutkiem na dzień wejścia zmiany w życie, bez ponoszenia kosztów.',
         },
         {
           typ: 'akapit',
@@ -190,7 +190,7 @@ const pl: Dokument = {
 };
 
 /**
- * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * Tłumaczenie angielskie – dla wygody czytelnika. Wiążąca jest wersja polska;
  * strona mówi o tym wprost nad treścią.
  */
 const en: Dokument = {
@@ -200,7 +200,7 @@ const en: Dokument = {
   wersja: 2,
   ostatniaZmiana: '3 September 2026',
   wSkrocie: [
-    'A subprocessor is a company that helps us provide the service — for example, by hosting servers or reading the text on a receipt.',
+    'A subprocessor is a company that helps us provide the service – for example, by hosting servers or reading the text on a receipt.',
     'We keep servers, databases, files and backups in Europe.',
     'Two things require providers from outside Europe: receipt recognition and phone notifications. We say so plainly instead of hiding it.',
     'We notify you by e-mail 30 days in advance of any change to the list.',
@@ -213,7 +213,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'A subprocessor is a further processor within the meaning of Art. 28(4) of the General Data Protection Regulation (GDPR) — a company to which we entrust part of the data processing so that we can provide the service. We could not operate without servers or a service that recognises text in a photo, so we use specialised providers instead of building these ourselves.',
+            'A subprocessor is a further processor within the meaning of Art. 28(4) of the General Data Protection Regulation (GDPR) – a company to which we entrust part of the data processing so that we can provide the service. We could not operate without servers or a service that recognises text in a photo, so we use specialised providers instead of building these ourselves.',
         },
         {
           typ: 'akapit',
@@ -280,7 +280,7 @@ const en: Dokument = {
             ],
           ],
           stopka:
-            'We collect service performance statistics using Grafana running on our own servers — it is not a separate subprocessor, because the data does not leave our infrastructure.',
+            'We collect service performance statistics using Grafana running on our own servers – it is not a separate subprocessor, because the data does not leave our infrastructure.',
         },
       ],
     },
@@ -291,7 +291,7 @@ const en: Dokument = {
         {
           typ: 'definicje',
           wstep:
-            'The application also connects to systems that do not process data on our behalf — for completeness, we list them separately:',
+            'The application also connects to systems that do not process data on our behalf – for completeness, we list them separately:',
           pozycje: [
             {
               termin: 'National e-Invoicing System (Krajowy System e-Faktur, KSeF)',
@@ -329,12 +329,12 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'We safeguard the transfer with standard contractual clauses approved by the European Commission. We set receipt recognition to the provider’s European region. A notification contains the device token and a short message — never photos, documents or billing data.',
+            'We safeguard the transfer with standard contractual clauses approved by the European Commission. We set receipt recognition to the provider’s European region. A notification contains the device token and a short message – never photos, documents or billing data.',
         },
         {
           typ: 'akapit',
           tresc:
-            'If you would prefer photos of receipts not to leave Europe, write to us — we can switch your account to a recognition engine running on our own servers. Recognition is then slightly less accurate.',
+            'If you would prefer photos of receipts not to leave Europe, write to us – we can switch your account to a recognition engine running on our own servers. Recognition is then slightly less accurate.',
         },
       ],
     },
@@ -350,7 +350,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'During that time, you may raise a reasoned objection. We will try to find a solution — for example, by proposing a different provider. If that is not possible, you may terminate the agreement with effect from the date the change takes effect, at no cost.',
+            'During that time, you may raise a reasoned objection. We will try to find a solution – for example, by proposing a different provider. If that is not possible, you may terminate the agreement with effect from the date the change takes effect, at no cost.',
         },
         {
           typ: 'akapit',

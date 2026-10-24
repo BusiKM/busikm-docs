@@ -7,25 +7,25 @@ type Liczba = { label: string; value: string; mocna: boolean };
 const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; liczby: readonly Liczba[] }> = {
   pl: {
     tytul: 'Zysk na pierwszym ekranie',
-    tresc: 'Przychód, koszty i zysk, na bieżąco.',
+    tresc: 'Na pulpicie, pod sprawami na dziś: przychód netto, koszty i wynik, obok poprzedni tydzień, miesiąc albo rok.',
     liczby: [
-      { label: 'Przychód · wrzesień', value: '184 320 zł', mocna: false },
+      { label: 'Przychód netto · wrzesień', value: '184 320 zł', mocna: false },
       { label: 'Koszty', value: '121 840 zł', mocna: false },
-      { label: 'Zysk', value: '62 480 zł', mocna: true },
+      { label: 'Wynik', value: '62 480 zł', mocna: true },
     ],
   },
   en: {
     tytul: 'Profit on the first screen',
-    tresc: 'Revenue, costs and profit, as they happen.',
+    tresc: 'On the dashboard, below today’s tasks: net revenue, costs and result, next to the previous week, month or year.',
     liczby: [
-      { label: 'Revenue · September', value: 'PLN 184,320', mocna: false },
+      { label: 'Net revenue · September', value: 'PLN 184,320', mocna: false },
       { label: 'Costs', value: 'PLN 121,840', mocna: false },
-      { label: 'Profit', value: 'PLN 62,480', mocna: true },
+      { label: 'Result', value: 'PLN 62,480', mocna: true },
     ],
   },
 };
 
-/** 01 — trzy liczby, które właściciel widzi zaraz po zalogowaniu. */
+/** 01 – trzy liczby, które właściciel widzi zaraz po zalogowaniu. */
 export function ZyskNaPierwszymEkranie() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -15,20 +15,20 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     eyebrow: 'Dane dla księgowej',
     tytul: ['Komplet dokumentów.', 'Jednym przyciskiem.'],
-    lead: 'Wybiera miesiąc, klika raz i ma wszystko — w formacie programu, którego już używa.',
-    label: 'Centrum eksportów · desktop, tryb nocny',
-    note: 'Lista dziewięciu zestawień z licznikami, u góry przycisk „Pobierz komplet za sierpień” i wybór formatu. Stos arkuszy w perspektywie zostaje.',
+    lead: 'Wybiera miesiąc, klika „Pobierz paczkę dla biura” i ma wszystko – w formacie programu, którego już używa.',
+    label: 'Rozliczenia → Eksporty · desktop',
+    note: 'Rozliczenia, zakładka Eksporty: dekrety do FK z wyborem programu (Comarch Optima, Insert GT, Symfonia), rejestry VAT, lista płac i diety, delegacje kierowców, ewidencje przebiegu, zwrot VAT z UE i JPK_FA, u góry przycisk „Pobierz paczkę dla biura”.',
   },
   en: {
     eyebrow: 'Data for your accountant',
     tytul: ['Every document.', 'One button.'],
-    lead: 'Your accountant picks a month, clicks once and has the lot — in the format of the accounting software they already use.',
-    label: 'Export centre · desktop, dark mode',
-    note: 'List of nine reports with counts, a “Download the full set for August” button at the top and a format picker. The stack of sheets in perspective stays.',
+    lead: 'Your accountant picks a month, clicks “Download the package for the office” and has the lot – in the format of the accounting software they already use.',
+    label: 'Settlements → Exports · desktop',
+    note: 'Settlements, Exports tab: ledger entries with a choice of software (Comarch Optima, Insert GT, Symfonia), VAT registers, payroll and allowances, drivers’ business trips, mileage logs, EU VAT refund and JPK_FA, with a “Download the package for the office” button at the top.',
   },
 };
 
-/** Nagłówek strony — ciemny, ze stosem arkuszy. */
+/** Nagłówek strony – ciemny, ze stosem arkuszy. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (

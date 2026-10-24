@@ -6,7 +6,7 @@ import { pages } from '@/content/pages';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Szkielet podstrony — etap 0.
+ * Szkielet podstrony – etap 0.
  *
  * Strona ma nagłówek, metadane i działające linki, a treść czeka na projekt
  * z Claude Design. Sekcje dochodzą w etapach 2 i 3, zgodnie z
@@ -87,8 +87,8 @@ export function PageShell({ slug }: { slug: string }) {
               className="mt-12 max-w-[60ch] rounded-card border border-dashed border-line bg-mist p-6 text-[15px] text-muted lg:mt-16"
             >
               {jezyk === 'pl'
-                ? 'Ta strona czeka na projekt. Treść jest gotowa i opisana w dokumentacji — dochodzi układ i makiety.'
-                : 'This page is waiting for its design. The content is ready — layout and mockups are on the way.'}
+                ? 'Ta strona czeka na projekt. Treść jest gotowa i opisana w dokumentacji – dochodzi układ i makiety.'
+                : 'This page is waiting for its design. The content is ready – layout and mockups are on the way.'}
             </p>
           </Container>
         </section>

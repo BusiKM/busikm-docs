@@ -41,7 +41,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Koszt w euro i w złotych — z kursem zapisanym przy dokumencie. */
+/** Koszt w euro i w złotych – z kursem zapisanym przy dokumencie. */
 export function KursWaluty() {
   const t = TEKSTY[biezacyJezyk()];
   return (

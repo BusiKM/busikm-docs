@@ -1,10 +1,10 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Instrukcje dotyczące kierowców — wersja angielska.
+ * Instrukcje dotyczące kierowców – wersja angielska.
  *
  * Nazwy przycisków po angielsku, a przy pierwszym wystąpieniu w artykule
- * w nawiasie polska etykieta z aplikacji — bez niej czytelnik nie znajdzie
+ * w nawiasie polska etykieta z aplikacji – bez niej czytelnik nie znajdzie
  * przycisku w polskim interfejsie.
  */
 export const artykulyKierowcyEn: Artykul[] = [
@@ -12,11 +12,11 @@ export const artykulyKierowcyEn: Artykul[] = [
     slug: 'zapraszamy-kierowce',
     kategoria: 'kierowcy',
     tytul: 'How to add a driver',
-    lead: 'You send an invitation by email. The driver sets their own password — you don’t know it and don’t need to.',
+    lead: 'You send an invitation by email. The driver gets a code and sets their own password – you don’t know it and don’t need to.',
     role: ['wlasciciel', 'dyspozytor'],
     gdzie: 'Drivers → Invite driver (Kierowcy → Zaproś kierowcę)',
     czas: 'Two minutes for you, the rest is on their side',
-    zanim: ['The driver’s email address — the invitation goes there'],
+    zanim: ['The driver’s email address – the invitation goes there'],
     rozdzialy: [
       {
         tytul: 'Sending the invitation',
@@ -43,12 +43,12 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The driver gets an email with a link. After clicking it they set their own password and land straight in the app. Until then they show on your list as invited.',
+              'The driver gets an email with an 8-character invitation code, such as K7QM-4RTZ. In the BusiKM Driver app they choose I have an invitation (Mam zaproszenie), enter their email and the code, then set their own password (and their first and last name, only if you haven’t entered them). Until then they show on your list as invited.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'You don’t know the driver’s password and can’t look it up. If they lose it, they use “Forgotten your password?” (Nie pamiętasz hasła?) on the sign-in screen — you don’t need to do anything.',
+              'You don’t know the driver’s password and can’t look it up. If they lose it, they use “Forgotten your password?” (Nie pamiętasz hasła?) on the sign-in screen – you don’t need to do anything.',
           },
         ],
       },
@@ -59,7 +59,7 @@ export const artykulyKierowcyEn: Artykul[] = [
             typ: 'lista',
             wstep: 'Before you send a second one, check in this order:',
             punkty: [
-              'Is the address typed without a mistake — the most common cause.',
+              'Is the address typed without a mistake – the most common cause.',
               'The driver’s spam folder. The invitation comes from BusiKM, not from you.',
               'Does the driver already have an account with another company on this address.',
             ],
@@ -67,7 +67,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'If none of that helps, write to us — on our side we can see whether the message went out and what happened to it.',
+              'If none of that helps, write to us – on our side we can see whether the message went out and what happened to it.',
           },
         ],
       },
@@ -83,7 +83,7 @@ export const artykulyKierowcyEn: Artykul[] = [
     role: ['kierowca'],
     gdzie: 'The BusiKM Driver app (BusiKM Kierowca)',
     czas: 'Five minutes',
-    zanim: ['The invitation in the inbox', 'An Android phone or an iPhone'],
+    zanim: ['The email with the invitation code from your employer', 'An Android phone or an iPhone'],
     rozdzialy: [
       {
         tytul: 'Getting into the app',
@@ -91,14 +91,15 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'kroki',
             kroki: [
+              { tytul: 'Install the BusiKM Driver app (BusiKM Kierowca) from the link in your invitation' },
+              { tytul: 'Open the app and choose I have an invitation (Mam zaproszenie)' },
               {
-                tytul: 'Open the invitation email and click the link',
-                opis: 'A page opens where you set your own password. Make it up yourself — nobody in the company will see it.',
+                tytul: 'Enter your email and the invitation code (Kod zaproszenia)',
+                opis: 'The address the invitation came to and the 8-character code from the email, such as K7QM-4RTZ. Choose Next (Dalej), check the company name and choose I’m joining (Dołączam).',
               },
-              { tytul: 'Install the BusiKM Driver app (BusiKM Kierowca) from the store' },
               {
-                tytul: 'Open the app and choose Continue with email (Kontynuuj z e-mailem)',
-                opis: 'Enter the same address the invitation came to and the password you’ve just set.',
+                tytul: 'Set your own password',
+                opis: 'Make the password up yourself – nobody in the company will see it. You only enter your first and last name if your boss hasn’t. Finish with Create account and sign in (Załóż konto i wejdź).',
               },
               {
                 tytul: 'Allow access to location and notifications',
@@ -109,22 +110,27 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'uwaga',
             tresc:
-              'Set location to “Always”, not “While using the app”. With the second setting the phone stops recording the route when you put the app in the background — which is exactly when you’re driving.',
+              'Allow location while using the app. On an iPhone, after your first job, also choose “Always” – the route then records even when the system closes the app.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'You only enter the code once. After that you sign in with your email and password: Continue with email (Kontynuuj z e-mailem) on the start screen.',
           },
         ],
       },
       {
-        tytul: 'What you see on the dashboard',
+        tytul: 'What you see in the app',
         bloki: [
           {
             typ: 'lista',
-            wstep: 'The first screen is everything you need on the road:',
+            wstep: 'At the bottom of the screen there are five tabs:',
             punkty: [
-              'The active order with a navigation button — or “No active order” (Brak aktywnego zlecenia) when nothing is running.',
-              'To accept (Do akceptacji) — orders the dispatcher has assigned to you, waiting for your confirmation.',
-              'Working time (Czas pracy) — how long you’ve been driving and when your break is due.',
-              'Add cost (Dodaj koszt) — a photo of a receipt in one tap.',
-              'Documents (Dokumenty) and Messages (Wiadomości).',
+              'Today (Dziś) – the current job with Navigate (Nawiguj), Call (Zadzwoń) and Chat (Czat) buttons, one button for the next stage of the day and how long until your break. New orders are accepted here too.',
+              'Orders (Zlecenia) – Active, Pending and Finished (Aktywne, Oczekujące, Zakończone).',
+              'Add (Dodaj) – the camera: a photo of a receipt or of an order document (CMR, delivery note).',
+              'Chat (Czat) – conversations with the office on each order.',
+              'Me (Ja) – My costs and refunds, Documents, Working time, Leave and To send (Moje koszty i zwroty, Dokumenty, Czas pracy, Urlopy, Do wysłania), plus settings.',
             ],
           },
         ],
@@ -139,12 +145,12 @@ export const artykulyKierowcyEn: Artykul[] = [
                 tytul: 'On the sign-in screen choose Forgotten your password? (Nie pamiętasz hasła?)',
               },
               { tytul: 'Enter your email address' },
-              { tytul: 'Open the message and set a new password' },
+              { tytul: 'Enter the code from the email and set a new password' },
             ],
           },
           {
             typ: 'akapit',
-            tresc: 'You don’t need to ask the owner or the dispatcher — you do it yourself.',
+            tresc: 'You don’t need to ask the owner or the dispatcher – you do it yourself.',
           },
         ],
       },
@@ -156,9 +162,9 @@ export const artykulyKierowcyEn: Artykul[] = [
     slug: 'trasa-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'How the driver runs a route',
-    lead: 'From accepting the order to a confirmed delivery — without typing anything in by hand.',
+    lead: 'From accepting the order to a confirmed delivery – one button for each stage of the day.',
     role: ['kierowca'],
-    gdzie: 'BusiKM Driver app → Orders (BusiKM Kierowca → Zlecenia)',
+    gdzie: 'BusiKM Driver app → Today (BusiKM Kierowca → Dziś)',
     czas: 'A few taps during the day',
     rozdzialy: [
       {
@@ -168,11 +174,11 @@ export const artykulyKierowcyEn: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Open the order from the To accept section (Do akceptacji)',
+                tytul: 'Open the new order on the Today screen or under Orders → Pending (Zlecenia → Oczekujące)',
                 opis: 'You’ll see the route, the times and the goods. The notification arrives even when the app is closed.',
               },
               {
-                tytul: 'Accept the order',
+                tytul: 'Choose Accept (Przyjmij)',
                 opis: 'The dispatcher sees that you’ve taken it and stops ringing to ask.',
               },
             ],
@@ -180,31 +186,45 @@ export const artykulyKierowcyEn: Artykul[] = [
         ],
       },
       {
-        tytul: 'Loading',
+        tytul: 'Starting the day and loading',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Enter the odometer reading',
-                opis: 'The app asks for it once, before you set off. From then on the kilometres count themselves.',
+                tytul: 'Choose Start the day (Zacznij dzień) and take a photo of the odometer',
+                opis: 'The Odometer at start (Licznik na start) screen opens. The reading fills itself in from the photo – check it and choose Confirm and start (Potwierdź i rozpocznij). From then on the route records in the background and the kilometres count themselves.',
               },
               {
-                tytul: 'Take photos of the goods',
-                opis: 'Photos upload in the background — you don’t have to wait for them or have signal right then.',
+                tytul: 'Choose Navigate (Nawiguj)',
+                opis: 'The route from the order opens in Apple Maps, Google Maps or Waze. You pick the app once and can change it in the settings. It works with CarPlay and Android Auto.',
               },
-              { tytul: 'Enter the weight and choose Save weight (Zapisz wagę)' },
               {
-                tytul: 'Collect a signature if the client requires one',
-                opis: 'The signature is drawn with a finger on the screen.',
+                tytul: 'When you arrive, choose At loading (Jestem na załadunku)',
+                opis: 'Some statuses change by themselves once you get there.',
               },
-              { tytul: 'Confirm Loading complete (Załadunek zakończony)' },
+              { tytul: 'Choose Start loading (Zacznij załadunek)' },
+              { tytul: 'Enter the loaded weight and choose Save weight (Zapisz wagę)' },
+              {
+                tytul: 'Collect the sender’s signature on the e-CMR',
+                opis: 'The signature is always required. The sender draws it with a finger on the screen.',
+              },
+              {
+                tytul: 'Add a seal and photos of the goods if needed',
+                opis: 'This is optional. Photos – up to two – upload in the background. You don’t have to wait for them or have signal right then.',
+              },
+              { tytul: 'Choose Finish loading (Zakończ załadunek) and confirm with Yes, finish (Tak, zakończ)' },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'The order status changes to “On the road” (W trasie) and a Navigate to unloading (Nawiguj do rozładunku) button appears. Navigation is in the same app — you don’t switch to another one.',
+              'The order status changes to “On the road” (W trasie). You open navigation to the unloading point with the same Navigate button, and BusiKM logs the trip in the background.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Stopping for a private break? On the Today screen choose Pause (Wstrzymaj) – route recording stops until you choose Resume (Wznów).',
           },
         ],
       },
@@ -214,12 +234,12 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'It works just like loading: photos, recipient details, signature and confirmation. After that the order is closed, and the dispatcher sees it straight away.',
+              'When you arrive, choose At unloading (Jestem na rozładunku), then Start unloading (Zacznij rozładunek). Enter the recipient’s name, collect their signature on the e-CMR and choose Finish unloading (Zakończ rozładunek). The Odometer at end (Licznik na koniec) screen opens: take a photo of the odometer and choose Confirm and finish (Potwierdź i zakończ). The dispatcher sees it straight away. Then choose Start return to base (Rozpocznij powrót do bazy), and once you’re there, At base (Jestem w bazie).',
           },
           {
             typ: 'uwaga',
             tresc:
-              'No signal doesn’t block anything. Photos, signatures and confirmations wait on the phone and send themselves when the signal comes back. You can keep driving.',
+              'No signal doesn’t block anything. Photos, signatures and confirmations wait in the queue (Me → To send, Ja → Do wysłania) and send themselves when the signal comes back. You can keep driving.',
           },
         ],
       },
@@ -229,7 +249,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The dashboard has “I can’t continue” (Nie mogę kontynuować). Use it to report a breakdown, a traffic jam or a closed loading point — the dispatcher is told at once, without a phone call.',
+              'On the Today screen, below the job, there’s “I can’t continue” (Nie mogę kontynuować). You pick a reason: Vehicle breakdown, Accident, Illness, Recipient closed or Other reason. The job is put on hold and the office gets a notification – no phone call needed. A delay, such as a traffic jam, you report with the Report (Zgłoś) button in the order details.',
           },
         ],
       },
@@ -241,9 +261,9 @@ export const artykulyKierowcyEn: Artykul[] = [
     slug: 'paragony-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Receipts from a photo',
-    lead: 'The driver takes a photo, the system reads the amount and the date. The carrier bag under the seat is no longer needed.',
+    lead: 'The driver takes a photo and picks the cost type, and BusiKM reads the amount, date and seller itself. The carrier bag under the seat is no longer needed.',
     role: ['kierowca', 'ksiegowa'],
-    gdzie: 'BusiKM Driver app → Receipts (BusiKM Kierowca → Paragony)',
+    gdzie: 'BusiKM Driver app → Add (BusiKM Kierowca → Dodaj)',
     czas: 'A few seconds per receipt',
     rozdzialy: [
       {
@@ -253,24 +273,32 @@ export const artykulyKierowcyEn: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Choose Scan receipt (Zeskanuj paragon)',
-                opis: 'Or from the dashboard, with the Add cost (Dodaj koszt) tile — it’s the same path.',
+                tytul: 'Tap Add (Dodaj) on the bottom bar',
+                opis: 'The camera opens. You’ll find the same path under Me → My costs and refunds → Add receipt (Ja → Moje koszty i zwroty → Dodaj paragon).',
               },
               {
                 tytul: 'Take a photo of the receipt',
                 opis: 'Lay it flat so it fits entirely in the frame.',
               },
               {
-                tytul: 'Check what the system has read',
-                opis: 'The amount, date, seller and seller’s NIP (tax ID) fill in by themselves. Correct anything that doesn’t match — especially with a crumpled or faded receipt.',
+                tytul: 'Choose the cost type (Rodzaj kosztu)',
+                opis: 'Out of the box it has fuel, parking, tolls, vehicle wash, driver hotel, ferry, servicing and repairs, loading or unloading fees and other. Your company can change the list.',
               },
-              { tytul: 'Save (Zapisz)' },
+              {
+                tytul: 'Choose how it was paid (Czym zapłacono?)',
+                opis: 'Company card, fuel card, company cash or my own money. If you paid out of your own pocket, the office pays you back – you’ll see it in My costs.',
+              },
+              {
+                tytul: 'Choose the order (Zlecenie)',
+                opis: 'Or No order (Bez zlecenia) if the cost isn’t tied to a job.',
+              },
+              { tytul: 'Choose Send receipt (Wyślij paragon)' },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'If the reading fails, choose Skip (Pomiń) and type it in by hand. The photo stays with the cost anyway, so the accountant has something to go back to.',
+              'BusiKM reads the amount, date, seller and the seller’s NIP (tax ID) itself after you send it – nothing to type in and nothing to wait for. With no signal, the receipt waits in the To send (Do wysłania) queue and goes out once the network is back.',
           },
         ],
       },
@@ -280,7 +308,7 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'The receipt goes on the list as Pending (Oczekujący). Someone in the office approves it and the status changes to Approved (Zatwierdzony). The driver sees both lists and knows whether their cost has gone through.',
+              'In My costs the driver sees every receipt with its status: To complete, Ready or Booked (Do uzupełnienia, Gotowe, Zaksięgowane). When the office has a question, the receipt gets the Office asks (Biuro pyta) status – the driver replies and corrects it in the app. If the photo came out unreadable, they just take it again.',
           },
           {
             typ: 'uwaga',
@@ -297,9 +325,9 @@ export const artykulyKierowcyEn: Artykul[] = [
     slug: 'czas-pracy-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Working time, breaks and rest',
-    lead: 'The counters run by themselves. The phone warns you before a break becomes mandatory.',
+    lead: 'Driving and other work log themselves, and you switch on a break or rest with one button. On international jobs the phone reminds you 15 minutes before a break is due.',
     role: ['kierowca', 'wlasciciel'],
-    gdzie: 'BusiKM Driver app → AETR (BusiKM Kierowca → AETR)',
+    gdzie: 'BusiKM Driver app → Me → Working time (BusiKM Kierowca → Ja → Czas pracy)',
     rozdzialy: [
       {
         tytul: 'What counts itself',
@@ -307,16 +335,27 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Driving, other work, breaks and rest switch automatically, based on what the vehicle is doing and which stage the order is at. The driver doesn’t have to switch anything.',
+              'Driving and other work switch by themselves with each stage of the order. Breaks and rest you log yourself with the Break (Przerwa) and Rest (Odpoczynek) buttons.',
           },
           {
             typ: 'lista',
-            wstep: 'On the AETR screen (the European rules on drivers’ hours) you see:',
+            wstep: 'On international jobs the Working time (Czas pracy) screen shows:',
             punkty: [
-              'Continuous, daily and weekly driving — each with the limit you’re getting close to.',
+              'Three gauges: continuous driving, daily and weekly – each with the limit you’re getting close to.',
+              'A Two weeks (Dwa tygodnie) bar.',
               'A day bar split into driving, work, break and rest.',
               'Your current state and the time it started.',
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'On domestic jobs the screen is called My working time (Mój czas pracy) and shows a summary of the month: working time against the norm, driving, working days, overtime, night time and absences. Below it is the rule: up to 8 h of work a day and at least 11 h of rest.',
+          },
+          {
+            typ: 'uwaga',
+            tresc:
+              'The server does the counting. With no network you see the last known state on the Today screen, in the break bar – the Working time screen itself loads its data from the server and refreshes once the network is back. Breaks and rest logged with no signal wait in a queue and go through once it’s back.',
           },
         ],
       },
@@ -326,12 +365,12 @@ export const artykulyKierowcyEn: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'When you need to add something — work without driving, for example — use Record manually (Zarejestruj ręcznie) with the Break (Przerwa) and Rest (Odpoczynek) buttons.',
+              'You log breaks and rest in the Record manually (Zarejestruj ręcznie) section – it has just two buttons: Break (Przerwa) and Rest (Odpoczynek). Driving and other work the app logs by itself with each stage of the order.',
           },
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Open the AETR tab' },
+              { tytul: 'Open Me → Working time (Ja → Czas pracy)' },
               { tytul: 'Scroll down to the Record manually section' },
               { tytul: 'Choose Break or Rest' },
             ],

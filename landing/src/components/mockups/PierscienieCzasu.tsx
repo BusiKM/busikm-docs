@@ -39,7 +39,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Jazda, przerwa, odpoczynek — liczniki i lista kierowców. */
+/** Jazda, przerwa, odpoczynek – liczniki i lista kierowców. */
 export function PierscienieCzasu() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -10,13 +10,13 @@ type Zlecenie = {
   koszty: string;
   zysk: string;
   marza: string;
-  /** Marża sprzed przeliczenia — pokazana obok nowej. */
+  /** Marża sprzed przeliczenia – pokazana obok nowej. */
   poprzednia?: string;
   /** Powód przeliczenia; wiersz z notatką jest wyróżniony. */
   nota?: string;
   dobra?: boolean;
   minus?: boolean;
-  /** Wiersz spoza pierwszej piątki — na telefonie lista byłaby za długa. */
+  /** Wiersz spoza pierwszej piątki – na telefonie lista byłaby za długa. */
   tylkoDesktop?: boolean;
 };
 
@@ -131,7 +131,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     chromeWaski: 'Zlecenia · po marży',
     kolumny: { zlecenie: 'Zlecenie', kto: 'Kierowca · pojazd', fracht: 'Fracht', koszty: 'Koszty', zysk: 'Zysk', marza: 'Marża' },
     kierowca: 'Kierowca',
-    minus: 'Zlecenie na minusie widać od razu — bez czerwieni, po prostu na dole listy.',
+    minus: 'Zlecenie na minusie widać od razu – bez czerwieni, po prostu na dole listy.',
     minusKrotko: 'Minus na dole listy',
     razem: 'razem: 62 480 zł',
   },
@@ -234,19 +234,19 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     chromeWaski: 'Orders · by margin',
     kolumny: { zlecenie: 'Order', kto: 'Driver · vehicle', fracht: 'Freight', koszty: 'Costs', zysk: 'Profit', marza: 'Margin' },
     kierowca: 'Driver',
-    minus: 'A loss-making order shows up straight away — no red, just at the bottom of the list.',
+    minus: 'A loss-making order shows up straight away – no red, just at the bottom of the list.',
     minusKrotko: 'Losses at the bottom',
     razem: 'total: PLN 62,480',
   },
 };
 
-/** Kolumny szerokie tylko na desktopie — na telefonie zostaje trasa, zysk i marża. */
+/** Kolumny szerokie tylko na desktopie – na telefonie zostaje trasa, zysk i marża. */
 const kolumny =
   'grid grid-cols-[1fr_auto_54px] gap-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr_90px] lg:gap-4';
 
 /**
  * Zlecenia posortowane po marży. Wyróżniony wiersz to ten, w którym marża
- * przeliczyła się po dodaniu paragonu — stąd „← 38%" obok nowej wartości.
+ * przeliczyła się po dodaniu paragonu – stąd „← 38%" obok nowej wartości.
  */
 export function TabelaZlecen() {
   const t = TEKSTY[biezacyJezyk()];
@@ -311,7 +311,7 @@ export function TabelaZlecen() {
 }
 
 /**
- * Ta sama lista w połowie szerokości — cztery kolumny zamiast sześciu.
+ * Ta sama lista w połowie szerokości – cztery kolumny zamiast sześciu.
  *
  * Pełna wersja jest zaprojektowana na 1120 px. W kafelku o połowie tej
  * szerokości kolumny schodziły do „Warszaw…" i „Mare…", a wiersze wychodziły

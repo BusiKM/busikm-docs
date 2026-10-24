@@ -8,7 +8,7 @@ const TEKSTY: Tlumaczenia<{
   naglowek: string;
   plany: readonly [string, string];
   parametry: readonly Wiersz[];
-  /** Sześć pierwszych pozycji jest w obu planach, cztery ostatnie tylko w Firmie. */
+  /** Sześć pierwszych pozycji jest w obu planach, pięć ostatnich tylko w Firmie. */
   funkcje: readonly (readonly [string, boolean])[];
   ceny: readonly Wiersz[];
 }> = {
@@ -16,17 +16,18 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Co jest w którym planie.',
     plany: ['Start', 'Firma'],
     parametry: [
-      ['Pojazdy', 'do 3', 'do 10, każdy kolejny +29 zł'],
+      ['Pojazdy', 'do 3', '10 w cenie, +29 zł/mies. za każdy kolejny, do 50'],
       ['Kierowcy', 'bez limitu', 'bez limitu'],
       ['Pracownicy biura', 'bez limitu', 'bez limitu'],
     ],
     funkcje: [
       ['Zlecenia i dyspozytornia', true],
-      ['Mapa i trasy', true],
+      ['Trasy i ewidencja przebiegu', true],
       ['Czas pracy', true],
       ['Koszty i paragony', true],
       ['Faktury dla klientów', true],
       ['Aplikacja dla kierowców', true],
+      ['Mapa floty na żywo', false],
       ['Komplet dla księgowej', false],
       ['Zestawienia sprzedaży i zakupów', false],
       ['Rentowność zleceń', false],
@@ -41,17 +42,18 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'What’s in each plan.',
     plany: ['Start', 'Business'],
     parametry: [
-      ['Vehicles', 'up to 3', 'up to 10, then +PLN 29 each'],
+      ['Vehicles', 'up to 3', '10 included, +PLN 29/month for each extra one, up to 50'],
       ['Drivers', 'unlimited', 'unlimited'],
       ['Office staff', 'unlimited', 'unlimited'],
     ],
     funkcje: [
       ['Orders and dispatch', true],
-      ['Map and routes', true],
+      ['Routes and mileage log', true],
       ['Working time', true],
       ['Costs and receipts', true],
       ['Invoices for clients', true],
       ['Driver app', true],
+      ['Live fleet map', false],
       ['Full pack for your accountant', false],
       ['Sales and purchase reports', false],
       ['Profitability per order', false],
@@ -66,7 +68,7 @@ const TEKSTY: Tlumaczenia<{
 
 const wiersz = 'grid grid-cols-[1fr_64px_64px] items-center gap-3 lg:grid-cols-[1fr_200px_200px]';
 
-/** Tabela porównawcza — ma się czytać jak tabela, bez ozdobników. */
+/** Tabela porównawcza – ma się czytać jak tabela, bez ozdobników. */
 export function Tabela() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -97,7 +99,7 @@ export function Tabela() {
             <div key={nazwa} className={`${wiersz} border-b border-line py-3.5 lg:py-4`}>
               <span className="font-medium">{nazwa}</span>
               <span className={`text-center lg:text-left ${wStart ? 'text-blue' : 'text-muted'}`}>
-                {wStart ? '✓' : '—'}
+                {wStart ? '✓' : '–'}
               </span>
               <span className="text-center text-blue lg:text-left">✓</span>
             </div>

@@ -14,7 +14,7 @@ const kraje = [
 
 const TEKSTY: Tlumaczenia<{
   kraje: { tytul: string; tresc: string };
-  /** Nazwy krajów — kolejność jak w `kraje`. */
+  /** Nazwy krajów – kolejność jak w `kraje`. */
   nazwy: readonly string[];
   kurs: string;
   daty: string;
@@ -66,7 +66,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** 05 + 06 — dwa punkty w dwóch kartach obok siebie. */
+/** 05 + 06 – dwa punkty w dwóch kartach obok siebie. */
 export function KrajeIPrzejazd() {
   const t = TEKSTY[biezacyJezyk()];
   return (

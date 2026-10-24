@@ -39,36 +39,36 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
       [
         'A jeśli mam biuro rachunkowe, nie księgową na etacie?',
-        'To samo. Zapraszasz je mailem i dostaje własny dostęp do Twojej firmy.',
+        'To samo. Zapraszasz je mailem i dostaje własny dostęp do Twojej firmy. Jeśli biuro obsługuje kilka firm w BusiKM, każda zaprasza je osobno.',
       ],
       [
         'Co, jeśli używa programu, którego nie ma na liście?',
-        'Jest jeszcze zwykły arkusz, z osobną zakładką na każde zestawienie.',
+        'Rejestry VAT pobierze w Excelu albo PDF, płace i diety w Excelu albo CSV. Pliki JPK to standardowy XML.',
       ],
     ],
     drobiazgi: [
       'Kurs waluty zapisany przy dokumencie',
       'Zdjęcie paragonu zostaje dowodem',
-      'Zestawienie użytych kursów za okres',
-      'Wydruk karty czasu pracy',
+      'Paczka robocza przed zamknięciem miesiąca',
+      'Ewidencja przebiegu w PDF na każdy pojazd',
       'Podgląd przed pobraniem',
-      'Dostęp tylko do odczytu',
+      'Zlecenia i mapa do wglądu',
     ],
     walidacja: {
       tytul: 'System sam mówi, czego brakuje',
-      tresc: 'Zanim plik pójdzie dalej, widać, co jest niekompletne.',
-      label: 'Walidacja przed eksportem · desktop',
-      note: 'Lista zestawień ze statusem komplet / do uzupełnienia i krótkim opisem braku. Bez czerwieni.',
+      tresc: 'Sześć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje i zamknięcie z pobraniem plików. Przy każdym widać, co jest gotowe, a przy braku – odnośnik prosto tam, gdzie go uzupełnisz.',
+      label: 'Zamknięcie miesiąca · desktop',
+      note: 'Rozliczenia, zakładka Miesiąc: zamknięcie września krok po kroku – faktury sprzedaży, koszty, ewidencja przebiegu, płace i diety, deklaracje – przy każdym kroku przejście do braku, obok najbliższe terminy JPK_V7M i VAT-UE oraz zamknięte poprzednie miesiące.',
     },
     kierowcy: {
       tytul: 'Rozliczenie kierowców',
-      tresc: 'Dni za granicą, diety, wypłata. Gotowe do wczytania.',
-      label: 'Rozliczenie kierowcy z dietami · desktop',
-      note: 'Trzy liczby (dni za granicą, diety, do wypłaty), tabela krajów z dniami i stawkami.',
+      tresc: 'Dni za granicą, diety i noclegi, wynagrodzenie. Lista płac do pobrania w Excelu albo CSV.',
+      label: 'Płace i diety · desktop',
+      note: 'Rozliczenia, zakładka Płace i diety: kierowcy z dniami za granicą, wynagrodzeniem i dietami, obok rozliczenie Krzysztofa Kamińskiego za wrzesień – kalendarz dni w Niemczech, wynagrodzenie, diety i noclegi, kwota do rozliczenia.',
     },
     zewnatrz: {
       tytul: 'Księgowa z zewnątrz',
-      tresc: 'Zapraszasz ją mailem, dostaje własny dostęp i widzi tylko to, co powinna.',
+      tresc: 'Zapraszasz ją mailem i dostaje własny dostęp. Wystawia faktury i korekty, rejestruje wpłaty, poprawia koszty i zamyka miesiąc. Zlecenia i mapę widzi, ale ich nie zmienia.',
     },
     ktoUzywa: 'Kto tego używa:',
     ksiegowa: 'Księgowa →',
@@ -82,36 +82,36 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       ],
       [
         'What if I use an accounting office rather than an in-house accountant?',
-        'Same thing. You invite them by email and they get their own access to your company.',
+        'Same thing. You invite them by email and they get their own access to your company. If the office handles several companies in BusiKM, each one invites them separately.',
       ],
       [
         'What if their software isn’t on the list?',
-        'There’s always a plain spreadsheet, with a separate tab for each report.',
+        'VAT registers come as Excel or PDF, payroll and allowances as Excel or CSV. JPK files are standard XML.',
       ],
     ],
     drobiazgi: [
       'Exchange rate saved with the document',
       'The receipt photo stays as proof',
-      'Summary of the exchange rates used in the period',
-      'Printable working-time sheet',
+      'A draft package before the month is closed',
+      'Mileage log as a PDF for each vehicle',
       'Preview before you download',
-      'Read-only access',
+      'Orders and map to look at',
     ],
     walidacja: {
       tytul: 'It tells you what’s missing',
-      tresc: 'Before the file goes anywhere, you can see what’s incomplete.',
-      label: 'Check before export · desktop',
-      note: 'List of reports marked complete / to complete, with a short note on what’s missing. No red.',
+      tresc: 'Six month-end steps: invoices, costs, mileage, payroll and allowances, tax returns, and closing with the file download. Each shows what’s ready, and any gap comes with a link straight to where you fix it.',
+      label: 'Month-end close · desktop',
+      note: 'Settlements, Month tab: closing September step by step – sales invoices, costs, mileage log, payroll and allowances, tax returns – each step linking to what’s missing, with the next JPK_V7M and VAT-UE deadlines and previous closed months alongside.',
     },
     kierowcy: {
       tytul: 'Driver settlements',
-      tresc: 'Days abroad, per diems (statutory daily travel allowances), pay. Ready to import.',
-      label: 'Driver settlement with per diems · desktop',
-      note: 'Three numbers (days abroad, per diems, to pay) and a table of countries with days and rates.',
+      tresc: 'Days abroad, per diems (statutory daily travel allowances) and overnight allowances, pay. The payroll downloads as Excel or CSV.',
+      label: 'Payroll and allowances · desktop',
+      note: 'Settlements, Payroll and allowances tab: drivers with days abroad, pay and allowances, next to Krzysztof Kamiński’s September settlement – a calendar of days in Germany, pay, per diems and overnight allowances, the total to settle.',
     },
     zewnatrz: {
       tytul: 'An outside accountant',
-      tresc: 'Invite them by email. They get their own access and see only what they should.',
+      tresc: 'Invite them by email and they get their own access. They issue invoices and corrections, record payments, fix costs and close the month. They can see orders and the map, but can’t change them.',
     },
     ktoUzywa: 'Who uses it:',
     ksiegowa: 'Accountant →',
@@ -120,7 +120,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
 };
 
 /**
- * Dane dla księgowej — podstrona wg projektu „BusiKM Dane dla księgowej"
+ * Dane dla księgowej – podstrona wg projektu „BusiKM Dane dla księgowej"
  * z Claude Design (design/04-dane-dla-ksiegowej). Treść: docs/landing/05, rozdział A8.
  */
 export default async function Page({ params }: ParametryJezyka) {

@@ -4,17 +4,17 @@
  * Ktoś, kto klika „Wypróbuj 14 dni" przy planie Firma z rozliczeniem
  * rocznym, powiedział o sobie więcej niż samym adresem. Ta informacja
  * ginęła: przycisk prowadził na `/zaloguj` bez śladu po tym, co człowiek
- * przed chwilą oglądał. Tutaj jedzie w adresie i dalej — do bazy,
+ * przed chwilą oglądał. Tutaj jedzie w adresie i dalej – do bazy,
  * powiadomienia i Klaviyo.
  *
  * To **deklaracja zainteresowania, nie zamówienie**. Nikt jeszcze nie
  * płaci i nie wybiera planu wiążąco: rejestracji nie ma, a wybrany plan
  * można zmienić przy zakładaniu konta. Dlatego pola są opcjonalne wszędzie
- * dalej — wejście wprost na `/zaloguj`, z zakładki albo z wyszukiwarki,
+ * dalej – wejście wprost na `/zaloguj`, z zakładki albo z wyszukiwarki,
  * jest równie poprawne i nie może niczego wywracać.
  *
  * Identyfikatory są bez ogonków i małą literą, bo jadą w adresie. Nazwy
- * do pokazania człowiekowi trzyma `NAZWY_*` — nie odtwarzaj ich z
+ * do pokazania człowiekowi trzyma `NAZWY_*` – nie odtwarzaj ich z
  * identyfikatora wielką literą, bo „miesiecznie" nie zamieni się w
  * „miesięcznie".
  */
@@ -32,7 +32,7 @@ export type Zainteresowanie = {
   okres: OkresId;
 };
 
-/** Nazwy planów. „Firma" po angielsku to „Business" — „Start" zostaje. */
+/** Nazwy planów. „Firma" po angielsku to „Business" – „Start" zostaje. */
 const NAZWY_PLANOW: Tlumaczenia<Record<PlanId, string>> = {
   pl: { start: 'Start', firma: 'Firma' },
   en: { start: 'Start', firma: 'Business' },
@@ -46,7 +46,7 @@ const NAZWY_OKRESOW: Tlumaczenia<Record<OkresId, string>> = {
 /**
  * Do pokazania człowiekowi i do powiadomienia: „Firma · rocznie".
  *
- * Język domyślnie polski — powiadomienia na naszą skrzynkę zostają po
+ * Język domyślnie polski – powiadomienia na naszą skrzynkę zostają po
  * polsku, niezależnie od języka formularza.
  */
 export function opiszWybor({ plan, okres }: Zainteresowanie, jezyk: Jezyk = 'pl'): string {
@@ -69,9 +69,9 @@ export function linkProbny(wybor: Zainteresowanie): string {
 /**
  * Odczyt z adresu.
  *
- * Parametry przychodzą z zewnątrz i każdy może wpisać w pasku, co zechce —
+ * Parametry przychodzą z zewnątrz i każdy może wpisać w pasku, co zechce –
  * dlatego przechodzą wyłącznie wartości z listy. Cokolwiek innego, brak
- * jednego z dwóch albo brak obu daje `null`, czyli „nie wiemy" — i tak ma
+ * jednego z dwóch albo brak obu daje `null`, czyli „nie wiemy" – i tak ma
  * być, bo to zwykłe wejście na stronę zapisu.
  */
 export function odczytajWybor(
@@ -89,7 +89,7 @@ export function odczytajWybor(
   return { plan: plan as PlanId, okres: okres as OkresId };
 }
 
-/** Ta sama walidacja po stronie serwera — trasa API nie ufa temu, co dostaje. */
+/** Ta sama walidacja po stronie serwera – trasa API nie ufa temu, co dostaje. */
 export function poprawnyWybor(
   plan: unknown,
   okres: unknown,

@@ -3,7 +3,7 @@
  *
  * Polski stoi pod adresami bez przedrostka (`/cennik`), angielski pod `/en`
  * (`/en/pricing`). Wewnętrznie obie wersje żyją w jednym drzewie
- * `app/[lang]/…` — `proxy.ts` przepisuje adres publiczny na wewnętrzny.
+ * `app/[lang]/…` – `proxy.ts` przepisuje adres publiczny na wewnętrzny.
  */
 export const jezyki = ['pl', 'en'] as const;
 
@@ -14,7 +14,7 @@ export const JEZYK_DOMYSLNY: Jezyk = 'pl';
 /** Ciasteczko z wyborem z przełącznika EN/PL. Wygrywa z wykrywaniem. */
 export const CIASTKO_JEZYKA = 'jezyk';
 
-/** Treść w obu językach — jeden obiekt, żeby żadna wersja nie została w tyle. */
+/** Treść w obu językach – jeden obiekt, żeby żadna wersja nie została w tyle. */
 export type Tlumaczenia<T> = Record<Jezyk, T>;
 
 export function czyJezyk(wartosc: unknown): wartosc is Jezyk {

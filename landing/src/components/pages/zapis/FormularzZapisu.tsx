@@ -18,7 +18,7 @@ import { useJezyk } from '@/i18n/klient';
  * Adres strony jako magazyn zewnętrzny.
  *
  * Parametry wyboru z cennika żyją poza Reactem, więc czytamy je hookiem od
- * tego przeznaczonym, zamiast przepisywać efektem do stanu — ten drugi
+ * tego przeznaczonym, zamiast przepisywać efektem do stanu – ten drugi
  * sposób kosztuje dodatkowy render przy każdym wejściu.
  *
  * Świadomie nie sięgamy po `useSearchParams` z Nexta: ten wymaga granicy
@@ -34,7 +34,7 @@ function subskrybujAdres(przy: () => void): () => void {
 }
 
 const adresTeraz = () => window.location.search;
-/** Serwer nie zna adresu czytelnika — do hydracji zachowujemy się jak bez parametrów. */
+/** Serwer nie zna adresu czytelnika – do hydracji zachowujemy się jak bez parametrów. */
 const adresNaSerwerze = () => '';
 
 const pole =
@@ -75,7 +75,7 @@ const TEKSTY: Tlumaczenia<{
     wymagane: 'pola wymagane',
     pulapka: 'Nie wypełniaj tego pola',
     zapisuje: 'Zapisuję…',
-    blad: ['Nie udało się zapisać. Napisz wprost na', '— ta droga działa zawsze.'],
+    blad: ['Nie udało się zapisać. Napisz wprost na', '– ta droga działa zawsze.'],
     prywatnosc: 'Polityka prywatności',
   },
   en: {
@@ -93,17 +93,17 @@ const TEKSTY: Tlumaczenia<{
     wymagane: 'required fields',
     pulapka: 'Do not fill in this field',
     zapisuje: 'Saving…',
-    blad: ['That didn’t work. Write to us directly at', '— that always works.'],
+    blad: ['That didn’t work. Write to us directly at', '– that always works.'],
     prywatnosc: 'Privacy policy',
   },
 };
 
 /**
- * Zapis na listę — imię, adres i zgoda.
+ * Zapis na listę – imię, adres i zgoda.
  *
  * Zgoda jest tu **wymagana** i to jest zgodne z prawem, choć wygląda na
  * pierwszy rzut oka odwrotnie. Art. 7 ust. 4 RODO zabrania uzależniać
- * wykonanie usługi od zgody, która nie jest do niej niezbędna — ale na tych
+ * wykonanie usługi od zgody, która nie jest do niej niezbędna – ale na tych
  * stronach usługą **jest** lista. Zgoda nie warunkuje niczego innego, bo nic
  * innego tu nie oferujemy. W formularzu kontaktowym jest odwrotnie i tam
  * okienko musi być nieobowiązkowe.
@@ -111,7 +111,7 @@ const TEKSTY: Tlumaczenia<{
  * Imię nie jest ozdobą: pierwsza wiadomość ma zaczynać się od „Cześć Marek",
  * a nie od „Dzień dobry".
  *
- * Bez konfiguracji Firebase formularz cofa się do `mailto:` — nigdy nie
+ * Bez konfiguracji Firebase formularz cofa się do `mailto:` – nigdy nie
  * połknie adresu, nie mając gdzie go zapisać.
  */
 export function FormularzZapisu({ opis }: { opis: OpisListy }) {
@@ -123,7 +123,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
   const [pulapka, setPulapka] = useState('');
   const [stan, setStan] = useState<Stan>('gotowy');
 
-  /** Plan i okres wybrane w cenniku — tylko gdy człowiek przyszedł stamtąd. */
+  /** Plan i okres wybrane w cenniku – tylko gdy człowiek przyszedł stamtąd. */
   const adres = useSyncExternalStore(subskrybujAdres, adresTeraz, adresNaSerwerze);
   const wybor = useMemo(() => odczytajWybor(new URLSearchParams(adres)), [adres]);
 
@@ -178,7 +178,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
     <form onSubmit={wyslij} className="flex flex-col gap-4 lg:gap-5">
       {/*
         Pokazujemy wybór z cennika, zamiast wozić go po cichu. Człowiek widzi,
-        że nie przepadł, i ma jak go poprawić — a my nie zbieramy w tle
+        że nie przepadł, i ma jak go poprawić – a my nie zbieramy w tle
         niczego, czego nie postawilibyśmy mu przed oczami.
       */}
       {wybor && (
@@ -230,12 +230,12 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       </div>
 
 
-      {/* Znaczenie gwiazdki musi być wyjaśnione — WCAG 3.3.2. */}
+      {/* Znaczenie gwiazdki musi być wyjaśnione – WCAG 3.3.2. */}
       <p className="text-[12px] text-muted">
         <span aria-hidden className="text-red-ink">*</span> {t.wymagane}
       </p>
 
-      {/* Pułapka na boty — człowiek tego pola nie zobaczy i nie zatabuluje. */}
+      {/* Pułapka na boty – człowiek tego pola nie zobaczy i nie zatabuluje. */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
           {t.pulapka}
@@ -249,7 +249,7 @@ export function FormularzZapisu({ opis }: { opis: OpisListy }) {
       </div>
 
       {/*
-        Brzmienie zgody jest jedno dla całego serwisu i wersjonowane —
+        Brzmienie zgody jest jedno dla całego serwisu i wersjonowane –
         razem z adresem trafia do bazy, bo to na nas spoczywa ciężar dowodu
         (art. 7 ust. 1 RODO). Nie zmieniaj go tutaj: `content/zgoda.ts`.
       */}

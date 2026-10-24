@@ -8,7 +8,7 @@ import { plans } from '@/content/cennik';
 /**
  * Budowniki grafu danych strukturalnych (schema.org).
  *
- * Jeden graf na stronę główną — firma, serwis i produkt — oraz dwa elementy
+ * Jeden graf na stronę główną – firma, serwis i produkt – oraz dwa elementy
  * doklejane na podstronach: ścieżka okruszków i pytania.
  *
  * Świadomie **nie ma tu `aggregateRating` ani `review`**: nie mamy jeszcze
@@ -19,7 +19,7 @@ import { plans } from '@/content/cennik';
 const ID_FIRMA = `${serwis.url}/#organizacja`;
 const ID_SERWIS = `${serwis.url}/#serwis`;
 
-/** Kod pocztowy i miasto trzymamy w jednym polu — schema.org chce osobno. */
+/** Kod pocztowy i miasto trzymamy w jednym polu – schema.org chce osobno. */
 function adres() {
   const [kod, ...reszta] = firma.miasto.split(' ');
   return {
@@ -47,8 +47,9 @@ function organizacja() {
     image: `${serwis.url}${serwis.ogImage}`,
     email: firma.email,
     address: adres(),
-    // NIP w formacie unijnym — z przedrostkiem kraju, tak czyta go VIES.
-    vatID: `PL${firma.nip}`,
+    // Bez `vatID`: MOVGRANTO jest zwolniona z VAT (art. 113) i nie jest
+    // czynnym podatnikiem VAT UE, więc numer w formacie VIES wprowadzałby
+    // w błąd. Zostaje sam NIP.
     taxID: firma.nip,
     identifier: [
       { '@type': 'PropertyValue', name: 'NIP', value: firma.nip },
@@ -80,7 +81,7 @@ function witryna(jezyk: Jezyk) {
 /**
  * Produkt z cenami.
  *
- * Ceny biorą się z tej samej tablicy, co cennik na stronie — rozjazd między
+ * Ceny biorą się z tej samej tablicy, co cennik na stronie – rozjazd między
  * ceną w wyniku wyszukiwania a ceną na stronie to zgłoszenie „niezgodna
  * cena" i utrata wyniku rozszerzonego.
  */
@@ -144,8 +145,9 @@ function aplikacja(jezyk: Jezyk) {
           '@type': 'UnitPriceSpecification',
           price: p.monthly.replace(/\s/g, ''),
           priceCurrency: 'PLN',
-          // Ceny w cenniku są netto — bez tego Google przyjmie, że z VAT-em.
-          valueAddedTaxIncluded: false,
+          // Ceny w cenniku są końcowe: sprzedawca jest zwolniony z VAT
+          // (art. 113), na fakturze stawka „zw.”. Nic się do nich nie dolicza.
+          valueAddedTaxIncluded: true,
           billingDuration: 1,
           billingIncrement: 1,
           unitCode: 'MON',
@@ -163,7 +165,7 @@ export function grafStronyGlownej(jezyk: Jezyk) {
   };
 }
 
-/** Sama firma i serwis — na podstronach, gdzie produkt nie jest tematem. */
+/** Sama firma i serwis – na podstronach, gdzie produkt nie jest tematem. */
 export function grafPodstawowy(jezyk: Jezyk) {
   return {
     '@context': 'https://schema.org',
@@ -174,7 +176,7 @@ export function grafPodstawowy(jezyk: Jezyk) {
 /**
  * Ścieżka okruszków dla podstrony.
  *
- * Człony pośrednie, które nie mają własnej strony, są pomijane — `/co-robi`
+ * Człony pośrednie, które nie mają własnej strony, są pomijane – `/co-robi`
  * i `/dla-kogo` to w nawigacji wyłącznie wyzwalacze menu, więc wskazanie
  * na nie prowadziłoby robota pod adres bez treści.
  */
@@ -218,7 +220,7 @@ export function okruszki(sciezka: string, jezyk: Jezyk) {
  * Uwaga na oczekiwania: od 2023 roku Google pokazuje wyniki rozszerzone
  * FAQ wyłącznie serwisom urzędowym i medycznym. Znacznik zostaje, bo nadal
  * pomaga zrozumieć, o czym jest strona, i jest czytany przez wyszukiwarki
- * odpowiedzi — ale gwiazdek pod wynikiem z niego nie będzie.
+ * odpowiedzi – ale gwiazdek pod wynikiem z niego nie będzie.
  */
 export function pytaniaIOdpowiedzi(items: readonly (readonly [string, string])[]) {
   return {

@@ -65,7 +65,7 @@ const TEKSTY: Tlumaczenia<{
 
 /**
  * Najważniejsza sekcja tej strony. Rozbraja nieporozumienie, że BusiKM ma
- * zastąpić tachograf — bez ikon ostrzegawczych i bez czerwieni, samym
+ * zastąpić tachograf – bez ikon ostrzegawczych i bez czerwieni, samym
  * zestawieniem dwóch czasowników.
  */
 export function Tachograf() {

@@ -18,7 +18,7 @@ const TEKSTY = {
 };
 
 /**
- * Film właściciela zaraz pod hero — pierwsza rzecz po przewinięciu.
+ * Film właściciela zaraz pod hero – pierwsza rzecz po przewinięciu.
  *
  * Tylko po polsku: napisy w filmie są polskie, a angielskiej wersji jeszcze
  * nie ma. Strona EN pomija sekcję zamiast pokazywać film w obcym języku.
