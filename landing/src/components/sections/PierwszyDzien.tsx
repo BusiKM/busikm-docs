@@ -8,26 +8,26 @@ const TEKSTY: Tlumaczenia<{
   nota: string;
 }> = {
   pl: {
-    naglowek: 'Pierwsza trasa jeszcze dziś.',
+    naglowek: 'Pierwsza trasa pierwszego dnia.',
     steps: [
-      ['Dodajesz pojazd', '2 minuty', 'Numer rejestracyjny i tyle.'],
-      ['Zapraszasz kierowcę', '1 minuta', 'Dostaje kod. Wpisuje go w aplikacji i już jest w środku.'],
+      ['Dodajesz pojazd', '2 minuty', 'Zdjęcie dowodu rejestracyjnego – dane wpisują się same.'],
+      ['Zapraszasz kierowcę', '1 minuta', 'Dostaje kod mailem. Wpisuje go w aplikacji, ustawia hasło i jest w środku.'],
       ['Kierowca rusza', 'od razu', 'Pierwsza trasa pojawia się u Ciebie tego samego dnia.'],
     ],
     nota: 'Nie ma wdrożenia, szkolenia ani spotkania z handlowcem.',
   },
   en: {
-    naglowek: 'Your first route, today.',
+    naglowek: 'Your first route on day one.',
     steps: [
-      ['Add a van', '2 minutes', 'The registration number, and that’s it.'],
-      ['Invite a driver', '1 minute', 'They get a code. They enter it in the app and they’re in.'],
+      ['Add a van', '2 minutes', 'A photo of the registration certificate – the details fill themselves in.'],
+      ['Invite a driver', '1 minute', 'They get a code by email. They enter it in the app, set a password and they’re in.'],
       ['The driver sets off', 'straight away', 'The first route shows up at your end the same day.'],
     ],
     nota: 'No setup project, no training, no meeting with a salesperson.',
   },
 };
 
-/** 6.16 — pierwszy dzień. */
+/** 6.16 – pierwszy dzień. */
 export function PierwszyDzien() {
   const t = TEKSTY[biezacyJezyk()];
   return (

@@ -8,11 +8,11 @@ import { biezacyJezyk } from '@/i18n/serwer';
 /**
  * 404 dla `notFound()` wywołanego w trakcie renderu strony.
  *
- * Nieznane adresy tu nie trafiają — `proxy.ts` kieruje je od razu na
+ * Nieznane adresy tu nie trafiają – `proxy.ts` kieruje je od razu na
  * `/[lang]/nie-znaleziono`, statyczną stronę z nagłówkiem i stopką.
  */
 export function generateMetadata(): Metadata {
-  // Bez `robots` — Next dokłada tu `noindex` sam.
+  // Bez `robots` – Next dokłada tu `noindex` sam.
   return { title: tytulNieZnalezionej(biezacyJezyk()) };
 }
 

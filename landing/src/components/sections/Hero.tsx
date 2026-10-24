@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Section';
 import { MockupSlot } from '@/components/ui/MockupSlot';
+import { Makieta } from '@/components/ui/Makieta';
 import { PulpitMockup } from '@/components/mockups/PulpitMockup';
 import { appLinks } from '@/content/navigation';
 import type { Tlumaczenia } from '@/i18n/jezyki';
@@ -17,32 +18,41 @@ const TEKSTY: Tlumaczenia<{
   nota: string;
   label: string;
   opis: string;
+  telefon: string;
+  powieksz: string;
+  zamknij: string;
 }> = {
   pl: {
     eyebrow: 'Busy 2,5–3,5 t · Transport krajowy i międzynarodowy',
     tytul1: 'Kierowca jedzie.',
     tytul2: 'Reszta dzieje się sama.',
-    lead: 'Zlecenia, trasy, koszty, faktury i komplet dla księgowej — w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.',
+    lead: 'Zlecenia, trasy, koszty, faktury i komplet dla księgowej – w jednym miejscu. Kierowca ma telefon w kieszeni, Ty masz robotę zrobioną.',
     proba: 'Wypróbuj 14 dni',
     demo: 'Zobacz demo',
     nota: 'Przez pierwsze 14 dni nie płacisz. Rezygnujesz jednym kliknięciem.',
     label: 'Ekran właściciela · desktop 1440',
-    opis: 'Pulpit po zalogowaniu: trzy liczby u góry (przychód, koszty, zysk), mapa z trasą Warszawa → Mediolan, lista trzech zleceń ze statusami.',
+    opis: 'Pulpit po zalogowaniu: po lewej „Do zrobienia” z tym, co czeka na Twoją decyzję, po prawej „Dziś” – kursy w trasie, załadunki, dostawy i kto jest teraz w drodze.',
+    telefon: 'Aplikacja kierowcy: ekran „Dziś” z kursem Wrocław → Milano i przyciskami Nawiguj, Zadzwoń, Czat.',
+    powieksz: 'Powiększ',
+    zamknij: 'Zamknij',
   },
   en: {
     eyebrow: 'Vans 2.5–3.5 t · Domestic and international transport',
     tytul1: 'The driver drives.',
     tytul2: 'Everything else just happens.',
-    lead: 'Orders, routes, costs, invoices and everything your accountant needs — in one place. Your driver keeps a phone in their pocket. You get the work done.',
+    lead: 'Orders, routes, costs, invoices and everything your accountant needs – in one place. Your driver keeps a phone in their pocket. You get the work done.',
     proba: 'Try 14 days free',
     demo: 'See the demo',
     nota: 'You pay nothing for the first 14 days. Cancel with one click.',
     label: 'Owner’s screen · desktop 1440',
-    opis: 'Dashboard after signing in: three figures at the top (revenue, costs, profit), a map with the Warsaw → Milan route, a list of three orders with their status.',
+    opis: 'Dashboard after signing in: “To do” on the left with what’s waiting for your decision, “Today” on the right – runs on the road, loadings, deliveries and who is driving right now.',
+    telefon: 'Driver app: the “Today” screen with the Wrocław → Milano run and Navigate, Call and Chat buttons.',
+    powieksz: 'Enlarge',
+    zamknij: 'Close',
   },
 };
 
-/** 6.1 — hero. Siatka i jedna świecąca trasa w tle, pulpit uniesiony nad stroną. */
+/** 6.1 – hero. Siatka i jedna świecąca trasa w tle, pulpit uniesiony nad stroną. */
 export function Hero() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -52,7 +62,7 @@ export function Hero() {
         className="absolute inset-0 bg-[linear-gradient(rgba(10,10,11,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(10,10,11,.035)_1px,transparent_1px)] bg-size-[80px_80px] lg:bg-size-[120px_120px]"
       />
       {/* Trasa w tle. Wysokość ograniczona, żeby krzywa nie rozciągnęła się
-          na całą — bardzo wysoką — sekcję i nie wyprostowała w linię. */}
+          na całą – bardzo wysoką – sekcję i nie wyprostowała w linię. */}
       <svg
         viewBox="0 0 1440 1200"
         preserveAspectRatio="xMidYMin slice"
@@ -125,6 +135,27 @@ export function Hero() {
           >
             <PulpitMockup />
           </MockupSlot>
+          {/*
+            Telefon kierowcy oparty o prawy dolny róg laptopa: biuro i kierowca
+            na jednym obrazku, zanim czytelnik przewinie dalej. Pozycja liczona
+            od pudła 16:10 – ekran laptopa kończy się na 88% szerokości
+            i 80% wysokości, więc telefon zachodzi na róg ekranu, nie zasłania
+            listy „Do zrobienia”.
+          */}
+          <div
+            className="absolute right-[-2%] bottom-[-2%] w-[30%] max-w-[320px] drop-shadow-[0_24px_40px_rgba(10,10,11,0.35)] lg:right-[-1%] lg:bottom-[0%] lg:w-[26%]"
+            style={{ aspectRatio: '1226 / 2064' }}
+          >
+            <Makieta
+              src="/mockups/mockup-hero-telefon-phone.png"
+              alt={t.telefon}
+              sizes="(max-width: 1024px) 30vw, 320px"
+              unoptimized={false}
+              imgClassName="object-contain"
+              etykietaPowieksz={t.powieksz}
+              etykietaZamknij={t.zamknij}
+            />
+          </div>
         </div>
       </Container>
     </section>

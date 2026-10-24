@@ -18,27 +18,27 @@ const TEKSTY: Tlumaczenia<{
   pl: {
     eyebrow: 'Ile zostaje',
     tytul: ['Wiesz, ile zostaje.', 'Na tym kursie. Dziś.'],
-    lead: 'Fracht minus paliwo, opłaty drogowe, nocleg i koszt kierowcy. Kierowca dodaje paragon w trasie — liczba zmienia się od razu.',
-    label: 'Karta zysku · desktop, tryb nocny',
-    note: 'Karta zlecenia Wrocław → Antwerpen, zakładka Finanse: fracht, koszty kursu w wierszach, obok wynik i marża.',
+    lead: 'Fracht po kursie NBP minus paliwo, opłaty drogowe, nocleg, parking i diety kierowcy. Kierowca dodaje paragon w trasie – gdy paragon ma komplet danych, wynik przelicza się sam.',
+    label: 'Karta zysku · desktop',
+    note: 'Zlecenie Warszawa → München, zakładka Finanse: fracht w euro przeliczony po kursie NBP, koszty kursu w wierszach – paliwo, opłaty drogowe, parking – obok wynik, marża i zysk na kilometr.',
     zostaje: 'Zostaje',
-    kwota: '4 011 zł',
-    opis: 'z 1 110 € frachtu. Liczba zmieni się, gdy Adam doda kolejny paragon.',
+    kwota: '3 699 zł',
+    opis: 'z 1 020 € frachtu. Liczba zmieni się, gdy Jan doda kolejny paragon.',
   },
   en: {
     eyebrow: 'What you keep',
     tytul: ['You know what you keep.', 'On this job. Today.'],
-    lead: 'Freight minus fuel, tolls, the overnight stay and the driver’s cost. The driver adds a receipt on the road — the number changes straight away.',
-    label: 'Profit card · desktop, dark mode',
-    note: 'Order card Wrocław → Antwerp, Finance tab: freight, run costs line by line, result and margin alongside.',
+    lead: 'Freight at the NBP rate minus fuel, tolls, the overnight stay, parking and the driver’s allowances. The driver adds a receipt on the road – once it has all its details, the result updates by itself.',
+    label: 'Profit card · desktop',
+    note: 'Order Warsaw → Munich, Finance tab: freight in euros converted at the NBP rate, run costs line by line – fuel, tolls, parking – with the result, margin and profit per kilometre alongside.',
     zostaje: 'You keep',
-    kwota: 'PLN 4,011',
-    opis: 'out of €1,110 in freight. The number will change when Adam adds the next receipt.',
+    kwota: 'PLN 3,699',
+    opis: 'out of €1,020 in freight. The number will change when Jan adds the next receipt.',
   },
 };
 
 /**
- * Nagłówek strony — ciemny. Jedyne miejsce na landingu, w którym wolno
+ * Nagłówek strony – ciemny. Jedyne miejsce na landingu, w którym wolno
  * postawić naprawdę dużą liczbę: stoi obok karty, nie w niej.
  */
 export function Hero() {

@@ -8,38 +8,38 @@ const TEKSTY: Tlumaczenia<{
   zestawienia: readonly (readonly [string, string])[];
 }> = {
   pl: {
-    tytul: 'Dziewięć zestawień',
-    tresc: 'Sprzedaż, zakupy, koszty, przebieg, delegacje, czas pracy, kursy walut i pozostałe.',
+    tytul: 'Wszystkie eksporty w jednym miejscu',
+    tresc: 'Rozliczenia → Eksporty: od dekretów do FK po JPK. Przy księdze przychodów i rozchodów dochodzą KPiR i JPK_PKPIR.',
     zestawienia: [
-      ['Sprzedaż', '42'],
-      ['Zakupy', '37'],
-      ['Koszty', '318'],
-      ['Przebieg', '7 pojazdów'],
-      ['Delegacje', '9 kierowców'],
-      ['Czas pracy', '9 kierowców'],
-      ['Kursy walut', '22 dni'],
-      ['Opłaty drogowe', '61'],
-      ['Korekty', '2'],
+      ['Dekrety do FK', '56 faktur, 192 koszty'],
+      ['Rejestry VAT', 'Excel · PDF'],
+      ['Lista płac i diety', '7 kierowców'],
+      ['Delegacje kierowców', '7 kierowców'],
+      ['Ewidencje przebiegu', '7 pojazdów'],
+      ['Zwrot VAT z UE', 'VAT-REF · 6 krajów'],
+      ['JPK_FA', '56 faktur'],
+      ['JPK_V7M', 'do 25.10'],
+      ['KPiR i JPK_PKPIR', 'przy KPiR'],
     ],
   },
   en: {
-    tytul: 'Nine reports',
-    tresc: 'Sales, purchases, costs, mileage, business trips, working time, exchange rates and the rest.',
+    tytul: 'Every export in one place',
+    tresc: 'Settlements → Exports: from ledger entries to JPK files. Firms on the simplified revenue and expense ledger also get KPiR and JPK_PKPIR.',
     zestawienia: [
-      ['Sales', '42'],
-      ['Purchases', '37'],
-      ['Costs', '318'],
-      ['Mileage', '7 vehicles'],
-      ['Business trips', '9 drivers'],
-      ['Working time', '9 drivers'],
-      ['Exchange rates', '22 days'],
-      ['Tolls', '61'],
-      ['Corrections', '2'],
+      ['Ledger entries', '56 invoices, 192 costs'],
+      ['VAT registers', 'Excel · PDF'],
+      ['Payroll and allowances', '7 drivers'],
+      ['Drivers’ business trips', '7 drivers'],
+      ['Mileage logs', '7 vehicles'],
+      ['EU VAT refund', 'VAT-REF · 6 countries'],
+      ['JPK_FA', '56 invoices'],
+      ['JPK_V7M', 'by 25 Oct'],
+      ['KPiR and JPK_PKPIR', 'for KPiR firms'],
     ],
   },
 };
 
-/** 03 — dziewięć zestawień jako siatka kafelków z licznikami. */
+/** 03 – dziewięć zestawień jako siatka kafelków z licznikami. */
 export function DziewiecZestawien() {
   const t = TEKSTY[biezacyJezyk()];
   return (

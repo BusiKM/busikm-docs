@@ -1,10 +1,10 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Instrukcje dotyczące kierowców — od zaproszenia po zamknięty dzień pracy.
+ * Instrukcje dotyczące kierowców – od zaproszenia po zamknięty dzień pracy.
  *
  * Nazwy przycisków przepisane z aplikacji, nie wymyślone. Gdy w kodzie
- * przycisk nazywa się „Zeskanuj paragon", tu też tak się nazywa — instrukcja,
+ * przycisk nazywa się „Wyślij paragon", tu też tak się nazywa – instrukcja,
  * która każe szukać „Dodaj dokument", jest bezużyteczna.
  */
 export const artykulyKierowcy: Artykul[] = [
@@ -12,11 +12,11 @@ export const artykulyKierowcy: Artykul[] = [
     slug: 'zapraszamy-kierowce',
     kategoria: 'kierowcy',
     tytul: 'Jak dodać kierowcę',
-    lead: 'Wysyłasz zaproszenie mailem. Kierowca sam ustawia hasło — nie znasz go i nie musisz.',
+    lead: 'Wysyłasz zaproszenie mailem. Kierowca dostaje kod i sam ustawia hasło – nie znasz go i nie musisz.',
     role: ['wlasciciel', 'dyspozytor'],
     gdzie: 'Kierowcy → Zaproś kierowcę',
     czas: 'Dwie minuty u Ciebie, reszta po jego stronie',
-    zanim: ['Adres e-mail kierowcy — na ten adres pójdzie zaproszenie'],
+    zanim: ['Adres e-mail kierowcy – na ten adres pójdzie zaproszenie'],
     rozdzialy: [
       {
         tytul: 'Wysłanie zaproszenia',
@@ -43,12 +43,12 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Kierowca dostaje e-mail z odnośnikiem. Po kliknięciu ustawia własne hasło i od razu trafia do aplikacji. Do tego czasu widnieje na Twojej liście jako zaproszony.',
+              'Kierowca dostaje e-mail z 8-znakowym kodem zaproszenia, np. K7QM-4RTZ. W aplikacji BusiKM Kierowca wybiera Mam zaproszenie, wpisuje e-mail i kod, a potem ustawia własne hasło (imię i nazwisko – tylko jeśli ich nie wpisałeś). Do tego czasu widnieje na Twojej liście jako zaproszony.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Hasła kierowcy nie znasz i nie możesz go odczytać. Jeśli kierowca je zgubi, korzysta z „Nie pamiętasz hasła?" na ekranie logowania — nie musisz nic robić.',
+              'Hasła kierowcy nie znasz i nie możesz go odczytać. Jeśli kierowca je zgubi, korzysta z „Nie pamiętasz hasła?" na ekranie logowania – nie musisz nic robić.',
           },
         ],
       },
@@ -59,7 +59,7 @@ export const artykulyKierowcy: Artykul[] = [
             typ: 'lista',
             wstep: 'Zanim wyślesz drugie, sprawdź po kolei:',
             punkty: [
-              'Czy adres jest wpisany bez literówki — najczęstsza przyczyna.',
+              'Czy adres jest wpisany bez literówki – najczęstsza przyczyna.',
               'Folder ze spamem u kierowcy. Zaproszenie przychodzi od BusiKM, nie od Ciebie.',
               'Czy kierowca nie ma już konta w innej firmie na tym adresie.',
             ],
@@ -67,7 +67,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Jeśli nic z tego nie pomogło, napisz do nas — widzimy po swojej stronie, czy wiadomość wyszła i co się z nią stało.',
+              'Jeśli nic z tego nie pomogło, napisz do nas – widzimy po swojej stronie, czy wiadomość wyszła i co się z nią stało.',
           },
         ],
       },
@@ -83,7 +83,7 @@ export const artykulyKierowcy: Artykul[] = [
     role: ['kierowca'],
     gdzie: 'Aplikacja BusiKM Kierowca',
     czas: 'Pięć minut',
-    zanim: ['Zaproszenie w skrzynce', 'Telefon z Androidem albo iPhone'],
+    zanim: ['E-mail z kodem zaproszenia od pracodawcy', 'Telefon z Androidem albo iPhone'],
     rozdzialy: [
       {
         tytul: 'Wejście do aplikacji',
@@ -91,14 +91,15 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'kroki',
             kroki: [
+              { tytul: 'Zainstaluj aplikację BusiKM Kierowca z odnośnika w zaproszeniu' },
+              { tytul: 'Otwórz aplikację i wybierz Mam zaproszenie' },
               {
-                tytul: 'Otwórz e-mail z zaproszeniem i kliknij odnośnik',
-                opis: 'Otworzy się strona, na której ustawiasz własne hasło. Wymyśl je sam — nikt w firmie go nie zobaczy.',
+                tytul: 'Wpisz e-mail i kod zaproszenia',
+                opis: 'Adres, na który przyszło zaproszenie, i 8-znakowy kod z maila, np. K7QM-4RTZ. Wybierz Dalej, sprawdź nazwę firmy i wybierz Dołączam.',
               },
-              { tytul: 'Zainstaluj aplikację BusiKM Kierowca ze sklepu' },
               {
-                tytul: 'Otwórz aplikację i wybierz Kontynuuj z e-mailem',
-                opis: 'Wpisz ten sam adres, na który przyszło zaproszenie, i hasło, które przed chwilą ustawiłeś.',
+                tytul: 'Ustaw własne hasło',
+                opis: 'Hasło wymyśl sam – nikt w firmie go nie zobaczy. Imię i nazwisko wpisujesz tylko wtedy, gdy szef ich nie wpisał. Na koniec wybierz Załóż konto i wejdź.',
               },
               {
                 tytul: 'Zgódź się na dostęp do lokalizacji i powiadomień',
@@ -109,22 +110,27 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'uwaga',
             tresc:
-              'Lokalizację ustaw na „Zawsze", nie „Podczas używania aplikacji". Przy tym drugim ustawieniu telefon przestaje zapisywać trasę, gdy schowasz aplikację — a właśnie wtedy jedziesz.',
+              'Zgódź się na lokalizację podczas używania aplikacji. Na iPhonie po pierwszym kursie wybierz jeszcze „Zawsze" – trasa zapisze się nawet, gdy system zamknie aplikację.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Kod wpisujesz tylko raz. Następnym razem logujesz się e-mailem i hasłem: Kontynuuj z e-mailem na ekranie startowym.',
           },
         ],
       },
       {
-        tytul: 'Co widzisz na pulpicie',
+        tytul: 'Co widzisz w aplikacji',
         bloki: [
           {
             typ: 'lista',
-            wstep: 'Pierwszy ekran to wszystko, czego potrzebujesz w trasie:',
+            wstep: 'Na dole ekranu masz pięć zakładek:',
             punkty: [
-              'Aktywne zlecenie z przyciskiem nawigacji — albo „Brak aktywnego zlecenia", gdy nic nie jedzie.',
-              'Do akceptacji — zlecenia, które dyspozytor Ci przydzielił i czekają na Twoje potwierdzenie.',
-              'Czas pracy — ile jedziesz i za ile masz przerwę.',
-              'Dodaj koszt — zdjęcie paragonu jednym tapnięciem.',
-              'Dokumenty i Wiadomości.',
+              'Dziś – bieżący kurs z przyciskami Nawiguj, Zadzwoń i Czat, jeden przycisk na kolejny etap dnia i informacja, za ile przerwa. Tu przyjmujesz też nowe zlecenia.',
+              'Zlecenia – Aktywne, Oczekujące i Zakończone.',
+              'Dodaj – aparat: zdjęcie paragonu albo dokumentu zlecenia (CMR, WZ).',
+              'Czat – rozmowy z biurem przy każdym zleceniu.',
+              'Ja – Moje koszty i zwroty, Dokumenty, Czas pracy, Urlopy, Do wysłania i ustawienia.',
             ],
           },
         ],
@@ -137,12 +143,12 @@ export const artykulyKierowcy: Artykul[] = [
             kroki: [
               { tytul: 'Na ekranie logowania wybierz Nie pamiętasz hasła?' },
               { tytul: 'Wpisz swój adres e-mail' },
-              { tytul: 'Otwórz wiadomość i ustaw nowe hasło' },
+              { tytul: 'Wpisz kod z maila i ustaw nowe hasło' },
             ],
           },
           {
             typ: 'akapit',
-            tresc: 'Nie musisz o to prosić właściciela ani dyspozytora — robisz to sam.',
+            tresc: 'Nie musisz o to prosić właściciela ani dyspozytora – robisz to sam.',
           },
         ],
       },
@@ -154,9 +160,9 @@ export const artykulyKierowcy: Artykul[] = [
     slug: 'trasa-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Jak kierowca prowadzi trasę',
-    lead: 'Od przyjęcia zlecenia do potwierdzonego rozładunku — bez wpisywania czegokolwiek z ręki.',
+    lead: 'Od przyjęcia zlecenia do potwierdzonego rozładunku – jeden przycisk na każdy etap dnia.',
     role: ['kierowca'],
-    gdzie: 'Aplikacja BusiKM Kierowca → Zlecenia',
+    gdzie: 'Aplikacja BusiKM Kierowca → Dziś',
     czas: 'Kilka tapnięć w ciągu dnia',
     rozdzialy: [
       {
@@ -166,11 +172,11 @@ export const artykulyKierowcy: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Otwórz zlecenie z sekcji Do akceptacji',
+                tytul: 'Otwórz nowe zlecenie na ekranie Dziś albo w Zlecenia → Oczekujące',
                 opis: 'Zobaczysz trasę, godziny i towar. Powiadomienie przychodzi także wtedy, gdy aplikacja jest zamknięta.',
               },
               {
-                tytul: 'Zaakceptuj zlecenie',
+                tytul: 'Wybierz Przyjmij',
                 opis: 'Dyspozytor widzi u siebie, że je przyjąłeś, i przestaje dzwonić z pytaniem.',
               },
             ],
@@ -178,31 +184,45 @@ export const artykulyKierowcy: Artykul[] = [
         ],
       },
       {
-        tytul: 'Załadunek',
+        tytul: 'Start dnia i załadunek',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Wpisz stan licznika',
-                opis: 'Aplikacja prosi o niego raz, przed ruszeniem. Od tej chwili kilometry liczą się same.',
+                tytul: 'Wybierz Zacznij dzień i zrób zdjęcie licznika',
+                opis: 'Otworzy się ekran Licznik na start. Stan licznika odczyta się sam ze zdjęcia – sprawdź go i wybierz Potwierdź i rozpocznij. Od tej chwili trasa zapisuje się w tle, a kilometry liczą się same.',
               },
               {
-                tytul: 'Zrób zdjęcia towaru',
-                opis: 'Zdjęcia wysyłają się w tle — nie musisz czekać, aż się prześlą, ani mieć zasięgu w tej chwili.',
+                tytul: 'Wybierz Nawiguj',
+                opis: 'Trasa ze zlecenia otwiera się w Apple Maps, Google Maps albo Waze. Aplikację wybierasz raz, zmienisz ją w ustawieniach. Działa z CarPlay i Android Auto.',
               },
-              { tytul: 'Podaj wagę i wybierz Zapisz wagę' },
               {
-                tytul: 'Zbierz podpis, jeśli zleceniodawca go wymaga',
-                opis: 'Podpis rysuje się palcem na ekranie.',
+                tytul: 'Na miejscu wybierz Jestem na załadunku',
+                opis: 'Część statusów zmienia się sama, gdy dojedziesz na miejsce.',
               },
-              { tytul: 'Potwierdź Załadunek zakończony' },
+              { tytul: 'Wybierz Zacznij załadunek' },
+              { tytul: 'Podaj wagę załadowaną i wybierz Zapisz wagę' },
+              {
+                tytul: 'Zbierz podpis nadawcy na e-CMR',
+                opis: 'Podpis jest zawsze wymagany. Nadawca rysuje go palcem na ekranie.',
+              },
+              {
+                tytul: 'Dodaj plombę i zdjęcia towaru, jeśli trzeba',
+                opis: 'To opcjonalne. Zdjęcia – do dwóch – wysyłają się w tle. Nie musisz czekać, aż się prześlą, ani mieć zasięgu w tej chwili.',
+              },
+              { tytul: 'Wybierz Zakończ załadunek i potwierdź Tak, zakończ' },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Status zlecenia zmienia się na „W trasie" i pojawia się przycisk Nawiguj do rozładunku. Nawigacja jest w tej samej aplikacji — nie przełączasz się do innej.',
+              'Status zlecenia zmienia się na „W trasie". Nawigację do rozładunku otwierasz tym samym przyciskiem Nawiguj, a BusiKM zapisuje przejazd w tle.',
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Stajesz na prywatną przerwę? Na ekranie Dziś wybierz Wstrzymaj – zapis trasy stanie do czasu, aż wybierzesz Wznów.',
           },
         ],
       },
@@ -212,12 +232,12 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Przebiega tak samo jak załadunek: zdjęcia, dane odbiorcy, podpis i potwierdzenie. Po nim zlecenie jest zamknięte, a dyspozytor widzi to od razu.',
+              'Na miejscu wybierz Jestem na rozładunku, potem Zacznij rozładunek. Wpisz nazwisko odbiorcy, zbierz jego podpis na e-CMR i wybierz Zakończ rozładunek. Otworzy się ekran Licznik na koniec: zrób zdjęcie licznika i wybierz Potwierdź i zakończ. Dyspozytor widzi to od razu. Potem wybierz Rozpocznij powrót do bazy, a na miejscu Jestem w bazie.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Brak zasięgu niczego nie blokuje. Zdjęcia, podpisy i potwierdzenia czekają w telefonie i wysyłają się same, gdy zasięg wróci. Możesz jechać dalej.',
+              'Brak zasięgu niczego nie blokuje. Zdjęcia, podpisy i potwierdzenia czekają w kolejce (Ja → Do wysłania) i wysyłają się same, gdy zasięg wróci. Możesz jechać dalej.',
           },
         ],
       },
@@ -227,7 +247,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Na pulpicie jest „Nie mogę kontynuować". Zgłaszasz nim awarię, korek albo zamknięty załadunek — dyspozytor dostaje informację od razu, bez telefonu.',
+              'Na ekranie Dziś, pod kursem, jest „Nie mogę kontynuować". Wybierasz powód: Awaria auta, Wypadek, Choroba, Odbiorca zamknięty albo Inny powód. Kurs się wstrzymuje, a biuro dostaje powiadomienie – bez telefonu. Opóźnienie, na przykład korek, zgłaszasz przyciskiem Zgłoś w szczegółach zlecenia.',
           },
         ],
       },
@@ -239,9 +259,9 @@ export const artykulyKierowcy: Artykul[] = [
     slug: 'paragony-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Paragon ze zdjęcia',
-    lead: 'Kierowca robi zdjęcie, system odczytuje kwotę i datę. Reklamówka pod siedzeniem przestaje być potrzebna.',
+    lead: 'Kierowca robi zdjęcie i wybiera rodzaj kosztu, a kwotę, datę i sprzedawcę BusiKM odczytuje sam. Reklamówka pod siedzeniem przestaje być potrzebna.',
     role: ['kierowca', 'ksiegowa'],
-    gdzie: 'Aplikacja BusiKM Kierowca → Paragony',
+    gdzie: 'Aplikacja BusiKM Kierowca → Dodaj',
     czas: 'Kilkanaście sekund na paragon',
     rozdzialy: [
       {
@@ -251,24 +271,32 @@ export const artykulyKierowcy: Artykul[] = [
             typ: 'kroki',
             kroki: [
               {
-                tytul: 'Wybierz Zeskanuj paragon',
-                opis: 'Także z pulpitu, kaflem Dodaj koszt — to ta sama droga.',
+                tytul: 'Dotknij Dodaj na dolnym pasku',
+                opis: 'Otworzy się aparat. Tę samą drogę masz w Ja → Moje koszty i zwroty → Dodaj paragon.',
               },
               {
                 tytul: 'Zrób zdjęcie paragonu',
                 opis: 'Połóż go na płaskim, tak żeby mieścił się w kadrze w całości.',
               },
               {
-                tytul: 'Sprawdź, co system odczytał',
-                opis: 'Kwota, data, sprzedawca i NIP sprzedawcy uzupełniają się same. Popraw, jeśli coś się nie zgadza — zwłaszcza przy pogniecionym albo wyblakłym paragonie.',
+                tytul: 'Wybierz rodzaj kosztu',
+                opis: 'Na start są paliwo, parking, opłaty drogowe, mycie, hotel kierowcy, prom, serwis i naprawy, opłata za załadunek lub rozładunek i inne. Listę zmienia firma.',
               },
-              { tytul: 'Zapisz' },
+              {
+                tytul: 'Wybierz, czym zapłacono',
+                opis: 'Karta firmowa, karta paliwowa, gotówka firmowa albo moje pieniądze. Za koszt z własnej kieszeni biuro odda Ci pieniądze – zobaczysz to w Moich kosztach.',
+              },
+              {
+                tytul: 'Wybierz zlecenie',
+                opis: 'Albo Bez zlecenia, jeśli koszt nie dotyczy kursu.',
+              },
+              { tytul: 'Wybierz Wyślij paragon' },
             ],
           },
           {
             typ: 'akapit',
             tresc:
-              'Jeśli odczyt się nie uda, wybierz Pomiń i wpisz ręcznie. Zdjęcie i tak zostaje przy koszcie, więc księgowa ma do czego wrócić.',
+              'Kwotę, datę, sprzedawcę i NIP sprzedawcy BusiKM odczytuje sam po wysłaniu – nie musisz niczego przepisywać ani czekać. Bez zasięgu paragon czeka w kolejce Do wysłania i wysyła się, gdy wróci sieć.',
           },
         ],
       },
@@ -278,7 +306,7 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Paragon trafia na listę jako Oczekujący. Ktoś w biurze go zatwierdza i wtedy zmienia status na Zatwierdzony. Kierowca widzi obie listy i wie, czy jego koszt przeszedł.',
+              'W Moich kosztach kierowca widzi każdy paragon ze statusem: Do uzupełnienia, Gotowe albo Zaksięgowane. Gdy biuro ma pytanie, paragon dostaje status Biuro pyta – kierowca odpowiada i poprawia w aplikacji. Jeśli zdjęcie wyszło nieczytelne, wystarczy zrobić je jeszcze raz.',
           },
           {
             typ: 'uwaga',
@@ -295,9 +323,9 @@ export const artykulyKierowcy: Artykul[] = [
     slug: 'czas-pracy-kierowcy',
     kategoria: 'kierowcy',
     tytul: 'Czas pracy, przerwy i odpoczynek',
-    lead: 'Liczniki idą same. Telefon uprzedza, zanim przerwa stanie się obowiązkowa.',
+    lead: 'Jazda i praca zapisują się same, przerwę i odpoczynek włączasz jednym przyciskiem. Przy przewozie międzynarodowym telefon przypomina o przerwie 15 minut wcześniej.',
     role: ['kierowca', 'wlasciciel'],
-    gdzie: 'Aplikacja BusiKM Kierowca → AETR',
+    gdzie: 'Aplikacja BusiKM Kierowca → Ja → Czas pracy',
     rozdzialy: [
       {
         tytul: 'Co liczy się samo',
@@ -305,16 +333,27 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Jazda, praca, przerwa i odpoczynek zmieniają się automatycznie na podstawie tego, co robi pojazd i na jakim etapie jest zlecenie. Kierowca nie musi niczego przełączać.',
+              'Jazda i praca zmieniają się same według etapu zlecenia. Przerwę i odpoczynek zapisujesz sam przyciskami Przerwa i Odpoczynek.',
           },
           {
             typ: 'lista',
-            wstep: 'Na ekranie AETR widzisz:',
+            wstep: 'Przy przewozie międzynarodowym ekran Czas pracy pokazuje:',
             punkty: [
-              'Jazdę ciągłą, dzienną i tygodniową — każdą z limitem, do którego się zbliżasz.',
+              'Trzy wskaźniki: jazdę ciągłą, dzienną i tydzień – każdy z limitem, do którego się zbliżasz.',
+              'Pasek Dwa tygodnie.',
               'Pasek dnia z podziałem na jazdę, pracę, przerwę i odpoczynek.',
               'Bieżący stan i od której godziny trwa.',
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'W kraju ekran nazywa się Mój czas pracy i pokazuje podsumowanie miesiąca: czas pracy wobec normy, jazdę, dni pracy, nadgodziny, porę nocną i nieobecności. Pod spodem jest zasada: do 8 h pracy na dobę i co najmniej 11 h odpoczynku.',
+          },
+          {
+            typ: 'uwaga',
+            tresc:
+              'Liczniki liczy serwer. Bez sieci ostatni znany stan widzisz na ekranie Dziś, na pasku przerwy – sam ekran Czas pracy pobiera dane z serwera i odświeży się, gdy wróci sieć. Przerwy i odpoczynki zapisane bez zasięgu czekają w kolejce i dochodzą, gdy wróci sygnał.',
           },
         ],
       },
@@ -324,12 +363,12 @@ export const artykulyKierowcy: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Gdy trzeba coś dopisać — na przykład pracę bez jazdy — służy do tego Zarejestruj ręcznie z przyciskami Przerwa i Odpoczynek.',
+              'Przerwę i odpoczynek zapisujesz w sekcji Zarejestruj ręcznie – są tam tylko dwa przyciski: Przerwa i Odpoczynek. Jazdę i pracę aplikacja zapisuje sama według etapu zlecenia.',
           },
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Otwórz zakładkę AETR' },
+              { tytul: 'Otwórz Ja → Czas pracy' },
               { tytul: 'Zjedź do sekcji Zarejestruj ręcznie' },
               { tytul: 'Wybierz Przerwa albo Odpoczynek' },
             ],

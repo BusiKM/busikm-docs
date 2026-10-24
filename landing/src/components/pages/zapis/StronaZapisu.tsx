@@ -5,13 +5,13 @@ import { FormularzZapisu } from '@/components/pages/zapis/FormularzZapisu';
 import type { OpisListy } from '@/content/zapisy';
 
 /**
- * Wspólny szkielet stron wczesnego dostępu — `/demo` i `/zaloguj`.
+ * Wspólny szkielet stron wczesnego dostępu – `/demo` i `/zaloguj`.
  *
  * Jeden ekran, bez stopki i bez finału: jedynym wyjściem stąd ma być
  * zostawienie adresu albo powrót nagłówkiem. Ten sam rytm, co miała
  * poprzednia wersja `/demo`.
  *
- * Prawa kolumna należy do strony — demo pokazuje ekran produktu, dostęp
+ * Prawa kolumna należy do strony – demo pokazuje ekran produktu, dostęp
  * do aplikacji co innego.
  */
 export function StronaZapisu({
@@ -20,7 +20,7 @@ export function StronaZapisu({
   podFormularzem,
 }: {
   opis: OpisListy;
-  /** Prawa kolumna — makieta albo cokolwiek, co niesie treść strony. */
+  /** Prawa kolumna – makieta albo cokolwiek, co niesie treść strony. */
   children: React.ReactNode;
   /** Drobne wyjście awaryjne pod formularzem, np. dla osób z kontem testowym. */
   podFormularzem?: React.ReactNode;

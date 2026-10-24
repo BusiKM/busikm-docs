@@ -17,22 +17,22 @@ const TEKSTY: Tlumaczenia<{
     eyebrow: 'Czas pracy i przerwy',
     naglowek1: 'Wiesz, kiedy kierowca musi stanąć.',
     naglowek2: 'Zanim stanie za późno.',
-    lead: 'Jazda, przerwy i odpoczynki liczą się same. Kierowca widzi to na telefonie, Ty na jednym ekranie.',
-    label: 'Czas pracy · desktop, tryb nocny',
-    note: 'Trzy pierścienie postępu (jazda, przerwa, odpoczynek) i lista kierowców ze statusem. Ten sam ekran co na stronie głównej.',
+    lead: 'Jazda i praca liczą się same, przerwę kierowca włącza jednym przyciskiem. Kierowca widzi to na telefonie, Ty na jednym ekranie.',
+    label: 'Kierowcy, zakładka „Czas pracy” · desktop',
+    note: 'Lista kierowców z kolumnami: teraz, jazda dziś, do przerwy, tydzień, dwa tygodnie, powrót do domu i stan „W normie”. Ten sam ekran co na stronie głównej.',
   },
   en: {
     eyebrow: 'Working time and breaks',
     naglowek1: 'You know when a driver has to stop.',
     naglowek2: 'Before it’s too late.',
-    lead: 'Driving, breaks and rest count themselves. The driver sees it on the phone, you see it on one screen.',
-    label: 'Working time · desktop, dark mode',
-    note: 'Three progress rings (driving, break, rest) and a list of drivers with their status. The same screen as on the home page.',
+    lead: 'Driving and work time count themselves; the driver starts a break with one tap. The driver sees it on the phone, you see it on one screen.',
+    label: 'Drivers, “Working time” tab · desktop',
+    note: 'A list of drivers with columns for now, driving today, time to break, week, two weeks, home time and a “Within limits” status. The same screen as on the home page.',
   },
 };
 
 /**
- * Nagłówek strony — ciemny. Nagłówek jest o kilka pikseli mniejszy niż na
+ * Nagłówek strony – ciemny. Nagłówek jest o kilka pikseli mniejszy niż na
  * pozostałych podstronach, bo przy 88 px pierwsza linia by się łamała.
  */
 export function Hero() {

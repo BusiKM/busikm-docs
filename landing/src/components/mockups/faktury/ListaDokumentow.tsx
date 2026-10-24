@@ -61,7 +61,7 @@ const dokumenty: Dokument[] = [
   },
 ];
 
-/** Kwota, godzina wysyłki i status po angielsku — kolejność jak w `dokumenty`. */
+/** Kwota, godzina wysyłki i status po angielsku – kolejność jak w `dokumenty`. */
 const DOKUMENTY_EN: readonly Pick<Dokument, 'kwota' | 'wyslano' | 'status'>[] = [
   { kwota: '€3,900', wyslano: '3 Sep · 08:14', status: 'delivered' },
   { kwota: '€2,650', wyslano: '2 Sep · 17:02', status: 'paid' },
@@ -100,7 +100,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * Kolumny: numer, kontrahent, kwota, status. Godzina wysyłki idzie pod numer —
+ * Kolumny: numer, kontrahent, kwota, status. Godzina wysyłki idzie pod numer –
  * jako piąta kolumna zjadała tyle miejsca, że numery dokumentów się nie mieściły.
  */
 const kolumny = 'grid grid-cols-[1fr_74px_82px] gap-3 lg:grid-cols-[1fr_1.2fr_70px_90px]';

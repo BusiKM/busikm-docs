@@ -51,7 +51,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * 01 + 02 — jedna scena w trzech kadrach: pytanie klienta, kliknięcie w mapę,
+ * 01 + 02 – jedna scena w trzech kadrach: pytanie klienta, kliknięcie w mapę,
  * odpowiedź. Ostatni kadr jest niebieski, bo to on jest puentą.
  */
 export function MapaIKlient() {

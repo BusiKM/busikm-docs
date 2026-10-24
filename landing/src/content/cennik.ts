@@ -1,17 +1,17 @@
 /**
- * Plany i ceny — jedno źródło.
+ * Plany i ceny – jedno źródło.
  *
  * Wyjęte z komponentu sekcji, bo te same liczby czyta budownik danych
  * strukturalnych (`components/seo/schema.ts`), a ten działa po stronie
  * serwera. Wartość wyeksportowana z modułu oznaczonego `'use client'`
  * dociera do serwera jako odsyłacz do komponentu klienckiego, nie jako
- * tablica — stąd osobny plik.
+ * tablica – stąd osobny plik.
  *
  * Rozjazd między ceną w cenniku a ceną w wyniku wyszukiwania Google zgłasza
  * jako „niezgodna cena" i odbiera wynik rozszerzony, więc te liczby muszą
  * pochodzić z jednego miejsca.
  *
- * Liczby i identyfikatory stoją raz, w `CENY` — obie wersje językowe biorą
+ * Liczby i identyfikatory stoją raz, w `CENY` – obie wersje językowe biorą
  * je stąd, więc cena po angielsku nie może rozjechać się z polską.
  */
 
@@ -19,10 +19,14 @@ import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
 import type { PlanId } from '@/content/zainteresowanie';
 
 export type Plan = {
-  /** Identyfikator do adresu — patrz `content/zainteresowanie.ts`. */
+  /** Identyfikator do adresu – patrz `content/zainteresowanie.ts`. */
   id: PlanId;
   name: string;
-  /** Kwoty w złotych netto, tysiące rozdzielone spacją. */
+  /**
+   * Kwoty końcowe w złotych, tysiące rozdzielone spacją. MOVGRANTO jest
+   * zwolniona z VAT (art. 113), więc na fakturze stoi stawka „zw.” i nie ma
+   * czego doliczać.
+   */
   monthly: string;
   yearly: string;
   specs: readonly (readonly [string, string])[];
@@ -48,7 +52,7 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
       ],
       features: [
         'zlecenia i dyspozytornia',
-        'mapa i trasy',
+        'trasy i ewidencja przebiegu',
         'czas pracy',
         'koszty i paragony',
         'faktury dla klientów',
@@ -58,12 +62,13 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
     firma: {
       name: 'Firma',
       specs: [
-        ['Pojazdy', 'do 10, każdy kolejny +29 zł'],
+        ['Pojazdy', '10 w cenie, +29 zł/mies. za każdy kolejny, do 50'],
         ['Kierowcy', 'bez limitu'],
         ['Pracownicy biura', 'bez limitu'],
       ],
       features: [
         'wszystko ze Start, a do tego:',
+        'mapa floty na żywo',
         'komplet dla księgowej',
         'zestawienia sprzedaży i zakupów',
         'rentowność zleceń',
@@ -81,7 +86,7 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
       ],
       features: [
         'orders and dispatch',
-        'map and routes',
+        'routes and mileage log',
         'working time',
         'costs and receipts',
         'invoices for clients',
@@ -91,12 +96,13 @@ const TEKSTY: Tlumaczenia<Record<PlanId, Tekst>> = {
     firma: {
       name: 'Business',
       specs: [
-        ['Vehicles', 'up to 10, then +PLN 29 each'],
+        ['Vehicles', '10 included, +PLN 29/month for each extra one, up to 50'],
         ['Drivers', 'unlimited'],
         ['Office staff', 'unlimited'],
       ],
       features: [
         'everything in Start, plus:',
+        'live fleet map',
         'full pack for your accountant',
         'sales and purchase reports',
         'profitability per order',

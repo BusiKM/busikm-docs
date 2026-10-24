@@ -9,7 +9,7 @@ import {
 } from '@/components/mockups/ksiegowa-rola/KartyOsi';
 
 /**
- * Księgowa nie żyje dniem, tylko miesiącem — oś jest więc miesięczna,
+ * Księgowa nie żyje dniem, tylko miesiącem – oś jest więc miesięczna,
  * a w kolumnie czasu stoją słowa, nie godziny.
  */
 export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
@@ -23,7 +23,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '1–31',
-      tresc: 'Faktury, koszty i trasy wpadają same. Nie prosisz o nic.',
+      tresc: 'Faktury, koszty i trasy wpadają same. Nie prosisz o nic. Faktury i korekty wystawisz też tutaj.',
       karta: <KartaWpada />,
     },
     {
@@ -35,7 +35,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '24–31',
-      tresc: 'Otwierasz listę sprawdzenia. System sam mówi, czego brakuje.',
+      tresc: 'Otwierasz sześć kroków miesiąca: faktury, koszty, przebieg, płace i diety, deklaracje i zamknięcie z plikami. Przy braku masz odnośnik prosto do niego.',
       karta: <KartaSprawdzenie />,
     },
     {
@@ -47,13 +47,13 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '1.',
-      tresc: 'Wybierasz miesiąc, klikasz raz, pobierasz komplet.',
+      tresc: 'Wybierasz miesiąc i klikasz „Pobierz paczkę dla biura”. Przed zamknięciem dostajesz wersję roboczą.',
       karta: <KartaPobierz />,
     },
     {
       godzina: 'wczytujesz',
       pora: 'u siebie',
-      tresc: 'Do Insertu, Optimy, Symfonii albo do zwykłego arkusza.',
+      tresc: 'Do Comarch Optima, Insert GT albo Symfonii. Rejestry i płace także w Excelu.',
       karta: <KartaFormat />,
     },
     {
@@ -64,7 +64,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
           miesiąc
         </>
       ),
-      tresc: 'Po zamknięciu nikt nie zmieni danych wstecz.',
+      tresc: 'Zamknięty miesiąc blokuje zmiany wstecz, a paczka staje się ostateczna, z JPK_V7M.',
       karta: <KartaZamkniecie />,
     },
   ],
@@ -78,7 +78,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '1–31',
-      tresc: 'Invoices, costs and routes come in on their own. You don’t ask for anything.',
+      tresc: 'Invoices, costs and routes come in on their own. You don’t ask for anything, and you can issue invoices and corrections yourself.',
       karta: <KartaWpada />,
     },
     {
@@ -90,7 +90,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '24–31',
-      tresc: 'You open the checklist. The system tells you what’s missing.',
+      tresc: 'You open the six month-end steps: invoices, costs, mileage, payroll and allowances, tax returns, and closing with the files. Any gap comes with a link straight to it.',
       karta: <KartaSprawdzenie />,
     },
     {
@@ -102,13 +102,13 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
         </>
       ),
       pora: '1st',
-      tresc: 'You pick the month, click once and download everything.',
+      tresc: 'You pick the month and click “Download the package for the office”. Before closing, you get a draft version.',
       karta: <KartaPobierz />,
     },
     {
       godzina: 'you import',
       pora: 'on your side',
-      tresc: 'Into Insert, Optima, Symfonia (Polish accounting software) or a plain spreadsheet.',
+      tresc: 'Into Comarch Optima, Insert GT or Symfonia (Polish accounting software). Registers and payroll in Excel too.',
       karta: <KartaFormat />,
     },
     {
@@ -119,7 +119,7 @@ export const miesiacKsiegowej: Tlumaczenia<PunktDnia[]> = {
           the month
         </>
       ),
-      tresc: 'Once it’s closed, nobody can change past data.',
+      tresc: 'A closed month locks changes after the fact, and the package becomes final, with JPK_V7M.',
       karta: <KartaZamkniecie />,
     },
   ],

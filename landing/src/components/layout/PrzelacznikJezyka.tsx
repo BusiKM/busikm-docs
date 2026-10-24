@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { CIASTKO_JEZYKA, type Jezyk } from '@/i18n/jezyki';
 import { odpowiednik, rozpoznaj } from '@/i18n/trasy';
 
-/** Rok — wybór języka nie ma powodu wygasać szybciej. */
+/** Rok – wybór języka nie ma powodu wygasać szybciej. */
 const ROK = 60 * 60 * 24 * 365;
 
 const NAZWY: Record<Jezyk, string> = { pl: 'Polski', en: 'English' };
@@ -19,7 +19,7 @@ const KOLEJNOSC: Jezyk[] = ['en', 'pl'];
 /**
  * Przełącznik EN / PL.
  *
- * Prowadzi na **tę samą stronę** w drugim języku, a nie na stronę główną —
+ * Prowadzi na **tę samą stronę** w drugim języku, a nie na stronę główną –
  * kto czyta cennik, chce czytać cennik. Wybór trafia do ciasteczka, które
  * `proxy.ts` stawia ponad wykrywaniem kraju i języka przeglądarki; bez tego
  * Polak czytający wersję angielską byłby odsyłany z powrotem przy każdym
@@ -28,8 +28,8 @@ const KOLEJNOSC: Jezyk[] = ['en', 'pl'];
  * Zwykłe `<a>`, nie `next/link`: zmiana języka podmienia układ główny
  * (`<html lang>`), więc i tak kończy się pełnym przeładowaniem.
  *
- * Ciasteczko jest niezbędne do działania wybranej funkcji — zapamiętuje
- * wybór, którego czytelnik sam dokonał — więc nie wymaga zgody z banera.
+ * Ciasteczko jest niezbędne do działania wybranej funkcji – zapamiętuje
+ * wybór, którego czytelnik sam dokonał – więc nie wymaga zgody z banera.
  */
 export function PrzelacznikJezyka({ className = '' }: { className?: string }) {
   const { jezyk: biezacy, sciezkaPl } = rozpoznaj(usePathname() ?? '/');

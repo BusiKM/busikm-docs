@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useJezyk } from '@/i18n/klient';
 
 /**
- * Licznik kwoty — cyfry przetaczają się przy zmianie okresu rozliczenia.
+ * Licznik kwoty – cyfry przetaczają się przy zmianie okresu rozliczenia.
  *
  * Kwota nie podmienia się skokiem: dolicza od poprzedniej wartości do nowej,
  * a każda cyfra, która się po drodze zmienia, wjeżdża od dołu i wypycha
- * poprzednią do góry. Jedności przewijają się dziesiątki razy, tysiące raz —
+ * poprzednią do góry. Jedności przewijają się dziesiątki razy, tysiące raz –
  * dlatego kaskada bierze się sama z doliczania, bez ręcznych opóźnień.
  *
  * ## Czego tu nie ma i dlaczego
@@ -28,7 +28,7 @@ import { useJezyk } from '@/i18n/klient';
 /** Ile trwa doliczenie. Dłużej wygląda ślamazarnie, krócej gubi efekt. */
 const CZAS = 850;
 
-/** Wyhamowanie na końcu — ostatnie cyfry siadają spokojnie, bez odbicia. */
+/** Wyhamowanie na końcu – ostatnie cyfry siadają spokojnie, bez odbicia. */
 const wyhamuj = (t: number) => 1 - Math.pow(1 - t, 5);
 
 const dlugosc = (n: number) => Math.max(1, Math.floor(Math.log10(Math.max(1, n))) + 1);
@@ -38,7 +38,7 @@ function Kolumna({ cyfra, widoczna }: { cyfra: number; widoczna: boolean }) {
   const [stan, setStan] = useState({ teraz: cyfra, przed: cyfra, obrot: 0 });
 
   // Poprawka stanu w trakcie renderu, nie w efekcie. React przerywa wtedy
-  // render i powtarza go z nową wartością, zanim cokolwiek trafi na ekran —
+  // render i powtarza go z nową wartością, zanim cokolwiek trafi na ekran –
   // przez efekt stara cyfra mignęłaby przez jedną klatkę przed animacją.
   if (stan.teraz !== cyfra) {
     setStan({ teraz: cyfra, przed: stan.teraz, obrot: stan.obrot + 1 });
@@ -53,7 +53,7 @@ function Kolumna({ cyfra, widoczna }: { cyfra: number; widoczna: boolean }) {
         Kolumna ma sztywną wysokość `1em` i chowa nadmiar, żeby cyfra mogła
         z niej wyjeżdżać. Wysokość wiersza dziedziczy się jednak z otoczenia
         i przy `text-[40px]`, które ustawia sam rozmiar pisma, wychodziła
-        z `body` równa 1,6 — wiersz miał wtedy 64 px w kolumnie wysokiej na
+        z `body` równa 1,6 – wiersz miał wtedy 64 px w kolumnie wysokiej na
         40 i cyfra była ucięta u góry i u dołu.
 
         Na desktopie tego nie było widać, bo `text-5xl` ustawia rozmiar
@@ -64,7 +64,7 @@ function Kolumna({ cyfra, widoczna }: { cyfra: number; widoczna: boolean }) {
       style={{ height: '1em', width: widoczna ? '0.62em' : '0em', opacity: widoczna ? 1 : 0 }}
     >
       {/* Klucz z numerem obrotu wymusza ponowne uruchomienie animacji przy
-          każdej zmianie cyfry — bez niego druga zmiana z rzędu nie ruszyłaby. */}
+          każdej zmianie cyfry – bez niego druga zmiana z rzędu nie ruszyłaby. */}
       {stan.obrot > 0 && (
         <span
           key={`w-${stan.obrot}`}
@@ -89,7 +89,7 @@ export function Licznik({
   wartosc,
   className = '',
 }: {
-  /** Kwota w złotych, bez separatorów — formatowanie robi komponent. */
+  /** Kwota w złotych, bez separatorów – formatowanie robi komponent. */
   wartosc: number;
   className?: string;
 }) {
@@ -108,7 +108,7 @@ export function Licznik({
       // sterownik animacji: efekt synchronizuje stan Reacta z zegarem
       // przeglądarki (rAF) i o to w efektach chodzi. Ta gałąź to w dodatku
       // pojedynczy skok do wartości docelowej dla kogoś, kto wyłączył ruch
-      // w systemie — nie pętla. Przepuszczenie jej przez rAF opóźniłoby
+      // w systemie – nie pętla. Przepuszczenie jej przez rAF opóźniłoby
       // kwotę o klatkę dokładnie tym osobom, które prosiły o brak animacji.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setBiezaca(wartosc);
@@ -131,7 +131,7 @@ export function Licznik({
     return () => cancelAnimationFrame(uchwyt.current);
   }, [wartosc]);
 
-  // Liczba kolumn bierze się z celu, nie z wartości bieżącej — inaczej
+  // Liczba kolumn bierze się z celu, nie z wartości bieżącej – inaczej
   // szerokość skakałaby w trakcie doliczania.
   const kolumny = dlugosc(wartosc);
 
@@ -144,7 +144,7 @@ export function Licznik({
       {Array.from({ length: kolumny }, (_, idx) => {
         const poz = kolumny - 1 - idx;
         const dzielnik = Math.pow(10, poz);
-        // Spacja co trzy cyfry, licząc od końca — pojawia się razem z tysiącami.
+        // Spacja co trzy cyfry, licząc od końca – pojawia się razem z tysiącami.
         const zeSpacja = idx > 0 && (kolumny - idx) % 3 === 0;
         return (
           <span key={poz} className="inline-flex items-baseline">

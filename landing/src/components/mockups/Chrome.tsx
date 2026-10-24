@@ -1,4 +1,4 @@
-/** Pasek okna przeglądarki nad makietą — powtarza się w kilku ekranach. */
+/** Pasek okna przeglądarki nad makietą – powtarza się w kilku ekranach. */
 export function Chrome({
   label,
   dark = false,

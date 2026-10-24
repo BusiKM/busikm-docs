@@ -29,7 +29,7 @@ const TEKSTY: Tlumaczenia<Tresc> = {
   pl: {
     nadtytul: 'Dla księgowej',
     tytul: 'Koniec miesiąca w jednym kliknięciu.',
-    lead: 'Dane wpadają przez cały miesiąc. Ty wybierasz okres, klikasz raz i masz komplet w formacie swojego programu.',
+    lead: 'Dane wpadają przez cały miesiąc. Ty wybierasz miesiąc, klikasz „Pobierz paczkę dla biura” i masz komplet w formacie swojego programu.',
     osNaglowek: 'Twój miesiąc z BusiKM.',
     nieRobisz: [
       'prosisz o brakujące paragony',
@@ -39,21 +39,21 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       'dzwonisz po kursy z tabeli',
     ],
     zakres: {
-      naglowek: 'Co widzisz, a czego nie widzisz.',
+      naglowek: 'Co robisz, a czego nie zmieniasz.',
       kolumny: [
         {
-          nadtytul: 'Widzisz',
-          pozycje: ['Dokumenty', 'Koszty i przebieg', 'Delegacje i czas pracy', 'Kursy walut'],
+          nadtytul: 'Robisz',
+          pozycje: ['Faktury, korekty i wpłaty', 'Koszty i przebieg', 'Płace, diety i delegacje', 'Zamknięcie miesiąca'],
           tresc: 'Wszystko za wybrany okres.',
         },
         {
-          nadtytul: 'Nie widzisz',
-          pozycje: ['Pozycji kierowców na mapie', 'Bieżących zleceń'],
-          tresc: 'To nie Twoja robota.',
+          nadtytul: 'Nie zmieniasz',
+          pozycje: ['Zleceń i tras', 'Mapy floty'],
+          tresc: 'Widzisz je, ale prowadzi je dyspozytor.',
           przygaszona: true,
         },
       ],
-      nota: 'Pracujesz w firmie albo obsługujesz ją z zewnątrz — i tak dostajesz zaproszenie mailem i własny dostęp, tylko do odczytu i tylko do tego, co potrzebne.',
+      nota: 'Pracujesz w firmie albo obsługujesz ją z zewnątrz – dostajesz zaproszenie mailem i własny dostęp. Każda firma zaprasza Cię osobno.',
     },
     pytaniaNaglowek: 'Trzy pytania',
     pytania: [
@@ -62,19 +62,19 @@ const TEKSTY: Tlumaczenia<Tresc> = {
         'Nie. Pobierasz plik i wczytujesz do programu, którego już używasz.',
       ],
       [
-        'Obsługuję dziewięć firm. Dziewięć kont?',
-        'Nie. Jedno konto, przełączasz się między firmami, które Cię zaprosiły.',
+        'Obsługuję dziewięć firm. Jak to wygląda?',
+        'Każda firma zaprasza Cię osobno, mailem, i w każdej masz własny dostęp. W BusiKM jedno konto to jedna firma.',
       ],
       [
         'Co, gdy w danych czegoś brakuje?',
-        'Zobaczysz to przed pobraniem, na liście sprawdzenia, razem z nazwiskiem osoby, która może to uzupełnić.',
+        'Zobaczysz to przed pobraniem, w sześciu krokach miesiąca. Przy każdym braku masz odnośnik prosto do miejsca, w którym go uzupełnisz.',
       ],
     ],
   },
   en: {
     nadtytul: 'For accountants',
     tytul: 'Month-end in one click.',
-    lead: 'Data comes in all month. You pick the period, click once and have everything in your accounting software’s format.',
+    lead: 'Data comes in all month. You pick the month, click “Download the package for the office” and have everything in your accounting software’s format.',
     osNaglowek: 'Your month with BusiKM.',
     nieRobisz: [
       'chase missing receipts',
@@ -84,21 +84,21 @@ const TEKSTY: Tlumaczenia<Tresc> = {
       'phone round for exchange rates',
     ],
     zakres: {
-      naglowek: 'What you see, and what you don’t.',
+      naglowek: 'What you do, and what you don’t change.',
       kolumny: [
         {
-          nadtytul: 'You see',
-          pozycje: ['Documents', 'Costs and mileage', 'Business trips and working time', 'Exchange rates'],
+          nadtytul: 'You handle',
+          pozycje: ['Invoices, corrections and payments', 'Costs and mileage', 'Payroll, allowances and business trips', 'Month-end close'],
           tresc: 'Everything for the period you choose.',
         },
         {
-          nadtytul: 'You don’t see',
-          pozycje: ['Drivers’ positions on the map', 'Live orders'],
-          tresc: 'That’s not your job.',
+          nadtytul: 'You don’t change',
+          pozycje: ['Orders and routes', 'The fleet map'],
+          tresc: 'You can see them, but the dispatcher runs them.',
           przygaszona: true,
         },
       ],
-      nota: 'Whether you work in the company or look after it from outside, you get an email invitation and your own access — read-only, and only to what you need.',
+      nota: 'Whether you work in the company or look after it from outside, you get an email invitation and your own access. Each company invites you separately.',
     },
     pytaniaNaglowek: 'Three questions',
     pytania: [
@@ -107,19 +107,19 @@ const TEKSTY: Tlumaczenia<Tresc> = {
         'No. You download a file and import it into the software you already use.',
       ],
       [
-        'I look after nine companies. Nine accounts?',
-        'No. One account; you switch between the companies that invited you.',
+        'I look after nine companies. How does that work?',
+        'Each company invites you separately by email, and you get your own access in each. In BusiKM, one account is one company.',
       ],
       [
         'What if something is missing from the data?',
-        'You’ll see it before you download, on the checklist, along with the name of the person who can fill it in.',
+        'You’ll see it before you download, in the six month-end steps. Every gap comes with a link straight to where you fill it in.',
       ],
     ],
   },
 };
 
 /**
- * Księgowa — strona roli wg projektu „BusiKM Dla księgowej" z Claude Design
+ * Księgowa – strona roli wg projektu „BusiKM Dla księgowej" z Claude Design
  * (design/13-ksiegowa). Treść: docs/landing/05, rozdział B3.
  *
  * Rytm inny niż na pozostałych stronach ról: oś jest miesięczna, nie godzinowa.

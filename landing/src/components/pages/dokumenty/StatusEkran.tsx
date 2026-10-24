@@ -9,17 +9,17 @@ const TEKSTY: Tlumaczenia<{ tytul: string; tresc: string; label: string; note: s
     tytul: 'Jeden ekran statusu',
     tresc: 'Widać, co wymaga uwagi w tym miesiącu. I nic poza tym.',
     label: 'Status miesiąca · desktop 1440',
-    note: 'Trzy kolumny: pojazdy, firma, kierowcy. Tylko to, co wymaga uwagi; reszta jako liczba „w porządku”.',
+    note: 'Dokumenty, zakładka Kierowcy: liczniki po terminie, brakuje, kończą się w 30 dni i w porządku, pod nimi każdy kierowca z terminami badań, karty i prawa jazdy.',
   },
   en: {
     tytul: 'One status screen',
     tresc: 'You see what needs attention this month. And nothing else.',
     label: 'Monthly status · desktop 1440',
-    note: 'Three columns: vehicles, company, drivers. Only what needs attention; the rest as an “all fine” count.',
+    note: 'Documents, Drivers tab: counts for overdue, missing, expiring in 30 days and all fine, then each driver with their medical, card and licence dates.',
   },
 };
 
-/** 04 — ekran statusu na pełną szerokość. */
+/** 04 – ekran statusu na pełną szerokość. */
 export function StatusEkran() {
   const t = TEKSTY[biezacyJezyk()];
   return (

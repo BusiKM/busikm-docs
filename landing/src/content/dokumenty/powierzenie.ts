@@ -18,10 +18,10 @@ const pl: Dokument = {
   wersja: 1,
   ostatniaZmiana: '1 września 2026',
   wSkrocie: [
-    'Ty jesteś administratorem danych swoich kierowców i kontrahentów. My tylko je przetwarzamy — na Twoje polecenie.',
+    'Ty jesteś administratorem danych swoich kierowców i kontrahentów. My tylko je przetwarzamy – na Twoje polecenie.',
     'Nie robimy z nimi nic poza tym, co potrzebne do działania usługi.',
     'Podwykonawców mamy wypisanych z nazwy. O każdej zmianie uprzedzamy 30 dni wcześniej.',
-    'Po zakończeniu umowy zwracamy dane albo je usuwamy — decydujesz Ty.',
+    'Po zakończeniu umowy zwracamy dane albo je usuwamy – decydujesz Ty.',
   ],
   paragrafy: [
     {
@@ -53,7 +53,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Jeżeli Twoja organizacja wymaga podpisania odrębnej umowy powierzenia na własnym wzorze, napisz — ustalimy jej treść indywidualnie.',
+            'Jeżeli Twoja organizacja wymaga podpisania odrębnej umowy powierzenia na własnym wzorze, napisz – ustalimy jej treść indywidualnie.',
         },
       ],
     },
@@ -70,11 +70,11 @@ const pl: Dokument = {
           typ: 'lista',
           wstep: 'Przetwarzanie polega na wykonywaniu na danych następujących operacji:',
           punkty: [
-            'zbieranie i utrwalanie — przez formularze aplikacji i aplikację kierowcy;',
-            'przechowywanie — na serwerach podprocesorów wskazanych na liście;',
-            'porządkowanie, przeglądanie i wyszukiwanie — na potrzeby wyświetlania i zestawień;',
-            'przesyłanie — do odbiorców wskazanych przez Ciebie, w tym do klientów i księgowości;',
-            'usuwanie — na Twoje polecenie i po zakończeniu umowy.',
+            'zbieranie i utrwalanie – przez formularze aplikacji i aplikację kierowcy;',
+            'przechowywanie – na serwerach podprocesorów wskazanych na liście;',
+            'porządkowanie, przeglądanie i wyszukiwanie – na potrzeby wyświetlania i zestawień;',
+            'przesyłanie – do odbiorców wskazanych przez Ciebie, w tym do klientów i księgowości;',
+            'usuwanie – na Twoje polecenie i po zakończeniu umowy.',
           ],
         },
         {
@@ -91,7 +91,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Przetwarzamy dane przez czas trwania umowy o świadczenie usługi oraz przez 30 dni po jej zakończeniu — tak, abyś zdążył pobrać dane. Po tym okresie postępujemy zgodnie z punktem 9.',
+            'Przetwarzamy dane przez czas trwania umowy o świadczenie usługi oraz przez 30 dni po jej zakończeniu – tak, abyś zdążył pobrać dane. Po tym okresie postępujemy zgodnie z punktem 9.',
         },
       ],
     },
@@ -132,7 +132,7 @@ const pl: Dokument = {
           typ: 'lista',
           wstep: 'Zobowiązujemy się, że:',
           punkty: [
-            'przetwarzamy dane wyłącznie na Twoje udokumentowane polecenie — poleceniem jest także korzystanie przez Ciebie z funkcji aplikacji;',
+            'przetwarzamy dane wyłącznie na Twoje udokumentowane polecenie – poleceniem jest także korzystanie przez Ciebie z funkcji aplikacji;',
             'jeżeli obowiązek przetwarzania nałoży na nas prawo, uprzedzimy Cię przed przetwarzaniem, chyba że prawo tego zabrania;',
             'zapewniamy, że osoby dopuszczone do danych są zobowiązane do zachowania tajemnicy;',
             'stosujemy środki bezpieczeństwa opisane w punkcie 6;',
@@ -175,7 +175,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Wyrażasz ogólną zgodę na korzystanie przez nas z podprocesorów. Ich aktualną listę — z nazwą, zakresem i krajem przetwarzania — prowadzimy w dokumencie Podprocesorzy.',
+            'Wyrażasz ogólną zgodę na korzystanie przez nas z podprocesorów. Ich aktualną listę – z nazwą, zakresem i krajem przetwarzania – prowadzimy w dokumencie Podprocesorzy.',
         },
         {
           typ: 'akapit',
@@ -201,7 +201,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Masz prawo do audytu przetwarzania, w tym inspekcji, przeprowadzanego przez Ciebie lub audytora przez Ciebie upoważnionego. Audyt zapowiadasz z 14-dniowym wyprzedzeniem, przeprowadzasz w godzinach pracy i nie częściej niż raz w roku — chyba że powodem jest stwierdzone naruszenie. Zamiast audytu możemy przedstawić aktualny raport z audytu niezależnego podmiotu.',
+            'Masz prawo do audytu przetwarzania, w tym inspekcji, przeprowadzanego przez Ciebie lub audytora przez Ciebie upoważnionego. Audyt zapowiadasz z 14-dniowym wyprzedzeniem, przeprowadzasz w godzinach pracy i nie częściej niż raz w roku – chyba że powodem jest stwierdzone naruszenie. Zamiast audytu możemy przedstawić aktualny raport z audytu niezależnego podmiotu.',
         },
       ],
     },
@@ -217,7 +217,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Jeżeli wolisz otrzymać dane zamiast ich usunięcia albo chcesz, żebyśmy usunęli je wcześniej — napisz, a zrobimy to i potwierdzimy wykonanie.',
+            'Jeżeli wolisz otrzymać dane zamiast ich usunięcia albo chcesz, żebyśmy usunęli je wcześniej – napisz, a zrobimy to i potwierdzimy wykonanie.',
         },
         {
           typ: 'akapit',
@@ -245,7 +245,7 @@ const pl: Dokument = {
 };
 
 /**
- * Tłumaczenie angielskie — dla wygody czytelnika. Wiążąca jest wersja polska;
+ * Tłumaczenie angielskie – dla wygody czytelnika. Wiążąca jest wersja polska;
  * strona mówi o tym wprost nad treścią.
  */
 const en: Dokument = {
@@ -255,10 +255,10 @@ const en: Dokument = {
   wersja: 1,
   ostatniaZmiana: '1 September 2026',
   wSkrocie: [
-    'You are the controller of your drivers’ and business partners’ data. We only process it — on your instructions.',
+    'You are the controller of your drivers’ and business partners’ data. We only process it – on your instructions.',
     'We do nothing with it beyond what the service needs to work.',
     'Our subcontractors are listed by name. We give 30 days’ notice of any change.',
-    'When the agreement ends, we return the data or delete it — you decide.',
+    'When the agreement ends, we return the data or delete it – you decide.',
   ],
   paragrafy: [
     {
@@ -289,7 +289,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'If your organisation requires a separate data processing agreement to be signed on its own template, write to us — we will agree its content individually.',
+            'If your organisation requires a separate data processing agreement to be signed on its own template, write to us – we will agree its content individually.',
         },
       ],
     },
@@ -306,11 +306,11 @@ const en: Dokument = {
           typ: 'lista',
           wstep: 'Processing consists of performing the following operations on the data:',
           punkty: [
-            'collection and recording — through the application’s forms and the driver app;',
-            'storage — on the servers of the subprocessors indicated on the list;',
-            'organisation, viewing and retrieval — for display and reporting purposes;',
-            'transmission — to recipients indicated by you, including clients and accounting;',
-            'erasure — on your instructions and after the agreement ends.',
+            'collection and recording – through the application’s forms and the driver app;',
+            'storage – on the servers of the subprocessors indicated on the list;',
+            'organisation, viewing and retrieval – for display and reporting purposes;',
+            'transmission – to recipients indicated by you, including clients and accounting;',
+            'erasure – on your instructions and after the agreement ends.',
           ],
         },
         {
@@ -327,7 +327,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'We process the data for the term of the service agreement and for 30 days after it ends — so that you have time to download the data. After that period, we proceed in accordance with section 9.',
+            'We process the data for the term of the service agreement and for 30 days after it ends – so that you have time to download the data. After that period, we proceed in accordance with section 9.',
         },
       ],
     },
@@ -368,7 +368,7 @@ const en: Dokument = {
           typ: 'lista',
           wstep: 'We undertake that we:',
           punkty: [
-            'process the data only on your documented instructions — your use of the application’s functions also constitutes an instruction;',
+            'process the data only on your documented instructions – your use of the application’s functions also constitutes an instruction;',
             'will inform you before processing if the law imposes an obligation to process on us, unless the law prohibits this;',
             'ensure that persons authorised to access the data are bound by confidentiality;',
             'apply the security measures described in section 6;',
@@ -411,7 +411,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'You give us general authorisation to engage subprocessors. We keep their current list — with the name, scope and country of processing — in the Subprocessors document.',
+            'You give us general authorisation to engage subprocessors. We keep their current list – with the name, scope and country of processing – in the Subprocessors document.',
         },
         {
           typ: 'akapit',
@@ -437,7 +437,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'You have the right to audit the processing, including inspections, carried out by you or by an auditor mandated by you. You announce an audit 14 days in advance and carry it out during business hours, no more than once a year — unless the reason is an identified breach. Instead of an audit, we may present a current audit report from an independent party.',
+            'You have the right to audit the processing, including inspections, carried out by you or by an auditor mandated by you. You announce an audit 14 days in advance and carry it out during business hours, no more than once a year – unless the reason is an identified breach. Instead of an audit, we may present a current audit report from an independent party.',
         },
       ],
     },
@@ -453,7 +453,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'If you would rather receive the data than have it deleted, or you want us to delete it earlier — write to us, and we will do so and confirm that it has been done.',
+            'If you would rather receive the data than have it deleted, or you want us to delete it earlier – write to us, and we will do so and confirm that it has been done.',
         },
         {
           typ: 'akapit',

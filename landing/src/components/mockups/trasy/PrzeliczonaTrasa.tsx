@@ -27,7 +27,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Stara i nowa trasa obok siebie — zmiana z powodu korka. */
+/** Stara i nowa trasa obok siebie – zmiana z powodu korka. */
 export function PrzeliczonaTrasa() {
   const t = TEKSTY[biezacyJezyk()];
   return (

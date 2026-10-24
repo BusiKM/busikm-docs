@@ -19,7 +19,7 @@ export type { Artykul, Kategoria };
 /**
  * Wszystkie artykuły w kolejności kategorii ze strony centrum pomocy.
  *
- * Wersja polska — z niej biorą się adresy (`generateStaticParams`, mapa
+ * Wersja polska – z niej biorą się adresy (`generateStaticParams`, mapa
  * strony). Slugi są w obu językach te same; angielskie adresy wylicza
  * `i18n/trasy.ts`.
  */
@@ -52,10 +52,10 @@ export function artykulyKategorii(id: string, jezyk: Jezyk = 'pl'): Artykul[] {
 }
 
 /**
- * Tekst, po którym przeszukujemy artykuł — w jego własnym języku.
+ * Tekst, po którym przeszukujemy artykuł – w jego własnym języku.
  *
  * Wchodzi do niego wszystko oprócz treści bloków: tytuł, lead, kategoria,
- * hasła kategorii i tytuły rozdziałów. Pełna treść by tu nie pomogła —
+ * hasła kategorii i tytuły rozdziałów. Pełna treść by tu nie pomogła –
  * szukanie po słowie „kliknij" zwracałoby wszystko.
  */
 export function indeksArtykulu(a: Artykul, jezyk: Jezyk): string {
@@ -72,7 +72,7 @@ export function indeksArtykulu(a: Artykul, jezyk: Jezyk): string {
     .toLowerCase();
 }
 
-/** Artykuł w wyszukiwarce — tylko to, co pokazuje karta, i gotowy indeks. */
+/** Artykuł w wyszukiwarce – tylko to, co pokazuje karta, i gotowy indeks. */
 export type PozycjaWyszukiwarki = {
   slug: string;
   tytul: string;
@@ -89,7 +89,7 @@ export type GrupaWyszukiwarki = {
 /**
  * Dane dla wyszukiwarki, liczone na serwerze.
  *
- * Wyszukiwarka jest komponentem klienckim — gdyby importowała artykuły,
+ * Wyszukiwarka jest komponentem klienckim – gdyby importowała artykuły,
  * do przeglądarki pojechałaby pełna treść wszystkich instrukcji w obu
  * językach. Tak jedzie tylko to, co widać na kartach, w jednym języku.
  */

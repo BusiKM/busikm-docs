@@ -25,7 +25,7 @@ const TEKSTY: Tlumaczenia<{
 };
 
 /**
- * 6.21 — finał. Ten sam na stronie głównej i na wszystkich podstronach.
+ * 6.21 – finał. Ten sam na stronie głównej i na wszystkich podstronach.
  *
  * `nota` dochodzi tylko na stronie kierowcy: to jedyne miejsce, gdzie
  * czytelnik nie jest osobą, która kupuje.

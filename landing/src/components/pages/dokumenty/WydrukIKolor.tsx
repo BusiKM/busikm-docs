@@ -25,8 +25,8 @@ type Teksty = {
 const TEKSTY: Tlumaczenia<Teksty> = {
   pl: {
     wydruk: {
-      tytul: 'Wydruk listy',
-      tresc: 'Dla siebie albo dla księgowej, na jedną stronę.',
+      tytul: 'Komplet do pobrania',
+      tresc: 'Dokumenty auta albo kierowcy w jednym pliku ZIP – dla klienta albo na kontrolę. Braki widzisz przed pobraniem.',
       naglowek: 'Dokumenty · wrzesień 2026',
       pozycje: [
         ['Ubezpieczenie OC · PO 2093J', '12.10'],
@@ -35,7 +35,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         ['Licencja wspólnotowa', '04.04.27'],
       ],
       reszta: '… 13 kolejnych',
-      stopka: 'Wydrukowano 2.09.2026 · busikm.pl',
+      stopka: 'Pobrano 2.09.2026 · busikm.pl',
     },
     kolor: {
       tytul: 'Kolor ostrzegawczy tylko tutaj',
@@ -55,8 +55,8 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
   en: {
     wydruk: {
-      tytul: 'Printable list',
-      tresc: 'For you or your accountant, on a single page.',
+      tytul: 'The full set to download',
+      tresc: 'A vehicle’s or driver’s documents in one ZIP file – for a client or a roadside check. You see what’s missing before you download.',
       naglowek: 'Documents · September 2026',
       pozycje: [
         ['Third-party liability insurance · PO 2093J', '12 Oct'],
@@ -65,7 +65,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         ['Community licence', '4 Apr 2027'],
       ],
       reszta: '… 13 more',
-      stopka: 'Printed 2 Sep 2026 · busikm.pl',
+      stopka: 'Downloaded 2 Sep 2026 · busikm.pl',
     },
     kolor: {
       tytul: 'The warning colour lives here only',
@@ -85,7 +85,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   },
 };
 
-/** 05 + 06 — wydruk i jedyne miejsce w serwisie z kolorem ostrzegawczym. */
+/** 05 + 06 – wydruk i jedyne miejsce w serwisie z kolorem ostrzegawczym. */
 export function WydrukIKolor() {
   const { wydruk, kolor } = TEKSTY[biezacyJezyk()];
   return (

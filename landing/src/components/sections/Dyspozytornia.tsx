@@ -14,31 +14,31 @@ const TEKSTY: Tlumaczenia<{
 }> = {
   pl: {
     naglowek: 'Cały dzień pracy na jednym ekranie.',
-    lead: 'Zlecenia, mapa, kierowcy i rozmowa — obok siebie. Nie przełączasz zakładek i nie szukasz numeru w telefonie. Przypisujesz kierowcę i pojazd, a system podpowiada, kto ma wszystko ważne.',
+    lead: 'Kolejka zleceń i mapa floty obok siebie, pod spodem plan floty. Do kierowcy piszesz jednym kliknięciem, bez szukania numeru w telefonie. Przypisujesz auto, a system podpowiada, kto zdąży na załadunek.',
     bullets: [
-      'Zlecenie od przyjęcia po rozliczenie',
-      'Kierowca i pojazd przypisani w dwie sekundy',
-      'Rozmowa z kierowcą bez wychodzenia z ekranu',
+      'Przy przyjmowaniu zlecenia widzisz, czy zdążysz – z przerwami i odpoczynkami',
+      'Podpowiedź, które auto i kierowca zdążą',
+      '„Napisz” na karcie kursu otwiera czat zlecenia',
     ],
     nota: 'Dyspozytor ma w BusiKM własne stanowisko i własny dostęp.',
     label: 'Ekran dyspozytora · desktop 1440',
-    opis: 'Szeroki ekran w trzech kolumnach: lista zleceń, mapa z trasami, panel kierowcy z rozmową.',
+    opis: 'Dyspozytornia: u góry liczniki dnia, po lewej kolejka z zakładkami „Wymaga reakcji”, „Do przypisania” i „W trasie”, po prawej mapa floty z filtrami, niżej plan floty.',
   },
   en: {
     naglowek: 'The whole working day on one screen.',
-    lead: 'Orders, map, drivers and chat — side by side. No switching tabs, no hunting for a number in your phone. You assign a driver and a van, and the system tells you whose papers are all in date.',
+    lead: 'The order queue and the fleet map side by side, with the fleet plan underneath. You message a driver in one click, no hunting for a number in your phone. You assign a van, and the system tells you who will make the pickup.',
     bullets: [
-      'An order from booking to settlement',
-      'Driver and van assigned in two seconds',
-      'Talk to the driver without leaving the screen',
+      'When you take an order, you see whether you’ll make it – breaks and rest included',
+      'A hint on which van and driver will make it',
+      '“Message” on a run opens the order chat',
     ],
     nota: 'In BusiKM the dispatcher has their own workspace and their own login.',
     label: 'Dispatcher’s screen · desktop 1440',
-    opis: 'A wide screen in three columns: order list, map with routes, driver panel with chat.',
+    opis: 'Dispatch: the day’s counters at the top, the queue on the left with “Needs action”, “To assign” and “On the road” tabs, the fleet map with filters on the right, the fleet plan below.',
   },
 };
 
-/** 6.5 — dyspozytornia. Idzie zaraz po „Trzech ruchach", więc bez górnego odstępu. */
+/** 6.5 – dyspozytornia. Idzie zaraz po „Trzech ruchach", więc bez górnego odstępu. */
 export function Dyspozytornia() {
   const t = TEKSTY[biezacyJezyk()];
   return (

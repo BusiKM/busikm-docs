@@ -8,7 +8,7 @@ import { lokalizuj } from '@/i18n/trasy';
 /**
  * `next/link`, który sam dobiera adres do języka strony.
  *
- * Odnośniki w kodzie zostają polskie (`/cennik`) — na stronie angielskiej
+ * Odnośniki w kodzie zostają polskie (`/cennik`) – na stronie angielskiej
  * ten komponent zamienia je na `/en/pricing`. Dzięki temu treść nie musi
  * pamiętać o języku przy każdym `href`.
  */

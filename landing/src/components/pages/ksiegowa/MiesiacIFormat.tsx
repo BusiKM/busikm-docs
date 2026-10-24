@@ -23,42 +23,42 @@ const TEKSTY: Tlumaczenia<Teksty> = {
   pl: {
     miesiac: {
       tytul: 'Wybiera miesiąc i klika raz',
-      tresc: 'Dostaje wszystko za ten okres, bez proszenia o brakujące papiery.',
+      tresc: 'Dostaje wszystko za ten okres w jednym pliku ZIP. Przed zamknięciem miesiąca – wersję roboczą, po zamknięciu – ostateczną, z JPK_V7M.',
       miesiace: ['czerwiec', 'lipiec', 'sierpień', 'wrzesień'],
-      przycisk: 'Pobierz komplet za sierpień',
+      przycisk: 'Pobierz paczkę dla biura',
     },
     format: {
       tytul: 'W formacie jej programu',
-      tresc: 'Insert, Comarch Optima, Symfonia albo zwykły arkusz.',
+      tresc: 'Comarch Optima, Insert GT albo Symfonia. Rejestry VAT i płace także w Excelu.',
       formaty: [
-        ['Insert', 'EPP', false],
-        ['Comarch Optima', 'wybrany', true],
-        ['Symfonia', 'FK', false],
-        ['Zwykły arkusz', 'XLSX · zakładka na zestawienie', false],
+        ['Comarch Optima', 'XML · wybrany', true],
+        ['Insert GT', 'EPP', false],
+        ['Symfonia', 'TXT + AMS', false],
+        ['Excel', 'rejestry VAT, płace i diety', false],
       ],
     },
   },
   en: {
     miesiac: {
       tytul: 'Pick a month, click once',
-      tresc: 'Everything for that period arrives in one go, with no chasing missing paperwork.',
+      tresc: 'Everything for that period arrives in one ZIP file. Before the month is closed – a draft version; after closing – the final one, with JPK_V7M.',
       miesiace: ['June', 'July', 'August', 'September'],
-      przycisk: 'Download the full set for August',
+      przycisk: 'Download the package for the office',
     },
     format: {
       tytul: 'In the format of their software',
-      tresc: 'Insert, Comarch Optima, Symfonia (the accounting programs most Polish firms use) or a plain spreadsheet.',
+      tresc: 'Comarch Optima, Insert GT or Symfonia (the accounting programs most Polish firms use). VAT registers and payroll in Excel too.',
       formaty: [
-        ['Insert', 'EPP', false],
-        ['Comarch Optima', 'selected', true],
-        ['Symfonia', 'FK', false],
-        ['Plain spreadsheet', 'XLSX · one tab per report', false],
+        ['Comarch Optima', 'XML · selected', true],
+        ['Insert GT', 'EPP', false],
+        ['Symfonia', 'TXT + AMS', false],
+        ['Excel', 'VAT registers, payroll and allowances', false],
       ],
     },
   },
 };
 
-/** 01 i 02 — dwie karty obok siebie. */
+/** 01 i 02 – dwie karty obok siebie. */
 export function MiesiacIFormat() {
   const t = TEKSTY[biezacyJezyk()];
   const { formaty } = t.format;

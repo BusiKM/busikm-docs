@@ -20,22 +20,22 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Cztery ekrany, które widzisz codziennie.',
     pulpit: {
       label: 'Pulpit właściciela · desktop',
-      note: 'Trzy liczby u góry, mapa z trasą, lista zleceń ze statusami.',
-      caption: 'Pulpit z zyskiem',
+      note: 'Po lewej „Do zrobienia” z tym, co czeka na Twoją decyzję, po prawej „Dziś” – kursy w trasie, załadunki, dostawy i kto jest teraz w drodze.',
+      caption: 'Pulpit',
     },
     mapa: {
       label: 'Mapa floty · desktop',
-      note: 'Mapa Europy z trasami i dymkiem nad pojazdem: kierowca, zlecenie, godzina dojazdu.',
+      note: 'Dyspozytornia: mapa Europy ze znacznikami aut i filtrami „Wszystkie”, „W trasie”, „Wolne”, „Serwis”, obok kolejka kursów.',
       caption: 'Mapa floty',
     },
     zysk: {
-      label: 'Rentowność zleceń · desktop, tryb nocny',
-      note: 'Zlecenia posortowane po marży, zlecenie na minusie na dole listy.',
+      label: 'Raporty → Zlecenia i trasy · desktop',
+      note: 'Średni zysk z kursu, puste kilometry, zlecenia poniżej progu marży i marża według kraju rozładunku.',
       caption: 'Rentowność zleceń',
     },
     dokumenty: {
       label: 'Dokumenty i terminy · desktop',
-      note: 'Lista dokumentów po dniach do końca ważności, paski w trzech kolorach.',
+      note: 'Liczniki – po terminie, brakuje, kończą się w 30 dni, w porządku – i lista dokumentów z datą ważności i stanem.',
       caption: 'Dokumenty i terminy',
     },
   },
@@ -43,29 +43,29 @@ const TEKSTY: Tlumaczenia<{
     naglowek: 'Four screens you see every day.',
     pulpit: {
       label: 'Owner’s dashboard · desktop',
-      note: 'Three figures at the top, a map with the route, a list of orders with their status.',
-      caption: 'Dashboard with profit',
+      note: '“To do” on the left with what’s waiting for your decision, “Today” on the right – runs on the road, loadings, deliveries and who is driving right now.',
+      caption: 'Dashboard',
     },
     mapa: {
       label: 'Fleet map · desktop',
-      note: 'Map of Europe with routes and a bubble over the vehicle: driver, order, arrival time.',
+      note: 'Dispatch: a map of Europe with vehicle markers and “All”, “On the road”, “Free”, “Service” filters, the run queue alongside.',
       caption: 'Fleet map',
     },
     zysk: {
-      label: 'Order profitability · desktop, dark mode',
-      note: 'Orders sorted by margin, the loss-making one at the bottom of the list.',
+      label: 'Reports → Orders and routes · desktop',
+      note: 'Average profit per run, empty kilometres, orders below the margin threshold and margin by unloading country.',
       caption: 'Order profitability',
     },
     dokumenty: {
       label: 'Documents and deadlines · desktop',
-      note: 'Documents listed by days to expiry, with bars in three colours.',
+      note: 'Counters – overdue, missing, expiring within 30 days, in order – and a list of documents with expiry date and status.',
       caption: 'Documents and deadlines',
     },
   },
 };
 
 /**
- * Cztery ekrany, które właściciel widzi codziennie — wszystkie już narysowane
+ * Cztery ekrany, które właściciel widzi codziennie – wszystkie już narysowane
  * przy podstronach obszarowych. Strona roli tylko je zestawia, więc nazwy
  * plików są dokładnie te same i jeden zrzut obsłuży oba miejsca.
  */

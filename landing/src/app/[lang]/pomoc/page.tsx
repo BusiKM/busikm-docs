@@ -34,7 +34,7 @@ const TEKSTY: Tlumaczenia<{ naglowek: React.ReactNode; lead: string; przycisk: s
 };
 
 /**
- * Centrum pomocy — wg projektu „BusiKM Pomoc" z Claude Design
+ * Centrum pomocy – wg projektu „BusiKM Pomoc" z Claude Design
  * (design/19-pomoc). Treść: docs/landing/05, rozdział C5.
  *
  * Ktoś tu trafia zniecierpliwiony, więc wyszukiwarka jest pierwszą rzeczą,

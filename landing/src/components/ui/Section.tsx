@@ -1,7 +1,7 @@
 import { Container } from '@/components/ui/Container';
 
 /**
- * Sekcja strony głównej — rytm z projektu: 96 px odstępu na telefonie,
+ * Sekcja strony głównej – rytm z projektu: 96 px odstępu na telefonie,
  * 160 px na desktopie, 24 px marginesu bocznego na telefonie, treść w 1120 px.
  */
 type SectionProps = {
@@ -38,7 +38,7 @@ export function Section({
   );
 }
 
-/** Nadtytuł — 12/14 px, wersaliki, rozstrzelony. */
+/** Nadtytuł – 12/14 px, wersaliki, rozstrzelony. */
 export function Eyebrow({
   children,
   dark = false,
@@ -61,7 +61,7 @@ export function Eyebrow({
   );
 }
 
-/** Lista punktów z niebieską kropką — powtarza się w ośmiu sekcjach. */
+/** Lista punktów z niebieską kropką – powtarza się w ośmiu sekcjach. */
 export function Bullets({
   items,
   dark = false,

@@ -1,7 +1,7 @@
 import { Section } from '@/components/ui/Section';
 
 /**
- * Blok „numer + nagłówek + zdanie" z makietą obok — podstawowy rytm podstron.
+ * Blok „numer + nagłówek + zdanie" z makietą obok – podstawowy rytm podstron.
  * Makieta raz po lewej, raz po prawej.
  */
 export function Blok({
@@ -17,7 +17,7 @@ export function Blok({
   tytul: string;
   tresc: string;
   makieta: React.ReactNode;
-  /** Coś pod treścią — pigułki statusów, lista, cokolwiek. */
+  /** Coś pod treścią – pigułki statusów, lista, cokolwiek. */
   dodatek?: React.ReactNode;
   /** Po której stronie makieta na desktopie. */
   strona?: 'left' | 'right';

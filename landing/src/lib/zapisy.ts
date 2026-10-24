@@ -10,18 +10,18 @@ export type Zapis = {
   lista: Lista;
   zrodlo: Zrodlo;
   /**
-   * Plan i okres wybrane w cenniku — tylko gdy człowiek przyszedł stamtąd.
+   * Plan i okres wybrane w cenniku – tylko gdy człowiek przyszedł stamtąd.
    * Wejście wprost na stronę zapisu jest równie poprawne, więc pole jest
    * opcjonalne na całej drodze, aż po reguły Firestore.
    */
   zainteresowanie?: Zainteresowanie | null;
   /**
-   * Język strony, na której człowiek się zapisał — a więc i brzmienia zgody,
+   * Język strony, na której człowiek się zapisał – a więc i brzmienia zgody,
    * które miał przed oczami. Bez niego zapis z `/en/demo` wskazywałby na
    * polskie słowa, których ta osoba nie widziała.
    */
   jezyk: Jezyk;
-  /** Ukryte pole antyspamowe — musi zostać puste. */
+  /** Ukryte pole antyspamowe – musi zostać puste. */
   pulapka?: string;
 };
 
@@ -29,7 +29,7 @@ export type Zapis = {
  * Zapisuje adres na listę.
  *
  * Zgody nie przekazujemy parametrem, bo na tych stronach nie ma zapisu bez
- * niej — formularz nie puści dalej. Zapisujemy natomiast **jej brzmienie**:
+ * niej – formularz nie puści dalej. Zapisujemy natomiast **jej brzmienie**:
  * ciężar dowodu spoczywa na nas (art. 7 ust. 1 RODO), a samo `true` nie
  * dowodzi, pod czym dana osoba się podpisała.
  *
@@ -40,7 +40,7 @@ export type Zapis = {
 export async function zapiszNaListe(dane: Zapis): Promise<void> {
   if (dane.pulapka) return;
 
-  // SDK pobierane dopiero teraz — patrz `lib/firebase.ts`.
+  // SDK pobierane dopiero teraz – patrz `lib/firebase.ts`.
   const [db, { addDoc, collection, serverTimestamp }] = await Promise.all([
     getDb(),
     import('firebase/firestore'),
@@ -70,7 +70,7 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
     source: 'busikm-landing',
   });
 
-  // Powiadomienie nie blokuje sukcesu — adres jest już zapisany.
+  // Powiadomienie nie blokuje sukcesu – adres jest już zapisany.
   try {
     await fetch('/api/zapis', {
       method: 'POST',
@@ -79,7 +79,7 @@ export async function zapiszNaListe(dane: Zapis): Promise<void> {
         imie: oczyszczone.imie,
         email: oczyszczone.email,
         zrodlo: dane.zrodlo,
-        // Tylko język, nie tekst zgody — trasa bierze brzmienie z `content/zgoda`
+        // Tylko język, nie tekst zgody – trasa bierze brzmienie z `content/zgoda`
         // i nie zapisze do Klaviyo niczego, co przyszło z przeglądarki.
         jezyk: dane.jezyk,
         ...(wybor ? { plan: wybor.plan, okres: wybor.okres } : {}),

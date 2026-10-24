@@ -1,0 +1,59 @@
+# Zrzuty aplikacji kierowcy przez stuknięcia (bez deep linków, które pytają „Otworzyć w…?”).
+appId: ${APP_ID}
+---
+- launchApp
+- extendedWaitUntil:
+    visible: 'Zlecenia'
+    timeout: 120000
+- tapOn: 'Zlecenia'
+- waitForAnimationToEnd
+- takeScreenshot: telefony/zlecenia
+- tapOn:
+    point: 77%, 41%
+- waitForAnimationToEnd
+- takeScreenshot: telefony/zlecenie
+- tapOn:
+    point: 9%, 10%
+- waitForAnimationToEnd
+- tapOn: 'Ja'
+- waitForAnimationToEnd
+- tapOn:
+    text: '.*Czas pracy.*'
+    index: 0
+- waitForAnimationToEnd
+- takeScreenshot: telefony/czas
+- tapOn:
+    point: 9%, 10%
+- waitForAnimationToEnd
+- tapOn:
+    text: '.*Moje koszty i zwroty.*'
+    index: 0
+- waitForAnimationToEnd
+- takeScreenshot: telefony/paragony
+- tapOn:
+    point: 9%, 10%
+- waitForAnimationToEnd
+- tapOn:
+    text: '.*Do wysłania.*'
+    index: 0
+- waitForAnimationToEnd
+- takeScreenshot: telefony/wysylka
+- tapOn:
+    point: 9%, 10%
+- waitForAnimationToEnd
+- tapOn:
+    text: '.*Dokumenty.*'
+    index: 0
+- waitForAnimationToEnd
+- takeScreenshot: telefony/dokumenty
+- tapOn:
+    point: 9%, 10%
+- waitForAnimationToEnd
+- tapOn: 'Dziś'
+- waitForAnimationToEnd
+- takeScreenshot: telefony/start
+- tapOn:
+    text: '.*Nawiguj.*'
+    index: 0
+- waitForAnimationToEnd
+- takeScreenshot: telefony/nawigacja

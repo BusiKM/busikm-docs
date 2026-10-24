@@ -36,7 +36,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Dni w krajach policzone z trasy — z jedną pozycją poprawioną ręcznie. */
+/** Dni w krajach policzone z trasy – z jedną pozycją poprawioną ręcznie. */
 export function DniWKrajach() {
   const t = TEKSTY[biezacyJezyk()];
   return (

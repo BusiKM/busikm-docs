@@ -15,7 +15,7 @@ const TEKSTY: Tlumaczenia<{
     kto: 'Marek W. · dziś',
     luka: 'tunel Brenner · brak zasięgu 12:05–12:38',
     lukaKrotko: '12:05–12:38 · w telefonie',
-    lukaDlugo: '12:05–12:38 · liczyło się w telefonie',
+    lukaDlugo: '12:05–12:38 · zapisane w telefonie, dosłane 12:39',
     wiersze: [
       ['Jazda w tunelu', '33 min'],
       ['Zapisane w telefonie', 'tak'],
@@ -26,7 +26,7 @@ const TEKSTY: Tlumaczenia<{
     kto: 'Marek W. · today',
     luka: 'Brenner tunnel · no signal 12:05–12:38',
     lukaKrotko: '12:05–12:38 · on the phone',
-    lukaDlugo: '12:05–12:38 · counted on the phone',
+    lukaDlugo: '12:05–12:38 · saved on the phone, sent at 12:39',
     wiersze: [
       ['Driving in the tunnel', '33 min'],
       ['Saved on the phone', 'yes'],
@@ -35,7 +35,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Pasek dnia z luką w zasięgu — i dowód, że luka też się policzyła. */
+/** Pasek dnia z luką w zasięgu – i dowód, że luka też się policzyła. */
 export function BezZasiegu() {
   const t = TEKSTY[biezacyJezyk()];
   return (

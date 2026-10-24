@@ -1,5 +1,5 @@
 /**
- * Blok w karcie — dwa takie stoją obok siebie, gdy dwa punkty dzielą jedną
+ * Blok w karcie – dwa takie stoją obok siebie, gdy dwa punkty dzielą jedną
  * sekcję. Na górze numer, nagłówek i zdanie, na dole makieta.
  */
 export function KartaBloku({

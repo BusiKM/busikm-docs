@@ -8,7 +8,7 @@ import { useJezyk } from '@/i18n/klient';
  *
  * Polityka prywatności obiecuje, że zgodę da się cofnąć „w każdej chwili".
  * Bez tego przycisku jedyną drogą byłoby czyszczenie danych witryny
- * w przeglądarce — a to nie jest wycofanie zgody, tylko obejście.
+ * w przeglądarce – a to nie jest wycofanie zgody, tylko obejście.
  */
 export function PrzyciskCookie() {
   const jezyk = useJezyk();

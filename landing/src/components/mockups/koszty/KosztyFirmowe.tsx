@@ -22,7 +22,7 @@ const TEKSTY: Tlumaczenia<{
     ],
     razem: 'Razem',
     suma: '9 022 zł',
-    stopka: 'Rozkładają się na przejechane kilometry i wchodzą do marży każdego kursu.',
+    stopka: 'Wchodzą do kosztów auta i wyniku miesiąca – koszt na kilometr widzisz na karcie pojazdu.',
   },
   en: {
     naglowek: 'Company costs · PO 2093J',
@@ -36,11 +36,11 @@ const TEKSTY: Tlumaczenia<{
     ],
     razem: 'Total',
     suma: 'PLN 9,022',
-    stopka: 'Spread across the kilometres driven and counted in the margin of every job.',
+    stopka: 'Counted in the vehicle’s costs and the month’s result – the cost per kilometre is on the vehicle card.',
   },
 };
 
-/** Koszty, których nikt nie fotografuje — a i tak wchodzą do marży. */
+/** Koszty, których nikt nie fotografuje – a i tak wchodzą do marży. */
 export function KosztyFirmowe() {
   const t = TEKSTY[biezacyJezyk()];
   return (

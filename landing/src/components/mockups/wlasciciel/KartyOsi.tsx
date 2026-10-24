@@ -2,7 +2,7 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Cztery drobne karty przy osi dnia. Nie są makietami do podmiany — to
+ * Cztery drobne karty przy osi dnia. Nie są makietami do podmiany – to
  * ilustracje przy punktach osi, mają być mniejsze i cichsze niż ekrany
  * z sekcji „Cztery ekrany".
  */
@@ -59,7 +59,7 @@ const TEKSTY: Tlumaczenia<{
 const ramka =
   'rounded-2xl border border-line-dark bg-surface p-4 text-[11px] lg:p-4.5';
 
-/** 7:10 — trzy liczby pulpitu. */
+/** 7:10 – trzy liczby pulpitu. */
 export function KartaPulpit() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -78,7 +78,7 @@ export function KartaPulpit() {
   );
 }
 
-/** 11:40 — bus na mapie z godziną dojazdu. */
+/** 11:40 – bus na mapie z godziną dojazdu. */
 export function KartaMapa() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -105,7 +105,7 @@ export function KartaMapa() {
   );
 }
 
-/** 16:20 — zakończony kurs gotowy do zafakturowania. */
+/** 16:20 – zakończony kurs gotowy do zafakturowania. */
 export function KartaFaktura() {
   const t = TEKSTY[biezacyJezyk()];
   return (
@@ -125,7 +125,7 @@ export function KartaFaktura() {
   );
 }
 
-/** koniec miesiąca — jeden przycisk dla księgowej. */
+/** koniec miesiąca – jeden przycisk dla księgowej. */
 export function KartaEksport() {
   const t = TEKSTY[biezacyJezyk()];
   return (

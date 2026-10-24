@@ -1,21 +1,20 @@
 import type { Artykul } from '@/content/pomoc/typy';
 
 /**
- * Rozliczenia — przejazdy, zamknięcie miesiąca, eksport, raporty.
+ * Rozliczenia – ewidencja przebiegu, zamknięcie miesiąca, eksporty, raporty.
  *
- * Sekcja Rozliczenia w menu aplikacji jest widoczna dla księgowego, nie dla
- * właściciela: eksport FK i JPK_FA robi biuro rachunkowe albo księgowa
- * w firmie. Instrukcje muszą to mówić wprost, żeby właściciel nie szukał
- * przycisku, którego u siebie nie zobaczy.
+ * Rozliczenia i Raporty widzą właściciel i księgowa; dyspozytor ich nie ma
+ * w menu. Instrukcje mówią to wprost, żeby nikt nie szukał przycisku, którego
+ * u siebie nie zobaczy.
  */
 export const artykulyKsiegowosc: Artykul[] = [
   {
     slug: 'przejazdy-i-kilometrowka',
     kategoria: 'ksiegowosc',
     tytul: 'Przejazdy i ewidencja przebiegu',
-    lead: 'Trasy zapisują się z telefonu kierowcy. Twoja rola to potwierdzić, co było służbowe.',
+    lead: 'Trasy zapisują się z telefonu kierowcy. Kierowca je potwierdza, właściciel zatwierdza, a ewidencja przebiegu składa się sama.',
     role: ['wlasciciel', 'ksiegowa'],
-    gdzie: 'Przejazdy',
+    gdzie: 'Rozliczenia → Ewidencja przebiegu',
     czas: 'Kilka minut tygodniowo',
     rozdzialy: [
       {
@@ -24,41 +23,43 @@ export const artykulyKsiegowosc: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Aplikacja kierowcy zapisuje trasę na podstawie lokalizacji telefonu i etapów zlecenia. Nikt nie przepisuje kilometrów z licznika do zeszytu — przejazd pojawia się na liście sam, z datą, trasą i przebiegiem.',
+              'Aplikacja kierowcy zapisuje trasę od „Zacznij dzień” do licznika końcowego. Nikt nie przepisuje kilometrów z licznika do zeszytu – trasa pojawia się sama, z datą i przebiegiem.',
           },
           {
             typ: 'akapit',
             tresc:
-              'Przejazd można też dopisać ręcznie, gdy telefon był wyłączony albo pojazd prowadził ktoś bez aplikacji.',
+              'Trasę dopiszesz też ręcznie przyciskiem Nowa trasa, gdy telefon był wyłączony. Do listy tras wejdziesz z ewidencji (Trasy pojazdu) albo z karty pojazdu, z zakładki Przebieg i przejazdy.',
           },
         ],
       },
       {
-        tytul: 'Potwierdzanie',
+        tytul: 'Potwierdzanie i zatwierdzanie',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Przejazdy i ustaw filtr na miesiąc' },
               {
-                tytul: 'Sprawdź Typ trasy',
-                opis: 'Służbowa albo Prywatna. Przy służbowej wymagany jest Cel trasy *: Dostawa towaru, Przejazd bez ładunku, Serwis pojazdu, Przejazd techniczny albo Inne.',
+                tytul: 'Kierowca potwierdza swoje trasy',
+                opis: 'Do tego czasu trasa ma stan Oczekuje na kierowcę.',
               },
               {
-                tytul: 'Potwierdź przejazd',
-                opis: 'Możesz zaznaczyć wiele wierszy i użyć Potwierdź zaznaczone. Odrzucenie też jest tu — z powodem.',
+                tytul: 'Sprawdź Typ trasy i Cel trasy',
+                opis: 'Służbowa albo Prywatna. Cel: Dostawa towaru, Przejazd bez ładunku, Serwis pojazdu, Przejazd techniczny albo Inne. Złą klasyfikację zmienisz przyciskiem Zmień klasyfikację – do czasu eksportu do FK.',
+              },
+              {
+                tytul: 'Właściciel potwierdza albo odrzuca trasę',
+                opis: 'Kilka naraz: zaznaczasz trasy i klikasz Potwierdź zaznaczone.',
+              },
+              {
+                tytul: 'Zatwierdź ewidencję pojazdu',
+                opis: 'W Rozliczenia → Ewidencja przebiegu właściciel albo księgowa klika Zatwierdź ewidencję. Gdy kierowcy zalegają z potwierdzeniem, Przypomnij kierowcom wyśle im przypomnienie. Gotową ewidencję pobierzesz w PDF.',
               },
             ],
           },
           {
-            typ: 'akapit',
-            tresc:
-              'Źle zakwalifikowaną trasę przełączysz między służbową a prywatną do czasu eksportu — służy do tego przeklasyfikowanie w szczegółach przejazdu.',
-          },
-          {
             typ: 'uwaga',
             tresc:
-              'Po potwierdzeniu przejazdu nie da się go już edytować ani usunąć. To celowe: ewidencja przebiegu ma być zapisem tego, co się wydarzyło, a nie dokumentem, który da się poprawić po fakcie. Cofnąć potwierdzenie może właściciel.',
+              'Ewidencja przebiegu jest potrzebna do odliczenia 100% VAT od pojazdu zgłoszonego na VAT-26. Pojazd z prywatnymi kilometrami odlicza 50%.',
           },
         ],
       },
@@ -68,7 +69,7 @@ export const artykulyKsiegowosc: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Stawki, po których liczy się ewidencja, siedzą w Ustawienia → Stawki kilometrówki. Zmieniają się rozporządzeniem, więc mają daty obowiązywania — stary miesiąc liczy się starą stawką i tak zostaje.',
+              'Kilometrówkę, diety i kursy NBP zobaczysz w Ustawienia → Stawki z przepisów. Są tylko do podglądu – bierzemy je z przepisów.',
           },
         ],
       },
@@ -80,62 +81,55 @@ export const artykulyKsiegowosc: Artykul[] = [
     slug: 'zamkniecie-miesiaca',
     kategoria: 'ksiegowosc',
     tytul: 'Zamknięcie miesiąca',
-    lead: 'Podsumowanie na pojazd, przeliczenie, zatwierdzenie. Dopiero potem eksport.',
+    lead: 'Sześć kroków z odnośnikiem do każdego braku. Na końcu zamykasz miesiąc i pobierasz ostateczne pliki.',
     role: ['ksiegowa', 'wlasciciel'],
-    gdzie: 'Raporty → Miesięczne podsumowania',
-    czas: 'Kwadrans na miesiąc',
-    zanim: ['Wszystkie przejazdy z miesiąca potwierdzone', 'Koszty zaakceptowane albo odrzucone'],
+    gdzie: 'Rozliczenia → Miesiąc',
+    czas: 'Kwadrans na miesiąc, gdy wszystko jest na bieżąco',
+    zanim: ['Zatwierdzona ewidencja przebiegu każdego pojazdu', 'Zatwierdzone płace i diety kierowców'],
     rozdzialy: [
       {
-        tytul: 'Trzy ruchy',
+        tytul: 'Sześć kroków',
         bloki: [
+          {
+            typ: 'akapit',
+            tresc:
+              'Licznik pokazuje, ile kroków jest gotowych. Możesz robić je w dowolnej kolejności – każdy prowadzi tam, gdzie go załatwisz.',
+          },
           {
             typ: 'kroki',
             kroki: [
-              {
-                tytul: 'Utwórz podsumowanie',
-                opis: 'Podajesz Rok, Miesiąc i Pojazd. Jedno podsumowanie dotyczy jednego pojazdu w jednym miesiącu.',
-              },
-              {
-                tytul: 'Kliknij Przelicz',
-                opis: 'System zbiera przejazdy, koszty i kilometry z okresu. Przeliczyć można wielokrotnie, dopóki podsumowanie nie jest zatwierdzone.',
-              },
-              {
-                tytul: 'Kliknij Zatwierdź',
-                opis: 'Zatwierdzenie zamyka miesiąc dla tego pojazdu.',
-              },
+              { tytul: 'Faktury sprzedaży' },
+              { tytul: 'Koszty', opis: 'Z listą kosztów, którym brakuje dokumentu.' },
+              { tytul: 'Ewidencja przebiegu', opis: 'Ile pojazdów ma zatwierdzoną ewidencję.' },
+              { tytul: 'Płace i diety', opis: 'Ile rozliczeń kierowców jest zatwierdzonych.' },
+              { tytul: 'Deklaracje', opis: 'Co jest do złożenia.' },
+              { tytul: 'Zamknij miesiąc i pobierz pliki' },
             ],
           },
         ],
       },
       {
-        tytul: 'Gdy zatwierdzenie nie przechodzi',
+        tytul: 'Co blokuje zamknięcie',
         bloki: [
           {
             typ: 'akapit',
             tresc:
-              'System nie pozwoli zatwierdzić miesiąca, w którym zostały niepotwierdzone albo niekompletne przejazdy. Wróć do Przejazdy, uzupełnij je i przelicz ponownie.',
+              'Miesiąca nie zamkniesz, dopóki płace i ewidencja przebiegu nie są zatwierdzone. Koszty bez dokumentu nie blokują – zostają na liście braków.',
           },
           {
             typ: 'akapit',
             tresc:
-              'Gdy wiesz, co robisz i chcesz zamknąć mimo ostrzeżeń, jest Zatwierdź mimo ostrzeżeń. Używaj tego świadomie — braki nie znikają, tylko przestają blokować.',
+              'Zamknięcie blokuje zmiany w fakturach, trasach, płacach i zaliczkach z tego miesiąca, a pliki dla biura stają się ostateczne. Zamyka właściciel albo księgowa.',
           },
         ],
       },
       {
-        tytul: 'Statusy',
+        tytul: 'Ponowne otwarcie',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Status', 'Co znaczy'],
-            wiersze: [
-              ['Wersja robocza', 'Utworzone, jeszcze nieprzeliczone albo w trakcie poprawek'],
-              ['Do zatwierdzenia', 'Przeliczone, czeka na decyzję'],
-              ['Zatwierdzone', 'Miesiąc zamknięty, gotowy do eksportu'],
-              ['Wyeksportowane', 'Poszło do programu księgowego'],
-              ['Zablokowane', 'Zamknięte na stałe — nic już się nie zmieni'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'Gdy trzeba coś poprawić, kliknij Otwórz miesiąc ponownie i wpisz, dlaczego otwierasz. Powód trafia do historii firmy, a w sekcji Poprzednie miesiące widać, kiedy i dlaczego miesiąc otwarto.',
           },
         ],
       },
@@ -147,11 +141,14 @@ export const artykulyKsiegowosc: Artykul[] = [
     slug: 'eksport-dla-ksiegowej',
     kategoria: 'ksiegowosc',
     tytul: 'Eksport do programu księgowego',
-    lead: 'Jeden plik w formacie, który Twoja księgowa wczyta bez przepisywania.',
-    role: ['ksiegowa'],
-    gdzie: 'Rozliczenia → Eksport FK',
+    lead: 'Jedna paczka za miesiąc, w formacie, który Twoja księgowa wczyta bez przepisywania.',
+    role: ['ksiegowa', 'wlasciciel'],
+    gdzie: 'Rozliczenia → Eksporty',
     czas: 'Dwie minuty',
-    zanim: ['Zatwierdzone podsumowanie miesięczne', 'Ustawiony System księgowy w danych firmy'],
+    zanim: [
+      'Program księgowy ustawiony w Ustawienia → Program księgowy',
+      'Zamknięty miesiąc – jeśli pliki mają być ostateczne',
+    ],
     rozdzialy: [
       {
         tytul: 'Kto to robi',
@@ -159,71 +156,61 @@ export const artykulyKsiegowosc: Artykul[] = [
           {
             typ: 'akapit',
             tresc:
-              'Sekcję Rozliczenia widzi księgowy — właściciel z biurem rachunkowym nie generuje plików do urzędu. Jeśli szukasz Eksportu FK i go nie widzisz, to znaczy, że jesteś zalogowany jako właściciel, a nie że funkcji nie ma.',
+              'Eksporty widzą właściciel i księgowa. Dyspozytor nie ma Rozliczeń w menu.',
           },
         ],
       },
       {
-        tytul: 'Wygenerowanie pliku',
+        tytul: 'Paczka dla biura',
         bloki: [
           {
             typ: 'kroki',
             kroki: [
-              { tytul: 'Wejdź w Rozliczenia → Eksport FK' },
+              { tytul: 'Wejdź w Rozliczenia → Eksporty' },
               {
-                tytul: 'Wybierz System księgowy',
-                opis: 'Insert GT, Comarch ERP Optima albo Symfonia FK. Ustawienie z danych firmy podpowiada się samo.',
+                tytul: 'Kliknij Pobierz paczkę dla biura',
+                opis: 'Dostajesz jeden plik ZIP: dekrety FK w formacie programu z ustawień, rejestry, listę płac i delegacje.',
               },
               {
-                tytul: 'Wskaż Zakres danych',
-                opis: 'Przychody + koszty, Tylko przychody albo Tylko koszty.',
+                tytul: 'Sprawdź, czy wersja jest ostateczna',
+                opis: 'Przed zamknięciem miesiąca paczka jest robocza. Po zamknięciu jest ostateczna i ma też JPK_V7M – o ile firma jest czynnym podatnikiem VAT.',
               },
-              { tytul: 'Podaj Rok * i Miesiąc *' },
-              {
-                tytul: 'Sprawdź podgląd',
-                opis: 'Zanim pobierzesz plik, widzisz liczbę faktur, wydatków i rozmiar pliku. Zero rekordów oznacza, że miesiąc nie jest domknięty albo zakres jest nie ten.',
-              },
-              { tytul: 'Kliknij Eksportuj' },
             ],
           },
         ],
       },
       {
-        tytul: 'Formaty i limity',
+        tytul: 'Pojedyncze pliki',
         bloki: [
           {
             typ: 'tabela',
-            naglowki: ['System', 'Co dostajesz'],
+            naglowki: ['Plik', 'Co dostajesz'],
             wiersze: [
-              ['Insert GT', 'EPP (EDI++ 1.05.1), Windows-1250 — faktury, kilometrówka, kontrahenci'],
-              ['Comarch ERP Optima', 'XML w formacie Comarch, UTF-8'],
-              ['Symfonia FK', 'TXT rozdzielany średnikiem, opcjonalnie z szablonem AMS'],
+              ['Dekrety do FK', 'Comarch Optima (XML), Insert GT (EPP) albo Symfonia (TXT z szablonem AMS)'],
+              ['Rejestry VAT', 'Excel albo PDF'],
+              ['Lista płac i diety', 'Excel albo CSV'],
+              ['Delegacje kierowców', 'ZIP'],
+              ['Ewidencje przebiegu', 'ZIP'],
+              ['Zestawienie do KPiR, JPK_PKPIR', 'Przy podatku na księdze: Excel, CSV, XML'],
+              ['Zwrot VAT z UE (VAT-REF)', 'Zestawienie do wniosku'],
+              ['JPK_FA', 'XML, tylko na żądanie urzędu skarbowego'],
+              ['JPK_V7M', 'Po zamknięciu miesiąca'],
             ],
+          },
+          {
+            typ: 'akapit',
+            tresc:
+              'Gdy biuro pracuje w innym programie, wybierz w Ustawienia → Program księgowy „Inny program” – dostaniesz plik CSV.',
           },
           {
             typ: 'uwaga',
             tresc:
-              'Przy pierwszym imporcie do Symfonii zaznacz „Dołącz szablon AMS" — bez niego program nie wie, jak ułożyć kolumny. Przy kolejnych miesiącach już nie jest potrzebny.',
+              'Dekrety do FK wygenerujesz najwyżej trzy razy w miesiącu dla każdego programu – wystarcza na wersję właściwą i dwie poprawki. Paczki dla biura ten limit nie dotyczy. Dekrety są za miesiące zakończone, nie za bieżący.',
           },
           {
             typ: 'akapit',
             tresc:
-              'Limit to trzy eksporty na miesiąc dla firmy. Wystarcza na wersję właściwą i dwie poprawki, a chroni przed przypadkowym wysłaniem tego samego miesiąca dziesięć razy.',
-          },
-          {
-            typ: 'akapit',
-            tresc:
-              'Każdy wygenerowany plik zostaje w Historia eksportów — z datą, formatem i rozmiarem. Można go pobrać ponownie, gdy księgowej zaginie mail.',
-          },
-        ],
-      },
-      {
-        tytul: 'JPK_FA',
-        bloki: [
-          {
-            typ: 'akapit',
-            tresc:
-              'Plik JPK_FA na żądanie urzędu generujesz w Rozliczenia → JPK_FA — ten sam sposób, osobny ekran i osobny podgląd przed pobraniem.',
+              'Każdy plik zostaje w Historii plików. Pobierzesz go ponownie przez 30 dni.',
           },
         ],
       },
@@ -235,55 +222,50 @@ export const artykulyKsiegowosc: Artykul[] = [
     slug: 'raporty-i-ewidencje',
     kategoria: 'ksiegowosc',
     tytul: 'Raporty',
-    lead: 'Jedenaście gotowych zestawień. Każde odpowiada na jedno pytanie, które i tak sobie zadajesz.',
+    lead: 'Siedem zakładek. Każda pokazuje jedną rzecz, o którą i tak pytasz.',
     role: ['wlasciciel', 'ksiegowa'],
     gdzie: 'Raporty',
     rozdzialy: [
       {
-        tytul: 'Finanse',
+        tytul: 'Zakładki',
         bloki: [
           {
             typ: 'tabela',
-            naglowki: ['Raport', 'Odpowiada na pytanie'],
+            naglowki: ['Zakładka', 'Co pokazuje'],
             wiersze: [
-              ['Na czym zarabiam?', 'Które zlecenia i klienci dają zysk, a które tylko obrót'],
-              ['Skąd przychody?', 'Podział na klientów i waluty'],
-              ['Gdzie wydaję pieniądze?', 'Struktura kosztów — gdzie ucieka marża'],
+              ['Wynik', 'Przychód, koszty i to, co zostaje'],
+              ['Klienci', 'Na których klientach zarabiasz'],
+              ['Zlecenia i trasy', 'Które zlecenia dają zysk, a które tylko obrót'],
+              ['Flota', 'Ile kosztuje każde auto'],
+              ['Kierowcy', 'Praca kierowców – tę zakładkę widzi tylko właściciel'],
+              ['Koszty', 'Gdzie uciekają pieniądze'],
+              ['Należności', 'Kto jeszcze nie zapłacił'],
             ],
           },
         ],
       },
       {
-        tytul: 'Flota',
+        tytul: 'Okres i porównanie',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Raport', 'Odpowiada na pytanie'],
-            wiersze: [
-              ['Co kosztuje moja flota?', 'Paliwo, serwis, ubezpieczenia w rozbiciu na pojazdy'],
-              ['Który pojazd jest najtańszy?', 'Koszt na kilometr — kandydat do wymiany widać od razu'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'Wybierasz miesiąc, kwartał, rok albo własny zakres i porównujesz go z poprzednim okresem albo z tym samym okresem rok temu. Przychód liczysz z faktur albo ze zleceń.',
           },
         ],
       },
       {
-        tytul: 'Dla księgowej i urzędu',
+        tytul: 'Pobieranie',
         bloki: [
           {
-            typ: 'tabela',
-            naglowki: ['Raport', 'Do czego służy'],
-            wiersze: [
-              ['Wydruk ewidencji km', 'Zestawienie według wzoru Ministerstwa Finansów, PDF do druku'],
-              ['Dane do KPiR', 'Zestawienie dla biura rachunkowego'],
-              ['Delegacje kierowców', 'Wyjazdy z dietami i ryczałtami'],
-              ['Miesięczne PIT-y', 'Dane do rozliczeń pracowniczych'],
-              ['Zwrot VAT z UE', 'Roczny wniosek o VAT z paliwa i autostrad, per kraj'],
-            ],
+            typ: 'akapit',
+            tresc:
+              'Pod przyciskiem Pobierz: PDF do druku, Excel (XLSX) albo CSV z bieżącej zakładki, a także Raport miesięczny (PDF) – wszystkie zakładki za miesiąc w jednym pliku.',
           },
           {
             typ: 'akapit',
             tresc:
-              'Raporty pobierzesz jako PDF albo CSV — w zależności od tego, czy mają iść do druku, czy do arkusza.',
+              'Ewidencję przebiegu w PDF i pliki dla urzędu znajdziesz w Rozliczeniach, nie w Raportach.',
           },
         ],
       },

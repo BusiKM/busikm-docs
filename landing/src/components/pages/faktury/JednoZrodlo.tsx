@@ -35,7 +35,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** 01 — cztery pola wpisane przy zleceniu i miejsce, w które trafiają na fakturze. */
+/** 01 – cztery pola wpisane przy zleceniu i miejsce, w które trafiają na fakturze. */
 export function JednoZrodlo() {
   const t = TEKSTY[biezacyJezyk()];
   return (

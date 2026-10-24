@@ -1,16 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import Image from 'next/image';
+import { Makieta } from '@/components/ui/Makieta';
 import { biezacyJezyk } from '@/i18n/serwer';
 
 /**
- * Miejsce na zrzut z aplikacji — wg docs/landing/08-makiety-i-zdjecia.md
+ * Miejsce na zrzut z aplikacji – wg docs/landing/08-makiety-i-zdjecia.md
  * i projektu z Claude Design.
  *
  * Dopóki pliku nie ma w `public/mockups/`, komponent pokazuje rysowaną makietę
  * (`children`) i pod nią przerywaną notkę: co ma się tam znaleźć i jak nazwie
  * się plik. Gdy plik się pojawi, makieta i notka znikają, a na ich miejsce
- * wchodzi obraz — podmiana to wrzucenie pliku pod właściwą nazwą.
+ * wchodzi obraz – podmiana to wrzucenie pliku pod właściwą nazwą.
  */
 
 const MOCKUPS_DIR = path.join(process.cwd(), 'public', 'mockups');
@@ -21,11 +21,11 @@ const DEV = process.env.NODE_ENV === 'development';
  *
  * W trybie deweloperskim dokładamy sygnaturę czasu ostatniej zmiany i omijamy
  * optymalizator obrazów. Powód: optymalizator trzyma wynik pod adresem, a nie
- * pod zawartością pliku — po podmianie zrzutu pod tą samą nazwą oddaje stary
+ * pod zawartością pliku – po podmianie zrzutu pod tą samą nazwą oddaje stary
  * obraz z tym samym ETagiem, aż do restartu serwera. Sprawdzone: plik
  * statyczny zmienia ETag poprawnie, zoptymalizowany nie.
  *
- * W produkcji problemu nie ma, bo pliki nie zmieniają się w locie — tam
+ * W produkcji problemu nie ma, bo pliki nie zmieniają się w locie – tam
  * zostaje optymalizacja i czysty adres.
  */
 function imageSrc(file: string): string | null {
@@ -33,7 +33,7 @@ function imageSrc(file: string): string | null {
 
   // Wersja angielska szuka najpierw zrzutu `…-en.png`, a bez niego bierze
   // polski. Aplikacja jest dziś po polsku, więc polski zrzut na stronie EN
-  // pokazuje prawdę — a rysowana makieta z notką „do podmiany" wyglądałaby
+  // pokazuje prawdę – a rysowana makieta z notką „do podmiany" wyglądałaby
   // na niedokończoną stronę.
   if (biezacyJezyk() === 'en') {
     const en = sciezkaZrzutu(file.replace(/(\.[a-z]+)$/, '-en$1'));
@@ -54,7 +54,7 @@ function sciezkaZrzutu(file: string): string | null {
 type MockupSlotProps = {
   /** Nazwa pliku wg schematu `mockup-<obszar>-<ekran>-<urządzenie>.png`. */
   file: string;
-  /** Etykieta w notce, wersalikami — np. „Ekran właściciela · desktop 1440". */
+  /** Etykieta w notce, wersalikami – np. „Ekran właściciela · desktop 1440". */
   label: string;
   /** Co dokładnie ma być widać na docelowym zrzucie. */
   note: string;
@@ -64,7 +64,7 @@ type MockupSlotProps = {
    * Kształt pudła w układzie strony. Domyślnie taki jak `ratio`.
    *
    * Rozdzielony, bo zrzut telefonu ma proporcje 9:19.5, ale nie może zajmować
-   * pudła o takim kształcie — w kolumnie szerokiej na 660 px dałoby to 1430 px
+   * pudła o takim kształcie – w kolumnie szerokiej na 660 px dałoby to 1430 px
    * wysokości i zepchnęło resztę sekcji w dół. Telefon dostaje więc pudło
    * takie jak sąsiednie ekrany i mieści się w nim wyśrodkowany.
    */
@@ -75,12 +75,12 @@ type MockupSlotProps = {
    * Zrzut telefonu jest wąski, więc w pudle 16:10 ogranicza go wysokość
    * i wychodzi mały. Powiększenie pozwala mu urosnąć bez zmiany wysokości
    * pudła, czyli bez ruszania układu sekcji. Obraz wychodzi wtedy poza pudło
-   * symetrycznie w górę i w dół — na ciemnym tle to niewidoczne, a notki
+   * symetrycznie w górę i w dół – na ciemnym tle to niewidoczne, a notki
    * „do podmiany" i tak już nie ma, bo zrzut istnieje.
    *
    * **Na telefonie działa tylko z `waskiWPudle`.** Zmierzone przy 375 px:
    * wszędzie tam, gdzie pudło ma proporcje samego obrazu, powiększenie robi
-   * celowy wylew poza kadr — na desktopie wygląda dobrze, na telefonie
+   * celowy wylew poza kadr – na desktopie wygląda dobrze, na telefonie
    * uciekało z ekranu o 66 do 214 px i przycinało treść zrzutu. Pionowo
    * nadmiar ginie w ciemnym tle, poziomo nie ma gdzie.
    */
@@ -94,7 +94,7 @@ type MockupSlotProps = {
    * Ogranicza je wtedy wysokość, po bokach zostaje pusty margines pliku
    * i powiększenie wychodzi poza ekran samym tym marginesem, nie treścią.
    *
-   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr —
+   * Gdy pudło ma proporcje obrazu, powiększenie jest wylewem poza kadr –
    * na desktopie wygląda dobrze, na wąskim ekranie nie ma dokąd się wylać
    * i ucina treść. Zmierzone: od 66 do 214 px przy 375 px.
    *
@@ -104,11 +104,11 @@ type MockupSlotProps = {
   /** Rysowana makieta, która stoi tam do czasu podmiany. */
   children: React.ReactNode;
   dark?: boolean;
-  /** Klasy opakowania notki — pozwala ją zwęzić albo wyśrodkować. */
+  /** Klasy opakowania notki – pozwala ją zwęzić albo wyśrodkować. */
   noteClassName?: string;
   /**
    * Nazwa ekranu pod makietą. Gdy podana, notka „do podmiany" zwija się
-   * do jednej linii obok tej nazwy zamiast przerywanej ramki — a sama nazwa
+   * do jednej linii obok tej nazwy zamiast przerywanej ramki – a sama nazwa
    * zostaje także po podmianie zrzutu. Tak wygląda siatka ekranów na
    * stronach ról, gdzie kilka makiet stoi obok siebie i każda potrzebuje
    * podpisu, a nie akapitu.
@@ -148,11 +148,12 @@ export function MockupSlot({
 
   if (src) {
     const [w, h] = (box ?? ratio).split(':').map(Number);
+    const pl = biezacyJezyk() === 'pl';
     const obraz = (
       /*
         `key` przy adresie pliku jest tu istotny, a nie kosmetyczny.
-        Gdy sąsiad podmienia makietę w tym samym miejscu — zakładki ról,
-        takty sceny przyklejonej — React bez klucza zostawia ten sam
+        Gdy sąsiad podmienia makietę w tym samym miejscu – zakładki ról,
+        takty sceny przyklejonej – React bez klucza zostawia ten sam
         element `<img>` i tylko zmienia mu `src` oraz `transform`. Styl
         wchodzi natychmiast, bitmapa dopiero po pobraniu, więc przez chwilę
         widać **poprzedni** obraz przeskalowany współczynnikiem nowego:
@@ -167,19 +168,21 @@ export function MockupSlot({
         className="wchodzi relative w-full"
         style={{ aspectRatio: `${w} / ${h}` }}
       >
-        <Image
+        <Makieta
           src={src}
-          alt={`${label} — ${note}`}
-          fill
+          alt={`${label} – ${note}`}
           sizes="(max-width: 1024px) 100vw, 1120px"
-          className={`object-contain ${
+          etykietaPowieksz={pl ? 'Powiększ' : 'Enlarge'}
+          etykietaZamknij={pl ? 'Zamknij' : 'Close'}
+          laptop={file.endsWith('-desktop.png') && !imageScale}
+          imgClassName={`object-contain ${
             imageScale
               ? `pointer-events-none lg:scale-(--powiekszenie) ${
                   imageScaleTelefon ? 'scale-(--powiekszenie-telefon)' : 'scale-100'
                 }`
               : ''
           }`}
-          style={
+          imgStyle={
             imageScale
               ? ({
                   '--powiekszenie': imageScale,

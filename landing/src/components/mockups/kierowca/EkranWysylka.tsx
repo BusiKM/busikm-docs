@@ -42,7 +42,7 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
-/** Ekran „Do wysłania" — co czeka na sygnał. */
+/** Ekran „Do wysłania" – co czeka na sygnał. */
 export function EkranWysylka() {
   const t = TEKSTY[biezacyJezyk()];
   return (

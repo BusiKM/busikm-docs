@@ -1,6 +1,6 @@
 type ContainerProps = {
   children: React.ReactNode;
-  /** Domyślnie 1120px — maksymalna szerokość treści z systemu designu. */
+  /** Domyślnie 1120px – maksymalna szerokość treści z systemu designu. */
   width?: 'default' | 'narrow' | 'cta';
   className?: string;
 };

@@ -1,9 +1,9 @@
 /**
- * Stan usługi — jedno miejsce do zmiany w razie przerwy.
+ * Stan usługi – jedno miejsce do zmiany w razie przerwy.
  *
  * Nie ma jeszcze monitoringu, który zmieniałby to sam, więc stan ustawiamy
  * ręcznie: zmiana `stan` i ewentualne dopisanie zdarzenia to jeden commit.
- * Strona nie udaje, że sprawdza się co pięć minut — mówi wprost, jak jest.
+ * Strona nie udaje, że sprawdza się co pięć minut – mówi wprost, jak jest.
  *
  * Docelowo podłączenie pod Sentry albo Grafanę. Wtedy `stan` i `czesci` przyjdą
  * z monitoringu, `zdarzenia` zostaną ręczne (to nie jest log, tylko wyjaśnienie
@@ -16,13 +16,13 @@ import type { Tlumaczenia } from '@/i18n/jezyki';
 export type Stan = 'ok' | 'czesciowa' | 'przerwa';
 
 /*
- * Każdy tekst stoi w obu językach naraz, w jednym obiekcie — przy przerwie
+ * Każdy tekst stoi w obu językach naraz, w jednym obiekcie – przy przerwie
  * zmieniasz jeden wpis i nie da się zapomnieć o wersji angielskiej.
  */
 
 export type CzescUslugi = {
   nazwa: Tlumaczenia<string>;
-  /** Słowo obok nazwy — „działa", „przerwa", „zapisuje lokalnie". */
+  /** Słowo obok nazwy – „działa", „przerwa", „zapisuje lokalnie". */
   slowo: Tlumaczenia<string>;
   ton: 'ok' | 'uwaga' | 'przerwa';
 };
@@ -48,7 +48,7 @@ export const stan: Stan = 'ok';
 
 export const naglowek = naglowki[stan];
 
-/** Zdanie pod nagłówkiem — dopisujemy je tylko wtedy, gdy coś nie działa. */
+/** Zdanie pod nagłówkiem – dopisujemy je tylko wtedy, gdy coś nie działa. */
 export const nota: Tlumaczenia<string> | null = null;
 
 const dziala = { pl: 'działa', en: 'working' };

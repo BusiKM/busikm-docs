@@ -7,26 +7,26 @@ import {
   KartaEksport,
 } from '@/components/mockups/wlasciciel/KartyOsi';
 
-/** Dzień właściciela — cztery punkty, od pulpitu rano po komplet dla księgowej. */
+/** Dzień właściciela – cztery punkty, od pulpitu rano po komplet dla księgowej. */
 export const dzienWlasciciela: Tlumaczenia<PunktDnia[]> = {
   pl: [
     {
       godzina: '7:10',
       pora: 'rano',
       tresc:
-        'Otwierasz pulpit. Przychód, koszty i zysk miesiąca na wierzchu, pod spodem to, co wymaga uwagi dzisiaj.',
+        'Otwierasz pulpit. Na górze „Do zrobienia” i to, co dzieje się dziś, niżej przychód, koszty i wynik miesiąca.',
       karta: <KartaPulpit />,
     },
     {
       godzina: '11:40',
       pora: 'w ciągu dnia',
-      tresc: 'Dzwoni klient, pyta o ładunek. Patrzysz na mapę i odpowiadasz, zanim skończy pytanie.',
+      tresc: 'Dzwoni klient, pyta o ładunek. Patrzysz na mapę w dyspozytorni i odpowiadasz, zanim skończy pytanie.',
       karta: <KartaMapa />,
     },
     {
       godzina: '16:20',
       pora: 'po południu',
-      tresc: 'Kierowca zamknął kurs. Sprawdzasz kwotę, klikasz raz — faktura idzie do klienta.',
+      tresc: 'Kierowca zamknął kurs. Sprawdzasz kwotę i klikasz „Wystaw i wyślij do KSeF”. Wysyłkę do klienta zlecasz od razu – wyjdzie, gdy KSeF nada numer.',
       karta: <KartaFaktura />,
     },
     {
@@ -41,19 +41,19 @@ export const dzienWlasciciela: Tlumaczenia<PunktDnia[]> = {
       godzina: '7:10',
       pora: 'morning',
       tresc:
-        'You open the dashboard. The month’s revenue, costs and profit on top, and below them whatever needs attention today.',
+        'You open the dashboard. “To do” and what’s happening today on top, the month’s revenue, costs and result below.',
       karta: <KartaPulpit />,
     },
     {
       godzina: '11:40',
       pora: 'during the day',
-      tresc: 'A client calls about their load. You look at the map and answer before they finish asking.',
+      tresc: 'A client calls about their load. You look at the map in dispatch and answer before they finish asking.',
       karta: <KartaMapa />,
     },
     {
       godzina: '16:20',
       pora: 'afternoon',
-      tresc: 'The driver has closed the job. You check the amount, click once — the invoice goes to the client.',
+      tresc: 'The driver has closed the job. You check the amount and click “Issue and send to KSeF”. Schedule the email to the client – it goes out once KSeF assigns a number.',
       karta: <KartaFaktura />,
     },
     {

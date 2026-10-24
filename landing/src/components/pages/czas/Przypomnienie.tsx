@@ -15,28 +15,28 @@ const TEKSTY: Tlumaczenia<{
   nieOdp: string;
 }> = {
   pl: {
-    label: 'Licznik w telefonie · tryb nocny',
-    note: 'Ten sam plik co na stronie o aplikacji kierowcy. Przypomnienie „za 20 minut przerwa” u góry, pierścień jazdy, przycisk „Przerwa”.',
+    label: 'Czas pracy · telefon, tryb nocny',
+    note: 'Ekran „Czas pracy” przy przewozie międzynarodowym: trzy wskaźniki (jazda ciągła, dzienna, tydzień), pasek „Dwa tygodnie”, przyciski „Przerwa” i „Odpoczynek”.',
     naglowek: 'Kierowca dostaje przypomnienie wcześniej',
-    tresc: 'Telefon mówi „za 20 minut przerwa”, a nie „miałeś stanąć godzinę temu”.',
-    tak: 'Za 20 minut przerwa',
+    tresc: 'Telefon mówi „za 15 minut przerwa”, a nie „miałeś stanąć godzinę temu”.',
+    tak: 'Za 15 minut przerwa',
     takOdp: 'tak',
     nie: 'Miałeś stanąć godzinę temu',
     nieOdp: 'nie',
   },
   en: {
-    label: 'Counter on the phone · dark mode',
-    note: 'The same file as on the driver app page. A “break in 20 minutes” reminder at the top, the driving ring, a “Break” button.',
+    label: 'Working time · phone, dark mode',
+    note: 'The “Working time” screen for international transport: three gauges (continuous driving, daily, week), a “Two weeks” bar, and the “Break” and “Rest” buttons.',
     naglowek: 'The driver gets the reminder early',
-    tresc: 'The phone says “break in 20 minutes”, not “you should have stopped an hour ago”.',
-    tak: 'Break in 20 minutes',
+    tresc: 'The phone says “break in 15 minutes”, not “you should have stopped an hour ago”.',
+    tak: 'Break in 15 minutes',
     takOdp: 'yes',
     nie: 'You should have stopped an hour ago',
     nieOdp: 'no',
   },
 };
 
-/** 02 — telefon obok dwóch komunikatów: tego, który przychodzi, i tego, którego nie ma. */
+/** 02 – telefon obok dwóch komunikatów: tego, który przychodzi, i tego, którego nie ma. */
 export function Przypomnienie() {
   const t = TEKSTY[biezacyJezyk()];
   return (
