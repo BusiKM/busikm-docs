@@ -1,11 +1,14 @@
 import type { Jezyk, Tlumaczenia } from '@/i18n/jezyki';
+import { dokumentyUslugi } from '@/content/dokumenty/uslugi';
 
 /**
  * Nawigacja – jedno źródło dla paska, menu mobilnego i stopki.
  * Treść wg docs/landing/03-architektura-informacji.md.
  *
  * Wszystkie odnośniki są polskie – na stronie angielskiej zamienia je
- * `i18n/Link` (albo `lokalizuj`). Teksty idą w obu językach.
+ * `i18n/Link` (albo `lokalizuj`). Teksty idą w obu językach. Wyjątkiem są
+ * dokumenty prawne usługi: prowadzą wprost do aplikacji (app.busikm.pl)
+ * i w obu językach mają ten sam adres, bo istnieje tylko wersja polska.
  *
  * Każda pozycja niesie korzyść (`label`) i zdanie wyjaśnienia (`benefit`) –
  * nawigacja ma sprzedawać, nie wypisywać nazwy modułów.
@@ -174,10 +177,12 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         { href: '/status', label: 'Status usługi', benefit: '' },
       ],
       dokumenty: [
-        { href: '/regulamin', label: 'Regulamin', benefit: '' },
-        { href: '/prywatnosc', label: 'Polityka prywatności', benefit: '' },
-        { href: '/powierzenie-danych', label: 'Powierzenie danych', benefit: '' },
-        { href: '/podprocesorzy', label: 'Podprocesorzy', benefit: '' },
+        { href: dokumentyUslugi.regulamin, label: 'Regulamin', benefit: '' },
+        { href: dokumentyUslugi.prywatnosc, label: 'Polityka prywatności usługi', benefit: '' },
+        { href: dokumentyUslugi.powierzenie, label: 'Umowa powierzenia', benefit: '' },
+        { href: dokumentyUslugi.podprocesorzy, label: 'Podprocesorzy', benefit: '' },
+        { href: dokumentyUslugi.retencja, label: 'Polityka retencji', benefit: '' },
+        { href: '/prywatnosc', label: 'Polityka prywatności strony', benefit: '' },
       ],
     },
     zacznij: {
@@ -309,10 +314,12 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         { href: '/status', label: 'Service status', benefit: '' },
       ],
       dokumenty: [
-        { href: '/regulamin', label: 'Terms of Service', benefit: '' },
-        { href: '/prywatnosc', label: 'Privacy Policy', benefit: '' },
-        { href: '/powierzenie-danych', label: 'Data Processing Agreement', benefit: '' },
-        { href: '/podprocesorzy', label: 'Subprocessors', benefit: '' },
+        { href: dokumentyUslugi.regulamin, label: 'Terms of Service', benefit: '' },
+        { href: dokumentyUslugi.prywatnosc, label: 'Service Privacy Policy', benefit: '' },
+        { href: dokumentyUslugi.powierzenie, label: 'Data Processing Agreement', benefit: '' },
+        { href: dokumentyUslugi.podprocesorzy, label: 'Subprocessors', benefit: '' },
+        { href: dokumentyUslugi.retencja, label: 'Retention Policy', benefit: '' },
+        { href: '/prywatnosc', label: 'Website Privacy Policy', benefit: '' },
       ],
     },
     zacznij: {

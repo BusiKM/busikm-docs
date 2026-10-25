@@ -1,27 +1,34 @@
 import type { Jezyk } from '@/i18n/jezyki';
-import { regulamin } from '@/content/dokumenty/regulamin';
 import { prywatnosc } from '@/content/dokumenty/prywatnosc';
-import { powierzenie } from '@/content/dokumenty/powierzenie';
-import { podprocesorzy } from '@/content/dokumenty/podprocesorzy';
+import { dokumentyUslugi, tytulyUslugi } from '@/content/dokumenty/uslugi';
 
 /**
- * Cztery dokumenty prawne. Kolejność jest ta sama co w stopce, więc odnośniki
- * „pozostałe dokumenty" układają się przewidywalnie.
+ * Dokumenty prawne publikowane na samym landingu. Został jeden: polityka
+ * prywatności strony busikm.pl. Regulamin, umowa powierzenia, polityka
+ * prywatności usługi, polityka retencji i rejestr podprocesorów mieszkają
+ * w aplikacji (`content/dokumenty/uslugi.ts`).
  *
  * Każdy w dwóch wersjach językowych; wiążąca jest polska, angielska to
  * tłumaczenie dla wygody czytelnika.
  */
-export const dokumenty = [regulamin, prywatnosc, powierzenie, podprocesorzy];
+export const dokumenty = [prywatnosc];
 
 /**
- * Pozostałe trzy dokumenty – do wypisania na dole każdego z nich. `href`
- * zostaje polski: odnośnik sam zamienia go na angielski.
+ * Odnośniki „pozostałe dokumenty" na dole dokumentu: najpierw inne dokumenty
+ * landingu, potem dokumenty usługi w aplikacji. `href` dokumentów landingu
+ * zostaje polski, bo odnośnik sam zamienia go na angielski; adresy aplikacji
+ * są zewnętrzne i przechodzą bez zmian.
  */
 export function pozostaleDokumenty(href: string, jezyk: Jezyk = 'pl') {
-  return dokumenty
+  const tytuly = tytulyUslugi[jezyk];
+  const wLandingu = dokumenty
     .map((d) => d[jezyk])
     .filter((d) => d.href !== href)
     .map((d) => ({ href: d.href, tytul: d.tytul }));
+  const wUsludze = (Object.keys(dokumentyUslugi) as (keyof typeof dokumentyUslugi)[]).map(
+    (klucz) => ({ href: dokumentyUslugi[klucz], tytul: tytuly[klucz] }),
+  );
+  return [...wLandingu, ...wUsludze];
 }
 
-export { regulamin, prywatnosc, powierzenie, podprocesorzy };
+export { prywatnosc, dokumentyUslugi, tytulyUslugi };

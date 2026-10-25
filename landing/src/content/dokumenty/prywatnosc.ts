@@ -1,9 +1,16 @@
 import { firma } from '@/content/firma';
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import type { Dokument } from '@/content/dokumenty/typy';
+import { dokumentyUslugi } from '@/content/dokumenty/uslugi';
 
 /**
- * Polityka prywatności i plików cookie.
+ * Polityka prywatności i plików cookie strony busikm.pl.
+ *
+ * Dotyczy wyłącznie strony: formularzy (Firestore, Resend), list zapisów,
+ * statystyki, piksela Meta i plików cookie. Przetwarzanie w usłudze BusiKM
+ * (konta, kierowcy, trasy, dokumenty, rozliczenia) opisują dokumenty usługi
+ * w aplikacji (`content/dokumenty/uslugi.ts`). Tu tylko do nich odsyłamy,
+ * zamiast powielać ich treść (AUD-RODO-02, BKM-2787).
  *
  * ⚠️ SZKIC DO PRZEGLĄDU PRAWNEGO. Zawiera komplet informacji wymaganych
  * art. 13 RODO (administrator, cele, podstawy prawne, odbiorcy, okresy
@@ -13,13 +20,14 @@ import type { Dokument } from '@/content/dokumenty/typy';
  */
 const pl: Dokument = {
   href: '/prywatnosc',
-  tytul: 'Polityka prywatności',
+  tytul: 'Polityka prywatności strony busikm.pl',
   obowiazujeOd: '1 września 2026',
-  wersja: 5,
-  ostatniaZmiana: '17 października 2026',
+  wersja: 6,
+  ostatniaZmiana: '25 października 2026',
   wSkrocie: [
-    'Twoje dane trzymamy w Europie i nie sprzedajemy ich nikomu.',
-    'Zbieramy tylko to, co potrzebne do działania usługi i do wystawienia faktury.',
+    'Ta polityka dotyczy wyłącznie strony busikm.pl. Dane w usłudze BusiKM (aplikacja webowa i mobilna) opisuje Polityka prywatności usługi BusiKM.',
+    'Danych, które zostawiasz na stronie, nie sprzedajemy nikomu.',
+    'Przez formularze zbieramy tylko to, co sam wpiszesz: zwykle imię, adres e-mail i treść wiadomości.',
     'Na stronie używamy plików cookie potrzebnych do jej działania. Analityczne i reklamowe (piksel Meta) włączamy dopiero za Twoją zgodą, osobno dla każdego celu.',
     'Zapisując się na listę, zgadzasz się na wiadomości o BusiKM. Zgodę wycofasz odnośnikiem w każdej z nich – zapisujemy jej treść i datę, żeby dało się wykazać, pod czym się podpisałeś.',
     'Masz prawo wglądu, poprawienia, usunięcia i przeniesienia swoich danych. Napisz, a zrobimy to.',
@@ -27,8 +35,12 @@ const pl: Dokument = {
   paragrafy: [
     {
       numer: '1',
-      tytul: 'Kto jest administratorem',
+      tytul: 'Czego dotyczy polityka i kto jest administratorem',
       bloki: [
+        {
+          typ: 'akapit',
+          tresc: `Ta polityka dotyczy wyłącznie strony busikm.pl: formularza kontaktowego, zapisów na listy wczesnego dostępu, statystyki odwiedzin, reklamy i plików cookie strony. Przetwarzanie danych w usłudze BusiKM (aplikacja webowa i mobilna), w tym danych kont, kierowców, tras i dokumentów, opisuje Polityka prywatności usługi BusiKM: ${dokumentyUslugi.prywatnosc}.`,
+        },
         {
           typ: 'akapit',
           tresc: `Administratorem danych osobowych jest ${firma.nazwa} z siedzibą w Szczecinie, ${firma.ulica}, ${firma.miasto}, NIP ${firma.nip}, KRS ${firma.krs}.`,
@@ -39,8 +51,7 @@ const pl: Dokument = {
         },
         {
           typ: 'akapit',
-          tresc:
-            'Ta polityka dotyczy danych, których jesteśmy administratorem: danych osób kontaktujących się z nami, osób zakładających konto i odwiedzających stronę. Dane, które nasi klienci wprowadzają do swoich kont – w tym dane ich kierowców i kontrahentów – przetwarzamy jako podmiot przetwarzający, na zasadach opisanych w dokumencie Powierzenie danych.',
+          tresc: `Dane, które klienci wprowadzają do usługi BusiKM, w tym dane ich kierowców i kontrahentów, przetwarzamy jako podmiot przetwarzający na zasadach Umowy powierzenia: ${dokumentyUslugi.powierzenie}. Dostawców usługi wymienia Rejestr podprocesorów (${dokumentyUslugi.podprocesorzy}), a okresy przechowywania danych w usłudze opisuje Polityka retencji (${dokumentyUslugi.retencja}).`,
         },
       ],
     },
@@ -53,32 +64,14 @@ const pl: Dokument = {
           naglowki: ['Cel', 'Kategorie danych', 'Podstawa prawna', 'Jak długo'],
           wiersze: [
             [
-              'Prowadzenie konta i świadczenie usługi',
-              'imię, nazwisko, e-mail, nazwa i dane firmy, rola w koncie',
-              'art. 6 ust. 1 lit. b RODO – wykonanie umowy',
-              'przez czas trwania umowy i 30 dni po jej zakończeniu',
-            ],
-            [
-              'Rozliczenia i księgowość',
-              'dane firmy, NIP, historia płatności, faktury',
-              'art. 6 ust. 1 lit. c RODO – obowiązek prawny',
-              '5 lat od końca roku, w którym upłynął termin płatności podatku',
-            ],
-            [
               'Kontakt i obsługa zgłoszeń',
               'imię, adres e-mail, treść wiadomości',
               'art. 6 ust. 1 lit. f RODO – nasz prawnie uzasadniony interes',
               '2 lata od ostatniej wiadomości w sprawie',
             ],
             [
-              'Bezpieczeństwo usługi i wykrywanie nadużyć',
-              'adres IP, logi dostępu, identyfikator urządzenia',
-              'art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes',
-              '12 miesięcy',
-            ],
-            [
               'Dochodzenie i obrona roszczeń',
-              'dane umowy i korespondencji',
+              'dane z formularzy i korespondencji',
               'art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes',
               'do upływu terminu przedawnienia roszczeń',
             ],
@@ -107,6 +100,7 @@ const pl: Dokument = {
               'do cofnięcia zgody; plik _fbp wygasa po 90 dniach, a grupy odbiorców reklam przechowujemy nie dłużej niż 180 dni',
             ],
           ],
+          stopka: `Cele, podstawy prawne i okresy przechowywania danych w usłudze BusiKM (konto, rozliczenia, trasy, dokumenty, bezpieczeństwo usługi) opisują Polityka prywatności usługi BusiKM (${dokumentyUslugi.prywatnosc}) i Polityka retencji (${dokumentyUslugi.retencja}).`,
         },
       ],
     },
@@ -117,7 +111,7 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Podanie danych jest dobrowolne, ale bez adresu e-mail i danych firmy nie założymy konta ani nie wystawimy faktury. Bez tych danych nie da się świadczyć usługi.',
+            'Podanie danych w formularzach na stronie jest dobrowolne. Bez adresu e-mail nie odpowiemy na wiadomość ani nie zapiszemy Cię na listę wczesnego dostępu, a na listę zapisujemy tylko ze zgodą na wiadomości o BusiKM.',
         },
       ],
     },
@@ -129,7 +123,6 @@ const pl: Dokument = {
           typ: 'lista',
           wstep: 'Dane mogą trafić do:',
           punkty: [
-'dostawców, którzy pomagają nam świadczyć usługę – Amazon Web Services (serwery, bazy, pliki), Amazon SES (poczta), Stripe (płatności), Mapbox (trasy), Google Cloud Vision (odczyt paragonów), Sentry (błędy) oraz Apple i Google (dostarczanie powiadomień). Pełną listę z zakresem przetwarzania prowadzimy w dokumencie Podprocesorzy;',
             'dostawców obsługujących formularze na stronie – Google Ireland (baza Firestore, w której zapisujemy wiadomość, region europejski) i Resend (dostarczenie powiadomienia na naszą skrzynkę, region irlandzki). Dotyczy to wyłącznie danych, które sam wpiszesz – w formularzu kontaktowym albo zapisując się na powiadomienie o uruchomieniu;',
             'Meta Platforms Ireland Limited (Merrion Road, Dublin 4, Irlandia) - wyłącznie jeżeli zgodzisz się na reklamę. W zakresie zbierania danych pikselem i przekazania ich do Mety jesteśmy z Metą współadministratorami; dalej Meta przetwarza dane jako odrębny administrator, na zasadach swojej polityki prywatności (facebook.com/privacy/policy);',
             'biura rachunkowego i doradców, w zakresie niezbędnym do rozliczeń;',
@@ -141,6 +134,10 @@ const pl: Dokument = {
           tresc:
             'Z każdym dostawcą, który przetwarza dane w naszym imieniu, mamy zawartą umowę powierzenia. Nie sprzedajemy danych. Do Mety trafiają tylko dane z piksela i tylko po Twojej zgodzie na reklamę.',
         },
+        {
+          typ: 'akapit',
+          tresc: `Dostawców, z których korzysta usługa BusiKM (aplikacja webowa i mobilna), wymienia Rejestr podprocesorów: ${dokumentyUslugi.podprocesorzy}.`,
+        },
       ],
     },
     {
@@ -150,12 +147,11 @@ const pl: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Serwery, bazy danych, pliki, kopie zapasowe, poczta i płatności działają w Europejskim Obszarze Gospodarczym. Wiadomości z formularza kontaktowego również: baza stoi w regionie europejskim, a powiadomienia wychodzą z serwerów w Irlandii.',
+            'Wiadomości z formularza kontaktowego zapisujemy w bazie w regionie europejskim, a powiadomienia o nich wychodzą z serwerów w Irlandii.',
         },
         {
           typ: 'akapit',
-          tresc:
-            'Dwie rzeczy wymagają podmiotów spoza EOG: rozpoznawanie tekstu ze zdjęć paragonów oraz dostarczanie powiadomień do telefonu kierowcy, które zawsze przechodzi przez Apple albo Google. Transfer zabezpieczamy standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską, a usługę rozpoznawania ustawiamy na region europejski dostawcy. Szczegóły opisuje dokument Podprocesorzy.',
+          tresc: `Przekazywanie danych poza Europejski Obszar Gospodarczy w ramach usługi BusiKM, na przykład przy odczycie paragonów i powiadomieniach w telefonie kierowcy, opisują Polityka prywatności usługi BusiKM (${dokumentyUslugi.prywatnosc}) i Rejestr podprocesorów (${dokumentyUslugi.podprocesorzy}).`,
         },
         {
           typ: 'akapit',
@@ -207,7 +203,7 @@ const pl: Dokument = {
             {
               termin: 'Niezbędne',
               opis:
-                'utrzymują sesję po zalogowaniu, zapamiętują wybór planu i zabezpieczają formularze. Bez nich usługa nie działa, więc nie pytamy o zgodę. Wygasają wraz z sesją albo po 12 miesiącach.',
+                'zapamiętują wybraną wersję językową strony (plik „jezyk", opisany niżej) i Twoje decyzje w okienku zgód, które zapisujemy w pamięci przeglądarki. Bez nich strona nie zapamięta Twoich wyborów, więc nie pytamy o zgodę.',
             },
             {
               termin: 'Analityczne',
@@ -231,6 +227,10 @@ const pl: Dokument = {
           tresc:
             'Zgodę na analitykę i na reklamę wyrażasz osobno w okienku, które pokazuje się przy pierwszej wizycie, a cofasz odnośnikiem „Ustawienia cookie" na dole każdej strony. Do czasu zgody ani licznik odwiedzin, ani piksel Meta w ogóle się nie ładują. Piksel nie zbiera automatycznie kliknięć ani treści strony: wysyłamy tylko odsłony stron oraz informację, że ktoś zapisał się na listę albo wysłał formularz, bez Twojego imienia i adresu e-mail.',
         },
+        {
+          typ: 'akapit',
+          tresc: `Strona busikm.pl nie ma logowania ani sesji użytkownika. Konto i logowanie działają w aplikacji pod adresem app.busikm.pl i podlegają Polityce prywatności usługi BusiKM: ${dokumentyUslugi.prywatnosc}.`,
+        },
       ],
     },
     {
@@ -250,13 +250,15 @@ const pl: Dokument = {
       bloki: [
         {
           typ: 'lista',
-          wstep: 'Stosujemy środki adekwatne do ryzyka, w szczególności:',
+          wstep: 'Dane zebrane przez stronę chronimy środkami adekwatnymi do ryzyka, w szczególności:',
           punkty: [
             'szyfrowanie połączeń (TLS) i szyfrowanie danych na dyskach;',
-            'dostęp do danych produkcyjnych wyłącznie dla osób, które go potrzebują, z uwierzytelnianiem dwuskładnikowym;',
-            'kopie zapasowe wykonywane codziennie i testowane pod kątem odtwarzania;',
-            'rejestrowanie dostępu do danych i regularny przegląd uprawnień.',
+            'dostęp do danych produkcyjnych wyłącznie dla osób, które go potrzebują, z uwierzytelnianiem dwuskładnikowym.',
           ],
+        },
+        {
+          typ: 'akapit',
+          tresc: `Zabezpieczenia danych w usłudze BusiKM, w tym kopie zapasowe i rejestrowanie dostępu, opisuje Umowa powierzenia: ${dokumentyUslugi.powierzenie}.`,
         },
       ],
     },
@@ -280,13 +282,14 @@ const pl: Dokument = {
  */
 const en: Dokument = {
   href: '/prywatnosc',
-  tytul: 'Privacy Policy',
+  tytul: 'busikm.pl Website Privacy Policy',
   obowiazujeOd: '1 September 2026',
-  wersja: 5,
-  ostatniaZmiana: '17 October 2026',
+  wersja: 6,
+  ostatniaZmiana: '25 October 2026',
   wSkrocie: [
-    'We keep your data in Europe and never sell it to anyone.',
-    'We collect only what the service needs to work and what we need to issue an invoice.',
+    'This policy covers only the busikm.pl website. Data in the BusiKM service (web and mobile app) is covered by the BusiKM Service Privacy Policy.',
+    'We never sell the data you leave on the website to anyone.',
+    'Through the forms we collect only what you enter yourself: usually your first name, e-mail address and message.',
     'On the website we use the cookies it needs to work. We switch on analytics and advertising cookies (the Meta pixel) only with your consent, separately for each purpose.',
     'By joining the list, you agree to receive messages about BusiKM. You can withdraw consent using the link in any of them – we record its wording and date so that we can show what you agreed to.',
     'You have the right to access, correct, erase and port your data. Write to us and we will do it.',
@@ -294,8 +297,12 @@ const en: Dokument = {
   paragrafy: [
     {
       numer: '1',
-      tytul: 'Who the controller is',
+      tytul: 'What this policy covers and who the controller is',
       bloki: [
+        {
+          typ: 'akapit',
+          tresc: `This policy covers only the busikm.pl website: the contact form, early access list sign-ups, visit statistics, advertising and the website's cookies. Data processing in the BusiKM service (web and mobile app), including account, driver, route and document data, is described in the BusiKM Service Privacy Policy (in Polish): ${dokumentyUslugi.prywatnosc}.`,
+        },
         {
           typ: 'akapit',
           tresc: `The controller of personal data is ${firma.nazwa}, with its registered office in Szczecin, ${firma.ulica}, ${firma.miasto}, Poland, tax identification number (NIP) ${firma.nip}, National Court Register (KRS) number ${firma.krs}.`,
@@ -306,8 +313,7 @@ const en: Dokument = {
         },
         {
           typ: 'akapit',
-          tresc:
-            'This policy covers data for which we are the controller: data of people who contact us, people who create an account and visitors to the website. Data that our clients enter into their accounts – including data of their drivers and business partners – is processed by us as a processor, under the terms described in the Data Processing Agreement document.',
+          tresc: `Data that clients enter into the BusiKM service, including data of their drivers and business partners, is processed by us as a processor under the Data Processing Agreement: ${dokumentyUslugi.powierzenie}. The service's providers are listed in the Subprocessor Register (${dokumentyUslugi.podprocesorzy}), and retention periods in the service are set out in the Retention Policy (${dokumentyUslugi.retencja}).`,
         },
       ],
     },
@@ -320,32 +326,14 @@ const en: Dokument = {
           naglowki: ['Purpose', 'Categories of data', 'Legal basis', 'Retention period'],
           wiersze: [
             [
-              'Maintaining the account and providing the service',
-              'first name, surname, e-mail, company name and details, role in the account',
-              'Art. 6(1)(b) of the General Data Protection Regulation (GDPR) – performance of a contract',
-              'for the term of the agreement and 30 days after it ends',
-            ],
-            [
-              'Billing and accounting',
-              'company details, tax identification number (NIP), payment history, invoices',
-              'Art. 6(1)(c) GDPR – legal obligation',
-              '5 years from the end of the year in which the tax payment deadline expired',
-            ],
-            [
               'Contact and handling of enquiries',
               'first name, e-mail address, content of the message',
-              'Art. 6(1)(f) GDPR – our legitimate interest',
+              'Art. 6(1)(f) of the General Data Protection Regulation (GDPR) - our legitimate interest',
               '2 years from the last message in the matter',
             ],
             [
-              'Security of the service and detection of abuse',
-              'IP address, access logs, device identifier',
-              'Art. 6(1)(f) GDPR – legitimate interest',
-              '12 months',
-            ],
-            [
               'Establishment and defence of legal claims',
-              'details of the agreement and correspondence',
+              'data from forms and correspondence',
               'Art. 6(1)(f) GDPR – legitimate interest',
               'until the limitation period for claims expires',
             ],
@@ -374,6 +362,7 @@ const en: Dokument = {
               'until consent is withdrawn; the _fbp cookie expires after 90 days, and we keep ad audiences for no longer than 180 days',
             ],
           ],
+          stopka: `The purposes, legal bases and retention periods for data in the BusiKM service (account, billing, routes, documents, service security) are set out in the BusiKM Service Privacy Policy (${dokumentyUslugi.prywatnosc}) and the Retention Policy (${dokumentyUslugi.retencja}).`,
         },
       ],
     },
@@ -384,7 +373,7 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Providing data is voluntary, but without an e-mail address and company details we cannot create an account or issue an invoice. Without this data, the service cannot be provided.',
+            'Providing data in the website forms is voluntary. Without an e-mail address we cannot reply to your message or add you to the early access list, and we add people to the list only with their consent to messages about BusiKM.',
         },
       ],
     },
@@ -396,7 +385,6 @@ const en: Dokument = {
           typ: 'lista',
           wstep: 'Data may be disclosed to:',
           punkty: [
-            'providers who help us deliver the service – Amazon Web Services (servers, databases, files), Amazon SES (e-mail), Stripe (payments), Mapbox (routes), Google Cloud Vision (reading receipts), Sentry (errors) and Apple and Google (delivering notifications). We keep the full list, with the scope of processing, in the Subprocessors document;',
             'providers operating the forms on the website – Google Ireland (the Firestore database in which we store the message, European region) and Resend (delivering the notification to our mailbox, Irish region). This applies only to data that you enter yourself – in the contact form or when signing up to be notified of the launch;',
             'Meta Platforms Ireland Limited (Merrion Road, Dublin 4, Ireland) - only if you consent to advertising. We and Meta are joint controllers for collecting data with the pixel and transmitting it to Meta; after that, Meta processes the data as a separate controller under its own privacy policy (facebook.com/privacy/policy);',
             'our accounting office and advisers, to the extent necessary for billing and accounting;',
@@ -408,6 +396,10 @@ const en: Dokument = {
           tresc:
             'We have a data processing agreement in place with every provider that processes data on our behalf. We do not sell data. Only pixel data goes to Meta, and only after you consent to advertising.',
         },
+        {
+          typ: 'akapit',
+          tresc: `The providers used by the BusiKM service (web and mobile app) are listed in the Subprocessor Register: ${dokumentyUslugi.podprocesorzy}.`,
+        },
       ],
     },
     {
@@ -417,12 +409,11 @@ const en: Dokument = {
         {
           typ: 'akapit',
           tresc:
-            'Servers, databases, files, backups, e-mail and payments operate within the European Economic Area. Messages from the contact form do too: the database is located in a European region, and notifications are sent from servers in Ireland.',
+            'We store messages from the contact form in a database in a European region, and notifications about them are sent from servers in Ireland.',
         },
         {
           typ: 'akapit',
-          tresc:
-            'Two things require entities outside the EEA: recognising text in photos of receipts, and delivering notifications to the driver’s phone, which always goes through Apple or Google. We safeguard the transfer with standard contractual clauses approved by the European Commission, and we set the recognition service to the provider’s European region. Details are set out in the Subprocessors document.',
+          tresc: `Transfers of data outside the European Economic Area within the BusiKM service, for example when reading receipts and sending notifications to the driver's phone, are described in the BusiKM Service Privacy Policy (${dokumentyUslugi.prywatnosc}) and the Subprocessor Register (${dokumentyUslugi.podprocesorzy}).`,
         },
         {
           typ: 'akapit',
@@ -472,7 +463,7 @@ const en: Dokument = {
           pozycje: [
             {
               termin: 'Strictly necessary',
-              opis: 'they keep you signed in, remember your choice of plan and secure the forms. The service does not work without them, so we do not ask for consent. They expire at the end of the session or after 12 months.',
+              opis: 'they remember the language version of the website (the "jezyk" cookie, described below) and your choices in the consent window, which we store in your browser’s local storage. Without them the website cannot remember your choices, so we do not ask for consent.',
             },
             {
               termin: 'Analytics',
@@ -494,6 +485,10 @@ const en: Dokument = {
           tresc:
             'You give consent to analytics and to advertising separately in the window that appears on your first visit, and withdraw it using the “Cookie settings” link at the bottom of every page. Until you consent, neither the visit counter nor the Meta pixel is loaded at all. The pixel does not automatically collect clicks or page content: we send only page views and the fact that someone joined the list or sent the form, without your name or e-mail address.',
         },
+        {
+          typ: 'akapit',
+          tresc: `The busikm.pl website has no sign-in or user session. Accounts and sign-in live in the app at app.busikm.pl and are covered by the BusiKM Service Privacy Policy: ${dokumentyUslugi.prywatnosc}.`,
+        },
       ],
     },
     {
@@ -513,13 +508,15 @@ const en: Dokument = {
       bloki: [
         {
           typ: 'lista',
-          wstep: 'We apply measures appropriate to the risk, in particular:',
+          wstep: 'We protect data collected by the website with measures appropriate to the risk, in particular:',
           punkty: [
             'encryption of connections (TLS) and encryption of data on disk;',
-            'access to production data only for those who need it, with two-factor authentication;',
-            'backups made daily and tested for restorability;',
-            'logging of access to data and regular review of permissions.',
+            'access to production data only for those who need it, with two-factor authentication.',
           ],
+        },
+        {
+          typ: 'akapit',
+          tresc: `The safeguards for data in the BusiKM service, including backups and access logging, are set out in the Data Processing Agreement: ${dokumentyUslugi.powierzenie}.`,
         },
       ],
     },

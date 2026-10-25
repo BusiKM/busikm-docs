@@ -41,10 +41,10 @@ const STRONY: Record<string, string> = {
   '/pomoc': '/help',
   '/pomoc/pierwsze-kroki': '/help/getting-started',
 
-  '/regulamin': '/terms',
+  // Jedyny dokument prawny landingu. Regulamin, umowa powierzenia
+  // i podprocesorzy mieszkają w aplikacji (app.busikm.pl), stare adresy
+  // w obu językach przekierowuje `next.config.ts`.
   '/prywatnosc': '/privacy',
-  '/powierzenie-danych': '/data-processing-agreement',
-  '/podprocesorzy': '/subprocessors',
 };
 
 /** Slugi artykułów pomocy: polski → angielski. */

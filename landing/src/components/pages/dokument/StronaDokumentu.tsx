@@ -44,9 +44,34 @@ const TEKSTY: Tlumaczenia<{
   },
 };
 
+/**
+ * Adres `https://…` w treści dokumentu staje się odnośnikiem. Treść siedzi
+ * w danych jako zwykły tekst, a odesłania do dokumentów usługi
+ * (app.busikm.pl) muszą dać się kliknąć. Kropka, przecinek albo nawias tuż
+ * za adresem należą do zdania, nie do adresu.
+ */
+const ADRES = /(https:\/\/[^\s,;()]*[^\s,;().])/g;
+
+function ZOdnosnikami({ tekst }: { tekst: string }) {
+  // `split` z grupą przechwytującą: adresy lądują na nieparzystych pozycjach.
+  return tekst.split(ADRES).map((czesc, i) =>
+    i % 2 === 1 ? (
+      <a key={i} href={czesc} className="text-blue underline underline-offset-2">
+        {czesc.replace(/^https:\/\//, '')}
+      </a>
+    ) : (
+      czesc
+    ),
+  );
+}
+
 function Tresc({ blok }: { blok: Blok }) {
   if (blok.typ === 'akapit') {
-    return <p className={`${KOLUMNA} text-pretty`}>{blok.tresc}</p>;
+    return (
+      <p className={`${KOLUMNA} text-pretty`}>
+        <ZOdnosnikami tekst={blok.tresc} />
+      </p>
+    );
   }
 
   if (blok.typ === 'lista') {
@@ -56,7 +81,7 @@ function Tresc({ blok }: { blok: Blok }) {
         <ol className="flex list-decimal flex-col gap-2.5 pl-5 marker:text-muted">
           {blok.punkty.map((p) => (
             <li key={p} className="pl-1 text-pretty">
-              {p}
+              <ZOdnosnikami tekst={p} />
             </li>
           ))}
         </ol>
@@ -111,14 +136,19 @@ function Tresc({ blok }: { blok: Blok }) {
           </tbody>
         </table>
       </div>
-      {blok.stopka && <p className="text-[14px] text-muted">{blok.stopka}</p>}
+      {blok.stopka && (
+        <p className={`${KOLUMNA} text-[14px] text-pretty text-muted`}>
+          <ZOdnosnikami tekst={blok.stopka} />
+        </p>
+      )}
     </div>
   );
 }
 
 /**
  * Wzorzec strony dokumentu prawnego – wg projektu „BusiKM Dokument prawny"
- * z Claude Design (design/23-prawne). Jeden układ na cztery adresy.
+ * z Claude Design (design/23-prawne). Dziś używa go tylko polityka
+ * prywatności strony; dokumenty usługi wyświetla aplikacja (app.busikm.pl).
  *
  * To jedyne miejsce w serwisie, gdzie wolno używać języka prawnego, więc układ
  * robi wszystko, żeby ten tekst dało się przeczytać: wiersz do 62 znaków,

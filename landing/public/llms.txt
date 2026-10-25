@@ -119,7 +119,7 @@ faktury, ewidencje przebiegu, zestawienia i eksporty. Każda zmiana ma autora
 i godzinę.
 
 Wyjątki – odczyt dokumentów przez AI i powiadomienia w telefonie – opisujemy
-w rejestrze podprocesorów. Pełna lista dostawców: busikm.pl/podprocesorzy
+w rejestrze podprocesorów. Pełna lista dostawców: app.busikm.pl/podprocesorzy
 
 Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 
@@ -146,9 +146,17 @@ Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 - Dokumenty i terminy: https://busikm.pl/co-robi/dokumenty-i-terminy
 - Pomoc: https://busikm.pl/pomoc
 - Kontakt: https://busikm.pl/kontakt
-- Regulamin: https://busikm.pl/regulamin
-- Polityka prywatności: https://busikm.pl/prywatnosc
-- Podprocesorzy: https://busikm.pl/podprocesorzy
+- Polityka prywatności strony busikm.pl: https://busikm.pl/prywatnosc
+
+## Dokumenty prawne usługi
+
+Jedyne wiążące wersje są w aplikacji, tylko po polsku:
+
+- Regulamin: https://app.busikm.pl/regulamin
+- Polityka prywatności usługi BusiKM: https://app.busikm.pl/polityka-prywatnosci
+- Umowa powierzenia: https://app.busikm.pl/umowa-powierzenia
+- Polityka retencji: https://app.busikm.pl/polityka-retencji
+- Podprocesorzy: https://app.busikm.pl/podprocesorzy
 
 ## Firma
 
@@ -206,6 +214,6 @@ yet either – busikm.pl/zaloguj collects sign-ups for accounts.
 Servers are in Europe (DigitalOcean, Frankfurt). A daily backup, encrypted,
 with a second provider. Exceptions – AI reading of documents and phone
 notifications – are described in the subprocessor register:
-busikm.pl/podprocesorzy
+app.busikm.pl/podprocesorzy
 
 Operated by MOVGRANTO Sp. z o.o., Szczecin, Poland. Contact: kontakt@busikm.pl

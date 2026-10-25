@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
    * `/en/*` to dziś nowa wersja angielska — obsługuje ją `src/proxy.ts`,
    * a stare adresy angielskie z Astro, których nie ma w `i18n/trasy.ts`,
    * dostają angielską stronę 404.
+   *
+   * Na końcu listy są przekierowania dokumentów prawnych usługi do
+   * aplikacji (app.busikm.pl) - to już nie przeprowadzka z Astro, tylko
+   * jedno źródło prawdy dla regulaminu, powierzenia i podprocesorów.
    */
   async redirects() {
     return [
@@ -70,6 +74,41 @@ const nextConfig: NextConfig = {
       // /technologia i /g2v2-przygotowanie. Roadmapa ma
       // wrócić pod tym samym adresem, więc 404 jest tu stanem przejściowym,
       // a nie decyzją.
+
+      // Dokumenty prawne usługi mają jedno źródło: API backendu, wyświetlane
+      // przez aplikację pod app.busikm.pl. Landing publikował drugi komplet,
+      // który rozjechał się z oryginałem (AUD-RODO-02, BKM-2787), więc stare
+      // adresy idą do aplikacji. Wersje angielskie trafiają na te same polskie
+      // strony, bo wiążąca jest tylko wersja polska i tylko taka istnieje.
+      // Przekierowania z tej listy działają przed `src/proxy.ts`, więc proxy
+      // nie zdąży tych adresów przepisać ani zamienić na 404.
+      // `/prywatnosc` zostaje na landingu: opisuje samą stronę busikm.pl.
+      {
+        source: '/regulamin',
+        destination: 'https://app.busikm.pl/regulamin',
+        permanent: true,
+      },
+      {
+        source: '/powierzenie-danych',
+        destination: 'https://app.busikm.pl/umowa-powierzenia',
+        permanent: true,
+      },
+      {
+        source: '/podprocesorzy',
+        destination: 'https://app.busikm.pl/podprocesorzy',
+        permanent: true,
+      },
+      { source: '/en/terms', destination: 'https://app.busikm.pl/regulamin', permanent: true },
+      {
+        source: '/en/data-processing-agreement',
+        destination: 'https://app.busikm.pl/umowa-powierzenia',
+        permanent: true,
+      },
+      {
+        source: '/en/subprocessors',
+        destination: 'https://app.busikm.pl/podprocesorzy',
+        permanent: true,
+      },
     ];
   },
 

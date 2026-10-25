@@ -347,44 +347,16 @@ const strony = {
       'Aktualny stan działania BusiKM i historia przerw w dostępie. Sprawdź tutaj, zanim napiszesz do nas – może problem jest już u nas na tablicy.',
   },
 
-  regulamin: {
-    eyebrow: 'Dokumenty',
-    heading: 'Regulamin',
-    lead: 'Zasady korzystania z BusiKM.',
-    title: 'Regulamin',
-    seoTitle: 'Regulamin serwisu · BusiKM',
-    description:
-      'Zasady korzystania z BusiKM: zawarcie umowy i konto, opłaty i rozliczenia, dostępność usługi, odpowiedzialność, reklamacje i rozwiązanie umowy.',
-  },
-
+  // Regulamin, umowa powierzenia i podprocesorzy są w aplikacji
+  // (app.busikm.pl). Tu zostaje polityka samej strony busikm.pl.
   prywatnosc: {
     eyebrow: 'Dokumenty',
-    heading: 'Polityka prywatności',
-    lead: 'Jakie dane zbieramy, po co i jak długo je trzymamy.',
-    title: 'Polityka prywatności',
-    seoTitle: 'Polityka prywatności i plików cookie · BusiKM',
+    heading: 'Polityka prywatności strony busikm.pl',
+    lead: 'Jakie dane zbiera strona busikm.pl, po co i jak długo je trzymamy.',
+    title: 'Polityka prywatności strony busikm.pl',
+    seoTitle: 'Polityka prywatności strony busikm.pl i plików cookie · BusiKM',
     description:
-      'Jakie dane zbiera BusiKM, w jakim celu, jak długo je przechowuje i jakie masz prawa. Wraz z zasadami używania plików cookie.',
-  },
-
-  'powierzenie-danych': {
-    eyebrow: 'Dokumenty',
-    heading: 'Powierzenie danych',
-    lead: 'Umowa powierzenia przetwarzania danych osobowych.',
-    title: 'Powierzenie danych',
-    seoTitle: 'Umowa powierzenia przetwarzania danych · BusiKM',
-    description:
-      'Warunki powierzenia przetwarzania danych osobowych dla klientów BusiKM – zakres, zabezpieczenia i podprocesorzy.',
-  },
-
-  podprocesorzy: {
-    eyebrow: 'Dokumenty',
-    heading: 'Podprocesorzy',
-    lead: 'Lista dostawców, którzy przetwarzają dane w imieniu BusiKM.',
-    title: 'Podprocesorzy',
-    seoTitle: 'Podprocesorzy – z jakich dostawców korzystamy · BusiKM',
-    description:
-      'Publiczny rejestr podprocesorów BusiKM: kto przetwarza dane w naszym imieniu, po co i gdzie te dane się znajdują.',
+      'Jakie dane zbiera strona busikm.pl: formularze, zapisy na listę, statystyka odwiedzin, reklama i pliki cookie. Przetwarzanie danych w usłudze BusiKM opisuje osobna polityka w aplikacji.',
   },
 } satisfies Record<string, PageSpec>;
 
@@ -696,44 +668,14 @@ const stronyEn: Record<keyof typeof strony, PageSpec> = {
       'Current BusiKM service status and outage history. Check here before you write to us – we may already be on it.',
   },
 
-  regulamin: {
-    eyebrow: 'Documents',
-    heading: 'Terms of Service',
-    lead: 'The rules for using BusiKM.',
-    title: 'Terms of Service',
-    seoTitle: 'Terms of Service · BusiKM',
-    description:
-      'The rules for using BusiKM: the contract and your account, fees and billing, service availability, liability, complaints and termination.',
-  },
-
   prywatnosc: {
     eyebrow: 'Documents',
-    heading: 'Privacy Policy',
-    lead: 'What data we collect, why, and how long we keep it.',
-    title: 'Privacy Policy',
-    seoTitle: 'Privacy and Cookie Policy · BusiKM',
+    heading: 'busikm.pl Website Privacy Policy',
+    lead: 'What data the busikm.pl website collects, why, and how long we keep it.',
+    title: 'busikm.pl Website Privacy Policy',
+    seoTitle: 'busikm.pl Website Privacy and Cookie Policy · BusiKM',
     description:
-      'What data BusiKM collects, for what purpose, how long it keeps it and what rights you have. Plus the rules on using cookies.',
-  },
-
-  'powierzenie-danych': {
-    eyebrow: 'Documents',
-    heading: 'Data Processing Agreement',
-    lead: 'The agreement on processing personal data on your behalf.',
-    title: 'Data Processing Agreement',
-    seoTitle: 'Data Processing Agreement (DPA) · BusiKM',
-    description:
-      'Terms under which BusiKM processes personal data on behalf of its customers – scope, safeguards and subprocessors.',
-  },
-
-  podprocesorzy: {
-    eyebrow: 'Documents',
-    heading: 'Subprocessors',
-    lead: 'The providers that process data on BusiKM’s behalf.',
-    title: 'Subprocessors',
-    seoTitle: 'Subprocessors – which providers we use · BusiKM',
-    description:
-      'Public register of BusiKM subprocessors: who processes data on our behalf, why, and where that data is stored.',
+      'What data the busikm.pl website collects: forms, list sign-ups, visit statistics, advertising and cookies. Data processing in the BusiKM service is described in a separate policy in the app.',
   },
 };
 
