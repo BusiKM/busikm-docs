@@ -19,6 +19,10 @@ import { biezacyJezyk } from '@/i18n/serwer';
  * jako czwarty równorzędny dział, choć nikt nie przegląda stopki w
  * poszukiwaniu rozdziału o powierzeniu danych – sięga po nie wtedy, gdy
  * ich potrzebuje, a wtedy szuka ich właśnie u dołu.
+ *
+ * Dokumenty usługi (regulamin, umowa powierzenia, podprocesorzy i reszta)
+ * prowadzą wprost do app.busikm.pl, gdzie jest ich jedyne źródło. Na
+ * landingu została tylko polityka prywatności samej strony.
  */
 
 /**

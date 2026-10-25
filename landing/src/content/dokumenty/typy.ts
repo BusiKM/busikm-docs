@@ -1,6 +1,7 @@
 /**
- * Wspólny kształt czterech dokumentów prawnych. Treść siedzi w danych, układ
- * w komponencie – dzięki temu zmiana w regulaminie to zmiana tekstu, a nie JSX.
+ * Kształt dokumentu prawnego publikowanego na landingu (dziś tylko polityka
+ * prywatności strony). Treść siedzi w danych, układ w komponencie, więc
+ * zmiana w dokumencie to zmiana tekstu, a nie JSX.
  */
 
 export type Blok =
@@ -18,7 +19,7 @@ export type Paragraf = {
 };
 
 export type Dokument = {
-  /** Adres strony, np. `/regulamin`. */
+  /** Adres strony, np. `/prywatnosc`. */
   href: string;
   tytul: string;
   obowiazujeOd: string;

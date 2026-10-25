@@ -1,5 +1,6 @@
 import Link from '@/i18n/Link';
 import { Section } from '@/components/ui/Section';
+import { dokumentyUslugi } from '@/content/dokumenty/uslugi';
 import type { Tlumaczenia } from '@/i18n/jezyki';
 import { biezacyJezyk } from '@/i18n/serwer';
 
@@ -42,6 +43,9 @@ const TEKSTY: Tlumaczenia<{
  * dostawców spoza tej infrastruktury – szczegóły są w rejestrze
  * podprocesorów. O kopiach mówimy tylko tyle, ile wiemy na pewno: codziennie,
  * zaszyfrowane, u drugiego dostawcy – bez obietnicy, że zostają w UE.
+ *
+ * Rejestr podprocesorów jest dokumentem usługi, więc odnośnik prowadzi
+ * wprost do aplikacji (app.busikm.pl), a nie do kopii na landingu.
  */
 export function TwojeDane() {
   const t = TEKSTY[biezacyJezyk()];
@@ -68,7 +72,7 @@ export function TwojeDane() {
           >
             {t.wyjatki}{' '}
             <Link
-              href="/podprocesorzy"
+              href={dokumentyUslugi.podprocesorzy}
               className="text-paper underline underline-offset-2 hover:text-paper"
             >
               {t.rejestr}

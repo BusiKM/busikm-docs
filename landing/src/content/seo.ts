@@ -110,10 +110,13 @@ export const trasy: Trasa[] = [
   { sciezka: '/kontakt', priorytet: 0.5, czestotliwosc: 'yearly' },
   { sciezka: '/status', priorytet: 0.3, czestotliwosc: 'daily' },
 
-  { sciezka: '/regulamin', priorytet: 0.2, czestotliwosc: 'yearly' },
-  { sciezka: '/prywatnosc', priorytet: 0.2, czestotliwosc: 'yearly' },
-  { sciezka: '/powierzenie-danych', priorytet: 0.2, czestotliwosc: 'yearly' },
-  { sciezka: '/podprocesorzy', priorytet: 0.2, czestotliwosc: 'yearly' },
+  {
+    sciezka: '/prywatnosc',
+    priorytet: 0.2,
+    czestotliwosc: 'yearly',
+    // Polityka zawężona do samej strony busikm.pl (BKM-2787).
+    zmieniono: '2026-10-25',
+  },
 ];
 
 export const dataZmiany = (t: Trasa) => new Date(t.zmieniono ?? ZMIENIONO);
