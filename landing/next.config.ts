@@ -98,6 +98,13 @@ const nextConfig: NextConfig = {
         destination: 'https://app.busikm.pl/podprocesorzy',
         permanent: true,
       },
+      // Aplikacja kierowcy 1.0.0 i stare odnośniki prowadzą pod /polityka-prywatnosci - to polityka
+      // usługi (aplikacja webowa i mobilna), nie polityka samej strony (/prywatnosc).
+      {
+        source: '/polityka-prywatnosci',
+        destination: 'https://app.busikm.pl/polityka-prywatnosci',
+        permanent: true,
+      },
       { source: '/en/terms', destination: 'https://app.busikm.pl/regulamin', permanent: true },
       {
         source: '/en/data-processing-agreement',
