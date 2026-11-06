@@ -22,6 +22,7 @@ export function KadrRolki({
   znacznik,
   przycisk = true,
   czas = true,
+  pierwszyPlan = false,
   className = '',
 }: {
   rolka: Pick<Rolka, 'okladka' | 'sekundy'>;
@@ -30,6 +31,8 @@ export function KadrRolki({
   przycisk?: boolean;
   /** Na małym kafelku znacznik czasu zasłaniałby tekst z kadru. */
   czas?: boolean;
+  /** Okładka widoczna od razu po wejściu – leniwe ładowanie tylko by ją opóźniło. */
+  pierwszyPlan?: boolean;
   className?: string;
 }) {
   return (
@@ -42,6 +45,7 @@ export function KadrRolki({
         fill
         unoptimized
         sizes={sizes}
+        loading={pierwszyPlan ? 'eager' : 'lazy'}
         className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] motion-reduce:transition-none"
       />
       {znacznik && (

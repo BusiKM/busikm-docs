@@ -183,6 +183,7 @@ export function StronaRolek({ rolki }: { rolki: Rolka[] }) {
                     znacznik={r === najnowsza ? t.najnowsza : undefined}
                     przycisk={r === najnowsza}
                     czas={r === najnowsza}
+                    pierwszyPlan={r === najnowsza}
                     className={r === najnowsza ? 'shadow-hero' : ''}
                   />
                 </a>
