@@ -4,6 +4,7 @@ import { lokalizuj } from '@/i18n/trasy';
 import { firma } from '@/content/firma';
 import { pages } from '@/content/pages';
 import { plans } from '@/content/cennik';
+import type { Rolka } from '@/content/rolki';
 
 /**
  * Budowniki grafu danych strukturalnych (schema.org).
@@ -46,6 +47,7 @@ function organizacja() {
     },
     image: `${serwis.url}${serwis.ogImage}`,
     email: firma.email,
+    sameAs: [firma.facebook],
     address: adres(),
     // Bez `vatID`: MOVGRANTO jest zwolniona z VAT (art. 113) i nie jest
     // czynnym podatnikiem VAT UE, więc numer w formacie VIES wprowadzałby
@@ -211,6 +213,33 @@ export function okruszki(sciezka: string, jezyk: Jezyk) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: elementy,
+  };
+}
+
+/**
+ * Rolki jako lista filmów – dzięki temu Google może pokazać je w wynikach wideo.
+ * Odtwarzacz otwiera się z adresu, więc każda rolka ma własny `url`.
+ */
+export function listaRolek(rolki: Rolka[], jezyk: Jezyk) {
+  const strona = `${serwis.url}${lokalizuj('/rolki', jezyk)}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: rolki.map((r, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'VideoObject',
+        name: r.tytul,
+        description: r.opis,
+        thumbnailUrl: r.okladka,
+        contentUrl: r.film,
+        url: `${strona}?rolka=${r.slug}`,
+        uploadDate: r.data,
+        duration: `PT${r.sekundy}S`,
+        inLanguage: KODY.pl.lang,
+      },
+    })),
   };
 }
 

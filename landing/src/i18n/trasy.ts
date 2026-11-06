@@ -20,6 +20,7 @@ const STRONY: Record<string, string> = {
   '/zaloguj': '/sign-in',
   '/kontakt': '/contact',
   '/status': '/status',
+  '/rolki': '/reels',
 
   '/co-robi': '/features',
   '/co-robi/aplikacja-kierowcy': '/features/driver-app',
