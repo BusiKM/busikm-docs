@@ -127,6 +127,21 @@ export function znajdzWPoczekalni(rolka, poczekalnia) {
   return kandydaci.length === 1 ? kandydaci[0] : null;
 }
 
+/**
+ * Lista rolek wymaga klucza strony, a konto techniczne ma klucz użytkownika.
+ * Klucz strony żyje tylko w pamięci tego przebiegu, a GitHub nie zna go jako
+ * sekretu, więc maskujemy go w logu sami.
+ */
+async function kluczStrony(token) {
+  const odp = await fetch(`${GRAPH}/${STRONA}?fields=access_token`, { headers: { Authorization: `Bearer ${token}` } });
+  const dane = await odp.json().catch(() => ({}));
+  if (!odp.ok || !dane.access_token) {
+    throw new Error(`Klucz strony, HTTP ${odp.status}: ${dane.error?.message ?? 'brak w odpowiedzi'}`);
+  }
+  if (process.env.GITHUB_ACTIONS) console.log(`::add-mask::${dane.access_token}`);
+  return dane.access_token;
+}
+
 /** Bez `paging.next`, bo Facebook dokleja do niego token. Kursor wystarcza. */
 async function rolkiZFacebooka(token) {
   const wynik = [];
@@ -189,7 +204,7 @@ async function main() {
 
   const m = magazyn(lokalnie);
   const nadpisania = JSON.parse(readFileSync(join(TUTAJ, 'nadpisania.json'), 'utf8'));
-  const rolki = await rolkiZFacebooka(token);
+  const rolki = await rolkiZFacebooka(await kluczStrony(token));
   // Pusta odpowiedź przy kilkudziesięciu rolkach to raczej awaria niż decyzja.
   if (!rolki.length) throw new Error('Facebook zwrócił pustą listę, niczego nie zmieniam');
 
