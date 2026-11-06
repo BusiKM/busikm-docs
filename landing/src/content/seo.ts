@@ -99,6 +99,9 @@ export const trasy: Trasa[] = [
   { sciezka: '/dla-kogo/ksiegowa', priorytet: 0.7, czestotliwosc: 'monthly' },
   { sciezka: '/dla-kogo/kierowca', priorytet: 0.7, czestotliwosc: 'monthly' },
 
+  // Rolka prawie codziennie, stąd częstotliwość i data z dnia uruchomienia.
+  { sciezka: '/rolki', priorytet: 0.6, czestotliwosc: 'daily', zmieniono: '2026-11-06' },
+
   { sciezka: '/pomoc', priorytet: 0.6, czestotliwosc: 'monthly' },
   { sciezka: '/pomoc/pierwsze-kroki', priorytet: 0.6, czestotliwosc: 'monthly' },
   // Artykuły pomocy dopisują się same. Wypisywanie ich tutaj znaczyłoby, że

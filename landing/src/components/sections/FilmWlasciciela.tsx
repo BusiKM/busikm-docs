@@ -1,14 +1,7 @@
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { Film } from '@/components/ui/Film';
+import { MEDIA } from '@/content/media';
 import { biezacyJezyk } from '@/i18n/serwer';
-
-/**
- * Film i okładka leżą w publicznym buckecie R2 `busikm-public`, a nie w repo.
- * Serwuje je Worker z `media-worker/` (zakresy Range, cache). Nowa wersja
- * filmu = wgranie pliku pod tę samą nazwę; strona dostaje ją najpóźniej
- * po dobie.
- */
-const MEDIA = 'https://busikm-media.busikm.workers.dev';
 
 const TEKSTY = {
   eyebrow: 'Minuta z BusiKM',
@@ -24,7 +17,8 @@ const TEKSTY = {
  * nie ma. Strona EN pomija sekcję zamiast pokazywać film w obcym języku.
  * Źródło: busikm-video, `out/wlasciciel/wlasciciel-landscape-pl.mp4`.
  * Plik wgrywany do R2 musi mieć `+faststart`, żeby ruszał przed pobraniem
- * całości.
+ * całości. Nowa wersja filmu = wgranie pliku pod tę samą nazwę; strona dostaje
+ * ją najpóźniej po dobie.
  */
 export function FilmWlasciciela() {
   if (biezacyJezyk() !== 'pl') return null;

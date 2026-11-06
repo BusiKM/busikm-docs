@@ -327,6 +327,16 @@ const strony = {
       'Dodaj pojazd, zaproś kierowcę, odbierz pierwszą trasę. Cała droga od założenia konta po pierwszą wystawioną fakturę.',
   },
 
+  rolki: {
+    eyebrow: 'Rolki',
+    heading: 'Minuta z firmy transportowej.',
+    lead: 'Zlecenia, faktury, trasy i BusiKM od środka. Nowa rolka prawie codziennie.',
+    title: 'Rolki',
+    seoTitle: 'Rolki – krótkie filmy dla firm z busami · BusiKM',
+    description:
+      'Krótkie filmy o zleceniach, fakturach i trasach w firmie z busami. Nowa rolka prawie codziennie. Oglądasz na stronie, bez konta na Facebooku.',
+  },
+
   kontakt: {
     eyebrow: 'Kontakt',
     heading: 'Napisz.\nOdpisujemy tego samego dnia.',
@@ -646,6 +656,16 @@ const stronyEn: Record<keyof typeof strony, PageSpec> = {
     seoTitle: 'Getting started – from account to first invoice · BusiKM',
     description:
       'Add a vehicle, invite a driver, receive your first route. The whole way from creating an account to your first invoice.',
+  },
+
+  rolki: {
+    eyebrow: 'Reels',
+    heading: 'A minute from a transport company.',
+    lead: 'Orders, invoices, routes and BusiKM from the inside. Short videos, in Polish.',
+    title: 'Reels',
+    seoTitle: 'Reels – short videos for van companies · BusiKM',
+    description:
+      'Short videos, in Polish, about orders, invoices and routes in a company running vans. Watch them right here, with no Facebook account.',
   },
 
   kontakt: {

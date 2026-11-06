@@ -20,6 +20,7 @@ import { PierwszyDzien } from '@/components/sections/PierwszyDzien';
 import { JednaFaktura } from '@/components/sections/JednaFaktura';
 import { Cennik } from '@/components/sections/Cennik';
 import { TwojeDane } from '@/components/sections/TwojeDane';
+import { Rolki } from '@/components/sections/Rolki';
 import { Pytania } from '@/components/sections/Pytania';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { jezykZParametrow, type ParametryJezyka } from '@/i18n/serwer';
@@ -54,6 +55,7 @@ export default async function Home({ params }: ParametryJezyka) {
         <JednaFaktura />
         <Cennik />
         <TwojeDane />
+        <Rolki />
         <Pytania />
       </main>
       <FinalCta />

@@ -18,6 +18,7 @@ czym produkt był w czasach pilotażu.
 | [`08-makiety-i-zdjecia.md`](08-makiety-i-zdjecia.md) | Ramki zastępcze w miejsce zrzutów, nazewnictwo plików, oprawa graficzna sekcji, sygnały „to jest dla transportu” | Claude Design, implementacja |
 | [`09-workflow-wdrozenia.md`](09-workflow-wdrozenia.md) | **Kolejność pracy** — od promptu w Claude Design po produkcję, z podziałem na fale i listą przekierowań | Ty i ja |
 | [`15-wersja-angielska.md`](15-wersja-angielska.md) | Wersja angielska: adresy `/en`, wykrywanie kraju i języka, przełącznik EN/PL, jak dodać nową podstronę w obu językach | Implementacja |
+| [`17-rolki.md`](17-rolki.md) | Rolki z Facebooka we własnym odtwarzaczu: skąd strona je bierze, kategorie z hashtagów, jak ukryć rolkę, czego nie zepsuć | Ty, implementacja |
 
 ## Co wklejasz do Claude Design
 

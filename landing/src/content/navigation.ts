@@ -50,12 +50,12 @@ export type NavEntry =
 type Teksty = {
   coRobi: NavGroup[];
   dlaKogo: NavGroup[];
-  menu: { coRobi: string; dlaKogo: string; cennik: string; pomoc: string };
+  menu: { coRobi: string; dlaKogo: string; cennik: string; rolki: string; pomoc: string };
   promo: { label: string; benefit: string };
   pomoc: NavLeaf[];
   rolesNote: string;
   stopka: { firma: string; prawne: string; items: NavLeaf[]; dokumenty: NavLeaf[] };
-  zacznij: { heading: string; cennik: string; demo: NavLeaf; login: NavLeaf };
+  zacznij: { heading: string; cennik: string; rolki: string; demo: NavLeaf; login: NavLeaf };
 };
 
 const TEKSTY: Tlumaczenia<Teksty> = {
@@ -153,7 +153,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         ],
       },
     ],
-    menu: { coRobi: 'Co robi', dlaKogo: 'Dla kogo', cennik: 'Cennik', pomoc: 'Pomoc' },
+    menu: { coRobi: 'Co robi', dlaKogo: 'Dla kogo', cennik: 'Cennik', rolki: 'Rolki', pomoc: 'Pomoc' },
     promo: {
       label: 'Zobacz demo',
       benefit: 'Wejdź bez konta i zobacz aplikację na danych przykładowej firmy.',
@@ -171,6 +171,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       prawne: 'Prawne',
       items: [
         { href: '/cennik', label: 'Cennik', benefit: '' },
+        { href: '/rolki', label: 'Rolki', benefit: '' },
         { href: '/demo', label: 'Demo', benefit: '' },
         { href: '/pomoc', label: 'Pomoc', benefit: '' },
         { href: '/kontakt', label: 'Kontakt', benefit: '' },
@@ -188,6 +189,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     zacznij: {
       heading: 'Zacznij',
       cennik: 'Ile zapłacisz przy swojej liczbie pojazdów',
+      rolki: 'Minuta z firmy transportowej, prawie codziennie',
       demo: {
         href: '/demo',
         label: 'Zobacz demo',
@@ -290,7 +292,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
         ],
       },
     ],
-    menu: { coRobi: 'Features', dlaKogo: 'Who it’s for', cennik: 'Pricing', pomoc: 'Help' },
+    menu: { coRobi: 'Features', dlaKogo: 'Who it’s for', cennik: 'Pricing', rolki: 'Reels', pomoc: 'Help' },
     promo: {
       label: 'See the demo',
       benefit: 'Walk in without an account and see the app on a sample company’s data.',
@@ -308,6 +310,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
       prawne: 'Legal',
       items: [
         { href: '/cennik', label: 'Pricing', benefit: '' },
+        { href: '/rolki', label: 'Reels', benefit: '' },
         { href: '/demo', label: 'Demo', benefit: '' },
         { href: '/pomoc', label: 'Help', benefit: '' },
         { href: '/kontakt', label: 'Contact', benefit: '' },
@@ -325,6 +328,7 @@ const TEKSTY: Tlumaczenia<Teksty> = {
     zacznij: {
       heading: 'Get started',
       cennik: 'What you’ll pay for your number of vehicles',
+      rolki: 'A minute from a transport company, in Polish',
       demo: {
         href: '/demo',
         label: 'See the demo',
@@ -399,6 +403,8 @@ export function nawigacja(jezyk: Jezyk) {
     },
     { kind: 'mega', label: t.menu.dlaKogo, href: '/dla-kogo', groups: t.dlaKogo, cards: true },
     { kind: 'link', href: '/cennik', label: t.menu.cennik },
+    // Rolki mówią po polsku – po angielsku prowadzi do nich tylko stopka.
+    ...(jezyk === 'pl' ? [{ kind: 'link' as const, href: '/rolki', label: t.menu.rolki }] : []),
     {
       kind: 'mega',
       label: t.menu.pomoc,
@@ -409,7 +415,10 @@ export function nawigacja(jezyk: Jezyk) {
   ];
 
   /** Zdania dla pozycji, które nie mają własnego rozwinięcia w `navigation`. */
-  const opisyPozycji: Record<string, string> = { '/cennik': t.zacznij.cennik };
+  const opisyPozycji: Record<string, string> = {
+    '/cennik': t.zacznij.cennik,
+    '/rolki': t.zacznij.rolki,
+  };
 
   const menuMobilne: SekcjaMenu[] = [
     ...navigation

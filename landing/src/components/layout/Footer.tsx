@@ -1,5 +1,6 @@
 import Link from '@/i18n/Link';
 import { Container } from '@/components/ui/Container';
+import { IkonaFacebook } from '@/components/ui/IkonaFacebook';
 import { firma } from '@/content/firma';
 import { Logo } from '@/components/layout/Logo';
 import { nawigacja } from '@/content/navigation';
@@ -77,14 +78,25 @@ export function Footer() {
     <footer className="border-t border-line-dark bg-ink px-6 pt-16 pb-10 text-paper lg:px-12 lg:pt-20">
       <Container className="flex flex-col gap-12 lg:gap-16">
         <div className="grid gap-8 text-[15px] leading-relaxed lg:grid-cols-[1.2fr_1fr_1fr_1fr] lg:gap-8">
-          <Link
-            href="/"
-            aria-label={t.domu}
-            className="flex h-fit items-center gap-2.5 text-[20px] font-bold tracking-[-0.02em] text-paper hover:text-paper"
-          >
-            <Logo decorative className="size-9 flex-none" />
-            BusiKM
-          </Link>
+          <div className="flex flex-col items-start gap-5">
+            <Link
+              href="/"
+              aria-label={t.domu}
+              className="flex h-fit items-center gap-2.5 text-[20px] font-bold tracking-[-0.02em] text-paper hover:text-paper"
+            >
+              <Logo decorative className="size-9 flex-none" />
+              BusiKM
+            </Link>
+            <a
+              href={firma.facebook}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex h-11 items-center gap-2.5 rounded-btn border border-line-dark-2 pr-4 pl-3 font-medium text-paper transition-colors hover:border-ink-muted hover:text-paper"
+            >
+              <IkonaFacebook />
+              Facebook
+            </a>
+          </div>
 
           {kolumnyNawigacji.map((column) => (
             <div key={column.heading} className="flex flex-col gap-2">
