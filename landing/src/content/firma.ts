@@ -20,4 +20,5 @@ export const firma = {
   sad: 'Sąd Rejonowy Szczecin-Centrum w Szczecinie, XIII Wydział Gospodarczy KRS',
   kapital: '5 000 zł',
   email: 'kontakt@busikm.pl',
+  facebook: 'https://www.facebook.com/busikm',
 } as const;

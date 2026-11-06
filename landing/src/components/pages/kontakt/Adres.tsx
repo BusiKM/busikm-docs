@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from '@/i18n/Link';
+import { IkonaFacebook } from '@/components/ui/IkonaFacebook';
 import { Eyebrow } from '@/components/ui/Section';
 import { firma } from '@/content/firma';
 import type { Tlumaczenia } from '@/i18n/jezyki';
@@ -16,6 +17,8 @@ const TEKSTY: Tlumaczenia<{
   zanim: string;
   odpowiedz: string;
   pomoc: string;
+  facebook: string;
+  przejdzNaFacebooka: string;
   daneFirmy: string;
 }> = {
   pl: {
@@ -25,6 +28,8 @@ const TEKSTY: Tlumaczenia<{
     zanim: 'Zanim napiszesz',
     odpowiedz: 'Odpowiedź może już być w centrum pomocy.',
     pomoc: '/pomoc →',
+    facebook: 'Rolki prawie codziennie i miejsce na Twoje pytania.',
+    przejdzNaFacebooka: 'Nasza strona na Facebooku →',
     daneFirmy: 'Dane firmy',
   },
   en: {
@@ -34,6 +39,8 @@ const TEKSTY: Tlumaczenia<{
     zanim: 'Before you write',
     odpowiedz: 'The answer may already be in the help centre.',
     pomoc: '/help →',
+    facebook: 'Reels almost every day, in Polish, and a place for your questions.',
+    przejdzNaFacebooka: 'Our Facebook page →',
     daneFirmy: 'Company details',
   },
 };
@@ -79,6 +86,22 @@ export function Adres() {
         <Link href="/pomoc" className="text-[15px] font-semibold text-blue">
           {t.pomoc}
         </Link>
+      </div>
+
+      <div className="flex flex-col gap-3 rounded-card border border-line bg-white p-6 lg:p-8">
+        <Eyebrow>Facebook</Eyebrow>
+        <p className="text-[16px] leading-relaxed text-muted lg:text-body">
+          {t.facebook}
+        </p>
+        <a
+          href={firma.facebook}
+          target="_blank"
+          rel="noopener"
+          className="inline-flex items-center gap-2 text-[15px] font-semibold text-blue"
+        >
+          <IkonaFacebook />
+          {t.przejdzNaFacebooka}
+        </a>
       </div>
 
       <div className="flex flex-col gap-3 p-6 lg:p-8">

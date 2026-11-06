@@ -32,4 +32,9 @@ npx wrangler deploy
 Worker obsługuje tylko GET i HEAD, zapytania Range (przewijanie filmu,
 Safari) i If-None-Match. Gdy busikm.pl trafi do Cloudflare, można podpiąć
 własną domenę (np. `media.busikm.pl`) i zmienić stałą `MEDIA`
-w `landing/src/components/sections/FilmWlasciciela.tsx`.
+w `landing/src/content/media.ts`.
+
+## Rolki
+
+Filmy, okładki i katalog rolek leżą pod `rolki/`. Zapisuje je
+`rolki/synchronizuj.mjs` oraz `busikm-video`. Opis: `docs/landing/17-rolki.md`.

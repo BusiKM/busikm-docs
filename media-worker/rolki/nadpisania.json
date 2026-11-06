@@ -1,0 +1,58 @@
+{
+  "2155814272040796": {
+    "slug": "trzy-rzeczy-do-poprawy",
+    "tytul": "Wyszły jeszcze trzy rzeczy do poprawy",
+    "opis": "Testujemy BusiKM w prawdziwej trasie. Wyszły jeszcze trzy rzeczy do poprawy, więc poprawiamy je teraz, nie po starcie.",
+    "temat": "firma",
+    "cel": "/demo"
+  },
+  "1332764848875299": {
+    "slug": "faktura-do-ksef",
+    "tytul": "Przepisujesz fakturę do KSeF?",
+    "opis": "W BusiKM kierowca kończy kurs, a Ty klikasz „Wystaw fakturę”. Klient, NIP, fracht i termin płatności przechodzą same ze zlecenia.",
+    "temat": "biuro",
+    "cel": "/co-robi/zlecenia-i-faktury"
+  },
+  "1675837457335550": {
+    "slug": "placisz-za-busy",
+    "tytul": "W BusiKM kierowca nic nie kosztuje. Księgowa też nie",
+    "opis": "U nas kierowcy, dyspozytor i księgowa są bez limitu. Każdy ma własne konto. Ludzi dodajesz, ilu chcesz. Płacisz za busy.",
+    "temat": "biuro",
+    "cel": "/cennik"
+  },
+  "1438106767839467": {
+    "slug": "to-samo-zlecenie",
+    "tytul": "Przepisujesz to samo zlecenie?",
+    "opis": "Przepisujesz to samo zlecenie trzy razy: do Excela, do faktury i jeszcze dla księgowej? W BusiKM zlecenie idzie od początku do końca w jednym miejscu.",
+    "temat": "biuro",
+    "cel": "/co-robi/zlecenia-i-faktury"
+  },
+  "2203890617210913": {
+    "slug": "czego-busiarze-nie-wiedzieli",
+    "tytul": "Czego busiarze nie wiedzieli?",
+    "opis": "W styczniu koleżanka z księgowości powiedziała mi, że busy zaczną jeździć jak tiry. Większość busiarzy nie miała o tym pojęcia. Tak zaczął się BusiKM.",
+    "temat": "firma",
+    "cel": "/demo"
+  },
+  "1095734566641784": {
+    "slug": "bus-za-granica",
+    "tytul": "Twój bus jeździ za granicę?",
+    "opis": "Tachograf zapisuje. BusiKM pokazuje kierowcy i Tobie, ile jeszcze można jechać i kiedy przerwa, zanim zrobi się naruszenie.",
+    "temat": "trasa",
+    "cel": "/co-robi/czas-pracy"
+  },
+  "1851655812495666": {
+    "slug": "gdzie-jest-ladunek",
+    "tytul": "Klient pyta, gdzie jest ładunek?",
+    "opis": "Klient dzwoni piąty raz, gdzie jest ładunek? W BusiKM widzisz każdy bus na mapie, a klient dostaje link i sam sprawdza, kiedy będzie rozładunek.",
+    "temat": "trasa",
+    "cel": "/co-robi/trasy-i-mapa"
+  },
+  "1812615926425886": {
+    "slug": "kierowca-jedzie",
+    "tytul": "Kierowca jedzie. Reszta dzieje się sama",
+    "opis": "BusiKM: zlecenia, czas pracy, koszty, faktury do KSeF i komplet dla księgowej w jednej aplikacji. Dla firm z busami 2,5-3,5 t.",
+    "temat": "firma",
+    "cel": "/demo"
+  }
+}

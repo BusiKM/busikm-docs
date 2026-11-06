@@ -1,0 +1,40 @@
+# Przenosi nowe rolki z Facebooka do R2. Opis: docs/landing/17-rolki.md
+#
+# Akcja, a nie Worker, bo film z Facebooka bywa w AV1 i trzeba go przeliczyć
+# ffmpegiem. Bez sekretów przebieg kończy się błędem, ale niczego nie zmienia.
+
+name: Rolki
+
+on:
+  schedule:
+    # Minuta inna niż pełna godzina: o pełnych GitHub ma największe kolejki.
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+# Dwa przebiegi naraz zapisałyby katalog jeden na drugim.
+concurrency:
+  group: rolki
+
+permissions:
+  contents: read
+
+jobs:
+  synchronizuj:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Instalacja ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+
+      - name: Synchronizacja
+        env:
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node media-worker/rolki/synchronizuj.mjs
