@@ -8,7 +8,7 @@ name: Rolki
 on:
   schedule:
     # Minuta inna niż pełna godzina: o pełnych GitHub ma największe kolejki.
-    - cron: '17 * * * *'
+    - cron: '23 * * * *'
   workflow_dispatch:
 
 # Dwa przebiegi naraz zapisałyby katalog jeden na drugim.
