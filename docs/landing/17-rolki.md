@@ -94,6 +94,8 @@ tylko do strony Busikm.pl i tylko do odczytu. Sekrety w repozytorium GitHub:
 | `CLOUDFLARE_API_TOKEN` | Zapis do R2, tylko bucket `busikm-public` |
 | `CLOUDFLARE_ACCOUNT_ID` | Konto Cloudflare |
 
+Klucz Cloudflare ma prawo zapisu tylko do `busikm-public`. Takiego klucza `wrangler` nie przyjmuje, więc akcja zapisuje przez API S3 (`aws s3 cp`, narzędzie jest na maszynach GitHuba). `busikm-video` działa z Twojego komputera i używa logowania `wrangler`.
+
 `FB_TOKEN` to klucz konta technicznego, a odczyt rolek wymaga klucza strony. Skrypt wymienia jeden na drugi przy każdym przebiegu i trzyma go tylko w pamięci.
 
 Repozytorium jest publiczne, a logi akcji też. Dlatego skrypt wysyła token nagłówkiem, nie korzysta

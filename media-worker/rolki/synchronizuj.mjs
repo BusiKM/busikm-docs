@@ -16,6 +16,7 @@
  * w publicznym repozytorium widzi każdy. Token idzie nagłówkiem, nie adresem.
  */
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { createWriteStream, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -157,7 +158,37 @@ async function rolkiZFacebooka(token) {
   return wynik.filter((r) => r.published && r.status?.publishing_phase?.publish_status !== 'scheduled');
 }
 
-function magazyn(lokalnie) {
+/**
+ * Dostęp do R2 przez API S3. Klucz Cloudflare ma prawo zapisu tylko do jednego
+ * bucketa, a takiego klucza `wrangler` nie przyjmuje (403). Dane logowania S3
+ * wyprowadza się z niego: identyfikator klucza i SHA-256 jego wartości.
+ */
+async function daneS3() {
+  const konto = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const token = process.env.CLOUDFLARE_API_TOKEN;
+  if (!konto || !token) throw new Error('Brak CLOUDFLARE_ACCOUNT_ID albo CLOUDFLARE_API_TOKEN');
+  const odp = await fetch(`https://api.cloudflare.com/client/v4/accounts/${konto}/tokens/verify`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const dane = await odp.json().catch(() => ({}));
+  if (!odp.ok || !dane.result?.id) throw new Error(`Klucz Cloudflare, HTTP ${odp.status}`);
+  const haslo = createHash('sha256').update(token).digest('hex');
+  if (process.env.GITHUB_ACTIONS) console.log(`::add-mask::${haslo}`);
+  return {
+    adres: `https://${konto}.r2.cloudflarestorage.com`,
+    env: {
+      ...process.env,
+      AWS_ACCESS_KEY_ID: dane.result.id,
+      AWS_SECRET_ACCESS_KEY: haslo,
+      AWS_DEFAULT_REGION: 'auto',
+      // Sumy kontrolne dokładane domyślnie przez nowsze AWS CLI R2 odrzuca.
+      AWS_REQUEST_CHECKSUM_CALCULATION: 'when_required',
+      AWS_RESPONSE_CHECKSUM_VALIDATION: 'when_required',
+    },
+  };
+}
+
+function magazyn(lokalnie, s3) {
   return {
     async czytaj(klucz) {
       if (lokalnie) {
@@ -178,9 +209,9 @@ function magazyn(lokalnie) {
         return;
       }
       execFileSync(
-        'npx',
-        ['--yes', 'wrangler@4', 'r2', 'object', 'put', `${BUCKET}/rolki/${klucz}`, '--file', plik, '--content-type', typ, '--remote'],
-        { stdio: ['ignore', 'ignore', 'inherit'] },
+        'aws',
+        ['s3', 'cp', plik, `s3://${BUCKET}/rolki/${klucz}`, '--endpoint-url', s3.adres, '--content-type', typ, '--only-show-errors'],
+        { env: s3.env, stdio: ['ignore', 'ignore', 'inherit'] },
       );
     },
   };
@@ -202,7 +233,7 @@ async function main() {
   const i = process.argv.indexOf('--lokalnie');
   const lokalnie = i > -1 ? resolve(process.argv[i + 1]) : null;
 
-  const m = magazyn(lokalnie);
+  const m = magazyn(lokalnie, lokalnie ? null : await daneS3());
   const nadpisania = JSON.parse(readFileSync(join(TUTAJ, 'nadpisania.json'), 'utf8'));
   const rolki = await rolkiZFacebooka(await kluczStrony(token));
   // Pusta odpowiedź przy kilkudziesięciu rolkach to raczej awaria niż decyzja.
