@@ -274,7 +274,7 @@ export function Header() {
             Przycisk menu ma dalej 44 px, czyli tyle, ile trzeba na palec.
             Wysokość musi zgadzać się z `top-14` panelu menu niżej. */}
         <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 lg:h-18 lg:px-12">
-          <div className="flex items-center gap-11">
+          <div className="flex items-center gap-11 lg:gap-6 xl:gap-11">
             <Link
               href="/"
               aria-label={t.domu}
@@ -286,7 +286,7 @@ export function Header() {
               <span className="hidden lg:inline">BusiKM</span>
             </Link>
 
-            <nav aria-label={t.glowna} className="hidden items-center gap-[30px] lg:flex">
+            <nav aria-label={t.glowna} className="hidden items-center gap-5 whitespace-nowrap lg:flex xl:gap-[30px]">
               {navigation.map((entry) => {
                 const active = isActive(pathname, entry.href);
 
@@ -337,7 +337,7 @@ export function Header() {
             </nav>
           </div>
 
-          <div className="flex items-center gap-3.5 lg:gap-7">
+          <div className="flex items-center gap-3.5 whitespace-nowrap lg:gap-4 xl:gap-7">
             <PrzelacznikJezyka />
 
             <a

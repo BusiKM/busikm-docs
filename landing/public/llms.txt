@@ -144,8 +144,10 @@ Licznik odwiedzin na stronie uruchamia się dopiero po zgodzie czytelnika.
 - Ile zostaje: https://busikm.pl/co-robi/rentownosc
 - Dane dla księgowej: https://busikm.pl/co-robi/dane-dla-ksiegowej
 - Dokumenty i terminy: https://busikm.pl/co-robi/dokumenty-i-terminy
+- Rolki (krótkie filmy po polsku): https://busikm.pl/rolki
 - Pomoc: https://busikm.pl/pomoc
 - Kontakt: https://busikm.pl/kontakt
+- Facebook: https://www.facebook.com/busikm
 - Regulamin: https://busikm.pl/regulamin
 - Polityka prywatności: https://busikm.pl/prywatnosc
 - Podprocesorzy: https://busikm.pl/podprocesorzy
