@@ -10,6 +10,10 @@
       "bucket_name": "busikm-public"
     }
   ],
+  // Uruchamia akcję „Rolki” w GitHubie (src/index.ts, scheduled).
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  },
   "observability": {
     "enabled": true
   }

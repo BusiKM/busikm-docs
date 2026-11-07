@@ -7,6 +7,10 @@
  * (If-None-Match), żeby ponowna wizyta nie ściągała pliku od nowa.
  *
  * Bucket aplikacji (`busikm-staging`) jest prywatny i ten Worker go nie widzi.
+ *
+ * Co 15 minut uruchamia też akcję „Rolki” w GitHubie. Harmonogram GitHuba
+ * gubi większość terminów (6–7.11.2026: 3 przebiegi na 17 godzin), a cron
+ * Cloudflare odpala punktualnie. Opis: docs/landing/17-rolki.md
  */
 
 interface R2Range {
@@ -31,6 +35,39 @@ interface Env {
     ): Promise<R2ObjectBody | null>;
     head(key: string): Promise<R2ObjectBody | null>;
   };
+  /** Klucz GitHuba z jednym prawem: Actions (zapis) w BusiKM/busikm-docs. */
+  GITHUB_TOKEN?: string;
+}
+
+const AKCJA_ROLEK =
+  'https://api.github.com/repos/BusiKM/busikm-docs/actions/workflows/rolki.yml/dispatches';
+
+async function uruchomRolki(token: string | undefined): Promise<void> {
+  if (!token) {
+    console.error('Brak sekretu GITHUB_TOKEN, akcja rolek nie ruszyła.');
+    return;
+  }
+
+  // Jedna powtórka na chwilowy błąd GitHuba; zły klucz (401/403/404) nie
+  // naprawi się sam, więc od razu kończy się błędem widocznym w logach.
+  for (let proba = 1; ; proba++) {
+    const odp = await fetch(AKCJA_ROLEK, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'busikm-media',
+      },
+      body: JSON.stringify({ ref: 'develop' }),
+    });
+    if (odp.ok) return;
+    const tresc = (await odp.text()).slice(0, 300);
+    if (odp.status < 500 || proba === 2) {
+      throw new Error(`GitHub odmówił uruchomienia rolek: ${odp.status} ${tresc}`);
+    }
+    await new Promise((r) => setTimeout(r, 5000));
+  }
 }
 
 // Godzina w przeglądarce, doba w CDN. Nowa wersja filmu pod tą samą nazwą
@@ -87,5 +124,9 @@ export default {
 
     headers.set('Content-Length', String(obj.size));
     return new Response(obj.body, { status: 200, headers });
+  },
+
+  async scheduled(_controller: unknown, env: Env): Promise<void> {
+    await uruchomRolki(env.GITHUB_TOKEN);
   },
 };
