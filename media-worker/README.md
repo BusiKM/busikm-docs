@@ -38,3 +38,7 @@ w `landing/src/content/media.ts`.
 
 Filmy, okładki i katalog rolek leżą pod `rolki/`. Zapisuje je
 `rolki/synchronizuj.mjs` oraz `busikm-video`. Opis: `docs/landing/17-rolki.md`.
+
+Worker ma też cron co 15 minut, który uruchamia akcję „Rolki” w GitHubie.
+Potrzebuje sekretu `GITHUB_TOKEN` (`npx wrangler secret put GITHUB_TOKEN`);
+`wrangler deploy` sekretów nie rusza.

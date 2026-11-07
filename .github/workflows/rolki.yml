@@ -6,8 +6,9 @@
 name: Rolki
 
 on:
+  # Zapas. Główny wyzwalacz to cron Workera busikm-media co 15 minut
+  # (workflow_dispatch), bo ten harmonogram GitHub odpala rzadko i późno.
   schedule:
-    # Minuta inna niż pełna godzina: o pełnych GitHub ma największe kolejki.
     - cron: '23 * * * *'
   workflow_dispatch:
 

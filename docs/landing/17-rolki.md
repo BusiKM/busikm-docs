@@ -9,7 +9,8 @@ Facebooku i niczego stamtąd nie ładujemy. Nowa rolka pojawia się sama.
 1. Renderujesz ją w `busikm-video`. Format story sam trafia do poczekalni w R2.
 2. Publikujesz ją na Facebooku, ręcznie lub z planera. **Opis musi mieć hashtag kategorii.**
 
-Nic więcej. Rolka jest na stronie najpóźniej po około 1 godz. 15 min od publikacji.
+Nic więcej. Rolka jest na stronie najpóźniej po około 35 minutach od publikacji: do 15 minut
+czeka na przebieg automatu, kilka minut trwa przebieg, do 15 minut strona odświeża listę.
 
 ## Kategorie
 
@@ -39,7 +40,7 @@ a „Skomentuj na Facebooku” prowadzi do konkretnej rolki.
 ```
 busikm-video ── po renderze ──▶ R2 rolki/pliki/<slug>-<skrót>.mp4, poczekalnia.json
                                         │
-Facebook ── lista rolek ──▶ synchronizuj.mjs (GitHub Actions, co godzinę)
+Facebook ── lista rolek ──▶ synchronizuj.mjs (GitHub Actions, co 15 minut z crona Workera)
                                         │
                    R2 rolki/katalog.json, okładki, w razie potrzeby film z Facebooka
                                         │
@@ -50,6 +51,14 @@ Facebook ── lista rolek ──▶ synchronizuj.mjs (GitHub Actions, co godzi
 
 Facebook jest źródłem listy: rolka usunięta tam znika też ze strony, a zmiana opisu
 przechodzi na stronę przy następnym przebiegu.
+
+**Kto uruchamia automat.** Cron Workera `busikm-media` (`*/15 * * * *` w `media-worker/wrangler.jsonc`)
+co 15 minut zleca GitHubowi uruchomienie akcji „Rolki” przez API (`workflow_dispatch`). Harmonogram
+samego GitHuba okazał się zawodny: 6–7.11.2026 odpalił 3 przebiegi na 17 godzin, każdy spóźniony o 30–50
+minut. Zostaje w `rolki.yml` jako zapas. Dwa przebiegi naraz nie zapiszą katalogu jeden na drugim,
+bo akcja ma blokadę `concurrency`, a przebieg bez nowych rolek niczego nie zmienia.
+
+Akcja, a nie sam Worker, bo film z Facebooka bywa w AV1 i trzeba go przeliczyć ffmpegiem.
 
 **Który plik trafia na stronę.** Rolka i film z poczekalni są łączone po długości, z
 tolerancją 0,05 s. Film bierzemy tylko wtedy, gdy kandydat jest jeden, bo dwie rolki potrafią
@@ -98,11 +107,36 @@ Klucz Cloudflare ma prawo zapisu tylko do `busikm-public`. Takiego klucza `wrang
 
 `FB_TOKEN` to klucz konta technicznego, a odczyt rolek wymaga klucza strony. Skrypt wymienia jeden na drugi przy każdym przebiegu i trzyma go tylko w pamięci.
 
+Sekret Workera `busikm-media` (Cloudflare, nie GitHub):
+
+| Sekret | Do czego |
+|---|---|
+| `GITHUB_TOKEN` | Uruchamianie akcji „Rolki”. Klucz *fine-grained* tylko do `BusiKM/busikm-docs`, jedno prawo: Actions — zapis |
+
+Wgrywa się go z własnego terminala, bez wklejania do czatu:
+
+```bash
+cd media-worker
+pbpaste | npx wrangler secret put GITHUB_TOKEN
+```
+
+Organizacja BusiKM nie pozwala na klucze bez terminu, najdłużej 366 dni. Obecny klucz
+(`busikm-media rolki`) wygasa **8.11.2027**, a GitHub przypomina o tym mailem tydzień wcześniej.
+Gdy klucz wygaśnie albo zostanie cofnięty, przebiegi z Workera ustaną: w Cloudflare → Workers →
+`busikm-media` → Logs widać wtedy „GitHub odmówił uruchomienia rolek: 401”. Wymiana klucza to ta sama
+komenda z nowym kluczem, bez wdrażania Workera.
+
 Repozytorium jest publiczne, a logi akcji też. Dlatego skrypt wysyła token nagłówkiem, nie korzysta
 z `paging.next` (Facebook dokleja tam token) i nie wypisuje adresów z Facebooka.
 
-Ręczne uruchomienie: GitHub → Actions → Rolki → Run workflow. GitHub wyłącza harmonogram po 60 dniach
-bez aktywności w repozytorium i wysyła o tym maila. Włącza się go tam samo.
+Ręczne uruchomienie: GitHub → Actions → Rolki → Run workflow, albo:
+
+```bash
+gh workflow run rolki.yml --repo BusiKM/busikm-docs --ref develop
+```
+
+GitHub wyłącza własny harmonogram po 60 dniach bez aktywności w repozytorium. Cron Workera tego
+nie dotyczy.
 
 Podgląd bez R2:
 
